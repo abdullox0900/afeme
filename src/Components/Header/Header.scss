@@ -1,0 +1,20 @@
+.nav{
+    &_content{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &_items{
+        display: flex;
+    }
+    &_buttons{
+        margin-left: 20px;
+    }
+    &_icon{
+        width: auto;
+        height: auto;
+    }
+    .login_button{
+        background-color: #E5F0FF;
+    }
+}
