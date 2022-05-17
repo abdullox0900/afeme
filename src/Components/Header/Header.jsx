@@ -11,7 +11,7 @@ function Header() {
                     </a>
 
                     <div className="header__location">
-                        Uzbeciston
+                        Uzbekistan
                     </div>
                 </header>
             </Container>
