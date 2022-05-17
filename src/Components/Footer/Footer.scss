@@ -1,0 +1,37 @@
+.wrapper_footer{
+    margin: 0 auto;
+    width: 1350px;
+    height: 30vh;
+}
+.first_floor,
+.second_floor{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.about_footer{
+    display: flex;
+    align-items:flex-start;
+    width: 630px;
+}
+.apps_footer{
+    display: flex;
+    align-items: center;
+    width: 630px;
+    height: 15vh;
+}
+.about_text{
+    padding: 10px 20px;
+    width: 70%;
+    height: 15vh;
+}
+img{
+    margin: 0 7px;
+    cursor: pointer;
+}.links_footer{
+    display: flex;
+    align-items: center;
+}
+.links_items:nth-child(2){
+    padding-left: 70px;
+}
