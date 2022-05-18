@@ -1,28 +1,33 @@
 .nav{
     padding: 10px 0;
-    &_content{
+    &__content{
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
-    &_logo{
+    &__logo{
         display: flex;
         align-items: center;
     }
-    &_location{
+    &__location{
         background-color: #F0F0F0 !important;
         color: #292929 !important;
         border-radius: 30px !important;
         font-weight: 400 !important;
-        font-size: 14px !important;
+        font-size: 12px !important;
+        &-img{
+            margin-right: 5px;
+            width: 18px;
+        }
     }
-    &_items{
+    &__items{
         display: flex;
+        align-items: center;
     }
-    &_buttons{
-        margin-left: 20px;
+    &__buttons{
+        margin-left: 30px;
     }
-    &_icon{
+    &__icon{
         width: auto;
         height: auto;
     }
