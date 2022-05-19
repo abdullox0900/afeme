@@ -1,37 +1,37 @@
-.nav{
-    padding: 10px 0;
-    &__content{
+.header {
+    padding: 15px 0;
+    &__content {
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
-    &__logo{
+    &__logo {
         display: flex;
         align-items: center;
     }
-    &__location{
-        background-color: #F0F0F0 !important;
+    &__location {
+        background-color: #f0f0f0 !important;
         color: #292929 !important;
         border-radius: 30px !important;
         font-weight: 400 !important;
         font-size: 12px !important;
-        &-img{
+        &-img {
             margin-right: 5px;
             width: 18px;
         }
     }
-    &__items{
+    &__items {
         display: flex;
         align-items: center;
     }
-    &__buttons{
+    &__buttons {
         margin-left: 30px;
     }
-    &__icon{
+    &__icon {
         width: auto;
         height: auto;
     }
-    .login_button{
-        background-color: #E5F0FF;
+    .login_button {
+        background-color: #e5f0ff;
     }
 }

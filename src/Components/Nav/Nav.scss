@@ -1,0 +1,23 @@
+// NAVBAR
+
+.nav {
+    margin: 20px 0px;
+    &__list {
+        display: flex;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__item + &__item {
+        margin-left: 25px;
+    }
+
+    &__link {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 20px;
+        text-decoration: none;
+        color: #000;
+    }
+}
