@@ -1,12 +1,12 @@
 import logo from "../../Assets/Img/logo.svg"
-import notificationIcon from "../../Assets/Img/notification.png"
-import loveIcon from "../../Assets/Img/love.png"
-import CurrencyIcon from "../../Assets/Img/currency.png"
+import notificationIcon from "../../Assets/Img/notification.svg"
+import loveIcon from "../../Assets/Img/love.svg"
+import CurrencyIcon from "../../Assets/Img/currency.svg"
 import locationIcon from "../../Assets/Img/location.svg"
 import Container from "../Container/Container";
 import Nav from "../Nav/Nav";
 
-import { IconButton, Button, Tooltip, Grow, Badge, Skeleton } from '@mui/material';
+import { IconButton, Button, Tooltip, Grow, Badge } from '@mui/material';
 
 import "../Header/Header.scss";
 
@@ -53,7 +53,6 @@ function Header() {
 
             </header>
         </>
-
     )
 }
 
