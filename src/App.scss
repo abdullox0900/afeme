@@ -58,6 +58,11 @@ body {
     font-family: "Roboto", sans-serif;
     list-style: none;
     text-decoration: none;
+    outline: none;
+}
+input, input:focus{
+    outline: none;
+    border: none;
 }
 .btn {
     text-transform: none !important;
