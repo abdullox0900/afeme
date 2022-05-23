@@ -8,9 +8,14 @@ import "../Search/Search.scss";
 
 function Search() {
     
-    const [age, setAge] = React.useState('');
-    const handleChange = (event) => {
-        setAge(event.target.value);
+    const [price, setPrice] = React.useState('');
+    const [room, setRoom] = React.useState('');
+
+    const priceChange = (event) => {
+        setPrice(event.target.value);
+    };
+    const roomChange = (event) => {
+        setRoom(event.target.value);
     };
 
     return (
@@ -21,19 +26,33 @@ function Search() {
                         <h2 className="search__main-title">Toshkent shahridagi ko'chmas mulk</h2>
 
                         <form action="#" className="search__form">
-                            <InputLabel id="filter__select-label">Age</InputLabel>
-                            <Select labelId="filter__select-label" id="filter__select" value={age} label="Age" onChange={handleChange}
-                            >
-                                <MenuItem value={10}>Ten</MenuItem>
-                                <MenuItem value={20}>Twenty</MenuItem>
-                                <MenuItem value={30}>Thirty</MenuItem>
-                            </Select>
-                            <div className="search__box">
-                                <span className="search__icon"><img src={searchIcon} alt="" /></span>
-                                <input type="text" className="input__search" placeholder="Search by filtering"/>
-                            </div>
-                            
-                            {/* <Button className="btn search__submit-btn" variant="contained">Search</Button> */}
+                            <Box className="form__content">
+                                <Box className="filter__content">
+                                    <FormControl className="filter__items" sx={{mr: 1}}>
+                                        <InputLabel id="filter__select-label">Price</InputLabel>
+                                        <Select labelId="filter__select-label" id="filter__select" value={price} label="Price" onChange={priceChange}>
+                                            <MenuItem value={'Cheap'}>Cheap</MenuItem>
+                                            <MenuItem value={'Middle'}>Middle</MenuItem>
+                                            <MenuItem value={'Expensive'}>Expensive</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                    <FormControl className="filter__items" sx={{width: 100}}>
+                                        <InputLabel id="filter__select-label">Room</InputLabel>
+                                        <Select labelId="filter__select-label" id="filter__select" value={room} label="Room" onChange={roomChange}>
+                                            <MenuItem value={2}>2</MenuItem>
+                                            <MenuItem value={3}>3</MenuItem>
+                                            <MenuItem value={4}>4</MenuItem>
+                                            <MenuItem value={5}>5</MenuItem>
+                                            <MenuItem value={'5+'}>5+</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                </Box>
+                                <Box className="search__box" sx={{mr: 1}}>
+                                    <span className="search__icon"><img src={searchIcon} alt="" /></span>
+                                    <input type="text" className="input__search" placeholder="Search by filtering"/>
+                                </Box>
+                                <Button className="btn search__submit-btn" type="submit" variant="contained">Search</Button>
+                            </Box>
                         </form>
                     </Box>
                 </Container>
