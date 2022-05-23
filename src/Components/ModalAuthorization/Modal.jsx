@@ -1,9 +1,10 @@
 import React from "react";
-import "../../Components/ModalAuthorization/Modal.scss";
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import "../../Assets/scss/colors.scss";
 import LogoAuthorization from "../../Assets/Img/logo_authorization.svg";
+
+import "../../Assets/scss/colors.scss";
+import "../../Components/ModalAuthorization/Modal.scss";
 
 function Modal() {
     return (
