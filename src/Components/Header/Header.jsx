@@ -4,11 +4,11 @@ import loveIcon from "../../Assets/Img/love.svg"
 import CurrencyIcon from "../../Assets/Img/currency.svg"
 import locationIcon from "../../Assets/Img/location.svg"
 import Container from "../Container/Container";
+import "../Header/Header.scss";
 import Nav from "../Nav/Nav";
 
 import { IconButton, Button, Tooltip, Grow, Badge, FormControl } from '@mui/material';
 
-import "../Header/Header.scss";
 
 function Header() {
     return (
@@ -43,8 +43,8 @@ function Header() {
                                 </Tooltip>
                             </Badge>
                             <div className="header__buttons" sx={{ ml: 3 }}>
-                                <Button className="btn nav__button" variant="contained" sx={{ py: 1, px: 1.5 }}>+ Eʻlon qoʻshish</Button>
-                                <Button className="btn nav__button login__button" variant="text" sx={{ ml: 2, py: 1.5, px: 2.5 }}>Kirish</Button>
+                                <Button className="btn header__button" variant="contained" sx={{ py: 1, px: 1.5 }}>+ Eʻlon qoʻshish</Button>
+                                <Button className="btn header__button login__button" variant="text" sx={{ ml: 2, py: 1.5, px: 2.5 }}>Kirish</Button>
                             </div>
                         </div>
                     </div>

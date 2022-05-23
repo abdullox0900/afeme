@@ -1,0 +1,116 @@
+@import "../../Assets/scss/colors.scss";
+.modal {
+    display: none;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    z-index: 100;
+    .open--btn {
+        display: flex;
+    }
+    &__authorization {
+        position: relative;
+        width: 400px;
+        height: 600px;
+        background: #ffffff;
+        border-radius: 20px;
+    }
+    &__img-auth {
+        margin-top: 45px;
+        margin-left: 150px;
+        margin-bottom: 30px;
+    }
+    &__close-btn {
+        padding: 20px !important;
+        position: absolute !important;
+        top: 15px;
+        right: 15px;
+        width: 25px;
+        height: 25px;
+        border: none;
+        cursor: pointer;
+        border-radius: 50%;
+        background-color: #fff;
+        background-image: url(../../Assets/Img/close.svg);
+        background-repeat: no-repeat;
+        background-size: 18px;
+        background-position: center center;
+    }
+    &__close-btn:hover {
+        box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
+    }
+    &__title {
+        margin: 0;
+        margin-bottom: 30px;
+        font-weight: 500;
+        font-size: 30px;
+        line-height: 41px;
+        text-align: center;
+    }
+    .form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 280px;
+        margin: 0 auto;
+        .input-auth {
+            padding: 15px 15px;
+            width: 100%;
+            border: 1px solid #c4c4c4;
+            border-radius: 8px;
+            transition: 0.5s ease;
+        }
+        .input-auth:focus {
+            border: 1px solid $darkBlue;
+        }
+        .input-auth::placeholder {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 19px;
+            color: #c4c4c4;
+        }
+        &__authorization-input {
+            margin-bottom: 20px;
+        }
+        &__authorization-input--password {
+            margin-bottom: 20px;
+        }
+        &__authorization-btn {
+            width: 280px;
+            padding: 14px 0px;
+            margin-bottom: 20px;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 23px;
+            text-transform: none;
+            color: #ffffff;
+            background: #0468ff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        &__authorization-link {
+            display: inline-block;
+            padding: 14px 0px;
+            width: 280px;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 19px;
+            text-transform: none;
+            color: #347aff;
+            text-align: center;
+            text-decoration: none;
+            background: #e5f0ff;
+            border-radius: 10px;
+        }
+    }
+}

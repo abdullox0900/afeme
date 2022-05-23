@@ -2,48 +2,42 @@
     font-family: "Roboto";
     font-style: normal;
     font-weight: 300;
-    src: local(""), url("../src/Assets/Fonts/roboto-v30-latin-300.woff2") format("woff2"),
-        url("../src/Assets/Fonts/roboto-v30-latin-300.woff") format("woff");
+    src: local(""), url("../src/Assets/Fonts/roboto-v30-latin-300.woff2") format("woff2"), url("../src/Assets/Fonts/roboto-v30-latin-300.woff") format("woff");
 }
 
 @font-face {
     font-family: "Roboto";
     font-style: normal;
     font-weight: 100;
-    src: local(""), url("../src/Assets/Fonts/roboto-v30-latin-100.woff2") format("woff2"),
-        url("../src/Assets/Fonts/roboto-v30-latin-100.woff") format("woff");
+    src: local(""), url("../src/Assets/Fonts/roboto-v30-latin-100.woff2") format("woff2"), url("../src/Assets/Fonts/roboto-v30-latin-100.woff") format("woff");
 }
 
 @font-face {
     font-family: "Roboto";
     font-style: normal;
     font-weight: 400;
-    src: local(""), url("../src/Assets/Fonts/roboto-v30-latin-regular.woff2") format("woff2"),
-        url("../src/Assets/Fonts/roboto-v30-latin-regular.woff") format("woff");
+    src: local(""), url("../src/Assets/Fonts/roboto-v30-latin-regular.woff2") format("woff2"), url("../src/Assets/Fonts/roboto-v30-latin-regular.woff") format("woff");
 }
 
 @font-face {
     font-family: "Roboto";
     font-style: normal;
     font-weight: 500;
-    src: local(""), url("../src/Assets/Fonts/roboto-v30-latin-500.woff2") format("woff2"),
-        url("../src/Assets/Fonts/roboto-v30-latin-500.woff") format("woff");
+    src: local(""), url("../src/Assets/Fonts/roboto-v30-latin-500.woff2") format("woff2"), url("../src/Assets/Fonts/roboto-v30-latin-500.woff") format("woff");
 }
 
 @font-face {
     font-family: "Roboto";
     font-style: normal;
     font-weight: 700;
-    src: local(""), url("../src/Assets/Fonts/roboto-v30-latin-700.woff2") format("woff2"),
-        url("../src/Assets/Fonts/roboto-v30-latin-700.woff") format("woff");
+    src: local(""), url("../src/Assets/Fonts/roboto-v30-latin-700.woff2") format("woff2"), url("../src/Assets/Fonts/roboto-v30-latin-700.woff") format("woff");
 }
 
 @font-face {
     font-family: "Roboto";
     font-style: normal;
     font-weight: 900;
-    src: local(""), url("../src/Assets/Fonts/roboto-v30-latin-900.woff2") format("woff2"),
-        url("../src/Assets/Fonts/roboto-v30-latin-900.woff") format("woff");
+    src: local(""), url("../src/Assets/Fonts/roboto-v30-latin-900.woff2") format("woff2"), url("../src/Assets/Fonts/roboto-v30-latin-900.woff") format("woff");
 }
 
 *,
@@ -60,15 +54,19 @@ body {
     text-decoration: none;
     outline: none;
 }
-input, input:focus{
+
+input,
+input:focus {
     outline: none;
     border: none;
 }
+
 .btn {
     text-transform: none !important;
     font-weight: 600 !important;
     border-radius: 10px !important;
 }
+
 .icon__btn {
     width: max-content !important;
     height: max-content !important;
