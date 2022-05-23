@@ -1,3 +1,4 @@
+@import "../../Assets/scss/colors.scss";
 .header {
     padding-top: 10px;
     &__content {
@@ -31,7 +32,10 @@
         width: auto;
         height: auto;
     }
-    .login_button {
-        background-color: #e5f0ff;
+    .login__btn {
+        background-color: $lightBlue !important;
+    }
+    .add__announcement img{
+        padding-right: 6px;
     }
 }
