@@ -1,7 +1,8 @@
 import React from "react"
 import {Menu, MenuItem, Divider } from '@mui/material';
-
+import Container from "../Container/Container";
 import "../Nav/Nav.scss";
+// import { Container } from "@mui/system";
 
 function Nav() {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -15,6 +16,7 @@ function Nav() {
 
     return (
         <>
+            <Container>
             <nav className="nav">
                 <ul className="nav__list">
                     <li className="nav__item">
@@ -42,6 +44,7 @@ function Nav() {
                     </Menu>
                 </ul>
             </nav>
+            </Container>
         </>
     )
 }

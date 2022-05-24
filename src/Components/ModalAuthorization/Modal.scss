@@ -14,7 +14,7 @@
     background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(3px);
     z-index: 100;
-    .open--btn {
+    &--open {
         display: flex;
     }
     &__authorization {

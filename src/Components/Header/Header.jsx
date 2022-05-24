@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import axios from 'axios';
+import React, { Component } from 'react';
+// import axios from 'axios';
 import logo from "../../Assets/Img/logo.svg"
 import notificationIcon from "../../Assets/Img/notification.svg"
 import loveIcon from "../../Assets/Img/love.svg"
@@ -7,29 +7,15 @@ import CurrencyIcon from "../../Assets/Img/currency.svg"
 import locationIcon from "../../Assets/Img/location.svg"
 import plusIcon from "../../Assets/Img/plus.svg"
 import Container from "../Container/Container";
-
-import Nav from "../Nav/Nav";
-import { IconButton, Button, Tooltip, Grow, Badge, FormControl } from '@mui/material';
+import Modal from '../ModalAuthorization/Modal';
+import "../ModalAuthorization/Modal.scss";
+import { IconButton, Button, Tooltip, Grow, Badge,} from '@mui/material';
 import "../Header/Header.scss";
 
-class Header extends Component {
-    state = {
-        IP: ""
-    }
+function Header() {
 
-    componentDidMount() {
-        axios.get(`https://ipapi.co/json/`)
-        .then(response => {
-            const IP = response.data;
-            console.log(IP.country_name);
-            if (IP.ip) {
-                this.setState({IP});
-            }
-        })
-        .catch((err) => {console.log(err);});
-    }
+    const elModal = React.useRef();
 
-    render(){
     return (
         <>
             <header className="header">
@@ -39,8 +25,10 @@ class Header extends Component {
                             <a href="#" className="header__logo-link">
                                 <img className="header__logo-img" src={logo} alt="logo" />
                             </a>
-                            <Tooltip className="icon__btn" title="Your location" arrow TransitionComponent={Grow}>
-                                <Button className="btn header__location" variant="text" sx={{ py: 1, px: 1.2, ml: 1.5 }} title="Set location"><img src={locationIcon} alt="" className="header__location-img" /> {this.state.IP.country_name}</Button>
+                            <Tooltip className="icon__btn" title="Salom" arrow TransitionComponent={Grow}>
+                                <Button className="btn header__location" variant="text" sx={{ py: 1, px: 1.2, ml: 1.5 }}>
+                                    <img src={locationIcon} alt="location-img" className="header__location-img" />
+                                </Button>
                             </Tooltip>
                         </div>
                         <div className="header__items">
@@ -63,16 +51,52 @@ class Header extends Component {
                             </Badge>
                             <div className="header__buttons" sx={{ ml: 3 }}>
                                 <Button className="btn header__button add__announcement" variant="contained" sx={{ py: 1, px: 1.5 }}><img src={plusIcon} alt="" /> Eʻlon qoʻshish</Button>
-                                <Button className="btn header__button login__btn" variant="text" sx={{ ml: 2, py: 1.5, px: 2.5 }}>Kirish</Button>
+                                <Button className="btn header__button login__btn modal-dialog modal-dialog-scrollable"
+                                variant="text" sx={{ ml: 2, py: 1.5, px: 2.5 }} onClick={() => {
+                                    elModal.current.classList.add("modal--open");
+                                }}>Kirish</Button>
                             </div>
                         </div>
                     </div>
-                    <Nav></Nav>
+                    {/* <Nav></Nav> */}
                 </Container>
+
+                <Modal elModal={elModal} />
 
             </header>
         </>
     )
-    }
 }
 export default Header;
+
+// class Header extends Component {
+//     state = {
+//         // IP: ""
+//     }
+
+    // componentDidMount() {
+    //     axios.get(`https://ipapi.co/json/`)
+    //         .then(response => {
+    //             const IP = response.data;
+    //             console.log(IP.country_name);
+    //             if (IP.ip) {
+    //                 this.setState({ IP });
+    //             }
+    //         })
+    //         .catch((err) => { console.log(err); });
+    // }
+
+    // Iltomos errorlarni tozalab yuring
+    // {this.state.IP.country_name}
+
+
+
+    // render() {
+
+    //     return (
+    //         <>
+
+    //         </>
+    //     )
+    // }
+// }
