@@ -54,6 +54,7 @@ function Header() {
                                 <Button className="btn header__button login__btn modal-dialog modal-dialog-scrollable"
                                 variant="text" sx={{ ml: 2, py: 1.5, px: 2.5 }} onClick={() => {
                                     elModal.current.classList.add("modal--open");
+                                    elModal.current.classList.add("modal--style");
                                 }}>Kirish</Button>
                             </div>
                         </div>

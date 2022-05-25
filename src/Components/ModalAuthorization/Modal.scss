@@ -17,12 +17,20 @@
     &--open {
         display: flex;
     }
+
     &__authorization {
         position: relative;
         width: 400px;
         height: 600px;
         background: #ffffff;
         border-radius: 20px;
+        transition: all 1.5s;
+        // transform: scale(0);
+    }
+
+    &--style {
+        transition: 1s ease;
+        transform: scale(1);
     }
     &__img-auth {
         margin-top: 45px;

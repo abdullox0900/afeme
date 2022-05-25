@@ -4,6 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import LogoAuthorization from "../../Assets/Img/logo_authorization.svg";
 import "../../Assets/scss/colors.scss";
 import "../../Components/ModalAuthorization/Modal.scss";
+import { modalClasses } from "@mui/material";
 
 function Modal({ elModal }) {
 
