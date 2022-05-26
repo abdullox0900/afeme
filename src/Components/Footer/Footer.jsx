@@ -3,8 +3,16 @@ import "../Footer/Footer.scss";
 import { Container } from "react-bootstrap";
 import Logo from "../../Assets/Img/logo.svg";
 import GoogleImg from "../../Assets/Img/google.svg";
+import Instagram from "../../Lib/Svg/Instagram";
+import Telegram from "../../Lib/Svg/Telegram";
+import { style } from "@mui/system";
 
 function Footer() {
+
+    const address = {
+        width: "200px",
+    }
+
     return (
         <>
             <footer className="footer">
@@ -43,27 +51,27 @@ function Footer() {
                             <h3 className="footer__holder-title">Biz bilan aloqa</h3>
                             <ul className="footer__list">
                                 <li className="footer__item">
-                                    <a href="#" className="footer__link">+998900431160</a>
+                                    <a href="tel:+998900431160" className="footer__link footer__link-tel">+998900431160</a>
                                 </li>
                                 <li className="footer__item">
-                                    <a href="#" className="footer__link">afemegroup@gmail.com</a>
+                                    <a href = "mailto: afemegroup@gmail.com" className="footer__link footer__link-email">afemegroup@gmail.com</a>
                                 </li>
                                 <li className="footer__item">
-                                    <a href="#" className="footer__link">Andijon shahri, Boburshox ko'chasi, 2-uy</a>
+                                    <a href="https://yandex.uz/maps/org/244577402097/?ll=72.356849%2C40.746957&z=15" className="footer__link footer__link-address" target={"_blank"} style={address}>Andijon shahri, Boburshox ko'chasi, 2-uy</a>
                                 </li>
                             </ul>
                         </section>
                         <section className="footer__holder">
                             <h3 className="footer__holder-title">Biz bilan aloqa</h3>
-                            <ul className="footer__list">
-                                <li className="footer__item">
-                                    <a href="#" className="footer__link">
-                                        <img src="" alt="" />
+                            <ul className="footer__list footer__list-three">
+                                <li className="footer__item-th">
+                                    <a href="#" className="footer__link-th">
+                                        <Instagram />
                                     </a>
                                 </li>
-                                <li className="footer__item">
-                                    <a href="#" className="footer__link">
-                                        <img src="" alt="" />
+                                <li className="footer__item-th">
+                                    <a href="https://t.me/afemeuzd" target={"_blank"} className="footer__link-th">
+                                        <Telegram/>
                                     </a>
                                 </li>
                             </ul>

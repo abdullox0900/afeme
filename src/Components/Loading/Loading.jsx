@@ -1,8 +1,6 @@
 import React from "react";
 import "../Loading/Loading.scss";
-import LogoLoading from "../../Assets/Img/LogoImg.svg";
 import LogoImg from "../../Lib/Svg/logo";
-import LogoOval from "../../Lib/Svg/LogoOval";
 
 function Loading() {
     return (
