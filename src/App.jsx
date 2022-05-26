@@ -8,6 +8,8 @@ import Modal from "./Components/ModalAuthorization/Modal";
 import Categories from './Components/Categories/Categories';
 import Loading from './Components/Loading/Loading';
 import Footer from './Components/Footer/Footer';
+import Form from './Components/Form/Form';
+import LoginImg from './Components/LoginImg/LoginImg';
 
 function App() {
 
@@ -16,12 +18,14 @@ function App() {
     return (
         <>
             <Header />
-            <Nav />
-            <Hero />
-            <Categories />
-            <Main />
+            <LoginImg />
+            {/* <Form /> */}
+            {/* <Nav /> */}
+            {/* <Hero /> */}
+            {/* <Categories /> */}
+            {/* <Main /> */}
             {/* <Loading /> */}
-            <Footer />
+            {/* <Footer /> */}
         </>
     )
 }

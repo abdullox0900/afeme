@@ -14,7 +14,7 @@ import RightArrow from "../../Assets/Img/arrow-right.svg";
 import { Box, Typography } from "@mui/material";
 
 import "./Main.scss"
-import {Cards, SCard} from "../Card/Card";
+import { Cards, SCard } from "../Card/Card";
 import Container from "../Container/Container"
 
 function Main() {
@@ -29,7 +29,7 @@ function Main() {
     const sData = {
         houseTitle: 'My house',
         houseAddress: 'Andijan',
-        houseImg: CardImg6, 
+        houseImg: CardImg6,
     };
     return (
         <main className="main">
@@ -39,34 +39,34 @@ function Main() {
                         <section className="section recommend">
                             <Typography variant="h3" className="section__title">Tavsiya etilgan turar-joy majmualari</Typography>
                             <div className="cards">
-                                <Cards data={data}/>
-                                <Cards data={data}/>
-                                <Cards data={data}/>
+                                <Cards data={data} />
+                                <Cards data={data} />
+                                <Cards data={data} />
                             </div>
                             <Box className="viewAll"><a href="#" className="viewAll__link">Barchasini ko’rish </a><img src={RightArrow} alt="" /></Box>
                         </section>
                         <section className="section popular">
                             <Typography variant="h3" className="section__title">Ommabop Uylar</Typography>
                             <div className="cards">
-                                <Cards data={data}/>
-                                <Cards data={data}/>
-                                <Cards data={data}/>
-                                <Cards data={data}/>
-                                <Cards data={data}/>
-                                <Cards data={data}/>
+                                <Cards data={data} />
+                                <Cards data={data} />
+                                <Cards data={data} />
+                                <Cards data={data} />
+                                <Cards data={data} />
+                                <Cards data={data} />
                             </div>
                             <Box className="viewAll"><a href="#" className="viewAll__link">Barchasini ko’rish </a><img src={RightArrow} alt="" /></Box>
                         </section>
                         <section className="section newBuildings">
                             <Typography variant="h3" className="section__title">Yangi Binolar</Typography>
                             <div className="scards">
-                                <SCard data={sData}/>
-                                <SCard data={sData}/>
+                                <SCard data={sData} />
+                                <SCard data={sData} />
                             </div>
                         </section>
                     </div>
                     <div className="panel">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.6608322062507!2d72.3573832156414!3d40.74748804338021!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bced630e0f4795%3A0xf72460c2369068a8!2sDigital%20City!5e0!3m2!1suz!2s!4v1653553961195!5m2!1suz!2s" width={'100%'} height={400} style={{border: 0}} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.6608322062507!2d72.3573832156414!3d40.74748804338021!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bced630e0f4795%3A0xf72460c2369068a8!2sDigital%20City!5e0!3m2!1suz!2s!4v1653553961195!5m2!1suz!2s" width={'100%'} height={400} style={{ border: 0 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
 
                         <Box className="realtors">
                             <Typography variant="h5" className="realtors__title">Rieltorlar</Typography>

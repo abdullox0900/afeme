@@ -1,0 +1,24 @@
+.ilsut-grup {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    position: relative;
+    width: 500px;
+}
+
+.ilust-one {
+    position: absolute;
+    top: 33px;
+    right: 55px;
+    z-index: 2;
+}
+
+.ilust-two {
+    position: absolute;
+    z-index: 3;
+}
+
+.ilust-three {
+    position: absolute;
+    top: -20px;
+}
