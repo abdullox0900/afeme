@@ -3,6 +3,7 @@ import './App.scss';
 import Header from './Components/Header/Header';
 import Nav from './Components/Nav/Nav';
 import Hero from './Components/Hero/Hero';
+import Main from './Components/Main/Main';
 import Modal from "./Components/ModalAuthorization/Modal";
 import Categories from './Components/Categories/Categories';
 import Loading from './Components/Loading/Loading';
@@ -18,6 +19,7 @@ function App() {
             <Nav />
             <Hero />
             <Categories />
+            <Main />
             {/* <Loading /> */}
             <Footer />
         </>
