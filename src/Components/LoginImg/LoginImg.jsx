@@ -17,6 +17,7 @@ function LoginImg() {
 
     return (
         <>
+
             <div className="ilsut-grup">
                 <img className="ilust-one" src={IlustImg} alt="form-img" data-aos="fade-left"
                     data-aos-anchor="#example-anchor"

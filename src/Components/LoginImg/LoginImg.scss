@@ -1,8 +1,9 @@
 .ilsut-grup {
     display: flex;
     justify-content: center;
-    margin: 0 auto;
+    // margin: 0 auto;
     position: relative;
+    top: -100px;
     width: 500px;
 }
 
@@ -21,4 +22,11 @@
 .ilust-three {
     position: absolute;
     top: -20px;
+}
+
+// RESPONSIV TABLET
+@media only screen and (max-width: 995px) {
+    .ilsut-grup {
+        display: none;
+    }
 }
