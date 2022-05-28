@@ -1,31 +1,17 @@
 import React from 'react';
 import './App.scss';
-import Header from './Components/Header/Header';
-import Nav from './Components/Nav/Nav';
-import Hero from './Components/Hero/Hero';
-import Main from './Components/Main/Main';
-import Modal from "./Components/ModalAuthorization/Modal";
-import Categories from './Components/Categories/Categories';
-import Loading from './Components/Loading/Loading';
-import Footer from './Components/Footer/Footer';
+import { Routes, Route, Navlink, } from "react-router-dom";
+import Home from "./Pages/Home/Home";
 import SignUp from './Pages/SignUp/SignUp';
 
 function App() {
 
-    const elModal = React.useRef();
-
     return (
         <>
-            {/* <Header /> */}
-            <SignUp/>
-            {/* <LoginImg /> */}
-            {/* <Form /> */}
-            {/* <Nav /> */}
-            {/* <Hero /> */}
-            {/* <Categories /> */}
-            {/* <Main /> */}
-            {/* <Loading /> */}
-            {/* <Footer /> */}
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<SignUp />} />
+            </Routes>
         </>
     )
 }

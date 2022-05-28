@@ -16,6 +16,9 @@ import LogoHome from "../../Assets/Img/home-logo.svg";
 import Button from '@mui/material/Button';
 import "../../Assets/scss/colors.scss";
 import LoadingButton from '@mui/lab/LoadingButton';
+import { NavLink } from "react-router-dom";
+import Modal from '../ModalAuthorization/Modal';
+
 
 
 function Form() {
@@ -50,6 +53,8 @@ function Form() {
     const cusTomColor = {
         color: "$darkBlue"
     }
+
+    const elModal = React.useRef()
 
     return (
         <>
@@ -106,11 +111,15 @@ function Form() {
                         />
                     </FormControl>
                     <div className="form__box">
-                        <a href="#" className="form__link-myaccount" >Mening akkauntim bor</a>
-                        <Button className="form__btn" sx={{ p: 1.3, ml: 22.5 }} variant="contained">Roʻyxatdan oʻtish</Button>
+
+                        <a href="#" className="form__link-myaccount" onClick={() => {
+                            elModal.current.classList.add("modal--open");
+                            elModal.current.classList.add("modal--style");
+                        }}>Mening akkauntim bor</a>
+                        <Button className="form__btn" sx={{ p: 1.3, ml: 22.5 }} variant="contained"> Roʻyxatdan oʻtish</Button>
                     </div>
 
-
+                    <Modal elModal={elModal} />
                 </form>
             </Container>
         </>
