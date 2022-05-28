@@ -1,8 +1,22 @@
+body{
+    overflow: hidden;
+}
 .loading {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
     height: 100vh;
+    width: 100%;
+    z-index: 9999;
+    background-color: #fff;
+    transition: all .5s;
+}
+body.loaded .loading{
+    opacity: 0;
+}
+body.loaded{
+    overflow: auto;
 }
 
 .loader {

@@ -1,8 +1,8 @@
 import React from "react";
-import "../Loading/Loading.scss";
+import "./Loader.scss";
 import LogoImg from "../../Lib/Svg/logo";
 
-function Loading() {
+function Loader() {
     return (
         <>
             <div className="loading">
@@ -28,7 +28,7 @@ function Loading() {
     )
 }
 
-export default Loading;
+export default Loader;
 
 {/* <LogoImg className="loading-img" width={50} height={50}/>
                 <div className="sistem">
