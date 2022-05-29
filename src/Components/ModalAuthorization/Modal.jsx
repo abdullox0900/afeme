@@ -17,9 +17,6 @@ function Modal({ elModal }) {
 
     return (
         <div className="modal" ref={elModal} onClick={(evt) => {
-
-            console.log(evt.target)
-
             if (
                 evt.target.matches(".modal") || evt.target.matches(".modal__close-btn")
             ) {
