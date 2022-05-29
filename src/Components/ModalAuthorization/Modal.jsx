@@ -8,6 +8,13 @@ import { NavLink } from "react-router-dom";
 
 function Modal({ elModal }) {
 
+    window.addEventListener("keydown", function (event) {
+        var handled = false;
+        if (event.key !== 27) {
+            elModal.current.classList.remove("modal--open");
+        }
+    }, true);
+
     return (
         <div className="modal" ref={elModal} onClick={(evt) => {
 

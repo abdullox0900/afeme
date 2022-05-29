@@ -12,6 +12,7 @@ import Realtors4 from "../../Assets/Img/realtors4.jpg";
 import Realtors5 from "../../Assets/Img/realtors5.jpg";
 import RightArrow from "../../Assets/Img/arrow-right.svg";
 import { Box, Typography } from "@mui/material";
+import WhyAfeme from "../WhyAfeme/WhyAfeme";
 
 import "./Main.scss"
 import { Cards, SCard } from "../Card/Card";
@@ -31,6 +32,7 @@ function Main() {
         houseAddress: 'Andijan',
         houseImg: CardImg6,
     };
+
     return (
         <main className="main">
             <Container>
@@ -39,7 +41,8 @@ function Main() {
                         <section className="section recommend">
                             <Typography variant="h3" className="section__title">Tavsiya etilgan turar-joy majmualari</Typography>
                             <div className="cards">
-                                <Cards data={data} />
+
+
                                 <Cards data={data} />
                                 <Cards data={data} />
                             </div>
@@ -112,6 +115,7 @@ function Main() {
                     </div>
                 </div>
             </Container>
+            <WhyAfeme/>
         </main>
     )
 }

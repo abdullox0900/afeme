@@ -112,10 +112,7 @@ function Form() {
                     </FormControl>
                     <div className="form__box">
 
-                        <a href="#" className="form__link-myaccount" onClick={() => {
-                            elModal.current.classList.add("modal--open");
-                            elModal.current.classList.add("modal--style");
-                        }}>Mening akkauntim bor</a>
+                        <NavLink to={"/"} className="form__link-myaccount">Mening akkauntim bor</NavLink>
                         <Button className="form__btn" sx={{ p: 1.3, ml: 22.5 }} variant="contained"> Roʻyxatdan oʻtish</Button>
                     </div>
 
