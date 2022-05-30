@@ -62,7 +62,6 @@ function Header() {
                             </div>
                         </div>
                     </div>
-                    {/* <Nav></Nav> */}
                 </Container>
 
                 <Modal elModal={elModal} />

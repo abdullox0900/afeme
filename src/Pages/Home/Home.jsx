@@ -16,6 +16,7 @@ function Home() {
             loader.style.display = 'none';
         }, 500);
     });
+    
     return (
         <>
             <Loader/>
