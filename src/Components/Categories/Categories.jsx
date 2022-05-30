@@ -12,34 +12,34 @@ import "../Categories/Categories.scss";
 
 function Categories() {
     
-    const [price, setPrice] = React.useState('');
-    const [room, setRoom] = React.useState('');
+    // const [price, setPrice] = React.useState('');
+    // const [room, setRoom] = React.useState('');
 
-    const priceChange = (event) => {
-        setPrice(event.target.value);
-    };
-    const roomChange = (event) => {
-        setRoom(event.target.value);
-    };
+    // const priceChange = (event) => {
+    //     setPrice(event.target.value);
+    // };
+    // const roomChange = (event) => {
+    //     setRoom(event.target.value);
+    // };
 
     return (
         <>
             <Box className="categories">
                 <Container>
                     <Box className="categories__content">
-                        <a href="#" className="categories__items">
+                        <a href="/" className="categories__items">
                             <Box className="categories__img"><img src={Categories1} alt="" /></Box>
                         </a>
-                        <a href="#" className="categories__items">
+                        <a href="/" className="categories__items">
                             <Box className="categories__img"><img src={Categories2} alt="" /></Box>
                         </a>
-                        <a href="#" className="categories__items">
+                        <a href="/" className="categories__items">
                             <Box className="categories__img"><img src={HomeIcon} alt="" /></Box>
                         </a>
-                        <a href="#" className="categories__items">
+                        <a href="/" className="categories__items">
                             <Box className="categories__img"><img src={Categories3} alt="" /></Box>
                         </a>
-                        <a href="#" className="categories__items">
+                        <a href="/" className="categories__items">
                             <Box className="categories__img"><img src={Categories4} alt="" /></Box>
                         </a>
                     </Box>

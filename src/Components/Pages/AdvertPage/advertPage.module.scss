@@ -1,0 +1,45 @@
+@import "../../../Assets/scss/colors.scss";
+.container {
+    width: 836px;
+    min-width: 836px;
+    margin: 0 auto;
+    font-size: 36px;
+    .pageName {
+        font-weight: 600;
+        color: $darkBlue;
+    }
+    .DnD {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .htypeText {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        font-size: 30px;
+        font-weight: 500;
+        color: #000000;
+        span {
+            color: $darkBlue;
+            padding-left: 10px;
+            font-size: 16px;
+        }
+    }
+    .onBtn{
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 407px;
+        height: 60px;
+        margin: 20px auto;
+        background: #357aff;
+        border: none;
+        border-radius: 5px;
+        font-weight: 500;
+        font-size: 36px;
+        line-height: 42px;
+        color: #ffffff;
+    }
+}
