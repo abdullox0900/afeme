@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import axios from 'axios';
 import style from './advertPage.module.scss'
 import { Button } from 'react-bootstrap';
-import Container from '../../Container/Container'
+import Container from '../Container/Container'
 import SaleType from './SaleType/SaleType';
 import HouseType from './HouseType/HouseType';
-import Header from '../../Header/Header';
+import Header from './../Header/Header';
 import HouseDescr from './HouseDescr/HouseDescr';
 import ImageFile from './ImageFile/ImageFile';
 import HousePrice from './HousePrice/HousePrice';
@@ -21,7 +21,7 @@ import Docs from './HouseDocs/Docs';
 import Home from './Map/Home';
 
 
-function AdvertPage() {
+function AdvertPage1() {
   const [sale_id, setsType] = useState('')
   const [htype_id, sethType] = useState('')
   const [image, setImage] = useState([])
@@ -39,9 +39,6 @@ function AdvertPage() {
   const [patype, setPAType] = useState('');
   const [flat, setFlat] = useState('');
   const [docs, setDocs] = useState({});
-
-
-
 
   let formData = new FormData()
   formData.append('image', image)
@@ -108,4 +105,4 @@ function AdvertPage() {
   )
 }
 
-export default AdvertPage
+export default AdvertPage1

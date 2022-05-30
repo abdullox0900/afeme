@@ -1,5 +1,5 @@
 import style from './SaleType.module.scss'
-import { ReactComponent as SaleIcon } from '../../../../Assets/Icon/house.svg'
+import { ReactComponent as SaleIcon } from '../../../Assets/Img/Icon/house.svg'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { Button } from 'react-bootstrap';

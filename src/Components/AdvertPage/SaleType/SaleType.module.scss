@@ -1,4 +1,4 @@
-@import "../../../../Assets/scss/colors.scss";
+@import "../../../Assets/scss/colors.scss";
 .sType {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -34,5 +34,5 @@
             transition: 0.1s ease-in;
         }
     }
-     
+
 }

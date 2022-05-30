@@ -1,8 +1,12 @@
 import React from 'react';
 import './App.scss';
-import AdvertPage from './Components/Pages/AdvertPage/advertPage';
-import { Route,BrowserRouter as Router, Routes } from 'react-router-dom';
-import HomePage from './HomePage';
+import AdvertPage from './Components/AdvertPage/advertPage';
+import { Route,BrowserRouter as Router, Routes } from 'react-router-dom'
+import Home from "../src/Pages/Home/Home";
+// import Loader from './Components/Loader/Loader';
+// import HomePage from './HomePage';
+
+
 
 function App() {
 
@@ -10,7 +14,8 @@ function App() {
         <>
             <Router>
                 <Routes>
-                    <Route exact path='/homepage' element={<HomePage />}/>
+
+                    <Route exact path='/home' element={<Home/>}/>
                     <Route path='/advertPage' element={<AdvertPage />} />
                 </Routes>
             </Router>
