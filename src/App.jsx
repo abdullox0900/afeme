@@ -1,26 +1,17 @@
 import React from 'react';
 import './App.scss';
-import AdvertPage from './Components/AdvertPage/advertPage';
-import { Route,BrowserRouter as Router, Routes } from 'react-router-dom'
-import Home from "../src/Pages/Home/Home";
-// import Loader from './Components/Loader/Loader';
-// import HomePage from './HomePage';
-
-
+import Home from "./Pages/Home/Home";
+import SignUp from './Pages/SignUp/SignUp';
+import { Routes, Route } from "react-router-dom";
 
 function App() {
-
     return (
         <>
-            <Router>
-                <Routes>
-
-                    <Route exact path='/home' element={<Home/>}/>
-                    <Route path='/advertPage' element={<AdvertPage />} />
-                </Routes>
-            </Router>
+            <Routes>
+                <Route exact path='/' element={<Home/>}/>
+                <Route path='/SignUp' element={<SignUp />} />
+            </Routes>
         </>
     )
 }
-
 export default App;

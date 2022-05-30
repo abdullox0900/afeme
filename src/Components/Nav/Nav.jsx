@@ -2,6 +2,7 @@ import React from "react"
 import {Menu, MenuItem, Divider } from '@mui/material';
 import Container from "../Container/Container";
 import "../Nav/Nav.scss";
+// import { Container } from "@mui/system";
 
 function Nav() {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -19,19 +20,19 @@ function Nav() {
             <nav className="nav">
                 <ul className="nav__list">
                     <li className="nav__item">
-                        <a href="/" className="nav__link">Sotuv</a>
+                        <a href="#" className="nav__link">Sotuv</a>
                     </li>
                     <li className="nav__item">
-                        <a href="/" className="nav__link">Ijara</a>
+                        <a href="#" className="nav__link">Ijara</a>
                     </li>
                     <li className="nav__item">
-                        <a href="/" className="nav__link">Yangi inshoatlar</a>
+                        <a href="#" className="nav__link">Yangi inshoatlar</a>
                     </li>
                     <li className="nav__item">
-                        <a href="/" className="nav__link">Kvartirani baholash</a>
+                        <a href="#" className="nav__link">Kvartirani baholash</a>
                     </li>
                     <li className="nav__item">
-                        <a href="/" className="nav__link" onClick={handleClick}>Yana</a>
+                        <a href="#" className="nav__link" onClick={handleClick}>Yana</a>
                     </li>
 
                     <Menu id="nav__more-menu" MenuListProps={{'aria-labelledby': 'nav__bottom-more',}} anchorEl={anchorEl} open={open} onClose={handleClose}>
