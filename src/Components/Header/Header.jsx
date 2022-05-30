@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-// import axios from 'axios';
+import React from 'react';
 import logo from "../../Assets/Img/logo.svg"
 import notificationIcon from "../../Assets/Img/notification.svg"
 import loveIcon from "../../Assets/Img/love.svg"
@@ -11,7 +10,7 @@ import Modal from '../ModalAuthorization/Modal';
 import "../ModalAuthorization/Modal.scss";
 import { IconButton, Button, Tooltip, Grow, Badge, } from '@mui/material';
 import "../Header/Header.scss";
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
 function Header() {
 
@@ -23,11 +22,12 @@ function Header() {
                 <Container>
                     <div className="header__content">
                         <div className="header__logo">
-
-                            <NavLink to={"/"} className="header__logo-link">
-                                <img className="header__logo-img" src={logo} alt="logo" />
-                            </NavLink>
-
+                            {/* p  nı ornıda a:href bor edi hato beryatudii */}
+                            <p className="header__logo-link">
+                                <NavLink to="/homepage">
+                                    <img className="header__logo-img" src={logo} alt="logo" />
+                                </NavLink>
+                            </p>
                             <Tooltip className="icon__btn" title="Salom" arrow TransitionComponent={Grow}>
                                 <Button className="btn header__location" variant="text" sx={{ py: 1, px: 1.2, ml: 1.5 }}>
                                     <img src={locationIcon} alt="location-img" className="header__location-img" />
@@ -53,11 +53,12 @@ function Header() {
                                 </Tooltip>
                             </Badge>
                             <div className="header__buttons" sx={{ ml: 3 }}>
-                                <Button className="btn header__button add__announcement" variant="contained" sx={{ py: 1, px: 1.5 }}><img src={plusIcon} alt="" /> Eʻlon qoʻshish</Button>
+                                <NavLink to="/advertPage">
+                                    <Button className="btn header__button add__announcement" variant="contained" sx={{ py: 1, px: 1.5 }}><img src={plusIcon} alt="" /> Eʻlon qoʻshish</Button>
+                                </NavLink>
                                 <Button className="btn header__button login__btn modal-dialog modal-dialog-scrollable"
                                     variant="text" sx={{ ml: 2, py: 1.5, px: 2.5 }} onClick={() => {
                                         elModal.current.classList.add("modal--open");
-                                        elModal.current.classList.add("modal--style");
                                     }}>Kirish</Button>
                             </div>
                         </div>

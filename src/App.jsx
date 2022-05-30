@@ -1,16 +1,19 @@
 import React from 'react';
 import './App.scss';
-import { Routes, Route, Navlink, } from "react-router-dom";
-import Home from "./Pages/Home/Home";
-import SignUp from './Pages/SignUp/SignUp';
+import AdvertPage from './Components/Pages/AdvertPage/advertPage';
+import { Route,BrowserRouter as Router, Routes } from 'react-router-dom';
+import HomePage from './HomePage';
 
 function App() {
+
     return (
         <>
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/signup" element={<SignUp />} />
-            </Routes>
+            <Router>
+                <Routes>
+                    <Route exact path='/homepage' element={<HomePage />}/>
+                    <Route path='/advertPage' element={<AdvertPage />} />
+                </Routes>
+            </Router>
         </>
     )
 }
