@@ -1,0 +1,46 @@
+@import "../../Assets/scss/colors.scss";
+
+.form-title {
+    margin: 0;
+    margin-bottom: 50px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 33px;
+    color: #000000;
+}
+
+.form {
+    width: 500px;
+    // margin: 0 auto;
+}
+
+.form__box {
+    display: flex;
+    align-items: center;
+    margin-top: 35px;
+}
+
+.form__link-myaccount {
+    display: inline-block;
+    color: $darkBlue;
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+.form__btn {
+    background-color: $darkBlue  !important;
+}
+
+.logo-oval {
+    position: relative;
+    top: -30px;
+    left: 180px;
+}
+
+.logo-home {
+    position: absolute;
+    top: 8%;
+    left: 839px;
+    z-index: 3;
+}

@@ -1,0 +1,32 @@
+.ilsut-grup {
+    display: flex;
+    justify-content: center;
+    // margin: 0 auto;
+    position: relative;
+    top: -100px;
+    width: 500px;
+}
+
+.ilust-one {
+    position: absolute;
+    top: 33px;
+    right: 55px;
+    z-index: 2;
+}
+
+.ilust-two {
+    position: absolute;
+    z-index: 3;
+}
+
+.ilust-three {
+    position: absolute;
+    top: -20px;
+}
+
+// RESPONSIV TABLET
+@media only screen and (max-width: 995px) {
+    .ilsut-grup {
+        display: none;
+    }
+}

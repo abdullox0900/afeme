@@ -1,0 +1,129 @@
+.footer {
+    padding: 70px 0px;
+    width: 100%;
+    height: 100%;
+    background-image: url("../../Assets/Img/footer-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    &__row {
+        display: flex;
+        align-items: baseline;
+    }
+
+    .footer__holder + .footer__holder{
+        margin-left: 120px;
+    }
+
+    &__subtitle {
+        margin: 15px 0px;
+        max-width: 230px;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 23px;
+        color: #FFFFFF;
+    }
+
+    &__list-three {
+        display: flex;
+        align-items: baseline;
+    }
+
+    &__holder-title {
+        margin: 0;
+        font-weight: 700;
+        font-size: 24px;
+        line-height: 28px;
+        color: #347AFF;
+        margin-bottom: 20px;
+    }
+
+    &__list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    &__item+&__item {
+        margin-top: 15px;
+    }
+
+    &__item:hover {
+        transition: 0.5s ease;
+        transform: translateX(10px);
+    }
+
+    &__link {
+        display: inline-block;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 19px;
+        color: #FFFFFF;
+        text-decoration: none;
+    }
+
+    &__link:nth-child(7) {
+        color: #347AFF;
+    }
+
+    &__link-tel {
+        position: relative;
+        padding-left: 30px;
+    }
+
+    &__link-tel::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: 0px;
+        width: 30px;
+        height: 30px;
+        background-image: url("../../Assets/Img/Icon/call.svg");
+        background-repeat: no-repeat;
+    }
+
+    &__link-email {
+        position: relative;
+        padding-left: 33px;
+    }
+
+    &__link-email::before {
+        content: "";
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 30px;
+        height: 30px;
+        background-image: url("../../Assets/Img/Icon/sms.svg");
+        background-repeat: no-repeat;
+    }
+
+    &__link-address {
+        position: relative;
+        padding-left: 33px;
+        width: 100px;
+    }
+
+    &__link-address::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: 0px;
+        width: 30px;
+        height: 30px;
+        background-image: url("../../Assets/Img/Icon/location.svg");
+        background-repeat: no-repeat;
+    }
+
+    &__item-th + &__item-th {
+        margin-left: 15px;
+    }
+
+    &__link-th::hover {
+        color: #347AFF;
+    }
+
+    .instagram {
+        color: #347AFF;
+    }
+}
