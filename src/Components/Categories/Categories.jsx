@@ -27,19 +27,19 @@ function Categories() {
             <Box className="categories">
                 <Container>
                     <Box className="categories__content">
-                        <a href="#" className="categories__items">
+                        <a href="/" className="categories__items">
                             <Box className="categories__img"><img src={Categories1} alt="" /></Box>
                         </a>
-                        <a href="#" className="categories__items">
+                        <a href="/" className="categories__items">
                             <Box className="categories__img"><img src={Categories2} alt="" /></Box>
                         </a>
-                        <a href="#" className="categories__items">
+                        <a href="/" className="categories__items">
                             <Box className="categories__img"><img src={HomeIcon} alt="" /></Box>
                         </a>
-                        <a href="#" className="categories__items">
+                        <a href="/" className="categories__items">
                             <Box className="categories__img"><img src={Categories3} alt="" /></Box>
                         </a>
-                        <a href="#" className="categories__items">
+                        <a href="/" className="categories__items">
                             <Box className="categories__img"><img src={Categories4} alt="" /></Box>
                         </a>
                     </Box>
