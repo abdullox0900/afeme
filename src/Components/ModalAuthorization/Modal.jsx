@@ -33,7 +33,7 @@ function Modal({ elModal }) {
                     <input className="form__authorization-input--password input-auth" type="text" placeholder="Parol*" />
                     <Button className="form__authorization-btn" variant="contained">Saytga Kirish</Button>
                     {/* <a href="#" className="form__authorization-link"></a> */}
-                    <NavLink to={"/login"}>
+                    <NavLink to={"/SignUp"}>
                         <Button className="form__authorization-link" href="#text-buttons">Roʻyxatdan oʻtish</Button>
                     </NavLink>
                 </form>
