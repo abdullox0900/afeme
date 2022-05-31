@@ -49,7 +49,7 @@ function Main() {
                                 <Cards data={data} />
                                 <Cards data={data} />
                             </div>
-                            <Box className="viewAll"><a href="#" className="viewAll__link">Barchasini ko’rish </a><img src={RightArrow} alt="" /></Box>
+                            <Box className="viewAll"><a href="/" className="viewAll__link">Barchasini ko’rish </a><img src={RightArrow} alt="" /></Box>
                         </section>
                         <section className="section popular">
                             <Typography variant="h3" className="section__title">Ommabop Uylar</Typography>
@@ -61,7 +61,7 @@ function Main() {
                                 <Cards data={data} />
                                 <Cards data={data} />
                             </div>
-                            <Box className="viewAll"><a href="#" className="viewAll__link">Barchasini ko’rish </a><img src={RightArrow} alt="" /></Box>
+                            <Box className="viewAll"><a href="/" className="viewAll__link">Barchasini ko’rish </a><img src={RightArrow} alt="" /></Box>
                         </section>
                         <section className="section newBuildings">
                             <Typography variant="h3" className="section__title">Yangi Binolar</Typography>
@@ -77,7 +77,7 @@ function Main() {
                         <Box className="realtors">
                             <Typography variant="h5" className="realtors__title">Rieltorlar</Typography>
 
-                            <a href="#" className="realtors__list">
+                            <a href="/" className="realtors__list">
                                 <Box className="realtor">
                                     <img src={Realtors1} alt="" />
                                     <div className="realtors__content">

@@ -24,7 +24,7 @@ function Header() {
                     <div className="header__content">
                         <div className="header__logo">
 
-                            <NavLink to={"/"} className="header__logo-link">
+                            <NavLink to={"/Afeme"} className="header__logo-link">
                                 <img className="header__logo-img" src={logo} alt="logo" />
                             </NavLink>
 
@@ -53,7 +53,9 @@ function Header() {
                                 </Tooltip>
                             </Badge>
                             <div className="header__buttons" sx={{ ml: 3 }}>
-                                <Button className="btn header__button add__announcement" variant="contained" sx={{ py: 1, px: 1.5 }}><img src={plusIcon} alt="" /> Eʻlon qoʻshish</Button>
+                                <NavLink to={"/advertPage"}>
+                                    <Button className="btn header__button add__announcement" variant="contained" sx={{ py: 1, px: 1.5 }}><img src={plusIcon} alt="" /> Eʻlon qoʻshish</Button>
+                                </NavLink>
                                 <Button className="btn header__button login__btn modal-dialog modal-dialog-scrollable"
                                     variant="text" sx={{ ml: 2, py: 1.5, px: 2.5 }} onClick={() => {
                                         elModal.current.classList.add("modal--open");
@@ -70,7 +72,7 @@ function Header() {
         </>
     )
 }
-export default Header;
+export default Header
 
 // class Header extends Component {
 //     state = {
