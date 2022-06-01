@@ -10,7 +10,7 @@ import "./Card.scss"
 function Cards({data}) {
     return (
         <Card sx={{ maxWidth: 300 }} className="card">
-            <a href="#"><CardMedia component="img" alt="Card img" height="140" image={data.houseImg}/></a>
+            <a href="/"><CardMedia component="img" alt="Card img" height="140" image={data.houseImg}/></a>
             <Box className="card__content">
                 <CardContent className="card__header">
                     <Typography variant="body1" component="div" className="house__type">{data.houseType}</Typography>
@@ -18,7 +18,7 @@ function Cards({data}) {
                 </CardContent>
                 <CardContent className="card__main">
                     {/* <Typography gutterBottom variant="h4" component="h5" className="card__title">{data.houseTitle}</Typography> */}
-                    <a href="#" className="card__title">{data.houseTitle}</a>
+                    <a href="/" className="card__title">{data.houseTitle}</a>
                 </CardContent>
                 <CardActions className="card__footer">
                     <Typography><img src={locationIcon} alt="" /> <span className="house__address">{data.houseAddress}</span></Typography>
@@ -41,10 +41,10 @@ function Cards({data}) {
 function SCard({data}) {
     return(
         <Card sx={{ maxWidth: 300 }} className="scard">
-            <a href="#"><CardMedia component="img" alt="Card img" height="140" image={data.houseImg}/></a>
+            <a href="/"><CardMedia component="img" alt="Card img" height="140" image={data.houseImg}/></a>
             <Box className="card__content">
                 <CardContent className="card__main">
-                    <a href="#" className="card__title">{data.houseTitle}</a>
+                    <a href="/" className="card__title">{data.houseTitle}</a>
                 </CardContent>
                 <CardActions className="card__footer">
                     <Typography><img src={locationIcon} alt="" /> <span className="house__address">{data.houseAddress}</span></Typography>

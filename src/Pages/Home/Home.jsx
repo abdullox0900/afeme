@@ -14,9 +14,9 @@ function Home() {
         document.body.classList.add('loaded');
         setTimeout(() => {
             loader.style.display = 'none';
-        }, 500);
+        },);
     });
-    
+
     return (
         <>
             <Loader/>
