@@ -30,7 +30,7 @@ function Cards({data}) {
                     </IconButton>
 
                     <IconButton color="error" className="card__btn card__love">
-                        <LoveIcon bg={love ? 'red': '#fff'} className="card__love-icon"/>
+                        <LoveIcon className="card__love-icon"/>
                     </IconButton>
                 </CardActions>
             </Box>

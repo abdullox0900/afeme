@@ -1,9 +1,29 @@
 @import "../../Assets/scss/colors.scss";
 
+.why-section {
+    margin-bottom: 40px;
+}
+
+.container-why {
+    width: 1000px;
+    padding: 0px 20px;
+    margin: 0 auto;
+}
+
+.why__title {
+    margin-bottom: 60px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 35px;
+    color: #000000;
+}
+
 .why__list {
     display: flex;
     margin: 0;
     padding: 0;
+    list-style: none;
 }
 
 .why__item {
@@ -11,6 +31,11 @@
     flex-direction: column;
     align-items: center;
     width: 300px;
+    // margin-left: 40px;
+}
+
+.why__item + .why__item{
+    margin-left: 40px;
 }
 
 .why__img {

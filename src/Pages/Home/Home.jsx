@@ -9,14 +9,6 @@ import Footer from "../../Components/Footer/Footer"
 
 function Home() {
 
-    window.addEventListener('load', function(){
-        const loader = document.querySelector('.loading');
-        document.body.classList.add('loaded');
-        setTimeout(() => {
-            loader.style.display = 'none';
-        }, 500);
-    });
-    
     return (
         <>
             <Loader/>
