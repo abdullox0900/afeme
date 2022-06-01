@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios';
 import Loader from '../../Components/Loader/Loader';
 import style from './advertPage.module.scss'
-import { Button } from 'react-bootstrap';
+import { Button } from '@mui/material';
 import Container from '../../Components/Container/Container';
 import Header from '../../Components/Header/Header';
 import SaleType from '../../Components/SaleType/SaleType';

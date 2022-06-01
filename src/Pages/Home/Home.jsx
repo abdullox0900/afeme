@@ -6,6 +6,8 @@ import Categories from "../../Components/Categories/Categories";
 import Main from "../../Components/Main/Main";
 import Loader from "../../Components/Loader/Loader"
 import Footer from "../../Components/Footer/Footer"
+import WhyAfeme from "../../Components/WhyAfeme/WhyAfeme";
+import Carousel from "../../Components/Carousel/Carousel"
 
 function Home() {
 
@@ -17,6 +19,8 @@ function Home() {
             <Hero />
             <Categories />
             <Main />
+            <WhyAfeme />
+            <Carousel />
             <Footer />
         </>
     )
