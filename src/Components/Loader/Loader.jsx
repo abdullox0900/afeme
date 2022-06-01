@@ -8,7 +8,7 @@ function Loader() {
             <div className="loading">
 
                 <div className="loader">
-                <LogoImg width={140} height={140}/>
+                    <LogoImg width={140} height={140}/>
                     <div className="circle"></div>
                     <div className="circle-1"></div>
                     <div className="circle-2"></div>

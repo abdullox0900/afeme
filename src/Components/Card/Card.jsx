@@ -1,5 +1,5 @@
-import React from "react";
-import loveIcon from "../../Assets/Img/love.svg"
+import React, { useState } from "react";
+import LoveIcon from "../../Lib/Svg/love";
 import callIcon from "../../Assets/Img/call.svg"
 import messageIcon from "../../Assets/Img/message.svg"
 import locationIcon from "../../Assets/Img/location.svg"
@@ -8,6 +8,7 @@ import { Box, Card, CardMedia, Typography, CardContent, CardActions, IconButton 
 import "./Card.scss"
 
 function Cards({data}) {
+
     return (
         <Card sx={{ maxWidth: 300 }} className="card">
             <a href="#"><CardMedia component="img" alt="Card img" height="140" image={data.houseImg}/></a>
@@ -17,7 +18,6 @@ function Cards({data}) {
                     <Typography variant="body2" className="house__prices"><span className="house__price">{data.housePrice}</span> /month</Typography>
                 </CardContent>
                 <CardContent className="card__main">
-                    {/* <Typography gutterBottom variant="h4" component="h5" className="card__title">{data.houseTitle}</Typography> */}
                     <a href="#" className="card__title">{data.houseTitle}</a>
                 </CardContent>
                 <CardActions className="card__footer">
@@ -29,8 +29,8 @@ function Cards({data}) {
                         <img src={messageIcon} alt="" />
                     </IconButton>
 
-                    <IconButton color="error" className=".card__btn card__love">
-                        <img src={loveIcon} alt="" />
+                    <IconButton color="error" className="card__btn card__love">
+                        <LoveIcon bg={love ? 'red': '#fff'} className="card__love-icon"/>
                     </IconButton>
                 </CardActions>
             </Box>
