@@ -10,7 +10,8 @@ function Loader() {
         document.body.classList.add('loaded');
         setTimeout(() => {
             loader.style.display = 'none';
-        },);
+            loader.style.zIndex = '-999';
+        }, 500);
     });
     return (
         <>

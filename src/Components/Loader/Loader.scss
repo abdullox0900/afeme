@@ -5,12 +5,13 @@
     position: absolute;
     height: 100vh;
     width: 100%;
-    z-index: 9999;
+    z-index: 999;
     background-color: #fff;
     transition: all .5s;
 }
 body.loaded .loading{
     opacity: 0;
+    z-index: -999;
 }
 body.loaded{
     overflow: auto !important;
