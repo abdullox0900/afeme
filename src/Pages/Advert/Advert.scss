@@ -1,0 +1,17 @@
+.viewAll{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    &__link{
+        font-size: 14px;
+        line-height: 14px;
+        color: $cardBlue;
+    }
+    & img{
+        transition: all .3s;
+        padding-left: 3px;
+    }
+    &:hover img{
+        transform: translateX(10px);
+    }
+}

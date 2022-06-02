@@ -9,7 +9,7 @@ import Posts from './Components/Posts/Posts';
 import Liked from './Components/Liked/Liked';
 import Settings from './Components/Settings/Settings';
 import Adverts from './Pages/Adverts/Adverts'
-
+import Advert from './Pages/Advert/Advert';
 
 function App() {
     return (
@@ -24,6 +24,7 @@ function App() {
                 <Route path='/posts' element={<Posts />} />
                 <Route path='/settings' element={<Settings />} />
                 <Route path='/adverts' element={<Adverts />} />
+                <Route path='/advert' element={<Advert />} />
             </Routes>
         </>
     )
