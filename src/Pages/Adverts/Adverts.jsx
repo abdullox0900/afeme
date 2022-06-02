@@ -45,4 +45,4 @@ function Adverts() {
     )
 }
 
-export default Adverts;
+export default Adverts
