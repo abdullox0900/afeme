@@ -20,9 +20,6 @@ function App() {
                 <Route path='/liked' element={<Liked />} />
                 <Route path='/posts' element={<Posts />} />
                 <Route path='/settings' element={<Settings />} />
-                <Route>
-                    
-                </Route>
             </Routes>
         </>
     )
