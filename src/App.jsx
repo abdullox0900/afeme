@@ -8,6 +8,8 @@ import PersonalCabinet from './Pages/PersonalCabinet/PersonalCabinet';
 import Posts from './Components/Posts/Posts';
 import Liked from './Components/Liked/Liked';
 import Settings from './Components/Settings/Settings';
+import Advets from "./Pages/Adverts/Adverts";
+import Adverts from './Pages/Adverts/Adverts';
 
 
 function App() {
@@ -21,6 +23,7 @@ function App() {
                 <Route path='/liked' element={<Liked />} />
                 <Route path='/posts' element={<Posts />} />
                 <Route path='/settings' element={<Settings />} />
+                <Route path='/Adverts' element={<Adverts />} />
             </Routes>
         </>
     )
