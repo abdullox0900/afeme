@@ -2,7 +2,7 @@ import style from './HouseType.module.scss'
 import { ReactComponent as SaleIcon } from '../../Assets/Img/Icon/house.svg'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { Button } from 'react-bootstrap';
+import { Button } from '@mui/material';
 
 function HouseType({ htype_id, sethType }) {
   const [houseType, setHouseType] = useState([]);

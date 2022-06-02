@@ -3,12 +3,21 @@ import "./Loader.scss";
 import LogoImg from "../../Lib/Svg/logo";
 
 function Loader() {
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener('load', function(){
+        const loader = document.querySelector('.loading');
+        document.body.classList.add('loaded');
+        setTimeout(() => {
+            loader.style.display = 'none';
+        },);
+    });
     return (
         <>
             <div className="loading">
 
                 <div className="loader">
-                <LogoImg width={140} height={140}/>
+                    <LogoImg width={140} height={140}/>
                     <div className="circle"></div>
                     <div className="circle-1"></div>
                     <div className="circle-2"></div>

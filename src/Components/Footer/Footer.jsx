@@ -1,11 +1,10 @@
 import React from "react";
 import "../Footer/Footer.scss";
-import { Container } from "react-bootstrap";
+import Container from "../Container/Container";
 import Logo from "../../Assets/Img/logo.svg";
 import GoogleImg from "../../Assets/Img/google.svg";
 import Instagram from "../../Lib/Svg/Instagram";
 import Telegram from "../../Lib/Svg/Telegram";
-import { style } from "@mui/system";
 
 function Footer() {
 

@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios';
+import Loader from '../../Components/Loader/Loader';
 import style from './advertPage.module.scss'
-import { Button } from 'react-bootstrap';
+import { Button } from '@mui/material';
 import Container from '../../Components/Container/Container';
 import Header from '../../Components/Header/Header';
 import SaleType from '../../Components/SaleType/SaleType';
@@ -18,7 +19,6 @@ import ImageFile from '../../Components/ImageFile/ImageFile';
 import VideoFile from '../../Components/VideoFile/VideoFile';
 import HouseDescr from '../../Components/HouseDescr/HouseDescr';
 import HousePrice from '../../Components/HousePrice/HousePrice';
-
 
 
 function AdvertPage() {
@@ -76,6 +76,8 @@ function AdvertPage() {
   }
 
   return (
+    <>
+    <Loader />
     <Container>
       <Header />
       <div className={style.container}>
@@ -112,6 +114,7 @@ function AdvertPage() {
         </section>
       </div>
     </Container>
+    </>
   )
 }
 

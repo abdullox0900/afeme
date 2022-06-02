@@ -16,11 +16,9 @@ import Partners2 from "../../Assets/Img/partners2.jpg";
 import Partners3 from "../../Assets/Img/partners3.jpg";
 import Partners4 from "../../Assets/Img/partners4.jpg";
 import { Box, Typography } from "@mui/material";
-import WhyAfeme from "../WhyAfeme/WhyAfeme";
 import "./Main.scss"
 import { Cards, SCard } from "../Card/Card";
 import Container from "../Container/Container"
-import Carousel from "../Carousel/Carousel"
 
 function Main() {
 
@@ -29,11 +27,13 @@ function Main() {
         housePrice: 1400,
         houseTitle: 'My house',
         houseAddress: 'Andijan',
+        houseUrl: '/adverts',
         houseImg: CardImg1,
     };
     const sData = {
         houseTitle: 'My house',
         houseAddress: 'Andijan',
+        houseUrl: '/adverts',
         houseImg: CardImg6,
     };
 
@@ -118,8 +118,6 @@ function Main() {
                     </div>
                 </div>
             </Container>
-            <WhyAfeme/>
-            <Carousel/>
         </main>
     )
 }
