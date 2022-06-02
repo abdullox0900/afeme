@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+<p align="center">
+    <h1>Welcome to 404-pages</h1>
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center">
+    <img src="https://img.shields.io/github/languages/top/uzcoin404/404-pages?style=flat">
+    <img src="https://img.shields.io/github/languages/code-size/uzcoin404/404-pages?style=flat">
+    <img src="https://img.shields.io/github/repo-size/uzcoin404/404-pages?style=flat">
+    <img src="https://img.shields.io/github/downloads/uzcoin404/404-pages/total">
+    <img src="https://img.shields.io/github/languages/count/uzcoin404/404-pages?style=flat">
+    <img src="https://img.shields.io/github/commit-status/uzcoin404/404-pages/master/81984fc?style=flat">
+    <img src="https://img.shields.io/github/issues/uzcoin404/404-pages?style=flat">
+    <img src="https://img.shields.io/github/issues-pr/uzcoin404/404-pages?style=flat">
+    <img src="https://img.shields.io/badge/php-%3E%3D5.3.9-blue">
+    <img src="https://img.shields.io/github/commit-activity/w/uzcoin404/404-pages?style=flat">
+    <img src="https://img.shields.io/github/contributors/uzcoin404/404-pages?style=flat">
+    <img src="https://img.shields.io/github/discussions/uzcoin404/404-pages?style=flat">
+    <img src="https://img.shields.io/badge/Star-Please%20Star%20it-green?style=flat">
+</p>
 
-## Available Scripts
+<img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="100%"/>
 
-In the project directory, you can run:
+<h3 style="font-size: 32px;">Please Follow me on</h3>
+<p align="center">
+    <a href="https://t.me/MrUzcoin"><img src="https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white"/></a>
+    <a href="https://www.facebook.com/MrUzcoin/"><img src="https://img.shields.io/badge/Facebook-1778F2.svg?style=for-the-badge&logo=Facebook&logoColor=white"/></a>
+    <a href="https://www.instagram.com/mruzcoin/"><img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white"/></a>
+    <a href="https://twitter.com/MrUzcoin"><img src="https://img.shields.io/badge/Twitter-1DA1F2.svg?style=for-the-badge&logo=Twitter&logoColor=white"/></a>
+    <a href="https://www.linkedin.com/in/suyunbek/"><img src="https://img.shields.io/badge/Linkedin-0072b1.svg?style=for-the-badge&logo=Linkedin&logoColor=white"/></a>
+</p>
 
-### `npm start`
+<img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="100%"/>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<h3 style="font-size: 32px;">Hire me on</h3>
+<p align="center">
+    <a href="https://www.fiverr.com/uzcoin"><img src="https://img.shields.io/badge/Fiverr-00b22d?style=for-the-badge&logo=Fiverr&logoColor=white"/></a>
+    <a href="https://www.linkedin.com/in/suyunbek/"><img src="https://img.shields.io/badge/Linkedin-0072b1.svg?style=for-the-badge&logo=Linkedin&logoColor=white"/></a>
+    <a href="https://www.upwork.com/freelancers/~017f6ada468d8c4819"><img src="https://img.shields.io/badge/Upwork-385925.svg?style=for-the-badge&logo=Upwork&logoColor=white"/></a>
+</p>
+    
+<p align="center">
+    <img src="https://img.shields.io/github/followers/uzcoin404?style=social">
+    <img src="https://img.shields.io/github/stars/uzcoin404?style=social">
+    <img src="https://img.shields.io/github/forks/uzcoin404/404-pages?style=social">
+    <img src="https://img.shields.io/github/watchers/uzcoin404/404-pages?style=social">
+    <img src="https://komarev.com/ghpvc/?username=uzcoin404&label=Profile%20views&color=ff69b4" alt="Uzcoin404" />
+</p>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="100%"/>
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Please star a Repository and Share it
+<p>Thanks</p>

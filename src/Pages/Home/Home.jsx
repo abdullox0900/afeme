@@ -6,16 +6,10 @@ import Categories from "../../Components/Categories/Categories";
 import Main from "../../Components/Main/Main";
 import Loader from "../../Components/Loader/Loader"
 import Footer from "../../Components/Footer/Footer"
+import WhyAfeme from "../../Components/WhyAfeme/WhyAfeme";
+import Carousel from "../../Components/Carousel/Carousel"
 
 function Home() {
-
-    window.addEventListener('load', function(){
-        const loader = document.querySelector('.loading');
-        document.body.classList.add('loaded');
-        setTimeout(() => {
-            loader.style.display = 'none';
-        },);
-    });
 
     return (
         <>
@@ -25,6 +19,8 @@ function Home() {
             <Hero />
             <Categories />
             <Main />
+            <WhyAfeme />
+            <Carousel />
             <Footer />
         </>
     )

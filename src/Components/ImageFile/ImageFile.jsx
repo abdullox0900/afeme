@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button } from 'react-bootstrap';
+import { Button } from '@mui/material';
 import { v4 } from 'uuid';
 import style from './ImageFile.module.scss'
 
