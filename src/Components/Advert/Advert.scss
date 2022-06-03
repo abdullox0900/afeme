@@ -1,0 +1,84 @@
+.advert{
+    margin-top: 50px;
+    &__content{
+        width: 70%;
+        margin-right: 30px;
+    }
+    &__blog{
+        display: flex;
+    }
+    &__main__img img{
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+    }
+    &__description{
+        box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        padding: 20px 30px;
+        margin-bottom: 30px;
+    }
+    .descr__title{
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 22px;
+        margin: 0;
+    }
+    .descr__text{
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        color: #757C8F;
+    }
+    &__panel{
+        width: 30%;
+    }
+    .sellerProfile{
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        padding: 30px;
+        padding-right: 20px;
+        margin-bottom: 30px;
+        &__img{
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+        &__header{
+            display: flex;
+        }
+        &__content{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        &__title{
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 23px;
+            margin: 0;
+            color: #000;
+        }
+        &__type{
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 20px;
+            color: #6499FF;
+        }
+        &__actions{
+            margin-top: 40px;
+        }
+        &__btn{
+            margin-right: 15px;
+            background: radial-gradient(100% 100% at 50.44% 100%, #367BFF 0%, #6197FF 100%);
+            border-radius: 10px;
+            padding: 8px 16px;
+        }
+        &__btn img{
+            width: 16px;
+            height: 16px;
+        }
+    }
+}

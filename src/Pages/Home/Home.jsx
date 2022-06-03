@@ -9,10 +9,16 @@ import WhyAfeme from "../../Components/WhyAfeme/WhyAfeme";
 import Carousel from "../../Components/Carousel/Carousel"
 import AfemePhone from "../../Components/AfemePhone/AfemePhone"
 import Footer from "../../Components/Footer/Footer"
-
+import Partners1 from "../../Assets/Img/partners1.jpg";
+import Partners2 from "../../Assets/Img/partners2.jpg";
+import Partners3 from "../../Assets/Img/partners3.jpg";
+import Partners4 from "../../Assets/Img/partners4.jpg";
 
 function Home() {
 
+    const data = {
+        images: [Partners1, Partners2, Partners3, Partners4],
+    }
     return (
         <>
             <Loader/>
@@ -22,7 +28,7 @@ function Home() {
             <Categories />
             <Main />
             <WhyAfeme />
-            <Carousel />
+            <Carousel data={data}/>
             <AfemePhone />
             <Footer />
         </>

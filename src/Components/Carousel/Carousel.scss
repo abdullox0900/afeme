@@ -1,3 +1,11 @@
 .our__partners{
     margin: 75px 0;
+    .splide__track{
+        border-radius: 10px;
+    }
+    .splide__slide{
+        border-radius: 10px;
+        height: max-content;
+        
+    }
 }
