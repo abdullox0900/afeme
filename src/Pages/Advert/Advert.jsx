@@ -12,6 +12,7 @@ import CardImg1 from "../../Assets/Img/card_img1.jpg";
 import CardImg2 from "../../Assets/Img/card_img2.jpg";
 import CardImg3 from "../../Assets/Img/card_img3.jpg";
 import CardImg4 from "../../Assets/Img/card_img4.jpg";
+import "./Advert.scss";
 
 function Advert() {
 
@@ -21,7 +22,7 @@ function Advert() {
         houseTitle: 'My house',
         houseAddress: 'Andijan',
         houseImg: CardImg1,
-        houseUrl: '/adverts',
+        houseUrl: '/advert',
         description: "Shinam uy Hovli va joy. Suv Gaz Elektr energiyasi mavjud. Uy 6 xonali bo'lib barcha kerakli sharoitlarga ega. Xonalar: Oshxona Yotoqxona, Mehmonxona Vanna Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, exercitationem! sit amet consectetur adipisicing elit. Doloribus, exercitationem!..."
     };
     return (
@@ -30,15 +31,17 @@ function Advert() {
             <Header />
             <Nav />
             <AdvertComponent />
-            <section className="section recommend">
-                <Typography variant="h3" className="section__title">Tavsiya etilgan turar-joy majmualari</Typography>
-                <div className="cards">
-                    <Cards data={data} />
-                    <Cards data={data} />
-                    <Cards data={data} />
-                </div>
-                <Box className="viewAll"><a href="/" className="viewAll__link">Barchasini ko’rish </a><img src={RightArrow} alt="" /></Box>
-            </section>
+            <Container>
+                <section className="section recommend">
+                    <Typography variant="h3" className="section__title">Tavsiya etilgan turar-joy majmualari</Typography>
+                    <div className="cards">
+                        <Cards data={data} />
+                        <Cards data={data} />
+                        <Cards data={data} />
+                    </div>
+                    <Box className="viewAll"><a href="/" className="viewAll__link">Barchasini ko’rish </a><img src={RightArrow} alt="" /></Box>
+                </section>
+            </Container>
             <Footer />
         </>
     )
