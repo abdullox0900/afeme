@@ -2,7 +2,6 @@ import style from './HouseType.module.scss'
 import { ReactComponent as SaleIcon } from '../../Assets/Img/Icon/house.svg'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { Button } from '@mui/material';
 
 function HouseType({ htype_id, sethType }) {
   const [houseType, setHouseType] = useState([]);
@@ -10,7 +9,7 @@ function HouseType({ htype_id, sethType }) {
   useEffect(() => {
     const houseT = async () => {
       try {
-        const res = await axios.get('http://127.0.0.1:8000/api/htype');
+        const res = await axios.get('http://ali98.uz/api/htype');
         if (res.data.status) {
           setHouseType(res.data.data)
         } else {
@@ -26,7 +25,7 @@ function HouseType({ htype_id, sethType }) {
     <div
       className={style.HType}>
       {houseType.map((sType) => (
-        <Button
+        <button
           className={style.saleCard}
           key={sType.id}
           onClick={() => sethType(sType.id)}
@@ -39,10 +38,10 @@ function HouseType({ htype_id, sethType }) {
             className={style.house} style={{
               stroke: htype_id === sType.id ? 'white' : ''
             }} />
-          <span>
+          <p>
             {sType.name}
-          </span>
-        </Button>
+          </p>
+        </button>
       ))}
     </div>
   )

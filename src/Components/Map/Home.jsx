@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Map from './Map';
 
-class Home extends Component {
+class Locat extends React.Component {
 
 	render() {
 		return(
-			<div>
+			<div style={{ margin: '100px' }}>
 				<Map
 					google={this.props.google}
 					center={{lat: 40.815356, lng: 72.28375}}
@@ -17,4 +17,4 @@ class Home extends Component {
 	}
 }
 
-export default Home
+export default Locat;

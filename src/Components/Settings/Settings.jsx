@@ -4,7 +4,7 @@ import Header from '../Header/Header'
 function Settings() {
   return (
     <div>
-        Settings
+      <h1 style={{color:'yellow'}}>Sizning yok</h1>
     </div>
   )
 }

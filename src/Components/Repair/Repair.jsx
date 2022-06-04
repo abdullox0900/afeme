@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Button } from '@mui/material';
-import style from '../Repair/Repair.module.scss'
+import style from '../HouseAbout/HouseAbout.module.scss'
 
 
 function Repair({ repair_id, setRepair }) {
@@ -9,7 +8,7 @@ function Repair({ repair_id, setRepair }) {
     useEffect(() => {
         const Rep = async () => {
             try {
-                const res = await axios.get('http://127.0.0.1:8000/api/repairs');
+                const res = await axios.get('http://ali98.uz/api/repairs');
                 if (res.data.status) {
                     setHouseRepair(res.data.data)
                 } else {
@@ -22,13 +21,12 @@ function Repair({ repair_id, setRepair }) {
         Rep()
     }, [])
     return (
-        <div className={style.repair}>
+        <div className={style.typeInp}>
             <p>Tamir holati:</p>
             <div>
                 {houseRepair.map((type) => (
-                    <Button
+                    <button
                         onClick={() => setRepair(type.id)}
-                        className={style.btn}
                         key={type.id}
                         style={{
                             backgroundColor: repair_id === type.id ? '#0468ff' : '',
@@ -36,7 +34,7 @@ function Repair({ repair_id, setRepair }) {
                         }}
                     >
                         {type.name}
-                    </Button>
+                    </button>
                 ))}
             </div>
         </div>

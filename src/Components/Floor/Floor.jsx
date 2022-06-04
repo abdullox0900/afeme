@@ -11,6 +11,7 @@ function Floor({ floor, setFloor, flat, setFlat }) {
                     key={v4}
                     onChange={(e) => setFloor(e.target.value)}
                     type={'number'}
+                    min={0}
                     className={style.input}
                     defaultValue={floor}>
                 </input>
@@ -21,6 +22,7 @@ function Floor({ floor, setFloor, flat, setFlat }) {
                     key={v4}
                     onChange={(e) => setFlat(e.target.value)}
                     type={'number'}
+                    min={0}
                     className={style.input}
                     defaultValue={flat}>
                 </input>

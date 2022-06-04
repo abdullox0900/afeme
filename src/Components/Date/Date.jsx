@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { v4 } from 'uuid'
 import style from '../HouseAbout/HouseAbout.module.scss'
 
@@ -11,6 +11,8 @@ function Date({ date, setDate }) {
                         key={v4}
                         onChange={(e) => setDate(e.target.value)}
                         type={'number'}
+                        min={0}
+                        step={5}
                         className={style.input}
                         defaultValue={date}>
                     </input>
