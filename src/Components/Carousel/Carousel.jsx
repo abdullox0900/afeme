@@ -3,7 +3,6 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import "./Carousel.scss";
 
-
 function Carousel({data, slideWidth = 'auto', type = 'slide', autoplay = false, rewind = false, perPage = 3, speed = 2000, gap = '4rem'}, breakpoints = {
     850: {perPage: 2},
     550: {perPage: 1},}) {
