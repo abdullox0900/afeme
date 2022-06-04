@@ -18,8 +18,5 @@
     <img src="https://img.shields.io/badge/Star-Please%20Star%20it-green?style=flat">
 </p>
 
-
-<img align="center" src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif" alt="javascript" width="100%"/>
-
 Please star a Repository and Share it
 <p>Thanks</p>
