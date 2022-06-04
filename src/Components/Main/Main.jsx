@@ -27,13 +27,13 @@ function Main() {
         housePrice: 1400,
         houseTitle: 'My house',
         houseAddress: 'Andijan',
-        houseUrl: '/adverts',
+        houseUrl: '/advert',
         houseImg: CardImg1,
     };
     const sData = {
         houseTitle: 'My house',
         houseAddress: 'Andijan',
-        houseUrl: '/adverts',
+        houseUrl: '/advert',
         houseImg: CardImg6,
     };
 

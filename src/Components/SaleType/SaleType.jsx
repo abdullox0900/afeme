@@ -14,7 +14,7 @@ function SaleType({ sale_id, setsType }) {
         if (res.data.status) {
           setSaleType(res.data.data)
         } else {
-          alert('hato')
+          alert('xato')
         }
       } catch (error) {
         console.log(error);

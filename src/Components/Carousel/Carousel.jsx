@@ -2,28 +2,31 @@ import React from 'react';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import "./Carousel.scss";
-import Partners1 from "../../Assets/Img/partners1.jpg";
-import Partners2 from "../../Assets/Img/partners2.jpg";
-import Partners3 from "../../Assets/Img/partners3.jpg";
-import Partners4 from "../../Assets/Img/partners4.jpg";
 
 
-function Carousel() {
+function Carousel({data, slideWidth = 'auto', type = 'slide', autoplay = false, rewind = false, perPage = 3, speed = 2000, gap = '4rem'}, breakpoints = {
+    850: {perPage: 2},
+    550: {perPage: 1},}) {
+    
+    const root = document.querySelector(':root');
+    let computedStyle = getComputedStyle(root);
+    root.style.setProperty('--sliderWidth', slideWidth);
     return (
         <div className='our__partners'>
-            <Splide aria-label="Our partners" options={{
-            type: 'loop', perPage: 4, gap: '4rem', autoWidth: true, perMove: 1, speed: 2000}}>
-                <SplideSlide>
-                    <img src={Partners1} alt="Our partners"/>
+            <Splide options={{ width: '100%', height: 'auto', breakpoints: breakpoints, type: type,
+                autoplay: autoplay, perPage: perPage, speed: speed, 
+                gap: gap, rewind: rewind, autoWidth: true}}>
+                <SplideSlide style={{width: slideWidth}}>
+                    <img src={data.images[0]} className="carousel__img" alt=""/>
                 </SplideSlide>
                 <SplideSlide>
-                    <img src={Partners2} alt="Our partners"/>
+                    <img src={data.images[1]} className="carousel__img" alt=""/>
                 </SplideSlide>
                 <SplideSlide>
-                    <img src={Partners3} alt="Our partners"/>
+                    <img src={data.images[2]} className="carousel__img" alt=""/>
                 </SplideSlide>
                 <SplideSlide>
-                    <img src={Partners4} alt="Our partners"/>
+                    <img src={data.images[3]} className="carousel__img" alt=""/>
                 </SplideSlide>
             </Splide>
         </div>
