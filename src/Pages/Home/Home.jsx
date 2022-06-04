@@ -28,7 +28,7 @@ function Home() {
             <Categories />
             <Main />
             <WhyAfeme />
-            <Carousel data={data}/>
+            <Carousel data={data} type="loop"/>
             <AfemePhone />
             <Footer />
         </>

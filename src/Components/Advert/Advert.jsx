@@ -17,6 +17,14 @@ function Advert() {
     const data = {
         images: [CardImg1, CardImg2, CardImg3, CardImg4],
     };
+    let breakpoints = {
+        1050: {
+            perPage: 2
+        },
+        700: {
+            perPage: 1
+        }
+    }
     return (
         <Box className="advert">
             <Container>
@@ -26,7 +34,7 @@ function Advert() {
                             <Box className="advert__main__img">
                                 <img src={AdvertImg} alt="" />
                             </Box>
-                            <Carousel data={data} gap="15px" />
+                            <Carousel data={data} gap="15px" slideWidth="250px" breakpoints={breakpoints}/>
                         </Box>
                         <Box className="advert__description">
                             <h5 className="descr__title">Tavsif</h5>

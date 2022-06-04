@@ -52,9 +52,10 @@ function Header() {
                                 <img className="header__logo-img" src={logo} alt="logo" />
                             </NavLink>
 
-                            <Tooltip className="icon__btn" title="Salom" arrow TransitionComponent={Grow}>
+                            <Tooltip className="icon__btn" title="Joylashuvingiz" arrow TransitionComponent={Grow}>
                                 <Button className="btn header__location" variant="text" sx={{ py: 1, px: 1.2, ml: 1.5 }}>
                                     <img src={locationIcon} alt="location-img" className="header__location-img" />
+                                    Uzbekistan
                                 </Button>
                             </Tooltip>
                         </div>
