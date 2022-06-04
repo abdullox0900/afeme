@@ -50,13 +50,13 @@ function Footer() {
                             <h3 className="footer__holder-title">Biz bilan aloqa</h3>
                             <ul className="footer__list">
                                 <li className="footer__item">
-                                    <a href="/tel:+998900431160" className="footer__link footer__link-tel">+998900431160</a>
+                                    <a href="tel:+998900431160" className="footer__link footer__link-tel">+998900431160</a>
                                 </li>
                                 <li className="footer__item">
-                                    <a href ="/mailto: afemegroup@gmail.com" className="footer__link footer__link-email">afemegroup@gmail.com</a>
+                                    <a href ="mailto: afemegroup@gmail.com" className="footer__link footer__link-email">afemegroup@gmail.com</a>
                                 </li>
                                 <li className="footer__item">
-                                    <a href="/https://yandex.uz/maps/org/244577402097/?ll=72.356849%2C40.746957&z=15" className="footer__link footer__link-address" target={"_blank"} style={address}>Andijon shahri, Boburshox ko'chasi, 2-uy</a>
+                                    <a href="https://yandex.uz/maps/org/244577402097/?ll=72.356849%2C40.746957&z=15" className="footer__link footer__link-address" target={"_blank"} style={address}>Andijon shahri, Boburshox ko'chasi, 2-uy</a>
                                 </li>
                             </ul>
                         </section>
@@ -69,7 +69,7 @@ function Footer() {
                                     </a>
                                 </li>
                                 <li className="footer__item-th">
-                                    <a href="/https://t.me/afemeuzd" target={"_blank"} className="footer__link-th">
+                                    <a href="https://t.me/afemeuzd" target={"_blank"} className="footer__link-th">
                                         <Telegram/>
                                     </a>
                                 </li>
