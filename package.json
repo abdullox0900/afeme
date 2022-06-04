@@ -1,6 +1,6 @@
 {
     "name": "afeme",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "homepage": "https://Uzcoin404.github.io/Afeme",
     "private": true,
     "dependencies": {
@@ -30,8 +30,7 @@
         "deploy": "gh-pages -d build",
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "test": "react-scripts test"
     },
     "eslintConfig": {
         "extends": [

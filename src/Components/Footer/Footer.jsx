@@ -21,7 +21,7 @@ function Footer() {
                             <a href="/">
                                 <img src={Logo} className="footer__logo-img" alt="logo-img" />
                             </a>
-                            <p className="footer__subtitle">Uzbekistondagi onlayn ko'chmas mulk yetakchisi Afeme Uz</p>
+                            <p className="footer__subtitle">Masofaviy Uy oldi sotdisi bo'yicha Milliy platforma</p>
                             <a href="/" className="footer__google-icon">
                                 <img src={GoogleImg} alt="google-icon" />
                             </a>
@@ -82,5 +82,4 @@ function Footer() {
         </>
     )
 }
-
 export default Footer
