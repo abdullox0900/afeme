@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button } from '@mui/material';
 import { v4 } from 'uuid';
-import style from './VideoFile.module.scss'
+import style from '../ImageFile/ImageFile.module.scss'
 
 function VideoFile({ video, setVideo }) {
     const [videoFile, setVideoFile] = useState(false);
@@ -21,7 +21,7 @@ function VideoFile({ video, setVideo }) {
 
     }
     return (
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
+        <div className={style.wrapper}>
             <p className={style.htypeText}>Ofis  videolari:</p>
             <div className={style.video}>
                 {video.map((i) => (

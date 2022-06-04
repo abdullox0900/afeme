@@ -1,14 +1,13 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Button } from '@mui/material';
-import style from '../Repair/Repair.module.scss'
+import style from '../HouseAbout/HouseAbout.module.scss'
 
 function Material({material_id, setMaterial}) {
     const [houseMaterial, setHouseMaterial] = useState([])
     useEffect(() => {
         const hAbout = async () => {
             try {
-                const res = await axios.get('http://127.0.0.1:8000/api/materials')
+                const res = await axios.get('http://ali98.uz/api/materials')
                 if (res.data.status) {
                     setHouseMaterial(res.data.data)
                 } else {
@@ -22,13 +21,12 @@ function Material({material_id, setMaterial}) {
     }, [])
     return (
         <div>
-            <div className={style.repair}>
+            <div className={style.typeInp}>
                 <p>Materiallari:</p>
                 <div>
                     {houseMaterial.map((type) => (
-                        <Button
+                        <button
                             onClick={() => setMaterial(type.id)}
-                            className={style.btn}
                             key={type.id}
                             style={{
                                 backgroundColor: material_id === type.id ? '#0468ff' : '',
@@ -36,7 +34,7 @@ function Material({material_id, setMaterial}) {
                             }}
                         >
                             {type.name}
-                        </Button>
+                        </button>
                     ))}
                 </div>
             </div>

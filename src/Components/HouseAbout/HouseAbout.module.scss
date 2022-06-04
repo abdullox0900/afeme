@@ -1,14 +1,17 @@
+@import '../../Assets/scss/colors.scss';
 .typeInp {
     display: flex;
     justify-content: flex-start;
     align-items: baseline;
-    span{
-        font-size: 14px;
-        color: #5f6779;
-        padding-right: 20px;
+    p {
+        width: 190px;
+        height: 40px;
+        font-weight: 400;
+        font-size: 22px;
+        color: #000000;
     }
-    .input {
-        margin-right: 20px;
+    input {
+        margin: 0 20px 13px 0;
         height: 40px;
         width: 87px;
         border: 1px solid #e8e8e8;
@@ -18,44 +21,73 @@
         line-height: 28px;
         text-align: center;
     }
-    .radioInp {
-        display: block;
-        position: relative;
-        padding-left: 35px;
-        margin-bottom: 12px;
-        cursor: pointer;
-        font-size: 22px;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        input {
-            position: absolute;
-            opacity: 0;
-            cursor: pointer;
-            width: 20px;
-            height: 20px;
-        }
-        input:checked ~ .checkmark:after {
-            background-color: #2196f3;
-        }
-        .checkmark {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 25px;
-            width: 25px;
-            background-color: #eee;
-            border-radius: 50%;
-        }
+    select {
+        width: 107px;
+        height: 40px;
+        padding: 5px 0 5px 5px 5px;
+        background-color: #ffffff;
+        border: 1px solid #e8e8e8;
+        border-radius: 5px;
+        margin-top: -5px;
+    }
+    span {
+        margin-right: 20px;
+    }
+    button {
+        margin: 0 20px 13px 0;
+        padding: 0 15px;
+        height: 41px;
+        background: #ffffff;
+        border: 1px solid #e8e8e8;
+        border-radius: 5px;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 19px;
+        color: #000000;
+    }
+    button:active,
+    button:hover,
+    button:focus {
+        background-color: $darkBlue;
+        color: $white;
+    }
+    button:focus {
+        border: 1px solid $darkBlue;
     }
 }
-select {
-    width: 107px;
-    height: 40px;
-    padding: 5px 0 5px 5px 5px;
-    background: #ffffff;
-    border: 1px  solid #e8e8e8;
-    border-radius: 5px;
-    margin-top: -5px;
-}
+// span{
+//     font-size: 14px;
+//     color: #5f6779;
+//     padding-right: 20px;
+// }
+// .radioInp {
+//     display: block;
+//     position: relative;
+//     padding-left: 35px;
+//     margin-bottom: 12px;
+//     cursor: pointer;
+//     font-size: 22px;
+//     -webkit-user-select: none;
+//     -moz-user-select: none;
+//     -ms-user-select: none;
+//     user-select: none;
+//     input {
+//         position: absolute;
+//         opacity: 0;
+//         cursor: pointer;
+//         width: 20px;
+//         height: 20px;
+//     }
+//     input:checked ~ .checkmark:after {
+//         background-color: #2196f3;
+//     }
+//     .checkmark {
+//         position: absolute;
+//         top: 0;
+//         left: 0;
+//         height: 25px;
+//         width: 25px;
+//         background-color: #eee;
+//         border-radius: 50%;
+//     }
+// }

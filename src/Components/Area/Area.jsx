@@ -2,7 +2,7 @@
 import React from 'react'
 import style from '../HouseAbout/HouseAbout.module.scss'
 
-function Area({ area, setArea, areatype, setAreaValue }) {
+function Area({ area, setArea, area_type, setAreaValue }) {
 
     return (
         <div>
@@ -11,11 +11,12 @@ function Area({ area, setArea, areatype, setAreaValue }) {
                 <input
                     onChange={(e) => setArea(e.target.value)}
                     type={'number'}
+                    min={0}
                     className={style.input}
                     defaultValue={area}>
                 </input>
                 <select name="cash" id="cash"
-                    value={areatype}
+                    value={area_type}
                     onChange={(e) => setAreaValue(e.target.value)}
                 >
                     <option value="m2">Metr Kvadrat</option>

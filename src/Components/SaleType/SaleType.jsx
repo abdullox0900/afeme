@@ -2,7 +2,6 @@ import style from './SaleType.module.scss'
 import { ReactComponent as SaleIcon } from '../../Assets/Img/Icon/house.svg'
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { Button } from '@mui/material';
 
 
 function SaleType({ sale_id, setsType }) {
@@ -11,7 +10,7 @@ function SaleType({ sale_id, setsType }) {
   useEffect(() => {
     const saleT = async () => {
       try {
-        const res = await axios.get('http://127.0.0.1:8000/api/sales');
+        const res = await axios.get('http://ali98.uz/api/sales');
         if (res.data.status) {
           setSaleType(res.data.data)
         } else {
@@ -27,7 +26,7 @@ function SaleType({ sale_id, setsType }) {
     <div
       className={style.sType}>
       {saleType.map((type) => (
-        <Button
+        <button
           className={style.saleCard}
           key={type.id}
           onClick={() => setsType(type.id)}
@@ -40,10 +39,10 @@ function SaleType({ sale_id, setsType }) {
             className={style.house} style={{
               stroke: sale_id === type.id ? 'white' : ''
             }} />
-          <span>
+          <p>
             {type.name}
-          </span>
-        </Button>
+          </p>
+        </button>
       ))}
     </div>
   )

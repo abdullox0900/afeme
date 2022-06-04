@@ -2,7 +2,9 @@ import React from 'react'
 
 function Liked() {
   return (
-    <div>Liked</div>
+    <div>
+      <h1 style={{color:'red'}}>Sizning  like bosgan postiz yok</h1>
+    </div>
   )
 }
 
