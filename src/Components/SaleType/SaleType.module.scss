@@ -3,7 +3,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 10px;
-    Button{
+    button{
         cursor: pointer;
         display: flex;
         flex-direction: column;
@@ -15,12 +15,10 @@
         box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
         border-radius: 15px;
         border: 0;
+        font-size: 22px;
         transition: 0.3s ease-in;
-        span {
-            font-weight: 500;
-            font-size: 22px;
-            line-height: 26px;
-        }
+        color: $black;
+        background-color: $white;
     }
     Button:hover,
     Button:focus {
@@ -29,7 +27,7 @@
             stroke: $white;
             transition: 0.1s ease-in;
         }
-        span {
+        p{
             color: $white;
             transition: 0.1s ease-in;
         }

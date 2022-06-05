@@ -2,7 +2,9 @@ import React from 'react'
 
 function Posts() {
   return (
-    <div>Posts</div>
+    <div>
+      <h1 style={{color:'green'}}>Sizning postingiz yok</h1>
+    </div>
   )
 }
 

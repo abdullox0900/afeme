@@ -1,0 +1,19 @@
+.realtor-container {
+    max-width: 1000px;
+    padding: 0px 20px;
+    margin: 0 auto;
+}
+
+.realtor-card {
+    display: flex;
+    align-items: center;
+    padding: 50px 40px 50px 40px;
+    width: 900px;
+    height: 200px;
+    background: #F6F6F6;
+    border-radius: 5px;
+}
+
+.realtor-card + .realtor-card {
+    margin-top: 40px;
+}

@@ -74,13 +74,13 @@ function Header() {
                             </Badge>
                             <div className="header__buttons" sx={{ ml: 3 }}>
                                 <NavLink to={"/advertPage"}>
-                                    <Button className="btn header__button add__announcement" variant="contained" sx={{ py: 1, px: 1.5 }}><img src={plusIcon} alt="" />{t ("add")}</Button>
+                                    <Button className="btn header__button add__announcement" variant="contained" sx={{ py: 1, px: 1.5 }}><img src={plusIcon} alt="" />Eʻlon qoʻshish</Button>
                                 </NavLink>
                                 <Button className="btn header__button login__btn modal-dialog modal-dialog-scrollable"
                                     variant="text" sx={{ ml: 2, py: 1.5, px: 2.5 }} onClick={() => {
                                         elModal.current.classList.add("modal--open");
                                         elModal.current.classList.add("modal--style");
-                                    }}>{t ('add')}</Button>
+                                    }}>Kirish</Button>
                             </div>
                         </div>
                     </div>

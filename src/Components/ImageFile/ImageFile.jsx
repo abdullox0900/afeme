@@ -19,10 +19,14 @@ function ImageFile({ image, setImage }) {
         setImage(files)
         setImg(false)
     }
+    function onChange(e) {
+        let files = [...e.dataTransfer.files]
+        setImage(files)
+      }
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', }}>
-            <p className={style.htypeText}>Ofis  rasmlari:</p>
+        <div className={style.wrapper}>
+            <p>Ofis  rasmlari:</p>
             <div className={style.images}>
                 {image.map((i) => (
                     <img key={v4} style={{}} alt={"wldölw"} src={URL.createObjectURL(i)} />
@@ -41,7 +45,7 @@ function ImageFile({ image, setImage }) {
                         onDrop={e => dropImageHandler(e)}
 
                     >
-                        <p>Drag here...</p>
+                        <span>Drag here...</span>
                     </div>
                     : <div
                         className={style.dropArea}
@@ -51,14 +55,12 @@ function ImageFile({ image, setImage }) {
 
                     >
                         <label htmlFor="contained-button-file">
-                            <Button
-                                style={{ cursor: 'pointer' }}
-                                variant="contained" component="span"
-                                id="contained-button-file" type="file">
-                                Rasmni Tanlang
-                            </Button>
+                            <input 
+                            type='file'
+                            onClick={(e) => onChange(e)} 
+                            />
                         </label>
-                        <p>Drop Here...</p>
+                        {/* <span>Drop Here...</span> */}
 
                     </div>
 

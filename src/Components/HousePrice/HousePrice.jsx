@@ -9,6 +9,7 @@ function HousePrice({ price, sethPrice, pricetype, setpriceType, patype, setPAty
             <div className={style.hPrice}>
                 <div className={style.numInp}>
                     <input
+                        min={0}
                         key={v4}
                         onChange={(e) => sethPrice(e.target.value)}
                         type={'number'}
