@@ -74,7 +74,11 @@ function Header() {
                             </Badge>
                             <div className="header__buttons" sx={{ ml: 3 }}>
                                 <NavLink to={"/advertPage"}>
+<<<<<<< HEAD
                                     <Button className="btn header__button add__announcement" variant="contained" sx={{ py: 1, px: 1.5 }}><img src={plusIcon} alt="" />Eʻlon qoʻshish</Button>
+=======
+                                    <Button className="btn header__button add__advert" variant="contained" sx={{ py: 1, px: 1.5 }}><img src={plusIcon} alt="" /></Button>
+>>>>>>> f34d862725d0d02bb48628013059b1a6331f1d2f
                                 </NavLink>
                                 <Button className="btn header__button login__btn modal-dialog modal-dialog-scrollable"
                                     variant="text" sx={{ ml: 2, py: 1.5, px: 2.5 }} onClick={() => {

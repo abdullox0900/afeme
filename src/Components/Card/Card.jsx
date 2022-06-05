@@ -8,7 +8,14 @@ import { NavLink as Redirect } from "react-router-dom";
 
 import "./Card.scss"
 
-function Cards({data}) {
+function LoveBtn() {
+    return(
+        <IconButton color="error" className="card__btn card__love">
+            <LoveIcon className="card__love-icon"/>
+        </IconButton>
+    )
+}
+function Cards({data, loveBtn = true}) {
 
     return (
         <Card sx={{ maxWidth: 300 }} className="card">
@@ -23,16 +30,7 @@ function Cards({data}) {
                 </CardContent>
                 <CardActions className="card__footer">
                     <Typography className="house__address__bar"><LocationIcon className="card__location"/> <span className="house__address">{data.houseAddress}</span></Typography>
-                    <IconButton variant="contained" className="card__btn card__call">
-                        <img src={callIcon} alt="" />
-                    </IconButton>
-                    <IconButton variant="contained" className="card__btn card__msg">
-                        <img src={messageIcon} alt="" />
-                    </IconButton>
-
-                    <IconButton color="error" className="card__btn card__love">
-                        <LoveIcon className="card__love-icon"/>
-                    </IconButton>
+                    {loveBtn ? LoveBtn() : ''}
                 </CardActions>
             </Box>
         </Card>
