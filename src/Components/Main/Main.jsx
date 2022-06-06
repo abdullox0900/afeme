@@ -18,6 +18,7 @@ import Partners4 from "../../Assets/Img/partners4.jpg";
 import { Box, Typography } from "@mui/material";
 import "./Main.scss"
 import { Cards, SCard } from "../Card/Card";
+import { NavLink } from "react-router-dom";
 import Container from "../Container/Container"
 
 function Main() {
@@ -77,7 +78,7 @@ function Main() {
                         <Box className="realtors">
                             <Typography variant="h5" className="realtors__title">Rieltorlar</Typography>
 
-                            <a href="/" className="realtors__list">
+                            <NavLink to={"/catalogreltor"} className="realtors__list">
                                 <Box className="realtor">
                                     <img src={Realtors1} alt="" />
                                     <div className="realtors__content">
@@ -113,7 +114,7 @@ function Main() {
                                         <p className="realtors__offer">2 ta taklif</p>
                                     </div>
                                 </Box>
-                            </a>
+                            </NavLink>
                         </Box>
                     </div>
                 </div>

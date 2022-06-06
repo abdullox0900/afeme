@@ -8,8 +8,15 @@ import messageIcon from "../../Assets/Img/message.svg"
 import { Box, Card, CardMedia, Typography, CardContent, CardActions, IconButton, Button } from '@mui/material';
 
 import "./Card.scss"
-
 function Cards({ data }) {
+function LoveBtn() {
+    return(
+        <IconButton color="error" className="card__btn card__love">
+            <LoveIcon className="card__love-icon"/>
+        </IconButton>
+    )
+}
+function Cards({data, loveBtn = true}) {
 
     return (
         <Card sx={{ maxWidth: 300 }} className="card">
@@ -23,6 +30,7 @@ function Cards({ data }) {
                 <Redirect to={data.houseUrl} className="card__title">{data.houseTitle}</Redirect>
                 </CardContent>
                 <CardActions className="card__footer">
+
                     <Typography className="house__address__bar"><LocationIcon className="card__location" /> <span className="house__address">{data.houseAddress}</span></Typography>
                     <IconButton variant="contained" className="card__btn card__call">
                         <img src={callIcon} alt="" />
@@ -34,6 +42,10 @@ function Cards({ data }) {
                     <IconButton color="error" className="card__btn card__love">
                         <LoveIcon className="card__love-icon" />
                     </IconButton>
+
+                    <Typography className="house__address__bar"><LocationIcon className="card__location"/> <span className="house__address">{data.houseAddress}</span></Typography>
+                    {loveBtn ? LoveBtn() : ''}
+
                 </CardActions>
             </Box>
         </Card>

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
 import logo from "../../Assets/Img/logo.svg"
 import notificationIcon from "../../Assets/Img/notification.svg"
 import loveIcon from "../../Assets/Img/love.svg"
@@ -12,34 +11,14 @@ import "../ModalAuthorization/Modal.scss";
 import { IconButton, Button, Tooltip, Grow, Badge, } from '@mui/material';
 import "../Header/Header.scss";
 import { NavLink } from "react-router-dom";
-// import i18next from 'i18next';/
-// import bootstrap from 'bootstrap';
-// import i18n from "../i18next.js"
-// import { useTranslation } from 'react-i18next';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+import { useTranslation } from 'react-i18next';
+
+
 
 function Header() {
 
     const elModal = React.useRef();
-    // const { t } = useTranslation();
-
-    const language = [
-        {
-            code: "uz",
-            name: "Uzbekistan",
-            country: "uz",
-        },
-        {
-            code: "en",
-            name: "English",
-            country: "gb",
-        },
-        {
-            code: "ru",
-            name: "Rossian",
-            country: "ru",
-        },
-    ];
+    const { t } = useTranslation();
 
     return (
         <>
@@ -63,22 +42,22 @@ function Header() {
                             <Tooltip className="icon__btn" title="Your Currency" arrow TransitionComponent={Grow}>
                                 <IconButton color="primary">
                                     {/* <img src={CurrencyIcon} alt="" className="header__icon nav__currency" /> */}
-                                    <div className="dropdown">
+                                    {/* <div className="dropdown">
                                         <button className="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
 
                                         </button>
                                         <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            {/* {language.map(({ code, name, country }) => (
+                                            {language.map(({ code, name, country }) => (
                                                 <li key={country}>
                                                     <button className="dropdown-item"
                                                         onClick={() => i18next.changeLanguage(code)}>
-                                                        <span className={`flag-icon flag-icon-${country}`}></span>&nbsp;
+                                                        <span className={`${country}`}></span>&nbsp;
                                                         {name}
                                                     </button>
                                                 </li>
-                                            ))} */}
+                                            ))}
                                         </ul>
-                                    </div>
+                                    </div> */}
                                 </IconButton>
                             </Tooltip>
                             <Tooltip className="icon__btn" title="Your Loves" arrow TransitionComponent={Grow}>
@@ -95,7 +74,7 @@ function Header() {
                             </Badge>
                             <div className="header__buttons" sx={{ ml: 3 }}>
                                 <NavLink to={"/advertPage"}>
-                                    <Button className="btn header__button add__announcement" variant="contained" sx={{ py: 1, px: 1.5 }}><img src={plusIcon} alt="" /></Button>
+                                    <Button className="btn header__button add__announcement" variant="contained" sx={{ py: 1, px: 1.5 }}><img src={plusIcon} alt="" />Eʻlon qoʻshish</Button>
                                 </NavLink>
                                 <Button className="btn header__button login__btn modal-dialog modal-dialog-scrollable"
                                     variant="text" sx={{ ml: 2, py: 1.5, px: 2.5 }} onClick={() => {
