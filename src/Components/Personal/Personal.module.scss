@@ -1,7 +1,29 @@
 .card {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     margin: 20px;
     min-width: 450px;
     height: 596px;
-    box-shadow: 0px 0px 4px 1px #e1e1e1;   
-    border-radius: 15px; 
+    box-shadow: 0px 0px 4px 1px #e1e1e1;
+    border-radius: 15px;
+    b {
+        font-size: 24px;
+        line-height: 28px;
+    }
+    .InpG {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 400px;
+        input {
+            display: flex;
+            margin-top: 15px;
+            width: 330px;
+            height: 40px;
+        }
+    }
 }

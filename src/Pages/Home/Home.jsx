@@ -15,7 +15,7 @@ function Home() {
 
     return (
         <>
-            <Loader/>
+            {/* <Loader/> */}
             <Header />
             <Nav />
             <Hero />

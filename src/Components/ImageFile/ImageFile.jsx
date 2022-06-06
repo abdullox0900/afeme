@@ -55,12 +55,14 @@ function ImageFile({ image, setImage }) {
 
                     >
                         <label htmlFor="contained-button-file">
-                            <input 
-                            type='file'
-                            onClick={(e) => onChange(e)} 
-                            />
+                            <Button
+                                style={{ cursor: 'pointer' }}
+                                variant="contained" component="span"
+                                accept="image/*" id="contained-button-file" multiple type="file">
+                                Videoni Tanlang
+                            </Button>
                         </label>
-                        {/* <span>Drop Here...</span> */}
+                        <span>Drop Here...</span>
 
                     </div>
 
