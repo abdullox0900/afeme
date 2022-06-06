@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import LoveIcon from "../../Lib/Svg/love";
-import { ReactComponent as Trash } from '../../Assets/Img/Icon/trash.svg'
-import { ReactComponent as Edit } from '../../Assets/Img/Icon/edit.svg'
 import LocationIcon from "../../Lib/Svg/location";
 import callIcon from "../../Assets/Img/call.svg"
 import messageIcon from "../../Assets/Img/message.svg"
-import { Box, Card, CardMedia, Typography, CardContent, CardActions, IconButton, Button } from '@mui/material';
+import { Box, Card, CardMedia, Typography, CardContent, CardActions, IconButton } from '@mui/material';
+import { NavLink as Redirect } from "react-router-dom";
+import { Button } from "@mui/material";
+import { ReactComponent as Trash } from '../../Assets/Img/Icon/trash.svg'
+import { ReactComponent as Edit } from '../../Assets/Img/Icon/edit.svg'
 
 import "./Card.scss"
-function Cards({ data }) {
+
 function LoveBtn() {
     return(
         <IconButton color="error" className="card__btn card__love">
@@ -30,27 +32,14 @@ function Cards({data, loveBtn = true}) {
                 <Redirect to={data.houseUrl} className="card__title">{data.houseTitle}</Redirect>
                 </CardContent>
                 <CardActions className="card__footer">
-
-                    <Typography className="house__address__bar"><LocationIcon className="card__location" /> <span className="house__address">{data.houseAddress}</span></Typography>
-                    <IconButton variant="contained" className="card__btn card__call">
-                        <img src={callIcon} alt="" />
-                    </IconButton>
-                    <IconButton variant="contained" className="card__btn card__msg">
-                        <img src={messageIcon} alt="" />
-                    </IconButton>
-
-                    <IconButton color="error" className="card__btn card__love">
-                        <LoveIcon className="card__love-icon" />
-                    </IconButton>
-
                     <Typography className="house__address__bar"><LocationIcon className="card__location"/> <span className="house__address">{data.houseAddress}</span></Typography>
                     {loveBtn ? LoveBtn() : ''}
-
                 </CardActions>
             </Box>
         </Card>
     )
 }
+
 function Ucards({ data }) {
 
     return (
@@ -80,8 +69,8 @@ function Ucards({ data }) {
     )
 }
 
-function SCard({ data }) {
-    return (
+function SCard({data}) {
+    return(
         <Card sx={{ maxWidth: 300 }} className="scard">
             <Redirect to={data.houseUrl}><CardMedia component="img" alt="Card img" height="140" image={data.houseImg}/></Redirect>
             <Box className="card__content">
@@ -96,8 +85,8 @@ function SCard({ data }) {
     )
 }
 
-function FullCard({ data }) {
-    return (
+function FullCard({data}) {
+    return(
         <Card sx={{}} className="fullCard">
             <Redirect to={data.houseUrl}><CardMedia  className="fullCard__img" component="img" alt="Card img" image={data.houseImg}/></Redirect>
             <Box className="card__content">
@@ -111,7 +100,7 @@ function FullCard({ data }) {
                 <CardActions className="card__footer">
                     <div className="fullCard__foot">
                         <Typography variant="body1" component="div" className="house__type">{data.houseType}</Typography>
-                        <Typography className="house__address__bar"><LocationIcon className="card__location" /> <span className="house__address">{data.houseAddress}</span></Typography>
+                        <Typography className="house__address__bar"><LocationIcon className="card__location"/> <span className="house__address">{data.houseAddress}</span></Typography>
 
                     </div>
                     <div className="card__buttons">
@@ -122,7 +111,7 @@ function FullCard({ data }) {
                             <img src={messageIcon} alt="" />
                         </IconButton>
                         <IconButton color="error" className="card__btn card__love">
-                            <LoveIcon className="card__love-icon" />
+                            <LoveIcon className="card__love-icon"/>
                         </IconButton>
                     </div>
                 </CardActions>
@@ -130,4 +119,4 @@ function FullCard({ data }) {
         </Card>
     )
 }
-export { Cards, SCard, FullCard, Ucards };
+export {Cards, SCard, FullCard, Ucards};
