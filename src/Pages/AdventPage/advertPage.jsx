@@ -76,8 +76,8 @@ function AdvertPage() {
   return (
     <>
       {/* <Loader /> */}
+      <Header />
       <Container>
-        <Header />
         <div className={style.container}>
           <section>
             <h1 className={style.pageName}>E'lon qo'shish</h1>
