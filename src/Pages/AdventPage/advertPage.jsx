@@ -19,8 +19,7 @@ import ImageFile from '../../Components/ImageFile/ImageFile';
 import VideoFile from '../../Components/VideoFile/VideoFile';
 import HouseDescr from '../../Components/HouseDescr/HouseDescr';
 import HousePrice from '../../Components/HousePrice/HousePrice';
-import Locat from '../../Components/Map/Home';
-
+import Map from '../../Components/Map/Map'
 
 function AdvertPage() {
   const [sale_id, setsType] = useState('')
@@ -37,7 +36,6 @@ function AdvertPage() {
   const [repair_id, setRepair] = useState('')
   const [area_type, setAreaValue] = useState('');
   const [pricetype, setpriceType] = useState('');
-  const [patype, setPAType] = useState('');
   const [flat, setFlat] = useState('');
   const [documents, setDocs] = useState({});
   const shaharName = localStorage.getItem('shahar') !== undefined ? localStorage.getItem('shahar') : ''
@@ -64,7 +62,6 @@ function AdvertPage() {
   formData.append('material_id', material_id)
   formData.append('floor', floor)
   formData.append('flat', flat)
-  formData.append('patype', patype)
   formData.append('hPrice', hPrice)
   formData.append('pricetype', pricetype)
 
@@ -78,7 +75,7 @@ function AdvertPage() {
 
   return (
     <>
-      <Loader />
+      {/* <Loader /> */}
       <Container>
         <Header />
         <div className={style.container}>
@@ -88,7 +85,7 @@ function AdvertPage() {
             <h2 className={style.htypeText}>Bino Turlari</h2>
             <HouseType htype_id={htype_id} sethType={sethType} />
             <h2 className={style.htypeText}>Ofis manzili</h2>
-            <Locat />
+            <Map />
             <h2 className={style.htypeText} style={{ marginTop: '70px' }}>Ofis Haqida</h2>
             <Date date={date} setDate={setDate} />
             <Room room={room} setRoom={setRoom} />
@@ -105,13 +102,15 @@ function AdvertPage() {
             <h2 className={style.htypeText} style={{ marginTop: '70px' }}>Ofis Haqida</h2>
             <HouseDescr description={description} sethDescr={sethDescr} />
             <h2 className={style.htypeText}>Ofis narxi: </h2>
-            <HousePrice hPrice={hPrice} sethPrice={sethPrice} pricetype={pricetype} setpriceType={setpriceType} patype={patype} setPAtype={setPAType} /* savdo={savdo} setsavdo={setsavdo} */ />
-            <button
-              type='submit'
-              className={style.onBtn}
-              onClick={(e) => onSubmit(e)}>
-              Elonni Yuklash
-            </button>
+            <HousePrice hPrice={hPrice} sethPrice={sethPrice} pricetype={pricetype} setpriceType={setpriceType} />
+            <div className={style.BtnW}>
+              <Button
+                type='submit'
+                className={style.onBtn}
+                onClick={(e) => onSubmit(e)}>
+                Elonni Yuklash
+              </Button>
+            </div>
           </section>
         </div>
       </Container>

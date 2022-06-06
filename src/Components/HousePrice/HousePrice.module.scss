@@ -4,10 +4,15 @@
     align-items: baseline;
     gap: 10px;
     input {
-        width: 194px;
+        margin: 0 20px 13px 0;
+        width: 190px;
         height: 30px;
-        box-shadow: 0px 0px 1px  unset rgba(0, 0, 0, 0.25);
+        border: 1px solid #e8e8e8;
         border-radius: 5px;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 28px;
+        text-align: center;
     }
     select {
         width: 107px;

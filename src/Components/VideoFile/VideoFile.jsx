@@ -52,12 +52,15 @@ function VideoFile({ video, setVideo }) {
                         <label htmlFor="contained-button-file">
                             <Button
                                 style={{ cursor: 'pointer' }}
-                                variant="contained" component="span"
-                                accept="image/*" id="contained-button-file" multiple type="file">
+                                variant="contained"
+                                component="span" 
+                                id="contained-button-file" 
+                                type="file"
+                                >
                                 Videoni Tanlang
                             </Button>
                         </label>
-                        <p>Drop Here...</p>
+                        <span>Drop Here...</span>
                     </div>
                 }
 
