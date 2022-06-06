@@ -1,5 +1,9 @@
+// IMPORT COMPONENTS
 import RealtorsCard from "../RealtorsCard/RealtorsCard";
 import Container from "../Container/Container"
+import Pogination from "../Pogination/Pogination";
+
+// IMPORT IMG
 import "../RealtorWrap/RealtorWrap.scss";
 
 function RealtorWrap() {
@@ -13,6 +17,7 @@ function RealtorWrap() {
                         <button className="realtor-wrap__btn">Sartirovka kilish</button>
                     </div>
                     <RealtorsCard />
+                    <Pogination />
                 </div>
             </Container>
         </>
