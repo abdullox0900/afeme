@@ -1,0 +1,14 @@
+.InpG{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  input {
+    padding: 0 15px;
+    margin: 0 20px 13px 0;
+    height: 40px;
+    width: 320px;
+    border: 1px solid #e8e8e8;
+    border-radius: 5px;
+    font-weight: 600;
+  }
+}
