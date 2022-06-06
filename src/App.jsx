@@ -12,6 +12,7 @@ import Adverts from './Pages/Adverts/Adverts'
 import Advert from './Pages/Advert/Advert';
 import CatalogRealtor from './Pages/CatalogOfRealtors/CatalogRealtors';
 import Chat from './Pages/ChatPage/ChatPage'
+import Help from './Pages/Help/Help';
 
 function App() {
     return (
@@ -28,6 +29,7 @@ function App() {
                 <Route path='/adverts' element={<Adverts />} />
                 <Route path='/advert' element={<Advert />} />
                 <Route path='/catalogreltor' element={<CatalogRealtor />} />
+                <Route path='/help' element={<Help/>} />
                 <Route path='/chat' element={<Chat />} />
             </Routes>
         </>
