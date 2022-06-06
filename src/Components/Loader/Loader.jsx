@@ -4,9 +4,10 @@ import LogoImg from "../../Lib/Svg/logo";
 
 function Loader() {
 
+    window.scroll(0, 0);
     document.body.style.overflow = "hidden";
     window.addEventListener('load', function(){
-        const loader = document.querySelector('.loading');
+        const loader = document.querySelector('.loading');                             
         document.body.classList.add('loaded');
         setTimeout(() => {
             loader.style.display = 'none';

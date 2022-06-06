@@ -27,12 +27,11 @@ function Advert() {
     };
     return (
         <>
-            <Loader/>
             <Header />
             <Nav />
             <AdvertComponent />
-            <Container>
-                <section className="section recommend">
+            <section className="section recommend">
+                <Container>
                     <Typography variant="h3" className="section__title">Tavsiya etilgan turar-joy majmualari</Typography>
                     <div className="cards">
                         <Cards data={data} />
@@ -40,8 +39,8 @@ function Advert() {
                         <Cards data={data} />
                     </div>
                     <Box className="viewAll"><a href="/" className="viewAll__link">Barchasini ko’rish </a><img src={RightArrow} alt="" /></Box>
-                </section>
-            </Container>
+                </Container>
+            </section>
             <Footer />
         </>
     )
