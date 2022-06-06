@@ -7,6 +7,7 @@
 .realtor-card {
     display: flex;
     align-items: center;
+    position: relative;
     padding: 50px 40px 50px 40px;
     width: 900px;
     height: 200px;
@@ -16,4 +17,42 @@
 
 .realtor-card+.realtor-card {
     margin-top: 40px;
+}
+
+.realtor-card__wrap {
+    margin-left: 40px;
+}
+
+.realtor-card__title {
+    margin: 0;
+    margin-bottom: 15px;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 38px;
+}
+
+.realtor-card__desc {
+    margin: 0;
+    position: relative;
+    padding-left: 30px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    color: #CACACA;
+}
+
+.realtor-card__desc::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 24px;
+    height: 24px;
+    background-image: url("../../Assets/Img/Icon/ptich.svg");
+}
+
+.realtor-card__reyting {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
 }

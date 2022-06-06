@@ -1,4 +1,6 @@
 import React from "react";
+
+// IMPORT COMPONENTS
 import Loader from "../../Components/Loader/Loader"
 import Header from "../../Components/Header/Header";
 import Nav from "../../Components/Nav/Nav";
@@ -9,6 +11,8 @@ import WhyAfeme from "../../Components/WhyAfeme/WhyAfeme";
 import Carousel from "../../Components/Carousel/Carousel"
 import AfemePhone from "../../Components/AfemePhone/AfemePhone"
 import Footer from "../../Components/Footer/Footer"
+
+// IMPORT IMG
 import Partners1 from "../../Assets/Img/partners1.jpg";
 import Partners2 from "../../Assets/Img/partners2.jpg";
 import Partners3 from "../../Assets/Img/partners3.jpg";
