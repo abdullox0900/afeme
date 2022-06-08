@@ -14,6 +14,7 @@ import Advert from './Pages/Advert/Advert';
 import CatalogRealtor from './Pages/CatalogOfRealtors/CatalogRealtors';
 import Chat from './Pages/ChatPage/ChatPage'
 import Help from './Pages/Help/Help';
+import Page404 from './Pages/404/404';
 
 function App() {
 
@@ -47,7 +48,7 @@ function App() {
                 <Route path='/catalogreltor' element={<CatalogRealtor />} />
                 <Route path='/help' element={<Help/>} />
                 <Route path='/chat' element={<Chat />} />
-                <Route path="*" element={<center><h1>404</h1></center>}/>
+                <Route path="*" element={<Page404 />}/>
             </Routes>
         </>
     )
