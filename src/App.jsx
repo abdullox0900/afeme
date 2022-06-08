@@ -1,5 +1,6 @@
-import React from 'react';
+import {React, ReactDOM} from 'react';
 import './App.scss';
+import Loader from "./Components/Loader/Loader";
 import Home from "./Pages/Home/Home";
 import SignUp from './Pages/SignUp/SignUp';
 import { Routes, Route } from "react-router-dom";
@@ -15,6 +16,21 @@ import Chat from './Pages/ChatPage/ChatPage'
 import Help from './Pages/Help/Help';
 
 function App() {
+
+    document.addEventListener('readystatechange', function(event) {
+        if (document.readyState === "loading") {
+            window.scrollTo(0, 0);
+            document.body.style.overflow = "hidden";
+        }
+        if (document.readyState === "complete"){
+            const loader = document.querySelector('.loading');                             
+            document.body.classList.add('loaded');
+            setTimeout(() => {
+                loader.style.display = 'none';
+                loader.style.zIndex = '-999';
+            }, 500);
+        }
+    });
     return (
         <>
             <Routes>
@@ -31,6 +47,7 @@ function App() {
                 <Route path='/catalogreltor' element={<CatalogRealtor />} />
                 <Route path='/help' element={<Help/>} />
                 <Route path='/chat' element={<Chat />} />
+                <Route path="*" element={<center><h1>404</h1></center>}/>
             </Routes>
         </>
     )
