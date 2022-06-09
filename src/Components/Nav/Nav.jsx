@@ -30,9 +30,6 @@ function Nav() {
                         <a href="#" className="nav__link">Yangi inshoatlar</a>
                     </li>
                     <li className="nav__item">
-                        <a href="#" className="nav__link">Kvartirani baholash</a>
-                    </li>
-                    <li className="nav__item">
                         <a href="#" className="nav__link" onClick={handleClick}>Yana</a>
                     </li>
                     <Menu id="nav__more-menu" MenuListProps={{'aria-labelledby': 'nav__bottom-more',}} anchorEl={anchorEl} open={open} onClose={handleClose}>

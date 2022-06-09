@@ -1,42 +1,56 @@
 @import "../../Assets/scss/colors.scss";
 
 .header {
-    padding-top: 10px;
+    padding: 5px 0px;
+
     &__content {
         display: flex;
         align-items: center;
         justify-content: space-between;
     }
+
+    &__logo-img {
+        width: 150px;
+        height: 50px;
+    }
+
     &__logo {
         display: flex;
         align-items: center;
     }
+
     &__location {
         background-color: #f0f0f0 !important;
         color: #292929 !important;
         border-radius: 30px !important;
         font-weight: 400 !important;
         font-size: 12px !important;
+
         &-img {
             margin-right: 5px;
             width: 18px;
         }
     }
+
     &__items {
         display: flex;
         align-items: center;
     }
+
     &__buttons {
         margin-left: 30px;
     }
+
     &__icon {
         width: auto;
         height: auto;
     }
+
     .login__btn {
-        background-color: $lightBlue !important;
+        background-color: $lightBlue  !important;
     }
-    .add__advert img{
+
+    .add__advert img {
         padding-right: 6px;
     }
 }

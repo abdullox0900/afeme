@@ -2,7 +2,6 @@ import React from "react";
 import Loader from "../../Components/Loader/Loader"
 import Container from "../../Components/Container/Container";
 import Header from "../../Components/Header/Header";
-import Nav from "../../Components/Nav/Nav";
 import AdvertComponent from "../../Components/Advert/Advert";
 import { Box, Typography } from "@mui/material";
 
@@ -19,7 +18,6 @@ function Advert() {
     return (
         <>
             <Header />
-            <Nav />
             <AdvertComponent />
             <Footer />
         </>

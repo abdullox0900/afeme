@@ -1,9 +1,7 @@
 import React from "react";
 
 // IMPORT COMPONENTS
-import Loader from "../../Components/Loader/Loader"
-import Header from "../../Components/Header/Header";
-import Nav from "../../Components/Nav/Nav";
+import OneHome from "../../Components/OneHome/OneHome";
 import Hero from "../../Components/Hero/Hero";
 import Categories from "../../Components/Categories/Categories";
 import Main from "../../Components/Main/Main";
@@ -18,6 +16,7 @@ import Partners2 from "../../Assets/Img/partners2.jpg";
 import Partners3 from "../../Assets/Img/partners3.jpg";
 import Partners4 from "../../Assets/Img/partners4.jpg";
 import Container from "../../Components/Container/Container";
+import Header from "../../Components/Header/Header";
 
 function Home() {
 
@@ -26,14 +25,14 @@ function Home() {
     }
     return (
         <>
-            <Header />
-            <Nav />
-            <Hero />
+            {/* <OneHome /> */}
+            <Header/>
+            <Hero/>
             <Categories />
             <Main />
             <WhyAfeme />
             <Container>
-                <Carousel data={data} type="loop"/>
+                <Carousel data={data} type="loop" />
             </Container>
             <AfemePhone />
             <Footer />
