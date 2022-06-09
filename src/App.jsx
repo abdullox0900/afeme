@@ -1,9 +1,12 @@
-import {React, ReactDOM} from 'react';
+// Import React and React Hooks
+import React from 'react';
+import { Routes, Route } from "react-router-dom";
+
+// Import Components
 import './App.scss';
 import Loader from "./Components/Loader/Loader";
 import Home from "./Pages/Home/Home";
 import SignUp from './Pages/SignUp/SignUp';
-import { Routes, Route } from "react-router-dom";
 import AdvertPage from './Pages/AdventPage/advertPage';
 import PersonalCabinet from './Pages/PersonalCabinet/PersonalCabinet';
 import Posts from './Components/Posts/Posts';
@@ -15,12 +18,12 @@ import CatalogRealtor from './Pages/CatalogOfRealtors/CatalogRealtors';
 import Chat from './Pages/ChatPage/ChatPage'
 import Help from './Pages/Help/Help';
 import Page404 from './Pages/404/404';
+import ScrollTop from './Utils/ScrollTop';
 
 function App() {
 
     document.addEventListener('readystatechange', function(event) {
         if (document.readyState === "loading") {
-            window.scrollTo(0, 0);
             document.body.style.overflow = "hidden";
         }
         if (document.readyState === "complete"){
@@ -34,6 +37,7 @@ function App() {
     });
     return (
         <>
+            <ScrollTop />
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/Afeme' element={<Home />} />
@@ -46,11 +50,11 @@ function App() {
                 <Route path='/adverts' element={<Adverts />} />
                 <Route path='/advert' element={<Advert />} />
                 <Route path='/catalogreltor' element={<CatalogRealtor />} />
-                <Route path='/help' element={<Help/>} />
+                <Route path='/help' element={<Help />} />
                 <Route path='/chat' element={<Chat />} />
                 <Route path="*" element={<Page404 />}/>
             </Routes>
         </>
     )
-}
+};
 export default App;
