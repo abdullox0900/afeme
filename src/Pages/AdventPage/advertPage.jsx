@@ -71,7 +71,7 @@ function AdvertPage() {
 
     axios.post('http://ali98.uz/api/post', formData)
       .then((res) => console.log('asda', res))
-  }
+  } 
 
   return (
     <>

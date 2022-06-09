@@ -1,28 +1,20 @@
 import React from "react";
-import "../Form/Form.scss";
-import TextField from '@mui/material/TextField';
-import Select from '@mui/material/Select';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Container from "../Container/Container"
-import IconButton from '@mui/material/IconButton';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputAdornment from '@mui/material/InputAdornment';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import { NavLink } from "react-router-dom";
+import axios from "axios";
+import Container from "../Container/Container";
+import { TextField, Select, InputLabel, MenuItem, FormControl, Button, IconButton, OutlinedInput, InputAdornment, } from '@mui/material';
+import LoadingButton from '@mui/lab/LoadingButton';
+import {Visibility, VisibilityOff} from '@mui/icons-material';
 import LogoOval from "../../Assets/Img/logo-oval.svg";
 import LogoHome from "../../Assets/Img/home-logo.svg";
-import Button from '@mui/material/Button';
-import "../../Assets/scss/colors.scss";
-import LoadingButton from '@mui/lab/LoadingButton';
-import { NavLink } from "react-router-dom";
 import Modal from '../ModalAuthorization/Modal';
-
+import "../Form/Form.scss";
+import "../../Assets/scss/colors.scss";
 
 
 function Form() {
 
+    const URL = "https://ali98.uz/api/";
     const [age, setAge] = React.useState('');
 
     const handleChanges = (evt) => {
@@ -60,7 +52,7 @@ function Form() {
         <>
 
             <Container>
-                <form className="form">
+                <form className="form registerForm">
                     <img className="logo-home" src={LogoHome} alt="img" data-aos="fade-zoom-in"
                         data-aos-easing="ease-in-back"
                         data-aos-delay="200"
@@ -113,7 +105,7 @@ function Form() {
                     <div className="form__box">
 
                         <NavLink to={"/Afeme"} className="form__link-myaccount">Mening akkauntim bor</NavLink>
-                        <Button className="form__btn" sx={{ p: 1.3, ml: 22.5 }} variant="contained"> Roʻyxatdan oʻtish</Button>
+                        <Button className="form__btn" type="submit" sx={{ p: 1.3, ml: 22.5 }} variant="contained"> Roʻyxatdan oʻtish</Button>
                     </div>
 
                     <Modal elModal={elModal} />

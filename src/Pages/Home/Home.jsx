@@ -26,7 +26,6 @@ function Home() {
     }
     return (
         <>
-            {/* <Loader/> */}
             <Header />
             <Nav />
             <Hero />
