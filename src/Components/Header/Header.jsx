@@ -1,4 +1,12 @@
+// Import React
 import React, { Component } from 'react';
+import { NavLink } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
+
+// Import Mui
+import { IconButton, Button, Tooltip, Grow, Badge, } from '@mui/material';
+
+// Import Components
 import logo from "../../Assets/Img/logo.svg"
 import notificationIcon from "../../Assets/Img/notification.svg"
 import loveIcon from "../../Assets/Img/love.svg"
@@ -8,10 +16,8 @@ import plusIcon from "../../Assets/Img/plus.svg"
 import Container from "../Container/Container";
 import Modal from '../ModalAuthorization/Modal';
 import "../ModalAuthorization/Modal.scss";
-import { IconButton, Button, Tooltip, Grow, Badge, } from '@mui/material';
 import "../Header/Header.scss";
-import { NavLink } from "react-router-dom";
-import { useTranslation } from 'react-i18next';
+import Nav from '../Nav/Nav';
 
 
 
@@ -37,10 +43,11 @@ function Header() {
                                 </Button>
                             </Tooltip>
                         </div>
+                        <Nav />
                         <div className="header__items">
                             <Tooltip className="icon__btn" title="Your Currency" arrow TransitionComponent={Grow}>
                                 <IconButton color="primary">
-                                    {/* <img src={CurrencyIcon} alt="" className="header__icon nav__currency" /> */}
+                                    <img src={CurrencyIcon} alt="" className="header__icon nav__currency" />
                                     {/* <div className="dropdown">
                                         <button className="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
 
@@ -73,7 +80,7 @@ function Header() {
                             </Badge>
                             <div className="header__buttons" sx={{ ml: 3 }}>
                                 <NavLink to={"/advertPage"}>
-                                    <Button className="btn header__button add__announcement" variant="contained" sx={{ py: 1, px: 1.5 }}><img src={plusIcon} alt="" />{t("uzbekistan")}</Button>
+                                    <Button className="btn header__button add__announcement" variant="contained" sx={{ py: 1, px: 1.5 }}><img src={plusIcon} alt="" />Eʻlon qoʻshish</Button>
                                 </NavLink>
                                 <Button className="btn header__button login__btn modal-dialog modal-dialog-scrollable"
                                     variant="text" sx={{ ml: 2, py: 1.5, px: 2.5 }} onClick={() => {
@@ -85,9 +92,10 @@ function Header() {
                     </div>
                 </Container>
 
-                <Modal elModal={elModal} />
+
 
             </header>
+            <Modal elModal={elModal} />
         </>
     )
 }
