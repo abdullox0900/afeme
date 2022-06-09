@@ -1,5 +1,5 @@
 // Import React and React Hooks
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 //Import HTTP 
@@ -27,7 +27,8 @@ import "../Form/Form.scss";
 
 
 
-function Form() {
+function  Form() {
+    const [regions, setRegions] = useState([])
     const [name, setName] = useState('')//FirstName
     const [lastname, setLastName] = useState('')//LastName
     const [email, setEmail] = useState('')//Email
@@ -35,7 +36,8 @@ function Form() {
     const [photo, setPhoto] = useState('sdfsdfsdadsfsdfsdf')
     const [passport, setPassport] = useState('')//IDCard
     const [user_type, setUserType] = useState('')//UserType
-    const [region_id, setRegions] = useState('')//UserRegion
+    const [Regionsname, setRegionsname] = useState('')
+    // const [region_id, setRegions] = useState('')//UserRegion
     const [password, setPassword] = useState({//UserPassword
         amount: '',
         password: '',
@@ -50,7 +52,7 @@ function Form() {
     formData.append('photo', photo)
     formData.append('passport', passport)
     formData.append('user_type', user_type)
-    formData.append('region_id', region_id)
+    // formData.append('region_id', region_id)
     formData.append('password', password)
 
     //Post API Function
@@ -73,6 +75,27 @@ function Form() {
     const handleMouseDownPassword = (event) => {
         event.preventDefault();
     };
+    useEffect(() => {
+        const regions = async () => {
+            try {
+                const res = await axios.get('https://ali98.uz/api/regions');
+                if (res) {
+                    let data = res.data.data
+                    let newdata = []
+                    for (let index = 0; index < data.length; index++) {
+                        newdata.push(data[index][0])
+                    }
+                    console.log('res',newdata);
+                    setRegions(newdata)
+                } else {
+                    alert('xato')
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        regions();
+    }, [])
 
     return (
         <>
@@ -93,15 +116,34 @@ function Form() {
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            label="Jismoniy shaxs"
+                            label="Jismoniy shaxs"value={user_type}
                             onChange={e => setUserType(e.target.value)}>
                             <MenuItem value={10}>Ten</MenuItem>
                             <MenuItem value={20}>Twenty</MenuItem>
                             <MenuItem value={30}>Thirty</MenuItem>
                         </Select>
                     </FormControl>
+                    <FormControl sx={{ mt: 2, width: "240px" }}>
+                        <InputLabel id="viloyat">Viloyat</InputLabel>
+                        <Select
+                            labelId="viloyat"
+                            id="viloyat"
+                            value={Regionsname}
+                            label="Viloyat"
+                            onChange={e => setRegionsname(e.target.value)}>
+                            
+                             {regions.map((region) => (
+                                <MenuItem
+                                    key={region.id}
+                                    value={region.name}
+                                >
+                                    {region.name}
+                                </MenuItem>
+                            ))} 
+                        </Select>
+                    </FormControl>
                     {/*User Region Input*/}
-                    <FormControl sx={{ mt: '2', width: '240px' }}>
+                    {/* <FormControl sx={{ mt: '2', width: '240px' }}>
                         <InputLabel id="viloyat-label">Viloyat</InputLabel>
                         <Select
                             labelId="viloyat-label"
@@ -112,7 +154,7 @@ function Form() {
                             <MenuItem value={2}>Twenty</MenuItem>
                             <MenuItem value={3}>Thirty</MenuItem>
                         </Select>
-                    </FormControl>
+                    </FormControl> */}
                     {/*FirstName Input*/}
                     <TextField
                         className="form__input form__input-name"

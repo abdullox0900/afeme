@@ -15,7 +15,7 @@ function AfemePhone() {
                     <p className="afemePhone__text">Ilovada siz uy-joy kommunal xizmatlarini boshqarishingiz va jarayonni kuzatishingiz mumkin: biz barcha muhim narsalar haqida xabar beramiz.</p>
                     <a href="#"><img src={PlayStore} alt="" /></a>
                 </div>
-                <img src={afemePhone} alt="" />
+                <img className="afemePhone__img-phone" src={afemePhone} alt="" />
                 <span className="afemePhone__bubbles bubbles1"><Logo width="80" height="80"/></span>
                 <span className="afemePhone__bubbles bubbles2"></span>
                 <span className="afemePhone__bubbles bubbles3"></span>

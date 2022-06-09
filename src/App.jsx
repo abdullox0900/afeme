@@ -1,8 +1,11 @@
+// Import React and React Hooks
 import React from 'react';
+import { Routes, Route } from "react-router-dom";
+
+// Import Components
 import './App.scss';
 import Home from "./Pages/Home/Home";
 import SignUp from './Pages/SignUp/SignUp';
-import { Routes, Route } from "react-router-dom";
 import AdvertPage from './Pages/AdventPage/advertPage';
 import PersonalCabinet from './Pages/PersonalCabinet/PersonalCabinet';
 import Posts from './Components/Posts/Posts';
@@ -13,10 +16,13 @@ import Advert from './Pages/Advert/Advert';
 import CatalogRealtor from './Pages/CatalogOfRealtors/CatalogRealtors';
 import Chat from './Pages/ChatPage/ChatPage'
 import Help from './Pages/Help/Help';
+import ScrollTop from './Utils/ScrollTop';
 
 function App() {
+
     return (
         <>
+            <ScrollTop />
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/Afeme' element={<Home />} />
@@ -29,10 +35,11 @@ function App() {
                 <Route path='/adverts' element={<Adverts />} />
                 <Route path='/advert' element={<Advert />} />
                 <Route path='/catalogreltor' element={<CatalogRealtor />} />
-                <Route path='/help' element={<Help/>} />
+                <Route path='/help' element={<Help />} />
                 <Route path='/chat' element={<Chat />} />
             </Routes>
         </>
     )
-}
+};
+
 export default App;
