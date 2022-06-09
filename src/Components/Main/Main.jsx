@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState} from "react";
+import axios from "axios";
 import CardImg1 from "../../Assets/Img/card_img1.jpg";
 import CardImg2 from "../../Assets/Img/card_img2.jpg";
 import CardImg3 from "../../Assets/Img/card_img3.jpg";
@@ -23,19 +24,31 @@ import Container from "../Container/Container"
 
 function Main() {
 
-    const data = {
+    const [data, setData] = useState(null)
+    const URL = 'https://ali98.uz/api/post';
+    useEffect(() => {
+        function getData() {
+            const result = axios.get(URL)
+            .then((response) => {
+                let newData = [];
+                newData.push(response);
+                setData(newData);
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+        }
+        getData();
+    })
+    console.log(data);
+    
+    const cardData = {
         houseType: 'Uy',
         housePrice: 1400,
         houseTitle: 'My house',
         houseAddress: 'Andijan',
         houseUrl: '/advert',
         houseImg: CardImg1,
-    };
-    const sData = {
-        houseTitle: 'My house',
-        houseAddress: 'Andijan',
-        houseUrl: '/advert',
-        houseImg: CardImg6,
     };
 
     return (
@@ -46,29 +59,29 @@ function Main() {
                         <section className="section recommend">
                             <Typography variant="h3" className="section__title">Tavsiya etilgan turar-joy majmualari</Typography>
                             <div className="cards">
-                                <Cards data={data} />
-                                <Cards data={data} />
-                                <Cards data={data} />
+                                <Cards data={cardData} />
+                                <Cards data={cardData} />
+                                <Cards data={cardData} />
                             </div>
                             <Box className="viewAll"><a href="/" className="viewAll__link">Barchasini ko’rish </a><img src={RightArrow} alt="" /></Box>
                         </section>
                         <section className="section popular">
                             <Typography variant="h3" className="section__title">Ommabop Uylar</Typography>
                             <div className="cards">
-                                <Cards data={data} />
-                                <Cards data={data} />
-                                <Cards data={data} />
-                                <Cards data={data} />
-                                <Cards data={data} />
-                                <Cards data={data} />
+                                <Cards data={cardData} />
+                                <Cards data={cardData} />
+                                <Cards data={cardData} />
+                                <Cards data={cardData} />
+                                <Cards data={cardData} />
+                                <Cards data={cardData} />
                             </div>
                             <Box className="viewAll"><a href="/" className="viewAll__link">Barchasini ko’rish </a><img src={RightArrow} alt="" /></Box>
                         </section>
                         <section className="section newBuildings">
                             <Typography variant="h3" className="section__title">Yangi Binolar</Typography>
                             <div className="scards">
-                                <SCard data={sData} />
-                                <SCard data={sData} />
+                                <SCard data={cardData} />
+                                <SCard data={cardData} />
                             </div>
                         </section>
                     </div>

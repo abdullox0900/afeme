@@ -17,6 +17,7 @@ import "./Chat.scss";
 
 function Chat() {
 
+    document.body.style = `height: 100vh; overflow: hidden !important;`;
     function attachFile() {
         let attachInput = document.querySelector('.attachFile__input');
         console.log(attachInput);
@@ -127,6 +128,7 @@ function Chat() {
                         </Redirect>
                     </Box>
                 </Box>
+                <Box></Box>
             </section>
             <section className="messagesPanel">
                 <Box className="messagesPanel__header">
@@ -183,6 +185,7 @@ function Chat() {
                         <Cards data={data}/>
                     </div>
                 </Box>
+                <Box></Box>
             </section>
         </Box>
     )
