@@ -18,6 +18,7 @@ function Advert() {
 
     return (
         <>
+            {/* <Loader/> */}
             <Header />
             <Nav />
             <AdvertComponent />
