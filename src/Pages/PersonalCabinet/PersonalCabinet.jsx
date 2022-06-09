@@ -8,7 +8,6 @@ import Personal from "../../Components/Personal/Personal";
 import Posts from "../../Components/Posts/Posts";
 import Settings from "../../Components/Settings/Settings";
 import style from './Cabinet.module.scss'
-import CardImg6 from '../../Assets/Img/card_img1.jpg'
 import CardImg1 from '../../Assets/Img/card_img1.jpg'
 import { Ucards } from '../../Components/Card/Card'
 
@@ -20,12 +19,6 @@ function PersonalCabinet() {
         houseAddress: 'Andijan',
         houseUrl: '/adverts',
         houseImg: CardImg1,
-    };
-    const sData = {
-        houseTitle: 'My house',
-        houseAddress: 'Andijan',
-        houseUrl: '/adverts',
-        houseImg: CardImg6,
     };
     return (
         <>

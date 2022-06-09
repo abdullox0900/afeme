@@ -39,6 +39,27 @@ function Cards({data, loveBtn = true}) {
         </Card>
     )
 }
+function Fcards({data, loveBtn = true}) {
+
+    return (
+        <Card sx={{ width: 375 }} className="card">
+            <Redirect to={data.houseUrl}><CardMedia component="img" alt="Card img" height="140" image={data.houseImg}/></Redirect>
+            <Box className="card__content">
+                <CardContent className="card__header">
+                    <Typography variant="body1" component="div" className="house__type">{data.houseType}</Typography>
+                    <Typography variant="body2" className="house__prices"><span className="house__price">{data.housePrice}</span> /month</Typography>
+                </CardContent>
+                <CardContent className="card__main">
+                <Redirect to={data.houseUrl} className="card__title">{data.houseTitle}</Redirect>
+                </CardContent>
+                <CardActions className="card__footer">
+                    <Typography className="house__address__bar"><LocationIcon className="card__location"/> <span className="house__address">{data.houseAddress}</span></Typography>
+                    {loveBtn ? LoveBtn() : ''}
+                </CardActions>
+            </Box>
+        </Card>
+    )
+}
 
 function Ucards({ data }) {
 
@@ -59,7 +80,7 @@ function Ucards({ data }) {
                         <Button style={{marginRight:'10px', backgroundColor: 'white', border: '1px solid #ff0000', }} variant="contained" className="card__trash">
                             <Trash className="trash" />
                         </Button>
-                        <Button style={{ backgroundColor: 'white', border: '1px solid #357AFF' }} color="error" className="card__edit">
+                        <Button style={{ backgroundColor: 'white', border: '1px solid #357AFF' }} variant="contained" color="error" className="card__edit">
                             <Edit className="edit" />
                         </Button>
                     </div>
@@ -119,4 +140,4 @@ function FullCard({data}) {
         </Card>
     )
 }
-export {Cards, SCard, FullCard, Ucards};
+export {Cards, SCard, FullCard, Ucards, Fcards};

@@ -43,9 +43,9 @@ function App() {
                 <Route path='/Afeme' element={<Home />} />
                 <Route path='/SignUp' element={<SignUp />} />
                 <Route path='/advertPage' element={<AdvertPage />} />
-                <Route path='/cabinet' element={<PersonalCabinet />} />
+                <Route path='/posts' element={<PersonalCabinet />} />
                 <Route path='/liked' element={<Liked />} />
-                <Route path='/posts' element={<Posts />} />
+                {/* <Route path='/posts' element={<Posts />} /> */}
                 <Route path='/settings' element={<Settings />} />
                 <Route path='/adverts' element={<Adverts />} />
                 <Route path='/advert' element={<Advert />} />

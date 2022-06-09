@@ -21,7 +21,7 @@ function Personal() {
         <Button style={{ marginRight: '10px', backgroundColor: 'white', border: '1px solid #ff0000', }} variant="contained" className="card__trash">
           <Trash className="trash" />
         </Button>
-        <Button style={{ backgroundColor: 'white', border: '1px solid #357AFF' }} color="error" className="card__edit">
+        <Button style={{ backgroundColor: 'white', border: '1px solid #357AFF' }} variant="contained" color="error" className="card__edit">
           <Edit className="edit" />
         </Button>
       </div>
