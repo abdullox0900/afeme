@@ -23,7 +23,7 @@ function Repair({ repair_id, setRepair }) {
     return (
         <div className={style.typeInp}>
             <p>Tamir holati:</p>
-            <div>
+            <div className={style.InpG}>
                 {houseRepair.map((type) => (
                     <button
                         onClick={() => setRepair(type.id)}

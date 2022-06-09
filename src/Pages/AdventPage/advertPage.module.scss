@@ -1,11 +1,18 @@
 @import "../../Assets/scss/colors.scss";
 .container {
-    width: 836px;
-    min-width: 836px;
+    width: 850px;
     margin: 0 auto;
-    h1 {
-        font-size: 60px !important;
+    padding: 0 20px;
+    .pageName {
+        font-size: 36px;
         color: $darkBlue;
+    }
+    .DnD{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+        flex-direction: row;
     }
     p {
         padding: 0;
@@ -33,6 +40,28 @@
             background-color: $white;
             color: $darkBlue;
             transition: 0.4s ease-in;
+        }
+    }
+}
+@media only screen and (max-width:767px) {
+    .container{
+        width: 767px;
+        padding: 0 10px;
+        .pageName{
+            font-size: 36px;
+        }
+    }
+}
+@media only screen and (max-width:319px) {
+    .container{
+        width: 319px;
+        padding: 0 10px;
+        h1{
+            font-size: 26px;
+        }
+        .onBtn{
+            font-size: 24px !important;
+            height: 50px !important;
         }
     }
 }

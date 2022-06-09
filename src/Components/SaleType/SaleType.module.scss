@@ -1,24 +1,26 @@
 @import "../../Assets/scss/colors.scss";
 .sType {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
     gap: 10px;
-    button{
+    button {
+        width: 195px !important;
+        height: 195px !important;
         cursor: pointer;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        min-width: 194px;
-        height: 194px;
-        margin: 10px 10px;
         box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
         border-radius: 15px;
         border: 0;
-        font-size: 22px;
         transition: 0.3s ease-in;
         color: $black;
+        font-size: 22px;
         background-color: $white;
+        box-sizing: border-box;
     }
     Button:hover,
     Button:focus {
@@ -27,10 +29,38 @@
             stroke: $white;
             transition: 0.1s ease-in;
         }
-        p{
+        p {
             color: $white;
             transition: 0.1s ease-in;
         }
     }
-     
+}
+@media only screen and (max-width:767px) {
+    .sType{
+        justify-content: flex-start;
+        button{
+            width: 150px !important;
+            height: 150px !important;
+            font-size: 20px;
+        }
+        .house{
+            width: 70px;
+            height: 70px;
+        }
+    }
+}
+@media only screen and (max-width:319px) {
+    .sType{
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        button{
+            width: 90px !important;
+            height: 90px !important;
+            font-size: 10px;
+        }
+        .house{
+            width: 50px;
+            height: 50px;
+        }
+    }
 }
