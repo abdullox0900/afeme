@@ -2,7 +2,6 @@ import React from "react";
 import Loader from "../../Components/Loader/Loader"
 import Container from "../../Components/Container/Container";
 import Header from "../../Components/Header/Header";
-import Nav from "../../Components/Nav/Nav";
 import Hero from "../../Components/Hero/Hero";
 import { FullCard } from "../../Components/Card/Card";
 import AfemePhone from "../../Components/AfemePhone/AfemePhone";
@@ -28,7 +27,6 @@ function Adverts() {
         <>
             <Loader/>
             <Header />
-            <Nav />
             <Hero />
             <div className="adverts">
                 <Container>

@@ -56,6 +56,20 @@ body {
     outline: none;
 }
 
+*::-webkit-scrollbar {
+    width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    backdrop-filter: blur(4px);
+    background-color: #fff;
+}
+
+*::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: dodgerblue;
+}
+
 a {
     text-decoration: none;
 }

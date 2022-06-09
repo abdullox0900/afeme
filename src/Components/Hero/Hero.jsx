@@ -12,7 +12,6 @@ function Hero() {
                 <Container>
                     <Box className="hero__blog">
                         <h2 className="hero__main-title">Toshkent shahridagi ko'chmas mulk</h2>
-
                         <Search />
                     </Box>
                 </Container>
