@@ -43,11 +43,6 @@
     position: relative;
     min-width: 280px;
     max-width: 350px !important;
-    // &:hover &__content{
-    //     position: absolute;
-    //     transition: all .3s;
-    //     top: 0;
-    // }
     &__header, &__footer{
         display: flex;
         justify-content: space-between;

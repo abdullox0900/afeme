@@ -4,19 +4,9 @@ import LogoImg from "../../Lib/Svg/logo";
 
 function Loader() {
 
-    document.body.style.overflow = "hidden";
-    window.addEventListener('load', function(){
-        const loader = document.querySelector('.loading');
-        document.body.classList.add('loaded');
-        setTimeout(() => {
-            loader.style.display = 'none';
-            loader.style.zIndex = '-999';
-        }, 500);
-    });
     return (
         <>
             <div className="loading">
-
                 <div className="loader">
                     <LogoImg width={140} height={140}/>
                     <div className="circle"></div>

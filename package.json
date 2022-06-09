@@ -16,7 +16,6 @@
         "@testing-library/user-event": "^14.2.0",
         "aos": "^2.3.4",
         "axios": "^0.27.2",
-        "firebase-tools": "^11.0.1",
         "i18next": "^21.8.8",
         "i18next-browser-languagedetector": "^6.1.4",
         "i18next-http-backend": "^1.4.1",
