@@ -1,17 +1,18 @@
 @import "../../Assets/scss/colors.scss";
 .HType {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
     gap: 10px;
     Button {
+        width: 194px !important;
+        height: 194px !important;
         cursor: pointer;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        min-width: 194px;
-        height: 194px;
-        margin: 10px;
         box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
         border-radius: 15px;
         border: 0;
@@ -19,6 +20,7 @@
         color: $black;
         font-size: 22px;
         background-color: $white;
+        box-sizing: border-box;
     }
     Button:hover,
     Button:focus {
@@ -30,6 +32,35 @@
         p {
             color: $white;
             transition: 0.1s ease-in;
+        }
+    }
+}
+@media only screen and (max-width:767px) {
+    .HType{
+        justify-content: flex-start;
+        button{
+            width: 150px !important;
+            height: 150px !important;
+            font-size: 20px;
+        }
+        .house{
+            width: 70px;
+            height: 70px;
+        }
+    }
+}
+@media only screen and (max-width:319px) {
+    .HType{
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        button{
+            width: 90px !important;
+            height: 90px !important;
+            font-size: 10px;
+        }
+        .house{
+            width: 50px;
+            height: 50px;
         }
     }
 }

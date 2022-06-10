@@ -3,7 +3,7 @@
     justify-content: flex-start;
     align-items: baseline;
     gap: 10px;
-    input {
+    .numInp {
         margin: 0 20px 13px 0;
         width: 190px;
         height: 30px;
@@ -14,7 +14,7 @@
         line-height: 28px;
         text-align: center;
     }
-    select {
+    .select {
         width: 107px;
         height: 30px;
         padding: 5px 0 5px 5px 5px;
@@ -45,6 +45,29 @@
             font-size: 16px;
             line-height: 19px;
             color: #6d7580;
+        }
+    }
+}
+@media (max-width:767px) {
+    .hPrice{
+        .numInp{
+            width: 250px;
+            height: 40px;
+        }
+        .select{
+            height: 40px;
+        }
+    }
+}
+@media (max-width:319px) {
+    .hPrice{
+        flex-direction: column;
+        .numInp{
+            width: 250px;
+            height: 40px;
+        }
+        .select{
+            height: 40px;
         }
     }
 }

@@ -7,7 +7,7 @@ function Room({room, setRoom}) {
     return (
         <div className={style.typeInp}>
             <p>Honalar soni: </p>
-            <div>
+            <div className={style.InpG}>
                     <input
                         key={v4}
                         onChange={(e) => setRoom(e.target.value)}

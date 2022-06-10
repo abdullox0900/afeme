@@ -1,4 +1,4 @@
-@import '../../Assets/scss/colors.scss';
+@import "../../Assets/scss/colors.scss";
 .typeInp {
     display: flex;
     justify-content: flex-start;
@@ -8,86 +8,92 @@
         height: 40px;
         font-weight: 400;
         font-size: 22px;
-        color: #000000;
+        color: $black;
     }
-    input {
-        margin: 0 20px 13px 0;
-        height: 40px;
-        width: 87px;
-        border: 1px solid #e8e8e8;
-        border-radius: 5px;
-        font-weight: 600;
-        font-size: 20px;
-        line-height: 28px;
-        text-align: center;
-    }
-    select {
-        width: 107px;
-        height: 40px;
-        padding: 5px 0 5px 5px 5px;
-        background-color: #ffffff;
-        border: 1px solid #e8e8e8;
-        border-radius: 5px;
-        margin-top: -5px;
-    }
-    span {
-        margin-right: 20px;
-    }
-    button {
-        margin: 0 20px 13px 0;
-        padding: 0 15px;
-        height: 41px;
-        background: #ffffff;
-        border: 1px solid #e8e8e8;
-        border-radius: 5px;
-        font-weight: 600;
-        font-size: 16px;
-        line-height: 19px;
-        color: #000000;
-    }
-    button:active,
-    button:hover,
-    button:focus {
-        background-color: $darkBlue;
-        color: $white;
-    }
-    button:focus {
-        border: 1px solid $darkBlue;
+    .InpG {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        input {
+            margin: 0 20px 13px 0;
+            width: 90px;
+            height: 40px;
+            border: 1px solid $shadow;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 28px;
+            text-align: center;
+        }
+        select {
+            width: 110px;
+            height: 40px;
+            padding: 5px;
+            background-color: $white;
+            border: 1px solid $shadow;
+            border-radius: 5px;
+        }
+        span {
+            margin-right: 20px;
+        }
+        button {
+            margin: 0 20px 13px 0;
+            padding: 0 15px;
+            height: 41px;
+            background: $white;
+            border: 1px solid $shadow;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 19px;
+            color: $black;
+        }
+        button:active,
+        button:hover,
+        button:focus {
+            background-color: $darkBlue;
+            color: $white;
+        }
+        button:focus {
+            border: 1px solid $darkBlue;
+        }
     }
 }
-// span{
-//     font-size: 14px;
-//     color: #5f6779;
-//     padding-right: 20px;
-// }
-// .radioInp {
-//     display: block;
-//     position: relative;
-//     padding-left: 35px;
-//     margin-bottom: 12px;
-//     cursor: pointer;
-//     font-size: 22px;
-//     -webkit-user-select: none;
-//     -moz-user-select: none;
-//     -ms-user-select: none;
-//     user-select: none;
-//     input {
-//         position: absolute;
-//         opacity: 0;
-//         cursor: pointer;
-//         width: 20px;
-//         height: 20px;
-//     }
-//     input:checked ~ .checkmark:after {
-//         background-color: #2196f3;
-//     }
-//     .checkmark {
-//         position: absolute;
-//         top: 0;
-//         left: 0;
-//         height: 25px;
-//         width: 25px;
-//         background-color: #eee;
-//         border-radius: 50%;
-//     }
-// }
+@media only screen and (max-width: 767px) {
+    .InpG {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        button{
+            font-size: 20px !important;
+            font-weight: 500 !important;
+        }
+    }
+}
+@media only screen and (max-width: 319px) {
+    .typeInp {
+        flex-direction: column;
+        .InpG{
+            flex-wrap: wrap;
+            p {
+                font-size: 26px;
+                margin: 20px 0;
+            }
+            input {
+                margin-right: 20px;
+                width: 110px;
+                height: 50px;
+            }
+            select{
+                height: 50px;
+            }
+            span{
+                margin-bottom: 231231230px;
+            }
+            button{
+                font-size: 20px !important;
+                font-weight: 500 !important;
+            }
+        }
+    }
+}

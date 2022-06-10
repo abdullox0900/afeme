@@ -23,7 +23,7 @@ function Material({material_id, setMaterial}) {
         <div>
             <div className={style.typeInp}>
                 <p>Materiallari:</p>
-                <div>
+                <div className={style.InpG}>
                     {houseMaterial.map((type) => (
                         <button
                             onClick={() => setMaterial(type.id)}
