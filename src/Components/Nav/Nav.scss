@@ -21,3 +21,11 @@
         color: #000;
     }
 }
+
+// Responsiv Navbar Tablet Version
+
+@media only screen and (max-width: 985px) {
+    .nav {
+        display: none;
+    }
+}

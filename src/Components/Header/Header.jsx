@@ -61,7 +61,8 @@ function Header() {
                         </div>
                         <Nav />
                         <div className="header__items">
-                            <Tooltip className="icon__btn" title="Your Currency" arrow TransitionComponent={Grow}>
+                            <div className="header__icons-nav">
+                                <Tooltip className="icon__btn" title="Your Currency" arrow TransitionComponent={Grow}>
                                 <IconButton color="primary">
                                     {/* <img src={CurrencyIcon} alt="" className="header__icon nav__currency" />
                                     <div className="dropdown">
@@ -94,6 +95,7 @@ function Header() {
                                     </IconButton>
                                 </Tooltip>
                             </Badge>
+                            </div>
                             <div className="header__buttons" sx={{ ml: 3 }}>
                                 <NavLink to={"/advertPage"}>
                                     <Button className="btn header__button add__announcement" variant="contained" sx={{ py: 1, px: 1.5 }}><img src={plusIcon} alt="" />Eʻlon qoʻshish</Button>
