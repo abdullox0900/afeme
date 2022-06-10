@@ -23,9 +23,9 @@ function PersonalCabinet() {
     return (
         <>
             <Container>
-                <Header />
-                <div style={{ display: 'flex' }}>
-                    <div style={{ flexDirection: 'column' }}>
+                {/* <Header /> */}
+                <div className={style.wrapper}>
+                    <div className={style.main}>
                         <div className={style.btng}>
                             <NavLink to={"/posts"}>
                                 <button className={style.active}> Elonlarim </button>
@@ -48,7 +48,7 @@ function PersonalCabinet() {
                     <Personal />
                 </div>
             </Container>
-            <Footer />
+            {/* <Footer /> */}
         </>
     )
 }
