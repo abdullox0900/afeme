@@ -27,40 +27,69 @@ import "../Form/Form.scss";
 
 
 
-function  Form() {
-    const [regions, setRegions] = useState([])
+function Form() {
+    const [region_id, setRegions] = useState([])
     const [name, setName] = useState('')//FirstName
     const [lastname, setLastName] = useState('')//LastName
     const [email, setEmail] = useState('')//Email
     const [phone, setPhone] = useState('')//PhoneNumber
-    const [photo, setPhoto] = useState('sdfsdfsdadsfsdfsdf')
+    const [image, setImage] = useState('jhjhkjhjkhj')
     const [passport, setPassport] = useState('')//IDCard
     const [user_type, setUserType] = useState('')//UserType
     const [Regionsname, setRegionsname] = useState('')
-    // const [region_id, setRegions] = useState('')//UserRegion
     const [password, setPassword] = useState({//UserPassword
         amount: '',
         password: '',
         weight: '',
     });
 
-    let formData = new FormData()
-    formData.append('name', name)
-    formData.append('lastname', lastname)
-    formData.append('email', email)
-    formData.append('phone', phone)
-    formData.append('photo', photo)
-    formData.append('passport', passport)
-    formData.append('user_type', user_type)
-    // formData.append('region_id', region_id)
-    formData.append('password', password)
 
-    //Post API Function
-    function onSubmit(e) {
-        console.log(formData);
-        axios.post('http://ali98.uz/api/register', formData)
-            .then((res) => console.log('asda', res))
+    var data = new FormData();
+    data.append('name', name);
+    data.append('lastname', lastname);
+    data.append('email', email);
+    data.append('phone', phone);
+    data.append('image', image);
+    data.append('passport', passport);
+    data.append('user_type', user_type);
+    data.append('region_id', region_id);
+
+    var config = {
+        method: 'post',
+        url: 'http://ali98.uz/api/register',
+        headers: {
+            // ...data.getHeaders()
+        },
+        data: data
+    };
+    function onSubmit() {   
+        axios(config)
+        .then(function (response) {
+            console.log(JSON.stringify(response.data));
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     }
+
+
+    // let formData = new FormData()
+    // formData.append('name', name)
+    // formData.append('lastname', lastname)
+    // formData.append('email', email)
+    // formData.append('phone', phone)
+    // formData.append('image', image)
+    // formData.append('passport', passport)
+    // formData.append('user_type', user_type)
+    // formData.append('region_id', region_id)
+    // formData.append('password', password)
+
+    // //Post API Function
+    // function onSubmit(e) {
+    //     console.log(formData);
+    //     axios.post('http://ali98.uz/api/register', formData)
+    //         .then((res) => console.log('asda', res))
+    // }
     //Password OnChange Function
     const handleChange = (prop) => (event) => {
         setPassword({ ...password, [prop]: event.target.value });
@@ -81,12 +110,8 @@ function  Form() {
                 const res = await axios.get('https://ali98.uz/api/regions');
                 if (res) {
                     let data = res.data.data
-                    let newdata = []
-                    for (let index = 0; index < data.length; index++) {
-                        newdata.push(data[index][0])
-                    }
-                    console.log('res',newdata);
-                    setRegions(newdata)
+
+                    setRegions(data)
                 } else {
                     alert('xato')
                 }
@@ -111,18 +136,20 @@ function  Form() {
                         data-aos-duration="3000" />
                     <h1 className="form-title">Roʻyxatdan oʻtish</h1>
                     {/*UserType Input*/}
-                    <FormControl sx={{ width: "240px", mr: 2.5 }}>
+                    <FormControl sx={{ width: "240px", mt: 2, mr: 2.5 }}>
                         <InputLabel id="demo-simple-select-label">Jismoniy shaxs</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            label="Jismoniy shaxs"value={user_type}
+                            label="Jismoniy shaxs" value={user_type}
                             onChange={e => setUserType(e.target.value)}>
-                            <MenuItem value={10}>Ten</MenuItem>
-                            <MenuItem value={20}>Twenty</MenuItem>
-                            <MenuItem value={30}>Thirty</MenuItem>
+                            <MenuItem value={'mijoz'}>Mijoz</MenuItem>
+                            <MenuItem value={'rieltor'}>Rieltor</MenuItem>
+                            <MenuItem value={'companiya'}>Companiya</MenuItem>
+                            <MenuItem value={'quruvchi firma'}>Quruvchi Firma</MenuItem>
                         </Select>
                     </FormControl>
+                    {/* User Region Input */}
                     <FormControl sx={{ mt: 2, width: "240px" }}>
                         <InputLabel id="viloyat">Viloyat</InputLabel>
                         <Select
@@ -131,30 +158,17 @@ function  Form() {
                             value={Regionsname}
                             label="Viloyat"
                             onChange={e => setRegionsname(e.target.value)}>
-                            
-                             {regions.map((region) => (
+
+                            {region_id.map((region) => (
                                 <MenuItem
                                     key={region.id}
-                                    value={region.name}
+                                    value={region.id}
                                 >
                                     {region.name}
                                 </MenuItem>
-                            ))} 
+                            ))}
                         </Select>
                     </FormControl>
-                    {/*User Region Input*/}
-                    {/* <FormControl sx={{ mt: '2', width: '240px' }}>
-                        <InputLabel id="viloyat-label">Viloyat</InputLabel>
-                        <Select
-                            labelId="viloyat-label"
-                            id="viloyat"
-                            label="Viloyat"
-                            onChange={e => setRegions(e.target.value)}>
-                            <MenuItem value={1}>Ten</MenuItem>
-                            <MenuItem value={2}>Twenty</MenuItem>
-                            <MenuItem value={3}>Thirty</MenuItem>
-                        </Select>
-                    </FormControl> */}
                     {/*FirstName Input*/}
                     <TextField
                         className="form__input form__input-name"
