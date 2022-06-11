@@ -25,7 +25,7 @@ function Cards({data, cardData, loveBtn = true}) {
     }, [data])
     return (
         <Card sx={{ maxWidth: 300 }} className="card">
-            <Redirect to={cardData.id}><CardMedia component="img" alt="Card img" height="140" image={data.id}/></Redirect>
+            <Redirect to={cardData.id}><CardMedia component="img" alt="Card img" height="140" image={cardData.houseImg}/></Redirect>
             <Box className="card__content">
                 <CardContent className="card__header">
                     <Typography variant="body1" component="div" className="house__type">{data?.htype_id?.name}</Typography>
@@ -46,7 +46,7 @@ function Cards({data, cardData, loveBtn = true}) {
 function FullCard({cardData, data}) {
 
     useEffect(() => {
-        // console.log(data);
+        console.log(data);
     }, [data])
     return(
         <Card sx={{}} className="fullCard">
@@ -55,16 +55,16 @@ function FullCard({cardData, data}) {
                 <CardContent className="card__header">
                     <div className="card__header__items">
                         <Redirect to={cardData.houseUrl} className="card__title">Ijaraga {data?.room} xonali {data?.htype_id?.name} sotiladi</Redirect>
-                        <Typography variant="body1" component="div" className="house__type">{data?.htype_id?.name}</Typography>
+                        <Typography variant="body1" component="div" className="house__type">{data?.htype_id}</Typography>
                     </div>
                     <Typography variant="body2" className="house__prices"><span className="house__price">${data?.price_usd}</span></Typography>
                 </CardContent>
                 <CardContent className="card__main">
-                    <p className="card__desc">{cardData.description}</p>
+                    <p className="card__desc">{data?.description}</p>
                 </CardContent>
                 <CardActions className="card__footer">
                     <div className="fullCard__foot">
-                        <Typography className="house__address__bar"><LocationIcon className="card__location"/> <span className="house__address">{cardData.houseAddress}</span></Typography>
+                        <Typography className="house__address__bar"><LocationIcon className="card__location"/> <span className="house__address">{data?.city_id?.name}</span></Typography>
                     </div>
                     <div className="card__buttons">
                         <IconButton color="error" className="card__btn card__love">
