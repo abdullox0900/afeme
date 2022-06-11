@@ -99,7 +99,7 @@ function Form() {
     return (
         <>
             <Container style={{ position: 'relative' }}>
-                <form className="form">
+                <div className="form">
                     <img className="logo-home" src={LogoHome} alt="img" data-aos="fade-zoom-in"
                         data-aos-easing="ease-in-back"
                         data-aos-delay="200"
@@ -210,7 +210,7 @@ function Form() {
                             Roʻyxatdan oʻtish
                         </button>
                     </div>
-                </form>
+                </div>
                 <div>
                     <Modal
                         open={open}
