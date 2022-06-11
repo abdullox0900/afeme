@@ -16,18 +16,20 @@ import Partners2 from "../../Assets/Img/partners2.jpg";
 import Partners3 from "../../Assets/Img/partners3.jpg";
 import Partners4 from "../../Assets/Img/partners4.jpg";
 import Container from "../../Components/Container/Container";
-import Header from "../../Components/Header/Header";
+// import Header from "../../Components/Header/Header";
+import Example from "../../Components/Header/Header";
 
 function Home() {
 
-    const data = {
-        images: [Partners1, Partners2, Partners3, Partners4],
-    }
+    // const data = {
+    //     images: [Partners1, Partners2, Partners3, Partners4],
+    // }
     return (
         <>
-            {/* <OneHome /> */}
-            <Header/>
-            <Hero/>
+
+            {/* <Header/> */}
+            <Example/>
+            {/* <Hero/>
             <Categories />
             <Main />
             <WhyAfeme />
@@ -35,7 +37,7 @@ function Home() {
                 <Carousel data={data} type="loop" />
             </Container>
             <AfemePhone />
-            <Footer />
+            <Footer /> */}
         </>
     )
 }

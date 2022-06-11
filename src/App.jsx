@@ -27,7 +27,7 @@ function App() {
             document.body.style.overflow = "hidden";
         }
         if (document.readyState === "complete"){
-            const loader = document.querySelector('.loading');                             
+            const loader = document.querySelector('.loading');
             document.body.classList.add('loaded');
             setTimeout(() => {
                 loader.style.display = 'none';

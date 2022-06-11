@@ -40,11 +40,18 @@ const language = [
 function Header() {
 
     const elModal = React.useRef();
+    const elHeader = React.useRef();
     const { t } = useTranslation();
+
+console.log(elHeader.current)
+
+    // function removClass() {
+    //     elHeader.classList.add("header--open")
+    // }
 
     return (
         <>
-            <header className="header">
+            <header className="header" ref={elHeader}>
                 <Container>
                     <div className="header__content">
                         <div className="header__logo">
@@ -59,9 +66,10 @@ function Header() {
                                 </Button>
                             </Tooltip>
                         </div>
-                        <Nav />
+                        <Nav elHeader={elHeader} />
                         <div className="header__items">
-                            <Tooltip className="icon__btn" title="Your Currency" arrow TransitionComponent={Grow}>
+                            <div className="header__icons-nav">
+                                <Tooltip className="icon__btn" title="Your Currency" arrow TransitionComponent={Grow}>
                                 <IconButton color="primary">
                                     {/* <img src={CurrencyIcon} alt="" className="header__icon nav__currency" />
                                     <div className="dropdown">
@@ -94,6 +102,7 @@ function Header() {
                                     </IconButton>
                                 </Tooltip>
                             </Badge>
+                            </div>
                             <div className="header__buttons" sx={{ ml: 3 }}>
                                 <NavLink to={"/advertPage"}>
                                     <Button className="btn header__button add__announcement" variant="contained" sx={{ py: 1, px: 1.5 }}><img src={plusIcon} alt="" />Eʻlon qoʻshish</Button>
@@ -105,11 +114,11 @@ function Header() {
                                     }}>Kirish</Button>
                             </div>
                         </div>
+                        <button className='header__menu-btn' onClick={() => {
+                            elHeader.current.classList.add("header--open")
+                        }}>/</button>
                     </div>
                 </Container>
-
-
-
             </header>
             <Modal elModal={elModal} />
         </>

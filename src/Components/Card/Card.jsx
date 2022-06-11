@@ -44,9 +44,9 @@ function Cards({data, cardData, loveBtn = true}) {
 }
 
 function FullCard({cardData, data}) {
-    
+
     useEffect(() => {
-        console.log(data);
+        // console.log(data);
     }, [data])
     return(
         <Card sx={{}} className="fullCard">

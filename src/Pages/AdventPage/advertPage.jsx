@@ -27,54 +27,71 @@ import axios from 'axios';
 import { Button } from '@mui/material';
 
 function AdvertPage() {
-  const [sale_id, setsType] = useState('')// SaleType State
   const [htype_id, sethType] = useState('')//HouseType State
-  const [image, setImage] = useState([])//ImageFile State
-  const [video, setVideo] = useState([])//VideoFile State
-  const [description, sethDescr] = useState('')//House Description State
-  const [hPrice, sethPrice] = useState('')//Price State
+  const [sale_id, setsType] = useState('')// SaleType State
+  const longitude = localStorage.getItem('longitude') !== undefined ? localStorage.getItem('longitude') : ''
+  const latitude = localStorage.getItem('latitude') !== undefined ? localStorage.getItem('latitude') : ''
+  const [price_som, setRrice_som] = useState('')//Price State //// tekshirish keree
+  const [price_usd, setPrice_usd] = useState('')
   const [date, setDate] = useState('')//Building Year State
-  const [area, setArea] = useState('')// Area State
-  const [area_type, setAreaValue] = useState('')//AreaType State
   const [room, setRoom] = useState('')//Room State 
+  const [repair_id, setRepair] = useState('')//Reapairs State
+  const [documents, setDocs] = useState({})//Documents State
+  const [description, sethDescr] = useState('')//House Description State
+  const [material_id, setMaterial] = useState('')// Materials State
+  const [region_id, setRegionID] = useState('')//Region State 
+  const [city_id, setCity] = useState('')// City State 
+  const [street, setStreet] = useState('')// Street State 
+  const [house, setHouse] = useState(2)// State
   const [floor, setFloor] = useState('')//Floor and Flat States
   const [flat, setFlat] = useState('')//
-  const [material_id, setMaterial] = useState('')// Materials State
-  const [repair_id, setRepair] = useState('')//Reapairs State
-  const [pricetype, setpriceType] = useState('')
-  const [documents, setDocs] = useState({})//Documents State
-  const shaharName = localStorage.getItem('shahar') !== undefined ? localStorage.getItem('shahar') : ''
-  const longName = localStorage.getItem('long') !== undefined ? localStorage.getItem('long') : ''
-  const latName = localStorage.getItem('latit') !== undefined ? localStorage.getItem('latit') : ''
+
+  const [area, setArea] = useState('')// Area State
+  const [area_type, setAreaValue] = useState('')//AreaType State
+  const [images, setImage] = useState([])//ImageFile State
+  const [videos, setVideo] = useState([])//VideoFile State
 
 
   //Dates for Send
-  let formData = new FormData()
-  formData.append('image', image)
-  formData.append('video', video)
-  formData.append('htype_id', htype_id)
-  formData.append('sale_id', sale_id)
-  formData.append('longitude', longName)
-  formData.append('latitude', latName)
-  formData.append('location_name', shaharName)
-  formData.append('area', area)
-  formData.append('area_type', area_type)
-  formData.append('date', date)
-  formData.append('room', room)
-  formData.append('repair_id', repair_id)
-  formData.append('description', description)
-  formData.append('documents', documents)
-  formData.append('material_id', material_id)
-  formData.append('floor', floor)
-  formData.append('flat', flat)
-  formData.append('hPrice', hPrice)
-  formData.append('pricetype', pricetype)
+  var data = new FormData();
+  data.append('htype_id', htype_id);
+  data.append('sale_id', sale_id);
+  data.append('longitude', longitude);
+  data.append('latitude', latitude);
+  data.append('price_som', price_som);
+  data.append('price_usd', price_usd);
+  data.append('date', date);
+  data.append('room', room);
+  data.append('repair_id', repair_id);
+  data.append('documents', documents);
+  data.append('description', description);
+  data.append('material_id', material_id);
+  data.append('region_id', region_id);
+  data.append('city_id', city_id);
+  data.append('street', street);
+  data.append('house', house);
+  data.append('floor', floor);
+  data.append('flat', flat);
+  data.append('images', images);
+  data.append('videos', videos);
 
+  var config = {
+    method: 'post',
+    url: 'http://ali98.uz/api/post',
+    headers: {
+      // ...data.getHeaders()
+    },
+    data: data
+  };
   //Post Function
-  function onSubmit(e) {
-    e.preventDefault();
-    axios.post('http://ali98.uz/api/post', formData)
-      .then((res) => console.log('asda', res))
+  function onSubmit() {
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   return (
@@ -86,62 +103,49 @@ function AdvertPage() {
           <section>
             <h1 className={style.pageName}>E'lon qo'shish</h1>
             <SaleType
-              sale_id={sale_id}
-
-              setsType={setsType} />
+              sale_id={sale_id} setsType={setsType} />
             <h2 className={style.htypeText}>Bino Turlari</h2>
             <HouseType
-              htype_id={htype_id}
-              sethType={sethType} />
+              htype_id={htype_id} sethType={sethType} />
             <h2 className={style.htypeText}>Ofis manzili</h2>
-            <Map />
+            <Map
+              house={house} setHouse={setHouse}
+              street={street} setStreet={setStreet}
+              city_id={city_id} setCity={setCity}
+              region_id={region_id} setRegionID={setRegionID} />
             <h2 className={style.htypeText}>Ofis Haqida</h2>
             <Date
-              date={date}
-              setDate={setDate} />
+              date={date} setDate={setDate} />
             <Room
-              room={room}
-              setRoom={setRoom} />
+              room={room} setRoom={setRoom} />
             <Area
-              area={area}
-              setArea={setArea}
-              area_type={area_type}
-              setAreaValue={setAreaValue} />
+              area={area} setArea={setArea}
+              area_type={area_type} setAreaValue={setAreaValue} />
             <Floor
-              floor={floor}
-              setFloor={setFloor}
-              flat={flat}
-              setFlat={setFlat} />
+              floor={floor} setFloor={setFloor}
+              flat={flat} setFlat={setFlat} />
             <Repair
-              repair_id={repair_id}
-              setRepair={setRepair} />
+              repair_id={repair_id} setRepair={setRepair} />
             <Material
-              material_id={material_id}
-              setMaterial={setMaterial} />
+              material_id={material_id} setMaterial={setMaterial} />
             <h2 className={style.htypeText}>Ofis Chizmasi va Hujjatlari: </h2>
             <Docs
-              documents={documents}
-              setDocs={setDocs} />
+              documents={documents} setDocs={setDocs} />
             <div className={style.DnD}>
               <ImageFile
-                image={image}
-                setImage={setImage} />
+                image={images} setImage={setImage} />
               <VideoFile
-                video={video}
-                setVideo={setVideo} />
+                video={videos} setVideo={setVideo} />
             </div>
             <h2
               className={style.htypeText}
               style={{ marginTop: '70px' }}>Ofis Haqida</h2>
             <HouseDescr
-              description={description}
-              sethDescr={sethDescr} />
+              description={description} sethDescr={sethDescr} />
             <h2 className={style.htypeText}>Ofis narxi: </h2>
             <HousePrice
-              hPrice={hPrice}
-              sethPrice={sethPrice}
-              pricetype={pricetype}
-              setpriceType={setpriceType} />
+              price_som={price_som} setPrice_som={setRrice_som}
+              price_usd={price_usd} setPrice_usd={setPrice_usd} />
             <div className={style.BtnW}>
               <Button
                 type='submit'
