@@ -20,6 +20,8 @@ import LogoHome from "../../Assets/Img/home-logo.svg";
 import "../../Assets/scss/colors.scss";
 import "../Form/Form.scss";
 import { Box, Modal, Typography } from "@mui/material";
+import Tick from "../Animations/Tick/Tick";
+import { useForm } from 'react-hook-form'
 
 
 
@@ -32,6 +34,8 @@ function Form() {
     const [user_type, setUserType] = useState('')//UserType
     const [regions, setRegions] = useState([])//Recieve Regions State
     const [region_id, setRegion] = useState('')//Send Region State
+
+    const { formState: { errors } } = useForm()
 
     const [open, setOpen] = useState(false);
     const handleClose = () => setOpen(false);
@@ -95,7 +99,7 @@ function Form() {
     return (
         <>
             <Container style={{ position: 'relative' }}>
-                <div className="form">
+                <form className="form">
                     <img className="logo-home" src={LogoHome} alt="img" data-aos="fade-zoom-in"
                         data-aos-easing="ease-in-back"
                         data-aos-delay="200"
@@ -206,7 +210,7 @@ function Form() {
                             Roʻyxatdan oʻtish
                         </button>
                     </div>
-                </div>
+                </form>
                 <div>
                     <Modal
                         open={open}
@@ -215,10 +219,11 @@ function Form() {
                         aria-describedby="modal-modal-description"
                     >
                         <Box className="style">
-                            <p className="title">Royhatdan Muvafaqqiyatli <br /> Otdingiz</p>
+                            <Tick />
+                            <p className="title">Muvaffaqiyatli !!!</p>
                             <NavLink to={"/Afeme"}>
                                 <button className="button">
-                                    Bosh Sahifaga
+                                    Bosh Sahifaga O'tish
                                 </button>
                             </NavLink>
                         </Box>
