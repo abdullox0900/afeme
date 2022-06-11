@@ -42,6 +42,41 @@ function Cards({data, cardData, loveBtn = true}) {
         </Card>
     )
 }
+
+function FullCard({cardData, data}) {
+    
+    useEffect(() => {
+        console.log(data);
+    }, [data])
+    return(
+        <Card sx={{}} className="fullCard">
+            <Redirect to={cardData.houseUrl}><CardMedia  className="fullCard__img" component="img" alt="Card img" image={cardData.houseImg}/></Redirect>
+            <Box className="card__content">
+                <CardContent className="card__header">
+                    <div className="card__header__items">
+                        <Redirect to={cardData.houseUrl} className="card__title">Ijaraga {data?.room} xonali {data?.htype_id?.name} sotiladi</Redirect>
+                        <Typography variant="body1" component="div" className="house__type">{data?.htype_id?.name}</Typography>
+                    </div>
+                    <Typography variant="body2" className="house__prices"><span className="house__price">${data?.price_usd}</span></Typography>
+                </CardContent>
+                <CardContent className="card__main">
+                    <p className="card__desc">{cardData.description}</p>
+                </CardContent>
+                <CardActions className="card__footer">
+                    <div className="fullCard__foot">
+                        <Typography className="house__address__bar"><LocationIcon className="card__location"/> <span className="house__address">{cardData.houseAddress}</span></Typography>
+                    </div>
+                    <div className="card__buttons">
+                        <IconButton color="error" className="card__btn card__love">
+                            <LoveIcon className="card__love-icon"/>
+                        </IconButton>
+                    </div>
+                </CardActions>
+            </Box>
+        </Card>
+    )
+}
+
 function Fcards({data, loveBtn = true}) {
 
     return (
@@ -109,33 +144,4 @@ function SCard({cardData}) {
     )
 }
 
-function FullCard({cardData, data}) {
-    return(
-        <Card sx={{}} className="fullCard">
-            <Redirect to={cardData.houseUrl}><CardMedia  className="fullCard__img" component="img" alt="Card img" image={cardData.houseImg}/></Redirect>
-            <Box className="card__content">
-                <CardContent className="card__header">
-                    <div className="card__header__items">
-                        <Redirect to={cardData.houseUrl} className="card__title">{cardData.houseTitle}</Redirect>
-                        <Typography variant="body1" component="div" className="house__type">{cardData.houseType}</Typography>
-                    </div>
-                    <Typography variant="body2" className="house__prices"><span className="house__price">${cardData.housePrice}</span></Typography>
-                </CardContent>
-                <CardContent className="card__main">
-                    <p className="card__desc">{cardData.description}</p>
-                </CardContent>
-                <CardActions className="card__footer">
-                    <div className="fullCard__foot">
-                        <Typography className="house__address__bar"><LocationIcon className="card__location"/> <span className="house__address">{cardData.houseAddress}</span></Typography>
-                    </div>
-                    <div className="card__buttons">
-                        <IconButton color="error" className="card__btn card__love">
-                            <LoveIcon className="card__love-icon"/>
-                        </IconButton>
-                    </div>
-                </CardActions>
-            </Box>
-        </Card>
-    )
-}
 export {Cards, SCard, FullCard, Ucards, Fcards};

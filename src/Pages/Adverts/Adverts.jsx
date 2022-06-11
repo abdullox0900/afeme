@@ -57,6 +57,11 @@ function Adverts() {
             <Hero />
             <div className="adverts">
                 <Container>
+                    {data?.slice(0, 3)?.map((row) => {
+                        return (
+                            <FullCard cardData={cardData} data={row} />
+                        )
+                    })}
                     <FullCard cardData={cardData} data={data} />
                     <AfemePhone />
                     <FullCard cardData={cardData} data={data} />
