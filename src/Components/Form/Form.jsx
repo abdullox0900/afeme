@@ -11,12 +11,7 @@ import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputAdornment from '@mui/material/InputAdornment';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 //Import Components
 import Container from "../Container/Container"
@@ -24,37 +19,33 @@ import LogoOval from "../../Assets/Img/logo-oval.svg";
 import LogoHome from "../../Assets/Img/home-logo.svg";
 import "../../Assets/scss/colors.scss";
 import "../Form/Form.scss";
+import { Box, Modal, Typography } from "@mui/material";
 
 
 
 function Form() {
-    const [region_id, setRegions] = useState([])
     const [name, setName] = useState('')//FirstName
     const [lastname, setLastName] = useState('')//LastName
     const [email, setEmail] = useState('')//Email
     const [phone, setPhone] = useState('')//PhoneNumber
-    const [image, setImage] = useState('jhjhkjhjkhj')
     const [passport, setPassport] = useState('')//IDCard
     const [user_type, setUserType] = useState('')//UserType
-    const [Regionsname, setRegionsname] = useState('')
-    const [password, setPassword] = useState({//UserPassword
-        amount: '',
-        password: '',
-        weight: '',
-    });
+    const [regions, setRegions] = useState([])//Recieve Regions State
+    const [region_id, setRegion] = useState('')//Send Region State
 
+    const [open, setOpen] = useState(false);
+    const handleClose = () => setOpen(false);
 
     var data = new FormData();
     data.append('name', name);
     data.append('lastname', lastname);
     data.append('email', email);
     data.append('phone', phone);
-    data.append('image', image);
     data.append('passport', passport);
     data.append('user_type', user_type);
     data.append('region_id', region_id);
 
-    var config = {
+    const config = {
         method: 'post',
         url: 'http://ali98.uz/api/register',
         headers: {
@@ -62,55 +53,34 @@ function Form() {
         },
         data: data
     };
-    function onSubmit() {   
+    //Send Date's set Token in localStorage, Reset Input Value's
+    function onSubmit(e) {
+        const handleOpen = () => setOpen(true);
+        e.preventDefault();
         axios(config)
-        .then(function (response) {
-            console.log(JSON.stringify(response.data));
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+            .then(function (response) {
+                const Token = JSON.stringify(response.data.data)
+                localStorage.setItem('Token', Token);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        setName('')
+        setLastName('')
+        setEmail('')
+        setPhone('')
+        setPassport('')
+        setUserType('')
+        setRegion('')
+        handleOpen();
     }
-
-
-    // let formData = new FormData()
-    // formData.append('name', name)
-    // formData.append('lastname', lastname)
-    // formData.append('email', email)
-    // formData.append('phone', phone)
-    // formData.append('image', image)
-    // formData.append('passport', passport)
-    // formData.append('user_type', user_type)
-    // formData.append('region_id', region_id)
-    // formData.append('password', password)
-
-    // //Post API Function
-    // function onSubmit(e) {
-    //     console.log(formData);
-    //     axios.post('http://ali98.uz/api/register', formData)
-    //         .then((res) => console.log('asda', res))
-    // }
-    //Password OnChange Function
-    const handleChange = (prop) => (event) => {
-        setPassword({ ...password, [prop]: event.target.value });
-    };
-    //Password Visible Function
-    const handleClickShowPassword = () => {
-        setPassword({
-            ...password,
-            showPassword: !password.showPassword,
-        });
-    };
-    const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-    };
+    //Recieve Regions Request
     useEffect(() => {
         const regions = async () => {
             try {
                 const res = await axios.get('https://ali98.uz/api/regions');
                 if (res) {
                     let data = res.data.data
-
                     setRegions(data)
                 } else {
                     alert('xato')
@@ -124,8 +94,7 @@ function Form() {
 
     return (
         <>
-
-            <Container>
+            <Container style={{ position: 'relative' }}>
                 <div className="form">
                     <img className="logo-home" src={LogoHome} alt="img" data-aos="fade-zoom-in"
                         data-aos-easing="ease-in-back"
@@ -155,11 +124,11 @@ function Form() {
                         <Select
                             labelId="viloyat"
                             id="viloyat"
-                            value={Regionsname}
+                            value={region_id}
                             label="Viloyat"
-                            onChange={e => setRegionsname(e.target.value)}>
+                            onChange={e => setRegion(e.target.value)}>
 
-                            {region_id.map((region) => (
+                            {regions.map((region) => (
                                 <MenuItem
                                     key={region.id}
                                     value={region.id}
@@ -175,6 +144,7 @@ function Form() {
                         id="outlined-basic"
                         label="Ism"
                         variant="outlined"
+                        value={name}
                         sx={{ mt: 2, width: "240px" }}
                         onChange={e => setName(e.target.value)}
                     />
@@ -184,6 +154,7 @@ function Form() {
                         id="outlined-basic"
                         label="Familiya"
                         variant="outlined"
+                        value={lastname}
                         sx={{ mt: 2, ml: 2.5, mb: 2, width: "240px" }}
                         onChange={e => setLastName(e.target.value)}
                     />
@@ -194,6 +165,7 @@ function Form() {
                         label="Email"
                         variant="outlined"
                         fullWidth
+                        value={email}
                         onChange={e => setEmail(e.target.value)}
                     />
                     {/*IDCard 'Passport' Input*/}
@@ -203,6 +175,7 @@ function Form() {
                         label="Passport"
                         variant="outlined"
                         fullWidth
+                        value={passport}
                         sx={{ mt: 2 }}
                         onChange={e => setPassport(e.target.value)}
                     />
@@ -213,40 +186,10 @@ function Form() {
                         label="Telefon Raqami"
                         type="number"
                         fullWidth
+                        value={phone}
                         sx={{ mt: 2, }}
                         onChange={e => setPhone(e.target.value)}
                     />
-                    {/*PassWord Input*/}
-                    <FormControl
-                        sx={{ mt: 2, width: '500' }}
-                        variant="outlined"
-                        fullWidth
-                    >
-                        <InputLabel
-                            htmlFor="outlined-adornment-password"
-                        >Parol
-                        </InputLabel>
-                        <OutlinedInput
-                            id="outlined-adornment-password"
-                            type={password.showPassword ? 'text' : 'password'}
-                            value={password.password}
-                            onChange={handleChange('password')}
-                            endAdornment={
-                                <InputAdornment
-                                    position="end">
-                                    <IconButton
-                                        aria-label="toggle password visibility"
-                                        onClick={handleClickShowPassword}
-                                        onMouseDown={handleMouseDownPassword}
-                                        edge="end"
-                                    >
-                                        {password.showPassword ? <VisibilityOff /> : <Visibility />}
-                                    </IconButton>
-                                </InputAdornment>
-                            }
-                            label="Parol"
-                        />
-                    </FormControl>
                     {/* SingUp and LogIn Buttons */}
                     <div className="form__box">
                         <NavLink
@@ -255,14 +198,31 @@ function Form() {
                         >
                             Mening akkauntim bor
                         </NavLink>
-                        <Button
+                        <button
+                            className="button"
                             onClick={(e) => onSubmit(e)}
-                            className="form__btn"
                             sx={{ p: 1.3, ml: 22.5 }}
                             variant="contained">
                             Roʻyxatdan oʻtish
-                        </Button>
+                        </button>
                     </div>
+                </div>
+                <div>
+                    <Modal
+                        open={open}
+                        onClose={handleClose}
+                        aria-labelledby="modal-modal-title"
+                        aria-describedby="modal-modal-description"
+                    >
+                        <Box className="style">
+                            <p className="title">Royhatdan Muvafaqqiyatli <br /> Otdingiz</p>
+                            <NavLink to={"/Afeme"}>
+                                <button className="button">
+                                    Bosh Sahifaga
+                                </button>
+                            </NavLink>
+                        </Box>
+                    </Modal>
                 </div>
             </Container>
         </>

@@ -1,46 +1,86 @@
 @import "../../Assets/scss/colors.scss";
 
-.form-title {
-    margin: 0;
-    margin-bottom: 50px;
-    text-align: center;
-    font-weight: 500;
-    font-size: 28px;
-    line-height: 33px;
-    color: #000000;
-}
-
 .form {
-    width: 500px;
-    // margin: 0 auto;
-}
-
-.form__box {
-    display: flex;
-    align-items: center;
-    margin-top: 35px;
-}
-
-.form__link-myaccount {
-    display: inline-block;
-    color: $darkBlue;
-    font-weight: 500;
-    text-decoration: underline;
-}
-
-.form__btn {
-    background-color: $darkBlue  !important;
-}
-
-.logo-oval {
     position: relative;
-    top: -30px;
-    left: 180px;
+    .form-title {
+        margin: 0;
+        margin-bottom: 50px;
+        text-align: center;
+        font-weight: 500;
+        font-size: 28px;
+        line-height: 33px;
+        color: #000000;
+    }
+    width: 500px;
+    .form__box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 35px;
+    }
+    
+    .form__link-myaccount {
+        display: inline-block;
+        color: $darkBlue;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+    
+    .button {
+        cursor: pointer;
+        width: 178px;
+        height: 50px;
+        background-color: $darkBlue !important;
+        border-radius: 10px;
+        border: none;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        color: #ffffff;
+    }
+    
+    .logo-oval {
+        position: relative;
+        top: -30px;
+        left: 180px;
+    }
+    
+    .logo-home {
+        position: absolute;
+        top: 8%;
+        left: 839px;
+        z-index: 3;
+    }
+}
+.style {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 400px;
+    background-color: $white;
+    border-radius: 15px;
+    border: 2px solid $darkBlue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .title{
+        text-align: center;
+        font-size: 24px;
+    }
+    .button {
+        cursor: pointer;
+        width: 178px;
+        height: 50px;
+        background-color: $darkBlue !important;
+        border-radius: 10px;
+        border: none;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        color: #ffffff;
+    }
 }
 
-.logo-home {
-    position: absolute;
-    top: 8%;
-    left: 839px;
-    z-index: 3;
-}
