@@ -21,15 +21,15 @@ import Example from "../../Components/Header/Header";
 
 function Home() {
 
-    // const data = {
-    //     images: [Partners1, Partners2, Partners3, Partners4],
-    // }
+    const data = {
+        images: [Partners1, Partners2, Partners3, Partners4],
+    }
     return (
         <>
 
             {/* <Header/> */}
             <Example/>
-            {/* <Hero/>
+            <Hero/>
             <Categories />
             <Main />
             <WhyAfeme />
@@ -37,7 +37,7 @@ function Home() {
                 <Carousel data={data} type="loop" />
             </Container>
             <AfemePhone />
-            <Footer /> */}
+            <Footer />
         </>
     )
 }
