@@ -9,16 +9,31 @@ import axios from "axios";
 
 function Modal({ elModal }) {
     const [phone, setPhone] = useState('')
-    const [password, setPassword] = useState('')
 
-    let formData = new FormData();
-    formData.append('phone', phone)
-    formData.append('password', password)
+    const data = new FormData();
+    data.append('phone', phone);
+
+    var config = {
+        method: 'post',
+        url: 'http://ali98.uz/api/login',
+        headers: {
+            // ...data.getHeaders()
+        },
+        data: data
+    };
 
     function onSubmit(e) {
-        console.log(formData);
-        axios.post('http://ali98.uz/api/login', formData)
-            .then((res) => console.log('asda', res))
+        e.preventDefault();
+        axios(config)
+            .then(function (response) {
+                const Token = JSON.stringify(response.data.data)
+                localStorage.setItem('Token', Token);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        setPhone('')
+        elModal.current.classList.remove("modal--open");
     }
 
     return (
@@ -38,41 +53,28 @@ function Modal({ elModal }) {
                 <img
                     className="modal__img-auth"
                     src={LogoAuthorization}
-                    alt="logo__auth"
-                />
+                    alt="logo__auth" />
 
-                <h3
-                    className="modal__title"
-                >
+                <h3 className="modal__title">
                     Saytga kirish
                 </h3>
 
-                <div
-                    className="form"
-                >
+                <div className="form" >
                     <input
                         className="form__authorization-input input-auth"
                         type="text"
+                        value={phone}
                         placeholder="Email yoki telefon raqam"
-                        onChange={e => setPhone(e.target.value)}
-                    />
-                    <input
-                        className="form__authorization-input--password input-auth"
-                        type="text"
-                        placeholder="Parol*"
-                        onChange={e => setPassword(e.target.value)}
-                        />
+                        onChange={e => setPhone(e.target.value)} />
                     <Button
                         className="form__authorization-btn"
                         variant="contained"
-                        onClick={(e) => onSubmit(e)}
-                    >
+                        onClick={(e) => onSubmit(e)}>
                         Saytga Kirish
                     </Button>
                     <NavLink to={"/SignUp"}>
                         <Button
-                            className="form__authorization-link"
-                        >
+                            className="form__authorization-link">
                             Roʻyxatdan oʻtish
                         </Button>
                     </NavLink>
@@ -80,8 +82,7 @@ function Modal({ elModal }) {
 
                 <IconButton
                     aria-label="close"
-                    className="modal__close-btn"
-                >
+                    className="modal__close-btn">
                 </IconButton>
             </div>
         </div >
