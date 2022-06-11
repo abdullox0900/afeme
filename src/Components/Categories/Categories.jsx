@@ -63,7 +63,7 @@ function Categories() {
                 <Container>
                     <Box className="categories__content">
                         {
-                            categorieData?.slice(0, 6)?.map((categ) => {
+                            categorieData?.map((categ) => {
                                 return (
                                     <Redirect className="categories__items" to={{ pathname: "/adverts", search: `?htype=${categ.id}`}}>
                                         <img className="categories__img-icon" src={`https://ali98.uz/public/admin2/categories/${categ.icon}`} alt="" />
