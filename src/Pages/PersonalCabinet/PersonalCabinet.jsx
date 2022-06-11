@@ -23,7 +23,7 @@ function PersonalCabinet() {
     return (
         <>
             <Container>
-                {/* <Header /> */}
+                <Header />
                 <div className={style.wrapper}>
                     <div className={style.main}>
                         <div className={style.btng}>
@@ -48,7 +48,7 @@ function PersonalCabinet() {
                     <Personal />
                 </div>
             </Container>
-            {/* <Footer /> */}
+            <Footer />
         </>
     )
 }
