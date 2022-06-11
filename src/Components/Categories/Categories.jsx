@@ -1,6 +1,7 @@
 // IMPORT REACT
 import React from "react";
 import { useEffect, useState } from "react";
+import { NavLink as Redirect } from "react-router-dom";
 
 // IMPORT COMPONENTS
 import Container from "../Container/Container";
@@ -62,30 +63,16 @@ function Categories() {
             <Box className="categories">
                 <Container>
                     <Box className="categories__content">
-
                         {
-                            categorieData?.map((categ) => {
+                            categorieData?.slice(0, 6)?.map((categ) => {
                                 return (
-                                    <Box className="categories__items" key={categ.id}>
+                                    <Redirect className="categories__items" to={{ pathname: "/adverts", search: `?htype=${categ.id}`}}>
                                         <img className="categories__img-icon" src={`https://ali98.uz/public/admin2/categories/${categ.icon}`} alt="" />
                                         <h3 className="categories__items-title">{categ.name}</h3>
-                                    </Box>
+                                    </Redirect>
                                 )
                             })
                         }
-
-                        {/* <a href="/" className="categories__items">
-                            <Box className="categories__img"><img src={Categories2} alt="" /></Box>
-                        </a>
-                        <a href="/" className="categories__items">
-                            <Box className="categories__img"><img src={HomeIcon} alt="" /></Box>
-                        </a>
-                        <a href="/" className="categories__items">
-                            <Box className="categories__img"><img src={Categories3} alt="" /></Box>
-                        </a>
-                        <a href="/" className="categories__items">
-                            <Box className="categories__img"><img src={Categories4} alt="" /></Box>
-                        </a> */}
                     </Box>
                 </Container>
             </Box>
