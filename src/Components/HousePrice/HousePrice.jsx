@@ -7,25 +7,25 @@ function HousePrice({ price, sethPrice, pricetype, setpriceType }) {
     return (
         <div>
             <div className={style.hPrice}>
-                <div className={style.numInp}>
-                    <input
-                        name={pricetype}
-                        min={0}
-                        key={v4}
-                        onChange={(e) => sethPrice(e.target.value)}
-                        type={'number'}
-                        placeholder={price}>
-                    </input>
-                </div>
-                <div className={style.select} htmlFor='cash'>
+                <input
+                    className={style.numInp}
+                    name={pricetype}
+                    min={0}
+                    key={v4}
+                    onChange={(e) =>
+                        sethPrice(e.target.value)}
+                    type={'number'}
+                    placeholder={price}>
+                </input>
                     <select name="cash" id="cash"
+                    className={style.select}
                         value={pricetype}
-                        onChange={(e) => setpriceType(e.target.value)}
+                        onChange={(e) =>
+                            setpriceType(e.target.value)}
                     >
                         <option value="uzs">Uzs</option>
                         <option value="usd">Usd</option>
                     </select>
-                </div>
             </div>
         </div>
     )

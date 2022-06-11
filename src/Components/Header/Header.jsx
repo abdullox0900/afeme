@@ -19,7 +19,23 @@ import "../ModalAuthorization/Modal.scss";
 import "../Header/Header.scss";
 import Nav from '../Nav/Nav';
 
-
+const language = [
+    {
+        code: "uz",
+        name: "Uzbekistan",
+        country: "uz",
+    },
+    {
+        code: "en",
+        name: "English",
+        country: "gb",
+    },
+    {
+        code: "ru",
+        name: "Rossian",
+        country: "ru",
+    },
+]
 
 function Header() {
 
@@ -47,8 +63,8 @@ function Header() {
                         <div className="header__items">
                             <Tooltip className="icon__btn" title="Your Currency" arrow TransitionComponent={Grow}>
                                 <IconButton color="primary">
-                                    <img src={CurrencyIcon} alt="" className="header__icon nav__currency" />
-                                    {/* <div className="dropdown">
+                                    {/* <img src={CurrencyIcon} alt="" className="header__icon nav__currency" />
+                                    <div className="dropdown">
                                         <button className="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
 
                                         </button>
@@ -56,7 +72,7 @@ function Header() {
                                             {language.map(({ code, name, country }) => (
                                                 <li key={country}>
                                                     <button className="dropdown-item"
-                                                        onClick={() => i18next.changeLanguage(code)}>
+                                                        >
                                                         <span className={`${country}`}></span>&nbsp;
                                                         {name}
                                                     </button>
