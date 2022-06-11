@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
-//Import HTTP 
+//Import HTTP
 import axios from "axios";
 
 // Import MUI Components
@@ -15,8 +15,9 @@ import Button from '@mui/material/Button';
 
 //Import Components
 import Container from "../Container/Container"
-import LogoOval from "../../Assets/Img/logo-oval.svg";
-import LogoHome from "../../Assets/Img/home-logo.svg";
+// import LogoOval from "../../Assets/Img/logo-oval.svg";
+// import LogoHome from "../../Assets/Img/home-logo.svg";
+import AfemeLogo from "../../Assets/Img/afeme-logo.svg"
 import "../../Assets/scss/colors.scss";
 import "../Form/Form.scss";
 import { Box, Modal, Typography } from "@mui/material";
@@ -100,68 +101,70 @@ function Form() {
         <>
             <Container style={{ position: 'relative' }}>
                 <div className="form">
-                    <img className="logo-home" src={LogoHome} alt="img" data-aos="fade-zoom-in"
+                    <img className="form__img" src={AfemeLogo} alt="" data-aos="zoom-in"
                         data-aos-easing="ease-in-back"
                         data-aos-delay="200"
                         data-aos-offset="10"
-                        data-aos-duration="1500" />
-                    <img className="logo-oval" src={LogoOval} alt="img" data-aos="zoom-in" ata-aos-easing="linear"
-                        data-aos-duration="3000" />
+                        data-aos-duration="900" />
                     <h1 className="form-title">Roʻyxatdan oʻtish</h1>
                     {/*UserType Input*/}
-                    <FormControl sx={{ width: "240px", mt: 2, mr: 2.5 }}>
-                        <InputLabel id="demo-simple-select-label">Jismoniy shaxs</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            label="Jismoniy shaxs" value={user_type}
-                            onChange={e => setUserType(e.target.value)}>
-                            <MenuItem value={'mijoz'}>Mijoz</MenuItem>
-                            <MenuItem value={'rieltor'}>Rieltor</MenuItem>
-                            <MenuItem value={'companiya'}>Companiya</MenuItem>
-                            <MenuItem value={'quruvchi firma'}>Quruvchi Firma</MenuItem>
-                        </Select>
-                    </FormControl>
-                    {/* User Region Input */}
-                    <FormControl sx={{ mt: 2, width: "240px" }}>
-                        <InputLabel id="viloyat">Viloyat</InputLabel>
-                        <Select
-                            labelId="viloyat"
-                            id="viloyat"
-                            value={region_id}
-                            label="Viloyat"
-                            onChange={e => setRegion(e.target.value)}>
+                    <div>
+                        <FormControl sx={{ width: "240px", mt: 2, mr: 2.5 }}>
+                            <InputLabel id="demo-simple-select-label">Jismoniy shaxs</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                label="Jismoniy shaxs" value={user_type}
+                                onChange={e => setUserType(e.target.value)}>
+                                <MenuItem value={'mijoz'}>Mijoz</MenuItem>
+                                <MenuItem value={'rieltor'}>Rieltor</MenuItem>
+                                <MenuItem value={'companiya'}>Companiya</MenuItem>
+                                <MenuItem value={'quruvchi firma'}>Quruvchi Firma</MenuItem>
+                            </Select>
+                        </FormControl>
+                        {/* User Region Input */}
+                        <FormControl sx={{ mt: 2, width: "240px" }}>
+                            <InputLabel id="viloyat">Viloyat</InputLabel>
+                            <Select
+                                labelId="viloyat"
+                                id="viloyat"
+                                value={region_id}
+                                label="Viloyat"
+                                onChange={e => setRegion(e.target.value)}>
 
-                            {regions.map((region) => (
-                                <MenuItem
-                                    key={region.id}
-                                    value={region.id}
-                                >
-                                    {region.name}
-                                </MenuItem>
-                            ))}
-                        </Select>
-                    </FormControl>
+                                {regions.map((region) => (
+                                    <MenuItem
+                                        key={region.id}
+                                        value={region.id}
+                                    >
+                                        {region.name}
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                    </div>
                     {/*FirstName Input*/}
-                    <TextField
-                        className="form__input form__input-name"
-                        id="outlined-basic"
-                        label="Ism"
-                        variant="outlined"
-                        value={name}
-                        sx={{ mt: 2, width: "240px" }}
-                        onChange={e => setName(e.target.value)}
-                    />
-                    {/*LastName Input*/}
-                    <TextField
-                        className="form__input form__input-lastname"
-                        id="outlined-basic"
-                        label="Familiya"
-                        variant="outlined"
-                        value={lastname}
-                        sx={{ mt: 2, ml: 2.5, mb: 2, width: "240px" }}
-                        onChange={e => setLastName(e.target.value)}
-                    />
+                    <div>
+                        <TextField
+                            className="form__input form__input-name"
+                            id="outlined-basic"
+                            label="Ism"
+                            variant="outlined"
+                            value={name}
+                            sx={{ mt: 2, width: "240px" }}
+                            onChange={e => setName(e.target.value)}
+                        />
+                        {/*LastName Input*/}
+                        <TextField
+                            className="form__input form__input-lastname"
+                            id="outlined-basic"
+                            label="Familiya"
+                            variant="outlined"
+                            value={lastname}
+                            sx={{ mt: 2, ml: 2.5, mb: 2, width: "240px" }}
+                            onChange={e => setLastName(e.target.value)}
+                        />
+                    </div>
                     {/*Email Input*/}
                     <TextField
                         className="form__input form__input-email"
@@ -198,8 +201,7 @@ function Form() {
                     <div className="form__box">
                         <NavLink
                             to={"/Afeme"}
-                            className="form__link-myaccount"
-                        >
+                            className="form__link-myaccount">
                             Mening akkauntim bor
                         </NavLink>
                         <button

@@ -65,6 +65,27 @@
 
 .realtor-card__reyting {
     position: absolute;
+    top: 40px;
+    right: 40px;
+}
+
+.reltor-card__region {
+    position: absolute;
     bottom: 40px;
     right: 40px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    color: #6D7580;
+}
+
+.reltor-card__region::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -20px;
+    width: 20px;
+    height: 20px;
+    background-image: url("../../Assets/Img/location-reltor-card.svg");
+    background-repeat: no-repeat;
 }
