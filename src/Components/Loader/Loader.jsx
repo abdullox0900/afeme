@@ -4,6 +4,7 @@ import LogoImg from "../../Lib/Svg/logo";
 
 function Loader() {
 
+    document.body.style.overflow = 'hidden';
     return (
         <>
             <div className="loading">
@@ -29,8 +30,3 @@ function Loader() {
 }
 
 export default Loader;
-
-{/* <LogoImg className="loading-img" width={50} height={50}/>
-                <div className="sistem">
-                <LogoOval classNa="loading__oval-img" width={60} height={60}/>
-                </div> */}

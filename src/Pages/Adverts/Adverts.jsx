@@ -1,4 +1,6 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import axios from "axios";
+import { useSearchParams } from "react-router-dom";
 import Loader from "../../Components/Loader/Loader"
 import Container from "../../Components/Container/Container";
 import Header from "../../Components/Header/Header";
@@ -14,7 +16,32 @@ import CardImg4 from "../../Assets/Img/card_img4.jpg";
 
 function Adverts() {
 
-    const data = {
+    const [searchParams, setSearchParams] = useSearchParams();
+    let htype = searchParams.get("htype");
+    console.log(htype);
+
+    const [data, setData] = useState(null)
+    const URL = 'https://ali98.uz/api/post';
+    useEffect(() => {
+        function getData() {
+            const result = axios.get(URL)
+            .then((response) => {
+                let dataStatus = response.data
+                if (dataStatus.status == true || dataStatus.status == 200) {
+                    let newData = [];
+                    newData.push(dataStatus.data);
+                    setData(newData[0]);
+                    console.log(newData);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+        }
+        getData();
+    }, [])
+
+    const cardData = {
         housePrice: 1400,
         houseType: 'uy',
         houseTitle: 'My house',
@@ -30,14 +57,15 @@ function Adverts() {
             <Hero />
             <div className="adverts">
                 <Container>
-                    <FullCard data={data}/>
-                    <FullCard data={data}/>
-                    <FullCard data={data}/>
-                    <FullCard data={data}/>
-                    <FullCard data={data}/>
+                    {data?.slice(0, 3)?.map((row) => {
+                        return (
+                            <FullCard cardData={cardData} data={row} />
+                        )
+                    })}
+                    <FullCard cardData={cardData} data={data} />
                     <AfemePhone />
-                    <FullCard data={data}/>
-                    <FullCard data={data}/>
+                    <FullCard cardData={cardData} data={data} />
+                    <FullCard cardData={cardData} data={data} />
                 </Container>
             </div>
             <Footer />

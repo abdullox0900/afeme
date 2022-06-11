@@ -30,25 +30,29 @@ function Main() {
         function getData() {
             const result = axios.get(URL)
             .then((response) => {
-                let newData = [];
-                newData.push(response);
-                setData(newData);
+                let dataStatus = response.data
+                if (dataStatus.status == true || dataStatus.status == 200) {
+                    let newData = [];
+                    newData.push(dataStatus.data);
+                    setData(newData[0]);
+                    console.log(newData);
+                }
             })
             .catch((error) => {
                 console.log(error);
             })
         }
         getData();
-    })
-    console.log(data);
+    }, [])
     
     const cardData = {
+        id: 1,
         houseType: 'Uy',
         housePrice: 1400,
         houseTitle: 'My house',
         houseAddress: 'Andijan',
         houseUrl: '/advert',
-        houseImg: CardImg1,
+        houseImg: CardImg3,
     };
 
     return (
@@ -59,29 +63,30 @@ function Main() {
                         <section className="section recommend">
                             <Typography variant="h3" className="section__title">Tavsiya etilgan turar-joy majmualari</Typography>
                             <div className="cards">
-                                <Cards data={cardData} />
-                                <Cards data={cardData} />
-                                <Cards data={cardData} />
+                                {data?.slice(0, 3)?.map((row) => {
+                                    return (
+                                        <Cards data={row} cardData={cardData} />
+                                    )
+                                })}
                             </div>
                             <Box className="viewAll"><a href="/" className="viewAll__link">Barchasini ko’rish </a><img src={RightArrow} alt="" /></Box>
                         </section>
                         <section className="section popular">
                             <Typography variant="h3" className="section__title">Ommabop Uylar</Typography>
                             <div className="cards">
-                                <Cards data={cardData} />
-                                <Cards data={cardData} />
-                                <Cards data={cardData} />
-                                <Cards data={cardData} />
-                                <Cards data={cardData} />
-                                <Cards data={cardData} />
+                                {data?.slice(3, 12)?.map((row) => {
+                                    return (
+                                        <Cards data={row} cardData={cardData} />
+                                    )
+                                })}
                             </div>
                             <Box className="viewAll"><a href="/" className="viewAll__link">Barchasini ko’rish </a><img src={RightArrow} alt="" /></Box>
                         </section>
                         <section className="section newBuildings">
                             <Typography variant="h3" className="section__title">Yangi Binolar</Typography>
                             <div className="scards">
-                                <SCard data={cardData} />
-                                <SCard data={cardData} />
+                                <SCard data={data} cardData={cardData} />
+                                <SCard data={data} cardData={cardData} />
                             </div>
                         </section>
                     </div>
