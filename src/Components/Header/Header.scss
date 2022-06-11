@@ -55,16 +55,27 @@
     .add__advert img {
         padding-right: 6px;
     }
-}
 
-;
+    &__menu-btn {
+        display: none;
+    }
+};
 
 // Responsiv Header Tablet version
 
 @media only screen and (max-width: 985px) {
     .header {
+
+        .header__items {
+            display: none;
+        }
+
         .header__icons-nav {
             display: none;
+        }
+
+        .header__menu-btn {
+            display: flex;
         }
     }
 }

@@ -2,6 +2,7 @@
 
 .nav {
     margin: 20px 0px;
+
     &__list {
         display: flex;
         margin: 0;
@@ -9,8 +10,28 @@
         list-style: none;
     }
 
-    &__item + &__item {
+    &__item {
+        position: relative;
+    }
+
+    &__item+&__item {
         margin-left: 25px;
+    }
+
+    &__item:after {
+        content: "";
+        position: absolute;
+        top: 20px;
+        width: 0%;
+        height: 2px;
+        display: block;
+        transition: all 0.8s ease;
+    }
+
+    &__item:hover::after {
+        width: 100%;
+        height: 2px;
+        background-color: #000;
     }
 
     &__link {
@@ -22,10 +43,82 @@
     }
 }
 
+.navbar-menu {
+    position: fixed;
+    flex-direction: column;
+    align-items: center;
+    top: 0px;
+    right: -100%;
+    width: 50%;
+    height: 100vh;
+    padding: 40px 40px;
+    transition: 0.5s;
+    background-color: #fff;
+    box-shadow: -3px 15px 10px 4px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.navbar-menu__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.navbar-menu__item {
+    margin-top: 30px;
+}
+
+.navbar-menu__link {
+    position: relative;
+    padding-left: 30px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #000;
+}
+
+.navbar-menu__link::before {
+    width: 40px;
+    height: 40px;
+}
+
+.nav-menu__clos-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: none;
+    background-color: transparent;
+}
+
+ion-icon {
+    font-size: 30px;
+}
+
 // Responsiv Navbar Tablet Version
 
 @media only screen and (max-width: 985px) {
     .nav {
         display: none;
+    }
+
+    .header--open .navbar-menu {
+        right: 0px;
+        width: 60%;
+    }
+
+    .header--open .navbar-wrapper {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(3px);
+        z-index: 100;
     }
 }

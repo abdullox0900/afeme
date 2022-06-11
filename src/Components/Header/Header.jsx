@@ -40,11 +40,18 @@ const language = [
 function Header() {
 
     const elModal = React.useRef();
+    const elHeader = React.useRef();
     const { t } = useTranslation();
+
+console.log(elHeader.current)
+
+    // function removClass() {
+    //     elHeader.classList.add("header--open")
+    // }
 
     return (
         <>
-            <header className="header">
+            <header className="header" ref={elHeader}>
                 <Container>
                     <div className="header__content">
                         <div className="header__logo">
@@ -59,7 +66,7 @@ function Header() {
                                 </Button>
                             </Tooltip>
                         </div>
-                        <Nav />
+                        <Nav elHeader={elHeader} />
                         <div className="header__items">
                             <div className="header__icons-nav">
                                 <Tooltip className="icon__btn" title="Your Currency" arrow TransitionComponent={Grow}>
@@ -107,11 +114,11 @@ function Header() {
                                     }}>Kirish</Button>
                             </div>
                         </div>
+                        <button className='header__menu-btn' onClick={() => {
+                            elHeader.current.classList.add("header--open")
+                        }}>/</button>
                     </div>
                 </Container>
-
-
-
             </header>
             <Modal elModal={elModal} />
         </>
