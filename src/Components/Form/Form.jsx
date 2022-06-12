@@ -1,17 +1,25 @@
 // Import React and React Hooks
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useForm } from 'react-hook-form'
 
-//Import HTTP 
+//Import Request Package
 import axios from "axios";
 
 // Import MUI Components
-import TextField from '@mui/material/TextField';
-import Select from '@mui/material/Select';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Button from '@mui/material/Button';
+import {
+    Box,
+    FormControl,
+    InputLabel,
+    MenuItem,
+    Modal,
+    Select,
+    TextField,
+    Typography
+}
+    from "@mui/material";
+
+
 
 //Import Components
 import Container from "../Container/Container"
@@ -19,49 +27,31 @@ import LogoOval from "../../Assets/Img/logo-oval.svg";
 import LogoHome from "../../Assets/Img/home-logo.svg";
 import "../../Assets/scss/colors.scss";
 import "../Form/Form.scss";
-import { Box, Modal, Typography } from "@mui/material";
 import Tick from "../Animations/Tick/Tick";
-import { useForm } from 'react-hook-form'
 
 
 
 function Form() {
-    const [name, setName] = useState('')//FirstName
-    const [lastname, setLastName] = useState('')//LastName
-    const [email, setEmail] = useState('')//Email
-    const [phone, setPhone] = useState('')//PhoneNumber
-    const [passport, setPassport] = useState('')//IDCard
-    const [user_type, setUserType] = useState('')//UserType
-    const [regions, setRegions] = useState([])//Recieve Regions State
-    const [region_id, setRegion] = useState('')//Send Region State
-
-    const { formState: { errors } } = useForm()
-
+    const { register, handleSubmit, formState: { errors }, reset } = useForm()
+    //Modal States
     const [open, setOpen] = useState(false);
     const handleClose = () => setOpen(false);
+    //Recieve Regions State
+    const [regions, setRegions] = useState([])
 
-    var data = new FormData();
-    data.append('name', name);
-    data.append('lastname', lastname);
-    data.append('email', email);
-    data.append('phone', phone);
-    data.append('passport', passport);
-    data.append('user_type', user_type);
-    data.append('region_id', region_id);
 
-    const config = {
-        method: 'post',
-        url: 'http://ali98.uz/api/register',
-        headers: {
-            // ...data.getHeaders()
-        },
-        data: data
-    };
-    //Send Date's set Token in localStorage, Reset Input Value's
-    function onSubmit(e) {
+    //Send Date's and set Token in localStorage, Reset Input Value's
+    const onSubmit = (data) => {
         const handleOpen = () => setOpen(true);
-        e.preventDefault();
-        axios(config)
+        const singup = new FormData();
+        singup.append('name', data.name)
+        singup.append('lastname', data.lastname);
+        singup.append('email', data.email);
+        singup.append('phone', data.phone);
+        singup.append('passport', data.passport);
+        singup.append('user_type', data.user_type);
+        singup.append('region_id', data.region_id);
+        axios.post('http://ali98.uz/api/register', singup)
             .then(function (response) {
                 const Token = JSON.stringify(response.data.data)
                 localStorage.setItem('Token', Token);
@@ -69,14 +59,8 @@ function Form() {
             .catch(function (error) {
                 console.log(error);
             });
-        setName('')
-        setLastName('')
-        setEmail('')
-        setPhone('')
-        setPassport('')
-        setUserType('')
-        setRegion('')
         handleOpen();
+        reset();
     }
     //Recieve Regions Request
     useEffect(() => {
@@ -99,7 +83,7 @@ function Form() {
     return (
         <>
             <Container style={{ position: 'relative' }}>
-                <div className="form">
+                <form className="form" onSubmit={handleSubmit(onSubmit)}>
                     <img className="logo-home" src={LogoHome} alt="img" data-aos="fade-zoom-in"
                         data-aos-easing="ease-in-back"
                         data-aos-delay="200"
@@ -114,8 +98,10 @@ function Form() {
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
-                            label="Jismoniy shaxs" value={user_type}
-                            onChange={e => setUserType(e.target.value)}>
+                            defaultValue={'mijoz'}
+                            label="Jismoniy shaxs"
+                            {...register('user_type')}
+                            >
                             <MenuItem value={'mijoz'}>Mijoz</MenuItem>
                             <MenuItem value={'rieltor'}>Rieltor</MenuItem>
                             <MenuItem value={'companiya'}>Companiya</MenuItem>
@@ -128,10 +114,9 @@ function Form() {
                         <Select
                             labelId="viloyat"
                             id="viloyat"
-                            value={region_id}
                             label="Viloyat"
-                            onChange={e => setRegion(e.target.value)}>
-
+                            {...register('region_id')}
+                            >
                             {regions.map((region) => (
                                 <MenuItem
                                     key={region.id}
@@ -146,11 +131,12 @@ function Form() {
                     <TextField
                         className="form__input form__input-name"
                         id="outlined-basic"
-                        label="Ism"
+                        label="Ism*"
                         variant="outlined"
-                        value={name}
                         sx={{ mt: 2, width: "240px" }}
-                        onChange={e => setName(e.target.value)}
+                        {...register('name', { required: 'Ism Kiriting' })}
+                        error={!!errors?.name}
+                        helperText={errors?.name ? errors.name.message : null}
                     />
                     {/*LastName Input*/}
                     <TextField
@@ -158,9 +144,8 @@ function Form() {
                         id="outlined-basic"
                         label="Familiya"
                         variant="outlined"
-                        value={lastname}
                         sx={{ mt: 2, ml: 2.5, mb: 2, width: "240px" }}
-                        onChange={e => setLastName(e.target.value)}
+                        {...register('lastname')}
                     />
                     {/*Email Input*/}
                     <TextField
@@ -169,30 +154,46 @@ function Form() {
                         label="Email"
                         variant="outlined"
                         fullWidth
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
+                        {...register('email', {
+                            required: false,
+                            pattern: {
+                                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                message: 'Email manzili noto‘g‘ri'
+                            }
+                        })}
+                        error={!!errors?.email}
+                        helperText={errors?.email ? errors.email.message : null}
                     />
                     {/*IDCard 'Passport' Input*/}
                     <TextField
                         className="form__input form__input-passport"
                         id="outlined-basic"
-                        label="Passport"
+                        label="Passport*"
                         variant="outlined"
                         fullWidth
-                        value={passport}
                         sx={{ mt: 2 }}
-                        onChange={e => setPassport(e.target.value)}
+                        {...register('passport', {
+                            required: 'Passport Seria Kiriting',
+                            // pattern: {
+                            //     value: /^[A-PR-WYa-pr-wy][1-9]\\d\\s?\\d{4}[1-9]$/i,
+                            //     message: 'Passport Notogri'
+                            // }
+                        })}
+                        error={!!errors?.passport}
+                        helperText={errors?.passport ? errors.passport.message : null}
                     />
                     {/*PhoneNumber Input*/}
                     <TextField
                         className="form__input form__input-number"
                         id="outlined-number"
-                        label="Telefon Raqami"
+                        label="Telefon Raqami*"
                         type="number"
                         fullWidth
-                        value={phone}
+                        autoComplete={false}
                         sx={{ mt: 2, }}
-                        onChange={e => setPhone(e.target.value)}
+                        {...register('phone', { required: 'Raqam Kiriting' })}
+                        error={!!errors?.phone}
+                        helperText={errors?.phone ? errors.phone.message : null}
                     />
                     {/* SingUp and LogIn Buttons */}
                     <div className="form__box">
@@ -204,13 +205,14 @@ function Form() {
                         </NavLink>
                         <button
                             className="button"
-                            onClick={(e) => onSubmit(e)}
+                            type="submit"
+                            // onClick={(e) => onSubmit(e)}
                             sx={{ p: 1.3, ml: 22.5 }}
                             variant="contained">
                             Roʻyxatdan oʻtish
                         </button>
                     </div>
-                </div>
+                </form>
                 <div>
                     <Modal
                         open={open}
