@@ -6,33 +6,23 @@ import "../../Assets/scss/colors.scss";
 import "../../Components/ModalAuthorization/Modal.scss";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import { Box, TextField } from "@mui/material";
+import { useForm } from 'react-hook-form'
 
 function Modal({ elModal }) {
-    const [phone, setPhone] = useState('')
-
-    const data = new FormData();
-    data.append('phone', phone);
-
-    var config = {
-        method: 'post',
-        url: 'http://ali98.uz/api/login',
-        headers: {
-            // ...data.getHeaders()
-        },
-        data: data
-    };
-
-    function onSubmit(e) {
-        e.preventDefault();
-        axios(config)
+    const { register, handleSubmit, formState: { errors }, reset } = useForm()
+    const onSubmit = (data) => {
+        const log = new FormData();
+        log.append('phone', data.phone)
+        axios.post('http://ali98.uz/api/login', log)
             .then(function (response) {
                 const Token = JSON.stringify(response.data.data)
                 localStorage.setItem('Token', Token);
             })
             .catch(function (error) {
-                console.log(error);
-            });
-        setPhone('')
+                console.error(error);
+            })
+        reset();
         elModal.current.classList.remove("modal--open");
     }
 
@@ -59,18 +49,20 @@ function Modal({ elModal }) {
                     Saytga kirish
                 </h3>
 
-                <div className="form" >
-                    <input
-                        className="form__authorization-input input-auth"
-                        type="text"
-                        value={phone}
-                        placeholder="Email yoki telefon raqam"
-                        onChange={e => setPhone(e.target.value)} />
+                <form onSubmit={handleSubmit(onSubmit)} className="form">
+                    <TextField
+                        sx={{ width:'280px',marginBottom:'20px'}}
+                        variant='outlined'
+                        label='Telefon Raqami'
+                        {...register('phone', { required: 'Raqam Kiriting' })}
+                        error={!!errors?.phone}
+                        helperText={errors?.phone ? errors.phone.message : null}
+                    />
                     <Button
                         className="form__authorization-btn"
-                        variant="contained"
-                        onClick={(e) => onSubmit(e)}>
-                        Saytga Kirish
+                        type='submit'
+                        variant='contained'>
+                        Kirish
                     </Button>
                     <NavLink to={"/SignUp"}>
                         <Button
@@ -78,8 +70,8 @@ function Modal({ elModal }) {
                             Roʻyxatdan oʻtish
                         </Button>
                     </NavLink>
-                </div>
-
+                </form>
+ 
                 <IconButton
                     aria-label="close"
                     className="modal__close-btn">
