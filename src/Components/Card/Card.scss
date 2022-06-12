@@ -24,17 +24,26 @@
     color: $cardBlue;
 }
 .house__address{
-    font-weight: 500;
+    font-weight: 400;
     padding-left: 5px;
 }
 .card__title{
     font-weight: 600;
-    font-size: 20px;
+    font-size: 18px;
     line-height: 17px;
     padding: 8px 0 10px !important;
     display: inline-block;
     margin: 0;
     color: #000;
+}
+.failText{
+    padding: 10px 20px;
+    background-color: #ffacac;
+    color: #111;
+    font-weight: 500;
+    border-radius: 12px;
+    width: 100%;
+    text-align: center;
 }
 .card{
     border-radius: 12px !important;
@@ -43,6 +52,7 @@
     margin-right: 15px;
     position: relative;
     max-width: 350px !important;
+    min-width: 200px;
     &__header, &__footer{
         display: flex;
         justify-content: space-between;
@@ -53,6 +63,14 @@
     }
     &__footer{
         padding: 0 16px 10px !important;
+        p{
+            display: flex;
+            align-items: center;
+            font-weight: 400 !important;
+            font-size: 18px;
+            line-height: 22px;
+            color: #6D7580;
+        }
     }
     &__btn img{
         width: 16px;

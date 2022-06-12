@@ -25,6 +25,7 @@ import Container from "../Container/Container"
 function Main() {
 
     const [data, setData] = useState(null)
+    const [dataError, setDataError] = useState(false)
     const URL = 'https://ali98.uz/api/post';
     useEffect(() => {
         function getData() {
@@ -36,9 +37,12 @@ function Main() {
                     newData.push(dataStatus.data);
                     setData(newData[0]);
                     console.log(newData);
+                } else {
+                    setDataError(true)
                 }
             })
             .catch((error) => {
+                setDataError(true)
                 console.log(error);
             })
         }
@@ -63,17 +67,19 @@ function Main() {
                         <section className="section recommend">
                             <Typography variant="h3" className="section__title">Tavsiya etilgan turar-joy majmualari</Typography>
                             <div className="cards">
+                                {data != null ? '' : <Cards dataError={dataError} cardData={cardData} />}
                                 {data?.slice(0, 3)?.map((row) => {
                                     return (
-                                        <Cards data={row} cardData={cardData} />
-                                    )
-                                })}
+                                        <Cards data={row} dataError={dataError} cardData={cardData} />
+                                        )
+                                    })}
                             </div>
                             <Box className="viewAll"><a href="/" className="viewAll__link">Barchasini ko’rish </a><img src={RightArrow} alt="" /></Box>
                         </section>
                         <section className="section popular">
                             <Typography variant="h3" className="section__title">Ommabop Uylar</Typography>
                             <div className="cards">
+                                {data != null ? '' : <Cards dataError={dataError} cardData={cardData} />}
                                 {data?.slice(3, 12)?.map((row) => {
                                     return (
                                         <Cards data={row} cardData={cardData} />

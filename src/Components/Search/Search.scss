@@ -8,7 +8,7 @@
         padding: 12px 20px;
         border-radius: 15px;
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
-        width: 80%;
+        width: 90%;
         margin: 0 auto;
     }
     .filter__content {
@@ -16,7 +16,7 @@
     }
     
     .filter__input{
-        width: 120px;
+        width: 150px;
         height: 100%;
         border-radius: 10px;
         padding: 10px;
@@ -26,7 +26,7 @@
     .search__box {
         position: relative;
         width: 100%;
-        height: 45px;
+        // height: 45px;
         display: flex;
         align-items: center;
         margin-left: 10px;
@@ -63,7 +63,9 @@
     }
     
     #filter__select-label {
-        line-height: 1;
+        // line-height: 1.5;
+        // background-color: #fff;
+
     }
     
     .input__search::placeholder {
