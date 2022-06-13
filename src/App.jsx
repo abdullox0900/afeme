@@ -1,5 +1,6 @@
 // Import React and React Hooks
 import React from 'react';
+import { Suspense } from 'react';
 import { Routes, Route } from "react-router-dom";
 
 // Import Components
@@ -19,14 +20,16 @@ import Chat from './Pages/ChatPage/ChatPage'
 import Help from './Pages/Help/Help';
 import Page404 from './Pages/404/404';
 import ScrollTop from './Utils/ScrollTop';
+import "./Utils/I18n";
+
 
 function App() {
 
-    document.addEventListener('readystatechange', function(event) {
+    document.addEventListener('readystatechange', function (event) {
         if (document.readyState === "loading") {
             document.body.style.overflow = "hidden";
         }
-        if (document.readyState === "complete"){
+        if (document.readyState === "complete") {
             const loader = document.querySelector('.loading');
             document.body.classList.add('loaded');
             setTimeout(() => {
@@ -35,25 +38,29 @@ function App() {
             }, 500);
         }
     });
+
     return (
         <>
+
             <ScrollTop />
-            <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/Afeme' element={<Home />} />
-                <Route path='/SignUp' element={<SignUp />} />
-                <Route path='/advertPage' element={<AdvertPage />} />
-                <Route path='/posts' element={<PersonalCabinet />} />
-                <Route path='/liked' element={<Liked />} />
-                {/* <Route path='/posts' element={<Posts />} /> */}
-                <Route path='/settings' element={<Settings />} />
-                <Route path='/adverts' element={<Adverts />} />
-                <Route path='/advert' element={<Advert />} />
-                <Route path='/catalogreltor' element={<CatalogRealtor />} />
-                <Route path='/help' element={<Help />} />
-                <Route path='/chat' element={<Chat />} />
-                <Route path="*" element={<Page404 />}/>
-            </Routes>
+            <Suspense>
+                <Routes>
+                    <Route path='/' element={<Home />} />
+                    <Route path='/Afeme' element={<Home />} />
+                    <Route path='/SignUp' element={<SignUp />} />
+                    <Route path='/advertPage' element={<AdvertPage />} />
+                    <Route path='/posts' element={<PersonalCabinet />} />
+                    <Route path='/liked' element={<Liked />} />
+                    {/* <Route path='/posts' element={<Posts />} /> */}
+                    <Route path='/settings' element={<Settings />} />
+                    <Route path='/adverts' element={<Adverts />} />
+                    <Route path='/advert' element={<Advert />} />
+                    <Route path='/catalogreltor' element={<CatalogRealtor />} />
+                    <Route path='/help' element={<Help />} />
+                    <Route path='/chat' element={<Chat />} />
+                    <Route path="*" element={<Page404 />} />
+                </Routes>
+            </Suspense>
         </>
     )
 };
