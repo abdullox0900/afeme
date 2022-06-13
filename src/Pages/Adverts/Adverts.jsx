@@ -21,10 +21,10 @@ function Adverts() {
     console.log(htype);
 
     const [data, setData] = useState(null)
-    const URL = 'https://ali98.uz/api/post';
+    const URL = 'https://ali98.uz/api/filter';
     useEffect(() => {
         function getData() {
-            const result = axios.get(URL)
+            const result = axios.post(URL, {htype_id: htype})
             .then((response) => {
                 let dataStatus = response.data
                 if (dataStatus.status == true || dataStatus.status == 200) {
@@ -57,15 +57,13 @@ function Adverts() {
             <Hero />
             <div className="adverts">
                 <Container>
-                    {data?.slice(0, 3)?.map((row) => {
+                    {data?.map((row) => {
+                        let count = 0;
                         return (
                             <FullCard cardData={cardData} data={row} />
                         )
                     })}
-                    <FullCard cardData={cardData} data={data} />
                     <AfemePhone />
-                    <FullCard cardData={cardData} data={data} />
-                    <FullCard cardData={cardData} data={data} />
                 </Container>
             </div>
             <Footer />

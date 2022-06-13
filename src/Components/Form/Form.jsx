@@ -23,8 +23,9 @@ import {
 
 //Import Components
 import Container from "../Container/Container"
-import LogoOval from "../../Assets/Img/logo-oval.svg";
-import LogoHome from "../../Assets/Img/home-logo.svg";
+// import LogoOval from "../../Assets/Img/logo-oval.svg";
+// import LogoHome from "../../Assets/Img/home-logo.svg";
+import AfemeLogo from "../../Assets/Img/afeme-logo.svg"
 import "../../Assets/scss/colors.scss";
 import "../Form/Form.scss";
 import Tick from "../Animations/Tick/Tick";
@@ -84,13 +85,11 @@ function Form() {
         <>
             <Container style={{ position: 'relative' }}>
                 <form className="form" onSubmit={handleSubmit(onSubmit)}>
-                    <img className="logo-home" src={LogoHome} alt="img" data-aos="fade-zoom-in"
+                    <img className="form__img" src={AfemeLogo} alt="" data-aos="zoom-in"
                         data-aos-easing="ease-in-back"
                         data-aos-delay="200"
                         data-aos-offset="10"
-                        data-aos-duration="1500" />
-                    <img className="logo-oval" src={LogoOval} alt="img" data-aos="zoom-in" ata-aos-easing="linear"
-                        data-aos-duration="3000" />
+                        data-aos-duration="900" />
                     <h1 className="form-title">Roʻyxatdan oʻtish</h1>
                     {/*UserType Input*/}
                     <FormControl sx={{ width: "240px", mt: 2, mr: 2.5 }}>
@@ -189,7 +188,6 @@ function Form() {
                         label="Telefon Raqami*"
                         type="number"
                         fullWidth
-                        autoComplete={false}
                         sx={{ mt: 2, }}
                         {...register('phone', { required: 'Raqam Kiriting' })}
                         error={!!errors?.phone}
@@ -199,8 +197,7 @@ function Form() {
                     <div className="form__box">
                         <NavLink
                             to={"/Afeme"}
-                            className="form__link-myaccount"
-                        >
+                            className="form__link-myaccount">
                             Mening akkauntim bor
                         </NavLink>
                         <button

@@ -39,6 +39,10 @@ function RealtorsCard() {
                                 <div className="realtor-card__reyting">
                                     <img src={ZvezImgIcon} alt="" />
                                 </div>
+
+                                <div className="realtor-card__region-box">
+                                <div className="reltor-card__region">{reltor.region_id}</div>
+                                </div>
                             </div>
                         )
                     })

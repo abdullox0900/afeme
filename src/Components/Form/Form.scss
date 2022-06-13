@@ -1,10 +1,15 @@
 @import "../../Assets/scss/colors.scss";
 
 .form {
-    position: relative;
+    // position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    align-items: center;
+    margin-left: 40px;
     .form-title {
         margin: 0;
-        margin-bottom: 50px;
+        margin-bottom: 30px;
         text-align: center;
         font-weight: 500;
         font-size: 28px;
@@ -15,17 +20,24 @@
     .form__box {
         display: flex;
         justify-content: space-between;
+        width: 100%;
         align-items: center;
         margin-top: 35px;
     }
-    
+
     .form__link-myaccount {
         display: inline-block;
         color: $darkBlue;
         font-weight: 500;
         text-decoration: underline;
     }
-    
+
+    .form__img {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 30px;
+    }
+
     .button {
         cursor: pointer;
         width: 178px;
@@ -37,19 +49,6 @@
         font-size: 16px;
         line-height: 19px;
         color: #ffffff;
-    }
-    
-    .logo-oval {
-        position: relative;
-        top: -30px;
-        left: 180px;
-    }
-    
-    .logo-home {
-        position: absolute;
-        top: 8%;
-        left: 839px;
-        z-index: 3;
     }
 }
 .style {
@@ -84,4 +83,3 @@
         color: #ffffff;
     }
 }
-

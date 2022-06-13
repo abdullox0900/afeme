@@ -1,10 +1,14 @@
 // Import React
 import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
-import { useTranslation } from 'react-i18next';
+
+// Import useContext => Localization
+import { useContext } from 'react';
+import { Context } from '../../Context/LangContext';
 
 // Import Mui
-import { IconButton, Button, Tooltip, Grow, Badge, } from '@mui/material';
+import { IconButton, Button, Tooltip, Grow, Badge, Menu, MenuItem, Divider } from '@mui/material';
+
 
 // Import Components
 import logo from "../../Assets/Img/logo.svg"
@@ -18,6 +22,11 @@ import Modal from '../ModalAuthorization/Modal';
 import "../ModalAuthorization/Modal.scss";
 import "../Header/Header.scss";
 import Nav from '../Nav/Nav';
+import content from '../../Localization/Content';
+
+import "../../Utils/I18n";
+
+
 
 const language = [
     {
@@ -41,13 +50,8 @@ function Header() {
 
     const elModal = React.useRef();
     const elHeader = React.useRef();
-    const { t } = useTranslation();
 
-console.log(elHeader.current)
-
-    // function removClass() {
-    //     elHeader.classList.add("header--open")
-    // }
+    const { lang, setLang } = useContext(Context)
 
     return (
         <>
@@ -70,48 +74,52 @@ console.log(elHeader.current)
                         <div className="header__items">
                             <div className="header__icons-nav">
                                 <Tooltip className="icon__btn" title="Your Currency" arrow TransitionComponent={Grow}>
-                                <IconButton color="primary">
-                                    {/* <img src={CurrencyIcon} alt="" className="header__icon nav__currency" />
-                                    <div className="dropdown">
-                                        <button className="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <IconButton color="primary">
 
-                                        </button>
-                                        <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            {language.map(({ code, name, country }) => (
-                                                <li key={country}>
-                                                    <button className="dropdown-item"
-                                                        >
-                                                        <span className={`${country}`}></span>&nbsp;
-                                                        {name}
-                                                    </button>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div> */}
-                                </IconButton>
-                            </Tooltip>
-                            <Tooltip className="icon__btn" title="Your Loves" arrow TransitionComponent={Grow}>
-                                <IconButton color="primary">
-                                    <img src={loveIcon} alt="" className="header__icon nav__love" />
-                                </IconButton>
-                            </Tooltip>
-                            <Badge badgeContent={100} color="secondary">
-                                <Tooltip className="icon__btn" title="Notifications" arrow TransitionComponent={Grow}>
-                                    <IconButton color="success">
-                                        <img src={notificationIcon} alt="" className="header__icon nav__notification" />
+                                        <select className='header__select-lang' defaultValue={lang} onChange={(evt) => setLang(evt.target.value)}>
+                                            <option value="uz">Uz</option>
+                                            <option value="en">En</option>
+                                            <option value="ru">Ru</option>
+                                        </select>
+
+                                        <div className="dropdown">
+                                            <input type="text" className='header__text-box' readOnly />
+                                            <div className="option">
+                                                {language.map(({ code, name, country }) => (
+                                                    <div key={country}>
+                                                        <button className="dropdown-item">
+                                                            <span className={`flag-icon flag-icon-${country}`}></span>&nbsp;
+                                                            {name}
+                                                        </button>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </div>
+
                                     </IconButton>
                                 </Tooltip>
-                            </Badge>
+                                <Tooltip className="icon__btn" title="Your Loves" arrow TransitionComponent={Grow}>
+                                    <IconButton color="primary">
+                                        <img src={loveIcon} alt="" className="header__icon nav__love" />
+                                    </IconButton>
+                                </Tooltip>
+                                <Badge badgeContent={100} color="secondary">
+                                    <Tooltip className="icon__btn" title="Notifications" arrow TransitionComponent={Grow}>
+                                        <IconButton color="success">
+                                            <img src={notificationIcon} alt="" className="header__icon nav__notification" />
+                                        </IconButton>
+                                    </Tooltip>
+                                </Badge>
                             </div>
                             <div className="header__buttons" sx={{ ml: 3 }}>
                                 <NavLink to={"/advertPage"}>
-                                    <Button className="btn header__button add__announcement" variant="contained" sx={{ py: 1, px: 1.5 }}><img src={plusIcon} alt="" />Eʻlon qoʻshish</Button>
+                                    <Button className="btn header__button add__announcement" variant="contained" sx={{ py: 1, px: 1.5 }}><img src={plusIcon} alt="" />{content[lang].header.add}</Button>
                                 </NavLink>
                                 <Button className="btn header__button login__btn modal-dialog modal-dialog-scrollable"
                                     variant="text" sx={{ ml: 2, py: 1.5, px: 2.5 }} onClick={() => {
                                         elModal.current.classList.add("modal--open");
                                         elModal.current.classList.add("modal--style");
-                                    }}>Kirish</Button>
+                                    }}>{content[lang].header.fromBtn}</Button>
                             </div>
                         </div>
                         <button className='header__menu-btn' onClick={() => {

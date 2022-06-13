@@ -11,36 +11,50 @@ import { ReactComponent as Edit } from '../../Assets/Img/Icon/edit.svg'
 
 import "./Card.scss"
 
-function LoveBtn() {
-    return(
-        <IconButton color="error" className="card__btn card__love">
-            <LoveIcon className="card__love-icon"/>
-        </IconButton>
-    )
-}
-function Cards({data, cardData, loveBtn = true}) {
+function Cards({data, dataError, cardData}) {
 
+    if (data == null) {
+        dataError = true;
+    }
     useEffect(() => {
-        console.log(data);
+        // console.log(data);
     }, [data])
-    return (
-        <Card sx={{ maxWidth: 300 }} className="card">
-            <Redirect to={cardData.id}><CardMedia component="img" alt="Card img" height="140" image={data.id}/></Redirect>
-            <Box className="card__content">
-                <CardContent className="card__header">
-                    <Typography variant="body1" component="div" className="house__type">{data?.htype_id?.name}</Typography>
-                    <Typography variant="body2" className="house__prices"><span className="house__price">{data.price_usd}</span></Typography>
-                </CardContent>
-                <CardContent className="card__main">
-                <Redirect to={data.id} className="card__title">Ijaraga {data?.room} xonali {data?.htype_id?.name} sotiladi</Redirect>
-                </CardContent>
-                <CardActions className="card__footer">
-                    <Typography className="house__address__bar"><LocationIcon className="card__location"/> <span className="house__address">{data?.city_id?.name}</span></Typography>
-                    {loveBtn ? LoveBtn() : ''}
-                </CardActions>
-            </Box>
-        </Card>
-    )
+
+    function successCard() {
+        return (
+            <Card sx={{ maxWidth: 300 }} className="card">
+                <Redirect to={"/advert"}><CardMedia component="img" alt="Card img" height="140" image={cardData.houseImg}/></Redirect>
+                <Box className="card__content">
+                    <CardContent className="card__header">
+                        <Typography variant="body1" component="div" className="house__type">{data?.htype_id}</Typography>
+                        <Typography variant="body2" className="house__prices"><span className="house__price">{data.price_usd}</span></Typography>
+                    </CardContent>
+                    <CardContent className="card__main">
+                    <Redirect to={"/advert"} className="card__title">Ijaraga {data?.room} xonali {data?.htype_id?.name} sotiladi</Redirect>
+                    </CardContent>
+                    <CardActions className="card__footer">
+                        <Typography className="house__address__bar"><LocationIcon className="card__location"/> <span className="house__address">{data?.region_id}</span></Typography>
+                        <IconButton color="error" className="card__btn card__love">
+                            <LoveIcon className="card__love-icon"/>
+                        </IconButton>
+                    </CardActions>
+                </Box>
+            </Card>
+        )
+    }
+
+    function failCard() {
+        return (
+            // Shu yerda error belgisi bolishi kerak
+            <p className="failText">Ma'lumotlar olishda xatolik yuz berdi</p>
+        )
+    }
+    
+    if (!dataError) {
+        return successCard();
+    } else {
+        return failCard()
+    }
 }
 
 function FullCard({cardData, data}) {
@@ -55,16 +69,16 @@ function FullCard({cardData, data}) {
                 <CardContent className="card__header">
                     <div className="card__header__items">
                         <Redirect to={cardData.houseUrl} className="card__title">Ijaraga {data?.room} xonali {data?.htype_id?.name} sotiladi</Redirect>
-                        <Typography variant="body1" component="div" className="house__type">{data?.htype_id?.name}</Typography>
+                        <Typography variant="body1" component="div" className="house__type">{data?.htype_id}</Typography>
                     </div>
                     <Typography variant="body2" className="house__prices"><span className="house__price">${data?.price_usd}</span></Typography>
                 </CardContent>
                 <CardContent className="card__main">
-                    <p className="card__desc">{cardData.description}</p>
+                    <p className="card__desc">{data?.description}</p>
                 </CardContent>
                 <CardActions className="card__footer">
                     <div className="fullCard__foot">
-                        <Typography className="house__address__bar"><LocationIcon className="card__location"/> <span className="house__address">{cardData.houseAddress}</span></Typography>
+                        <Typography className="house__address__bar"><LocationIcon className="card__location"/> <span className="house__address">{data?.region_id}</span></Typography>
                     </div>
                     <div className="card__buttons">
                         <IconButton color="error" className="card__btn card__love">
@@ -77,7 +91,7 @@ function FullCard({cardData, data}) {
     )
 }
 
-function Fcards({data, loveBtn = true}) {
+function Fcards({data}) {
 
     return (
         <Card sx={{ width: 375 }} className="card">
@@ -92,7 +106,9 @@ function Fcards({data, loveBtn = true}) {
                 </CardContent>
                 <CardActions className="card__footer">
                     <Typography className="house__address__bar"><LocationIcon className="card__location"/> <span className="house__address">{data.houseAddress}</span></Typography>
-                    {loveBtn ? LoveBtn() : ''}
+                    <IconButton color="error" className="card__btn card__love">
+                        <LoveIcon className="card__love-icon"/>
+                    </IconButton>
                 </CardActions>
             </Box>
         </Card>

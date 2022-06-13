@@ -2,6 +2,11 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
+// Import useContext => Localization
+import { useContext } from 'react';
+import { Context } from '../../Context/LangContext';
+import content from '../../Localization/Content';
+
 // Import Mui
 import { Menu, MenuItem, Divider } from '@mui/material';
 
@@ -21,6 +26,7 @@ function Nav({ elHeader }) {
     };
 
     const elNavbarMenu = React.useRef()
+    const { lang, setLang } = useContext(Context)
 
     return (
         <>
@@ -28,16 +34,16 @@ function Nav({ elHeader }) {
                 <nav className="nav">
                     <ul className="nav__list">
                         <li className="nav__item">
-                            <NavLink to={"/catalogreltor"} className="nav__link">Reltorlar</NavLink>
+                            <a href="#" className="nav__link">{content[lang].header.nav.sal}</a>
                         </li>
                         <li className="nav__item">
-                            <a href="#" className="nav__link">Ijara</a>
+                            <a href="#" className="nav__link">{content[lang].header.nav.rent}</a>
                         </li>
                         <li className="nav__item">
-                            <a href="#" className="nav__link">Yangi inshoatlar</a>
+                            <NavLink to={"/catalogreltor"} className="nav__link">{content[lang].header.nav.rel}</NavLink>
                         </li>
                         <li className="nav__item">
-                            <a href="#" className="nav__link" onClick={handleClick}>Yana</a>
+                            <a href="#" className="nav__link" onClick={handleClick}>{content[lang].header.nav.mor}</a>
                         </li>
                         <Menu id="nav__more-menu" MenuListProps={{ 'aria-labelledby': 'nav__bottom-more', }} anchorEl={anchorEl} open={open} onClose={handleClose}>
                             <MenuItem onClick={handleClose} sx={{ py: 0.5 }}><a href="#">Something 1</a></MenuItem>
