@@ -24,6 +24,7 @@
         "node-sass": "^7.0.1",
         "react": "^18.1.0",
         "react-dom": "^18.1.0",
+        "react-flag-icon-css": "^1.0.25",
         "react-geocode": "^0.2.3",
         "react-google-autocomplete": "^2.7.0",
         "react-google-map-picker": "^1.2.3",
