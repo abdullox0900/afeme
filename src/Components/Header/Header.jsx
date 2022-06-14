@@ -7,7 +7,11 @@ import { useContext } from 'react';
 import { Context } from '../../Context/LangContext';
 
 // Import Mui
-import { IconButton, Button, Tooltip, Grow, Badge, Menu, MenuItem, Divider } from '@mui/material';
+import { IconButton, Button, Tooltip, Grow, Badge, MenuItem, } from '@mui/material';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
+
 
 
 // Import Components
@@ -26,23 +30,24 @@ import content from '../../Localization/Content';
 
 import "../../Utils/I18n";
 
-
-
 const language = [
     {
         code: "uz",
         name: "Uzbekistan",
         country: "uz",
+        values: "uz",
     },
     {
         code: "en",
         name: "English",
         country: "gb",
+        values: "en",
     },
     {
         code: "ru",
         name: "Rossian",
         country: "ru",
+        values: "ru",
     },
 ]
 
@@ -51,7 +56,13 @@ function Header() {
     const elModal = React.useRef();
     const elHeader = React.useRef();
 
-    const { lang, setLang } = useContext(Context)
+    const { lang, setLang } = useContext(Context);
+
+    const [age, setAge] = React.useState('');
+
+    const handleChange = (event) => {
+        setAge(event.target.value);
+    };
 
     return (
         <>
@@ -75,27 +86,16 @@ function Header() {
                             <div className="header__icons-nav">
                                 <Tooltip className="icon__btn" title="Your Currency" arrow TransitionComponent={Grow}>
                                     <IconButton color="primary">
-
-                                        <select className='header__select-lang' defaultValue={lang} onChange={(evt) => setLang(evt.target.value)}>
-                                            <option value="uz">Uz</option>
-                                            <option value="en">En</option>
-                                            <option value="ru">Ru</option>
-                                        </select>
-
-                                        <div className="dropdown">
-                                            <input type="text" className='header__text-box' readOnly />
-                                            <div className="option">
-                                                {language.map(({ code, name, country }) => (
-                                                    <div key={country}>
-                                                        <button className="dropdown-item">
-                                                            <span className={`flag-icon flag-icon-${country}`}></span>&nbsp;
-                                                            {name}
-                                                        </button>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-
+                                        <Select sm={{ p:0 }}
+                                            className='header__select'
+                                            // id="demo-simple-select"
+                                            value="lang"
+                                            defaultValue={lang}
+                                            onChange={(evt) => setLang(evt.target.value)}>
+                                            <MenuItem value="uz">Uz</MenuItem>
+                                            <MenuItem value="en">En</MenuItem>
+                                            <MenuItem value="ru">Ru</MenuItem>
+                                        </Select>
                                     </IconButton>
                                 </Tooltip>
                                 <Tooltip className="icon__btn" title="Your Loves" arrow TransitionComponent={Grow}>

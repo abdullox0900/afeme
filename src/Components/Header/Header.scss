@@ -61,9 +61,13 @@
     }
 };
 
-
-
-// Responsiv Header Tablet version
+.header__select {
+    width: 30px;
+    height: 30px;
+    padding: 0px !important;
+    border: none;
+    border-radius: 50% !important;
+}
 
 @media only screen and (max-width: 985px) {
     .header {
