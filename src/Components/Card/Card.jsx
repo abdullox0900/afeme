@@ -10,7 +10,7 @@ import { ReactComponent as Trash } from '../../Assets/Img/Icon/trash.svg'
 import { ReactComponent as Edit } from '../../Assets/Img/Icon/edit.svg'
 
 import "./Card.scss"
-
+ 
 function Cards({data, dataError, cardData}) {
 
     if (data == null) {
