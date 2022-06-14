@@ -98,7 +98,7 @@ function Header() {
                             </div>
                             <div className="header__buttons" sx={{ ml: 3 }}>
                                 <NavLink to={"/advertPage"}>
-                                    <Button className="btn header__button add__advert" variant="contained" sx={{ py: 1, px: 1.5 }}><img src={plusIcon} alt="" />{content[lang].header.add}</Button>
+                                    <Button className="btn header__button add__advert" variant="contained" sx={{ py: 1, px: 1.5 }}><img src={plusIcon} alt="" />{content[lang].add}</Button>
                                 </NavLink>
                                 <Button className="btn header__button login__btn modal-dialog modal-dialog-scrollable"
                                     variant="text" sx={{ ml: 2, py: 1.5, px: 2.5 }} onClick={() => {
