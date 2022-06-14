@@ -67,10 +67,19 @@
     padding: 0px !important;
     border: none !important;
     border-radius: 50% !important;
-    background-image: url("../../Assets/Img/currency.svg");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: contain;
+    padding: 0;
+    & div{
+        padding: 0;
+    }
+}
+.select__lang{
+    // background-image: url("../../Assets/Img/currency.svg");
+}
+.select__currency{
+    background-image: url("../../Assets/Img/currency.svg");
 }
 
 .header__select fieldset {

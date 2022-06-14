@@ -3,7 +3,7 @@ import LoveIcon from "../../Lib/Svg/love";
 import LocationIcon from "../../Lib/Svg/location";
 import callIcon from "../../Assets/Img/call.svg"
 import messageIcon from "../../Assets/Img/message.svg"
-import { Box, Card, CardMedia, Typography, CardContent, CardActions, IconButton } from '@mui/material';
+import { Box, Card, CardMedia, Typography, CardContent, CardActions, IconButton, Skeleton } from '@mui/material';
 import { NavLink as Redirect } from "react-router-dom";
 import { Button } from "@mui/material";
 import { ReactComponent as Trash } from '../../Assets/Img/Icon/trash.svg'

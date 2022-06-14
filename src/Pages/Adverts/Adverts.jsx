@@ -16,9 +16,9 @@ import CardImg4 from "../../Assets/Img/card_img4.jpg";
 
 function Adverts() {
 
+    const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
     let htype = searchParams.get("htype");
-    console.log(searchParams.get("name"));
 
     const [data, setData] = useState(null)
     const URL = 'https://ali98.uz/api/filter';
