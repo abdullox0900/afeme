@@ -32,7 +32,7 @@ function Footer() {
                             <NavLink to={"/Afeme"}>
                                 <img src={Logo} className="footer__logo-img" alt="logo-img" />
                             </NavLink>
-                            <p className="footer__subtitle">{ content[lang].footer.footer_text}</p>
+                            <p className="footer__subtitle">{ content[lang].footer_text}</p>
                             <NavLink to={"/Tezkunda"} className="footer__google-icon">
                                 <img src={GoogleImg} alt="google-icon" />
                             </NavLink>
