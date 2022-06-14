@@ -8,17 +8,15 @@ import { Context } from '../../Context/LangContext';
 
 // Import Mui
 import { IconButton, Button, Tooltip, Grow, Badge, MenuItem, } from '@mui/material';
-import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import InputLabel from '@mui/material/InputLabel';
-
-
 
 // Import Components
+import flagUz from "../../Assets/Img/Icon/uz.svg"
+import flagRu from "../../Assets/Img/Icon/ru.svg"
+import flagEn from "../../Assets/Img/Icon/en.svg"
 import logo from "../../Assets/Img/logo.svg"
 import notificationIcon from "../../Assets/Img/notification.svg"
 import loveIcon from "../../Assets/Img/love.svg"
-import CurrencyIcon from "../../Assets/Img/currency.svg"
 import locationIcon from "../../Assets/Img/location.svg"
 import plusIcon from "../../Assets/Img/plus.svg"
 import Container from "../Container/Container";
@@ -29,27 +27,6 @@ import Nav from '../Nav/Nav';
 import content from '../../Localization/Content';
 
 import "../../Utils/I18n";
-
-const language = [
-    {
-        code: "uz",
-        name: "Uzbekistan",
-        country: "uz",
-        values: "uz",
-    },
-    {
-        code: "en",
-        name: "English",
-        country: "gb",
-        values: "en",
-    },
-    {
-        code: "ru",
-        name: "Rossian",
-        country: "ru",
-        values: "ru",
-    },
-]
 
 function Header() {
 
@@ -64,7 +41,7 @@ function Header() {
         setAge(event.target.value);
     };
 
-    
+
 
     return (
         <>
@@ -93,9 +70,12 @@ function Header() {
                                             value="lang"
                                             defaultValue={lang}
                                             onChange={(evt) => setLang(evt.target.value)}>
-                                            <MenuItem value="uz">Uz</MenuItem>
-                                            <MenuItem value="en">En</MenuItem>
-                                            <MenuItem value="ru">Ru</MenuItem>
+                                            <MenuItem  value="uz">
+                                                <img className='header__select-img' src={flagUz}/>O'zbekcha</MenuItem>
+                                            <MenuItem value="en">
+                                                <img className='header__select-img' src={flagEn}/>English</MenuItem>
+                                            <MenuItem value="ru">
+                                                <img className='header__select-img' src={flagRu}/>Русский</MenuItem>
                                         </Select>
                                     </IconButton>
 

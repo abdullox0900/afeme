@@ -70,7 +70,7 @@
     background-image: url("../../Assets/Img/currency.svg");
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: cover;
+    background-size: contain;
 }
 
 .header__select fieldset {
@@ -83,6 +83,10 @@
 
 .MuiButtonBase-root .MuiIconButton-root {
     padding: 0px !important;
+}
+
+.header__select-img {
+    margin-right: 10px !important;
 }
 
 @media only screen and (max-width: 985px) {
