@@ -1,0 +1,33 @@
+@import "../../../Assets/scss/colors.scss";
+.style {
+    padding: 70px 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $white;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .title {
+        padding: 0;
+        text-align: center;
+        font-weight: 500;
+        color: $LightGreen;
+        font-size: 36px;
+    }
+    .button {
+        cursor: pointer;
+        width: 178px;
+        height: 50px;
+        background-color: $darkBlue !important;
+        border-radius: 10px;
+        border: none;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        color: #ffffff;
+    }
+}

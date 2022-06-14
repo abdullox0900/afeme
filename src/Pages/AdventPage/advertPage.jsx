@@ -51,8 +51,10 @@ function AdvertPage() {
   const [images, setImage] = useState([])//ImageFile State
   const [videos, setVideo] = useState([])//VideoFile State
 
-
+  let token = localStorage.getItem('Token')
   //Dates for Send
+  var headers = new Headers();
+  headers.append('Authorization', `Bearer ${token}`)
   var data = new FormData();
   data.append('htype_id', htype_id);
   data.append('sale_id', sale_id);
@@ -74,24 +76,18 @@ function AdvertPage() {
   data.append('flat', flat);
   data.append('images', images);
   data.append('videos', videos);
-
-  var config = {
-    method: 'post',
-    url: 'http://ali98.uz/api/post',
-    headers: {
-      // ...data.getHeaders()
-    },
-    data: data
+  var requestOptions = {
+    method: 'POST',
+    headers: headers,
+    body: data,
+    redirect: 'follow'
   };
   //Post Function
   function onSubmit() {
-    axios(config)
-      .then(function (response) {
-        console.log(JSON.stringify(response.data));
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    fetch("http://ali98.uz/api/post", requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
   }
 
   return (
