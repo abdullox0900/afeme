@@ -64,6 +64,8 @@ function Header() {
         setAge(event.target.value);
     };
 
+    
+
     return (
         <>
             <header className="header" ref={elHeader}>
@@ -84,11 +86,10 @@ function Header() {
                         <Nav elHeader={elHeader} />
                         <div className="header__items">
                             <div className="header__icons-nav">
-                                <Tooltip className="icon__btn" title="Your Currency" arrow TransitionComponent={Grow}>
+
                                     <IconButton color="primary">
-                                        <Select sm={{ p:0 }}
+                                        <Select
                                             className='header__select'
-                                            // id="demo-simple-select"
                                             value="lang"
                                             defaultValue={lang}
                                             onChange={(evt) => setLang(evt.target.value)}>
@@ -97,7 +98,7 @@ function Header() {
                                             <MenuItem value="ru">Ru</MenuItem>
                                         </Select>
                                     </IconButton>
-                                </Tooltip>
+
                                 <Tooltip className="icon__btn" title="Your Loves" arrow TransitionComponent={Grow}>
                                     <IconButton color="primary">
                                         <img src={loveIcon} alt="" className="header__icon nav__love" />

@@ -62,11 +62,27 @@
 };
 
 .header__select {
-    width: 30px;
-    height: 30px;
+    width: 22px;
+    height: 22px;
     padding: 0px !important;
-    border: none;
+    border: none !important;
     border-radius: 50% !important;
+    background-image: url("../../Assets/Img/currency.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.header__select fieldset {
+    border: none;
+}
+
+.header__select svg {
+    display: none;
+}
+
+.MuiButtonBase-root .MuiIconButton-root {
+    padding: 0px !important;
 }
 
 @media only screen and (max-width: 985px) {

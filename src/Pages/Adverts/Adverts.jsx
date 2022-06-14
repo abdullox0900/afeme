@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
-import { useSearchParams } from "react-router-dom";
 import Loader from "../../Components/Loader/Loader"
 import Container from "../../Components/Container/Container";
 import Header from "../../Components/Header/Header";
@@ -18,7 +18,7 @@ function Adverts() {
 
     const [searchParams, setSearchParams] = useSearchParams();
     let htype = searchParams.get("htype");
-    console.log(htype);
+    console.log(searchParams.get("name"));
 
     const [data, setData] = useState(null)
     const URL = 'https://ali98.uz/api/filter';
