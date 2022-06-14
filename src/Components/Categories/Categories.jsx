@@ -57,6 +57,8 @@ function Categories() {
         })
     }, [])
 
+
+
     return (
         <>
             <Box className="categories">

@@ -104,7 +104,7 @@ function Header() {
                                     variant="text" sx={{ ml: 2, py: 1.5, px: 2.5 }} onClick={() => {
                                         elModal.current.classList.add("modal--open");
                                         elModal.current.classList.add("modal--style");
-                                    }}>{content[lang].header.fromBtn}</Button>
+                                    }}>{content[lang].fromBtn}</Button>
                             </div>
                         </div>
                         <button className='header__menu-btn' onClick={() => {
@@ -118,35 +118,3 @@ function Header() {
     )
 }
 export default Header
-
-// class Header extends Component {
-//     state = {
-//         // IP: ""
-//     }
-
-    // componentDidMount() {
-    //     axios.get(`https://ipapi.co/json/`)
-    //         .then(response => {
-    //             const IP = response.data;
-    //             console.log(IP.country_name);
-    //             if (IP.ip) {
-    //                 this.setState({ IP });
-    //             }
-    //         })
-    //         .catch((err) => { console.log(err); });
-    // }
-
-    // Iltomos errorlarni tozalab yuring
-    // {this.state.IP.country_name}
-
-
-
-    // render() {
-
-    //     return (
-    //         <>
-
-    //         </>
-    //     )
-    // }
-// }

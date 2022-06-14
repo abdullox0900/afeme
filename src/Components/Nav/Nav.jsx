@@ -15,6 +15,7 @@ import Container from "../Container/Container";
 import "../Nav/Nav.scss";
 
 function Nav({ elHeader }) {
+
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
@@ -25,7 +26,10 @@ function Nav({ elHeader }) {
         setAnchorEl(null);
     };
 
+
     const elNavbarMenu = React.useRef()
+    
+    // Localization Functions
     const { lang, setLang } = useContext(Context)
 
     return (
@@ -34,16 +38,16 @@ function Nav({ elHeader }) {
                 <nav className="nav">
                     <ul className="nav__list">
                         <li className="nav__item">
-                            <a href="#" className="nav__link">{content[lang].header.nav.sal}</a>
+                            <a href="#" className="nav__link">{content[lang].sal}</a>
                         </li>
                         <li className="nav__item">
-                            <a href="#" className="nav__link">{content[lang].header.nav.rent}</a>
+                            <a href="#" className="nav__link">{content[lang].rent}</a>
                         </li>
                         <li className="nav__item">
-                            <NavLink to={"/catalogreltor"} className="nav__link">{content[lang].header.nav.rel}</NavLink>
+                            <NavLink to={"/catalogreltor"} className="nav__link">{content[lang].rel}</NavLink>
                         </li>
                         <li className="nav__item">
-                            <a href="#" className="nav__link" onClick={handleClick}>{content[lang].header.nav.mor}</a>
+                            <a href="#" className="nav__link" onClick={handleClick}>{content[lang].mor}</a>
                         </li>
                         <Menu id="nav__more-menu" MenuListProps={{ 'aria-labelledby': 'nav__bottom-more', }} anchorEl={anchorEl} open={open} onClose={handleClose}>
                             <MenuItem onClick={handleClose} sx={{ py: 0.5 }}><a href="#">Something 1</a></MenuItem>
