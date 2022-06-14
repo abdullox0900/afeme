@@ -10,11 +10,18 @@ import GoogleImg from "../../Assets/Img/google.svg";
 import Instagram from "../../Lib/Svg/Instagram";
 import Telegram from "../../Lib/Svg/Telegram";
 
+// Import useContext => Localization
+import { useContext } from 'react';
+import { Context } from '../../Context/LangContext';
+import content from '../../Localization/Content';
+
 function Footer() {
 
     const address = {
         width: "200px",
     }
+
+    const { lang, setLang } = useContext(Context)
 
     return (
         <>
@@ -25,7 +32,7 @@ function Footer() {
                             <NavLink to={"/Afeme"}>
                                 <img src={Logo} className="footer__logo-img" alt="logo-img" />
                             </NavLink>
-                            <p className="footer__subtitle">Masofaviy Uy oldi sotdisi bo'yicha Milliy platforma</p>
+                            <p className="footer__subtitle">{ content[lang].footer_text}</p>
                             <NavLink to={"/Tezkunda"} className="footer__google-icon">
                                 <img src={GoogleImg} alt="google-icon" />
                             </NavLink>

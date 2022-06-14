@@ -7,14 +7,16 @@ import { useContext } from 'react';
 import { Context } from '../../Context/LangContext';
 
 // Import Mui
-import { IconButton, Button, Tooltip, Grow, Badge, Menu, MenuItem, Divider } from '@mui/material';
-
+import { IconButton, Button, Tooltip, Grow, Badge, MenuItem, } from '@mui/material';
+import Select from '@mui/material/Select';
 
 // Import Components
+import flagUz from "../../Assets/Img/Icon/uz.svg"
+import flagRu from "../../Assets/Img/Icon/ru.svg"
+import flagEn from "../../Assets/Img/Icon/en.svg"
 import logo from "../../Assets/Img/logo.svg"
 import notificationIcon from "../../Assets/Img/notification.svg"
 import loveIcon from "../../Assets/Img/love.svg"
-import CurrencyIcon from "../../Assets/Img/currency.svg"
 import locationIcon from "../../Assets/Img/location.svg"
 import plusIcon from "../../Assets/Img/plus.svg"
 import Container from "../Container/Container";
@@ -26,32 +28,20 @@ import content from '../../Localization/Content';
 
 import "../../Utils/I18n";
 
-
-
-const language = [
-    {
-        code: "uz",
-        name: "Uzbekistan",
-        country: "uz",
-    },
-    {
-        code: "en",
-        name: "English",
-        country: "gb",
-    },
-    {
-        code: "ru",
-        name: "Rossian",
-        country: "ru",
-    },
-]
-
 function Header() {
 
     const elModal = React.useRef();
     const elHeader = React.useRef();
 
-    const { lang, setLang } = useContext(Context)
+    const { lang, setLang } = useContext(Context);
+
+    const [age, setAge] = React.useState('');
+
+    const handleChange = (event) => {
+        setAge(event.target.value);
+    };
+
+
 
     return (
         <>
@@ -73,31 +63,22 @@ function Header() {
                         <Nav elHeader={elHeader} />
                         <div className="header__items">
                             <div className="header__icons-nav">
-                                <Tooltip className="icon__btn" title="Your Currency" arrow TransitionComponent={Grow}>
+
                                     <IconButton color="primary">
-
-                                        <select className='header__select-lang' defaultValue={lang} onChange={(evt) => setLang(evt.target.value)}>
-                                            <option value="uz">Uz</option>
-                                            <option value="en">En</option>
-                                            <option value="ru">Ru</option>
-                                        </select>
-
-                                        <div className="dropdown">
-                                            <input type="text" className='header__text-box' readOnly />
-                                            <div className="option">
-                                                {language.map(({ code, name, country }) => (
-                                                    <div key={country}>
-                                                        <button className="dropdown-item">
-                                                            <span className={`flag-icon flag-icon-${country}`}></span>&nbsp;
-                                                            {name}
-                                                        </button>
-                                                    </div>
-                                                ))}
-                                            </div>
-                                        </div>
-
+                                        <Select
+                                            className='header__select'
+                                            value="lang"
+                                            defaultValue={lang}
+                                            onChange={(evt) => setLang(evt.target.value)}>
+                                            <MenuItem  value="uz">
+                                                <img className='header__select-img' src={flagUz}/>O'zbekcha</MenuItem>
+                                            <MenuItem value="en">
+                                                <img className='header__select-img' src={flagEn}/>English</MenuItem>
+                                            <MenuItem value="ru">
+                                                <img className='header__select-img' src={flagRu}/>Русский</MenuItem>
+                                        </Select>
                                     </IconButton>
-                                </Tooltip>
+
                                 <Tooltip className="icon__btn" title="Your Loves" arrow TransitionComponent={Grow}>
                                     <IconButton color="primary">
                                         <img src={loveIcon} alt="" className="header__icon nav__love" />
@@ -113,13 +94,13 @@ function Header() {
                             </div>
                             <div className="header__buttons" sx={{ ml: 3 }}>
                                 <NavLink to={"/advertPage"}>
-                                    <Button className="btn header__button add__announcement" variant="contained" sx={{ py: 1, px: 1.5 }}><img src={plusIcon} alt="" />{content[lang].header.add}</Button>
+                                    <Button className="btn header__button add__announcement" variant="contained" sx={{ py: 1, px: 1.5 }}><img src={plusIcon} alt="" />{content[lang].add}</Button>
                                 </NavLink>
                                 <Button className="btn header__button login__btn modal-dialog modal-dialog-scrollable"
                                     variant="text" sx={{ ml: 2, py: 1.5, px: 2.5 }} onClick={() => {
                                         elModal.current.classList.add("modal--open");
                                         elModal.current.classList.add("modal--style");
-                                    }}>{content[lang].header.fromBtn}</Button>
+                                    }}>{content[lang].fromBtn}</Button>
                             </div>
                         </div>
                         <button className='header__menu-btn' onClick={() => {

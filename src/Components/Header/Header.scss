@@ -61,9 +61,33 @@
     }
 };
 
+.header__select {
+    width: 22px;
+    height: 22px;
+    padding: 0px !important;
+    border: none !important;
+    border-radius: 50% !important;
+    background-image: url("../../Assets/Img/currency.svg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+}
 
+.header__select fieldset {
+    border: none;
+}
 
-// Responsiv Header Tablet version
+.header__select svg {
+    display: none;
+}
+
+.MuiButtonBase-root .MuiIconButton-root {
+    padding: 0px !important;
+}
+
+.header__select-img {
+    margin-right: 10px !important;
+}
 
 @media only screen and (max-width: 985px) {
     .header {

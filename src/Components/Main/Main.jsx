@@ -1,5 +1,7 @@
 import React, { useEffect, useState} from "react";
+import { NavLink } from "react-router-dom";
 import axios from "axios";
+import Container from "../Container/Container"
 import CardImg1 from "../../Assets/Img/card_img1.jpg";
 import CardImg2 from "../../Assets/Img/card_img2.jpg";
 import CardImg3 from "../../Assets/Img/card_img3.jpg";
@@ -19,8 +21,6 @@ import Partners4 from "../../Assets/Img/partners4.jpg";
 import { Box, Typography } from "@mui/material";
 import "./Main.scss"
 import { Cards, SCard } from "../Card/Card";
-import { NavLink } from "react-router-dom";
-import Container from "../Container/Container"
 
 function Main() {
 
