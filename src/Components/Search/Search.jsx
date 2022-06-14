@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, NavigateProps } from "react-router-dom";
+import { useNavigate, NavLink as Link } from "react-router-dom";
 import axios from "axios";
-import Redirect from "react-router";
 import searchIcon from "../../Assets/Img/search-icon.svg";
 
 import { Box, Button, Select, MenuItem, FormControl, InputLabel } from "@mui/material";
@@ -10,10 +9,10 @@ import "../Search/Search.scss";
 function Search() {
     const navigate = useNavigate();
     const URL = "https://ali98.uz/api/filter";
-    const [data, setData] = useState(null);
+    const [term, setTerm] = useState('');
     const [regions, setRegions] = useState([]);
     const [region, setRegion] = useState("");
-    const [priceFrom, setPriceFrom] = useState(0);
+    const [priceFrom, setPriceFrom] = useState('');
     const [priceTo, setPriceTo] = useState("");
     const [room, setRoom] = useState("");
     const [fromMax, setFromMax] = useState("");
@@ -22,6 +21,9 @@ function Search() {
     const fromInput = document.querySelector("#frominput");
     const toInput = document.querySelector("#toInput");
 
+    const termChange = (event) => {
+        setTerm(event.target.value);
+    };
     const roomChange = (event) => {
         setRoom(event.target.value);
     };
@@ -45,20 +47,8 @@ function Search() {
 
     function search(e) {
         e.preventDefault();
-        getData();
+        navigate(`/adverts?term=${term}&region=${region}&from=${priceFrom}&to=${priceTo}&room=${room}`);
     }
-    function getData() {
-        const result = axios
-        .post(URL, formData)
-        .then((response) => {
-            let data = response.data;
-            console.log(data);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-    }
-
     useEffect(() => {
         const regions = async () => {
             try {
@@ -78,7 +68,7 @@ function Search() {
 
     return (
         <>
-            <form action="#" className="search__form">
+            <form action="adverts" className="search__form" onSubmit={(e) => search(e)}>
                 <Box className="form__content">
                     <Box className="filter__content">
                         <FormControl className="filter__items" sx={{ mr: 1 }}>
@@ -112,7 +102,7 @@ function Search() {
                                 max={fromMax}
                                 onChange={fromMaxChange}
                                 value={priceFrom}
-                                placeholder="1000$ dan"
+                                placeholder="dan"
                             />
                         </FormControl>
                         <FormControl className="filter__items" sx={{ mr: 1 }}>
@@ -123,7 +113,7 @@ function Search() {
                                 min={toMin}
                                 onChange={toMinChange}
                                 value={priceTo}
-                                placeholder="2000$ gacha"
+                                placeholder="gacha"
                             />
                         </FormControl>
                         <FormControl className="filter__items">
@@ -156,12 +146,13 @@ function Search() {
                             type="text"
                             className="input__search"
                             placeholder="Search by filtering"
+                            value={term}
+                            onChange={termChange}
                         />
                     </Box>
                     <Button
                         className="btn search__submit-btn"
                         type="submit"
-                        onClick={(e) => search(e)}
                         variant="contained"
                     >
                         Search
