@@ -5,6 +5,7 @@ import style from './ImageFile.module.scss'
 
 function ImageFile({ image, setImage }) {
     const [img, setImg] = useState(false);
+    let newArr = []
     function startImageHandler(e) {
         e.preventDefault();
         setImg(true)
@@ -13,9 +14,14 @@ function ImageFile({ image, setImage }) {
         e.preventDefault();
         setImg(false)
     }
+
     function dropImageHandler(e) {
         e.preventDefault()
         let files = [...e.dataTransfer.files]
+        // for (let I = 0; I < files.length; I++) {
+        //     newArr.push(files[I])
+        // }
+        console.log('fıles',files);
         setImage(files)
         setImg(false)
     }
