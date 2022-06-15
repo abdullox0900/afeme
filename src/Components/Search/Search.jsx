@@ -68,7 +68,7 @@ function Search() {
 
     return (
         <>
-            <form action="adverts" className="search__form" onSubmit={(e) => search(e)}>
+            <form action="/adverts" className="search__form" onSubmit={(e) => search(e)}>
                 <Box className="form__content">
                     <Box className="filter__content">
                         <FormControl className="filter__items" sx={{ mr: 1 }}>
@@ -150,6 +150,7 @@ function Search() {
                             onChange={termChange}
                         />
                     </Box>
+                </Box>
                     <Button
                         className="btn search__submit-btn"
                         type="submit"
@@ -157,8 +158,8 @@ function Search() {
                     >
                         Search
                     </Button>
-                </Box>
             </form>
+            {/* <Link to={{pathname: '/adverts', state: {term: 'data'}}}>salom</Link> */}
         </>
     );
 }
