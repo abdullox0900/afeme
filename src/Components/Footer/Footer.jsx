@@ -1,8 +1,8 @@
-// Import React
+// Import => React
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-// Import Components
+// Import => Components
 import "../Footer/Footer.scss";
 import Container from "../Container/Container";
 import Logo from "../../Assets/Img/logo.svg";

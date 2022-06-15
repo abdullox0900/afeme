@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
-import MapPicker from 'react-google-map-picker'
-import style from './Map.module.scss'
+// Import => React
+import React, { useState } from 'react';
+import MapPicker from 'react-google-map-picker';
 
-const DefaultZomm = 5; 
+// Import Components
+import style from './Map.module.scss';
+
+const DefaultZomm = 5;
 
 function Map({ house, setHouse, street, setStreet, city_id, setCity, region_id, setRegionID }) {
 	const [zoom, setZoom] = useState(DefaultZomm)
@@ -26,7 +29,7 @@ function Map({ house, setHouse, street, setStreet, city_id, setCity, region_id, 
 				onChangeLocation={(lat, lng) => setLocation( lat,lng )}
 				onChangeZoom={(newZoom) => setZoom(newZoom)}
 				apiKey='AIzaSyB8NHCF-5fMix0w2363RhC3V4vcyw8SHSM' />
-		</div> 
+		</div>
 	)
 }
 

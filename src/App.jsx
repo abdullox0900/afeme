@@ -17,11 +17,8 @@ import Adverts from './Pages/Adverts/Adverts'
 import Advert from './Pages/Advert/Advert';
 import CatalogRealtor from './Pages/CatalogOfRealtors/CatalogRealtors';
 import Chat from './Pages/ChatPage/ChatPage'
-import Help from './Pages/Help/Help';
 import Page404 from './Pages/404/404';
 import ScrollTop from './Utils/ScrollTop';
-import "./Utils/I18n";
-
 
 function App() {
 
@@ -56,7 +53,6 @@ function App() {
                     <Route path='/adverts' element={<Adverts />} />
                     <Route path='/advert' element={<Advert />} />
                     <Route path='/catalogreltor' element={<CatalogRealtor />} />
-                    <Route path='/help' element={<Help />} />
                     <Route path='/chat' element={<Chat />} />
                     <Route path="*" element={<Page404 />} />
                 </Routes>

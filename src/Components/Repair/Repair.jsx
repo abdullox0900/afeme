@@ -1,6 +1,11 @@
+// Import => React
+import React, { useEffect, useState } from 'react';
+
+// Import => Axios
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import style from '../HouseAbout/HouseAbout.module.scss'
+
+// Import => Components
+import style from '../HouseAbout/HouseAbout.module.scss';
 
 
 function Repair({ repair_id, setRepair }) {

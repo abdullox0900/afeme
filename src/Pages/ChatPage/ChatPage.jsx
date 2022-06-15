@@ -1,4 +1,7 @@
+// Import => React
 import React from "react";
+
+// Import => Components
 import Loader from "../../Components/Loader/Loader"
 import Chat from "../../Components/Chat/Chat"
 import Partners1 from "../../Assets/Img/partners1.jpg";

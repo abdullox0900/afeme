@@ -1,6 +1,14 @@
+// Import => React and React Hooks React-Router-Dom
 import React, { useEffect, useState} from "react";
 import { NavLink } from "react-router-dom";
+
+// Import => Axios
 import axios from "axios";
+
+// Import Mui
+import { Box, Typography } from "@mui/material";
+
+// Import => Components
 import Container from "../Container/Container"
 import CardImg1 from "../../Assets/Img/card_img1.jpg";
 import CardImg2 from "../../Assets/Img/card_img2.jpg";
@@ -14,11 +22,6 @@ import Realtors3 from "../../Assets/Img/realtors3.jpg";
 import Realtors4 from "../../Assets/Img/realtors4.jpg";
 import Realtors5 from "../../Assets/Img/realtors5.jpg";
 import RightArrow from "../../Assets/Img/arrow-right.svg";
-import Partners1 from "../../Assets/Img/partners1.jpg";
-import Partners2 from "../../Assets/Img/partners2.jpg";
-import Partners3 from "../../Assets/Img/partners3.jpg";
-import Partners4 from "../../Assets/Img/partners4.jpg";
-import { Box, Typography } from "@mui/material";
 import "./Main.scss"
 import { Cards, SCard } from "../Card/Card";
 
@@ -48,7 +51,7 @@ function Main() {
         }
         getData();
     }, [])
-    
+
     const cardData = {
         id: 1,
         houseType: 'Uy',

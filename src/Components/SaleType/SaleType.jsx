@@ -1,6 +1,9 @@
-import style from './SaleType.module.scss'
+// Import => React && useEffect
 import { ReactComponent as SaleIcon } from '../../Assets/Img/Icon/house.svg'
 import React, { useEffect, useState } from 'react'
+
+// Import => Components
+import style from './SaleType.module.scss'
 import axios from 'axios';
 
 

@@ -1,4 +1,4 @@
-// Import React
+// Import => React
 import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
 
@@ -6,11 +6,11 @@ import { NavLink } from "react-router-dom";
 import { useContext } from 'react';
 import { Context } from '../../Context/LangContext';
 
-// Import Mui
+// Import => Mui
 import { IconButton, Button, Tooltip, Grow, Badge, MenuItem, } from '@mui/material';
 import Select from '@mui/material/Select';
 
-// Import Components
+// Import => Components
 import flagUz from "../../Assets/Img/Icon/uz.svg"
 import flagRu from "../../Assets/Img/Icon/ru.svg"
 import flagEn from "../../Assets/Img/Icon/en.svg"
@@ -25,8 +25,6 @@ import "../ModalAuthorization/Modal.scss";
 import "../Header/Header.scss";
 import Nav from '../Nav/Nav';
 import content from '../../Localization/Content';
-
-import "../../Utils/I18n";
 
 function Header() {
 

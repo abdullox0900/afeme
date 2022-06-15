@@ -1,11 +1,14 @@
-import React from 'react'
-import './Tick.scss'
+// Import => React
+import React from 'react';
+
+// Import => Style Component
+import './Tick.scss';
 
 function Tick() {
     return (
         <>
             <svg id="completion" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 101">
-                
+
                 <title>
                     C1DBEBC0-CF7A-42D3-B615-1AB5DE73C3E9
                 </title>

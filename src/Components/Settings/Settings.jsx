@@ -1,9 +1,12 @@
+// Import => React
 import React from 'react'
+import { NavLink } from 'react-router-dom'
+
+// Import => Components
 import Container from '../Container/Container'
 import Header from '../Header/Header'
 import style from '../../Pages/PersonalCabinet/Cabinet.module.scss'
 import style2 from './Settings.module.scss'
-import { NavLink } from 'react-router-dom'
 import UserPhoto from '../../Assets/Img/UserPhoto.png'
 import { ReactComponent as Edit } from '../../Assets/Img/Icon/edit.svg'
 import Footer from '../Footer/Footer'

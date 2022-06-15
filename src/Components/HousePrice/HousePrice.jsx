@@ -1,5 +1,8 @@
+// Import => React
 import React, { useState } from 'react'
 import { v4 } from 'uuid';
+
+// Import => Components
 import style from './HousePrice.module.scss'
 
 
@@ -16,7 +19,7 @@ function HousePrice({ price_som, setPrice_som, price_usd, setPrice_usd }) {
     }
     function Type(e) {
         setType(e.target.value)
-    } 
+    }
     return (
         <div>
             <div className={style.hPrice}>

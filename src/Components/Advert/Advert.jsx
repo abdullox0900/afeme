@@ -1,17 +1,26 @@
+// Import => React
 import React from "react"
-import Container from "../Container/Container";
+
+// Import => Mui
 import { Box, Button, IconButton } from "@mui/material";
+
+// Import => Components
+import Container from "../Container/Container";
 import Carousel from "../Carousel/Carousel";
-import "./Advert.scss";
-import AdvertImg from "../../Assets/Img/advertImg.jpg";
 import { Cards } from "../../Components/Card/Card";
+
+// Import => Components Img
 import Person from "../../Assets/Img/realtors1.jpg";
 import callIcon from "../../Assets/Img/call.svg"
+import AdvertImg from "../../Assets/Img/advertImg.jpg";
 import messageIcon from "../../Assets/Img/message.svg"
 import CardImg1 from "../../Assets/Img/card_img1.jpg";
 import CardImg2 from "../../Assets/Img/card_img2.jpg";
 import CardImg3 from "../../Assets/Img/card_img3.jpg";
 import CardImg4 from "../../Assets/Img/card_img4.jpg";
+
+// Import => Style Component
+import "./Advert.scss";
 
 function Advert() {
 
