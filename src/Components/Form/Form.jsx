@@ -8,14 +8,11 @@ import axios from "axios";
 
 // Import => MUI Components
 import {
-    Box,
     FormControl,
     InputLabel,
     MenuItem,
-    Modal,
     Select,
     TextField,
-    Typography
 }
     from "@mui/material";
 
@@ -23,27 +20,29 @@ import {
 
 //Import => Components
 import Container from "../Container/Container"
-// import LogoOval from "../../Assets/Img/logo-oval.svg";
-// import LogoHome from "../../Assets/Img/home-logo.svg";
 import AfemeLogo from "../../Assets/Img/afeme-logo.svg"
 import "../../Assets/scss/colors.scss";
 import "../Form/Form.scss";
 import Tick from "../Animations/Tick/Tick";
+import Succecc from "../Modals/Success/Succecc";
+import Error from "../Modals/Error/Error";
 
 
 
 function Form() {
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
     //Modal States
-    const [open, setOpen] = useState(false);
-    const handleClose = () => setOpen(false);
+    const [suc, setSuc] = useState(false);
+    const [err, setErr] = useState(false);
+    const handleSuc = () => setSuc(true);
+    const handleErr = () => setErr(true);
+
     //Recieve Regions State
     const [regions, setRegions] = useState([])
 
 
     //Send Date's and set Token in localStorage, Reset Input Value's
     const onSubmit = (data) => {
-        const handleOpen = () => setOpen(true);
         const singup = new FormData();
         singup.append('name', data.name)
         singup.append('lastname', data.lastname);
@@ -54,14 +53,21 @@ function Form() {
         singup.append('region_id', data.region_id);
         axios.post('http://ali98.uz/api/register', singup)
             .then(function (response) {
-                const Token = JSON.stringify(response.data.data)
+                const Token = response.data.data
+                const Sts = response.data.status
+                console.log(response);
                 localStorage.setItem('Token', Token);
+                if (Sts) {
+                    handleSuc();
+                } else {
+                    handleErr();
+                }
             })
             .catch(function (error) {
-                console.log(error);
-            });
-        handleOpen();
-        reset();
+                console.log(error)
+                handleErr();
+
+            })
     }
     //Recieve Regions Request
     useEffect(() => {
@@ -84,6 +90,8 @@ function Form() {
     return (
         <>
             <Container style={{ position: 'relative' }}>
+                <Succecc suc={suc} setSuc={setSuc} />
+                <Error err={err} setErr={setErr} />
                 <form className="form" onSubmit={handleSubmit(onSubmit)}>
                     <img className="form__img" src={AfemeLogo} alt="" data-aos="zoom-in"
                         data-aos-easing="ease-in-back"
@@ -92,60 +100,64 @@ function Form() {
                         data-aos-duration="900" />
                     <h1 className="form-title">Roʻyxatdan oʻtish</h1>
                     {/*UserType Input*/}
-                    <FormControl sx={{ width: "240px", mt: 2, mr: 2.5 }}>
-                        <InputLabel id="demo-simple-select-label">Jismoniy shaxs</InputLabel>
-                        <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            defaultValue={'mijoz'}
-                            label="Jismoniy shaxs"
-                            {...register('user_type')}
+                    <div>
+                        <FormControl sx={{ width: "240px", mt: 2, mr: 2.5 }}>
+                            <InputLabel id="demo-simple-select-label">Jismoniy shaxs</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                defaultValue={'mijoz'}
+                                label="Jismoniy shaxs"
+                                {...register('user_type')}
                             >
-                            <MenuItem value={'mijoz'}>Mijoz</MenuItem>
-                            <MenuItem value={'rieltor'}>Rieltor</MenuItem>
-                            <MenuItem value={'companiya'}>Companiya</MenuItem>
-                            <MenuItem value={'quruvchi firma'}>Quruvchi Firma</MenuItem>
-                        </Select>
-                    </FormControl>
-                    {/* User Region Input */}
-                    <FormControl sx={{ mt: 2, width: "240px" }}>
-                        <InputLabel id="viloyat">Viloyat</InputLabel>
-                        <Select
-                            labelId="viloyat"
-                            id="viloyat"
-                            label="Viloyat"
-                            {...register('region_id')}
+                                <MenuItem value={'mijoz'}>Mijoz</MenuItem>
+                                <MenuItem value={'rieltor'}>Rieltor</MenuItem>
+                                <MenuItem value={'companiya'}>Companiya</MenuItem>
+                                <MenuItem value={'quruvchi firma'}>Quruvchi Firma</MenuItem>
+                            </Select>
+                        </FormControl>
+                        {/* User Region Input */}
+                        <FormControl sx={{ mt: 2, width: "240px" }}>
+                            <InputLabel id="viloyat">Viloyat</InputLabel>
+                            <Select
+                                labelId="viloyat"
+                                id="viloyat"
+                                label="Viloyat"
+                                {...register('region_id')}
                             >
-                            {regions.map((region) => (
-                                <MenuItem
-                                    key={region.id}
-                                    value={region.id}
-                                >
-                                    {region.name}
-                                </MenuItem>
-                            ))}
-                        </Select>
-                    </FormControl>
+                                {regions.map((region) => (
+                                    <MenuItem
+                                        key={region.id}
+                                        value={region.id}
+                                    >
+                                        {region.name_uz}
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                    </div>
                     {/*FirstName Input*/}
-                    <TextField
-                        className="form__input form__input-name"
-                        id="outlined-basic"
-                        label="Ism*"
-                        variant="outlined"
-                        sx={{ mt: 2, width: "240px" }}
-                        {...register('name', { required: 'Ism Kiriting' })}
-                        error={!!errors?.name}
-                        helperText={errors?.name ? errors.name.message : null}
-                    />
-                    {/*LastName Input*/}
-                    <TextField
-                        className="form__input form__input-lastname"
-                        id="outlined-basic"
-                        label="Familiya"
-                        variant="outlined"
-                        sx={{ mt: 2, ml: 2.5, mb: 2, width: "240px" }}
-                        {...register('lastname')}
-                    />
+                    <div>
+                        <TextField
+                            className="form__input form__input-name"
+                            id="outlined-basic"
+                            label="Ism*"
+                            variant="outlined"
+                            sx={{ mt: 2, width: "240px" }}
+                            {...register('name', { required: 'Ism Kiriting' })}
+                            error={!!errors?.name}
+                            helperText={errors?.name ? errors.name.message : null}
+                        />
+                        {/*LastName Input*/}
+                        <TextField
+                            className="form__input form__input-lastname"
+                            id="outlined-basic"
+                            label="Familiya"
+                            variant="outlined"
+                            sx={{ mt: 2, ml: 2.5, mb: 2, width: "240px" }}
+                            {...register('lastname')}
+                        />
+                    </div>
                     {/*Email Input*/}
                     <TextField
                         className="form__input form__input-email"
@@ -210,24 +222,6 @@ function Form() {
                         </button>
                     </div>
                 </form>
-                <div>
-                    <Modal
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                    >
-                        <Box className="style">
-                            <Tick />
-                            <p className="title">Muvaffaqiyatli !!!</p>
-                            <NavLink to={"/Afeme"}>
-                                <button className="button">
-                                    Bosh Sahifaga O'tish
-                                </button>
-                            </NavLink>
-                        </Box>
-                    </Modal>
-                </div>
             </Container>
         </>
     )

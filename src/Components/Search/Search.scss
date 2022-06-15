@@ -1,7 +1,8 @@
 .search__form{
-    .search__form {
-        width: 100%;
-    }
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     .form__content {
         display: flex;
         background: #fff;
@@ -16,12 +17,16 @@
     }
     
     .filter__input{
-        width: 150px;
+        width: 110px;
         height: 100%;
         border-radius: 10px;
         padding: 10px;
-        border: 1px solid #ddd;
+        border: 2px solid #eff0f9;
         font-size: 16px;
+        transition: all .2s;
+        &:focus{
+            border-color: #69afff;
+        }
     }
     .search__box {
         position: relative;
@@ -66,10 +71,23 @@
         display: flex;
         align-items: center;
     }
+    .filter__items fieldset{
+        transition: all .2s;
+        border: 2px solid #eff0f9;
+    }
+    .filter__items:hover fieldset{
+        border-color: #69afff;
+    }
     #filter__select-label {
         top: -3px;
     }
     .input__search::placeholder {
         font-size: 16px;
+    }
+    .search__submit-btn{
+        height: 40px;
+        font-size: 16px;
+        margin-right: 40px;
+        margin-top: 10px;
     }
 }
