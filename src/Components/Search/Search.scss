@@ -1,7 +1,8 @@
 .search__form{
-    .search__form {
-        width: 100%;
-    }
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     .form__content {
         display: flex;
         background: #fff;
@@ -16,7 +17,7 @@
     }
     
     .filter__input{
-        width: 150px;
+        width: 110px;
         height: 100%;
         border-radius: 10px;
         padding: 10px;
@@ -82,5 +83,11 @@
     }
     .input__search::placeholder {
         font-size: 16px;
+    }
+    .search__submit-btn{
+        height: 40px;
+        font-size: 16px;
+        margin-right: 40px;
+        margin-top: 10px;
     }
 }

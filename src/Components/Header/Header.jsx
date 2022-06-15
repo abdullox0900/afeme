@@ -38,7 +38,6 @@ function Header() {
 
     const currencyChange = (e) => {
         setCurrency(e.target.value);
-        console.log(e.target.value);
     }
 
     return (
