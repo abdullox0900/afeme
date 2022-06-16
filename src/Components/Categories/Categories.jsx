@@ -1,7 +1,11 @@
 // Import => React 
-import React from "react";
+import React, {useContext} from "react";
 import { useEffect, useState } from "react";
 import { NavLink as Redirect } from "react-router-dom";
+import { Context as LangContext } from "../../Context/LangContext";
+
+// Import => Axios
+import axios from "axios";
 
 // Import => Components
 import Container from "../Container/Container";
@@ -18,13 +22,12 @@ import Categories4 from "../../Assets/Img/categories4.svg";
 // Import => Mui
 import { Box } from "@mui/material";
 
-// Import => Axios
-import axios from "axios";
-
 function Categories() {
 
+    const { lang, setLang } = useContext(LangContext);
     const [price, setPrice] = React.useState('');
     const [room, setRoom] = React.useState('');
+    const [categorieData, setCategorieData] = useState([])
 
     const priceChange = (event) => {
         setPrice(event.target.value);
@@ -34,13 +37,14 @@ function Categories() {
         setRoom(event.target.value);
     };
 
-    const [categorieData, setCategorieData] = useState([])
 
     // Axios
     useEffect(() => {
         axios.get('https://ali98.uz/api/htype').then(res => {
-            const persons = res.data.data;
-            setCategorieData(persons)
+            const categs = res.data.data;
+            setCategorieData(categs)
+            
+            console.log(categs.name_uz);
         })
     }, [])
 
@@ -54,8 +58,8 @@ function Categories() {
                                 return (
                                     <Redirect className="categories__items" to={{ pathname: "/adverts", search: `?htype=${categ.id}`}}>
                                         <img className="categories__img-icon" src={`https://ali98.uz/public/admin2/categories/${categ.icon}`} alt="" />
-                                        <h3 className="categories__items-title">{categ.name}</h3>
-                                    </Redirect>
+                                        <h3 className="categories__items-title">{lang == 'uz' ? categ.name_uz : lang == 'ru' ? categ.name_ru : categ.name_en}</h3>
+                                    </Redirect> 
                                 )
                             })
                         }
