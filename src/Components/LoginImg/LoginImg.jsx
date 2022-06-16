@@ -1,8 +1,13 @@
+// Import => React
 import React from "react";
+
+// Import => Components
 import "../LoginImg/LoginImg.scss"
 import IlustImg from "../../Assets/Img/ilus-1.svg";
 import IlustImgTwo from "../../Assets/Img/ilust-2.svg";
 import IlustImgThree from "../../Assets/Img/ilust-3.svg";
+
+// Import => AOS Animation
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 

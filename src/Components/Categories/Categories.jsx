@@ -1,24 +1,24 @@
-// IMPORT REACT
+// Import => React 
 import React from "react";
 import { useEffect, useState } from "react";
 import { NavLink as Redirect } from "react-router-dom";
 
-// IMPORT COMPONENTS
+// Import => Components
 import Container from "../Container/Container";
 import "../../Assets/scss/colors.scss";
 import "../Categories/Categories.scss";
 
-// IMPORT IMG
+// Import => ComponnetsImg
 import HomeIcon from "../../Assets/Img/homeIcon.svg";
 import Categories1 from "../../Assets/Img/categories1.svg";
 import Categories2 from "../../Assets/Img/categories2.svg";
 import Categories3 from "../../Assets/Img/categories3.svg";
 import Categories4 from "../../Assets/Img/categories4.svg";
 
-// IMPORT MUI
+// Import => Mui
 import { Box } from "@mui/material";
 
-// IMPORT AXIOS
+// Import => Axios
 import axios from "axios";
 
 function Categories() {
@@ -34,30 +34,15 @@ function Categories() {
         setRoom(event.target.value);
     };
 
-    // axios.get('https://ali98.uz/api/htype')
-    //     .then(function (response) {
-    //         // handle success
-    //         console.log(response.data.data);
-    //     })
-    //     .catch(function (error) {
-    //         // handle error
-    //         console.log(error);
-    //     })
-    //     .then(function () {
-    //         // always executed
-    //     });
-
-
     const [categorieData, setCategorieData] = useState([])
 
+    // Axios
     useEffect(() => {
         axios.get('https://ali98.uz/api/htype').then(res => {
             const persons = res.data.data;
             setCategorieData(persons)
         })
     }, [])
-
-
 
     return (
         <>

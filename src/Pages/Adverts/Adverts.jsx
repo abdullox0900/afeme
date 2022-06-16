@@ -1,24 +1,31 @@
+// Import => React and Hooks
 import React, {useState, useEffect} from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+
+// Import => Axios
 import axios from "axios";
-import Loader from "../../Components/Loader/Loader"
+
+// Import => Components
+import Loader from "../../Components/Loader/Loader";
 import Container from "../../Components/Container/Container";
 import Header from "../../Components/Header/Header";
 import Hero from "../../Components/Hero/Hero";
 import { FullCard } from "../../Components/Card/Card";
 import AfemePhone from "../../Components/AfemePhone/AfemePhone";
-import Footer from "../../Components/Footer/Footer"
-import "./Adverts.scss";
+import Footer from "../../Components/Footer/Footer";
 import CardImg1 from "../../Assets/Img/card_img1.jpg";
 import CardImg2 from "../../Assets/Img/card_img2.jpg";
 import CardImg3 from "../../Assets/Img/card_img3.jpg";
 import CardImg4 from "../../Assets/Img/card_img4.jpg";
 
+// Import => Style
+import "./Adverts.scss";
+
 function Adverts() {
 
+    const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
     let htype = searchParams.get("htype");
-    console.log(searchParams.get("name"));
 
     const [data, setData] = useState(null)
     const URL = 'https://ali98.uz/api/filter';

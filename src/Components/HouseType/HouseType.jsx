@@ -1,7 +1,13 @@
-import style from './HouseType.module.scss'
-import { ReactComponent as SaleIcon } from '../../Assets/Img/Icon/house.svg'
-import React, { useEffect, useState } from 'react'
+// Import => React
+import React, { useEffect, useState } from 'react';
+
+// Import => Axios
 import axios from 'axios';
+
+// Import Components
+import style from './HouseType.module.scss';
+import { ReactComponent as SaleIcon } from '../../Assets/Img/Icon/house.svg'
+
 
 function HouseType({ htype_id, sethType }) {
   const [houseType, setHouseType] = useState([]);

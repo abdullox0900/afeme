@@ -1,4 +1,4 @@
-// Import React
+// Import => React
 import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
 
@@ -6,11 +6,11 @@ import { NavLink } from "react-router-dom";
 import { useContext } from 'react';
 import { Context } from '../../Context/LangContext';
 
-// Import Mui
+// Import => Mui
 import { IconButton, Button, Tooltip, Grow, Badge, MenuItem, } from '@mui/material';
 import Select from '@mui/material/Select';
 
-// Import Components
+// Import => Components
 import flagUz from "../../Assets/Img/Icon/uz.svg"
 import flagRu from "../../Assets/Img/Icon/ru.svg"
 import flagEn from "../../Assets/Img/Icon/en.svg"
@@ -26,22 +26,17 @@ import "../Header/Header.scss";
 import Nav from '../Nav/Nav';
 import content from '../../Localization/Content';
 
-import "../../Utils/I18n";
-
 function Header() {
 
     const elModal = React.useRef();
     const elHeader = React.useRef();
 
     const { lang, setLang } = useContext(Context);
+    const [currency, setCurrency] = React.useState('usd');
 
-    const [age, setAge] = React.useState('');
-
-    const handleChange = (event) => {
-        setAge(event.target.value);
-    };
-
-
+    const currencyChange = (e) => {
+        setCurrency(e.target.value);
+    }
 
     return (
         <>
@@ -64,37 +59,43 @@ function Header() {
                         <div className="header__items">
                             <div className="header__icons-nav">
 
-                                    <IconButton color="primary">
-                                        <Select
-                                            className='header__select'
-                                            value="lang"
-                                            defaultValue={lang}
-                                            onChange={(evt) => setLang(evt.target.value)}>
-                                            <MenuItem  value="uz">
-                                                <img className='header__select-img' src={flagUz}/>O'zbekcha</MenuItem>
-                                            <MenuItem value="en">
-                                                <img className='header__select-img' src={flagEn}/>English</MenuItem>
-                                            <MenuItem value="ru">
-                                                <img className='header__select-img' src={flagRu}/>Русский</MenuItem>
-                                        </Select>
-                                    </IconButton>
+                                <IconButton color="primary" className='lang__changer'>
+                                    <Select
+                                        className='header__select select__lang'
+                                        value={lang}
+                                        defaultValue={lang}
+                                        onChange={(evt) => setLang(evt.target.value)}>
+                                        <MenuItem  value="uz">
+                                            <img className='header__select-img' src={flagUz}/>O'zbekcha</MenuItem>
+                                        <MenuItem value="en">
+                                            <img className='header__select-img' src={flagEn}/>English</MenuItem>
+                                        <MenuItem value="ru">
+                                            <img className='header__select-img' src={flagRu}/>Русский</MenuItem>
+                                    </Select>
+                                </IconButton>
 
                                 <Tooltip className="icon__btn" title="Your Loves" arrow TransitionComponent={Grow}>
-                                    <IconButton color="primary">
-                                        <img src={loveIcon} alt="" className="header__icon nav__love" />
-                                    </IconButton>
-                                </Tooltip>
-                                <Badge badgeContent={100} color="secondary">
-                                    <Tooltip className="icon__btn" title="Notifications" arrow TransitionComponent={Grow}>
-                                        <IconButton color="success">
-                                            <img src={notificationIcon} alt="" className="header__icon nav__notification" />
+                                    <NavLink to={"/liked"}>
+                                        <IconButton color="primary">
+                                            <img src={loveIcon} alt="" className="header__icon nav__love" />
                                         </IconButton>
-                                    </Tooltip>
-                                </Badge>
+                                    </NavLink>
+                                </Tooltip>
+                                <IconButton color="primary" className='currency__changer'>
+                                    <Select className='header__select select__currency'
+                                    value={currency}
+                                        defaultValue={currency}
+                                        onChange={currencyChange}>
+                                        <MenuItem  value="sum">
+                                            <img className='header__select-img' src={flagUz}/>So'm</MenuItem>
+                                        <MenuItem value="usd">
+                                            <img className='header__select-img' src={flagEn}/>Dollar</MenuItem>
+                                    </Select>
+                                </IconButton>
                             </div>
                             <div className="header__buttons" sx={{ ml: 3 }}>
                                 <NavLink to={"/advertPage"}>
-                                    <Button className="btn header__button add__announcement" variant="contained" sx={{ py: 1, px: 1.5 }}><img src={plusIcon} alt="" />{content[lang].add}</Button>
+                                    <Button className="btn header__button add__advert" variant="contained" sx={{ py: 1, px: 1.5 }}><img src={plusIcon} alt="" />{content[lang].add}</Button>
                                 </NavLink>
                                 <Button className="btn header__button login__btn modal-dialog modal-dialog-scrollable"
                                     variant="text" sx={{ ml: 2, py: 1.5, px: 2.5 }} onClick={() => {
@@ -114,35 +115,3 @@ function Header() {
     )
 }
 export default Header
-
-// class Header extends Component {
-//     state = {
-//         // IP: ""
-//     }
-
-    // componentDidMount() {
-    //     axios.get(`https://ipapi.co/json/`)
-    //         .then(response => {
-    //             const IP = response.data;
-    //             console.log(IP.country_name);
-    //             if (IP.ip) {
-    //                 this.setState({ IP });
-    //             }
-    //         })
-    //         .catch((err) => { console.log(err); });
-    // }
-
-    // Iltomos errorlarni tozalab yuring
-    // {this.state.IP.country_name}
-
-
-
-    // render() {
-
-    //     return (
-    //         <>
-
-    //         </>
-    //     )
-    // }
-// }

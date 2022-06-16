@@ -1,5 +1,7 @@
-
+// Import => React
 import React from 'react'
+
+// Import => Style Component
 import style from '../HouseAbout/HouseAbout.module.scss'
 
 function Area({ total_area, setTotalArea, living_area, setLivingArea, kitchen_area, setKitchenArea, total_area_type, setTotalAreaType }) {

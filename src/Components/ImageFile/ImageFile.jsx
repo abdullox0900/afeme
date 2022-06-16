@@ -1,6 +1,11 @@
+// Import => React
 import React, { useState } from 'react'
+
+// Import => @Mui
 import { Button } from '@mui/material';
 import { v4 } from 'uuid';
+
+// Import => Components
 import style from './ImageFile.module.scss'
 
 function ImageFile({ image, setImage }) {

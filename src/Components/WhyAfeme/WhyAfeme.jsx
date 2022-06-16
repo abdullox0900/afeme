@@ -1,5 +1,10 @@
+// Import => React
 import React from "react";
+
+// Import => Mui
 import Button from '@mui/material/Button';
+
+// Import => Components
 import "../WhyAfeme/WhyAfeme.scss";
 import IlusImgTelegram from "../../Assets/Img/illustration-telegram-bot.svg";
 import IlusImgApp from "../../Assets/Img/illustration-app.svg";

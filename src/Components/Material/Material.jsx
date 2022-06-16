@@ -1,5 +1,10 @@
-import axios from 'axios'
+// Import => React
 import React, { useEffect, useState } from 'react'
+
+// Import => Axios
+import axios from 'axios'
+
+// Import => Components
 import style from '../HouseAbout/HouseAbout.module.scss'
 
 function Material({material_id, setMaterial}) {

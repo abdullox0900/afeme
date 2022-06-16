@@ -1,16 +1,22 @@
+// Import => Reactl
 import React, { useState, useEffect } from "react";
+import { NavLink as Redirect } from "react-router-dom";
+
+// Import => Mui
+import { Box, Card, CardMedia, Typography, CardContent, CardActions, IconButton } from '@mui/material';
+import { Button } from "@mui/material";
+
+// Import => Components
 import LoveIcon from "../../Lib/Svg/love";
 import LocationIcon from "../../Lib/Svg/location";
 import callIcon from "../../Assets/Img/call.svg"
 import messageIcon from "../../Assets/Img/message.svg"
-import { Box, Card, CardMedia, Typography, CardContent, CardActions, IconButton } from '@mui/material';
-import { NavLink as Redirect } from "react-router-dom";
-import { Button } from "@mui/material";
 import { ReactComponent as Trash } from '../../Assets/Img/Icon/trash.svg'
 import { ReactComponent as Edit } from '../../Assets/Img/Icon/edit.svg'
 
+// Import => Style Component
 import "./Card.scss"
- 
+
 function Cards({data, dataError, cardData}) {
 
     if (data == null) {
@@ -49,7 +55,7 @@ function Cards({data, dataError, cardData}) {
             <p className="failText">Ma'lumotlar olishda xatolik yuz berdi</p>
         )
     }
-    
+
     if (!dataError) {
         return successCard();
     } else {

@@ -1,9 +1,14 @@
-import { Button } from '@mui/material'
-import { ReactComponent as Trash } from '../../Assets/Img/Icon/trash.svg'
-import { ReactComponent as Edit } from '../../Assets/Img/Icon/edit.svg'
-import UserPhoto from '../../Assets/Img/UserPhoto.png'
-import React from 'react'
-import style from './Personal.module.scss'
+// Import => React
+import React from 'react';
+
+// Import => Mui
+import { Button } from '@mui/material';
+
+// Import => Components
+import { ReactComponent as Trash } from '../../Assets/Img/Icon/trash.svg';
+import { ReactComponent as Edit } from '../../Assets/Img/Icon/edit.svg';
+import UserPhoto from '../../Assets/Img/UserPhoto.png';
+import style from './Personal.module.scss';
 
 function Personal() {
   return (

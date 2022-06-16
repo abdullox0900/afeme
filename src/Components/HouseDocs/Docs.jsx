@@ -1,5 +1,8 @@
-import React from 'react'
-import style from './Docs.module.scss'
+// Import => React
+import React from 'react';
+
+// Import => Components
+import style from './Docs.module.scss';
 
 function Docs({ docs, setDocs }) {
   function onChange(e) {
@@ -8,7 +11,7 @@ function Docs({ docs, setDocs }) {
   }
 
   return (
-    <input className={style.inp} type="file" onChange={(e) => onChange(e)} /> 
+    <input className={style.inp} type="file" onChange={(e) => onChange(e)} />
   )
 }
 

@@ -1,5 +1,8 @@
-import React from 'react'
-import { v4 } from 'uuid'
+// Import => React
+import React from 'react';
+import { v4 } from 'uuid';
+
+// Import => Components
 import style from '../HouseAbout/HouseAbout.module.scss'
 
 function Date({ date, setDate }) {

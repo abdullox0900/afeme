@@ -1,15 +1,13 @@
+// Import => React
 import React from "react";
 import { useEffect, useState } from "react";
+
+// Import => Axios
 import axios from "axios";
 
+// Import => Components
 import "../RealtorsCard/RealtorsCard.scss";
 import ZvezImgIcon from "../../Assets/Img/Icon/zvezda.svg"
-
-import RealtorAvatar from "../../Assets/Img/prifile-avar.png";
-import RealtorAvatar2 from "../../Assets/Img/prifile-photo2.png";
-import RealtorAvatar3 from "../../Assets/Img/prifile-photo3.png"
-import RealtorAvatar4 from "../../Assets/Img/prifile-photo4.png"
-import RealtorAvatar5 from "../../Assets/Img/prifile-photo5.png"
 
 function RealtorsCard() {
 

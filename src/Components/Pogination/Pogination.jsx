@@ -1,6 +1,7 @@
-// IMPORT REACT
+// Import => React
 import React from "react";
 
+// Import => Components
 import "../../Components/Pogination/Pogination.scss";
 
 function Pogination() {

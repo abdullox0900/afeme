@@ -1,8 +1,15 @@
+// Import => React
 import React from "react";
-import "./Container.scss"
+
+// Import => Style Container
+import "./Container.scss";
 
 function Container({ children, className }) {
-    return <div className={'container ' + className}>{children}</div>
+    if (className != undefined) {
+        return <div className={'container ' + className}>{children}</div>
+    } else {
+        return <div className={'container'}>{children}</div>
+    }
 }
 
 export default Container

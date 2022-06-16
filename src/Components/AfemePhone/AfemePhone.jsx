@@ -1,8 +1,13 @@
+// Import => React
 import React from "react"
+
+// Import => Components
 import PlayStore from "../../Assets/Img/downloadPlayStore.png";
 import afemePhone from "../../Assets/Img/afemePhone.png";
 import Logo from '../../Lib/Svg/logo'
 import Container from "../Container/Container";
+
+// Import => Style Component
 import "./AfemePhone.scss";
 
 function AfemePhone() {
