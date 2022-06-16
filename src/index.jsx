@@ -5,7 +5,6 @@ import Loader from './Components/Loader/Loader';
 import App from './App';
 import { Provider as LangProvider } from "./Context/LangContext";
 
-
 window.replainSettings = { id: 'c2f4a578-9a1f-49ac-9214-44448b236714' };
 (function (u) {
   var s = document.createElement('script'); s.async = true; s.src = u;
@@ -15,16 +14,11 @@ window.replainSettings = { id: 'c2f4a578-9a1f-49ac-9214-44448b236714' };
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-
-
     <BrowserRouter>
       <LangProvider>
-
         <Loader />
         <App />
-
       </LangProvider>
     </BrowserRouter>
-
   </React.StrictMode>
 );
