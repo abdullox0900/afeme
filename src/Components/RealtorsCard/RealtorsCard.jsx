@@ -15,7 +15,9 @@ import ZvezImgIcon from "../../Assets/Img/Icon/zvezda.svg"
 
 function RealtorsCard() {
 
-    const [reltorData, setReltorsData] = useState([])
+    const [currentPage , setCurrentPage] = useState(1);
+    const [reltorPost, setReltorPost] = useState(10);
+    const [reltorData, setReltorsData] = useState([]);
 
     // const users = а
 
@@ -23,6 +25,8 @@ function RealtorsCard() {
         axios.get('https://ali98.uz/api/reltors').then(res => {
             const persons = res.data.data;
             setReltorsData(persons)
+
+            console.log(persons)
         })
     }, [])
 
@@ -34,7 +38,7 @@ function RealtorsCard() {
                         return (
                             <ul>
                                 <NavLink to={`/reltorcob/${reltor.id}`}>
-                                    <li className="realtor-card" key={reltor.id}>
+                                    <li key={reltor.id} className="realtor-card">
 
                                         <img className="realtor-card__avatar" src="https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png" alt="" width={"100px"} />
 
@@ -44,19 +48,19 @@ function RealtorsCard() {
                                         </div>
 
 
-                                        <div className="realtor-card__reyting">
+                                        {/* <div className="realtor-card__reyting">
                                             <img src={ZvezImgIcon} alt="" />
                                         </div>
 
                                         <div className="realtor-card__region-box">
                                             <div className="reltor-card__region">{reltor.region_id}</div>
-                                        </div>
+                                        </div> */}
                                     </li>
                                 </NavLink>
                             </ul>
-                        );
+                        )
                     })
-                };
+                }
             </div>
         </>
     );

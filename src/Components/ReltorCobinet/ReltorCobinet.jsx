@@ -17,16 +17,15 @@ import "../../Components/ReltorCobinet/ReltorCobinet.scss";
 
 function ReltorCobinet() {
 
-    const { userId } = useParams()
-    const [reltorData, setReltorsData] = useState([])
+    const {userId} = useParams()
+    const [userData, setReltorUserData] = useState({})
 
     useEffect(() => {
-        axios.get(`https://ali98.uz/api/user${userId}`).then(res => {
-            const persons = res.data.data;
-            setReltorsData(persons)
-            console.log(persons)
-        })
+        axios.get(`https://ali98.uz/api/user/${userId}`)
+        .then(res => setReltorUserData(res.data.data))
     }, [])
+
+    console.log(userData)
 
     return (
         <>
@@ -40,7 +39,7 @@ function ReltorCobinet() {
                     <div className="reltorcob__box" >
                         <img className="reltorcob__avatar" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU" alt="" width={"100px"} />
 
-                        <h3 className="reltorcob__title-name">Abdusalomov Abdullox</h3>
+                        <h3 className="reltorcob__title-name">{userData.name} {userData.lastname}</h3>
                     </div>
                 </section>
             </Container>

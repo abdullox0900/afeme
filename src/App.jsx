@@ -54,7 +54,7 @@ function App() {
                     <Route path='/adverts' element={<Adverts />} />
                     <Route path='/advert' element={<Advert />} />
                     <Route path='/catalogreltor' element={<CatalogRealtor />} />
-                    <Route path='/reltorcob' element={<ReltorCob />} />
+                    <Route path='/reltorcob/:userId' element={<ReltorCob />} />
                     <Route path='/chat' element={<Chat />} />
                     <Route path="*" element={<Page404 />} />
                 </Routes>
