@@ -1,6 +1,6 @@
 @import "../../Assets/scss/colors.scss";
 
-.house__type{
+.house__type {
     color: $cardBlue;
     font-weight: 500 !important;
     font-size: 12px !important;
@@ -11,32 +11,32 @@
     cursor: pointer;
     height: 20px;
 }
-.house__prices{
+.house__prices {
     font-weight: 500;
     font-size: 12px;
     line-height: 10px;
-    color: #6D7580;
+    color: #6d7580;
 }
-.house__price{
+.house__price {
     font-weight: 600;
     font-size: 16px;
     line-height: 15px;
     color: $cardBlue;
 }
-.house__address{
+.house__address {
     font-weight: 400;
     padding-left: 5px;
 }
-.card__title{
+.card__title {
     font-weight: 600;
     font-size: 18px;
-    line-height: 17px;
+    line-height: 22px;
     padding: 8px 0 10px !important;
     display: inline-block;
     margin: 0;
     color: #000;
 }
-.failText{
+.failText {
     padding: 10px 20px;
     background-color: #ffacac;
     color: #111;
@@ -45,114 +45,146 @@
     width: 100%;
     text-align: center;
 }
-.card{
+.card {
     border-radius: 12px !important;
     box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.4) !important;
-    margin-bottom: 30px;
-    margin-right: 15px;
+    margin-bottom: 15px;
     position: relative;
-    max-width: 350px !important;
     min-width: 200px;
-    &__header, &__footer{
+    width: 100%;
+    padding-bottom: 3px;
+    &__header,
+    &__footer {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
-    &__main{
+    &__img {
+        // object-fit: cover;
+        // width: 100%;
+        // height: 100%;
+    }
+    &__main {
         padding: 0 16px !important;
     }
-    &__footer{
+    &__footer {
         padding: 0 16px 10px !important;
-        p{
+        p {
             display: flex;
             align-items: center;
             font-weight: 400 !important;
             font-size: 18px;
             line-height: 22px;
-            color: #6D7580;
+            color: #6d7580;
         }
     }
-    &__btn img{
+    &__btn img {
         width: 16px;
         height: 16px;
     }
-    &__call, &__msg{
-        background: radial-gradient(100% 100% at 50.44% 100%, #367BFF 0%, #6197FF 100%);
+    &__call,
+    &__msg {
+        background: radial-gradient(
+            100% 100% at 50.44% 100%,
+            #367bff 0%,
+            #6197ff 100%
+        );
     }
-    &__call{
-       padding: 8px 16px !important;
-       border-radius: 5px !important;
+    &__call {
+        padding: 8px 16px !important;
+        border-radius: 5px !important;
     }
-    &__msg{
+    &__msg {
         margin: 0 !important;
     }
-    .card__love-icon{
-        width: 20px;
-        height: 20px;
-    }
-    .card__love-icon.active{
-        animation: heart 0.8s;
-    }
-    .card__love-icon.active svg{
-        fill: red;
-    }
-    @keyframes heart {
-        0%{
-            transform: scale(1);
-        } 30%{
-            transform: scale(0.8);
-        } 60%{
-            transform: scale(1.5);
-        } 100%{
-            transform: scale(1);
+    .love-btn {
+        position: relative;
+        cursor: pointer;
+        .content {
+            width: 33px;
+            height: 33px;
+            display: flex;
+            border-radius: 50% !important;
+            border: 2px solid #eae2e1;
+            border-radius: 5px;
+            cursor: pointer;
+            pointer-events: none;
+        }
+        .content.active {
+            border-color: #f9b9c4;
+            background: #fbd0d8;
+        }
+        .heart {
+            position: absolute;
+            background: url("../../Assets/Img/love-animate.png") no-repeat;
+            background-position: left;
+            background-size: 2900%;
+            height: 60px;
+            width: 60px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+        .heart.active {
+            animation: animate 0.8s steps(28) 1;
+            background-position: right;
+        }
+        @keyframes animate {
+            0% {
+                background-position: left;
+            }
+            100% {
+                background-position: right;
+            }
         }
     }
 }
-.scard{
+.scard {
     margin-right: 30px;
     min-width: 350px;
     width: 390px;
 }
-.fullCard{
+.fullCard {
     width: 100%;
     padding: 20px 20px 20px 30px;
     display: flex;
     box-shadow: none !important;
-    background-color: #F6F6F6 !important;
+    background-color: #f6f6f6 !important;
     border-radius: 15px !important;
     margin-bottom: 35px;
-    &__img{
+    &__img {
         max-height: 200px;
         height: 200px;
         max-width: 350px;
         min-width: 300px;
         border-radius: 10px;
     }
-    .card__header{
+    .card__header {
         display: flex;
         justify-content: space-between;
         width: 100%;
         padding-top: 10px;
         padding-bottom: 10px;
     }
-    .card__header__items{
+    .card__header__items {
         display: flex;
         align-items: center;
     }
-    .card__content{
+    .card__content {
         width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
     }
-    .card__title{
+    .card__title {
         margin-right: 10px;
     }
-    .house__prices{
+    .house__prices {
         min-width: auto !important;
         margin-left: 10px;
     }
-    .card__desc{
+    .card__desc {
         height: auto;
         font-size: 16px;
         font-weight: 400;
@@ -161,10 +193,10 @@
         margin-bottom: 15px;
         width: 60%;
     }
-    .card__btn{
+    .card__btn {
         margin-left: 10px !important;
     }
-    &__foot{
+    &__foot {
         display: flex;
         align-items: center;
     }

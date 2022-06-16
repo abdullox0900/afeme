@@ -6,7 +6,7 @@ import { Box, Modal } from '@mui/material'
 //Import Components
 import Tick from '../../Animations/Tick/Tick'
 //Import Style
-import style from './Success.module.scss'
+import style from './success.module.scss'
 
 function Succecc({suc, setSuc}) {
     const handleClose = () => setSuc(false);//Close Success Modal
