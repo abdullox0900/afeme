@@ -16,25 +16,23 @@ import {
 }
     from "@mui/material";
 
-
-
 //Import Components
 import Container from "../Container/Container"
 import AfemeLogo from "../../Assets/Img/afeme-logo.svg"
 import "../../Assets/scss/colors.scss";
 import "../Form/Form.scss";
-import Tick from "../Animations/Tick/Tick";
-import Succecc from "../Modals/Success/Succecc";
 import Error from "../Modals/Error/Error";
+import NumberControl from "../Modals/NumberControl/NumberControl";
 
 
 
 function Form() {
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
     //Modal States
-    const [suc, setSuc] = useState(false);
+    const [phone, setPhone] = useState('')
     const [err, setErr] = useState(false);
-    const handleSuc = () => setSuc(true);
+    const [control, setControl] = useState(false);
+    const handleControl = () => setControl(true);
     const handleErr = () => setErr(true);
 
     //Recieve Regions State
@@ -58,17 +56,16 @@ function Form() {
                 console.log(response);
                 localStorage.setItem('Token', Token);
                 if (Sts) {
-                    handleSuc();
-                } else {
-                    handleErr();
+                    handleControl();
                 }
             })
             .catch(function (error) {
-                console.log(error)
-                handleErr();
-
+                handleErr(error);
             })
+        setPhone(data.phone)
+        reset();
     }
+
     //Recieve Regions Request
     useEffect(() => {
         const regions = async () => {
@@ -89,9 +86,9 @@ function Form() {
 
     return (
         <>
+            <Error err={err} setErr={setErr} />
             <Container style={{ position: 'relative' }}>
-                <Succecc suc={suc} setSuc={setSuc} />
-                <Error err={err} setErr={setErr} />
+                <NumberControl control={control} setControl={setControl} phone={phone} setPhone={setPhone} />
                 <form className="form" onSubmit={handleSubmit(onSubmit)}>
                     <img className="form__img" src={AfemeLogo} alt="" data-aos="zoom-in"
                         data-aos-easing="ease-in-back"
@@ -215,7 +212,6 @@ function Form() {
                         <button
                             className="button"
                             type="submit"
-                            // onClick={(e) => onSubmit(e)}
                             sx={{ p: 1.3, ml: 22.5 }}
                             variant="contained">
                             Roʻyxatdan oʻtish

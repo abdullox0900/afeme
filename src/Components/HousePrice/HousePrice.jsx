@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { v4 } from 'uuid';
 import style from './HousePrice.module.scss'
 
 
@@ -8,10 +7,10 @@ function HousePrice({ price_som, setPrice_som, price_usd, setPrice_usd }) {
     function Price(e) {
         if (e.target.name === 'uzs') {
             setPrice_som(e.target.value )
-            setPrice_usd(null)
+            setPrice_usd('')
         } else {
             setPrice_usd(e.target.value )
-            setPrice_som(null)
+            setPrice_som('')
         }
     }
     function Type(e) {
