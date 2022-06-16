@@ -62,7 +62,7 @@
 };
 
 .header__select {
-    width: 22px;
+    width: 120%;
     height: 22px;
     padding: 0px !important;
     border: none !important;
@@ -70,9 +70,14 @@
     background-repeat: no-repeat;
     background-position: center center;
     background-size: contain;
+    cursor: default;
     padding: 0;
     & div{
+        cursor: default;
         padding: 0px;
+    }
+    & input{
+        cursor: default;
     }
 }
 .header__select-lang {
