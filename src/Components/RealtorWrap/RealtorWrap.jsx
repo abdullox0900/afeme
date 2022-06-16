@@ -1,12 +1,14 @@
+// Import => React
 import React from "react";
 import { useEffect, useState } from "react";
+
+// Import => Axios
 import axios from "axios";
-// IMPORT COMPONENTS
+
+// Import => Components
 import RealtorsCard from "../RealtorsCard/RealtorsCard";
 import Container from "../Container/Container"
 import Pogination from "../Pogination/Pogination";
-
-// IMPORT IMG
 import "../RealtorWrap/RealtorWrap.scss";
 
 function RealtorWrap() {

@@ -1,6 +1,11 @@
+// Import => React
 import React, { useState } from 'react'
+
+// Import => Mui
 import { Button } from '@mui/material';
 import { v4 } from 'uuid';
+
+// Import => Components
 import style from '../ImageFile/ImageFile.module.scss'
 
 function VideoFile({ video, setVideo }) {
@@ -20,6 +25,7 @@ function VideoFile({ video, setVideo }) {
         setVideoFile(false)
 
     }
+
     return (
         <div className={style.wrapper}>
             <p className={style.htypeText}>Ofis  videolari:</p>
@@ -53,10 +59,10 @@ function VideoFile({ video, setVideo }) {
                             <Button
                                 style={{ cursor: 'pointer' }}
                                 variant="contained"
-                                component="span" 
-                                id="contained-button-file" 
+                                component="span"
+                                id="contained-button-file"
                                 type="file"
-                                >
+                            >
                                 Videoni Tanlang
                             </Button>
                         </label>

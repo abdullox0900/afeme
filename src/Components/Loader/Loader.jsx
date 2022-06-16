@@ -1,4 +1,7 @@
+// Import => React
 import React from "react";
+
+// Import => Components
 import "./Loader.scss";
 import LogoImg from "../../Lib/Svg/logo";
 

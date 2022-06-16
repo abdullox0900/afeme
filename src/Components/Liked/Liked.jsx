@@ -1,5 +1,8 @@
+// Import => React and React-Router-Dom
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+
+// Import => Components
 import { Fcards } from '../Card/Card'
 import Container from '../Container/Container'
 import Footer from '../Footer/Footer'
@@ -10,17 +13,17 @@ import style from '../../Pages/PersonalCabinet/Cabinet.module.scss'
 
 
 function Liked() {
-  const data = {
-    houseType: 'Uy',
-    housePrice: 1400,
-    houseTitle: 'My house',
-    houseAddress: 'Andijan',
-    houseUrl: '/adverts',
-    houseImg: CardImg1,
-};
-  return (
-    <>
-      <Container>
+    const data = {
+        houseType: 'Uy',
+        housePrice: 1400,
+        houseTitle: 'My house',
+        houseAddress: 'Andijan',
+        houseUrl: '/adverts',
+        houseImg: CardImg1,
+    };
+    return (
+        <>
+            <Container>
                 <Header />
                 <div style={{ display: 'flex' }}>
                     <div style={{ flexDirection: 'column' }}>
@@ -35,8 +38,8 @@ function Liked() {
                                 <button> Sozlamalar </button>
                             </NavLink>
                         </div>
-                        <h1 style={{color: '#0468ff',}}>El’onlarim</h1>
-                        <div style={{display:'flex', flexWrap:'wrap', gap:'20px', justifyContent:'center'}}>
+                        <h1 style={{ color: '#0468ff', }}>El’onlarim</h1>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center' }}>
                             <Fcards data={data} />
                             <Fcards data={data} />
                             <Fcards data={data} />
@@ -49,8 +52,8 @@ function Liked() {
                 </div>
             </Container>
             <Footer />
-    </>
-  )
+        </>
+    )
 }
 
 export default Liked

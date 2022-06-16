@@ -1,5 +1,8 @@
+// Import => React
 import React from 'react'
 import { v4 } from 'uuid';
+
+// Import Components
 import style from '../HouseAbout/HouseAbout.module.scss'
 
 
@@ -16,7 +19,6 @@ function Room({room, setRoom}) {
                         className={style.input}
                         defaultValue={room}>
                     </input>
-
             </div>
         </div>
     )

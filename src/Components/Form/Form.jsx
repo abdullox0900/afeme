@@ -1,12 +1,12 @@
-// Import React and React Hooks
+// Import => React and React Hooks
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useForm } from 'react-hook-form'
 
-//Import Request Package
+//Import => Request Package
 import axios from "axios";
 
-// Import MUI Components
+// Import => MUI Components
 import {
     FormControl,
     InputLabel,
@@ -18,7 +18,7 @@ import {
 
 
 
-//Import Components
+//Import => Components
 import Container from "../Container/Container"
 import AfemeLogo from "../../Assets/Img/afeme-logo.svg"
 import "../../Assets/scss/colors.scss";

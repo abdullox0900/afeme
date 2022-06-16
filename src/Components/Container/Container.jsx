@@ -1,5 +1,8 @@
+// Import => React
 import React from "react";
-import "./Container.scss"
+
+// Import => Style Container
+import "./Container.scss";
 
 function Container({ children, className }) {
     if (className != undefined) {

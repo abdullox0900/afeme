@@ -1,5 +1,11 @@
-import React from "react"
+// Import => React
+import React from "react";
 import { NavLink as Redirect } from "react-router-dom";
+
+// Import => Mui
+import { Box, Button, IconButton } from "@mui/material";
+
+// Import => Components
 import { Cards } from "../Card/Card"
 import LogoImg from "../../Lib/Svg/logo";
 import ArrowDown from "../../Assets/Img/Icon/arrow-down.svg"
@@ -12,7 +18,7 @@ import Person3 from "../../Assets/Img/person3.jpg"
 import CardImg1 from "../../Assets/Img/card_img1.jpg";
 import CardImg2 from "../../Assets/Img/card_img2.jpg";
 
-import { Box, Button, IconButton } from "@mui/material";
+// Import => Style
 import "./Chat.scss";
 
 function Chat() {

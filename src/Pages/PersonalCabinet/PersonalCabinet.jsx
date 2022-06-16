@@ -1,5 +1,8 @@
+// Import => React
 import React from "react";
 import { NavLink } from "react-router-dom";
+
+// Import => Components
 import Container from "../../Components/Container/Container";
 import Footer from "../../Components/Footer/Footer";
 import Header from "../../Components/Header/Header";
@@ -7,9 +10,11 @@ import Liked from "../../Components/Liked/Liked";
 import Personal from "../../Components/Personal/Personal";
 import Posts from "../../Components/Posts/Posts";
 import Settings from "../../Components/Settings/Settings";
+import CardImg1 from '../../Assets/Img/card_img1.jpg';
+import { Ucards } from '../../Components/Card/Card';
+
+// Import => Modul Style Component
 import style from './Cabinet.module.scss'
-import CardImg1 from '../../Assets/Img/card_img1.jpg'
-import { Ucards } from '../../Components/Card/Card'
 
 function PersonalCabinet() {
     const data = {

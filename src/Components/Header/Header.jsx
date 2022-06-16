@@ -1,5 +1,5 @@
-// Import React
-import React, { Component, useEffect } from 'react';
+// Import => React
+import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
 
 // Import useContext => Localization
@@ -7,11 +7,11 @@ import { useContext } from 'react';
 import { Context } from '../../Context/LangContext';
 import { Context as CurrencyContext } from '../../Context/CurrencyContext';
 
-// Import Mui
+// Import => Mui
 import { IconButton, Button, Tooltip, Grow, Badge, MenuItem, } from '@mui/material';
 import Select from '@mui/material/Select';
 
-// Import Components
+// Import => Components
 import flagUz from "../../Assets/Img/Icon/uz.svg"
 import flagRu from "../../Assets/Img/Icon/ru.svg"
 import flagEn from "../../Assets/Img/Icon/en.svg"
@@ -27,7 +27,6 @@ import "../Header/Header.scss";
 import Nav from '../Nav/Nav';
 import content from '../../Localization/Content';
 
-import "../../Utils/I18n";
 import { getCookie, setCookie } from "../../Utils/cookies"
 
 function Header() {
@@ -65,10 +64,10 @@ function Header() {
 
                                 <IconButton color="primary" className='lang__changer'>
                                     <Select
-                                        className='header__select select__lang'
-                                        value={lang}
-                                        defaultValue={lang}
-                                        onChange={(evt) => setLang(evt.target.value)}>
+                                        className='header__select header__select-lang'
+                                        value="lang"
+                                            defaultValue={lang}
+                                            onChange={(evt) => setLang(evt.target.value)}>
                                         <MenuItem  value="uz">
                                             <img className='header__select-img' src={flagUz}/>O'zbekcha</MenuItem>
                                         <MenuItem value="en">
@@ -87,13 +86,13 @@ function Header() {
                                 </Tooltip>
                                 <IconButton color="primary" className='currency__changer'>
                                     <Select className='header__select select__currency'
-                                    value={currency}
+                                    value="currency"
                                         defaultValue={currency}
                                         onChange={currencyChange}>
                                         <MenuItem  value="sum">
-                                            <img className='header__select-img' src={flagUz}/>So'm</MenuItem>
+                                            So'm (uzs)</MenuItem>
                                         <MenuItem value="usd">
-                                            <img className='header__select-img' src={flagEn}/>Dollar</MenuItem>
+                                            Dollar (usd)</MenuItem>
                                     </Select>
                                 </IconButton>
                             </div>

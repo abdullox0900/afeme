@@ -1,10 +1,15 @@
+// Import => React and React-Router-Dom
 import React, { useState, useEffect } from "react";
 import { useNavigate, NavLink as Link } from "react-router-dom";
 import axios from "axios";
-import searchIcon from "../../Assets/Img/search-icon.svg";
+// import searchIcon from "../../Assets/Img/search-icon.svg";
 
+// Import => Mui
 import { Box, Button, Select, MenuItem, FormControl, InputLabel } from "@mui/material";
+
+// Import => Components
 import "../Search/Search.scss";
+import searchIcon from "../../Assets/Img/search-icon.svg";
 
 function Search() {
     const navigate = useNavigate();
@@ -125,7 +130,7 @@ function Search() {
                                 id="filter__select"
                                 value={room}
                                 label="Xona"
-                                onChange={roomChange} 
+                                onChange={roomChange}
                                 sx={{
                                     borderRadius: '10px',
                                     height: "45px"

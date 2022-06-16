@@ -1,5 +1,7 @@
-// Import React and Components
-import React, { useState } from 'react'
+// Import => React and Components
+import React, { useState } from 'react';
+
+// Import => Components
 import Loader from '../../Components/Loader/Loader';
 import Container from '../../Components/Container/Container';
 import Header from '../../Components/Header/Header';
@@ -19,11 +21,13 @@ import HouseDescr from '../../Components/HouseDescr/HouseDescr';
 import HousePrice from '../../Components/HousePrice/HousePrice';
 import Map from '../../Components/Map/Map'
 
-// Import Styles
+// Import => Styles
 import style from './advertPage.module.scss'
 
-// Import Packages
+// Import => Axios Packages
 import axios from 'axios';
+
+// Import => Mui
 import { Button } from '@mui/material';
 
 function AdvertPage() {
@@ -34,14 +38,14 @@ function AdvertPage() {
   const [price_som, setRrice_som] = useState('')//Price State //// tekshirish keree
   const [price_usd, setPrice_usd] = useState('')
   const [date, setDate] = useState('')//Building Year State
-  const [room, setRoom] = useState('')//Room State 
+  const [room, setRoom] = useState('')//Room State
   const [repair_id, setRepair] = useState('')//Reapairs State
   const [documents, setDocs] = useState({})//Documents State
   const [description, sethDescr] = useState('')//House Description State
   const [material_id, setMaterial] = useState('')// Materials State
-  const [region_id, setRegionID] = useState('')//Region State 
-  const [city_id, setCity] = useState('')// City State 
-  const [street, setStreet] = useState('')// Street State 
+  const [region_id, setRegionID] = useState('')//Region State
+  const [city_id, setCity] = useState('')// City State
+  const [street, setStreet] = useState('')// Street State
   const [house, setHouse] = useState(2)// State
   const [floor, setFloor] = useState('')//Floor and Flat States
   const [flat, setFlat] = useState('')//
