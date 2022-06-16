@@ -17,6 +17,8 @@ function RealtorsCard() {
 
     const [reltorData, setReltorsData] = useState([])
 
+    const users = 
+
     useEffect(() => {
         axios.get('https://ali98.uz/api/reltors').then(res => {
             const persons = res.data.data;
@@ -30,31 +32,34 @@ function RealtorsCard() {
                 {
                     reltorData.map((reltor) => {
                         return (
+                            <ul>
+                                <NavLink to={`/reltorcob/${reltor.id}`}>
+                                    <li className="realtor-card" key={reltor.id}>
 
-                            <div className="realtor-card" key={reltor.id}>
-                                <img className="realtor-card__avatar" src="https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png" alt="" width={"100px"} />
-                                <NavLink to={"/reltorcob"}>
-                                    <div className="realtor-card__wrap">
-                                        <h3 className="realtor-card__title">{reltor.name} {reltor.lastname}</h3>
-                                        <p className="realtor-card__desc">Agent hujjatlari tekshirilgan</p>
-                                    </div>
+                                        <img className="realtor-card__avatar" src="https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png" alt="" width={"100px"} />
+
+                                        <div className="realtor-card__wrap">
+                                            <h3 className="realtor-card__title">{reltor.name} {reltor.lastname}</h3>
+                                            <p className="realtor-card__desc">Agent hujjatlari tekshirilgan</p>
+                                        </div>
+
+
+                                        <div className="realtor-card__reyting">
+                                            <img src={ZvezImgIcon} alt="" />
+                                        </div>
+
+                                        <div className="realtor-card__region-box">
+                                            <div className="reltor-card__region">{reltor.region_id}</div>
+                                        </div>
+                                    </li>
                                 </NavLink>
-
-                                <div className="realtor-card__reyting">
-                                    <img src={ZvezImgIcon} alt="" />
-                                </div>
-
-                                <div className="realtor-card__region-box">
-                                    <div className="reltor-card__region">{reltor.region_id}</div>
-                                </div>
-                            </div>
-
-                        )
+                            </ul>
+                        );
                     })
-                }
+                };
             </div>
         </>
-    )
-}
+    );
+};
 
 export default RealtorsCard;

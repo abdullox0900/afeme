@@ -1,0 +1,51 @@
+.reltorcob {
+    position: relative;
+
+    .reltorcob__btn-all {
+        position: absolute;
+        left: -138%;
+        top: -50px;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 18px;
+        color: #357AFF;
+    }
+
+    .reltorcob__btn-all::after {
+        position: absolute;
+        top: 1px;
+        right: -25px;
+        content: "";
+        width: 23px;
+        height: 23px;
+        background-image: url("../../Assets/Img/arrow-right.svg");
+        background-repeat: no-repeat;
+        transition: 0.5s ease;
+    }
+
+    .reltorcob__btn-all:hover::after {
+        right: -30px;
+    }
+
+    .reltorcob__box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 80px;
+    }
+
+    .reltorcob__avatar {
+        width: 150px;
+        height: 150px;
+        border-radius: 400px;
+        margin-bottom: 20px;
+    }
+
+    .reltorcob__title-name {
+        margin: 0;
+        margin-bottom: 20px;
+        font-weight: 500;
+        font-size: 32px;
+        line-height: 38px;
+    }
+}
