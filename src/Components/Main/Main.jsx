@@ -26,7 +26,7 @@ function Main() {
 
     const [data, setData] = useState(null)
     const [dataError, setDataError] = useState(false)
-    const URL = 'https://ali98.uz/api/post';
+    const URL = 'https://ali98.uz/api/getpost';
     useEffect(() => {
         function getData() {
             const result = axios.get(URL)

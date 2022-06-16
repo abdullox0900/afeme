@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import LoveIcon from "../../Lib/Svg/love";
 import LocationIcon from "../../Lib/Svg/location";
 import callIcon from "../../Assets/Img/call.svg"
@@ -9,31 +9,57 @@ import { Button } from "@mui/material";
 import { ReactComponent as Trash } from '../../Assets/Img/Icon/trash.svg'
 import { ReactComponent as Edit } from '../../Assets/Img/Icon/edit.svg'
 
+import { Context as CurrencyContext } from '../../Context/CurrencyContext';
 import "./Card.scss"
+
+function numberFormatter(numb) {
+    var formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: "USD",
+    });
+    return formatter.format(numb)
+}
  
 function Cards({data, dataError, cardData}) {
+
+    const { currency, setCurrency } = useContext(CurrencyContext);
+    const [price, setPrice] = useState('');
+    const [advertTitle, setAdvertTitle] = useState('');
+    const [advertLink, setAdvertLink] = useState('');
 
     if (data == null) {
         dataError = true;
     }
     useEffect(() => {
-        // console.log(data);
-    }, [data])
+        if (data) {
+            if (currency == 'usd') {
+                setPrice(numberFormatter(data.price_usd));
+            } else if (currency == 'sum') {
+                setPrice(data.price_som
+                    .toString().
+                    replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+                    + " so'm");
+            }
+            setAdvertTitle(`Ijaraga ${data.room} xonali ${data.htype_id?.name_uz} sotiladi`);
+
+            setAdvertLink(`/advert?id=${data.id}`);
+        }
+    }, [data, currency])
 
     function successCard() {
         return (
             <Card sx={{ maxWidth: 300 }} className="card">
-                <Redirect to={"/advert"}><CardMedia component="img" alt="Card img" height="140" image={cardData.houseImg}/></Redirect>
+                <Redirect to={advertLink}><CardMedia component="img" alt="Card img" height="140" image={cardData.houseImg}/></Redirect>
                 <Box className="card__content">
                     <CardContent className="card__header">
-                        <Typography variant="body1" component="div" className="house__type">{data?.htype_id}</Typography>
-                        <Typography variant="body2" className="house__prices"><span className="house__price">{data.price_usd}</span></Typography>
+                        <Typography variant="body1" component="div" className="house__type">{data?.htype_id?.name_uz}</Typography>
+                        <Typography variant="body2" className="house__prices"><span className="house__price">{price}</span></Typography>
                     </CardContent>
                     <CardContent className="card__main">
-                    <Redirect to={"/advert"} className="card__title">Ijaraga {data?.room} xonali {data?.htype_id?.name} sotiladi</Redirect>
+                    <Redirect to={advertLink} className="card__title">{advertTitle}</Redirect>
                     </CardContent>
                     <CardActions className="card__footer">
-                        <Typography className="house__address__bar"><LocationIcon className="card__location"/> <span className="house__address">{data?.region_id}</span></Typography>
+                        <Typography className="house__address__bar"><LocationIcon className="card__location"/> <span className="house__address">{data?.region_id?.name_uz}</span></Typography>
                         <IconButton color="error" className="card__btn card__love">
                             <LoveIcon className="card__love-icon"/>
                         </IconButton>

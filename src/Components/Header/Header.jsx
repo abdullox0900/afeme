@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 // Import useContext => Localization
 import { useContext } from 'react';
 import { Context } from '../../Context/LangContext';
+import { Context as CurrencyContext } from '../../Context/CurrencyContext';
 
 // Import Mui
 import { IconButton, Button, Tooltip, Grow, Badge, MenuItem, } from '@mui/material';
@@ -27,19 +28,20 @@ import Nav from '../Nav/Nav';
 import content from '../../Localization/Content';
 
 import "../../Utils/I18n";
+import { getCookie, setCookie } from "../../Utils/cookies"
 
 function Header() {
-
+    
     const elModal = React.useRef();
     const elHeader = React.useRef();
-
+    
     const { lang, setLang } = useContext(Context);
-    const [currency, setCurrency] = React.useState('usd');
-
+    const { currency, setCurrency } = useContext(CurrencyContext);
+    
     const currencyChange = (e) => {
         setCurrency(e.target.value);
     }
-
+    
     return (
         <>
             <header className="header" ref={elHeader}>

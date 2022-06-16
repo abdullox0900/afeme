@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Loader from './Components/Loader/Loader';
 import App from './App';
 import { Provider as LangProvider } from "./Context/LangContext";
+import { Provider as CurrencyProvider } from "./Context/CurrencyContext";
 
 
 window.replainSettings = { id: 'c2f4a578-9a1f-49ac-9214-44448b236714' };
@@ -19,10 +20,12 @@ root.render(
 
     <BrowserRouter>
       <LangProvider>
+        <CurrencyProvider>
 
-        <Loader />
-        <App />
-
+          <Loader />
+          <App />
+          
+        </CurrencyProvider>
       </LangProvider>
     </BrowserRouter>
 

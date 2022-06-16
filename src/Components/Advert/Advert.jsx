@@ -1,4 +1,6 @@
-import React from "react"
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useSearchParams } from "react-router-dom";
 import Container from "../Container/Container";
 import { Box, Button, IconButton } from "@mui/material";
 import Carousel from "../Carousel/Carousel";
@@ -15,6 +17,27 @@ import CardImg4 from "../../Assets/Img/card_img4.jpg";
 
 function Advert() {
 
+    const URL = 'https://ali98.uz/api/getpost';
+    const [advertID, setAdvertID] = useState('');
+    const [searchParams, setSearchParams] = useSearchParams();
+    
+    useEffect(() => {
+        setAdvertID(searchParams.get("id"));
+        function getData() {
+            const result = axios.post(URL, {id: advertID})
+            .then((response) => {
+                let dataStatus = response.data
+                if (dataStatus.status == true || dataStatus.status == 200) {
+                    console.log(dataStatus);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+        }
+        getData();
+    }, [])
+    console.log(advertID);
     const data = {
         images: [CardImg1, CardImg2, CardImg3, CardImg4],
     };
