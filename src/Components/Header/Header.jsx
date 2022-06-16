@@ -61,10 +61,10 @@ function Header() {
 
                                 <IconButton color="primary" className='lang__changer'>
                                     <Select
-                                        className='header__select select__lang'
-                                        value={lang}
-                                        defaultValue={lang}
-                                        onChange={(evt) => setLang(evt.target.value)}>
+                                        className='header__select header__select-lang'
+                                        value="lang"
+                                            defaultValue={lang}
+                                            onChange={(evt) => setLang(evt.target.value)}>
                                         <MenuItem  value="uz">
                                             <img className='header__select-img' src={flagUz}/>O'zbekcha</MenuItem>
                                         <MenuItem value="en">
@@ -83,7 +83,7 @@ function Header() {
                                 </Tooltip>
                                 <IconButton color="primary" className='currency__changer'>
                                     <Select className='header__select select__currency'
-                                    value={currency}
+                                    value="currency"
                                         defaultValue={currency}
                                         onChange={currencyChange}>
                                         <MenuItem  value="sum">

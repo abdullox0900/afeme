@@ -18,6 +18,7 @@ import Advert from './Pages/Advert/Advert';
 import CatalogRealtor from './Pages/CatalogOfRealtors/CatalogRealtors';
 import Chat from './Pages/ChatPage/ChatPage'
 import Page404 from './Pages/404/404';
+import ReltorCob from './Pages/ReltorCobinet/Reltor';
 import ScrollTop from './Utils/ScrollTop';
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
                     <Route path='/adverts' element={<Adverts />} />
                     <Route path='/advert' element={<Advert />} />
                     <Route path='/catalogreltor' element={<CatalogRealtor />} />
+                    <Route path='/reltorcob' element={<ReltorCob />} />
                     <Route path='/chat' element={<Chat />} />
                     <Route path="*" element={<Page404 />} />
                 </Routes>

@@ -72,15 +72,23 @@
     background-size: contain;
     padding: 0;
     & div{
-        padding: 0;
+        padding: 0px;
     }
 }
-.select__lang{
-    // background-image: url("../../Assets/Img/currency.svg");
+.header__select-lang {
+    padding: 8px;
+    width: 27px;
+    height: 27px;
+    background-image: url("../../Assets/Img/Icon/global.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .select__currency{
-    background-image: url("../../Assets/Img/currency.svg");
+    width: 24px;
+    height: 24px;
+    background-image: url("../../Assets/Img/Icon/convert-icon.svg");
 }
+
 
 .header__select fieldset {
     border: none;
