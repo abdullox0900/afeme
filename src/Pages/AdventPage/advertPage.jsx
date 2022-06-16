@@ -49,9 +49,11 @@ function AdvertPage() {
   const [house, setHouse] = useState(2)// State
   const [floor, setFloor] = useState('')//Floor and Flat States
   const [flat, setFlat] = useState('')//
+  const [total_area, setTotalArea] = useState('')
+  const [living_area, setLivingArea] = useState('')
+  const [kitchen_area, setKitchenArea] = useState('')
+  const [total_area_type, setTotalAreaType] = useState('')
 
-  const [area, setArea] = useState('')// Area State
-  const [area_type, setAreaValue] = useState('')//AreaType State
   const [images, setImage] = useState([])//ImageFile State
   const [videos, setVideo] = useState([])//VideoFile State
 
@@ -74,10 +76,14 @@ function AdvertPage() {
   data.append('material_id', material_id);
   data.append('region_id', region_id);
   data.append('city_id', city_id);
-  data.append('street', street);
+  data.append('street', street); 
   data.append('house', house);
   data.append('floor', floor);
   data.append('flat', flat);
+  data.append('total_area', total_area)
+  data.append('total_area_type', total_area_type)
+  data.append('living_area', living_area)
+  data.append('kitchen_area', kitchen_area)
   data.append('images', images);
   data.append('videos', videos);
   var requestOptions = {
@@ -118,9 +124,10 @@ function AdvertPage() {
               date={date} setDate={setDate} />
             <Room
               room={room} setRoom={setRoom} />
-            <Area
-              area={area} setArea={setArea}
-              area_type={area_type} setAreaValue={setAreaValue} />
+            <Area total_area={total_area} setTotalArea={setTotalArea}
+              living_area={living_area} setLivingArea={setLivingArea}
+              kitchen_area={kitchen_area} setKitchenArea={setKitchenArea}
+              total_area_type={total_area_type} setTotalAreaType={setTotalAreaType} />
             <Floor
               floor={floor} setFloor={setFloor}
               flat={flat} setFlat={setFlat} />

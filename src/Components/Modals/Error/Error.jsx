@@ -1,12 +1,18 @@
-import { Box, Modal } from '@mui/material'
+//Import React and RRD
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import Tick from '../../Animations/Tick/Tick'
+
+//Import MUI
+import { Box, Modal } from '@mui/material'
+
+//Import Components
+import Tick from '../../Animations/Tick/Tick';
+
+//Import Style
 import style from './Error.module.scss'
 
 function Succecc({err, setErr}) {
-    const handleClose = () => setErr(false);
-    
+    const handleClose = () => setErr(false);//Close Error Modal    
     return (
         <div>
             <Modal
@@ -16,13 +22,11 @@ function Succecc({err, setErr}) {
                 aria-describedby="modal-modal-description"
             >
                 <Box className={style.style}>
-                    <Tick />
-                    <p className={style.title}>Muvaffaqiyatli !!!</p>
-                    <NavLink to={"/Afeme"}>
-                        <button className={style.butto}>
-                            Bosh Sahifaga O'tish
+                    <Tick/>
+                    <p className={style.title}>Muvaffaqiyatsiz !!!</p>
+                        <button className={style.button} onClick={() => handleClose()}>
+                            Ortga Kaytish
                         </button>
-                    </NavLink>
                 </Box>
             </Modal>
         </div>
