@@ -1,12 +1,15 @@
-import { Box, Modal } from '@mui/material'
-import React, { useState } from 'react'
+//Import React and RRD
+import React from 'react'
 import { NavLink } from 'react-router-dom'
+//Import MUI
+import { Box, Modal } from '@mui/material'
+//Import Components
 import Tick from '../../Animations/Tick/Tick'
+//Import Style
 import style from './success.module.scss'
 
 function Succecc({suc, setSuc}) {
-    const handleClose = () => setSuc(false);
-    
+    const handleClose = () => setSuc(false);//Close Success Modal
     return (
         <div>
             <Modal
@@ -19,7 +22,7 @@ function Succecc({suc, setSuc}) {
                     <Tick />
                     <p className={style.title}>Muvaffaqiyatli !!!</p>
                     <NavLink to={"/Afeme"}>
-                        <button className={style.butto}>
+                        <button className={style.button}>
                             Bosh Sahifaga O'tish
                         </button>
                     </NavLink>

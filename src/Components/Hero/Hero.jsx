@@ -24,7 +24,7 @@ function Hero() {
     useEffect(() => {
         let randomNumb = Math.floor(Math.random() * images.length);
         setRandImg(images[randomNumb]);
-    });
+    }, []);
 
     return (
         <>

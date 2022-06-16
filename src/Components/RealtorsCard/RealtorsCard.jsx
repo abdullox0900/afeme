@@ -17,7 +17,7 @@ function RealtorsCard() {
 
     const [reltorData, setReltorsData] = useState([])
 
-    const users = 
+    // const users = а
 
     useEffect(() => {
         axios.get('https://ali98.uz/api/reltors').then(res => {

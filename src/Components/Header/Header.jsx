@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 // Import useContext => Localization
 import { useContext } from 'react';
 import { Context } from '../../Context/LangContext';
+import { Context as CurrencyContext } from '../../Context/CurrencyContext';
 
 // Import => Mui
 import { IconButton, Button, Tooltip, Grow, Badge, MenuItem, } from '@mui/material';
@@ -26,18 +27,20 @@ import "../Header/Header.scss";
 import Nav from '../Nav/Nav';
 import content from '../../Localization/Content';
 
-function Header() {
+import { getCookie, setCookie } from "../../Utils/cookies"
 
+function Header() {
+    
     const elModal = React.useRef();
     const elHeader = React.useRef();
-
+    
     const { lang, setLang } = useContext(Context);
-    const [currency, setCurrency] = React.useState('usd');
-
+    const { currency, setCurrency } = useContext(CurrencyContext);
+    
     const currencyChange = (e) => {
         setCurrency(e.target.value);
     }
-
+    
     return (
         <>
             <header className="header" ref={elHeader}>
@@ -87,9 +90,9 @@ function Header() {
                                         defaultValue={currency}
                                         onChange={currencyChange}>
                                         <MenuItem  value="sum">
-                                            <img className='header__select-img' src={flagUz}/>So'm</MenuItem>
+                                            So'm (uzs)</MenuItem>
                                         <MenuItem value="usd">
-                                            <img className='header__select-img' src={flagEn}/>Dollar</MenuItem>
+                                            Dollar (usd)</MenuItem>
                                     </Select>
                                 </IconButton>
                             </div>
