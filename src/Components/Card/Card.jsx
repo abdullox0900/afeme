@@ -27,11 +27,11 @@ function numberFormatter(numb) {
 }
 
 function loveAnimate(e) {
-        
+
     let loveBtn = document.querySelectorAll('.love-btn');
     let content = document.querySelectorAll('.content');
     let heart = document.querySelectorAll('.heart');
-    
+
     for (let i = 0; i < loveBtn.length; i++) {
         if (loveBtn[i].getAttribute('dataid') == e.target.getAttribute('dataid')) {
             if (content[i].classList.contains('active')) {
@@ -46,7 +46,7 @@ function loveAnimate(e) {
 }
 
 function Cards({data, dataError, cardData}) {
-        
+
     const { lang, setLang } = useContext(LangContext);
     const { currency, setCurrency } = useContext(CurrencyContext);
     const [price, setPrice] = useState('');
@@ -71,6 +71,7 @@ function Cards({data, dataError, cardData}) {
             setAdvertTitle(`Ijaraga ${data.room} xonali ${data.htype_id?.name_uz} sotiladi`);
 
             setAdvertLink(`/advert?id=${data.id}`);
+            
             if (lang == 'uz') {
                 setAdvertType(data?.htype_id?.name_uz);
                 setAdvertAddress(data?.region_id?.name_uz);
@@ -162,7 +163,7 @@ function FullCard({cardData, dataError, data}) {
             }
         }
     }, [data, currency, lang]);
-    
+
     return(
         <Card sx={{}} className="fullCard">
             <Redirect to={advertLink}><CardMedia  className="fullCard__img" component="img" alt="Card img" image={cardData.houseImg}/></Redirect>

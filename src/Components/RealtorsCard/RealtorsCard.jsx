@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 // Import => React-Router-Dom
 import { NavLink } from "react-router-dom";
 
-
 // Import => Axios
 import axios from "axios";
 
@@ -19,14 +18,11 @@ function RealtorsCard() {
     const [reltorPost, setReltorPost] = useState(10);
     const [reltorData, setReltorsData] = useState([]);
 
-    // const users = а
 
     useEffect(() => {
         axios.get('https://ali98.uz/api/reltors').then(res => {
             const persons = res.data.data;
             setReltorsData(persons)
-
-            console.log(persons)
         })
     }, [])
 
@@ -48,13 +44,13 @@ function RealtorsCard() {
                                         </div>
 
 
-                                        {/* <div className="realtor-card__reyting">
+                                        <div className="realtor-card__reyting">
                                             <img src={ZvezImgIcon} alt="" />
                                         </div>
 
                                         <div className="realtor-card__region-box">
-                                            <div className="reltor-card__region">{reltor.region_id}</div>
-                                        </div> */}
+                                            {/* <div className="reltor-card__region">{reltor.region_id}</div> */}
+                                        </div>
                                     </li>
                                 </NavLink>
                             </ul>

@@ -16,8 +16,6 @@ import {
 }
     from "@mui/material";
 
-
-
 //Import => Components
 import Container from "../Container/Container"
 import AfemeLogo from "../../Assets/Img/afeme-logo.svg"
@@ -26,9 +24,16 @@ import "../Form/Form.scss";
 import Error from "../Modals/Error/Error";
 import NumberControl from "../Modals/NumberControl/NumberControl";
 
+// Import useContext => Localization
+import { useContext } from 'react';
+import { Context } from '../../Context/LangContext';
+import content from '../../Localization/Content';
 
 
 function Form() {
+    // Localization == useContext
+    const { lang, setLang } = useContext(Context);
+
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
     //Modal States
     const [phone, setPhone] = useState('')
@@ -97,16 +102,16 @@ function Form() {
                         data-aos-delay="200"
                         data-aos-offset="10"
                         data-aos-duration="900" />
-                    <h1 className="form-title">Roʻyxatdan oʻtish</h1>
+                    <h1 className="form-title">{content[lang].from_sign}</h1>
                     {/*UserType Input*/}
                     <div>
                         <FormControl sx={{ width: "240px", mt: 2, mr: 2.5 }}>
-                            <InputLabel id="demo-simple-select-label">Jismoniy shaxs</InputLabel>
+                            <InputLabel id="demo-simple-select-label">{content[lang].form_select_jis}</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 defaultValue={'mijoz'}
-                                label="Jismoniy shaxs"
+                                label={content[lang].form_select_jis}
                                 {...register('user_type')}
                             >
                                 <MenuItem value={'mijoz'}>Mijoz</MenuItem>
@@ -117,11 +122,11 @@ function Form() {
                         </FormControl>
                         {/* User Region Input */}
                         <FormControl sx={{ mt: 2, width: "240px" }}>
-                            <InputLabel id="viloyat">Viloyat</InputLabel>
+                            <InputLabel id="viloyat"> {content[lang].form_select_vil} </InputLabel>
                             <Select
                                 labelId="viloyat"
                                 id="viloyat"
-                                label="Viloyat"
+                                label={content[lang].form_select_vil}
                                 {...register('region_id')}
                             >
                                 {regions.map((region) => (
@@ -140,7 +145,7 @@ function Form() {
                         <TextField
                             className="form__input form__input-name"
                             id="outlined-basic"
-                            label="Ism*"
+                            label= {content[lang].from_select_nam}
                             variant="outlined"
                             sx={{ mt: 2, width: "240px" }}
                             {...register('name', { required: 'Ism Kiriting' })}
@@ -151,7 +156,7 @@ function Form() {
                         <TextField
                             className="form__input form__input-lastname"
                             id="outlined-basic"
-                            label="Familiya"
+                            label={content[lang].form_select_las}
                             variant="outlined"
                             sx={{ mt: 2, ml: 2.5, mb: 2, width: "240px" }}
                             {...register('lastname')}

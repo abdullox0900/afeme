@@ -21,7 +21,7 @@ function Footer() {
         width: "200px",
     }
 
-    const { lang, setLang } = useContext(Context)
+    const { lang, setLang } = useContext(Context);
 
     return (
         <>

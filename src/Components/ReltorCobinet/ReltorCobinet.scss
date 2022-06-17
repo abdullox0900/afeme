@@ -48,4 +48,178 @@
         font-size: 32px;
         line-height: 38px;
     }
+
+    .reltorcob__reytin {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        // width: 100%;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .reltorcob__reyting-title {
+        margin: 0;
+        margin-bottom: 15px;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+    }
+
+    .reltorcob__work-box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 25px 20px 10px 20px;
+        margin-bottom: 25px;
+        width: 270px;
+        height: 50px;
+        background: #EAF5FF;
+        border-radius: 5px;
+    }
+
+    .reltorcob__work-title {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+        margin-bottom: 15px;
+    }
+
+    .reltorcob__work-taj {
+        position: relative;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 16px;
+    }
+
+    .reltorcob__work-taj::before {
+        position: absolute;
+        top: -15px;
+        content: "Ish tajribasi";
+        font-weight: 500;
+        font-size: 10px;
+        line-height: 12px;
+        color: #757C8F;
+    }
+
+    .reltorcob__work-afeme {
+        position: relative;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 16px;
+    }
+
+    .reltorcob__work-afeme::before {
+        position: absolute;
+        top: -15px;
+        content: "Afemeda";
+        font-weight: 500;
+        font-size: 10px;
+        line-height: 12px;
+        color: #757C8F;
+    }
+
+    .reltorcob__wrap {
+        width: 900px;
+    }
+
+    .reltorcob__idesc-box {
+        margin-bottom: 25px;
+    }
+
+    .reltorcob__idesc-title {
+        margin-bottom: 15px;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+    }
+
+    .reltorcob__idescrip {
+        margin: 0;
+        max-width: 500px;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
+        color: #AAAAAA;
+    }
+
+    .reltorcob__location-title {
+        margin-bottom: 15px;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+    }
+
+    .reltorcob__location-region {
+        position: relative;
+        margin-bottom: 25px;
+        padding-left: 23px;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 16px;
+        color: #AAAAAA;
+    }
+
+    .reltorcob__location-region::before {
+        position: absolute;
+        top: -2px;
+        left: 0px;
+        content: "";
+        width: 20px;
+        height: 20px;
+        background-image: url("../../Assets/Img/Icon/locationrel.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
+    .reltorcob__contact-title {
+        margin-bottom: 15px;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+    }
+
+    .reltorcob__cantact-tel {
+        display: inline-block;
+        position: relative;
+        margin-right: 30px;
+        padding-left: 27px;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
+        color: #000000;
+    }
+
+    .reltorcob__cantact-tel::before {
+        position: absolute;
+        top: -3px;
+        left: 0px;
+        content: "";
+        width: 22px;
+        height: 22px;
+        background-image: url("../../Assets/Img/Icon/callicon.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
+    .reltorcob__cantact-email {
+        display: inline-block;
+        position: relative;
+        padding-left: 27px;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
+        color: #000000;
+    }
+
+    .reltorcob__cantact-email::before {
+        position: absolute;
+        left: 0px;
+        content: "";
+        width: 22px;
+        height: 22px;
+        background-image: url("../../Assets/Img/Icon/smsicon.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
 }
