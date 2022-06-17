@@ -63,7 +63,9 @@ function AdvertPage() {
   headers.append('Authorization', `Bearer ${token}`)
   var data = new FormData();
   data.append('htype_id', htype_id);
+  console.log(htype_id);
   data.append('sale_id', sale_id);
+  console.log(sale_id);
   data.append('longitude', longitude);
   data.append('latitude', latitude);
   data.append('price_som', price_som);
@@ -76,7 +78,7 @@ function AdvertPage() {
   data.append('material_id', material_id);
   data.append('region_id', region_id);
   data.append('city_id', city_id);
-  data.append('street', street); 
+  data.append('street', street);
   data.append('house', house);
   data.append('floor', floor);
   data.append('flat', flat);
@@ -84,7 +86,7 @@ function AdvertPage() {
   data.append('total_area_type', total_area_type)
   data.append('living_area', living_area)
   data.append('kitchen_area', kitchen_area)
-  data.append('images', images);
+  data.append('images',images);
   data.append('videos', videos);
   var requestOptions = {
     method: 'POST',

@@ -38,7 +38,7 @@ function Repair({ repair_id, setRepair }) {
                             color: repair_id === type.id ? 'white' : ''
                         }}
                     >
-                        {type.name}
+                        {type.name_uz}
                     </button>
                 ))}
             </div>

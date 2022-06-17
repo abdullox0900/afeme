@@ -43,7 +43,7 @@ function SaleType({ sale_id, setsType }) {
               stroke: sale_id === type.id ? 'white' : ''
             }} />
           <p>
-            {type.name}
+            {type.name_uz}
           </p>
         </button>
       ))}
