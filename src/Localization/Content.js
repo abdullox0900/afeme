@@ -34,7 +34,7 @@ const content = {
 
         // Bilmadim bu nimaligni lekin
         we: "Biz haqimizda",
-        why_afeme_title: "Nima uchun Afeme?",
+        why_afeme_title: "Nima uchun Afeme ?",
         why_afeme_bot: "AFEME BOTI VA KANALI",
         why_afeme_botdesc: "Telegram bot va kanalimizni ishlatib koʻring",
 
@@ -47,23 +47,23 @@ const content = {
         // Form Page
         form_select_jis: "Jismoniy shaxs",
         form_select_vil: "Viloyat",
-        from_select_nam: "Ims",
+        from_select_nam: "Ism",
         form_select_las: "Familiya",
         form_select_ema: "Email",
-        form_select_pas: "Pasport",
+        form_select_pas: "Passport",
         form_select_tel: "Telefon raqam",
-        form_myaccount: "Mening akkauntim bor",
+        form_myaccount: "Mening hisobim bor",
 
         // Reltos Page
         reltor_title: "Rieltorlar katalogi",
         reltor_lenght: "ta rieltor topildi",
-        reltor_sort: "Sartirovka kilish",
+        reltor_sort: "Filterlash",
 
     },
     en: {
         // Header
         add: "Add an ad",
-        fromBtn: "Introduction",
+        fromBtn: "Sign in",
         // Nav
         sal: "Sales",
         rent: "Rent",
@@ -76,7 +76,7 @@ const content = {
         recom_title: "Recommended residential complexes",
         populr_title: "Popular Houses",
         new_title: "New Buildings",
-        see_desc: "See them all",
+        see_desc: "See more",
         reltor_aside_title: "Realtors",
         // Footer
         footer_text: "National Platform for Remote Sale",
@@ -85,14 +85,14 @@ const content = {
         social_networks: "We are on social media",
 
         we: "About Us",
-        why_afeme_title: "Why Afeme?",
-        why_afeme_bot: "AFEME BOTH AND CHANNEL",
+        why_afeme_title: "Why Afeme ?",
+        why_afeme_bot: "AFEME TELEGRAM BOT AND CHANNEL",
         why_afeme_botdesc: "Try our Telegram bot and channel",
 
         // Form Modal
         form_modal_title: "Sign in",
         from_modal_inputtel: "Phone number",
-        from_modal_btnsubmit: "Introduction",
+        from_modal_btnsubmit: "Get started",
         from_sign: "Register",
 
         // Form Page
@@ -101,14 +101,14 @@ const content = {
         from_select_nam: "Name",
         form_select_las: "Surname",
         form_select_ema: "Email",
-        form_select_pas: "Possport",
+        form_select_pas: "Passport",
         form_select_tel: "Phone number",
         form_myaccount: "I have an account",
 
         // Reltos Page
-        reltor_title: "Каталог риелторов",
-        reltor_lenght: "нашел риелтора",
-        reltor_sort: "Сортировка",
+        reltor_title: "Directory of Realtors",
+        reltor_lenght: "founded this Realtors",
+        reltor_sort: "Sorting",
     },
     ru: {
         // Header
@@ -156,9 +156,9 @@ const content = {
         form_myaccount: "У меня есть аккаунт",
 
         // Reltos Page
-        reltor_title: "Directory of realtors",
-        reltor_lenght: "found a realtor",
-        reltor_sort: "Sorting",
+        reltor_title: "Каталог риелторов",
+        reltor_lenght: "нашел риелтора",
+        reltor_sort: "Сортировка",
     },
 }
 
