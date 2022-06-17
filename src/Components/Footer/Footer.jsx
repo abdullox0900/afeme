@@ -38,25 +38,24 @@ function Footer() {
                             </NavLink>
                         </section>
                         <section className="footer__holder">
-                            <h3 className="footer__holder-title">Foydalanuvchilarga</h3>
+                            <h3 className="footer__holder-title">{content[lang].users_title}</h3>
                             <ul className="footer__list">
                                 <li className="footer__item">
-                                    <NavLink to={"/SignUp"} className="footer__link">Roʻyxatdan oʻtish</NavLink>
+                                    <NavLink to={"/SignUp"} className="footer__link">{content[lang].from_sign}</NavLink>
                                 </li>
                                 <li className="footer__item">
-                                    <NavLink to={"/advertPage"} className="footer__link">Eʻlon qoʻshish</NavLink>
+                                    <NavLink to={"/advertPage"} className="footer__link">{content[lang].add}</NavLink>
                                 </li>
                                 <li className="footer__item">
-                                    <NavLink to={"/catalogreltor"} className="footer__link">Reltorlar</NavLink>
-
+                                    <NavLink to={"/catalogreltor"} className="footer__link">{content[lang].rel}</NavLink>
                                 </li>
                                 <li className="footer__item">
-                                    <NavLink to={"/Tezkunda"} className="footer__link">Biz haqimizda</NavLink>
+                                    <NavLink to={"/Tezkunda"} className="footer__link">{content[lang].we}</NavLink>
                                 </li>
                             </ul>
                         </section>
                         <section className="footer__holder">
-                            <h3 className="footer__holder-title">Biz bilan aloqa</h3>
+                            <h3 className="footer__holder-title">{content[lang].contact_us}</h3>
                             <ul className="footer__list">
                                 <li className="footer__item">
                                     <a href="tel:+998900431160" className="footer__link footer__link-tel">+998900431160</a>
@@ -70,7 +69,7 @@ function Footer() {
                             </ul>
                         </section>
                         <section className="footer__holder">
-                            <h3 className="footer__holder-title">Biz bilan aloqa</h3>
+                            <h3 className="footer__holder-title">{content[lang].social_networks}</h3>
                             <ul className="footer__list footer__list-three">
                                 <li className="footer__item-th">
                                     <NavLink to={"/"} className="footer__link-th">
@@ -84,7 +83,6 @@ function Footer() {
                                 </li>
                             </ul>
                         </section>
-
                     </section>
                 </Container>
             </footer>

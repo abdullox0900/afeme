@@ -20,7 +20,7 @@ const content = {
         populr_title: "Ommabop Uylar",
         new_title: "Yangi Binolar",
         see_desc: "Barchasini ko’rish",
-        reltor_aside_title: "Rieltorlar",
+        reltor_aside_title: "Reltorlar",
         error_desc: "Ma'lumotlar olishda xatolik yuz berdi",
         // Afeme Iphone Card
         afeme_reclcard_title: "Afeme endi har doim qo'lingizda bo'ladi",

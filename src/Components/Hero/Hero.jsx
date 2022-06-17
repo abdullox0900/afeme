@@ -20,7 +20,7 @@ function Hero() {
     // Localization Functions
     const { lang, setLang } = useContext(Context);
     const images = [HeroImg1, HeroImg2, HeroImg3, HeroImg4, HeroImg5, HeroImg6];
-    const [randImg, setRandImg ] = useState('');
+    const [randImg, setRandImg] = useState('');
     useEffect(() => {
         let randomNumb = Math.floor(Math.random() * images.length);
         setRandImg(images[randomNumb]);
@@ -28,7 +28,7 @@ function Hero() {
 
     return (
         <>
-            <Box className="hero" style={{backgroundImage: `url(${randImg})`}}>
+            <Box className="hero" style={{ backgroundImage: `url(${randImg})` }}>
                 <Container>
                     <Box className="hero__blog">
                         <h2 className="hero__main-title">{content[lang].hero_title}</h2>
