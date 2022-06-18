@@ -42,7 +42,7 @@ function Header() {
     const [langTooltip, setLangTooltip] = useState(false);
 
     const currencyChange = (e) => {
-        setCurrency(e.target.value);    
+        setCurrency(e.target.value);
     };
 
     const handleOpenUserMenu = (event) => { 
@@ -54,7 +54,9 @@ function Header() {
 
     const logOut = () => {
         localStorage.removeItem("Token");
+        setToken(null);
         navigate('/Afeme');
+        // Delete Token and Redirect to main page
     }
 
     const currencyTooltipOpen = () => {
@@ -111,6 +113,16 @@ function Header() {
 
     const userTools = (
         <>
+            <NavLink to={"/advertPage"}>
+                <Button
+                    className="btn header__button add__advert"
+                    variant="contained"
+                    sx={{ py: 1, px: 1.5 }}
+                >
+                    <img src={plusIcon} alt="" />
+                    {content[lang].add}
+                </Button>
+            </NavLink>
             <Button
                 className="btn header__button login__btn modal-dialog modal-dialog-scrollable"
                 variant="text"
@@ -122,16 +134,6 @@ function Header() {
             >
                 {content[lang].fromBtn}
             </Button>
-            <NavLink to={"/advertPage"}>
-                <Button
-                    className="btn header__button add__advert"
-                    variant="contained"
-                    sx={{ py: 1, px: 1.5 }}
-                >
-                    <img src={plusIcon} alt="" />
-                    {content[lang].add}
-                </Button>
-            </NavLink>
         </>
     );
 
