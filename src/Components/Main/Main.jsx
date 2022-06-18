@@ -15,7 +15,10 @@ import content from '../../Localization/Content';
 
 
 // Import => Components
-import Container from "../Container/Container"
+import Container from "../Container/Container";
+import NewBuildingsCard from "../NewBuildingsCard/NewBuildingsCard";
+
+// Import => Components Img
 import CardImg1 from "../../Assets/Img/card_img1.jpg";
 import CardImg2 from "../../Assets/Img/card_img2.jpg";
 import CardImg3 from "../../Assets/Img/card_img3.jpg";
@@ -102,11 +105,17 @@ function Main() {
                         </section>
                     </div>
                     <section className="newBuildings">
+
                         <div className="newBuildings__content">
                             <Typography variant="h3" className="section__title">Yangi Binolar</Typography>
                             <div className="scards">
+                                {/* <SCard data={data} cardData={cardData} />
                                 <SCard data={data} cardData={cardData} />
                                 <SCard data={data} cardData={cardData} />
+                                <SCard data={data} cardData={cardData} />
+                                <SCard data={data} cardData={cardData} />
+                                <SCard data={data} cardData={cardData} /> */}
+                                <NewBuildingsCard />
                             </div>
                         </div>
                         <div className="panel">

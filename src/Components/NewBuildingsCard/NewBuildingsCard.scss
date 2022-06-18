@@ -1,0 +1,53 @@
+.new-buildin-wrap-card {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -20px;
+}
+
+.new-buildin-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 0px;
+    margin: 20px;
+    width: 350px;
+    height: 220px;
+    border: 1px solid #e4e4e4;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.5s ease-in;
+    .new-buildin-card__img {
+        width: 350px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 5px 5px 0px 0px;
+    }
+
+    .new-buildin-card__body {
+        align-self: start;
+        padding: 20px;
+    }
+
+    .new-buildin-card__title {
+        position: relative;
+        margin: 0;
+        margin-bottom: 15px;
+        padding-left: 20px;
+    }
+
+    .new-buildin-card__title::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -10px;
+        width: 24px;
+        height: 24px;
+        background-image: url("../../Assets/Img//Icon/buildings.svg");
+        background-repeat: no-repeat;
+    }
+}
+
+.new-buildin-card:hover {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
