@@ -28,10 +28,10 @@ function Adverts() {
     let htype = searchParams.get("htype");
 
     const [data, setData] = useState(null)
-    const URL = 'https://ali98.uz/api/filter';
+    const URL = 'https://ali98.uz/api/getpost';
     useEffect(() => {
         function getData() {
-            const result = axios.post(URL, {htype_id: htype})
+            const result = axios.get(URL, {htype_id: htype})
             .then((response) => {
                 let dataStatus = response.data
                 if (dataStatus.status == true || dataStatus.status == 200) {

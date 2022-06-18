@@ -80,7 +80,7 @@ function Main() {
                             <Typography variant="h3" className="section__title">{content[lang].recom_title}</Typography>
                             <div className="cards">
                                 {data != null ? '' : <Cards dataError={dataError} cardData={cardData} />}
-                                {data?.slice(0, 3)?.map((row) => {
+                                {data?.slice(0, 4)?.map((row) => {
                                     return (
                                         <Cards data={row} dataError={dataError} cardData={cardData} />
                                         )

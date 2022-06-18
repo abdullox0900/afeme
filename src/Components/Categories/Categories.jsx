@@ -42,9 +42,7 @@ function Categories() {
     useEffect(() => {
         axios.get('https://ali98.uz/api/htype').then(res => {
             const categs = res.data.data;
-            setCategorieData(categs)
-            
-            console.log(categs.name_uz);
+            setCategorieData(categs)            
         })
     }, [])
 
