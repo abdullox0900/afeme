@@ -56,6 +56,12 @@
     min-width: 200px;
     width: 100%;
     padding-bottom: 3px;
+    &Controls{
+       border: 1px solid #ff000080 !important;
+    }
+    &Edit{
+        border-color: #0468ffaf !important;
+    }
     &__header,
     &__footer {
         display: flex;
