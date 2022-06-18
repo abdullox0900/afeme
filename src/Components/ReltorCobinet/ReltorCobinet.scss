@@ -2,9 +2,9 @@
     position: relative;
 
     .reltorcob__btn-all {
-        position: absolute;
-        left: -138%;
-        top: -50px;
+        position: relative;
+        // left: 0%;
+        top: 30px;
         font-weight: 400;
         font-size: 16px;
         line-height: 18px;
@@ -29,9 +29,14 @@
 
     .reltorcob__box {
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        justify-content: space-between;
+        align-items: flex-start;
         margin-top: 80px;
+    }
+
+    .reltorcob__wrapper {
+        display: flex;
+        align-items: center;
     }
 
     .reltorcob__avatar {
@@ -49,20 +54,26 @@
         line-height: 38px;
     }
 
+    .reltorcob__reyting-box {
+        display: flex;
+        align-items: center;
+    }
+
     .reltorcob__reytin {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
         // width: 100%;
+        margin-left: 40px;
         justify-content: center;
         margin-bottom: 20px;
     }
 
     .reltorcob__reyting-title {
         margin: 0;
-        margin-bottom: 15px;
-        font-weight: 500;
-        font-size: 16px;
+        margin-right: 10px;
+        font-weight: 600;
+        font-size: 18px;
         line-height: 19px;
     }
 
@@ -120,7 +131,7 @@
     }
 
     .reltorcob__wrap {
-        width: 900px;
+        width: 600px;
     }
 
     .reltorcob__idesc-box {
