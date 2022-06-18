@@ -1,9 +1,8 @@
 // Import React
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext } from "react";
+import { NavLink as Link } from "react-router-dom";
 
 // Import useContext => Localization
-import { useContext } from 'react';
 import { Context } from '../../Context/LangContext';
 import content from '../../Localization/Content';
 
@@ -44,17 +43,17 @@ function Nav({ elHeader }) {
                             <a href="#" className="nav__link">{content[lang].rent}</a>
                         </li>
                         <li className="nav__item">
-                            <NavLink to={"/catalogreltor"} className="nav__link">{content[lang].rel}</NavLink>
+                            <Link to={"/catalogreltor"} className="nav__link">{content[lang].rel}</Link>
                         </li>
                         <li className="nav__item">
                             <a href="#" className="nav__link" onClick={handleClick}>{content[lang].mor}</a>
                         </li>
                         <Menu id="nav__more-menu" MenuListProps={{ 'aria-labelledby': 'nav__bottom-more', }} anchorEl={anchorEl} open={open} onClose={handleClose}>
-                            <MenuItem onClick={handleClose} sx={{ py: 0.5 }}><a href="#">Something 1</a></MenuItem>
+                            <MenuItem onClick={handleClose} sx={{ py: 0.5 }}><Link className="nav__more__items" to={"#"}>Something 1</Link></MenuItem>
                             <Divider sx={{ my: 0.1 }} />
-                            <MenuItem onClick={handleClose} sx={{ py: 0.5 }}><a href="#">Something 2</a></MenuItem>
+                            <MenuItem onClick={handleClose} sx={{ py: 0.5 }}><Link className="nav__more__items" to={"#"}>Something 2</Link></MenuItem>
                             <Divider sx={{ my: 0.1 }} />
-                            <MenuItem onClick={handleClose} sx={{ py: 0.5 }}><a href="#">Something 3</a></MenuItem>
+                            <MenuItem onClick={handleClose} sx={{ py: 0.5 }}><Link className="nav__more__items" to={"#"}>Something 3</Link></MenuItem>
                         </Menu>
                     </ul>
                 </nav>
@@ -69,15 +68,15 @@ function Nav({ elHeader }) {
 
                         <ul className="navbar-menu__list">
                             <li className="navbar-menu__item">
-                                <a href="#" className="navbar-menu__link">Bosh sahifaga o'tish</a>
+                                <a href="#" className="navbar-menu__link">{content[lang].sal}</a>
                             </li>
 
                             <li className="navbar-menu__item">
-                                <a href="#" className="navbar-menu__link">E'lon qo'shish</a>
+                                <a href="#" className="navbar-menu__link">{content[lang].rent}</a>
                             </li>
 
                             <li className="navbar-menu__item">
-                                <a href="#" className="navbar-menu__link">Tanlanganlar</a>
+                                <a href="#" className="navbar-menu__link">{content[lang].rel}</a>
                             </li>
                         </ul>
 

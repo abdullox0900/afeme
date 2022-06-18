@@ -1,58 +1,80 @@
 // Import => React
 import React, { useState, useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 // Import useContext => Localization
 import { Context } from "../../Context/LangContext";
 import { Context as CurrencyContext } from "../../Context/CurrencyContext";
 
 // Import => Mui
-import { IconButton, Tooltip, Button, Grow, Badge, MenuItem, Box, Menu, Avatar, Typography } from "@mui/material";
-import Select from "@mui/material/Select";
+import { Select, IconButton, Tooltip, Button, Grow, Badge, MenuItem, Box, Menu, Avatar, Typography } from "@mui/material";
 
-// Import => Components
+// Import images
 import flagUz from "../../Assets/Img/Icon/uz.svg";
 import flagRu from "../../Assets/Img/Icon/ru.svg";
 import flagEn from "../../Assets/Img/Icon/en.svg";
 import logo from "../../Assets/Img/logo.svg";
-import notificationIcon from "../../Assets/Img/notification.svg";
 import loveIcon from "../../Assets/Img/love.svg";
 import locationIcon from "../../Assets/Img/location.svg";
 import plusIcon from "../../Assets/Img/plus.svg";
+
+// Import => Components
 import Container from "../Container/Container";
 import Modal from "../ModalAuthorization/Modal";
 import "../ModalAuthorization/Modal.scss";
 import "../Header/Header.scss";
 import Nav from "../Nav/Nav";
 import content from "../../Localization/Content";
-
 import { getCookie, setCookie } from "../../Utils/cookies";
+
 
 function Header() {
     const elModal = React.useRef();
     const elHeader = React.useRef();
 
+    const navigate = useNavigate();
     const [token, setToken] = useState(localStorage.getItem("Token") || null);
     const { lang, setLang } = useContext(Context);
     const { currency, setCurrency } = useContext(CurrencyContext);
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
+    const [anchorElNav, setAnchorElNav] = useState(null);
+    const [anchorElUser, setAnchorElUser] = useState(null);
+    const [currencyTooltip, setCurrencyTooltip] = useState(false);
+    const [langTooltip, setLangTooltip] = useState(false);
 
     const currencyChange = (e) => {
-        setCurrency(e.target.value);
+        setCurrency(e.target.value);    
     };
 
-    const handleOpenUserMenu = (event) => {
+    const handleOpenUserMenu = (event) => { 
         setAnchorElUser(event.currentTarget);
     };
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+
+    const logOut = () => {
+        localStorage.removeItem("Token");
+        navigate('/Afeme');
+    }
+
+    const currencyTooltipOpen = () => {
+        setCurrencyTooltip(true);
+    }
+    const currencyTooltipClose = () => {
+        setCurrencyTooltip(false);
+    }
+    const langTooltipOpen = () => {
+        setLangTooltip(true);
+    }
+    const langTooltipClose = () => {
+        setLangTooltip(false);
+    }
+
     const profile = (
-        <Box sx={{ flexGrow: 0, ml: 2 }}>
+        <Box sx={{ flexGrow: 0, ml: 0.5 }}>
             <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt="Profile picture" src={flagEn} sx={{width: '36px', height: '36px'}} />
+                    <Avatar alt="Profile picture" src="" sx={{width: '36px', height: '36px'}} />
                 </IconButton>
             </Tooltip>
             <Menu
@@ -72,37 +94,45 @@ function Header() {
                 onClose={handleCloseUserMenu}
             >
                 <MenuItem onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center"><a href="#">My Profile</a></Typography>
+                    <Typography textAlign="center" className="profileTools"><NavLink to={"/settings"}>My Profile</NavLink></Typography>
                 </MenuItem>
                 <MenuItem onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center"><a href="#">My Adverts</a></Typography>
+                    <Typography textAlign="center" className="profileTools"><NavLink to={"/posts"}>My Adverts</NavLink></Typography>
                 </MenuItem>
                 <MenuItem onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center"><a href="#">Main menu</a></Typography>
+                    <Typography textAlign="center" className="profileTools"><NavLink to={"/Afeme"}>Main menu</NavLink></Typography>
                 </MenuItem>
                 <MenuItem onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center"><a href="#">Log out</a></Typography>
+                    <Typography textAlign="center" className="profileTools" onClick={logOut}>Log out</Typography>
                 </MenuItem>
             </Menu>
         </Box>
     );
 
-    const loginBtn = (
-        <Button
-            className="btn header__button login__btn modal-dialog modal-dialog-scrollable"
-            variant="text"
-            sx={{ ml: 2, py: 1.5, px: 2.5 }}
-            onClick={() => {
-                elModal.current.classList.add(
-                    "modal--open"
-                );
-                elModal.current.classList.add(
-                    "modal--style"
-                );
-            }}
-        >
-            {content[lang].fromBtn}
-        </Button>
+    const userTools = (
+        <>
+            <Button
+                className="btn header__button login__btn modal-dialog modal-dialog-scrollable"
+                variant="text"
+                sx={{ ml: 2, py: 1.5, px: 2.5 }}
+                onClick={() => {
+                    elModal.current.classList.add("modal--open");
+                    elModal.current.classList.add("modal--style");
+                }}
+            >
+                {content[lang].fromBtn}
+            </Button>
+            <NavLink to={"/advertPage"}>
+                <Button
+                    className="btn header__button add__advert"
+                    variant="contained"
+                    sx={{ py: 1, px: 1.5 }}
+                >
+                    <img src={plusIcon} alt="" />
+                    {content[lang].add}
+                </Button>
+            </NavLink>
+        </>
     );
 
     return (
@@ -124,7 +154,7 @@ function Header() {
 
                             <Tooltip
                                 className="icon__btn"
-                                title="Joylashuvingiz"
+                                title={content[lang].placeTooltip}
                                 arrow
                                 TransitionComponent={Grow}
                             >
@@ -145,50 +175,60 @@ function Header() {
                         <Nav elHeader={elHeader} />
                         <div className="header__items">
                             <div className="header__icons-nav">
-                                <IconButton
-                                    color="primary"
-                                    className="lang__changer"
+                                <Tooltip
+                                    title={content[lang].langTooltip}
+                                    open={langTooltip}
+                                    arrow
+                                    TransitionComponent={Grow}
                                 >
-                                    <Select
-                                        className="header__select header__select-lang"
-                                        value="lang"
-                                        defaultValue={lang}
-                                        onChange={(evt) =>
-                                            setLang(evt.target.value)
-                                        }
+                                    <IconButton
+                                        color="primary"
+                                        className="lang__changer"
+                                        sx={{mr: '5px'}}
+                                        onMouseEnter={langTooltipOpen}
+                                        onMouseLeave={langTooltipClose}
                                     >
-                                        <MenuItem value="uz">
-                                            <img
-                                                className="header__select-img"
-                                                src={flagUz}
-                                            />
-                                            O'zbekcha
-                                        </MenuItem>
-                                        <MenuItem value="en">
-                                            <img
-                                                className="header__select-img"
-                                                src={flagEn}
-                                            />
-                                            English
-                                        </MenuItem>
-                                        <MenuItem value="ru">
-                                            <img
-                                                className="header__select-img"
-                                                src={flagRu}
-                                            />
-                                            Русский
-                                        </MenuItem>
-                                    </Select>
-                                </IconButton>
+                                        <Select
+                                            className="header__select header__select-lang"
+                                            value="lang"
+                                            defaultValue={lang}
+                                            onChange={(evt) =>
+                                                setLang(evt.target.value)
+                                            }
+                                            onOpen={langTooltipClose}
+                                        >
+                                            <MenuItem value="uz">
+                                                <img
+                                                    className="header__select-img"
+                                                    src={flagUz}
+                                                />
+                                                O'zbekcha
+                                            </MenuItem>
+                                            <MenuItem value="en">
+                                                <img
+                                                    className="header__select-img"
+                                                    src={flagEn}
+                                                />
+                                                English
+                                            </MenuItem>
+                                            <MenuItem value="ru">
+                                                <img
+                                                    className="header__select-img"
+                                                    src={flagRu}
+                                                />
+                                                Русский
+                                            </MenuItem>
+                                        </Select>
+                                    </IconButton>
+                                </Tooltip>
 
                                 <Tooltip
-                                    className="icon__btn"
-                                    title="Your Loves"
+                                    title={content[lang].loveTooltip}
                                     arrow
                                     TransitionComponent={Grow}
                                 >
                                     <NavLink to={"/liked"}>
-                                        <IconButton color="primary">
+                                        <IconButton color="primary" sx={{mr: '5px'}}>
                                             <Badge
                                                 badgeContent={2}
                                                 color="error"
@@ -202,38 +242,39 @@ function Header() {
                                         </IconButton>
                                     </NavLink>
                                 </Tooltip>
-                                <IconButton
-                                    color="primary"
-                                    className="currency__changer"
+                                <Tooltip
+                                    title={content[lang].currencyTooltip}
+                                    open={currencyTooltip}
+                                    arrow
+                                    TransitionComponent={Grow}
                                 >
-                                    <Select
-                                        className="header__select select__currency"
-                                        value="currency"
-                                        defaultValue={currency}
-                                        onChange={currencyChange}
+                                    <IconButton
+                                        color="primary"
+                                        className="currency__changer"
+                                        sx={{ml: '4px'}}
+                                        onMouseEnter={currencyTooltipOpen}
+                                        onMouseLeave={currencyTooltipClose}
                                     >
-                                        <MenuItem value="sum">
-                                            So'm (uzs)
-                                        </MenuItem>
-                                        <MenuItem value="usd">
-                                            Dollar (usd)
-                                        </MenuItem>
-                                    </Select>
-                                </IconButton>
+                                        <Select
+                                            className="header__select select__currency"
+                                            value="currency"
+                                            defaultValue={currency}
+                                            onChange={currencyChange}
+                                            onOpen={currencyTooltipClose}
+                                        >
+                                            <MenuItem value="sum">
+                                                So'm (uzs)
+                                            </MenuItem>
+                                            <MenuItem value="usd">
+                                                Dollar (usd)
+                                            </MenuItem>
+                                        </Select>
+                                    </IconButton>
+                                </Tooltip>
                             </div>
                             <div className="header__buttons" sx={{ ml: 3 }}>
-                                <NavLink to={"/advertPage"}>
-                                    <Button
-                                        className="btn header__button add__advert"
-                                        variant="contained"
-                                        sx={{ py: 1, px: 1.5 }}
-                                    >
-                                        <img src={plusIcon} alt="" />
-                                        {content[lang].add}
-                                    </Button>
-                                </NavLink>
                                 {/* If User have Account show profile else Show Login */}
-                                {token ? profile : loginBtn}
+                                {token ? profile : userTools}
                             </div>
                         </div>
                         <button
