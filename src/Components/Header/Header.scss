@@ -40,6 +40,8 @@
 
     &__buttons {
         margin-left: 30px;
+        display: flex;
+        align-items: center;
     }
 
     &__icon {
