@@ -39,7 +39,7 @@
     }
 
     &__buttons {
-        margin-left: 30px;
+        margin-left: 20px;
         display: flex;
         align-items: center;
     }
@@ -61,52 +61,57 @@
     &__menu-btn {
         display: none;
     }
+
+    &__select {
+        width: 120%;
+        height: 22px;
+        padding: 0px !important;
+        border: none !important;
+        border-radius: 50% !important;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: contain;
+        cursor: default;
+        padding: 0;
+        & .MuiSelect-select{
+            transform: translateX(-2px) scaleX(1.35);
+            width: 43px !important;
+            height: 43px !important;
+        }
+        & div{
+            padding: 0px;
+        }
+    }
+    &__select-lang {
+        padding: 8px;
+        width: 27px;
+        height: 27px;
+        background-image: url("../../Assets/Img/Icon/global.svg");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    .select__currency{
+        width: 24px;
+        height: 24px;
+        background-image: url("../../Assets/Img/Icon/convert-icon.svg");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    
+    &__select fieldset {
+        border: none;
+    }
+    &__select svg {
+        display: none;
+    }
+    .MuiButtonBase-root .MuiIconButton-root {
+        padding: 0px !important;
+    }
 };
 
-.header__select {
-    width: 120%;
-    height: 22px;
-    padding: 0px !important;
-    border: none !important;
-    border-radius: 50% !important;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: contain;
-    cursor: default;
-    padding: 0;
-    & div{
-        padding: 0px;
-    }
+.profileTools a{
+    color: #212121;
 }
-.header__select-lang {
-    padding: 8px;
-    width: 27px;
-    height: 27px;
-    background-image: url("../../Assets/Img/Icon/global.svg");
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-.select__currency{
-    width: 24px;
-    height: 24px;
-    background-image: url("../../Assets/Img/Icon/convert-icon.svg");
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-
-.header__select fieldset {
-    border: none;
-}
-
-.header__select svg {
-    display: none;
-}
-
-.MuiButtonBase-root .MuiIconButton-root {
-    padding: 0px !important;
-}
-
 .header__select-img {
     margin-right: 10px !important;
 }

@@ -13,13 +13,12 @@ import searchIcon from "../../Assets/Img/search-icon.svg";
 
 function Search() {
     const navigate = useNavigate();
-    const URL = "https://ali98.uz/api/filter";
-    const [term, setTerm] = useState('');
+    const [term, setTerm] = useState(null);
     const [regions, setRegions] = useState([]);
-    const [region, setRegion] = useState("");
-    const [priceFrom, setPriceFrom] = useState('');
-    const [priceTo, setPriceTo] = useState("");
-    const [room, setRoom] = useState("");
+    const [region, setRegion] = useState(null);
+    const [priceFrom, setPriceFrom] = useState(null);
+    const [priceTo, setPriceTo] = useState(null);
+    const [room, setRoom] = useState(null);
     const [fromMax, setFromMax] = useState("");
     const [toMin, setToMin] = useState("");
 

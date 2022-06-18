@@ -3,8 +3,7 @@ import React from "react";
 import { useEffect, useState, useContext } from "react";
 
 // Import => React-Router-Dom
-import { NavLink } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
 // Import => Axios
 import axios from "axios";

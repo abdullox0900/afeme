@@ -4,6 +4,10 @@ const content = {
         // Header
         add: "E'lon Qo'shish",
         fromBtn: "Kirish",
+        placeTooltip: "Joylashuvingiz",
+        langTooltip: "Tilni almashtirish",
+        loveTooltip: "Sizning Yoqtirganlaringiz",
+        currencyTooltip: "Valyutani almashtirish",
 
         // Navbar
         sal: "Sotuv",
@@ -64,6 +68,10 @@ const content = {
         // Header
         add: "Add an ad",
         fromBtn: "Sign in",
+        placeTooltip: "Your location",
+        langTooltip: "Change language",
+        loveTooltip: "Your likes",
+        currencyTooltip: "Change currency",
         // Nav
         sal: "Sales",
         rent: "Rent",
@@ -114,6 +122,10 @@ const content = {
         // Header
         add: "Добавить объявление",
         fromBtn: "Войти",
+        placeTooltip: "Ваше местоположение",
+        langTooltip: "Изменить язык",
+        loveTooltip: "твои лайки",
+        currencyTooltip: "обмен валюты",
         // Nav
         sal: "Продажа",
         rent: "Аренда",
