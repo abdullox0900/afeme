@@ -1,5 +1,5 @@
 // Import => React and React Hooks React-Router-Dom
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 
 // Import => Axios
@@ -9,8 +9,8 @@ import axios from "axios";
 import { Box, Typography } from "@mui/material";
 
 // Import useContext => Localization
-import { useContext } from 'react';
-import { Context } from '../../Context/LangContext';
+import { Context as  LangContext} from '../../Context/LangContext';
+import { InternetContext } from '../../Context/InternetContext';
 import content from '../../Localization/Content';
 
 
@@ -33,11 +33,12 @@ import { Cards, SCard } from "../Card/Card";
 
 function Main() {
 
-    // Lang Context
-    const { lang, setLang } = useContext(Context)
+    const { lang, setLang } = useContext(LangContext);
+    const { netStatus, setNetStatus } = useContext(InternetContext);
+    console.log(netStatus);
 
-    const [data, setData] = useState(null)
-    const [dataError, setDataError] = useState(false)
+    const [data, setData] = useState(null);
+    const [dataError, setDataError] = useState(false);
     const URL = 'https://ali98.uz/api/getpost';
     useEffect(() => {
         function getData() {

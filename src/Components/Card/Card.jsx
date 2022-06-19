@@ -14,7 +14,7 @@ import messageIcon from "../../Assets/Img/message.svg"
 import DeleteIcon from "../../Lib/Svg/delete";
 import EditIcon from "../../Lib/Svg/edit";
 
-import { Context as CurrencyContext } from '../../Context/CurrencyContext';
+import { CurrencyContext } from '../../Context/CurrencyContext';
 import { Context as LangContext } from '../../Context/LangContext';
 import "./Card.scss"
 

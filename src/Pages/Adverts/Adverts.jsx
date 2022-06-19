@@ -65,7 +65,6 @@ function Adverts() {
             <div className="adverts">
                 <Container>
                     {data?.map((row) => {
-                        let count = 0;
                         return (
                             <FullCard cardData={cardData} data={row} />
                         )
