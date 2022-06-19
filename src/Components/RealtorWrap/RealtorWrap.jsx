@@ -22,19 +22,22 @@ function RealtorWrap() {
 
     const { lang, setLang } = useContext(Context);
 
-
     useEffect(() => {
         axios.get('https://ali98.uz/api/reltors').then(res => {
             const persons = res.data.data;
             setReltorsData(persons)
+            // setLoading(true)
         })
     }, [])
 
     return (
         <>
             <Container>
+
                 <div className="realtor-wrap">
+
                     <h2 className="realtor-wrap__title">{content[lang].reltor_title}</h2>
+
                     <div className="realtor-wrap__box">
                         <p className="realtor-wrap__dos"><span className="realtor-wrap__number">{reltorData.length}</span> {content[lang].reltor_lenght}</p>
                         <button className="realtor-wrap__btn">{content[lang].reltor_sort}</button>
