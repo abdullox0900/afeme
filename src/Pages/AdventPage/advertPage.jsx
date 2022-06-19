@@ -29,6 +29,7 @@ import axios from 'axios';
 
 // Import => Mui
 import { Button } from '@mui/material';
+import { useEffect } from 'react';
 
 function AdvertPage() {
   const [htype_id, sethType] = useState('')//HouseType State
@@ -53,8 +54,7 @@ function AdvertPage() {
   const [living_area, setLivingArea] = useState('')
   const [kitchen_area, setKitchenArea] = useState('')
   const [total_area_type, setTotalAreaType] = useState('')
-
-  const [images, setImage] = useState([])//ImageFile State
+  const [images, setImages] = useState([])//ImageFile State  
   const [videos, setVideo] = useState([])//VideoFile State
 
   let token = localStorage.getItem('Token')
@@ -63,9 +63,7 @@ function AdvertPage() {
   headers.append('Authorization', `Bearer ${token}`)
   var data = new FormData();
   data.append('htype_id', htype_id);
-  console.log(htype_id);
   data.append('sale_id', sale_id);
-  console.log(sale_id);
   data.append('longitude', longitude);
   data.append('latitude', latitude);
   data.append('price_som', price_som);
@@ -142,7 +140,7 @@ function AdvertPage() {
               documents={documents} setDocs={setDocs} />
             <div className={style.DnD}>
               <ImageFile
-                image={images} setImage={setImage} />
+                images={images} setImages={setImages} />
               <VideoFile
                 video={videos} setVideo={setVideo} />
             </div>

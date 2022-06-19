@@ -1,5 +1,5 @@
 // Import => React and React Hooks
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useForm } from 'react-hook-form'
 
@@ -29,29 +29,33 @@ import NumberControl from "../Modals/NumberControl/NumberControl";
 
 
 function Form() {
-    const { register, handleSubmit, formState: { errors }, reset } = useForm()
+    const { register, handleSubmit, formState: { errors }, reset, watch } = useForm()
     //Modal States
     const [phone, setPhone] = useState('')
     const [err, setErr] = useState(false);
     const [control, setControl] = useState(false);
     const handleControl = () => setControl(true);
     const handleErr = () => setErr(true);
-
     //Recieve Regions State
-    const [regions, setRegions] = useState([])
-
+    const [regions, setRegions] = useState([]);
+    const [experience, setExperience] = useState('');
+    const [bio, setbio] = useState('');
 
     //Send Date's and set Token in localStorage, Reset Input Value's
+    
     const onSubmit = (data) => {
         const singup = new FormData();
-        singup.append('name', data.name)
-        singup.append('lastname', data.lastname);
-        singup.append('email', data.email);
-        singup.append('phone', data.phone);
-        singup.append('passport', data.passport);
-        singup.append('user_type', data.user_type);
-        singup.append('region_id', data.region_id);
-        axios.post('http://ali98.uz/api/register', singup)
+        console.log(data);
+        localStorage.setItem('name', data.name)
+        localStorage.setItem('bio', data.bio)
+        localStorage.setItem('experience', data.experience)
+        localStorage.setItem('lastname', data.lastname);
+        localStorage.setItem('email', data.email);
+        localStorage.setItem('phone', data.phone);
+        localStorage.setItem('passport', data.passport);
+        localStorage.setItem('user_type', data.user_type);
+        localStorage.setItem('region_id', data.region_id);
+        axios.post('http://ali98.uz/api/registerSMS', singup)
             .then(function (response) {
                 const Token = response.data.data
                 const Sts = response.data.status
@@ -76,15 +80,33 @@ function Form() {
                 if (res) {
                     let data = res.data.data
                     setRegions(data)
-                } else {
-                    alert('xato')
                 }
             } catch (error) {
-                console.log(error);
+                alert(error);
             }
         }
         regions();
     }, [])
+
+    let {open} = useRef(null);
+    let area = useRef(null);
+    let no = 'rieltor';
+    const W = watch(['user_type']);
+    const {ref, ...rest} = register('experiance')
+    const {...restB} = register('bio')
+    useEffect(() => {
+        function getValue(e) {
+            if (W == no) {
+                open.current.classList.remove('default');
+                area.current.classList.remove('default');
+            } else {
+                open.current.classList.add('default');
+                area.current.classList.add('default');
+            }
+        }
+        getValue();
+    })
+
 
     return (
         <>
@@ -99,7 +121,7 @@ function Form() {
                         data-aos-duration="900" />
                     <h1 className="form-title">Roʻyxatdan oʻtish</h1>
                     {/*UserType Input*/}
-                    <div>
+                    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                         <FormControl sx={{ width: "240px", mt: 2, mr: 2.5 }}>
                             <InputLabel id="demo-simple-select-label">Jismoniy shaxs</InputLabel>
                             <Select
@@ -115,6 +137,7 @@ function Form() {
                                 <MenuItem value={'quruvchi firma'}>Quruvchi Firma</MenuItem>
                             </Select>
                         </FormControl>
+
                         {/* User Region Input */}
                         <FormControl sx={{ mt: 2, width: "240px" }}>
                             <InputLabel id="viloyat">Viloyat</InputLabel>
@@ -142,8 +165,8 @@ function Form() {
                             id="outlined-basic"
                             label="Ism*"
                             variant="outlined"
-                            sx={{ mt: 2, width: "240px" }}
-                            {...register('name', { required: 'Ism Kiriting' })}
+                            sx={{ mt: 2, width: "240px", }}
+                            {...register('name', /* { required: 'Ism Kiriting' } */)}
                             error={!!errors?.name}
                             helperText={errors?.name ? errors.name.message : null}
                         />
@@ -174,6 +197,23 @@ function Form() {
                         error={!!errors?.email}
                         helperText={errors?.email ? errors.email.message : null}
                     />
+                    <input
+                    className="disable default"
+                    placeholder="exp"
+                    {...rest} name='experiance' ref={(e)=>{
+                        ref(e)
+                        open.current = e
+                    }}
+                    />
+                    <input
+                    className="disable textarea default"
+                    placeholder="kjk"
+                    type={'text'}
+                    {...restB} name='bio' ref={(e)=>{
+                        ref(e)
+                        area.current = e
+                    }}
+                    />
                     {/*IDCard 'Passport' Input*/}
                     <TextField
                         className="form__input form__input-passport"
@@ -182,13 +222,13 @@ function Form() {
                         variant="outlined"
                         fullWidth
                         sx={{ mt: 2 }}
-                        {...register('passport', {
+                        {...register('passport', /* {
                             required: 'Passport Seria Kiriting',
                             // pattern: {
                             //     value: /^[A-PR-WYa-pr-wy][1-9]\\d\\s?\\d{4}[1-9]$/i,
                             //     message: 'Passport Notogri'
                             // }
-                        })}
+                        } */)}
                         error={!!errors?.passport}
                         helperText={errors?.passport ? errors.passport.message : null}
                     />
@@ -200,7 +240,7 @@ function Form() {
                         type="number"
                         fullWidth
                         sx={{ mt: 2, }}
-                        {...register('phone', { required: 'Raqam Kiriting' })}
+                        {...register('phone', /* { required: 'Raqam Kiriting' } */)}
                         error={!!errors?.phone}
                         helperText={errors?.phone ? errors.phone.message : null}
                     />

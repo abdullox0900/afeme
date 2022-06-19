@@ -1,5 +1,20 @@
 @import "../../Assets/scss/colors.scss";
-
+.disable{
+    display: block;
+    margin-top: 16px;
+    padding: 15px;
+    font-size: 16px;
+    width: 500px;
+    height: 56px;
+    border-radius:4px;
+    border:1px solid #c4c4c4;
+}
+.default{
+    display: none;
+}
+.textarea{
+    height: 100px;
+}
 .form {
     // position: relative;
     display: flex;

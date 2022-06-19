@@ -34,6 +34,8 @@ function Modal({ elModal }) {
         elModal.current.classList.remove("modal--open");
     }
 
+    
+
     return (
         <div
             className="modal"
