@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { getCookie, setCookie } from "../Utils/cookies";
 
 const DefaultCurrency = "usd";
-const Context = createContext();
+const CurrencyContext = createContext();
 
 function Provider({children}) {
 
@@ -13,8 +13,8 @@ function Provider({children}) {
     }, [currency])
 
     return (
-        <Context.Provider value={{currency, setCurrency}}>{children}</Context.Provider>
+        <CurrencyContext.Provider value={{currency, setCurrency}}>{children}</CurrencyContext.Provider>
     )
 }
 
-export { Context, Provider}
+export { CurrencyContext, Provider}

@@ -11,42 +11,46 @@ import Liked from "../../Components/Liked/Liked";
 import Personal from "../../Components/Personal/Personal";
 import Posts from "../../Components/Posts/Posts";
 import Settings from "../../Components/Settings/Settings";
-import CardImg2 from '../../Assets/Img/card_img2.jpg';
-import { Cards } from '../../Components/Card/Card';
+import CardImg2 from "../../Assets/Img/card_img2.jpg";
+import { Cards } from "../../Components/Card/Card";
 
 // Import => Modul Style Component
-import style from './Cabinet.module.scss'
+import style from "./Cabinet.module.scss";
 
 function PersonalCabinet() {
+    const [data, setData] = useState([]);
+    const [dataError, setDataError] = useState(false);
+    const URL = "https://ali98.uz/api/user/169";
 
-    const [data, setData] = useState(null)
-    const [dataError, setDataError] = useState(false)
-    const URL = 'https://ali98.uz/api/user/169';
     useEffect(() => {
-        function getData() {
-            const result = axios.get(URL)
+        axios.get(URL)
             .then((response) => {
-                let dataStatus = response.data
-                if (dataStatus.status == true || dataStatus.status == 200) {
-                    let newData = [];
-                    newData.push(dataStatus.data);
-                    setData(newData);
+                let status = response.data;
+                if (status.status == true || status.status == 200) {
+                    setData(response.data.data);
                     console.log(data);
                 } else {
-                    setDataError(true)
+                    setDataError(true);
                 }
             })
             .catch((error) => {
-                setDataError(true)
                 console.log(error);
-            })
-        }
-        getData();
+                setDataError(true);
+            });
     }, []);
 
-    const noPost = (
-        <p>Siz birorta ham e'lon joylashtirmadingiz</p>
-    )
+    function showPosts() {
+        console.log(data, data.hasOwnProperty("id"));
+        if (!dataError && data.hasOwnProperty("id")) {
+            if (data.posts.length > 0) {
+                return data.posts.map((row) => (
+                    <Cards data={row} editDelete={true} loveBtn={false} />
+                ));
+            }
+        } else {
+            return <p>Siz birorta ham e'lon joylashtirmadingiz</p>;
+        }
+    }
 
     return (
         <>
@@ -56,29 +60,36 @@ function PersonalCabinet() {
                     <div className={style.main}>
                         <div className={style.btng}>
                             <NavLink to={"/posts"}>
-                                <button className={style.active}> Elonlarim </button>
+                                <button className={style.active}>
+                                    {" "}
+                                    Elonlarim{" "}
+                                </button>
                             </NavLink>
-                            <NavLink to={"/liked"} >
+                            <NavLink to={"/liked"}>
                                 <button> Yoqtirganlarim </button>
                             </NavLink>
-                            <NavLink to={"/settings"} >
+                            <NavLink to={"/settings"}>
                                 <button> Sozlamalar </button>
                             </NavLink>
                         </div>
-                        <h1 style={{color: '#0468ff',}}>El’onlarim</h1>
-                        <div style={{display:'flex', flexWrap:'wrap', gap:'20px', justifyContent:'center'}}>
-                            {data?.posts && data?.posts.length > 0 ? data?.map((row) => (
-                                <Cards data={row} editDelete={true} loveBtn={false}/>
-
-                            )) : noPost}
+                        <h1 style={{ color: "#0468ff" }}>El’onlarim</h1>
+                        <div
+                            style={{
+                                display: "flex",
+                                flexWrap: "wrap",
+                                gap: "20px",
+                                justifyContent: "center",
+                            }}
+                        >
+                            {showPosts()}
                         </div>
                     </div>
-                    <Personal />
+                    <Personal data={data}/>
                 </div>
             </Container>
             <Footer />
         </>
-    )
+    );
 }
 
 export default PersonalCabinet;
