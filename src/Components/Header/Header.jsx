@@ -20,8 +20,8 @@ import plusIcon from "../../Assets/Img/plus.svg";
 
 // Import => Components
 import Container from "../Container/Container";
-import Modal from "../ModalAuthorization/Modal";
-import "../ModalAuthorization/Modal.scss";
+import Modal from "../LoginModals/ModalAuthorization/Modal";
+import "../LoginModals/ModalAuthorization/Modal.scss";
 import "../Header/Header.scss";
 import Nav from "../Nav/Nav";
 import content from "../../Localization/Content";
