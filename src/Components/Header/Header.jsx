@@ -21,8 +21,8 @@ import plusIcon from "../../Assets/Img/plus.svg";
 
 // Import => Components
 import Container from "../Container/Container";
-import Modal from "../ModalAuthorization/Modal";
-import "../ModalAuthorization/Modal.scss";
+import Modal from "../LoginModals/ModalAuthorization/Modal";
+import "../LoginModals/ModalAuthorization/Modal.scss";
 import "../Header/Header.scss";
 import Nav from "../Nav/Nav";
 import content from "../../Localization/Content";
@@ -30,7 +30,6 @@ import { getCookie, setCookie } from "../../Utils/cookies";
 
 
 function Header() {
-    
     const elModal = React.useRef();
     const elHeader = React.useRef();
 
@@ -39,7 +38,6 @@ function Header() {
     const { lang, setLang } = useContext(Context);
     const { isUser, setIsUser } = useContext(UserContext);
     const { currency, setCurrency } = useContext(CurrencyContext);
-
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
     const [currencyTooltip, setCurrencyTooltip] = useState(false);

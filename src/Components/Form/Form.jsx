@@ -1,5 +1,5 @@
 // Import => React and React Hooks
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useForm } from 'react-hook-form'
 
@@ -34,33 +34,37 @@ function Form() {
     // Localization == useContext
     const { lang, setLang } = useContext(Context);
 
-    const { register, handleSubmit, formState: { errors }, reset } = useForm()
+    const { register, handleSubmit, formState: { errors }, watch } = useForm();
     //Modal States
-    const [phone, setPhone] = useState('')
+    const [phone_number, setPhoneNumber] = useState('')
     const [err, setErr] = useState(false);
     const [control, setControl] = useState(false);
     const handleControl = () => setControl(true);
     const handleErr = () => setErr(true);
-
     //Recieve Regions State
-    const [regions, setRegions] = useState([])
-
+    const [regions, setRegions] = useState([]);
+    const [experience, setExperience] = useState('');
+    const [description, setDescription] = useState('');
 
     //Send Date's and set Token in localStorage, Reset Input Value's
+
     const onSubmit = (data) => {
         const singup = new FormData();
-        singup.append('name', data.name)
-        singup.append('lastname', data.lastname);
-        singup.append('email', data.email);
-        singup.append('phone', data.phone);
-        singup.append('passport', data.passport);
-        singup.append('user_type', data.user_type);
-        singup.append('region_id', data.region_id);
-        axios.post('http://ali98.uz/api/register', singup)
+        sessionStorage.setItem('name', data.name)
+        sessionStorage.setItem('experience', experience)
+        sessionStorage.setItem('description', description)
+        sessionStorage.setItem('name', data.name)
+        sessionStorage.setItem('lastname', data.lastname);
+        sessionStorage.setItem('email', data.email);
+        sessionStorage.setItem('phone', data.phone);
+        sessionStorage.setItem('passport', data.passport);
+        sessionStorage.setItem('user_type', data.user_type);
+        sessionStorage.setItem('region_id', data.region_id);
+        singup.append('phone', data.phone)
+        axios.post('http://ali98.uz/api/sms', singup)
             .then(function (response) {
                 const Token = response.data.data
                 const Sts = response.data.status
-                console.log(response);
                 localStorage.setItem('Token', Token);
                 if (Sts) {
                     handleControl();
@@ -69,8 +73,7 @@ function Form() {
             .catch(function (error) {
                 handleErr(error);
             })
-        setPhone(data.phone)
-        reset();
+        setPhoneNumber(data.phone)
     }
 
     //Recieve Regions Request
@@ -81,21 +84,37 @@ function Form() {
                 if (res) {
                     let data = res.data.data
                     setRegions(data)
-                } else {
-                    alert('xato')
                 }
             } catch (error) {
-                console.log(error);
+                alert(error);
             }
         }
         regions();
     }, [])
 
+    const exper = useRef(null);
+    const area = useRef(null);
+    const { ref, ...rest } = register('experience');
+    useEffect(() => {
+        function Input(e) {
+            const Rieltor = 'rieltor';
+            const Type = watch(['user_type']);
+            if (Type == Rieltor) {
+                exper.current.classList.remove('default')
+                area.current.classList.remove('default')
+            } else {
+                exper.current.classList.add('default')
+                area.current.classList.add('default')
+            }
+        }
+        Input()
+    })
+
     return (
         <>
-            <Error err={err} setErr={setErr} />
             <Container style={{ position: 'relative' }}>
-                <NumberControl control={control} setControl={setControl} phone={phone} setPhone={setPhone} />
+                <Error err={err} setErr={setErr} />
+                <NumberControl control={control} setControl={setControl} phone_number={phone_number} setPhoneNumber={setPhoneNumber} />
                 <form className="form" onSubmit={handleSubmit(onSubmit)}>
                     <img className="form__img" src={AfemeLogo} alt="" data-aos="zoom-in"
                         data-aos-easing="ease-in-back"
@@ -104,7 +123,7 @@ function Form() {
                         data-aos-duration="900" />
                     <h1 className="form-title">{content[lang].from_sign}</h1>
                     {/*UserType Input*/}
-                    <div>
+                    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                         <FormControl sx={{ width: "240px", mt: 2, mr: 2.5 }}>
                             <InputLabel id="demo-simple-select-label">{content[lang].form_select_jis}</InputLabel>
                             <Select
@@ -120,6 +139,7 @@ function Form() {
                                 <MenuItem value={'quruvchi firma'}>Quruvchi Firma</MenuItem>
                             </Select>
                         </FormControl>
+
                         {/* User Region Input */}
                         <FormControl sx={{ mt: 2, width: "240px" }}>
                             <InputLabel id="viloyat"> {content[lang].form_select_vil} </InputLabel>
@@ -145,9 +165,9 @@ function Form() {
                         <TextField
                             className="form__input form__input-name"
                             id="outlined-basic"
-                            label= {content[lang].from_select_nam}
+                            label={content[lang].from_select_nam}
                             variant="outlined"
-                            sx={{ mt: 2, width: "240px" }}
+                            sx={{ mt: 2, width: "240px", }}
                             {...register('name', { required: 'Ism Kiriting' })}
                             error={!!errors?.name}
                             helperText={errors?.name ? errors.name.message : null}
@@ -179,6 +199,20 @@ function Form() {
                         error={!!errors?.email}
                         helperText={errors?.email ? errors.email.message : null}
                     />
+                    <input
+                        ref={exper}
+                        type="number"
+                        className="disable default"
+                        placeholder="Tajriba"
+                        onChange={(e) => setExperience(e.target.value)}
+                    />
+                    <textarea
+                        ref={area}
+                        type="text"
+                        placeholder="Malumot"
+                        className="textarea disable default"
+                        onChange={(e) => setDescription(e.target.value)}
+                    />
                     {/*IDCard 'Passport' Input*/}
                     <TextField
                         className="form__input form__input-passport"
@@ -197,6 +231,7 @@ function Form() {
                         error={!!errors?.passport}
                         helperText={errors?.passport ? errors.passport.message : null}
                     />
+
                     {/*PhoneNumber Input*/}
                     <TextField
                         className="form__input form__input-number"
