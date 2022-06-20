@@ -41,7 +41,7 @@ function Main() {
 
     const [data, setData] = useState(null);
     const [dataError, setDataError] = useState(false);
-    const URL = 'https://ali98.uz/api/getpost';
+    const URL = 'https://ali98.uz/api/post';
     useEffect(() => {
         function getData() {
             const result = axios.get(URL)
@@ -85,7 +85,7 @@ function Main() {
                             <Typography variant="h3" className="section__title">{content[lang].populr_title}</Typography>
                             <div className="cards">
                                 {data != null ? '' : <Cards dataError={dataError} />}
-                                {data?.slice(3, 12)?.map((row) => {
+                                {data?.slice(4, 12)?.map((row) => {
                                     return (
                                         <Cards data={row} />
                                     )

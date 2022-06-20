@@ -20,6 +20,7 @@ import style from "./Cabinet.module.scss";
 function PersonalCabinet() {
     const [data, setData] = useState([]);
     const [dataError, setDataError] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const URL = "https://ali98.uz/api/user/169";
 
     useEffect(() => {
@@ -36,19 +37,21 @@ function PersonalCabinet() {
             .catch((error) => {
                 console.log(error);
                 setDataError(true);
+            })
+            .finally(() => {
+                setIsLoading(false);
             });
     }, []);
 
     function showPosts() {
-        console.log(data, data.hasOwnProperty("id"));
         if (!dataError && data.hasOwnProperty("id")) {
             if (data.posts.length > 0) {
                 return data.posts.map((row) => (
                     <Cards data={row} editDelete={true} loveBtn={false} />
                 ));
+            } else {
+                return <p>Siz birorta ham e'lon joylashtirmadingiz</p>;
             }
-        } else {
-            return <p>Siz birorta ham e'lon joylashtirmadingiz</p>;
         }
     }
 
@@ -84,7 +87,7 @@ function PersonalCabinet() {
                             {showPosts()}
                         </div>
                     </div>
-                    <Personal data={data}/>
+                    <Personal data={data} dataError={dataError} isLoading={isLoading}/>
                 </div>
             </Container>
             <Footer />

@@ -4,7 +4,6 @@ import { NavLink as Redirect } from "react-router-dom";
 
 // Import => Mui
 import { Box, Card, CardMedia, Typography, CardContent, CardActions, IconButton } from '@mui/material';
-import { Button } from "@mui/material";
 
 // Import => Components
 import LoveIcon from "../../Lib/Svg/love";
@@ -16,9 +15,11 @@ import EditIcon from "../../Lib/Svg/edit";
 
 import { CurrencyContext } from '../../Context/CurrencyContext';
 import { Context as LangContext } from '../../Context/LangContext';
+import { UserContext } from '../../Context/UserContext';
 import "./Card.scss"
 import CardImg from "../../Assets/Img/card_img4.jpg";
 import { logRoles } from "@testing-library/react";
+import Modal from "../ModalAuthorization/Modal";
 
 function numberFormatter(numb) {
     var formatter = new Intl.NumberFormat('en-US', {
@@ -61,27 +62,33 @@ function CardTools(data, dataError, lang, currency, price, advertTitle, advertLi
     }, [data, currency, lang]);
 }
 
-function loveAnimate(e) {
+function LoveAnimate(e, isUser, elModal) {
 
+    let modal = document.querySelector('.modal');
     let loveBtn = document.querySelectorAll('.love-btn');
     let content = document.querySelectorAll('.content');
     let heart = document.querySelectorAll('.heart');
 
-    for (let i = 0; i < loveBtn.length; i++) {
-        if (loveBtn[i].getAttribute('dataid') == e.target.getAttribute('dataid')) {
-            if (content[i].classList.contains('active')) {
-                content[i].classList.remove('active');
-                heart[i].classList.remove('active');
-            } else {
-                content[i].classList.add('active');
-                heart[i].classList.add('active');
+    if (isUser) {
+        for (let i = 0; i < loveBtn.length; i++) {
+            if (loveBtn[i].getAttribute('dataid') == e.target.getAttribute('dataid')) {
+                if (content[i].classList.contains('active')) {
+                    content[i].classList.remove('active');
+                    heart[i].classList.remove('active');
+                } else {
+                    content[i].classList.add('active');
+                    heart[i].classList.add('active');
+                }
             }
         }
+    } else {
+        modal.classList.add("modal--open");
+        modal.classList.add("modal--style");
     }
 }
 
-const cardLove = (data) => (
-    <div className="love-btn" dataid={data?.id} onClick={(e) => loveAnimate(e)}>
+const cardLove = (data, isUser, elModal) => (
+    <div className="love-btn" dataid={data?.id} onClick={(e) => LoveAnimate(e, isUser, elModal)}>
         <div className="content">
             <span className="heart"></span>
         </div>
@@ -110,8 +117,11 @@ const cardControls = (data) => (
 
 function Cards({data, dataError, loveBtn = true, editDelete = false}) {
 
+    const elModal = React.useRef();
     const { lang, setLang } = useContext(LangContext);
     const { currency, setCurrency } = useContext(CurrencyContext);
+    const { isUser, setIsUser } = useContext(UserContext);
+
     const [price, setPrice] = useState('');
     const [advertTitle, setAdvertTitle] = useState('');
     const [advertLink, setAdvertLink] = useState('');
@@ -122,25 +132,27 @@ function Cards({data, dataError, loveBtn = true, editDelete = false}) {
 
     function successCard() {
         return (
-            <Card sx={{ maxWidth: 300 }} className="card">
-                <Redirect to={advertLink}><CardMedia component="img" alt="Card img" height="140" className="card__img" image={CardImg}/></Redirect>
-                <Box className="card__content">
-                    <CardContent className="card__header">
-                        <Typography variant="body1" component="div" className="house__type">{advertType}</Typography>
-                        <Typography variant="body2" className="house__prices"><span className="house__price">{price}</span></Typography>
-                    </CardContent>
-                    <CardContent className="card__main">
-                    <Redirect to={advertLink} className="card__title">{advertTitle}</Redirect>
-                    </CardContent>
-                    <CardActions className="card__footer">
-                        <Typography className="house__address__bar"><LocationIcon className="card__location"/> <span className="house__address">{advertAddress}</span></Typography>
-                        <div className="card__actions">
-                            {loveBtn ? cardLove(data) : ''}
-                            {editDelete ? cardControls(data): ''}
-                        </div>
-                    </CardActions>
-                </Box>
-            </Card>
+            <>
+                <Card sx={{ maxWidth: 300 }} className="card">
+                    <Redirect to={advertLink}><CardMedia component="img" alt="Card img" height="140" className="card__img" image={CardImg}/></Redirect>
+                    <Box className="card__content">
+                        <CardContent className="card__header">
+                            <Typography variant="body1" component="div" className="house__type">{advertType}</Typography>
+                            <Typography variant="body2" className="house__prices"><span className="house__price">{price}</span></Typography>
+                        </CardContent>
+                        <CardContent className="card__main">
+                        <Redirect to={advertLink} className="card__title">{advertTitle}</Redirect>
+                        </CardContent>
+                        <CardActions className="card__footer">
+                            <Typography className="house__address__bar"><LocationIcon className="card__location"/> <span className="house__address">{advertAddress}</span></Typography>
+                            <div className="card__actions">
+                                {loveBtn ? cardLove(data, isUser, elModal) : ''}
+                                {editDelete ? cardControls(data): ''}
+                            </div>
+                        </CardActions>
+                    </Box>
+                </Card>
+            </>
         )
     }
 
@@ -189,7 +201,7 @@ function FullCard({data, cardData, dataError}) {
                     <div className="fullCard__foot">
                         <Typography className="house__address__bar"><LocationIcon className="card__location"/> <span className="house__address">{advertAddress}</span></Typography>
                     </div>
-                    <div className="love-btn" dataid={data?.id} onClick={(e) => loveAnimate(e)}>
+                    <div className="love-btn" dataid={data?.id} onClick={(e) => LoveAnimate(e)}>
                         <div className="content">
                             <span className="heart"></span>
                         </div>

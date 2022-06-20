@@ -3,6 +3,7 @@ import React from "react";
 
 // Import => Style Component
 import "../../Components/ReytingModal/ReytingModal.scss";
+import StarIcon from "../../Lib/Svg/star";
 
 function ReytingModal() {
     return (
@@ -27,18 +28,17 @@ function ReytingModal() {
                             </div>
                             <button type="submit">Submit</button>
                         </div> */}
-
                         <div className="star_widget">
                             <input type="radio" name="rate" id="rate_5" />
-                            <label htmlFor="rate_5" className="fas fa-star" />
+                            <label htmlFor="rate_5"><StarIcon width="40px" height="40px" color="#dee7ee" /></label>
                             <input type="radio" name="rate" id="rate_4" />
-                            <label htmlFor="rate_4" className="fas fa-star" />
+                            <label htmlFor="rate_4"><StarIcon width="40px" height="40px" color="#dee7ee" /></label>
                             <input type="radio" name="rate" id="rate_3" />
-                            <label htmlFor="rate_3" className="fas fa-star" />
+                            <label htmlFor="rate_3"><StarIcon width="40px" height="40px" color="#dee7ee" /></label>
                             <input type="radio" name="rate" id="rate_2" />
-                            <label htmlFor="rate_2" className="fas fa-star" />
+                            <label htmlFor="rate_2"><StarIcon width="40px" height="40px" color="#dee7ee" /></label>
                             <input type="radio" name="rate" id="rate_1" />
-                            <label htmlFor="rate_1" className="fas fa-star" />
+                            <label htmlFor="rate_1"><StarIcon width="40px" height="40px" color="#dee7ee" /></label>
                             <form action="#" className="rateus__form">
                                 <div className="rateus__text" />
                                 <div className="rateus__button">
