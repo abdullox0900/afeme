@@ -64,7 +64,6 @@ function PersonalCabinet() {
                         <div className={style.btng}>
                             <NavLink to={"/posts"}>
                                 <button className={style.active}>
-                                    {" "}
                                     Elonlarim{" "}
                                 </button>
                             </NavLink>
