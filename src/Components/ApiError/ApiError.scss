@@ -1,0 +1,16 @@
+.apiEror{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    border-radius: 20px;
+    background-color: #ff00002f;
+    padding: 15px 20px;
+    &__text{
+        text-align: center;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 24px;
+    }
+}

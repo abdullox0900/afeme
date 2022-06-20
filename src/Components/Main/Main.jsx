@@ -1,5 +1,5 @@
 // Import => React and React Hooks React-Router-Dom
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
 
 // Import => Axios
@@ -9,12 +9,15 @@ import axios from "axios";
 import { Box, Typography } from "@mui/material";
 
 // Import useContext => Localization
-import { useContext } from 'react';
-import { Context } from '../../Context/LangContext';
+import { Context as  LangContext} from '../../Context/LangContext';
+import { InternetContext } from '../../Context/InternetContext';
 import content from '../../Localization/Content';
 
-
 // Import => Components
+import CardSkeleton from "../CardSkeleton/CardSkeleton";
+import { Cards } from "../Card/Card";
+import ApiError from "../ApiError/ApiError";
+import OfflineError from "../OfflineError/OfflineError"
 import Container from "../Container/Container";
 import NewBuildingsCard from "../NewBuildingsCard/NewBuildingsCard";
 
@@ -32,47 +35,57 @@ import Realtors4 from "../../Assets/Img/realtors4.jpg";
 import Realtors5 from "../../Assets/Img/realtors5.jpg";
 import RightArrow from "../../Assets/Img/arrow-right.svg";
 import "./Main.scss"
-import { Cards, SCard } from "../Card/Card";
+
 
 function Main() {
 
-    // Lang Context
-    const { lang, setLang } = useContext(Context)
+    const { lang, setLang } = useContext(LangContext);
+    const { netStatus, setNetStatus } = useContext(InternetContext);
 
-    const [data, setData] = useState(null)
-    const [dataError, setDataError] = useState(false)
-    const URL = 'https://ali98.uz/api/getpost';
+    const [data, setData] = useState([]);
+    const [dataError, setDataError] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
+    const URL = 'https://ali98.uz/api/post';
     useEffect(() => {
-        function getData() {
-            const result = axios.get(URL)
-            .then((response) => {
-                let dataStatus = response.data
-                if (dataStatus.status == true || dataStatus.status == 200) {
-                    let newData = [];
-                    newData.push(dataStatus.data);
-                    setData(newData[0]);
-                    console.log(newData);
-                } else {
-                    setDataError(true)
-                }
-            })
-            .catch((error) => {
+        const result = axios.get(URL)
+        .then((response) => {
+            let dataStatus = response.data
+            if (dataStatus.status == true || dataStatus.status == 200) {
+                setData(response.data.data);
+                console.log(data);
+            } else {
                 setDataError(true)
-                console.log(error);
-            })
-        }
-        getData();
+            }
+        })
+        .catch((error) => {
+            setDataError(true);
+            console.log(error);
+        })
+        .finally(() => {
+            setIsLoading(false);
+        });
     }, [])
 
-    const cardData = {
-        id: 1,
-        houseType: 'Uy',
-        housePrice: 1400,
-        houseTitle: 'My house',
-        houseAddress: 'Andijan',
-        houseUrl: '/advert',
-        houseImg: CardImg3,
-    };
+    function showCards(amount) {
+
+        if (isLoading) {
+            return (
+                <CardSkeleton amount={amount}/>
+            )
+        } else if (data && !dataError) {
+            return (
+                data?.slice(0, amount)?.map((row) => {
+                    return (
+                        <Cards data={row} isLoading={isLoading} />
+                    )
+                })
+            )
+        } else if (!data || dataError) {
+            return (
+                <ApiError />
+            )
+        }
+    }
 
     return (
         <main className="main">
@@ -82,24 +95,14 @@ function Main() {
                         <section className="section recommend">
                             <Typography variant="h3" className="section__title">{content[lang].recom_title}</Typography>
                             <div className="cards">
-                                {data != null ? '' : <Cards dataError={dataError} cardData={cardData} />}
-                                {data?.slice(0, 4)?.map((row) => {
-                                    return (
-                                        <Cards data={row} dataError={dataError} cardData={cardData} />
-                                        )
-                                    })}
+                                {showCards(4)}
                             </div>
                             <Box className="viewAll"><a href="/" className="viewAll__link">{content[lang].see_desc}</a><img src={RightArrow} alt="" /></Box>
                         </section>
                         <section className="section popular">
                             <Typography variant="h3" className="section__title">{content[lang].populr_title}</Typography>
                             <div className="cards">
-                                {data != null ? '' : <Cards dataError={dataError} cardData={cardData} />}
-                                {data?.slice(3, 12)?.map((row) => {
-                                    return (
-                                        <Cards data={row} cardData={cardData} />
-                                    )
-                                })}
+                                {showCards(8)}
                             </div>
                             <Box className="viewAll"><a href="/" className="viewAll__link">{content[lang].see_desc}</a><img src={RightArrow} alt="" /></Box>
                         </section>
@@ -109,12 +112,6 @@ function Main() {
                         <div className="newBuildings__content">
                             <Typography variant="h3" className="section__title">Yangi Binolar</Typography>
                             <div className="scards">
-                                {/* <SCard data={data} cardData={cardData} />
-                                <SCard data={data} cardData={cardData} />
-                                <SCard data={data} cardData={cardData} />
-                                <SCard data={data} cardData={cardData} />
-                                <SCard data={data} cardData={cardData} />
-                                <SCard data={data} cardData={cardData} /> */}
                                 <NewBuildingsCard />
                             </div>
                         </div>

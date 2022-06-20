@@ -1,3 +1,9 @@
+.user__photo{
+    margin-bottom: 30px;
+    width: 150px !important;
+    height: 150px !important;
+
+}
 .card {
     display: flex;
     justify-content: center;
@@ -5,9 +11,15 @@
     align-items: center;
     margin: 20px;
     width: 450px;
-    height: 596px;
+    min-height: 596px;
     box-shadow: 0px 0px 4px 1px #e1e1e1;
     border-radius: 15px;
+    .userProfile__content{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
     b {
         font-size: 24px;
         line-height: 28px;

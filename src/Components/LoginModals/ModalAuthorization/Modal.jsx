@@ -1,5 +1,5 @@
 //Import React vs React Hooks
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { useForm } from 'react-hook-form'
 import { NavLink } from "react-router-dom";
 
@@ -14,7 +14,6 @@ import "../../../Assets/scss/colors.scss";
 import "./Modal.scss";
 
 // Import useContext => Localization
-import { useContext } from 'react';
 import { Context } from '../../../Context/LangContext';
 import content from '../../../Localization/Content';
 

@@ -1,0 +1,169 @@
+.reyting-mod {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    z-index: 100;
+
+    .reyting-mod__wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+        position: relative;
+        width: 600px;
+        min-height: 400px;
+        background: #ffffff;
+        border-radius: 10px;
+        transition: all 1.5s;
+    }
+
+    .reyting-mod__user-avatar {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        margin-bottom: 20px;
+    }
+
+    .reyting-mod__title {
+        margin-bottom: 20px;
+        font-weight: 500;
+        font-size: 32px;
+        line-height: 38px;
+    }
+}
+
+.modal-rating .rating {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+}
+
+.modal-rating .rating input[type="radio"] {
+    display: none;
+}
+
+.modal-rating .rating label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1em;
+    height: 1em;
+    padding: 20px;
+    font-size: 20px;
+    margin-top: 25px;
+
+    color: #a4a9b2;
+    background-color: #26303B;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.modal-rating .rating label:hover {
+    background-color: #7C8897;
+    color: #FFFFFF;
+}
+
+.modal-rating .rating input:checked+label {
+    background-color: #FB7711;
+    color: #FFFFFF;
+}
+
+
+.modal-rating button[type="submit"] {
+    background-color: #FB7711;
+    color: #FFFFFF;
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 99px;
+    border: 0px;
+    margin-top: 25px;
+    cursor: pointer;
+}
+
+.modal-rating button[type="submit"]:hover {
+    color: #FB7711;
+    background-color: #FFFFFF;
+}
+
+.star_widget input {
+    display: none;
+}
+.rateus__text {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 22px;
+    font-weight: 500;
+    color: #ffc400;
+}
+.star_widget label {
+    font-size: 32px;
+    padding: 10px;
+    float: right;
+    color: #dee7ee;
+    cursor: pointer;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+    z-index: 3;
+    transform: rotate(90deg);
+}
+
+input:not(:checked)~label:hover,
+input:not(:checked)~label:hover~label {
+    transform: scale(1.1) rotate(0deg);
+    & svg{
+        fill: #ffc400;
+    }
+}
+
+input:checked~label {
+    transform: scale(1.1) rotate(0deg);
+    & svg{
+        fill: #ffc400;
+    }
+}
+
+input#rate_5:checked~label {
+    transform: rotate(60deg);
+}
+
+#rate_1:checked~.rateus__form .rateus__text::before {
+    content: "I just hate it 😡";
+}
+
+#rate_2:checked~.rateus__form .rateus__text::before {
+    content: "I don't like it 😤";
+}
+
+#rate_3:checked~.rateus__form .rateus__text::before {
+    content: "It is Good enough 😀";
+}
+
+#rate_4:checked~.rateus__form .rateus__text::before {
+    content: "It is Awesome 😊";
+}
+
+#rate_5:checked~.rateus__form .rateus__text::before {
+    content: "I just like it 😍";
+}
+
+.star_widget form {
+    display: none;
+}
+
+input:checked~form {
+    display: block;
+}
