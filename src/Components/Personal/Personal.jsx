@@ -10,12 +10,12 @@ import { ReactComponent as Edit } from '../../Assets/Img/Icon/edit.svg';
 import UserPhoto from '../../Assets/Img/UserPhoto.png';
 import style from './Personal.module.scss';
 
-function Personal() {
+function Personal({ data }) {
   return (
     <div className={style.card}>
       <img src={UserPhoto} style={{marginBottom:'30px'}} />
-      <b>Abdulloh Abdusalomov</b>
-      <em>ID:2343224</em>
+      <b>{data?.name} {data?.lastname}</b>
+      <em>ID:{data?.id}</em>
       <div className={style.InpG}>
         <input type="text" placeholder='Email va Telefon Raqamlar.' />
         <input type="text" placeholder='Parol va Avtorizatsiyalar' />

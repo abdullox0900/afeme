@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 // Import useContext => Localization
 import { Context } from "../../Context/LangContext";
-import { Context as CurrencyContext } from "../../Context/CurrencyContext";
+import { CurrencyContext } from "../../Context/CurrencyContext";
 
 // Import => Mui
 import { Select, IconButton, Tooltip, Button, Grow, Badge, MenuItem, Box, Menu, Avatar, Typography } from "@mui/material";
@@ -29,6 +29,7 @@ import { getCookie, setCookie } from "../../Utils/cookies";
 
 
 function Header() {
+    
     const elModal = React.useRef();
     const elHeader = React.useRef();
 
