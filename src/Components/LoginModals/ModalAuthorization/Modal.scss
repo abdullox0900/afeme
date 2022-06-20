@@ -1,4 +1,4 @@
-@import "../../Assets/scss/colors.scss";
+@import "../../../Assets/scss/colors.scss";
 .modal {
     display: none;
     align-items: center;
@@ -48,7 +48,7 @@
         cursor: pointer;
         border-radius: 50%;
         background-color: #fff;
-        background-image: url(../../Assets/Img/close.svg);
+        background-image: url(../../../Assets/Img/close.svg);
         background-repeat: no-repeat;
         background-size: 18px;
         background-position: center center;

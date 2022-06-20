@@ -45,7 +45,7 @@ function HouseType({ htype_id, sethType }) {
               stroke: htype_id === sType.id ? 'white' : ''
             }} />
           <p>
-            {sType.name}
+            {sType.name_uz}
           </p>
         </button>
       ))}

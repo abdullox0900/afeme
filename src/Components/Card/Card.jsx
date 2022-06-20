@@ -19,7 +19,6 @@ import { UserContext } from "../../Context/UserContext";
 import "./Card.scss";
 import CardImg from "../../Assets/Img/card_img4.jpg";
 import { logRoles } from "@testing-library/react";
-import Modal from "../ModalAuthorization/Modal";
 
 function numberFormatter(numb) {
     var formatter = new Intl.NumberFormat("en-US", {

@@ -7,10 +7,11 @@ import { v4 } from 'uuid';
 
 // Import => Components
 import style from './ImageFile.module.scss'
+import axios from 'axios';
 
-function ImageFile({ image, setImage }) {
+function ImageFile({ images, setImages }) {
+    const [image, setImage] = useState([])
     const [img, setImg] = useState(false);
-    let newArr = []
     function startImageHandler(e) {
         e.preventDefault();
         setImg(true)
@@ -20,32 +21,44 @@ function ImageFile({ image, setImage }) {
         setImg(false)
     }
 
+    const arr = new Array();
+    const [array, setarray] = useState([]);
     function dropImageHandler(e) {
+        // const [obj, setobj] = useState({})
         e.preventDefault()
+        var formdata = new FormData();
         let files = [...e.dataTransfer.files]
-        // for (let I = 0; I < files.length; I++) {
-        //     newArr.push(files[I])
-        // }
-        console.log('fıles',files);
+        console.log(typeof arr);
+        // let obj = [];
+        for (let i = 0; i < files.length; i++) {
+            formdata.append("image", files[1]);
+            axios.post('http://ali98.uz/api/service', formdata)
+                .then(function (response) {
+                    let one = (JSON.stringify(response.data.data));
+                    // console.log(one);
+                    // setarray(one)
+                })
+        }
         setImage(files)
         setImg(false)
+        setTimeout(() => {
+            console.log(array);
+        }, 2000)
     }
     function onChange(e) {
         let files = [...e.dataTransfer.files]
         setImage(files)
-      }
+    }
 
     return (
         <div className={style.wrapper}>
             <p>Ofis  rasmlari:</p>
             <div className={style.images}>
                 {image.map((i) => (
-                    <img key={v4} style={{}} alt={"wldölw"} src={URL.createObjectURL(i)} />
+                    <img key={v4()} src={URL.createObjectURL(i)} />
                 ))}
             </div>
             <div className={style.imgF}>
-
-
                 {img
                     ? <div
 

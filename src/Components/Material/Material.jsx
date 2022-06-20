@@ -38,7 +38,7 @@ function Material({material_id, setMaterial}) {
                                 color: material_id === type.id ? 'white' : ''
                             }}
                         >
-                            {type.name}
+                            {type.name_uz}
                         </button>
                     ))}
                 </div>
