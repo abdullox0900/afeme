@@ -5,6 +5,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 // Import useContext => Localization
 import { Context } from "../../Context/LangContext";
 import { CurrencyContext } from "../../Context/CurrencyContext";
+import { UserContext } from "../../Context/UserContext";
 
 // Import => Mui
 import { Select, IconButton, Tooltip, Button, Grow, Badge, MenuItem, Box, Menu, Avatar, Typography } from "@mui/material";
@@ -36,7 +37,9 @@ function Header() {
     const navigate = useNavigate();
     const [token, setToken] = useState(localStorage.getItem("Token") || null);
     const { lang, setLang } = useContext(Context);
+    const { isUser, setIsUser } = useContext(UserContext);
     const { currency, setCurrency } = useContext(CurrencyContext);
+
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
     const [currencyTooltip, setCurrencyTooltip] = useState(false);
@@ -277,7 +280,7 @@ function Header() {
                             </div>
                             <div className="header__buttons" sx={{ ml: 3 }}>
                                 {/* If User have Account show profile else Show Login */}
-                                {token ? profile : userTools}
+                                {isUser ? profile : userTools}
                             </div>
                         </div>
                         <button
