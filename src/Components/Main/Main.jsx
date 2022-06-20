@@ -13,8 +13,11 @@ import { Context as  LangContext} from '../../Context/LangContext';
 import { InternetContext } from '../../Context/InternetContext';
 import content from '../../Localization/Content';
 
-
 // Import => Components
+import CardSkeleton from "../CardSkeleton/CardSkeleton";
+import { Cards } from "../Card/Card";
+import ApiError from "../ApiError/ApiError";
+import OfflineError from "../OfflineError/OfflineError"
 import Container from "../Container/Container";
 import NewBuildingsCard from "../NewBuildingsCard/NewBuildingsCard";
 
@@ -32,37 +35,57 @@ import Realtors4 from "../../Assets/Img/realtors4.jpg";
 import Realtors5 from "../../Assets/Img/realtors5.jpg";
 import RightArrow from "../../Assets/Img/arrow-right.svg";
 import "./Main.scss"
-import { Cards } from "../Card/Card";
+
 
 function Main() {
 
     const { lang, setLang } = useContext(LangContext);
     const { netStatus, setNetStatus } = useContext(InternetContext);
 
-    const [data, setData] = useState(null);
+    const [data, setData] = useState([]);
     const [dataError, setDataError] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const URL = 'https://ali98.uz/api/post';
     useEffect(() => {
-        function getData() {
-            const result = axios.get(URL)
-            .then((response) => {
-                let dataStatus = response.data
-                if (dataStatus.status == true || dataStatus.status == 200) {
-                    let newData = [];
-                    newData.push(dataStatus.data);
-                    setData(newData[0]);
-                    console.log(newData);
-                } else {
-                    setDataError(true)
-                }
-            })
-            .catch((error) => {
+        const result = axios.get(URL)
+        .then((response) => {
+            let dataStatus = response.data
+            if (dataStatus.status == true || dataStatus.status == 200) {
+                setData(response.data.data);
+                console.log(data);
+            } else {
                 setDataError(true)
-                console.log(error);
-            })
-        }
-        getData();
+            }
+        })
+        .catch((error) => {
+            setDataError(true);
+            console.log(error);
+        })
+        .finally(() => {
+            setIsLoading(false);
+        });
     }, [])
+
+    function showCards(amount) {
+
+        if (isLoading) {
+            return (
+                <CardSkeleton amount={amount}/>
+            )
+        } else if (data && !dataError) {
+            return (
+                data?.slice(0, amount)?.map((row) => {
+                    return (
+                        <Cards data={row} isLoading={isLoading} />
+                    )
+                })
+            )
+        } else if (!data || dataError) {
+            return (
+                <ApiError />
+            )
+        }
+    }
 
     return (
         <main className="main">
@@ -72,24 +95,14 @@ function Main() {
                         <section className="section recommend">
                             <Typography variant="h3" className="section__title">{content[lang].recom_title}</Typography>
                             <div className="cards">
-                                {data != null ? '' : <Cards dataError={dataError} />}
-                                {data?.slice(0, 4)?.map((row) => {
-                                    return (
-                                        <Cards data={row} dataError={dataError} />
-                                        )
-                                    })}
+                                {showCards(4)}
                             </div>
                             <Box className="viewAll"><a href="/" className="viewAll__link">{content[lang].see_desc}</a><img src={RightArrow} alt="" /></Box>
                         </section>
                         <section className="section popular">
                             <Typography variant="h3" className="section__title">{content[lang].populr_title}</Typography>
                             <div className="cards">
-                                {data != null ? '' : <Cards dataError={dataError} />}
-                                {data?.slice(4, 12)?.map((row) => {
-                                    return (
-                                        <Cards data={row} />
-                                    )
-                                })}
+                                {showCards(8)}
                             </div>
                             <Box className="viewAll"><a href="/" className="viewAll__link">{content[lang].see_desc}</a><img src={RightArrow} alt="" /></Box>
                         </section>

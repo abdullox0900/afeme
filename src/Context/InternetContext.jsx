@@ -19,7 +19,7 @@ function Provider({children}) {
         setInterval(async () => {
             const result = await checkInternetStatus();
             setNetStatus(result);
-        }, 3000);
+        }, 5000);
     }, 5000);
 
     return (
