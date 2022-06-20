@@ -16,8 +16,6 @@ import {
 }
     from "@mui/material";
 
-
-
 //Import => Components
 import Container from "../Container/Container"
 import AfemeLogo from "../../Assets/Img/afeme-logo.svg"
@@ -26,12 +24,19 @@ import "../Form/Form.scss";
 import Error from "../Modals/Error/Error";
 import NumberControl from "../Modals/NumberControl/NumberControl";
 
+// Import useContext => Localization
+import { useContext } from 'react';
+import { Context } from '../../Context/LangContext';
+import content from '../../Localization/Content';
 
 
 function Form() {
-    const { register, handleSubmit, formState: { errors }, reset, watch } = useForm()
+    // Localization == useContext
+    const { lang, setLang } = useContext(Context);
+
+    const { register, handleSubmit, formState: { errors }, watch } = useForm();
     //Modal States
-    const [phone, setPhone] = useState('')
+    const [phone_number, setPhoneNumber] = useState('')
     const [err, setErr] = useState(false);
     const [control, setControl] = useState(false);
     const handleControl = () => setControl(true);
@@ -39,27 +44,27 @@ function Form() {
     //Recieve Regions State
     const [regions, setRegions] = useState([]);
     const [experience, setExperience] = useState('');
-    const [bio, setbio] = useState('');
+    const [description, setDescription] = useState('');
 
     //Send Date's and set Token in localStorage, Reset Input Value's
-    
+
     const onSubmit = (data) => {
         const singup = new FormData();
-        console.log(data);
-        localStorage.setItem('name', data.name)
-        localStorage.setItem('bio', data.bio)
-        localStorage.setItem('experience', data.experience)
-        localStorage.setItem('lastname', data.lastname);
-        localStorage.setItem('email', data.email);
-        localStorage.setItem('phone', data.phone);
-        localStorage.setItem('passport', data.passport);
-        localStorage.setItem('user_type', data.user_type);
-        localStorage.setItem('region_id', data.region_id);
-        axios.post('http://ali98.uz/api/registerSMS', singup)
+        sessionStorage.setItem('name', data.name)
+        sessionStorage.setItem('experience', experience)
+        sessionStorage.setItem('description', description)
+        sessionStorage.setItem('name', data.name)
+        sessionStorage.setItem('lastname', data.lastname);
+        sessionStorage.setItem('email', data.email);
+        sessionStorage.setItem('phone', data.phone);
+        sessionStorage.setItem('passport', data.passport);
+        sessionStorage.setItem('user_type', data.user_type);
+        sessionStorage.setItem('region_id', data.region_id);
+        singup.append('phone', data.phone)
+        axios.post('http://ali98.uz/api/sms', singup)
             .then(function (response) {
                 const Token = response.data.data
                 const Sts = response.data.status
-                console.log(response);
                 localStorage.setItem('Token', Token);
                 if (Sts) {
                     handleControl();
@@ -68,8 +73,7 @@ function Form() {
             .catch(function (error) {
                 handleErr(error);
             })
-        setPhone(data.phone)
-        reset();
+        setPhoneNumber(data.phone)
     }
 
     //Recieve Regions Request
@@ -88,47 +92,45 @@ function Form() {
         regions();
     }, [])
 
-    let {open} = useRef(null);
-    let area = useRef(null);
-    let no = 'rieltor';
-    const W = watch(['user_type']);
-    const {ref, ...rest} = register('experiance')
-    const {...restB} = register('bio')
+    const exper = useRef(null);
+    const area = useRef(null);
+    const { ref, ...rest } = register('experience');
     useEffect(() => {
-        function getValue(e) {
-            if (W == no) {
-                open.current.classList.remove('default');
-                area.current.classList.remove('default');
+        function Input(e) {
+            const Rieltor = 'rieltor';
+            const Type = watch(['user_type']);
+            if (Type == Rieltor) {
+                exper.current.classList.remove('default')
+                area.current.classList.remove('default')
             } else {
-                open.current.classList.add('default');
-                area.current.classList.add('default');
+                exper.current.classList.add('default')
+                area.current.classList.add('default')
             }
         }
-        getValue();
+        Input()
     })
-
 
     return (
         <>
-            <Error err={err} setErr={setErr} />
             <Container style={{ position: 'relative' }}>
-                <NumberControl control={control} setControl={setControl} phone={phone} setPhone={setPhone} />
+                <Error err={err} setErr={setErr} />
+                <NumberControl control={control} setControl={setControl} phone_number={phone_number} setPhoneNumber={setPhoneNumber} />
                 <form className="form" onSubmit={handleSubmit(onSubmit)}>
                     <img className="form__img" src={AfemeLogo} alt="" data-aos="zoom-in"
                         data-aos-easing="ease-in-back"
                         data-aos-delay="200"
                         data-aos-offset="10"
                         data-aos-duration="900" />
-                    <h1 className="form-title">Roʻyxatdan oʻtish</h1>
+                    <h1 className="form-title">{content[lang].from_sign}</h1>
                     {/*UserType Input*/}
                     <div style={{ display: 'flex', flexWrap: 'wrap' }}>
                         <FormControl sx={{ width: "240px", mt: 2, mr: 2.5 }}>
-                            <InputLabel id="demo-simple-select-label">Jismoniy shaxs</InputLabel>
+                            <InputLabel id="demo-simple-select-label">{content[lang].form_select_jis}</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 defaultValue={'mijoz'}
-                                label="Jismoniy shaxs"
+                                label={content[lang].form_select_jis}
                                 {...register('user_type')}
                             >
                                 <MenuItem value={'mijoz'}>Mijoz</MenuItem>
@@ -140,11 +142,11 @@ function Form() {
 
                         {/* User Region Input */}
                         <FormControl sx={{ mt: 2, width: "240px" }}>
-                            <InputLabel id="viloyat">Viloyat</InputLabel>
+                            <InputLabel id="viloyat"> {content[lang].form_select_vil} </InputLabel>
                             <Select
                                 labelId="viloyat"
                                 id="viloyat"
-                                label="Viloyat"
+                                label={content[lang].form_select_vil}
                                 {...register('region_id')}
                             >
                                 {regions.map((region) => (
@@ -163,10 +165,10 @@ function Form() {
                         <TextField
                             className="form__input form__input-name"
                             id="outlined-basic"
-                            label="Ism*"
+                            label={content[lang].from_select_nam}
                             variant="outlined"
                             sx={{ mt: 2, width: "240px", }}
-                            {...register('name', /* { required: 'Ism Kiriting' } */)}
+                            {...register('name', { required: 'Ism Kiriting' })}
                             error={!!errors?.name}
                             helperText={errors?.name ? errors.name.message : null}
                         />
@@ -174,7 +176,7 @@ function Form() {
                         <TextField
                             className="form__input form__input-lastname"
                             id="outlined-basic"
-                            label="Familiya"
+                            label={content[lang].form_select_las}
                             variant="outlined"
                             sx={{ mt: 2, ml: 2.5, mb: 2, width: "240px" }}
                             {...register('lastname')}
@@ -198,21 +200,18 @@ function Form() {
                         helperText={errors?.email ? errors.email.message : null}
                     />
                     <input
-                    className="disable default"
-                    placeholder="exp"
-                    {...rest} name='experiance' ref={(e)=>{
-                        ref(e)
-                        open.current = e
-                    }}
+                        ref={exper}
+                        type="number"
+                        className="disable default"
+                        placeholder="Tajriba"
+                        onChange={(e) => setExperience(e.target.value)}
                     />
-                    <input
-                    className="disable textarea default"
-                    placeholder="kjk"
-                    type={'text'}
-                    {...restB} name='bio' ref={(e)=>{
-                        ref(e)
-                        area.current = e
-                    }}
+                    <textarea
+                        ref={area}
+                        type="text"
+                        placeholder="Malumot"
+                        className="textarea disable default"
+                        onChange={(e) => setDescription(e.target.value)}
                     />
                     {/*IDCard 'Passport' Input*/}
                     <TextField
@@ -222,16 +221,17 @@ function Form() {
                         variant="outlined"
                         fullWidth
                         sx={{ mt: 2 }}
-                        {...register('passport', /* {
+                        {...register('passport', {
                             required: 'Passport Seria Kiriting',
                             // pattern: {
                             //     value: /^[A-PR-WYa-pr-wy][1-9]\\d\\s?\\d{4}[1-9]$/i,
                             //     message: 'Passport Notogri'
                             // }
-                        } */)}
+                        })}
                         error={!!errors?.passport}
                         helperText={errors?.passport ? errors.passport.message : null}
                     />
+
                     {/*PhoneNumber Input*/}
                     <TextField
                         className="form__input form__input-number"
@@ -240,7 +240,7 @@ function Form() {
                         type="number"
                         fullWidth
                         sx={{ mt: 2, }}
-                        {...register('phone', /* { required: 'Raqam Kiriting' } */)}
+                        {...register('phone', { required: 'Raqam Kiriting' })}
                         error={!!errors?.phone}
                         helperText={errors?.phone ? errors.phone.message : null}
                     />

@@ -13,11 +13,20 @@ import LogoAuthorization from "../../Assets/Img/logo_authorization.svg";
 import "../../Assets/scss/colors.scss";
 import "../../Components/ModalAuthorization/Modal.scss";
 
+// Import useContext => Localization
+import { useContext } from 'react';
+import { Context } from '../../Context/LangContext';
+import content from '../../Localization/Content';
+
 //Import Request Package
 import axios from "axios";
 
 function Modal({ elModal }) {
+
+    const { lang, setLang } = useContext(Context);
+
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
+
     //Request Function
     const onSubmit = (data) => {
         const log = new FormData();
@@ -56,14 +65,14 @@ function Modal({ elModal }) {
                     alt="logo__auth" />
 
                 <h3 className="modal__title">
-                    Saytga kirish
+                    {content[lang].form_modal_title}
                 </h3>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="form">
                     <TextField
                         sx={{ width: '280px', marginBottom: '20px' }}
                         variant='outlined'
-                        label='Telefon Raqami'
+                        label={content[lang].from_modal_inputtel}
                         {...register('phone', { required: 'Raqam Kiriting' })}
                         error={!!errors?.phone}
                         helperText={errors?.phone ? errors.phone.message : null}
@@ -72,12 +81,12 @@ function Modal({ elModal }) {
                         className="form__authorization-btn"
                         type='submit'
                         variant='contained'>
-                        Kirish
+                        {content[lang].from_modal_btnsubmit}
                     </Button>
                     <NavLink to={"/SignUp"}>
                         <Button
                             className="form__authorization-link">
-                            Roʻyxatdan oʻtish
+                            {content[lang].from_sign}
                         </Button>
                     </NavLink>
                 </form>

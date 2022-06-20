@@ -15,32 +15,49 @@ import style from "./NumberControl.module.scss";
 import Tick from '../../Animations/Tick/Tick';
 import Error from "../Error/Error";
 import Success from "../Success/Success";
+import { useNavigate } from 'react-router-dom';
 
-function NumberControl({ control, setControl, phone, setPhone }) {
-    const { register, handleSubmit, formState: { errors }, reset } = useForm()
-    const [suc, setSuc] = useState(false);//Success State
-    const [err, setErr] = useState(false);//Error State
+function NumberControl({ control, setControl, phone_number, setPhoneNumber }) {
     const handleClose = () => setControl(false);//Close Control Message function
+    const Navigate = useNavigate();
     const handleSuc = () => setSuc(true);//Open Success State
     const handleErr = () => setErr(true);//Open Error State
+    const { register, handleSubmit, formState: { errors } } = useForm()
+    const [suc, setSuc] = useState(false);//Success State
+    const [err, setErr] = useState(false);//Error State
+    const name = sessionStorage.getItem('name') !== undefined ? sessionStorage.getItem('name') : ''
+    const lastname = sessionStorage.getItem('lastname') !== undefined ? sessionStorage.getItem('lastname') : ''
+    const email = sessionStorage.getItem('email') !== undefined ? sessionStorage.getItem('email') : ''
+    const phone = sessionStorage.getItem('phone') !== undefined ? sessionStorage.getItem('phone') : ''
+    const passport = sessionStorage.getItem('passport') !== undefined ? sessionStorage.getItem('passport') : ''
+    const user_type = sessionStorage.getItem('user_type') !== undefined ? sessionStorage.getItem('user_type') : ''
+    const region_id = sessionStorage.getItem('region_id') !== undefined ? sessionStorage.getItem('region_id') : ''
     //HTTP Request Function
     const onSubmit = (data) => {
         const control = new FormData();
-        control.append('control', data.control)
+        control.append('code', data.code)
+        control.append('name', name)
+        control.append('lastname', lastname)
+        control.append('email', email)
+        control.append('phone', phone)
+        control.append('passport', passport)
+        control.append('region_id', region_id)
+        control.append('user_type', user_type)
         axios.post('http://ali98.uz/api/login', control)
             .then(function (response) {
+                sessionStorage.clear();
                 const Token = response.data.data
                 localStorage.setItem('Token', Token);
                 handleClose();
                 handleSuc();
+                Navigate('/Afeme')
             })
             .catch(function (error) {
-                handleErr();
+                handleErr(error);
             })
-        reset();
     }
     return (
-        <div>            
+        <div>
             <Success suc={suc} setSuc={setSuc} />{/* Success Modal */}
             <Error err={err} setErr={setErr} />{/* Error Modal */}
             <Modal
@@ -52,16 +69,16 @@ function NumberControl({ control, setControl, phone, setPhone }) {
                 <form className={style.wrapper} onSubmit={handleSubmit(onSubmit)}>
                     <Tick />
                     <Typography className={style.title} id="modal-modal-title" variant="h6" component="h2">
-                        +{phone}<span> ga <br /> borgan sms kodni kiriting !!!</span>
+                        +{phone_number}<span> ga <br /> borgan sms kodni kiriting !!!</span>
                     </Typography>
                     <TextField
                         className="form__input form__input-lastname"
                         id="outlined-basic"
                         variant="outlined"
                         sx={{ mt: 2, mb: 2, width: "260px" }}
-                        {...register('control', { required: 'Sms Kodni kiring!!!' })}
-                        error={!!errors?.control}
-                        helperText={errors?.control ? errors.control.message : null}
+                        {...register('code', { required: 'Sms Kodni kiring!!!' })}
+                        error={!!errors?.code}
+                        helperText={errors?.code ? errors.code.message : null}
                     />
                     <div className={style.btnG}>
                         <button onClick={() => handleClose()} className={style.button}>Orkaga</button>

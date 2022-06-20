@@ -1,29 +1,38 @@
 .hero {
+    position: relative;
     padding: 100px 0px;
     width: 100%;
-    height: 470px;
+    height: 500px;
     background-image: url("../../Assets/Img/header_banner2.jpg");
     background-repeat: no-repeat;
-    background-size: 100% 470px;
+    background-size: 100% 500px;
     object-fit: cover;
-    // &__blog {
-    //     // width: 100%;
-    //     // height: 425px;
-    //     // display: flex;
-    //     // flex-direction: column;
-    //     // justify-content: center;
-    //     // align-items: center;
-    //     // background: url(../../Assets/Img/hero-img.png) no-repeat center /cover;
-    //     // border-radius: 20px;
-    // }
+
+    .hero__object {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(24,41,48,.4);
+        width: 100%;
+        height: 500px;
+        // z-index: ;
+    }
+
+    .hero__blog {
+        position: relative;
+        z-index: 111111111;
+    }
+
     &__main-title {
         margin: 0;
+        margin-top: 100px;
         margin-bottom: 80px;
         font-weight: 600;
         font-size: 50px;
         text-align: center;
         line-height: 59px;
         color: #ffffff;
+        z-index: 99999;
         text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25),
             0px 4px 4px rgba(0, 0, 0, 0.25);
     }
