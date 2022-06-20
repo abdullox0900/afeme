@@ -99,37 +99,16 @@
     background-color: #FFFFFF;
 }
 
-.home__rateus {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
-.home__rateus__title {
-    font-size: 40px;
-    padding: 30px 0;
-}
-
-.home__rateus__content {
-    position: relative;
-    max-width: 400px;
-    background: #253d69;
-    padding: 15px;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.home__rateus__content .star_widget input {
+.star_widget input {
     display: none;
 }
-
-.star_widget {
-    
+.rateus__text {
+    text-align: center;
+    margin: 0 auto;
+    font-size: 22px;
+    font-weight: 500;
+    color: #ffc400;
 }
-
 .star_widget label {
     font-size: 32px;
     padding: 10px;
@@ -139,21 +118,26 @@
     margin-bottom: 10px;
     transition: all 0.3s ease;
     z-index: 3;
+    transform: rotate(90deg);
 }
 
 input:not(:checked)~label:hover,
 input:not(:checked)~label:hover~label {
-    transform: scale(1.1);
-    color: #ffc400;
+    transform: scale(1.1) rotate(0deg);
+    & svg{
+        fill: #ffc400;
+    }
 }
 
 input:checked~label {
-    transform: scale(1.1);
-    color: #ffc400;
+    transform: scale(1.1) rotate(0deg);
+    & svg{
+        fill: #ffc400;
+    }
 }
 
 input#rate_5:checked~label {
-    text-shadow: 0 0 20px #952;
+    transform: rotate(60deg);
 }
 
 #rate_1:checked~.rateus__form .rateus__text::before {
