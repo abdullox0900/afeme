@@ -9,6 +9,15 @@ import Container from "../../Components/Container/Container";
 import "../../Components/UserProfilList/UserProfilList.scss";
 
 function UserProfilList() {
+
+    let activeStyle = {
+        borderRadius: "5px",
+        color: "dodgerblue",
+        backgroundColor: "#cacaca"
+    };
+
+    const normalLink = "";
+
     return (
         <>
             <div className="user-prof">
@@ -20,21 +29,21 @@ function UserProfilList() {
                 <ul className="user-prof__list">
 
                     <li className="user-prof__item">
-                        <NavLink to={"#"} className="user-prof__link">
+                        <NavLink to={"/userprofil"} className="user-prof__link">
                             <ion-icon name="person-circle-outline"></ion-icon>
                             Mening profilim
                         </NavLink>
                     </li>
 
                     <li className="user-prof__item">
-                        <NavLink to={"#"} className="user-prof__link">
+                        <NavLink to={"/userads"} className={"user-prof__link"}>
                             <ion-icon name="albums-outline"></ion-icon>
                             Mening eʻlonlarim
                         </NavLink>
                     </li>
 
                     <li className="user-prof__item">
-                        <NavLink to={"#"} className="user-prof__link">
+                        <NavLink to={"/userprofilmessage"} className="user-prof__link">
                             <ion-icon name="chatbox-ellipses-outline"></ion-icon>
                             Mening xabarlarim
                         </NavLink>
