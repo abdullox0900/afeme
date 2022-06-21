@@ -17,7 +17,6 @@ import flagEn from "../../Assets/Img/Icon/en.svg";
 import logo from "../../Assets/Img/logo.svg";
 import loveIcon from "../../Assets/Img/love.svg";
 import locationIcon from "../../Assets/Img/location.svg";
-import plusIcon from "../../Assets/Img/plus.svg";
 
 // Import => Components
 import Container from "../Container/Container";
@@ -26,6 +25,7 @@ import "../LoginModals/ModalAuthorization/Modal.scss";
 import "../Header/Header.scss";
 import Nav from "../Nav/Nav";
 import content from "../../Localization/Content";
+import AdvertBtn from "../AddAdvertBtn/AdvertBtn";
 import { getCookie, setCookie } from "../../Utils/cookies";
 
 
@@ -115,16 +115,7 @@ function Header() {
 
     const userTools = (
         <>
-            <NavLink to={"/advertPage"}>
-                <Button
-                    className="btn header__button add__advert"
-                    variant="contained"
-                    sx={{ py: 1, px: 1.5 }}
-                >
-                    <img src={plusIcon} alt="" />
-                    {content[lang].add}
-                </Button>
-            </NavLink>
+            <AdvertBtn />
             <Button
                 className="btn header__button login__btn modal-dialog modal-dialog-scrollable"
                 variant="text"

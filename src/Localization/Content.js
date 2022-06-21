@@ -62,7 +62,11 @@ const content = {
         reltor_title: "Rieltorlar katalogi",
         reltor_lenght: "ta rieltor topildi",
         reltor_sort: "Filterlash",
+        no_post: "Siz birorta ham E'lon joylashtirmadingiz",
 
+        // Errors
+        apiError: "Ma'lumotlar olishda xatolik yuz berdi",
+        internetError: "Internet bilan aloqa Uzildi. Internet mavjud emas",
     },
     en: {
         // Header
