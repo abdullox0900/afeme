@@ -45,7 +45,6 @@ function Personal({ data, dataError, isLoading }) {
             </div>
         );
     } else {
-        console.log(dataError, data);
         if (dataError || !data) {
             return (
                 <div className={"userProfile " + style.card}>

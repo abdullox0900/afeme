@@ -1,9 +1,11 @@
 // Import => React
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 
 // Import => Components
+import { Context } from "../../Context/LangContext";
+import content from "../../Localization/Content";
 import Container from "../../Components/Container/Container";
 import Footer from "../../Components/Footer/Footer";
 import Header from "../../Components/Header/Header";
@@ -12,19 +14,25 @@ import Personal from "../../Components/Personal/Personal";
 import Posts from "../../Components/Posts/Posts";
 import Settings from "../../Components/Settings/Settings";
 import CardImg2 from "../../Assets/Img/card_img2.jpg";
+import emptyPost from "../../Assets/Img/empty_post.webp";
 import { Cards } from "../../Components/Card/Card";
+import CardSkeleton from "../../Components/CardSkeleton/CardSkeleton";
+import AdvertBtn from "../../Components/AddAdvertBtn/AdvertBtn";
 
 // Import => Modul Style Component
 import style from "./Cabinet.module.scss";
 
 function PersonalCabinet() {
+
+    const { lang, setLang } = useContext(Context);
     const [data, setData] = useState([]);
     const [dataError, setDataError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const URL = "https://ali98.uz/api/user/169";
 
     useEffect(() => {
-        axios.get(URL)
+        axios
+            .get(URL)
             .then((response) => {
                 let status = response.data;
                 if (status.status == true || status.status == 200) {
@@ -43,14 +51,39 @@ function PersonalCabinet() {
             });
     }, []);
 
-    function showPosts() {
-        if (!dataError && data.hasOwnProperty("id")) {
+    function showPosts(amount) {
+        if (isLoading) {
+            return <CardSkeleton amount={amount} controls={true} />;
+        } else if (!dataError && data.hasOwnProperty("id")) {
             if (data.posts.length > 0) {
                 return data.posts.map((row) => (
                     <Cards data={row} editDelete={true} loveBtn={false} />
                 ));
             } else {
-                return <p>Siz birorta ham e'lon joylashtirmadingiz</p>;
+                return (
+                    <div
+                        className="emptyPost"
+                        style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "center",
+                            alignItems: "center",
+                        }}
+                    >
+                        <img src={emptyPost} alt="No posts" />
+                        <p
+                            className="emptyPost__text"
+                            style={{
+                                fontSize: "18px",
+                                fontWeight: 500,
+                                margin: "20px 0 25px",
+                            }}
+                        >
+                            {content[lang].no_post}
+                        </p>
+                        <AdvertBtn />
+                    </div>
+                );
             }
         }
     }
@@ -83,10 +116,14 @@ function PersonalCabinet() {
                                 justifyContent: "center",
                             }}
                         >
-                            {showPosts()}
+                            {showPosts(4)}
                         </div>
                     </div>
-                    <Personal data={data} dataError={dataError} isLoading={isLoading}/>
+                    <Personal
+                        data={data}
+                        dataError={dataError}
+                        isLoading={isLoading}
+                    />
                 </div>
             </Container>
             <Footer />

@@ -54,7 +54,7 @@ function Main() {
                 setData(response.data.data);
                 console.log(data);
             } else {
-                setDataError(true)
+                setDataError(true);
             }
         })
         .catch((error) => {
