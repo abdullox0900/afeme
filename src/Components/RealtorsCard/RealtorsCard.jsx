@@ -14,10 +14,14 @@ import Avatar from '@mui/material/Avatar';
 
 // Import => Components
 import "../RealtorsCard/RealtorsCard.scss";
-import ZvezImgIcon from "../../Assets/Img/Icon/zvezda.svg"
+import ZvezImgIcon from "../../Assets/Img/Icon/zvezda.svg";
+
+// Import => Skeleton
+import ContentLoader from "react-content-loader";
 
 function RealtorsCard() {
 
+    // Pagination useState
     const [currentPage, setCurrentPage] = useState(1);
     const [reltorPost, setReltorPost] = useState(10);
     const [reltorData, setReltorsData] = useState([]);
@@ -37,65 +41,60 @@ function RealtorsCard() {
         }, 5000)
     }, [])
 
-    return !isLoading ? (
+    const elLoadingArrey = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+    return (
         <>
             <div className="realtor-container">
                 {
-                    reltorData.map((reltor) => {
-                        return (
-                            <ul>
-                                <NavLink to={`/reltorcob/${reltor.id}`}>
-                                    <li key={reltor.id} className="realtor-card">
-                                        {
-                                            isLoading ? (
-                                                <img className="realtor-card__avatar" src="https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png" alt="" width={"100px"} />
-                                            ) : (
+                    isLoading ? (
 
-                                                <Skeleton variant="circular">
-                                                    <Avatar />
-                                                </Skeleton>
-                                            )
-                                        }
+                        elLoadingArrey.map((lod) => {
+                            return (
+                                <ContentLoader
+                                    speed={2}
+                                    width={800}
+                                    height={200}
+                                    viewBox="0 0 800 200"
+                                    backgroundColor="#e0e0e0"
+                                    foregroundColor="#ecebeb">
+                                    <rect x="214" y="110" rx="3" ry="3" width="150" height="15" />
+                                    <circle cx="127" cy="99" r="53" />
+                                    <rect x="211" y="65" rx="0" ry="0" width="300" height="20" />
+                                    <rect x="609" y="67" rx="0" ry="0" width="130" height="20" />
+                                </ContentLoader>
+                            )
+                        })
+                    ) : (
+                        reltorData.map((reltor) => {
+                            return (
+                                <ul>
+                                    <NavLink to={`/reltorcob/${reltor.id}`}>
+                                        <li key={reltor.id} className="realtor-card">
 
+                                            <img className="realtor-card__avatar" src="https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png" alt="reltor-img" width={"100px"} />
+                                            <div className="realtor-card__wrap">
+                                                <h3 className="realtor-card__title">{reltor.name} {reltor.lastname}</h3>
+                                                <p className="realtor-card__desc">Agent hujjatlari tekshirilgan</p>
+                                            </div>
 
-                                        <div className="realtor-card__wrap">
-                                            {
-                                                isLoading ? <h3 className="realtor-card__title">{reltor.name} {reltor.lastname}</h3>
-                                                    : <Skeleton
-                                                        variant="rectangle"
-                                                        animation="wave"
-                                                        width={250}
-                                                        height={40}
-                                                    />
-                                            }
+                                            <div className="realtor-card__reyting">
+                                                <img src={ZvezImgIcon} alt="" />
+                                            </div>
 
-                                            <p className="realtor-card__desc">Agent hujjatlari tekshirilgan</p>
-                                        </div>
-
-
-                                        <div className="realtor-card__reyting">
-                                            <img src={ZvezImgIcon} alt="" />
-                                        </div>
-
-                                        <div className="realtor-card__region-box">
-                                            {/* <div className="reltor-card__region">{reltor.region_id}</div> */}
-                                        </div>
-                                    </li>
-                                </NavLink>
-                            </ul>
-                        )
-                    })
+                                            <div className="realtor-card__region-box">
+                                                {/* <div className="reltor-card__region">{reltor.region_id}</div> */}
+                                            </div>
+                                        </li>
+                                    </NavLink>
+                                </ul>
+                            )
+                        })
+                    )
                 }
             </div>
         </>
-    ) : [1,2,3,4,5,6,7,8,9,10].map((loading) => {
-        <Skeleton
-                    variant="rectangle"
-                    animation="wave"
-                    width={450}
-                    height={400}
-/>
-    })
+    )
 };
 
 export default RealtorsCard;

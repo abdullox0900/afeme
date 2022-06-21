@@ -42,66 +42,10 @@
     }
 }
 
-.modal-rating .rating {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: row;
-}
-
-.modal-rating .rating input[type="radio"] {
-    display: none;
-}
-
-.modal-rating .rating label {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 1em;
-    height: 1em;
-    padding: 20px;
-    font-size: 20px;
-    margin-top: 25px;
-
-    color: #a4a9b2;
-    background-color: #26303B;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.modal-rating .rating label:hover {
-    background-color: #7C8897;
-    color: #FFFFFF;
-}
-
-.modal-rating .rating input:checked+label {
-    background-color: #FB7711;
-    color: #FFFFFF;
-}
-
-
-.modal-rating button[type="submit"] {
-    background-color: #FB7711;
-    color: #FFFFFF;
-    width: 100%;
-    padding: 10px;
-    font-size: 14px;
-    font-weight: 700;
-    text-transform: uppercase;
-    border-radius: 99px;
-    border: 0px;
-    margin-top: 25px;
-    cursor: pointer;
-}
-
-.modal-rating button[type="submit"]:hover {
-    color: #FB7711;
-    background-color: #FFFFFF;
-}
-
 .star_widget input {
     display: none;
 }
+
 .rateus__text {
     text-align: center;
     margin: 0 auto;
@@ -109,6 +53,7 @@
     font-weight: 500;
     color: #ffc400;
 }
+
 .star_widget label {
     font-size: 32px;
     padding: 10px;
@@ -124,27 +69,29 @@
 input:not(:checked)~label:hover,
 input:not(:checked)~label:hover~label {
     transform: scale(1.1) rotate(0deg);
-    & svg{
+
+    & svg {
         fill: #ffc400;
     }
 }
 
 input:checked~label {
     transform: scale(1.1) rotate(0deg);
-    & svg{
+
+    & svg {
         fill: #ffc400;
     }
 }
 
-input#rate_5:checked~label {
+input #rate-5:checked~label {
     transform: rotate(60deg);
 }
 
-#rate_1:checked~.rateus__form .rateus__text::before {
+#rate_5:checked~.rateus__form .rateus__text::before {
     content: "I just hate it 😡";
 }
 
-#rate_2:checked~.rateus__form .rateus__text::before {
+#rate_4:checked~.rateus__form .rateus__text::before {
     content: "I don't like it 😤";
 }
 
@@ -152,11 +99,11 @@ input#rate_5:checked~label {
     content: "It is Good enough 😀";
 }
 
-#rate_4:checked~.rateus__form .rateus__text::before {
+#rate_2:checked~.rateus__form .rateus__text::before {
     content: "It is Awesome 😊";
 }
 
-#rate_5:checked~.rateus__form .rateus__text::before {
+#rate_1:checked~.rateus__form .rateus__text::before {
     content: "I just like it 😍";
 }
 
@@ -166,4 +113,28 @@ input#rate_5:checked~label {
 
 input:checked~form {
     display: block;
+}
+
+.reyting-mod__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.reyting-mod__textarea {
+    width: 300px;
+    height: 150px;
+    padding: 12px 20px;
+    outline: none;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    resize: none;
+    margin-bottom: 20px;
+}
+
+.reyting-mod__btn {
+    padding: 8px 30px !important;
 }

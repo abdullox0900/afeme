@@ -11,7 +11,8 @@ import axios from "axios";
 // Import => Components
 import { Context as LangContext } from '../../Context/LangContext';
 import Container from "../Container/Container";
-import ZvezImgIcon from "../../Assets/Img/Icon/zvezda.svg"
+import ZvezImgIcon from "../../Assets/Img/Icon/zvezda.svg";
+import ReytingModal from "../ReytingModal/ReytingModal";
 
 // Import => Style Component
 import "../../Components/ReltorCobinet/ReltorCobinet.scss";
@@ -215,6 +216,8 @@ function ReltorCobinet() {
                     </div>
                 </Container>
             </section>
+
+            <ReytingModal userId={userData.id}/>
 
         </>
     )

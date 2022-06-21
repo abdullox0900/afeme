@@ -19,6 +19,7 @@ import Chat from './Pages/ChatPage/ChatPage'
 import Page404 from './Pages/404/404';
 import ReltorCob from './Pages/ReltorCobinet/Reltor';
 import ScrollTop from './Utils/ScrollTop';
+import UsProfil from './Pages/UserProfil/UsProfil';
 
 function App() {
 
@@ -54,6 +55,7 @@ function App() {
                     <Route path='/advert/:postID' element={<Advert />} />
                     <Route path='/catalogreltor' element={<CatalogRealtor />} />
                     <Route path='/reltorcob/:userId' element={<ReltorCob />} />
+                    <Route path='/userprofil' element={<UsProfil />} />
                     <Route path='/chat' element={<Chat />} />
                     <Route path="*" element={<Page404 />} />
                 </Routes>
