@@ -19,6 +19,7 @@ function UserProfil() {
                     <UserProfilList />
                     <div className="userprofil">
                         <img src={UserIlustration} alt="" />
+                        <h3 className="user-prof__title">User Tez kunda...</h3>
                     </div>
                 </div>
             </Container>

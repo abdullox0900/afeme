@@ -1,6 +1,7 @@
 // Import => React
-import React from "react";
+import { React, useContext } from "react";
 import { NavLink } from "react-router-dom";
+
 
 // Import => Component
 import Container from "../../Components/Container/Container";
@@ -8,7 +9,16 @@ import Container from "../../Components/Container/Container";
 // Import => Style Component
 import "../../Components/UserProfilList/UserProfilList.scss";
 
+// Import useContext => Localization
+import { Context } from "../../Context/LangContext";
+import { CurrencyContext } from "../../Context/CurrencyContext";
+import { UserContext } from "../../Context/UserContext";
+import content from "../../Localization/Content";
+
 function UserProfilList() {
+
+
+    const { lang, setLang } = useContext(Context);
 
     let activeStyle = {
         borderRadius: "5px",
@@ -31,42 +41,42 @@ function UserProfilList() {
                     <li className="user-prof__item">
                         <NavLink to={"/userprofil"} className="user-prof__link">
                             <ion-icon name="person-circle-outline"></ion-icon>
-                            Mening profilim
+                            {content[lang].user_profil}
                         </NavLink>
                     </li>
 
                     <li className="user-prof__item">
                         <NavLink to={"/userads"} className={"user-prof__link"}>
                             <ion-icon name="albums-outline"></ion-icon>
-                            Mening eʻlonlarim
+                            {content[lang].user_profil_ads}
                         </NavLink>
                     </li>
 
                     <li className="user-prof__item">
                         <NavLink to={"/userprofilmessage"} className="user-prof__link">
                             <ion-icon name="chatbox-ellipses-outline"></ion-icon>
-                            Mening xabarlarim
+                            {content[lang].user_profil_message}
                         </NavLink>
                     </li>
 
                     <li className="user-prof__item">
-                        <NavLink to={"#"} className="user-prof__link">
+                        <NavLink to={"/userfavorites"} className="user-prof__link">
                             <ion-icon name="heart-outline"></ion-icon>
-                            Tanlanganlar
+                            {content[lang].user_profil_favorintes}
                         </NavLink>
                     </li>
 
                     <li className="user-prof__item">
-                        <NavLink to={"#"} className="user-prof__link">
+                        <NavLink to={"/usernews"} className="user-prof__link">
                             <ion-icon name="newspaper-outline"></ion-icon>
-                            Yangiliklar
+                            {content[lang].user_profil_news}
                         </NavLink>
                     </li>
 
                     <li className="user-prof__item">
                         <NavLink to={"#"} className="user-prof__link">
                             <ion-icon name="log-in-outline"></ion-icon>
-                            Chiqish
+                            {content[lang].user_profil_clos}
                         </NavLink>
                     </li>
 

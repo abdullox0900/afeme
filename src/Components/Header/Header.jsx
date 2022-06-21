@@ -35,6 +35,7 @@ function Header() {
 
     const navigate = useNavigate();
     const [token, setToken] = useState(localStorage.getItem("Token") || null);
+
     const { lang, setLang } = useContext(Context);
     const { isUser, setIsUser } = useContext(UserContext);
     const { currency, setCurrency } = useContext(CurrencyContext);
@@ -47,7 +48,7 @@ function Header() {
         setCurrency(e.target.value);
     };
 
-    const handleOpenUserMenu = (event) => { 
+    const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
     const handleCloseUserMenu = () => {
@@ -98,7 +99,7 @@ function Header() {
                 onClose={handleCloseUserMenu}
             >
                 <MenuItem onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center" className="profileTools"><NavLink to={"/settings"}>My Profile</NavLink></Typography>
+                    <Typography textAlign="center" className="profileTools"><NavLink to={"/userprofil"}>My Profile</NavLink></Typography>
                 </MenuItem>
                 <MenuItem onClick={handleCloseUserMenu}>
                     <Typography textAlign="center" className="profileTools"><NavLink to={"/posts"}>My Adverts</NavLink></Typography>
@@ -287,4 +288,4 @@ function Header() {
         </>
     );
 }
-export default Header;
+export default Header

@@ -22,6 +22,8 @@ import ScrollTop from './Utils/ScrollTop';
 import UsProfil from './Pages/UserProfil/UsProfil';
 import UserMessagePage from './Pages/UserMessage/UserMessagePage';
 import UserAdsPage from "./Pages/UserAdsPage/UserAdsPage";
+import UserFavoritesPage from './Pages/UserFavoritesPage/UserFavoritesPage';
+import UserNewsPage from './Pages/UserNewsPage/UserNewsPage';
 
 function App() {
 
@@ -58,8 +60,10 @@ function App() {
                     <Route path='/catalogreltor' element={<CatalogRealtor />} />
                     <Route path='/reltorcob/:userId' element={<ReltorCob />} />
                     <Route path='/userprofil' element={<UsProfil />} />
-                    <Route path='/userprofilmessage' element={<UserMessagePage/>} />
-                    <Route path='/userads' element={<UserAdsPage/> } />
+                    <Route path='/userprofilmessage' element={<UserMessagePage />} />
+                    <Route path='/userads' element={<UserAdsPage />} />
+                    <Route path='/userfavorites' element={<UserFavoritesPage />} />
+                    <Route path='/usernews' element={<UserNewsPage />} />
                     <Route path='/chat' element={<Chat />} />
                     <Route path="*" element={<Page404 />} />
                 </Routes>

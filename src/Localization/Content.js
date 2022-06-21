@@ -67,6 +67,14 @@ const content = {
         // Errors
         apiError: "Ma'lumotlar olishda xatolik yuz berdi",
         internetError: "Internet bilan aloqa Uzildi. Internet mavjud emas",
+
+        // User Profil
+        user_profil: "Mening profilim",
+        user_profil_ads: "Mening eʻlonlarim",
+        user_profil_message: "Mening xabarlarim",
+        user_profil_favorintes: "Tanlanganlar",
+        user_profil_news: "Yangiliklar",
+        user_profil_clos: "Chiqish",
     },
     en: {
         // Header
@@ -121,7 +129,16 @@ const content = {
         reltor_title: "Directory of Realtors",
         reltor_lenght: "founded this Realtors",
         reltor_sort: "Sorting",
+
+        // User
+        user_profil: "My profile",
+        user_profil_message: "My Messages",
+        user_profil_ads: "My listings",
+        user_profil_favorintes: "Favorites",
+        user_profil_news: "News",
+        user_profil_clos: "Logout",
     },
+
     ru: {
         // Header
         add: "Добавить объявление",
@@ -175,6 +192,14 @@ const content = {
         reltor_title: "Каталог риелторов",
         reltor_lenght: "нашел риелтора",
         reltor_sort: "Сортировка",
+
+        // User
+        user_profil: "Мой профиль",
+        user_profil_message: "Мои сообщения",
+        user_profil_ads: "Мои объявления",
+        user_profil_favorintes: "Избранное",
+        user_profil_news: "Новости",
+        user_profil_clos: "Выйти",
     },
 }
 
