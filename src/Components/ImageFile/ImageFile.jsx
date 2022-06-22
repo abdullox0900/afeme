@@ -22,7 +22,7 @@ function ImageFile({ photo, setPhoto }) {
     }
     const arr = new Array();
     function dropImageHandler(e) {
-        e.preventDefault()
+        e.preventDefault();
         var formdata = new FormData();
         let files = [...e.dataTransfer.files]
         for (let i = 0; i < files.length; i++) {
@@ -81,7 +81,7 @@ function ImageFile({ photo, setPhoto }) {
                         <label htmlFor="contained-button-file">
                             <div className={style.btns}>
                                 <label htmlFor="button">Rasmni Tanlang</label>
-                                <input type="file" id='button' className={style.label} multiple />
+                                <input type="file" id='button' className={style.label} multiple  />
                             </div>
                         </label>
                         <span>Drop Here...</span>
