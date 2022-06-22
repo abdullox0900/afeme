@@ -1,0 +1,37 @@
+.partners-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #efecec30;
+    padding: 70px 0px;
+    margin-top: 50px;
+
+    .partners-inner__box {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .partners-inner__title {
+        margin: 0;
+        font-weight: 600;
+        font-size: 26px;
+        margin-bottom: 20px;
+    }
+
+    .partners-inner__desc {
+        width: 800px;
+        margin: 0;
+        margin-bottom: 80px;
+        text-align: center;
+        font-weight: 500;
+        color: #607987;
+    }
+
+    .partners-inner__img {
+        width: 700px;
+        height: 250px;
+        // object-fit: contain;
+    }
+}

@@ -1,6 +1,5 @@
 // Import React and React Hooks
-import React from 'react';
-import { Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { Routes, Route } from "react-router-dom";
 
 // Import Components
@@ -20,6 +19,11 @@ import Chat from './Pages/ChatPage/ChatPage'
 import Page404 from './Pages/404/404';
 import ReltorCob from './Pages/ReltorCobinet/Reltor';
 import ScrollTop from './Utils/ScrollTop';
+import UsProfil from './Pages/UserProfil/UsProfil';
+import UserMessagePage from './Pages/UserMessage/UserMessagePage';
+import UserAdsPage from "./Pages/UserAdsPage/UserAdsPage";
+import UserFavoritesPage from './Pages/UserFavoritesPage/UserFavoritesPage';
+import UserNewsPage from './Pages/UserNewsPage/UserNewsPage';
 
 function App() {
 
@@ -52,9 +56,14 @@ function App() {
                     <Route path='/posts' element={<Posts />} />
                     <Route path='/settings' element={<Settings />} />
                     <Route path='/adverts' element={<Adverts />} />
-                    <Route path='/advert' element={<Advert />} />
+                    <Route path='/advert/:postID' element={<Advert />} />
                     <Route path='/catalogreltor' element={<CatalogRealtor />} />
                     <Route path='/reltorcob/:userId' element={<ReltorCob />} />
+                    <Route path='/userprofil' element={<UsProfil />} />
+                    <Route path='/userprofilmessage' element={<UserMessagePage />} />
+                    <Route path='/userads' element={<UserAdsPage />} />
+                    <Route path='/userfavorites' element={<UserFavoritesPage />} />
+                    <Route path='/usernews' element={<UserNewsPage />} />
                     <Route path='/chat' element={<Chat />} />
                     <Route path="*" element={<Page404 />} />
                 </Routes>

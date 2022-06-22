@@ -8,8 +8,6 @@ import { Box, Card, CardMedia, Typography, CardContent, CardActions, IconButton,
 // Import => Components
 import LoveIcon from "../../Lib/Svg/love";
 import LocationIcon from "../../Lib/Svg/location";
-import callIcon from "../../Assets/Img/call.svg";
-import messageIcon from "../../Assets/Img/message.svg";
 import DeleteIcon from "../../Lib/Svg/delete";
 import EditIcon from "../../Lib/Svg/edit";
 
@@ -45,7 +43,7 @@ function CardTools( data, lang, currency, price, advertTitle, advertLink, advert
                 `Ijaraga ${data.room} xonali ${data.htype_id?.name_uz} sotiladi`
             );
 
-            setAdvertLink(`/advert?id=${data.id}`);
+            setAdvertLink(`/advert/${data.id}`);
 
             if (lang == "uz") {
                 setAdvertType(data?.htype_id?.name_uz);
@@ -193,22 +191,7 @@ function FullCard({ data, cardData, dataError }) {
     const [advertType, setAdvertType] = useState("");
     const [advertAddress, setAdvertAddress] = useState("");
 
-    CardTools(
-        data,
-        dataError,
-        lang,
-        currency,
-        price,
-        advertTitle,
-        advertLink,
-        advertType,
-        advertAddress,
-        setPrice,
-        setAdvertTitle,
-        setAdvertLink,
-        setAdvertType,
-        setAdvertAddress
-    );
+    CardTools( data, dataError, lang, currency, price, advertTitle, advertLink, advertType, advertAddress, setPrice, setAdvertTitle, setAdvertLink, setAdvertType, setAdvertAddress );
 
     return (
         <Card sx={{}} className="fullCard">

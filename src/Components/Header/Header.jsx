@@ -10,14 +10,13 @@ import { UserContext } from "../../Context/UserContext";
 // Import => Mui
 import { Select, IconButton, Tooltip, Button, Grow, Badge, MenuItem, Box, Menu, Avatar, Typography } from "@mui/material";
 
-// Import images
+// Import => images
 import flagUz from "../../Assets/Img/Icon/uz.svg";
 import flagRu from "../../Assets/Img/Icon/ru.svg";
 import flagEn from "../../Assets/Img/Icon/en.svg";
 import logo from "../../Assets/Img/logo.svg";
 import loveIcon from "../../Assets/Img/love.svg";
 import locationIcon from "../../Assets/Img/location.svg";
-import plusIcon from "../../Assets/Img/plus.svg";
 
 // Import => Components
 import Container from "../Container/Container";
@@ -26,6 +25,7 @@ import "../LoginModals/ModalAuthorization/Modal.scss";
 import "../Header/Header.scss";
 import Nav from "../Nav/Nav";
 import content from "../../Localization/Content";
+import AdvertBtn from "../AddAdvertBtn/AdvertBtn";
 import { getCookie, setCookie } from "../../Utils/cookies";
 
 
@@ -35,6 +35,7 @@ function Header() {
 
     const navigate = useNavigate();
     const [token, setToken] = useState(localStorage.getItem("Token") || null);
+
     const { lang, setLang } = useContext(Context);
     const { isUser, setIsUser } = useContext(UserContext);
     const { currency, setCurrency } = useContext(CurrencyContext);
@@ -47,7 +48,7 @@ function Header() {
         setCurrency(e.target.value);
     };
 
-    const handleOpenUserMenu = (event) => { 
+    const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
     const handleCloseUserMenu = () => {
@@ -98,7 +99,7 @@ function Header() {
                 onClose={handleCloseUserMenu}
             >
                 <MenuItem onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center" className="profileTools"><NavLink to={"/settings"}>My Profile</NavLink></Typography>
+                    <Typography textAlign="center" className="profileTools"><NavLink to={"/userprofil"}>My Profile</NavLink></Typography>
                 </MenuItem>
                 <MenuItem onClick={handleCloseUserMenu}>
                     <Typography textAlign="center" className="profileTools"><NavLink to={"/posts"}>My Adverts</NavLink></Typography>
@@ -115,16 +116,7 @@ function Header() {
 
     const userTools = (
         <>
-            <NavLink to={"/advertPage"}>
-                <Button
-                    className="btn header__button add__advert"
-                    variant="contained"
-                    sx={{ py: 1, px: 1.5 }}
-                >
-                    <img src={plusIcon} alt="" />
-                    {content[lang].add}
-                </Button>
-            </NavLink>
+            <AdvertBtn />
             <Button
                 className="btn header__button login__btn modal-dialog modal-dialog-scrollable"
                 variant="text"
@@ -296,4 +288,4 @@ function Header() {
         </>
     );
 }
-export default Header;
+export default Header
