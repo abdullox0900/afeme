@@ -59,6 +59,7 @@ function ReytingModal({ userId }) {
         <>
             <div className="reyting-mod">
                 <div className="reyting-mod__wrap">
+                    <button className="reytin-mod__clos">x</button>
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU" className="reyting-mod__user-avatar"></img>
                     <div className="reyting-mod__title">Alibe Alimov</div>
                     <form action="" onSubmit={(evt) => submit(evt)} className="reyting-mod__form">

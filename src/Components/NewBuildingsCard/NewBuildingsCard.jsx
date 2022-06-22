@@ -31,7 +31,18 @@ function NewBuildingsCard() {
             <div className="new-buildin-wrap-card">
                 {
                     isLoading ? (
+                        regionData.map((reg) => {
+                            return (
+                                <div className="new-buildin-card" key={reg.id}>
+                                    <img className="new-buildin-card__img" src={reg.image} alt="" />
 
+                                    <div className="new-buildin-card__body">
+                                        <h4 className="new-buildin-card__title">{reg.name_uz}</h4>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    ) : (
                         isLodArr.map((lod) => {
                             return (
                                 <ContentLoader
@@ -47,23 +58,8 @@ function NewBuildingsCard() {
                                 </ContentLoader>
                             )
                         })
-                    ) : (
-
-                        regionData.map((reg) => {
-                            return (
-                                <div className="new-buildin-card">
-                                    <img className="new-buildin-card__img" src={reg.image} alt="" />
-
-                                    <div className="new-buildin-card__body">
-                                        <h4 className="new-buildin-card__title">{reg.name_uz}</h4>
-                                    </div>
-                                </div>
-                            )
-                        })
                     )
                 }
-
-
             </div>
         </>
     )
