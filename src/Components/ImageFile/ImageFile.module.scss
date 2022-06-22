@@ -69,3 +69,20 @@
         height: 200px !important;
     }
 }
+.btns{
+    .label{
+        display: none;
+    }
+    label{
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 14px;
+        border-radius:5px;
+        padding: 10px 16px;
+        color:#fff;
+        background-color: #1976d2;
+    }
+    label:hover{
+        box-shadow:1px;
+    }
+}
