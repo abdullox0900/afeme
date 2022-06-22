@@ -8,7 +8,7 @@ import { CurrencyContext } from "../../Context/CurrencyContext";
 import { UserContext } from "../../Context/UserContext";
 
 // Import => Mui
-import { Select, IconButton, Tooltip, Button, Grow, Badge, MenuItem, Box, Menu, Avatar, Typography } from "@mui/material";
+import { Select, IconButton, Tooltip, Button, Grow, Badge, MenuItem, Box, Menu, Avatar, Typography, Popper } from "@mui/material";
 
 // Import => images
 import flagUz from "../../Assets/Img/Icon/uz.svg";
@@ -19,6 +19,7 @@ import loveIcon from "../../Assets/Img/love.svg";
 import locationIcon from "../../Assets/Img/location.svg";
 
 // Import => Components
+import LogOut from "../../Utils/logOut";
 import Container from "../Container/Container";
 import Modal from "../LoginModals/ModalAuthorization/Modal";
 import "../LoginModals/ModalAuthorization/Modal.scss";
@@ -28,13 +29,11 @@ import content from "../../Localization/Content";
 import AdvertBtn from "../AddAdvertBtn/AdvertBtn";
 import { getCookie, setCookie } from "../../Utils/cookies";
 
-
 function Header() {
     const elModal = React.useRef();
     const elHeader = React.useRef();
 
     const navigate = useNavigate();
-    const [token, setToken] = useState(localStorage.getItem("Token") || null);
 
     const { lang, setLang } = useContext(Context);
     const { isUser, setIsUser } = useContext(UserContext);
@@ -43,6 +42,8 @@ function Header() {
     const [anchorElUser, setAnchorElUser] = useState(null);
     const [currencyTooltip, setCurrencyTooltip] = useState(false);
     const [langTooltip, setLangTooltip] = useState(false);
+    const [openPopper, setOpenPopper] = React.useState(false);
+    const [anchorElPopper, setAnchorElPopper] = React.useState(null);
 
     const currencyChange = (e) => {
         setCurrency(e.target.value);
@@ -55,68 +56,100 @@ function Header() {
         setAnchorElUser(null);
     };
 
-    const logOut = () => {
-        localStorage.removeItem("Token");
-        setToken(null);
-        navigate('/Afeme');
-        // Delete Token and Redirect to main page
-    }
+    const handlePopper = (e) => {
+        setAnchorElPopper(e.currentTarget);
+        setOpenPopper((previousOpen) => !previousOpen);
+    };
 
     const currencyTooltipOpen = () => {
         setCurrencyTooltip(true);
-    }
+    };
     const currencyTooltipClose = () => {
         setCurrencyTooltip(false);
-    }
+    };
     const langTooltipOpen = () => {
         setLangTooltip(true);
-    }
+    };
     const langTooltipClose = () => {
         setLangTooltip(false);
-    }
+    };
 
     const profile = (
-        <Box sx={{ flexGrow: 0, ml: 0.5 }}>
-            <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt="Profile picture" src="" sx={{width: '36px', height: '36px'}} />
-                </IconButton>
-            </Tooltip>
-            <Menu
-                sx={{ mt: "45px" }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-            >
-                <MenuItem onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center" className="profileTools"><NavLink to={"/userprofil"}>My Profile</NavLink></Typography>
-                </MenuItem>
-                <MenuItem onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center" className="profileTools"><NavLink to={"/posts"}>My Adverts</NavLink></Typography>
-                </MenuItem>
-                <MenuItem onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center" className="profileTools"><NavLink to={"/Afeme"}>Main menu</NavLink></Typography>
-                </MenuItem>
-                <MenuItem onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center" className="profileTools" onClick={logOut}>Log out</Typography>
-                </MenuItem>
-            </Menu>
-        </Box>
+        <>
+            <AdvertBtn />
+            <Box sx={{ flexGrow: 0, ml: 2 }}>
+                <Tooltip title="Open settings">
+                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                        <Avatar
+                            alt="Profile picture"
+                            src=""
+                            sx={{ width: "36px", height: "36px" }}
+                        />
+                    </IconButton>
+                </Tooltip>
+                <Menu
+                    sx={{ mt: "45px" }}
+                    id="menu-appbar"
+                    anchorEl={anchorElUser}
+                    anchorOrigin={{
+                        vertical: "top",
+                        horizontal: "right",
+                    }}
+                    keepMounted
+                    transformOrigin={{
+                        vertical: "top",
+                        horizontal: "right",
+                    }}
+                    open={Boolean(anchorElUser)}
+                    onClose={handleCloseUserMenu}
+                >
+                    <MenuItem onClick={handleCloseUserMenu}>
+                        <Typography textAlign="center" className="profileTools">
+                            <NavLink to={"/userprofil"}>My Profile</NavLink>
+                        </Typography>
+                    </MenuItem>
+                    <MenuItem onClick={handleCloseUserMenu}>
+                        <Typography textAlign="center" className="profileTools">
+                            <NavLink to={"/posts"}>My Adverts</NavLink>
+                        </Typography>
+                    </MenuItem>
+                    <MenuItem onClick={handleCloseUserMenu}>
+                        <Typography textAlign="center" className="profileTools">
+                            <NavLink to={"/Afeme"}>Main menu</NavLink>
+                        </Typography>
+                    </MenuItem>
+                    <MenuItem onClick={handleCloseUserMenu}>
+                        <Typography
+                            textAlign="center"
+                            className="profileTools"
+                            onClick={handlePopper}
+                        >
+                            Log out
+                        </Typography>
+                    </MenuItem>
+                    <Popper
+                        open={openPopper}
+                        anchorEl={anchorElPopper}
+                        placement="bottom"
+                        modifiers={[
+                            {
+                                name: "flip",
+                                enabled: true,
+                                options: {
+                                    altBoundary: true,
+                                    rootBoundary: "document",
+                                    padding: 8,
+                                },
+                            },
+                        ]}
+                    ></Popper>
+                </Menu>
+            </Box>
+        </>
     );
 
     const userTools = (
         <>
-            <AdvertBtn />
             <Button
                 className="btn header__button login__btn modal-dialog modal-dialog-scrollable"
                 variant="text"
@@ -180,7 +213,7 @@ function Header() {
                                     <IconButton
                                         color="primary"
                                         className="lang__changer"
-                                        sx={{mr: '5px'}}
+                                        sx={{ mr: "5px" }}
                                         onMouseEnter={langTooltipOpen}
                                         onMouseLeave={langTooltipClose}
                                     >
@@ -224,7 +257,10 @@ function Header() {
                                     TransitionComponent={Grow}
                                 >
                                     <NavLink to={"/liked"}>
-                                        <IconButton color="primary" sx={{mr: '5px'}}>
+                                        <IconButton
+                                            color="primary"
+                                            sx={{ mr: "5px" }}
+                                        >
                                             <Badge
                                                 badgeContent={2}
                                                 color="error"
@@ -247,7 +283,7 @@ function Header() {
                                     <IconButton
                                         color="primary"
                                         className="currency__changer"
-                                        sx={{ml: '4px'}}
+                                        sx={{ ml: "4px" }}
                                         onMouseEnter={currencyTooltipOpen}
                                         onMouseLeave={currencyTooltipClose}
                                     >
@@ -268,10 +304,10 @@ function Header() {
                                     </IconButton>
                                 </Tooltip>
                             </div>
-                            <div className="header__buttons" sx={{ ml: 3 }}>
+                            <Box className="header__buttons" sx={{ ml: 3 }}>
                                 {/* If User have Account show profile else Show Login */}
                                 {isUser ? profile : userTools}
-                            </div>
+                            </Box>
                         </div>
                         <button
                             className="header__menu-btn"
@@ -288,4 +324,4 @@ function Header() {
         </>
     );
 }
-export default Header
+export default Header;

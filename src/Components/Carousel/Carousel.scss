@@ -1,14 +1,13 @@
 :root{
     --sliderWidth: 250px;
 }
-.our__partners{
+.our__partners, .advertGallery{
     margin: 75px 0;
     .splide__track{
         border-radius: 10px;
     }
     .splide__slide{
         border-radius: 10px;
-        width: var(--sliderWidth);
         overflow: hidden;
     }
     .carousel__img{
@@ -21,5 +20,10 @@
             transition: all .3s;
             transform: scale(1.1);
         }
+    }
+}
+.our__partners{
+    .splide__slide{
+        width: var(--sliderWidth);
     }
 }

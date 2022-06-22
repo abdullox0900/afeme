@@ -60,13 +60,67 @@ function ReytingModal({ userId }) {
             <div className="reyting-mod">
                 <div className="reyting-mod__wrap">
                     <button className="reytin-mod__clos">x</button>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU" className="reyting-mod__user-avatar"></img>
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU"
+                        className="reyting-mod__user-avatar"
+                    ></img>
                     <div className="reyting-mod__title">Alibe Alimov</div>
-                    <form action="" onSubmit={(evt) => submit(evt)} className="reyting-mod__form">
-                        <div className="star_widget">
-                            {/* <input onChange={(evt) => handel(evt)} value={postData.userId} name="userData" id="userDataId" /> */}
 
-                            <input onChange={(evt) => handel(evt)} value="5" type="radio" name="rate" id="rate_5" />
+                    <div className="star_widget">
+                        <input type="radio" name="rate" id="rate_5" />
+                        <label htmlFor="rate_5">
+                            <StarIcon
+                                width="40px"
+                                height="40px"
+                                color="#dee7ee"
+                            />
+                        </label>
+                        <input type="radio" name="rate" id="rate_4" />
+                        <label htmlFor="rate_4">
+                            <StarIcon
+                                width="40px"
+                                height="40px"
+                                color="#dee7ee"
+                            />
+                        </label>
+                        <input type="radio" name="rate" id="rate_3" />
+                        <label htmlFor="rate_3">
+                            <StarIcon
+                                width="40px"
+                                height="40px"
+                                color="#dee7ee"
+                            />
+                        </label>
+                        <input type="radio" name="rate" id="rate_2" />
+                        <label htmlFor="rate_2">
+                            <StarIcon
+                                width="40px"
+                                height="40px"
+                                color="#dee7ee"
+                            />
+                        </label>
+                        <input type="radio" name="rate" id="rate_1" />
+                        <label htmlFor="rate_1">
+                            <StarIcon
+                                width="40px"
+                                height="40px"
+                                color="#dee7ee"
+                            />
+                        </label>
+                        <form action="#" className="rateus__form">
+                            <div className="rateus__text">s</div>
+                            <div className="rateus__button">
+                                <button type="button" className="rateus__btn">
+                                    Send
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    {/* <form action="" onSubmit={(evt) => submit(evt)} className="reyting-mod__form">
+                        <div className="star_widget">
+
+                            <input onChange={(evt) => handel(evt)} value="5" type="radio" name="rate" id="rate_5 rate" />
                             <label htmlFor="rate_5"><StarIcon width="40px" height="40px" color="#dee7ee" /></label>
 
                             <input onChange={(evt) => handel(evt)} value="4" type="radio" name="rate" id="rate_4" />
@@ -82,14 +136,15 @@ function ReytingModal({ userId }) {
                             <label htmlFor="rate_1"><StarIcon width="40px" height="40px" color="#dee7ee" /></label>
 
                         </div>
+                        <div class="rateus__text"></div>
 
                         <textarea onChange={(evt) => handel(evt)} className="reyting-mod__textarea" value={postData.comment} name="comment" id="comment" cols="30" rows="10"></textarea>
                         <Button type="button" variant="contained" className="reyting-mod__btn">Yuborish</Button>
-                    </form>
+                    </form> */}
                 </div>
             </div>
         </>
-    )
+    );
 }
 
 export default ReytingModal;

@@ -10,7 +10,7 @@ function OfflineError() {
     const { lang, setLang } = useContext(Context);
     return (
         <div className="apiEror">
-            <OfflineIcon width={150} height={150} />
+            <OfflineIcon width={250} height={180} />
             <p className="apiEror__text">{content[lang].internetError}</p>
         </div>
     )
