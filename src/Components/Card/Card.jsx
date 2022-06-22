@@ -6,6 +6,7 @@ import { NavLink as Redirect } from "react-router-dom";
 import { Box, Card, CardMedia, Typography, CardContent, CardActions, IconButton, } from "@mui/material";
 
 // Import => Components
+import LoveBtn from "../LoveBtn/LoveBtn";
 import LoveIcon from "../../Lib/Svg/love";
 import LocationIcon from "../../Lib/Svg/location";
 import DeleteIcon from "../../Lib/Svg/delete";
@@ -58,45 +59,6 @@ function CardTools( data, lang, currency, price, advertTitle, advertLink, advert
         }
     }, [data, currency, lang]);
 }
-
-function LoveAnimate(e, isUser, elModal) {
-    let modal = document.querySelector(".modal");
-    let loveBtn = document.querySelectorAll(".love-btn");
-    let content = document.querySelectorAll(".content");
-    let heart = document.querySelectorAll(".heart");
-
-    if (isUser) {
-        for (let i = 0; i < loveBtn.length; i++) {
-            if (
-                loveBtn[i].getAttribute("dataid") ==
-                e.target.getAttribute("dataid")
-            ) {
-                if (content[i].classList.contains("active")) {
-                    content[i].classList.remove("active");
-                    heart[i].classList.remove("active");
-                } else {
-                    content[i].classList.add("active");
-                    heart[i].classList.add("active");
-                }
-            }
-        }
-    } else {
-        modal.classList.add("modal--open");
-        modal.classList.add("modal--style");
-    }
-}
-
-const cardLove = (data, isUser, elModal) => (
-    <div
-        className="love-btn"
-        dataid={data?.id}
-        onClick={(e) => LoveAnimate(e, isUser, elModal)}
-    >
-        <div className="content">
-            <span className="heart"></span>
-        </div>
-    </div>
-);
 
 const cardControls = (data) => (
     <>
@@ -173,7 +135,7 @@ function Cards({ data, isLoading, loveBtn = true, editDelete = false }) {
                         </span>
                     </Typography>
                     <div className="card__actions">
-                        {loveBtn ? cardLove(data, isUser, elModal) : ""}
+                        {loveBtn ? <LoveBtn advertID={data?.id} /> : ""}
                         {editDelete ? cardControls(data) : ""}
                     </div>
                 </CardActions>
@@ -233,15 +195,7 @@ function FullCard({ data, cardData, dataError }) {
                             </span>
                         </Typography>
                     </div>
-                    <div
-                        className="love-btn"
-                        dataid={data?.id}
-                        onClick={(e) => LoveAnimate(e)}
-                    >
-                        <div className="content">
-                            <span className="heart"></span>
-                        </div>
-                    </div>
+                    <LoveBtn />
                 </CardActions>
             </Box>
         </Card>

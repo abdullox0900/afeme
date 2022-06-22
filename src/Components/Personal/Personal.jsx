@@ -5,7 +5,6 @@ import React, { useContext } from "react";
 import { Button, IconButton } from "@mui/material";
 
 // Import => Components
-import { InternetContext } from "../../Context/InternetContext";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import DeleteIcon from "../../Lib/Svg/delete";
 import EditIcon from "../../Lib/Svg/edit";
@@ -15,8 +14,6 @@ import ApiError from "../ApiError/ApiError";
 import OfflineError from "../OfflineError/OfflineError"
 
 function Personal({ data, dataError, isLoading }) {
-
-    const { netStatus, setNetStatus } = useContext(InternetContext)
     
     function showUserPhoto() {
         if (!dataError && data.hasOwnProperty("id")) {
@@ -51,12 +48,6 @@ function Personal({ data, dataError, isLoading }) {
                     <ApiError />
                 </div>
             );
-        } else if (!netStatus) {
-            return (
-                <div className={"userProfile " + style.card}>
-                    <OfflineError />
-                </div>
-            )
         }
         return (
             <div className={"userProfile " + style.card}>
