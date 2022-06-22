@@ -1,5 +1,5 @@
 // Import => React
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 // Import => @Mui
 import { Button } from '@mui/material';
@@ -9,7 +9,7 @@ import { v4 } from 'uuid';
 import style from './ImageFile.module.scss'
 import axios from 'axios';
 
-function ImageFile({ images, setImages }) {
+function ImageFile({ photo, setPhoto }) {
     const [image, setImage] = useState([])
     const [img, setImg] = useState(false);
     function startImageHandler(e) {
@@ -20,30 +20,30 @@ function ImageFile({ images, setImages }) {
         e.preventDefault();
         setImg(false)
     }
-
     const arr = new Array();
-    const [array, setarray] = useState([]);
     function dropImageHandler(e) {
-        // const [obj, setobj] = useState({})
-        e.preventDefault()
+        e.preventDefault();
         var formdata = new FormData();
         let files = [...e.dataTransfer.files]
-        console.log(typeof arr);
-        // let obj = [];
         for (let i = 0; i < files.length; i++) {
-            formdata.append("image", files[1]);
+            formdata.append('key','Service For C Group')
+            formdata.append("file", files[i]);
             axios.post('http://ali98.uz/api/service', formdata)
                 .then(function (response) {
-                    let one = (JSON.stringify(response.data.data));
-                    // console.log(one);
-                    // setarray(one)
+                    let res = response.data
+                    Object.entries(res).forEach(([name, value]) => {
+                        if (typeof value === 'string') {
+                            arr.push(value);
+                            setPhoto(arr)
+                        }
+                    })
+                })
+                .catch(function (res) {
+                    console.log(res.response.data.message);
                 })
         }
         setImage(files)
         setImg(false)
-        setTimeout(() => {
-            console.log(array);
-        }, 2000)
     }
     function onChange(e) {
         let files = [...e.dataTransfer.files]
@@ -79,12 +79,10 @@ function ImageFile({ images, setImages }) {
 
                     >
                         <label htmlFor="contained-button-file">
-                            <Button
-                                style={{ cursor: 'pointer' }}
-                                variant="contained" component="span"
-                                accept="image/*" id="contained-button-file" multiple type="file">
-                                Videoni Tanlang
-                            </Button>
+                            <div className={style.btns}>
+                                <label htmlFor="button">Rasmni Tanlang</label>
+                                <input type="file" id='button' className={style.label} multiple  />
+                            </div>
                         </label>
                         <span>Drop Here...</span>
 
