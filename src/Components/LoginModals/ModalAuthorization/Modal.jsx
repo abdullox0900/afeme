@@ -45,8 +45,6 @@ function Modal({ elModal }) {
         elModal.current.classList.remove("modal--open");
     }
 
-
-
     return (
         <>
 
@@ -54,7 +52,6 @@ function Modal({ elModal }) {
             <div
                 className="modal"
                 ref={elModal}
-                //Modal Open/Close Function
                 onClick={(evt) => {
                     if (
                         evt.target.matches(".modal") || evt.target.matches(".modal__close-btn")

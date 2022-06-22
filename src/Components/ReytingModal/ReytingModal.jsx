@@ -13,9 +13,20 @@ import Button from '@mui/material/Button';
 import axios from "axios";
 import { useEffect } from "react";
 
-function ReytingModal({ userId }) {
+function ReytingModal({ userId, setReltorUserData,  userData, elReytingModal }) {
 
+    // console.log(userId)
+
+    useEffect(() => {
+
+
+    },[])
+
+    // console.log(setReltorUserData)
+    console.log(userData)
     console.log(userId)
+
+
 
     const apiUrl = "https://ali98.uz/api/reyting";
     const [postData, setPostData] = useState({
@@ -24,13 +35,11 @@ function ReytingModal({ userId }) {
         comment: "",
     })
 
-
-
     function handel(evt) {
         const newData = { ...postData }
         newData[evt.target.id] = evt.target.value
         setPostData(newData)
-        console.log(newData)
+        // console.log(newData)
     }
 
     function submit(evt) {
@@ -39,7 +48,7 @@ function ReytingModal({ userId }) {
         axios.post(apiUrl, {
             reltor_id: 170,
             comment: "lkdsnlkfvndflknvdf",
-            reting:  5,
+            reting: 5,
         })
     }
 
@@ -57,28 +66,34 @@ function ReytingModal({ userId }) {
 
     return (
         <>
-            <div className="reyting-mod">
+            <div className="reyting-mod" ref={elReytingModal} onClick={(evt) => {
+                if (
+                    evt.target.matches(".reyting-mod") || evt.target.matches(".reytin-mod__clos")
+                ) {
+                    elReytingModal.current.classList.remove("reyting-mod--open");
+                }
+            }}>
                 <div className="reyting-mod__wrap">
-                    <button className="reytin-mod__clos">x</button>
+                    <button className="reytin-mod__clos"></button>
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU" className="reyting-mod__user-avatar"></img>
-                    <div className="reyting-mod__title">Alibe Alimov</div>
+                    <div className="reyting-mod__title">{userData?.name}</div>
                     <form action="" onSubmit={(evt) => submit(evt)} className="reyting-mod__form">
                         <div className="star_widget">
                             {/* <input onChange={(evt) => handel(evt)} value={postData.userId} name="userData" id="userDataId" /> */}
 
-                            <input onChange={(evt) => handel(evt)} value="5" type="radio" name="rate" id="rate_5" />
+                            <input onChange={(evt) => handel(evt)} value="5" type="radio" name="rate" className="star_1" id="rate_5" />
                             <label htmlFor="rate_5"><StarIcon width="40px" height="40px" color="#dee7ee" /></label>
 
-                            <input onChange={(evt) => handel(evt)} value="4" type="radio" name="rate" id="rate_4" />
+                            <input onChange={(evt) => handel(evt)} value="4" type="radio" name="rate" className="star_2" id="rate_4" />
                             <label htmlFor="rate_4"><StarIcon width="40px" height="40px" color="#dee7ee" /></label>
 
-                            <input onChange={(evt) => handel(evt)} value="3" type="radio" name="rate" id="rate_3" />
+                            <input onChange={(evt) => handel(evt)} value="3" type="radio" name="rate" className="star_3" id="rate_3" />
                             <label htmlFor="rate_3"><StarIcon width="40px" height="40px" color="#dee7ee" /></label>
 
-                            <input onChange={(evt) => handel(evt)} value="2" type="radio" name="rate" id="rate_2" />
+                            <input onChange={(evt) => handel(evt)} value="2" type="radio" name="rate" className="star_4" id="rate_2" />
                             <label htmlFor="rate_2"><StarIcon width="40px" height="40px" color="#dee7ee" /></label>
 
-                            <input onChange={(evt) => handel(evt)} value="1" type="radio" name="rate" id="rate_1" />
+                            <input onChange={(evt) => handel(evt)} value="1" type="radio" name="rate" className="star_5" id="rate_1" />
                             <label htmlFor="rate_1"><StarIcon width="40px" height="40px" color="#dee7ee" /></label>
 
                         </div>

@@ -1,5 +1,5 @@
 // Import => React
-import React from "react";
+import React, { useRef } from "react";
 import { useEffect, useState, useContext } from "react";
 
 // Import => React-Router-Dom
@@ -25,7 +25,7 @@ import Avatar from '@mui/material/Avatar';
 function ReltorCobinet() {
 
     const { userId } = useParams()
-    const [userData, setReltorUserData] = useState({})
+    const [userData, setReltorUserData] = useState([])
     const { lang, setLang } = useContext(LangContext);
     const [userLocData, setReltorUserLocData] = useState({})
     const [userLocationData, setUserLocationData] = useState({});
@@ -66,6 +66,8 @@ function ReltorCobinet() {
         }
     }, [lang])
 
+    const elReytingModal = React.useRef();
+
     return (
         <>
 
@@ -97,7 +99,11 @@ function ReltorCobinet() {
                                         <div className="reltorcob__reyting-title">
                                             4.5
                                         </div>
-                                        <img src={ZvezImgIcon} alt="" />
+                                        <button className="reltorcob__reyting-btn" onClick={() => {
+                                            elReytingModal.current.classList.add("reyting-mod--open")
+                                        }}>
+                                            <img src={ZvezImgIcon} alt="" />
+                                        </button>
                                     </div> : <Skeleton
                                         width={180}
                                         height={40} />
@@ -217,7 +223,7 @@ function ReltorCobinet() {
                 </Container>
             </section>
 
-            <ReytingModal userId={userData.id}/>
+            <ReytingModal elReytingModal={elReytingModal} userData={userData} userId={userData.id} />
 
         </>
     )

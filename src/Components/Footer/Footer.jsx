@@ -1,6 +1,7 @@
 // Import => React
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useContext, useEffect, useState } from 'react';
 
 // Import => Components
 import "../Footer/Footer.scss";
@@ -11,17 +12,38 @@ import Instagram from "../../Lib/Svg/Instagram";
 import Telegram from "../../Lib/Svg/Telegram";
 
 // Import useContext => Localization
-import { useContext } from 'react';
 import { Context } from '../../Context/LangContext';
 import content from '../../Localization/Content';
 
+// Import => Axios
+import axios from "axios";
+
+
 function Footer() {
+
+    const { lang, setLang } = useContext(Context);
+    const [useData, setUseData] = useState([])
+    const [useNetWorkData, setNetWorkData] = useState([])
+
+    useEffect(() => {
+        axios.get(`https://ali98.uz/api/addresses`)
+            .then(res => {
+                const resdat = res?.data;
+                setUseData(resdat)
+            })
+    }, [])
+
+    useEffect(() => {
+        axios.get(`https://ali98.uz/api/networks`)
+            .then(res => {
+                const resdat = res?.data;
+                setNetWorkData(resdat)
+            })
+    }, [])
 
     const address = {
         width: "200px",
     }
-
-    const { lang, setLang } = useContext(Context);
 
     return (
         <>
@@ -32,7 +54,7 @@ function Footer() {
                             <NavLink to={"/Afeme"}>
                                 <img src={Logo} className="footer__logo-img" alt="logo-img" />
                             </NavLink>
-                            <p className="footer__subtitle">{ content[lang].footer_text}</p>
+                            <p className="footer__subtitle">{content[lang].footer_text}</p>
                             <NavLink to={"/Tezkunda"} className="footer__google-icon">
                                 <img src={GoogleImg} alt="google-icon" />
                             </NavLink>
@@ -57,30 +79,46 @@ function Footer() {
                         <section className="footer__holder">
                             <h3 className="footer__holder-title">{content[lang].contact_us}</h3>
                             <ul className="footer__list">
-                                <li className="footer__item">
-                                    <a href="tel:+998900431160" className="footer__link footer__link-tel">+998900431160</a>
-                                </li>
-                                <li className="footer__item">
-                                    <a href="mailto: afemegroup@gmail.com" className="footer__link footer__link-email">afemegroup@gmail.com</a>
-                                </li>
-                                <li className="footer__item">
-                                    <a href="https://yandex.uz/maps/org/244577402097/?ll=72.356849%2C40.746957&z=15" className="footer__link footer__link-address" target={"_blank"} style={address}>Andijon shahri, Boburshox ko'chasi, 2-uy</a>
-                                </li>
+                                {
+                                    useData.map((res) => {
+                                        return (
+                                            <>
+                                                <li className="footer__item">
+                                                    <a href="tel:+998900431160" className="footer__link footer__link-tel">{res.tel}</a>
+                                                </li>
+                                                <li className="footer__item">
+                                                    <a href="mailto: afemegroup@gmail.com" className="footer__link footer__link-email">{res.email}</a>
+                                                </li>
+                                                <li className="footer__item">
+                                                    <a href="https://yandex.uz/maps/org/244577402097/?ll=72.356849%2C40.746957&z=15" className="footer__link footer__link-address" target={"_blank"} style={address}>{res.location}</a>
+                                                </li>
+                                            </>
+                                        )
+                                    })
+                                }
                             </ul>
                         </section>
                         <section className="footer__holder">
                             <h3 className="footer__holder-title">{content[lang].social_networks}</h3>
                             <ul className="footer__list footer__list-three">
-                                <li className="footer__item-th">
-                                    <NavLink to={"/"} className="footer__link-th">
-                                        <Instagram />
-                                    </NavLink>
-                                </li>
-                                <li className="footer__item-th">
-                                    <a href="https://t.me/afemeuzd" target={"_blank"} className="footer__link-th">
-                                        <Telegram />
-                                    </a>
-                                </li>
+                                {
+                                    useNetWorkData.map((resNetwork) => {
+                                        return (
+                                            <>
+                                                <li className="footer__item-th">
+                                                    <a href={resNetwork.instagram} target={"_blank"} className="footer__link-th">
+                                                        <Instagram />
+                                                    </a>
+                                                </li>
+                                                <li className="footer__item-th">
+                                                    <a href={resNetwork.telegram} target={"_blank"} className="footer__link-th">
+                                                        <Telegram />
+                                                    </a>
+                                                </li>
+                                            </>
+                                        )
+                                    })
+                                }
                             </ul>
                         </section>
                     </section>

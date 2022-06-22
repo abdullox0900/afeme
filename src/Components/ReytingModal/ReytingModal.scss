@@ -1,5 +1,5 @@
 .reyting-mod {
-    display: flex;
+    display: none;
     align-items: center;
     flex-direction: column;
     justify-content: center;
@@ -27,6 +27,21 @@
         transition: all 1.5s;
     }
 
+    .reytin-mod__clos {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        padding: 0;
+        top: 20px;
+        right: 20px;
+        border: none;
+        cursor: pointer;
+        background-color: transparent;
+        background-image: url("../../Assets/Img/close.svg");
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
     .reyting-mod__user-avatar {
         width: 140px;
         height: 140px;
@@ -40,6 +55,10 @@
         font-size: 32px;
         line-height: 38px;
     }
+}
+
+.reyting-mod--open {
+    display: flex;
 }
 
 .star_widget input {
