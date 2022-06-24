@@ -50,7 +50,7 @@ function Modal({ elModal }) {
 
             <Confirm second={second} />
             <div
-                className="modal"
+                className="modal loginModal"
                 ref={elModal}
                 onClick={(evt) => {
                     if (

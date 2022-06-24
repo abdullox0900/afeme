@@ -1,13 +1,16 @@
-import React, { useEffect, useState, useRef, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { useSearchParams, useParams } from "react-router-dom";
-import { Box, IconButton } from "@mui/material";
+import { NavLink as Link, useSearchParams, useParams } from "react-router-dom";
+import { Box, IconButton, Tooltip, Zoom } from "@mui/material";
 
 // Import => Components
+import { Context as LangContext } from "../../Context/LangContext";
+import { UserContext } from "../../Context/UserContext";
+import { CurrencyContext } from "../../Context/CurrencyContext";
 import Container from "../Container/Container";
-import Spinner from "../Spinner/Spinner"
+import Spinner from "../Spinner/Spinner";
 import AdvertGallery from "../AdvertGallery/AdvertGallery";
-import { Cards } from "../../Components/Card/Card";
+import CardTools from "../../Utils/cardTools";
 import ApiError from "../ApiError/ApiError";
 import OfflineError from "../OfflineError/OfflineError";
 import LoveBtn from "../LoveBtn/LoveBtn";
@@ -19,6 +22,10 @@ import AdvertImg from "../../Assets/Img/advertImg.jpg";
 import messageIcon from "../../Assets/Img/message.svg";
 import ShareIcon from "../../Lib/Svg/share";
 import EyeIcon from "../../Lib/Svg/eye";
+import DownloadIcon from "../../Lib/Svg/download";
+import PrintIcon from "../../Lib/Svg/print";
+import ExclamationIcon from "../../Lib/Svg/exclamation";
+import arrowRight from "../../Assets/Img/arrow-right.svg";
 
 // Import => Style Component
 import "./Advert.scss";
@@ -27,10 +34,22 @@ function Advert() {
 
     const { postID } = useParams();
     const [data, setData] = useState([]);
-    const [renderData, setRenderData] = useState(false);
     const [dataError, setDataError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const URL = `https://ali98.uz/api/post/${postID}`;
+    
+    const { lang, setLang } = useContext(LangContext);
+    const { currency, setCurrency } = useContext(CurrencyContext);
+    const { isUser, setIsUser } = useContext(UserContext);
+    const [price, setPrice] = useState("");
+    const [advertTitle, setAdvertTitle] = useState("");
+    const [advertLink, setAdvertLink] = useState("");
+    const [advertType, setAdvertType] = useState("");
+    const [advertTypeImg, setAdvertTypeImg] = useState("");
+    const [advertAddress, setAdvertAddress] = useState("");
+    const [advertCity, setAdvertCity] = useState("");
+
+    CardTools( data, lang, currency, setPrice, setAdvertTitle, setAdvertLink, setAdvertType, setAdvertTypeImg, setAdvertAddress, setAdvertCity );
 
     useEffect(() => {
         const result = axios
@@ -39,7 +58,7 @@ function Advert() {
                 let dataStatus = response.data;
                 if (dataStatus.status == true || dataStatus.status == 200) {
                     setData(response.data.data);
-                    console.log(dataStatus);
+                    console.log(response);
                 } else {
                     setDataError(true);
                 }
@@ -50,58 +69,133 @@ function Advert() {
             .finally(() => {
                 setIsLoading(false);
             });
-    }, [renderData]);
-    console.log(data);
+    }, []);
+    console.log(data, data.hasOwnProperty("id"));
 
-    
+    const shareData = {
+        title: "Afeme",
+        text: "Uy sotiladi",
+        url: "http://localhost:3000/advert/118",
+    };
 
     if (isLoading) {
         return <Spinner />;
 
     } else if (data.hasOwnProperty("id") && !dataError) {
 
-        const shareData = {
-            title: 'Afeme',
-            text: 'Uy sotiladi',
-            url: 'http://localhost:3000/advert/118'
-        }
-
         return (
             <Box className="advert">
                 <Container>
                     <div className="advert__blog">
                         <Box className="advert__content">
-
                             <Box className="advert__info">
-                                <Box className="advert__about">
-                                    <h2 className="advert__title">Lorem ipsum dolor sit amet consectetur adipisicing.</h2>
-                                    <Box className="advert__address__blog">
-                                        <p className="advert__address">Andijon, Buloqboshi, Uchtepa ko'chasi</p>
-                                        <a href="#" className="wiewInMap">Kartadan ko'rish</a >
+                                <div className="advert__about__header">
+                                    <h2 className="advert__title">
+                                        {advertTitle}
+                                        <span className="advert__houseType">
+                                            <img
+                                                src=""
+                                                alt=""
+                                                className="house__type__icon"
+                                                onError={(e) => {
+                                                    e.target.style.display = "none";
+                                                }}
+                                            />
+                                            {advertType}
+                                        </span>
+                                    </h2>
+                                    <Box className="advert__prices">
+                                        <p className="advertPrice">
+                                            {price}
+                                        </p>
+                                        <span>{price}/month</span>
                                     </Box>
-                                    <Box className="advert__items">
-                                        <div>
+                                </div>
+                                <Box className="advert__address__blog">
+                                    <p className="advert__address">
+                                        {advertAddress}, {advertCity}, {data?.street} ko'chasi
+                                        <img
+                                            src={arrowRight}
+                                            alt=""
+                                            className="advert__address__arrow"
+                                        />
+                                    </p>
+                                    <a href="#" className="wiewInMap">
+                                        Kartadan ko'rish
+                                    </a>
+                                </Box>
+                                <Box className="advert__items">
+                                    <div className="advert__buttons">
+                                        <LoveBtn advertid={data.id} />
+                                        <Tooltip
+                                            title="E'lonni Ulashish"
+                                            TransitionComponent={Zoom}
+                                            arrow
+                                        >
                                             <IconButton
                                                 variant="contained"
                                                 color="primary"
-                                                className="advert__shareBtn"
+                                                className="advert__btn advert__shareBtn"
+                                                onClick={() =>
+                                                    navigator.share(shareData)
+                                                }
+                                                sx={{ mx: 1 }}
                                             >
-                                                <ShareIcon onClick={navigator.share(shareData)}/>
+                                                <ShareIcon />
                                             </IconButton>
-                                        </div>
-                                        <div className="advert__view">
+                                        </Tooltip>
+                                        <Tooltip
+                                            title="Yuklab olish (PDF)"
+                                            TransitionComponent={Zoom}
+                                            arrow
+                                        >
                                             <IconButton
-                                            variant="contained"
-                                            color="primary"
-                                            className="advert__shareBtn">
-                                                <EyeIcon /> 20
+                                                variant="contained"
+                                                color="primary"
+                                                className="advert__btn advert__dwnBtn"
+                                                sx={{ mr: 1 }}
+                                            >
+                                                <DownloadIcon />
                                             </IconButton>
+                                        </Tooltip>
+                                        <Tooltip
+                                            title="Printerga chiqarish"
+                                            TransitionComponent={Zoom}
+                                            arrow
+                                        >
+                                            <IconButton
+                                                variant="contained"
+                                                color="primary"
+                                                className="advert__btn advert__printBtn"
+                                                sx={{ mr: 1 }}
+                                            >
+                                                <PrintIcon />
+                                            </IconButton>
+                                        </Tooltip>
+                                        <Tooltip
+                                            title="Xabar berish"
+                                            TransitionComponent={Zoom}
+                                            arrow
+                                        >
+                                            <IconButton
+                                                variant="contained"
+                                                color="primary"
+                                                className="advert__btn advert__reportBtn"
+                                                sx={{ mr: 1 }}
+                                            >
+                                                <ExclamationIcon />
+                                            </IconButton>
+                                        </Tooltip>
+                                    </div>
+                                    <Box
+                                        className="advert__view"
+                                        sx={{ ml: 1 }}
+                                    >
+                                        <EyeIcon />
+                                        <div className="advert__view__count">
+                                            {data.view}
                                         </div>
                                     </Box>
-                                </Box>
-                                <Box className="advert__actions">
-                                    <span className="advert__houseType">Kvartira</span>
-                                    <LoveBtn advertID={data.id}/>
                                 </Box>
                             </Box>
 
@@ -110,52 +204,66 @@ function Advert() {
                             <Box className="advert__description">
                                 <h5 className="descr__title">Tavsif</h5>
                                 <p className="descr__text">
-                                    Ijara <br /> Yangi bino <br /> Yakkasaroy
-                                    tumani <br /> Sobiq zavod <br /> Belgilangan
-                                    karvon <br /> 4/2/9 <br /> mebel va maishiy
-                                    texnika <br /> 100 m2 <br /> Uzoq muddatli
-                                    oila. <br /> 1300 <br /> +998901207800
-                                    Qo'shimcha ma'lumotlar <br /> dushanbadan
-                                    yakshanbagacha <br /> 10:00 dan 18:0 gacha
+                                    {data?.description}
                                 </p>
+                                <Link to={"/chat"}>
+                                    <IconButton
+                                        variant="contained"
+                                        className="sellerProfile__btn sellerProfile__msg"
+                                    >
+                                        <img src={messageIcon} alt="" />
+                                        <p className="callBtn__text">
+                                            Xabar yozish
+                                        </p>
+                                    </IconButton>
+                                </Link>
                             </Box>
                         </Box>
                         <Box className="advert__panel">
                             <Box className="sellerProfile">
-                                <Box className="advert__prices">
-                                    <p className="advertPrice">$999,999.00</p>
-                                </Box>
                                 <Box className="sellerProfile__header">
-                                    <img
-                                        src={Person}
-                                        alt=""
-                                        className="sellerProfile__img"
-                                    />
+                                    <Link to={"#"}>
+                                        <img
+                                            src={Person}
+                                            alt=""
+                                            className="sellerProfile__img"
+                                        />
+                                    </Link>
                                     <Box className="sellerProfile__content">
-                                        <a
-                                            href="#"
+                                        <Link
+                                            to={"/reltor"}
                                             className="sellerProfile__title"
                                         >
                                             Abdusalomov Abdullox
-                                        </a>
+                                        </Link>
                                         <span className="sellerProfile__type">
                                             Sotuvchi
                                         </span>
                                     </Box>
                                 </Box>
                                 <Box className="sellerProfile__actions">
-                                    <IconButton
-                                        variant="contained"
-                                        className="sellerProfile__btn sellerProfile__call"
-                                    >
-                                        <img src={callIcon} alt="" />
-                                    </IconButton>
-                                    <IconButton
-                                        variant="contained"
-                                        className="sellerProfile__btn sellerProfile__msg"
-                                    >
-                                        <img src={messageIcon} alt="" />
-                                    </IconButton>
+                                    <Link to={"#"}>
+                                        <IconButton
+                                            variant="contained"
+                                            className="sellerProfile__btn sellerProfile__call"
+                                        >
+                                            <img src={callIcon} alt="" />
+                                            <p className="callBtn__text">
+                                                Bog'lanish
+                                            </p>
+                                        </IconButton>
+                                    </Link>
+                                    <Link to={"/chat"}>
+                                        <IconButton
+                                            variant="contained"
+                                            className="sellerProfile__btn sellerProfile__msg"
+                                        >
+                                            <img src={messageIcon} alt="" />
+                                            <p className="callBtn__text">
+                                                Xabar yozish
+                                            </p>
+                                        </IconButton>
+                                    </Link>
                                 </Box>
                             </Box>
                             <iframe

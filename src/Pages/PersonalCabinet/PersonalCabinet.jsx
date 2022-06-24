@@ -14,7 +14,6 @@ import Personal from "../../Components/Personal/Personal";
 import Posts from "../../Components/Posts/Posts";
 import Settings from "../../Components/Settings/Settings";
 import CardImg2 from "../../Assets/Img/card_img2.jpg";
-import emptyPost from "../../Assets/Img/empty_post.webp";
 import { Cards } from "../../Components/Card/Card";
 import CardSkeleton from "../../Components/CardSkeleton/CardSkeleton";
 import AdvertBtn from "../../Components/AddAdvertBtn/AdvertBtn";
@@ -70,7 +69,6 @@ function PersonalCabinet() {
                             alignItems: "center",
                         }}
                     >
-                        <img src={emptyPost} alt="No posts" />
                         <p
                             className="emptyPost__text"
                             style={{

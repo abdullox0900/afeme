@@ -12,53 +12,13 @@ import LocationIcon from "../../Lib/Svg/location";
 import DeleteIcon from "../../Lib/Svg/delete";
 import EditIcon from "../../Lib/Svg/edit";
 
+import CardTools from "../../Utils/cardTools";
 import { CurrencyContext } from "../../Context/CurrencyContext";
 import { Context as LangContext } from "../../Context/LangContext";
 import { UserContext } from "../../Context/UserContext";
 import "./Card.scss";
 import CardImg from "../../Assets/Img/card_img4.jpg";
 import { logRoles } from "@testing-library/react";
-
-function numberFormatter(numb) {
-    var formatter = new Intl.NumberFormat("en-US", {
-        style: "currency",
-        currency: "USD",
-    });
-    return formatter.format(numb);
-}
-
-function CardTools( data, lang, currency, price, advertTitle, advertLink, advertType, advertAddress, setPrice, setAdvertTitle, setAdvertLink, setAdvertType, setAdvertAddress) {
-
-    useEffect(() => {
-        if (data) {
-            if (currency == "usd") {
-                setPrice(numberFormatter(data.price_usd));
-            } else if (currency == "sum") {
-                setPrice(
-                    data.price_som
-                        .toString()
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " so'm"
-                );
-            }
-            setAdvertTitle(
-                `Ijaraga ${data.room} xonali ${data.htype_id?.name_uz} sotiladi`
-            );
-
-            setAdvertLink(`/advert/${data.id}`);
-
-            if (lang == "uz") {
-                setAdvertType(data?.htype_id?.name_uz);
-                setAdvertAddress(data?.region_id?.name_uz);
-            } else if (lang == "ru") {
-                setAdvertType(data?.htype_id?.name_ru);
-                setAdvertAddress(data?.region_id?.name_ru);
-            } else {
-                setAdvertType(data?.htype_id?.name_en);
-                setAdvertAddress(data?.region_id?.name_en);
-            }
-        }
-    }, [data, currency, lang]);
-}
 
 const cardControls = (data) => (
     <>
@@ -82,7 +42,6 @@ const cardControls = (data) => (
 
 function Cards({ data, isLoading, loveBtn = true, editDelete = false }) {
 
-    const elModal = React.useRef();
     const { lang, setLang } = useContext(LangContext);
     const { currency, setCurrency } = useContext(CurrencyContext);
     const { isUser, setIsUser } = useContext(UserContext);
@@ -91,9 +50,11 @@ function Cards({ data, isLoading, loveBtn = true, editDelete = false }) {
     const [advertTitle, setAdvertTitle] = useState("");
     const [advertLink, setAdvertLink] = useState("");
     const [advertType, setAdvertType] = useState("");
+    const [advertTypeImg, setAdvertTypeImg] = useState("");
     const [advertAddress, setAdvertAddress] = useState("");
+    const [advertCity, setAdvertCity] = useState("");
 
-    CardTools( data, lang, currency, price, advertTitle, advertLink, advertType, advertAddress, setPrice, setAdvertTitle, setAdvertLink, setAdvertType, setAdvertAddress );
+    CardTools( data, lang, currency, setPrice, setAdvertTitle, setAdvertLink, setAdvertType, setAdvertTypeImg, setAdvertAddress, setAdvertCity );
 
     return (
         <Card sx={{ maxWidth: 300 }} className="card">
@@ -103,7 +64,7 @@ function Cards({ data, isLoading, loveBtn = true, editDelete = false }) {
                     alt="Card img"
                     height="140"
                     className="card__img"
-                    image={CardImg}
+                    image={data?.image.length > 0 ? data?.image[0]?.url : CardImg}
                 />
             </Redirect>
             <Box className="card__content">
@@ -113,12 +74,17 @@ function Cards({ data, isLoading, loveBtn = true, editDelete = false }) {
                         component="div"
                         className="house__type"
                     >
+                        <img
+                            src={advertTypeImg}
+                            alt=""
+                            className="house__type__icon"
+                            onError={(e) => {
+                                e.target.style.display = "none";
+                            }}
+                        />
                         {advertType}
                     </Typography>
-                    <Typography
-                        variant="body2"
-                        className="house__prices"
-                    >
+                    <Typography variant="body2" className="house__prices">
                         <span className="house__price">{price}</span>
                     </Typography>
                 </CardContent>
@@ -130,9 +96,7 @@ function Cards({ data, isLoading, loveBtn = true, editDelete = false }) {
                 <CardActions className="card__footer">
                     <Typography className="house__address__bar">
                         <LocationIcon className="card__location" />{" "}
-                        <span className="house__address">
-                            {advertAddress}
-                        </span>
+                        <span className="house__address">{advertAddress}</span>
                     </Typography>
                     <div className="card__actions">
                         {loveBtn ? <LoveBtn advertID={data?.id} /> : ""}
@@ -153,7 +117,22 @@ function FullCard({ data, cardData, dataError }) {
     const [advertType, setAdvertType] = useState("");
     const [advertAddress, setAdvertAddress] = useState("");
 
-    CardTools( data, dataError, lang, currency, price, advertTitle, advertLink, advertType, advertAddress, setPrice, setAdvertTitle, setAdvertLink, setAdvertType, setAdvertAddress );
+    CardTools(
+        data,
+        dataError,
+        lang,
+        currency,
+        price,
+        advertTitle,
+        advertLink,
+        advertType,
+        advertAddress,
+        setPrice,
+        setAdvertTitle,
+        setAdvertLink,
+        setAdvertType,
+        setAdvertAddress
+    );
 
     return (
         <Card sx={{}} className="fullCard">
