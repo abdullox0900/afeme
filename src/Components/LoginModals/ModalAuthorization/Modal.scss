@@ -1,6 +1,9 @@
 @import "../../../Assets/scss/colors.scss";
 .modal {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 0;
+    display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
@@ -13,24 +16,23 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(3px);
-    z-index: 100;
-    &--open {
-        display: flex;
-    }
 
+    &--open {
+        opacity: 1;
+        pointer-events: auto;
+        z-index: 100;
+    }
+    &--open  &__authorization{
+        transform: scale(1);
+    }
     &__authorization {
         position: relative;
         width: 400px;
         height: 600px;
         background: #ffffff;
         border-radius: 20px;
-        transition: all 1.5s;
-        // transform: scale(0);
-    }
-
-    &--style {
-        transition: 1s ease;
-        transform: scale(1);
+        transition: all 0.3s;
+        transform: scale(0);
     }
     &__img-auth {
         margin-top: 45px;
