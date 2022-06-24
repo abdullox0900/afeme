@@ -13,8 +13,8 @@ import "./AfemePhone.scss";
 function AfemePhone() {
 
     return (
-        <Container>
-            <div className="afemePhone">
+        <div className="afemePhone">
+            <Container>
                 <div className="afemePhone__content">
                     <h3 className="afemePhone__title"><span>Afeme</span> endi har doim qo'lingizda bo'ladi</h3>
                     <p className="afemePhone__text">Ilovada siz uy-joy kommunal xizmatlarini boshqarishingiz va jarayonni kuzatishingiz mumkin: biz barcha muhim narsalar haqida xabar beramiz.</p>
@@ -25,8 +25,8 @@ function AfemePhone() {
                 <span className="afemePhone__bubbles bubbles2"></span>
                 <span className="afemePhone__bubbles bubbles3"></span>
                 <span className="afemePhone__bubbles bubbles4"></span>
-            </div>
-        </Container>
+            </Container>
+        </div>
     )
 }
 export default AfemePhone;

@@ -8,7 +8,7 @@ import { CurrencyContext } from "../../Context/CurrencyContext";
 import { UserContext } from "../../Context/UserContext";
 
 // Import => Mui
-import { Select, IconButton, Tooltip, Button, Grow, Badge, MenuItem, Box, Menu, Avatar, Typography, Popper } from "@mui/material";
+import { Select, IconButton, Tooltip, Button, Grow, Badge, MenuItem, Box, Menu, Avatar, Typography } from "@mui/material";
 
 // Import => images
 import flagUz from "../../Assets/Img/Icon/uz.svg";
@@ -42,8 +42,6 @@ function Header() {
     const [anchorElUser, setAnchorElUser] = useState(null);
     const [currencyTooltip, setCurrencyTooltip] = useState(false);
     const [langTooltip, setLangTooltip] = useState(false);
-    const [openPopper, setOpenPopper] = React.useState(false);
-    const [anchorElPopper, setAnchorElPopper] = React.useState(null);
 
     const currencyChange = (e) => {
         setCurrency(e.target.value);
@@ -54,11 +52,6 @@ function Header() {
     };
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
-    };
-
-    const handlePopper = (e) => {
-        setAnchorElPopper(e.currentTarget);
-        setOpenPopper((previousOpen) => !previousOpen);
     };
 
     const currencyTooltipOpen = () => {
@@ -118,31 +111,11 @@ function Header() {
                             <NavLink to={"/Afeme"}>Main menu</NavLink>
                         </Typography>
                     </MenuItem>
-                    <MenuItem onClick={handleCloseUserMenu}>
-                        <Typography
-                            textAlign="center"
-                            className="profileTools"
-                            onClick={handlePopper}
-                        >
+                    <MenuItem onClick={LogOut}>
+                        <Typography textAlign="center" className="profileTools">
                             Log out
                         </Typography>
                     </MenuItem>
-                    <Popper
-                        open={openPopper}
-                        anchorEl={anchorElPopper}
-                        placement="bottom"
-                        modifiers={[
-                            {
-                                name: "flip",
-                                enabled: true,
-                                options: {
-                                    altBoundary: true,
-                                    rootBoundary: "document",
-                                    padding: 8,
-                                },
-                            },
-                        ]}
-                    ></Popper>
                 </Menu>
             </Box>
         </>

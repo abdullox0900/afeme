@@ -39,6 +39,7 @@ function Main() {
     const { lang, setLang } = useContext(LangContext);
 
     const [data, setData] = useState([]);
+    const [adverts, setAdverts] = useState([]);
     const [dataError, setDataError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const URL = "https://ali98.uz/api/post";
@@ -46,13 +47,11 @@ function Main() {
         const result = axios
             .get(URL)
             .then((response) => {
-                let dataStatus = response.data;
-                if (dataStatus.status == true || dataStatus.status == 200) {
-                    setData(response.data.data);
-                    if (data.length == 0) {
-                        setDataError(true);
-                    }
-                    console.log(dataStatus);
+                let dataStatus = response.status;
+                if (dataStatus == true || dataStatus == 200) {
+                    setData(response.data);
+                    setAdverts(response.data.data)
+                    console.log(response);
                 } else {
                     setDataError(true);
                 }
@@ -67,12 +66,13 @@ function Main() {
     }, []);
 
     function showCards(amount) {
+
         if (isLoading) {
             return <CardSkeleton amount={amount} />;
 
         } else if (data && !dataError) {
-            
-            return data.slice(0, amount).map((row) => {
+
+            return adverts.slice(0, amount).map((row) => {
                 return <Cards data={row} isLoading={isLoading} />;
             });
         } else if (!data || dataError) {

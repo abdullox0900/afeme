@@ -1,7 +1,10 @@
 .advertGallery {
     margin: 0;
-    margin-bottom: 50px;
-    .splide .splide__slide{
+    margin: 30px 0;
+    .splide__slide{
         width: 275px;
+    }
+    .advert__thumbs{
+        margin-top: 10px;
     }
 }

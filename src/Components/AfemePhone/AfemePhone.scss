@@ -1,40 +1,41 @@
-.afemePhone{
-    width: 1300px;
-    height: 250px;
-    position: relative;
-    overflow: hidden;
+.afemePhone {
     margin-top: 50px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
     margin-bottom: 40px;
-    padding: 20px 0;
-    display: flex;
-    justify-content: center;
-    &__content{
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 100%;
+    .container {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        padding: 20px 0;
+        display: flex;
+        justify-content: center;
+    }
+    &__content {
         display: flex;
         flex-direction: column;
         justify-content: center;
     }
-    &__title{
+    &__title {
         width: 400px;
         font-weight: 700;
         font-size: 40px;
         line-height: 47px;
         margin: 0;
-        span{
-            color: #347AFF;
+        span {
+            color: #347aff;
         }
     }
-    &__text{
+    &__text {
         width: 400px;
         font-weight: 400;
         font-size: 16px;
         line-height: 19px;
         color: #808080;
     }
-    &__bubbles{
+    &__bubbles {
         position: absolute;
-        background: linear-gradient(319.24deg, #2972FE 4.63%, #6499FF 86.67%);
+        background: linear-gradient(319.24deg, #2972fe 4.63%, #6499ff 86.67%);
         border-radius: 50%;
         display: flex;
         justify-content: center;
@@ -46,25 +47,25 @@
         top: 20px;
         right: 30px;
     }
-    .bubbles1{
+    .bubbles1 {
         width: 120px;
         height: 125px;
         top: -30px;
         right: 120px;
     }
-    .bubbles2{
+    .bubbles2 {
         width: 100px;
         height: 100px;
         bottom: -30px;
         left: -20px;
     }
-    .bubbles3{
+    .bubbles3 {
         width: 30px;
         height: 30px;
         bottom: 30px;
         right: 270px;
     }
-    .bubbles4{
+    .bubbles4 {
         width: 60px;
         height: 60px;
         top: 20px;
