@@ -24,12 +24,8 @@ import Map from '../../Components/Map/Map'
 // Import => Styles
 import style from './advertPage.module.scss'
 
-// Import => Axios Packages
-import axios from 'axios';
-
 // Import => Mui
 import { Button } from '@mui/material';
-import { useEffect } from 'react';
 
 function AdvertPage() {
   const [htype_id, sethType] = useState('')//HouseType State
@@ -54,8 +50,8 @@ function AdvertPage() {
   const [living_area, setLivingArea] = useState('')
   const [kitchen_area, setKitchenArea] = useState('')
   const [total_area_type, setTotalAreaType] = useState('')
-  const [images, setImages] = useState([])//ImageFile State  
-  const [videos, setVideo] = useState([])//VideoFile State
+  const [photo, setPhoto] = useState([])//ImageFile State  
+  const [video, setVideo] = useState([])//VideoFile State
 
   let token = localStorage.getItem('Token')
   //Dates for Send
@@ -84,8 +80,8 @@ function AdvertPage() {
   data.append('total_area_type', total_area_type)
   data.append('living_area', living_area)
   data.append('kitchen_area', kitchen_area)
-  data.append('images',images);
-  data.append('videos', videos);
+  data.append('photo',photo);
+  data.append('video', video);
   var requestOptions = {
     method: 'POST',
     headers: headers,
@@ -140,9 +136,9 @@ function AdvertPage() {
               documents={documents} setDocs={setDocs} />
             <div className={style.DnD}>
               <ImageFile
-                images={images} setImages={setImages} />
+                photo={photo} setPhoto={setPhoto} />
               <VideoFile
-                video={videos} setVideo={setVideo} />
+                video={video} setVideo={setVideo} />
             </div>
             <h2
               className={style.htypeText}

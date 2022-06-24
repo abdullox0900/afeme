@@ -7,13 +7,12 @@ import ErrorIcon from "../../Lib/Svg/error";
 import content from "../../Localization/Content";
 
 function ApiError() {
-
     const { lang, setLang } = useContext(Context);
     return (
         <div className="apiEror">
-            <ErrorIcon width={150} height={150} />
-                <p className="apiEror__text">{content[lang].apiError}</p>
+            <ErrorIcon width={250} height={180} />
+            <p className="apiEror__text">{content[lang].apiError}</p>
         </div>
-    )
-};
-export default ApiError
+    );
+}
+export default ApiError;

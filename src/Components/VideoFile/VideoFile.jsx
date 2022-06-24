@@ -7,6 +7,7 @@ import { v4 } from 'uuid';
 
 // Import => Components
 import style from '../ImageFile/ImageFile.module.scss'
+import axios from 'axios';
 
 function VideoFile({ video, setVideo }) {
     const [videoFile, setVideoFile] = useState(false);
@@ -18,12 +19,31 @@ function VideoFile({ video, setVideo }) {
         e.preventDefault();
         setVideoFile(false)
     }
+    const arr = [];
     function dropVideoHandler(e) {
         e.preventDefault()
+        var formdata = new FormData();
         let files = [...e.dataTransfer.files]
-        setVideo(files)
+        for (let i = 0; i < files.length; i++) {
+            formdata.append('key', 'Service For C Group')
+            formdata.append("file", files[i]);
+            axios.post('http://ali98.uz/api/service', formdata)
+                .then(function (response) {
+                    let res = response.data
+                    Object.entries(res).forEach(([name, value]) => {
+                        if (typeof value === 'string') {
+                            console.log('recieve', typeof value, value);
+                            arr.push(value);
+                            setVideo(arr)
+                        }
+                    })
+                })
+                .catch(function (res) {
+                    console.log(res.response.data.message);
+                })
+        }
         setVideoFile(false)
-
+        setVideo(files)
     }
 
     return (

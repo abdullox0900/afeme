@@ -92,46 +92,75 @@ input:not(:checked)~label:hover~label {
     & svg {
         fill: #ffc400;
     }
-}
 
-input:checked~label {
-    transform: scale(1.1) rotate(0deg);
-
-    & svg {
-        fill: #ffc400;
+    .rateus__text {
+        text-align: center;
+        margin: 0 auto;
+        font-size: 22px;
+        font-weight: 500;
+        color: #ffc400;
     }
-}
 
-input #rate-5:checked~label {
-    transform: rotate(60deg);
-}
+    .star_widget label {
+        font-size: 32px;
+        padding: 10px;
+        float: right;
+        color: #dee7ee;
+        cursor: pointer;
+        margin-bottom: 10px;
+        transition: all 0.3s ease;
+        z-index: 3;
+        transform: rotate(90deg);
+    }
 
-#rate_5:checked~.rateus__form .rateus__text::before {
-    content: "I just hate it 😡";
-}
+    input:not(:checked)~label:hover,
+    input:not(:checked)~label:hover~label {
+        transform: scale(1.1) rotate(0deg);
 
-#rate_4:checked~.rateus__form .rateus__text::before {
-    content: "I don't like it 😤";
-}
+        & svg {
+            fill: #ffc400;
+        }
+    }
 
-#rate_3:checked~.rateus__form .rateus__text::before {
-    content: "It is Good enough 😀";
-}
+    input:checked~label {
+        transform: scale(1.1) rotate(0deg);
 
-#rate_2:checked~.rateus__form .rateus__text::before {
-    content: "It is Awesome 😊";
-}
+        & svg {
+            fill: #ffc400;
+        }
+    }
 
-#rate_1:checked~.rateus__form .rateus__text::before {
-    content: "I just like it 😍";
-}
+    input#rate_5:checked~label {
+        transform: rotate(60deg);
+    }
 
-.star_widget form {
-    display: none;
-}
+    #rate_1:checked~.rateus__form .rateus__text::before {
+        content: "I just hate it 😡";
+    }
 
-input:checked~form {
-    display: block;
+    #rate_2:checked~.rateus__form .rateus__text::before {
+        content: "I don't like it 😤";
+    }
+
+    #rate_3:checked~.rateus__form .rateus__text::before {
+        content: "It is Good enough 😀";
+    }
+
+    #rate_4:checked~.rateus__form .rateus__text::before {
+        content: "It is Awesome 😊";
+    }
+
+    #rate_5:checked~.rateus__form .rateus__text::before {
+        content: "I just like it 😍";
+    }
+
+    .star_widget form {
+        display: none;
+    }
+
+    input:checked~form {
+        display: block;
+    }
 }
 
 .reyting-mod__form {

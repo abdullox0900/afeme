@@ -13,7 +13,9 @@ import Button from '@mui/material/Button';
 import axios from "axios";
 import { useEffect } from "react";
 
-function ReytingModal({ userId, setReltorUserData,  userData, elReytingModal }) {
+// https://ali98.uz/api/partners
+
+function ReytingModal({ userId, userData, elReytingModal }) {
 
     // console.log(userId)
 
@@ -21,12 +23,6 @@ function ReytingModal({ userId, setReltorUserData,  userData, elReytingModal }) 
 
 
     },[])
-
-    // console.log(setReltorUserData)
-    console.log(userData)
-    console.log(userId)
-
-
 
     const apiUrl = "https://ali98.uz/api/reyting";
     const [postData, setPostData] = useState({
@@ -74,14 +70,18 @@ function ReytingModal({ userId, setReltorUserData,  userData, elReytingModal }) 
                 }
             }}>
                 <div className="reyting-mod__wrap">
-                    <button className="reytin-mod__clos"></button>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU" className="reyting-mod__user-avatar"></img>
-                    <div className="reyting-mod__title">{userData?.name}</div>
+                    <button className="reytin-mod__clos">x</button>
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1
+                        HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU"
+                        className="reyting-mod__user-avatar"
+                    ></img>
+                    <div className="reyting-mod__title">{userData?.name} {userData?.lastname}</div>
+
                     <form action="" onSubmit={(evt) => submit(evt)} className="reyting-mod__form">
                         <div className="star_widget">
-                            {/* <input onChange={(evt) => handel(evt)} value={postData.userId} name="userData" id="userDataId" /> */}
 
-                            <input onChange={(evt) => handel(evt)} value="5" type="radio" name="rate" className="star_1" id="rate_5" />
+                            <input onChange={(evt) => handel(evt)} value="5" type="radio" name="rate" id="rate_5 rate" />
                             <label htmlFor="rate_5"><StarIcon width="40px" height="40px" color="#dee7ee" /></label>
 
                             <input onChange={(evt) => handel(evt)} value="4" type="radio" name="rate" className="star_2" id="rate_4" />
@@ -97,6 +97,7 @@ function ReytingModal({ userId, setReltorUserData,  userData, elReytingModal }) 
                             <label htmlFor="rate_1"><StarIcon width="40px" height="40px" color="#dee7ee" /></label>
 
                         </div>
+                        <div class="rateus__text"></div>
 
                         <textarea onChange={(evt) => handel(evt)} className="reyting-mod__textarea" value={postData.comment} name="comment" id="comment" cols="30" rows="10"></textarea>
                         <Button type="button" variant="contained" className="reyting-mod__btn">Yuborish</Button>
@@ -104,7 +105,7 @@ function ReytingModal({ userId, setReltorUserData,  userData, elReytingModal }) 
                 </div>
             </div>
         </>
-    )
+    );
 }
 
 export default ReytingModal;
