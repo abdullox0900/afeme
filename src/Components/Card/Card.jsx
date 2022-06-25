@@ -108,7 +108,8 @@ function Cards({ data, isLoading, loveBtn = true, editDelete = false }) {
     );
 }
 
-function FullCard({ data, cardData, dataError }) {
+function FullCard({ data, dataError }) {
+
     const { lang, setLang } = useContext(LangContext);
     const { currency, setCurrency } = useContext(CurrencyContext);
     const [price, setPrice] = useState("");
@@ -133,6 +134,7 @@ function FullCard({ data, cardData, dataError }) {
         setAdvertType,
         setAdvertAddress
     );
+    console.log(data);
 
     return (
         <Card sx={{}} className="fullCard">
@@ -141,7 +143,7 @@ function FullCard({ data, cardData, dataError }) {
                     className="fullCard__img"
                     component="img"
                     alt="Card img"
-                    image={cardData.houseImg}
+                    image={data}
                 />
             </Redirect>
             <Box className="card__content">

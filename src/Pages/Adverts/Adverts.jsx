@@ -27,36 +27,34 @@ function Adverts() {
     const [searchParams, setSearchParams] = useSearchParams();
     let htype = searchParams.get("htype");
 
-    const [data, setData] = useState(null)
-    const URL = 'https://ali98.uz/api/getpost';
+    const [data, setData] = useState([])
+    const URL = 'https://ali98.uz/api/post';
     useEffect(() => {
-        function getData() {
-            const result = axios.get(URL, {htype_id: htype})
-            .then((response) => {
-                let dataStatus = response.data
-                if (dataStatus.status == true || dataStatus.status == 200) {
-                    let newData = [];
-                    newData.push(dataStatus.data);
-                    setData(newData[0]);
-                    console.log(newData);
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-        }
-        getData();
+        const result = axios.get(URL, {htype_id: htype})
+        .then((response) => {
+            let dataStatus = response.status
+            if (dataStatus == true || dataStatus == 200) {
+                setData(response.data.data);
+                console.log(data);
+            }
+        })
+        .catch((error) => {
+            console.log(error);
+        })
     }, [])
 
-    const cardData = {
-        housePrice: 1400,
-        houseType: 'uy',
-        houseTitle: 'My house',
-        houseAddress: 'Andijan',
-        houseImg: CardImg1,
-        houseUrl: '/advert',
-        description: "Shinam uy Hovli va joy. Suv Gaz Elektr energiyasi mavjud. Uy 6 xonali bo'lib barcha kerakli sharoitlarga ega. Xonalar: Oshxona Yotoqxona, Mehmonxona Vanna Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, exercitationem! sit amet consectetur adipisicing elit. Doloribus, exercitationem!..."
-    };
+    function showCards() {
+        console.log(data);
+
+        if (data.length > 0) {
+            data?.map((row) => {
+                return (
+                    <FullCard data={row} />
+                )
+            })
+        }
+    }
+
     return (
         <>
             <Loader/>
@@ -64,11 +62,7 @@ function Adverts() {
             <Hero />
             <div className="adverts">
                 <Container>
-                    {data?.map((row) => {
-                        return (
-                            <FullCard cardData={cardData} data={row} />
-                        )
-                    })}
+                    {showCards()}
                     <AfemePhone />
                 </Container>
             </div>

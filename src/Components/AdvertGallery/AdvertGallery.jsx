@@ -50,7 +50,7 @@ function AdvertGallery({ data, isLoading }) {
 
     
     function generateSlides(images) {
-        let arr = [HeroImg1, HeroImg2, HeroImg3, HeroImg4, HeroImg5, HeroImg6]
+        let arr = [HeroImg1, HeroImg2, HeroImg3, HeroImg4, HeroImg5, HeroImg6];
 
         return images.map((row) => (
             <SplideSlide>
