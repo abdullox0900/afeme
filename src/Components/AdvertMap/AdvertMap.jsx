@@ -8,7 +8,6 @@ import {
     Map,
     Placemark,
     ZoomControl,
-    SearchControl,
     TypeSelector,
     ListBox,
     ListBoxItem,
@@ -22,13 +21,13 @@ import { UserContext } from "../../Context/UserContext";
 import { CurrencyContext } from "../../Context/CurrencyContext";
 import CardTools from "../../Utils/cardTools";
 import AdvertGallery from "../AdvertGallery/AdvertGallery";
+import Spinner from "../Spinner/Spinner";
 
 import PlacemarkIcon from "../../Assets/Img/Icon/placemark-brand.svg";
 
 function AdvertMap({ currentAdvert }) {
-    const [zoom, setZoom] = useState(15);
-    const coordinate = [40.747612, 72.359581];
 
+    const DefaultZoom = 3;
     const [data, setData] = useState([]);
     const [dataError, setDataError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
@@ -47,6 +46,26 @@ function AdvertMap({ currentAdvert }) {
     const [advertAddress, setAdvertAddress] = useState("");
     const [advertCity, setAdvertCity] = useState("");
 
+    useEffect(() => {
+        const result = axios
+            .get(URL)
+            .then((response) => {
+                let dataStatus = response.status;
+                if (dataStatus == true || dataStatus == 200) {
+                    setData(response.data.data);
+                } else {
+                    setDataError(true);
+                }
+            })
+            .catch((error) => {
+                setDataError(true);
+                console.log(error);
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
+    }, []);
+
     CardTools(
         currentAdvert,
         lang,
@@ -59,9 +78,47 @@ function AdvertMap({ currentAdvert }) {
         setAdvertAddress,
         setAdvertCity
     );
+    const [zoom, setZoom] = useState(DefaultZoom);
+    const coordinate = [currentAdvert.latitude, currentAdvert.longitude];
 
-    return (
-        <>
+    function showPlacemarks() {
+        return data.map((advert) => {
+            if (advert.latitude && advert.longitude) {
+                return (
+                    <Placemark
+                        key={advert.id}
+                        geometry={[advert.latitude, advert.longitude]}
+                        options={{
+                            openBalloonOnClick: true,
+                            iconLayout: "default#image",
+                            iconImageHref: PlacemarkIcon,
+                            iconImageSize: [50, 50],
+                            // iconImageOffset: [0, 0],
+                        }}
+                        // properties={{
+                        //     balloonContentHeader: advertTitle,
+                        //     balloonContentBody:
+                        //         advert.image.length > 0
+                        //             ? `<img 
+                        //                 src=${advert?.image[0]?.url} alt=""
+                        //                 width="240px"
+                        //                 height="150px"
+                        //             />`
+                        //             : "",
+                        //     balloonContentFooter: `${advertType} ${price}`,
+                        //     hintContent: advertType,
+                        //     // balloonOffset: [0, 0],
+                        // }}
+                    />
+                )
+            };
+        });
+    }
+
+    if (isLoading) {
+        return <Spinner />
+    } else if (data.length > 0) {
+        return (
             <YMaps>
                 <Map
                     defaultState={{
@@ -76,7 +133,6 @@ function AdvertMap({ currentAdvert }) {
                     <ZoomControl />
                     <GeolocationControl />
                     <FullscreenControl />
-                    <SearchControl />
                     <ListBox
                         data={{
                             content: "Select city",
@@ -94,33 +150,35 @@ function AdvertMap({ currentAdvert }) {
                         />
                     </ListBox>
                     <Placemark
+                        key={currentAdvert.id}
                         geometry={coordinate}
                         options={{
                             openBalloonOnClick: true,
                             iconLayout: "default#image",
                             iconImageHref: PlacemarkIcon,
                             iconImageSize: [50, 50],
-                            hideIconOnBalloonOpen: false,
-                            iconImageOffset: [0, 0],
+                            // iconImageOffset: [0, 0],
                         }}
                         properties={{
-                            balloonContentHeader: advertTitle,
-                            balloonContentBody:
-                                currentAdvert.image.length > 0
-                                    ? `<img 
-                                            src=${currentAdvert?.image[0]?.url} alt=""
-                                            width="240px"
-                                            height="150px"
-                                        />`
-                                    : "",
-                            balloonContentFooter: `${advertType} ${price}`,
-                            hintContent: advertType,
-                            balloonOffset: [0, 0],
+                            balloonContentHeader: 'fff',
+                            // balloonContentHeader: advertTitle,
+                            // balloonContentBody:
+                            //     currentAdvert.image.length > 0
+                            //         ? `<img 
+                            //             src=${currentAdvert?.image[0]?.url} alt=""
+                            //             width="240px"
+                            //             height="150px"
+                            //         />`
+                            //         : "",
+                            // balloonContentFooter: `${advertType} ${price}`,
+                            // hintContent: advertType,
+                            // balloonOffset: [0, 0],
                         }}
                     />
+                    {showPlacemarks()}
                 </Map>
             </YMaps>
-        </>
-    );
+        );
+    }
 }
 export default AdvertMap;

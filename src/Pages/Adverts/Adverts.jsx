@@ -1,22 +1,18 @@
 // Import => React and Hooks
 import React, {useState, useEffect} from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-
-// Import => Axios
 import axios from "axios";
 
 // Import => Components
 import Loader from "../../Components/Loader/Loader";
+import CardSkeleton from "../../Components/CardSkeleton/CardSkeleton";
 import Container from "../../Components/Container/Container";
 import Header from "../../Components/Header/Header";
 import Hero from "../../Components/Hero/Hero";
-import { FullCard } from "../../Components/Card/Card";
+import Cards from "../../Components/Card/Card";
 import AfemePhone from "../../Components/AfemePhone/AfemePhone";
 import Footer from "../../Components/Footer/Footer";
-import CardImg1 from "../../Assets/Img/card_img1.jpg";
-import CardImg2 from "../../Assets/Img/card_img2.jpg";
-import CardImg3 from "../../Assets/Img/card_img3.jpg";
-import CardImg4 from "../../Assets/Img/card_img4.jpg";
+import ApiError from "../../Components/ApiError/ApiError";
 
 // Import => Style
 import "./Adverts.scss";
@@ -27,31 +23,44 @@ function Adverts() {
     const [searchParams, setSearchParams] = useSearchParams();
     let htype = searchParams.get("htype");
 
-    const [data, setData] = useState([])
+    const [data, setData] = useState([]);
+    const [adverts, setAdverts] = useState([]);
+    const [dataError, setDataError] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const URL = 'https://ali98.uz/api/post';
+
     useEffect(() => {
         const result = axios.get(URL, {htype_id: htype})
         .then((response) => {
             let dataStatus = response.status
             if (dataStatus == true || dataStatus == 200) {
-                setData(response.data.data);
-                console.log(data);
+                setData(response.data);
+                setAdverts(response.data.data);
+                console.log(response.data.data, adverts);
+            } else {
+                setDataError(true);
             }
         })
         .catch((error) => {
+            setDataError(true);
             console.log(error);
+        })
+        .finally(() => {
+            setIsLoading(false);
         })
     }, [])
 
-    function showCards() {
-        console.log(data);
+    function showCards(amount) {
 
-        if (data.length > 0) {
-            data?.map((row) => {
-                return (
-                    <FullCard data={row} />
-                )
-            })
+        if (isLoading) {
+            return <CardSkeleton amount={amount} fullCard={true} />;
+        } else if (adverts.length > 0 && !dataError) {
+
+            return adverts.slice(0, amount).map((row) => {
+                return <Cards data={row} fullCard={true}/>;
+            });
+        } else {
+            return <ApiError />;
         }
     }
 
@@ -62,7 +71,10 @@ function Adverts() {
             <Hero />
             <div className="adverts">
                 <Container>
-                    {showCards()}
+                    {adverts.slice(0, 1).map((row) => {
+                return <Cards data={row} fullCard={true}/>;
+            })}
+                    {showCards(10)}
                     <AfemePhone />
                 </Container>
             </div>
@@ -70,5 +82,4 @@ function Adverts() {
         </>
     )
 }
-
 export default Adverts

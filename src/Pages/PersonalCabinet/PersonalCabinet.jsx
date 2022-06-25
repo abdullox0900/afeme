@@ -14,7 +14,7 @@ import Personal from "../../Components/Personal/Personal";
 import Posts from "../../Components/Posts/Posts";
 import Settings from "../../Components/Settings/Settings";
 import CardImg2 from "../../Assets/Img/card_img2.jpg";
-import { Cards } from "../../Components/Card/Card";
+import Cards from "../../Components/Card/Card";
 import CardSkeleton from "../../Components/CardSkeleton/CardSkeleton";
 import AdvertBtn from "../../Components/AddAdvertBtn/AdvertBtn";
 

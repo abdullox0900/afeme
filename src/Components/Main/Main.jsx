@@ -14,7 +14,7 @@ import content from "../../Localization/Content";
 
 // Import => Components
 import CardSkeleton from "../CardSkeleton/CardSkeleton";
-import { Cards } from "../Card/Card";
+import Cards from "../Card/Card";
 import ApiError from "../ApiError/ApiError";
 import OfflineError from "../OfflineError/OfflineError";
 import Container from "../Container/Container";
@@ -73,7 +73,7 @@ function Main() {
         } else if (data && !dataError) {
 
             return adverts.slice(0, amount).map((row) => {
-                return <Cards data={row} isLoading={isLoading} />;
+                return <Cards data={row} />;
             });
         } else if (!data || dataError) {
             return <ApiError />;

@@ -19,6 +19,7 @@ function AdvertGallery({ data, isLoading }) {
     const mainRef = useRef();
     const thumbsRef = useRef();
     const [hasImages, setHasImages] = useState(Array.isArray(data.image) && data.image.length > 0);
+    const imagesCount = data.image.length;
 
     useEffect(() => {
         if ( mainRef.current && thumbsRef.current && thumbsRef.current.splide ) {
@@ -35,7 +36,7 @@ function AdvertGallery({ data, isLoading }) {
 
     const thumbsOptions = {
         type: "slide",
-        perPage: 3,
+        perPage: imagesCount,
         width: '100%',
         gap: "15px",
         pagination: false,

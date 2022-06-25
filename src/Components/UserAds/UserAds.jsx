@@ -9,7 +9,7 @@ import axios from "axios";
 import "../../Components/UserAds/UserAds.scss";
 
 // Import => Component
-import { Cards } from "../../Components/Card/Card";
+import Cards from "../../Components/Card/Card";
 import { Context } from "../../Context/LangContext";
 import Header from "../../Components/Header/Header";
 import UserProfilList from "../UserProfilList/UserProfilList";
@@ -54,7 +54,7 @@ function UserAds() {
 
             if (data.posts.length > 0) {
                 return data.posts.map((row) => (
-                    <Cards data={row} editDelete={true} loveBtn={false} />
+                    <Cards data={row} editDelete={true} />
                 ));
             } else {
                 return (

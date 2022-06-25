@@ -1,7 +1,7 @@
 export function setCookie(name, value, years) {
     var expires = "";
     if (years) {
-        var CookieDate = new Date;
+        var CookieDate = new Date();
         CookieDate.setFullYear(CookieDate.getFullYear() + years);
         expires = "; expires=" + CookieDate;
     }
