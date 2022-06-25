@@ -71,9 +71,6 @@ function Adverts() {
             <Hero />
             <div className="adverts">
                 <Container>
-                    {adverts.slice(0, 1).map((row) => {
-                return <Cards data={row} fullCard={true}/>;
-            })}
                     {showCards(10)}
                     <AfemePhone />
                 </Container>
