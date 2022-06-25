@@ -32,7 +32,6 @@ function VideoFile({ video, setVideo }) {
                     let res = response.data
                     Object.entries(res).forEach(([name, value]) => {
                         if (typeof value === 'string') {
-                            console.log('recieve', typeof value, value);
                             arr.push(value);
                             setVideo(arr)
                         }
@@ -45,15 +44,38 @@ function VideoFile({ video, setVideo }) {
         setVideoFile(false)
         setVideo(files)
     }
+    let Arr = [];
+    function Select(e) {
+        let files = [...e]
+        let formdata = new FormData();
+        for (let i = 0; i < files.length; i++) {
+            formdata.append('key', 'Service For C Group')
+            formdata.append('file', files)
+            axios.post('http://ali98.uz/api/service', formdata)
+                .then(function (res) {
+                    let data = res.data;
+                    Object.entries(data).forEach(([name, value]) => {
+                        if (typeof value === 'string') {
+                            Arr.push(value);
+                            setVideo(Arr)
+                            console.log(Arr);
+                        }
+                    })
+                })
+                .catch(function (err) {
+                    console.log(err);
+                })
+        }
+    }
 
     return (
         <div className={style.wrapper}>
             <p className={style.htypeText}>Ofis  videolari:</p>
-            <div className={style.video}>
+            <div className={style}>
                 {video.map((i) => (
                     <div key={v4}>
                         <video width="200px" height="100px" controls />
-                        <source type='video/mp4' alt={"wldölw"} src={URL.createObjectURL(i)} />
+                        <source type='video/mp4' alt={"wldölw"} src={i} />
                     </div>
                 ))}
             </div>
@@ -76,15 +98,10 @@ function VideoFile({ video, setVideo }) {
 
                     >
                         <label htmlFor="contained-button-file">
-                            <Button
-                                style={{ cursor: 'pointer' }}
-                                variant="contained"
-                                component="span"
-                                id="contained-button-file"
-                                type="file"
-                            >
-                                Videoni Tanlang
-                            </Button>
+                            <div className={style.btns}>
+                                <label htmlFor="button">Videoni Tanlang</label>
+                                <input type="file" id='button' onChange={(e) => Select(e.target.files)} className={style.label} />
+                            </div>
                         </label>
                         <span>Drop Here...</span>
                     </div>

@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom'
 //Import MUI
 import { Box, Modal } from '@mui/material'
 //Import Components
-import Tick from '../../Animations/Tick/Tick'
+import SuccessIL from '../../../Assets/Img/successIL.svg'
 //Import Style
 import style from './success.module.scss'
 
@@ -19,7 +19,7 @@ function Succecc({suc, setSuc}) {
                 aria-describedby="modal-modal-description"
             >
                 <Box className={style.style}>
-                    <Tick />
+                <img src={SuccessIL} alt="alt" style={{width:'165px', height:'200px'}} />
                     <p className={style.title}>Muvaffaqiyatli !!!</p>
                     <NavLink to={"/Afeme"}>
                         <button className={style.button}>
