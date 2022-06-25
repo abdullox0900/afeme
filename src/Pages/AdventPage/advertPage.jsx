@@ -59,8 +59,8 @@ function AdvertPage() {
   const [photo, setPhoto] = useState([])//ImageFile State  
   const [video, setVideo] = useState([])//VideoFile State
 
-  let token = localStorage.getItem('Token')
   //Dates for Send
+  let token = localStorage.getItem('Token')
   var headers = new Headers();
   headers.append('Authorization', `Bearer ${token}`)
   var data = new FormData();

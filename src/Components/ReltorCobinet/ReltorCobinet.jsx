@@ -53,6 +53,7 @@ function ReltorCobinet() {
             .then(res => {
                 let resData = res.data.data.region_id
                 setReltorUserLocData(resData)
+                console.log(res.data.data);
             })
     }, [])
 
