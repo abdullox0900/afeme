@@ -1,14 +1,27 @@
-.images {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    img {
-        width: 100px;
-        height: 100px;
-    }
-}
 
 .wrapper {
+    .images {
+        width: 420px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        .img{
+            position: relative;
+            .img1 {
+                margin-right: 5px;
+                border-radius:10px;
+                border:2px solid red;
+                width: 100px;
+                height: 100px;
+            }
+            .icon{
+                cursor: pointer;
+                right: 5px;
+                position: absolute;
+                color:red;
+            }
+        }
+    }
     p {
         display: flex;
         justify-content: flex-start;

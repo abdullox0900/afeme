@@ -4,13 +4,15 @@ import React, { useEffect, useState } from 'react'
 // Import => @Mui
 import { Button } from '@mui/material';
 import { v4 } from 'uuid';
+import Trash from '@mui/icons-material/ClearRounded';
 
 // Import => Components
 import style from './ImageFile.module.scss'
 import axios from 'axios';
+import { Delete } from '@mui/icons-material';
 
 function ImageFile({ photo, setPhoto }) {
-    const [image, setImage] = useState([])
+    const [image, setImage] = useState([]);
     const [img, setImg] = useState(false);
     function startImageHandler(e) {
         e.preventDefault();
@@ -26,11 +28,11 @@ function ImageFile({ photo, setPhoto }) {
         var formdata = new FormData();
         let files = [...e.dataTransfer.files]
         for (let i = 0; i < files.length; i++) {
-            formdata.append('key','Service For C Group')
+            formdata.append('key', 'Service For C Group')
             formdata.append("file", files[i]);
             axios.post('http://ali98.uz/api/service', formdata)
                 .then(function (response) {
-                    let res = response.data
+                    let res = response.data;
                     Object.entries(res).forEach(([name, value]) => {
                         if (typeof value === 'string') {
                             arr.push(value);
@@ -45,29 +47,55 @@ function ImageFile({ photo, setPhoto }) {
         setImage(files)
         setImg(false)
     }
-    function onChange(e) {
-        let files = [...e.dataTransfer.files]
-        setImage(files)
+    function Select(e) {
+        let files = [...e];
+        let formdata = new FormData();
+        for (let i = 0; i < files.length; i++) {
+            formdata.append('key', 'Service For C Group')
+            formdata.append('file', files[i])
+            axios.post('http://ali98.uz/api/service', formdata)
+                .then(function (res) {
+                    let data = res.data;
+                    Object.entries(data).forEach(([name, value]) => {
+                        if (typeof value === 'string') {
+                            arr.push(value);
+                            setPhoto(arr)
+                        }
+                    })
+                })
+                .catch(function (err) {
+                    console.log(err);
+                })
+        }
+        // setImage(files)
+    }
+    function Delete(e) {
+        let src = e;
+        let n = photo.filter(pic => src != pic);
+        photo = n;
+        setPhoto(photo);
     }
 
     return (
         <div className={style.wrapper}>
-            <p>Ofis  rasmlari:</p>
+            <p>Ofis rasmlari:</p>
             <div className={style.images}>
-                {image.map((i) => (
-                    <img key={v4()} src={URL.createObjectURL(i)} />
+                {console.log()}
+                {photo.map((i) => (
+                    <div className={style.img} key={v4()}>
+                        <img src={i} alt={null} className={style.img1}/>
+                        <Trash onClick={(e) => Delete(i)} className={style.icon} />
+                    </div>
                 ))}
             </div>
             <div className={style.imgF}>
                 {img
                     ? <div
-
                         className={style.dragArea}
                         onDragStart={e => startImageHandler(e)}
                         onDragLeave={e => leaveImageHandler(e)}
                         onDragOver={e => startImageHandler(e)}
                         onDrop={e => dropImageHandler(e)}
-
                     >
                         <span>Drag here...</span>
                     </div>
@@ -76,20 +104,19 @@ function ImageFile({ photo, setPhoto }) {
                         onDragStart={e => startImageHandler(e)}
                         onDragLeave={e => leaveImageHandler(e)}
                         onDragOver={e => startImageHandler(e)}
-
                     >
                         <label htmlFor="contained-button-file">
                             <div className={style.btns}>
                                 <label htmlFor="button">Rasmni Tanlang</label>
-                                <input type="file" id='button' className={style.label} multiple  />
+                                <input type="file" id='button' className={style.label}
+                                    onChange={(e) => Select(e.target.files)}
+                                    multiple />
                             </div>
                         </label>
                         <span>Drop Here...</span>
-
                     </div>
 
                 }
-
             </div >
         </div>
     )

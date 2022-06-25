@@ -40,7 +40,7 @@ function Confirm({ second }) {
                 sessionStorage.clear();
                 const Token = (response.data.data)
                 localStorage.setItem('Token', Token);
-                window.location.reload()
+                window.location.reload();
             })
             .catch(function (error) {
                 console.error(error);

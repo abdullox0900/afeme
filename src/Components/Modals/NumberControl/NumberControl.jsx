@@ -12,7 +12,7 @@ import axios from 'axios';
 import style from "./NumberControl.module.scss";
 
 //Import Components
-import Tick from '../../Animations/Tick/Tick';
+import SuccessIL from '../../../Assets/Img/verify.svg';
 import Error from "../Error/Error";
 import Success from "../Success/Success";
 import { useNavigate } from 'react-router-dom';
@@ -51,9 +51,11 @@ function NumberControl({ control, setControl, phone_number, setPhoneNumber }) {
                 handleClose();
                 handleSuc();
                 Navigate('/Afeme')
+                window.location.reload()
             })
             .catch(function (error) {
-                handleErr(error);
+                handleClose();
+                handleErr();
             })
     }
     return (
@@ -67,7 +69,7 @@ function NumberControl({ control, setControl, phone_number, setPhoneNumber }) {
                 aria-describedby="modal-modal-description"
             >
                 <form className={style.wrapper} onSubmit={handleSubmit(onSubmit)}>
-                    <Tick />
+                    <img src={SuccessIL} alt="alt" style={{width:'185px', height:'200px'}} />
                     <Typography className={style.title} id="modal-modal-title" variant="h6" component="h2">
                         +{phone_number}<span> ga <br /> borgan sms kodni kiriting !!!</span>
                     </Typography>

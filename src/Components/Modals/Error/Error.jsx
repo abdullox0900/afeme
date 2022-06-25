@@ -6,12 +6,12 @@ import { NavLink } from 'react-router-dom'
 import { Box, Modal } from '@mui/material'
 
 //Import Components
-import Tick from '../../Animations/Tick/Tick';
+import Error from '../../../Assets/Img/error.svg';
 
 //Import Style
 import style from './Error.module.scss'
 
-function Succecc({err, setErr}) {
+function Succecc({ err, setErr }) {
     const handleClose = () => setErr(false);//Close Error Modal    
     return (
         <div>
@@ -22,11 +22,11 @@ function Succecc({err, setErr}) {
                 aria-describedby="modal-modal-description"
             >
                 <Box className={style.style}>
-                    <Tick/>
+                    <img src={Error} alt="alt" style={{ width: '165px', height: '200px' }} />
                     <p className={style.title}>Muvaffaqiyatsiz !!!</p>
-                        <button className={style.button} onClick={() => handleClose()}>
-                            Ortga Kaytish
-                        </button>
+                    <button className={style.button} onClick={() => handleClose()}>
+                        Ortga Kaytish
+                    </button>
                 </Box>
             </Modal>
         </div>
