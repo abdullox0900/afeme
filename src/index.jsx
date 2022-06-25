@@ -18,7 +18,6 @@ window.replainSettings = { id: "c2f4a578-9a1f-49ac-9214-44448b236714" };
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-    <React.StrictMode>
         <BrowserRouter>
             <LangProvider>
                 <UserProvider>
@@ -29,5 +28,6 @@ root.render(
                 </UserProvider>
             </LangProvider>
         </BrowserRouter>
-    </React.StrictMode>
+    // <React.StrictMode>
+    // </React.StrictMode>
 );

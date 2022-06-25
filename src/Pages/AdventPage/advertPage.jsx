@@ -20,6 +20,8 @@ import VideoFile from '../../Components/VideoFile/VideoFile';
 import HouseDescr from '../../Components/HouseDescr/HouseDescr';
 import HousePrice from '../../Components/HousePrice/HousePrice';
 import Map from '../../Components/Map/Map'
+import Error from '../../Components/Modals/Error/Error'
+import Success from '../../Components/Modals/Success/Success'
 
 // Import => Styles
 import style from './advertPage.module.scss'
@@ -28,6 +30,10 @@ import style from './advertPage.module.scss'
 import { Button } from '@mui/material';
 
 function AdvertPage() {
+  const [err, setErr] = useState(false);
+  const [suc, setSuc] = useState(false);//Success State
+  const handleErr = () => setErr(true);
+  const handleSuc = () => setSuc(true);
   const [htype_id, sethType] = useState('')//HouseType State
   const [sale_id, setsType] = useState('')// SaleType State
   const longitude = localStorage.getItem('longitude') !== undefined ? localStorage.getItem('longitude') : ''
@@ -37,7 +43,7 @@ function AdvertPage() {
   const [date, setDate] = useState('')//Building Year State
   const [room, setRoom] = useState('')//Room State
   const [repair_id, setRepair] = useState('')//Reapairs State
-  const [documents, setDocs] = useState({})//Documents State
+  const [documents, setDocs] = useState([])//Documents State
   const [description, sethDescr] = useState('')//House Description State
   const [material_id, setMaterial] = useState('')// Materials State
   const [region_id, setRegionID] = useState('')//Region State
@@ -80,7 +86,7 @@ function AdvertPage() {
   data.append('total_area_type', total_area_type)
   data.append('living_area', living_area)
   data.append('kitchen_area', kitchen_area)
-  data.append('photo',photo);
+  data.append('photo', photo);
   data.append('video', video);
   var requestOptions = {
     method: 'POST',
@@ -91,9 +97,16 @@ function AdvertPage() {
   //Post Function
   function onSubmit() {
     fetch("http://ali98.uz/api/post", requestOptions)
-      .then(response => response.text())
-      .then(result => console.log(result))
-      .catch(error => console.log('error', error));
+      .then(function(response){
+        let status = response.status;
+        if(status == 200){
+          handleSuc();
+        } else if ( status = 500 || 400) {
+          handleErr();
+        } else {
+          handleErr();
+        }
+      })
   }
 
   return (
@@ -101,6 +114,8 @@ function AdvertPage() {
       <Loader />
       <Header />
       <Container>
+        <Error err={err} setErr={setErr} />
+        <Success suc={suc} setSuc={setSuc} />
         <div className={style.container}>
           <section>
             <h1 className={style.pageName}>E'lon qo'shish</h1>
@@ -134,12 +149,12 @@ function AdvertPage() {
             <h2 className={style.htypeText}>Ofis Chizmasi va Hujjatlari: </h2>
             <Docs
               documents={documents} setDocs={setDocs} />
+            <ImageFile
+              photo={photo} setPhoto={setPhoto} />
             <div className={style.DnD}>
-              <ImageFile
-                photo={photo} setPhoto={setPhoto} />
-              <VideoFile
-                video={video} setVideo={setVideo} />
             </div>
+            <VideoFile
+              video={video} setVideo={setVideo} />
             <h2
               className={style.htypeText}
               style={{ marginTop: '70px' }}>Ofis Haqida</h2>
