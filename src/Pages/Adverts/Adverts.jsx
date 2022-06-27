@@ -21,7 +21,13 @@ import "./Adverts.scss";
 function Adverts() {
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
-    let htype = searchParams.get("htype");
+
+    const term = searchParams.get("term");
+    const htype = searchParams.get("htype");
+    const regionID = searchParams.get("region");
+    const from = searchParams.get("from");
+    const to = searchParams.get("to");
+    const room = searchParams.get("room");
 
     const [data, setData] = useState([]);
     const [adverts, setAdverts] = useState([]);
@@ -55,7 +61,7 @@ function Adverts() {
     }, [currentPage]);
 
     function showCards(amount) {
-        console.log(isLoading);
+        
         if (isLoading) {
             return <CardSkeleton amount={amount} fullCard={true} />;
 
@@ -97,7 +103,7 @@ function Adverts() {
             <Hero />
             <div className="adverts">
                 <Container>
-                    {showCards(10)}
+                    {showCards(6)}
                     {pagination()}
                     <AfemePhone />
                 </Container>

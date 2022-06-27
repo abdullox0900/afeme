@@ -75,6 +75,8 @@ const content = {
         user_profil_favorintes: "Tanlanganlar",
         user_profil_news: "Yangiliklar",
         user_profil_clos: "Chiqish",
+
+        detailedView: "Batafsil ko'rish",
     },
     en: {
         // Header
@@ -137,6 +139,8 @@ const content = {
         user_profil_favorintes: "Favorites",
         user_profil_news: "News",
         user_profil_clos: "Logout",
+
+        detailedView: "View more",
     },
 
     ru: {
@@ -200,6 +204,8 @@ const content = {
         user_profil_favorintes: "Избранное",
         user_profil_news: "Новости",
         user_profil_clos: "Выйти",
+
+        detailedView: "Узнать больше",
     },
 }
 
