@@ -84,6 +84,7 @@ function AdvertMap({ currentAdvert }) {
     function showPlacemarks() {
         return data.map((advert) => {
             if (advert.latitude && advert.longitude) {
+                console.log(advert);
                 return (
                     <Placemark
                         key={advert.id}
@@ -160,7 +161,10 @@ function AdvertMap({ currentAdvert }) {
                             // iconImageOffset: [0, 0],
                         }}
                         properties={{
-                            balloonContentHeader: 'fff',
+                            balloonContentHeader: "bir nima",
+                            balloonContentBody: "qwerty",
+                            balloonContentFooter: "$fgg",
+                            hintContent: 'hggh',
                             // balloonContentHeader: advertTitle,
                             // balloonContentBody:
                             //     currentAdvert.image.length > 0

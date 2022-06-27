@@ -10,20 +10,22 @@ import HeroImg5 from "../../Assets/Img/home-hero-5.jpg";
 import HeroImg6 from "../../Assets/Img/home-hero-6.jpg";
 
 // Import Styles
-import '@splidejs/react-splide/css';
-import "../Carousel/Carousel.scss"
+import "@splidejs/react-splide/css";
+import "../Carousel/Carousel.scss";
 import "./AdvertGallery.scss";
 
 function AdvertGallery({ data, isLoading }) {
-
     const mainRef = useRef();
     const thumbsRef = useRef();
-    const [hasImages, setHasImages] = useState(Array.isArray(data.image) && data.image.length > 0);
+    const [hasImages, setHasImages] = useState(
+        Array.isArray(data.image) && data.image.length > 0
+    );
+    const [hasVideo, setHasVideo] = useState(Array.isArray(data.video));
     const imagesCount = data.image.length;
 
     useEffect(() => {
-        if ( mainRef.current && thumbsRef.current && thumbsRef.current.splide ) {
-            mainRef.current.sync( thumbsRef.current.splide );
+        if (mainRef.current && thumbsRef.current && thumbsRef.current.splide) {
+            mainRef.current.sync(thumbsRef.current.splide);
         }
     }, [mainRef, thumbsRef]);
 
@@ -37,7 +39,7 @@ function AdvertGallery({ data, isLoading }) {
     const thumbsOptions = {
         type: "slide",
         perPage: imagesCount,
-        width: '100%',
+        width: "100%",
         gap: "15px",
         pagination: false,
         fixedWidth: 300,
@@ -49,7 +51,6 @@ function AdvertGallery({ data, isLoading }) {
         isNavigation: true,
     };
 
-    
     function generateSlides(images) {
         let arr = [HeroImg1, HeroImg2, HeroImg3, HeroImg4, HeroImg5, HeroImg6];
 
@@ -57,40 +58,33 @@ function AdvertGallery({ data, isLoading }) {
             <SplideSlide>
                 <img src={row.url} className="splide__img" alt="" />
             </SplideSlide>
-        ))
-        
+        ));
     }
 
     if (isLoading) {
-        return (
-            <h1>Loading...</h1>
-        )
-    } else if (hasImages) {
+        return <h1>Loading...</h1>;
+    } else if (hasImages || hasVideo) {
         return (
             <section className="advertGallery">
-            <Splide
-                options={mainOptions}
-                ref={mainRef}
-                className="advert__main__image"
-            >
-                {generateSlides(data.image)}
+                <Splide
+                    options={mainOptions}
+                    ref={mainRef}
+                    className="advert__main__image"
+                >
+                    {generateSlides(data.image)}
+                </Splide>
 
-    
-            </Splide>
-
-            <Splide
-                options={thumbsOptions}
-                ref={thumbsRef}
-                className="advert__thumbs"
-            >
-                {generateSlides(data.image)}
-            </Splide>
-        </section>
-        )
+                <Splide
+                    options={thumbsOptions}
+                    ref={thumbsRef}
+                    className="advert__thumbs"
+                >
+                    {generateSlides(data.image)}
+                </Splide>
+            </section>
+        );
     } else {
-        return (
-            <h1>Rasmlar mavjud emas</h1>
-        )
+        return <h1>Rasmlar mavjud emas</h1>;
     }
 }
 export default AdvertGallery;
