@@ -11,7 +11,7 @@ function StarIcon({
             width={width}
             height={height}
             fill={color}
-            classname={className}
+            className={className}
             x="0px"
             y="0px"
             viewBox="0 0 940.688 940.688"

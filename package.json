@@ -28,6 +28,7 @@
         "react-google-map-picker": "^1.2.3",
         "react-google-maps": "^9.4.5",
         "react-hook-form": "^7.32.0",
+        "react-rating-stars-component": "^2.2.0",
         "react-router-dom": "^6.3.0",
         "react-scripts": "5.0.1",
         "react-yandex-maps": "^4.6.0",
