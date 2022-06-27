@@ -1,8 +1,6 @@
 // Import => React and React Hooks React-Router-Dom
 import React, { useEffect, useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
-
-// Import => Axios
 import axios from "axios";
 
 // Import Mui
@@ -14,24 +12,14 @@ import content from "../../Localization/Content";
 
 // Import => Components
 import CardSkeleton from "../CardSkeleton/CardSkeleton";
-import { Cards } from "../Card/Card";
+import Cards from "../Card/Card";
 import ApiError from "../ApiError/ApiError";
 import OfflineError from "../OfflineError/OfflineError";
 import Container from "../Container/Container";
 import NewBuildingsCard from "../NewBuildingsCard/NewBuildingsCard";
 
 // Import => Components Img
-import CardImg1 from "../../Assets/Img/card_img1.jpg";
-import CardImg2 from "../../Assets/Img/card_img2.jpg";
-import CardImg3 from "../../Assets/Img/card_img3.jpg";
-import CardImg4 from "../../Assets/Img/card_img4.jpg";
-import CardImg5 from "../../Assets/Img/card_img5.jpg";
-import CardImg6 from "../../Assets/Img/card_img6.jpg";
 import Realtors1 from "../../Assets/Img/realtors1.jpg";
-import Realtors2 from "../../Assets/Img/realtors2.jpg";
-import Realtors3 from "../../Assets/Img/realtors3.jpg";
-import Realtors4 from "../../Assets/Img/realtors4.jpg";
-import Realtors5 from "../../Assets/Img/realtors5.jpg";
 import RightArrow from "../../Assets/Img/arrow-right.svg";
 import "./Main.scss";
 
@@ -43,6 +31,7 @@ function Main() {
     const [dataError, setDataError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const URL = "https://ali98.uz/api/post";
+
     useEffect(() => {
         const result = axios
             .get(URL)
@@ -73,7 +62,7 @@ function Main() {
         } else if (data && !dataError) {
 
             return adverts.slice(0, amount).map((row) => {
-                return <Cards data={row} isLoading={isLoading} />;
+                return <Cards data={row} />;
             });
         } else if (!data || dataError) {
             return <ApiError />;

@@ -3,7 +3,6 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 // Import => Components
-import { Fcards } from '../Card/Card'
 import Container from '../Container/Container'
 import Footer from '../Footer/Footer'
 import Header from '../Header/Header'
@@ -40,12 +39,7 @@ function Liked() {
                         </div>
                         <h1 style={{ color: '#0468ff', }}>El’onlarim</h1>
                         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'center' }}>
-                            <Fcards data={data} />
-                            <Fcards data={data} />
-                            <Fcards data={data} />
-                            <Fcards data={data} />
-                            <Fcards data={data} />
-                            <Fcards data={data} />
+                            
                         </div>
                     </div>
                     <Personal />

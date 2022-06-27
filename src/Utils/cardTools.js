@@ -20,7 +20,6 @@ function CardTools(
         });
         return formatter.format(numb);
     }
-    console.log(data);
 
     useEffect(() => {
         if (data.hasOwnProperty("id")) {

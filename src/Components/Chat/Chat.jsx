@@ -6,7 +6,7 @@ import { NavLink as Redirect } from "react-router-dom";
 import { Box, Button, IconButton } from "@mui/material";
 
 // Import => Components
-import { Cards } from "../Card/Card"
+import Cards from "../Card/Card"
 import LogoImg from "../../Lib/Svg/logo";
 import ArrowDown from "../../Assets/Img/Icon/arrow-down.svg"
 import PaperClip from "../../Assets/Img/Icon/paperclip.svg"
