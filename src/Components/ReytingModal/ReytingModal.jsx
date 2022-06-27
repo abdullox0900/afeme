@@ -18,13 +18,16 @@ function ReytingModal({ userId, userData, elReytingModal }) {
     const apiUrl = "https://ali98.uz/api/reting";
     const [reting, setReting] = useState('')
     const [comment, setComment] = useState('')
+    console.log(userData);
+    // let Name = userData.name;
+    // console.log(Name);
 
     const Rating = {
         size: 50,
         count: 5,
         color: "#dee7ee",
         activeColor: "gold",
-        value: 2.5,
+        value: 0,
         a11y: true,
         isHalf: true,
         emptyIcon: `${<StarIcon width="40px" height="40px" />}`,
@@ -45,14 +48,14 @@ function ReytingModal({ userId, userData, elReytingModal }) {
         body: data,
         redirect: 'follow'
     };
-    function onSubmit(){
-        fetch(apiUrl,requestOptions)
-        .then(function(response){
-            let sts = response.status;
-            if(sts = 200){
-                elReytingModal.current.classList.remove("reyting-mod--open")
-            }
-        })
+    function onSubmit() {
+        fetch(apiUrl, requestOptions)
+            .then(function (response) {
+                let sts = response.status;
+                if (sts = 200) {
+                    elReytingModal.current.classList.remove("reyting-mod--open")
+                }
+            })
     }
 
 
@@ -66,12 +69,13 @@ function ReytingModal({ userId, userData, elReytingModal }) {
                 }
             }}>
                 <div className="reyting-mod__wrap">
-                    <button className="reytin-mod__clos">x</button>
+                    <button className="reytin-mod__clos"></button>
                     <img
                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1
                         HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU"
                         className="reyting-mod__user-avatar">
                     </img>
+                    <p className="name">{userData?.name} {userData?.lastname}</p>
 
                     <div className="reyting-mod__form">
                         <div className="star_widget">

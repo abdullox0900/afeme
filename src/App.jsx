@@ -24,6 +24,7 @@ import UserMessagePage from './Pages/UserMessage/UserMessagePage';
 import UserAdsPage from "./Pages/UserAdsPage/UserAdsPage";
 import UserFavoritesPage from './Pages/UserFavoritesPage/UserFavoritesPage';
 import UserNewsPage from './Pages/UserNewsPage/UserNewsPage';
+import Help from './Pages/Help/Help';
 
 function App() {
 
@@ -66,6 +67,7 @@ function App() {
                     <Route path='/usernews' element={<UserNewsPage />} />
                     <Route path='/chat' element={<Chat />} />
                     <Route path="*" element={<Page404 />} />
+                    <Route path='/help' element={<Help />} />
                 </Routes>
             </Suspense>
         </>

@@ -47,6 +47,7 @@ const content = {
         from_modal_inputtel: "Telfon Raqam",
         from_modal_btnsubmit: "Kirish",
         from_sign: "Ro'yxatdan o'tish",
+        help: 'Yordam',
 
         // Form Page
         form_select_jis: "Jismoniy shaxs",
@@ -75,6 +76,21 @@ const content = {
         user_profil_favorintes: "Tanlanganlar",
         user_profil_news: "Yangiliklar",
         user_profil_clos: "Chiqish",
+
+        //Help
+        title: 'Yordam',
+        title_descr: 'Biz xardoim yordam berishga tayormiz',
+        name: 'Ism',
+        name_error: 'Ism Kiriting',
+        number: 'Telefon Raqam',
+        number_error: 'Iltimos Telefon Raqamingizni Kiriting!!!',
+        email: 'Email Manzili',
+        email_error: 'Email Manzili Notogri',
+        message_type: 'Habar Turi',
+        type_taklif: 'Taqlif',
+        type_shiqoyat: 'Shiqoyat',
+        descr: 'Habaringizni Koldiring',
+        btn: 'Yuborish'
     },
     en: {
         // Header
@@ -114,6 +130,7 @@ const content = {
         from_modal_inputtel: "Phone number",
         from_modal_btnsubmit: "Get started",
         from_sign: "Register",
+        help: 'Help',
 
         // Form Page
         form_select_jis: "Individual",
@@ -137,6 +154,21 @@ const content = {
         user_profil_favorintes: "Favorites",
         user_profil_news: "News",
         user_profil_clos: "Logout",
+
+        //Help
+        title: 'Help',
+        title_descr: 'We are always ready to help',
+        name: 'Name',
+        name_error: 'Enter a name',
+        number: 'Telephone Number',
+        number_error: 'Enter a number',
+        email: 'Email',
+        email_error: 'Email address Incorrect',
+        message_type: 'Message Type',
+        type_taklif: 'Offer',
+        type_shiqoyat: 'Complaint',
+        descr: 'Leave your message',
+        btn: 'Send'
     },
 
     ru: {
@@ -177,6 +209,7 @@ const content = {
         from_modal_inputtel: "Номер телефона",
         from_modal_btnsubmit: "Войти",
         from_sign: "Зарегистрироваться",
+        help: 'Помощь',
 
         // Form Page
         form_select_jis: "Физический",
@@ -200,6 +233,21 @@ const content = {
         user_profil_favorintes: "Избранное",
         user_profil_news: "Новости",
         user_profil_clos: "Выйти",
+
+        //Help
+        title: 'Помощь',
+        title_descr: 'Мы всегда готовы помочь',
+        name: 'Имя',
+        name_error: 'Введите имя',
+        number: 'Номер телефона',
+        number_error: 'Пожалуйста введите ваш номер телефона !!!',
+        email: 'Адрес электронной почты',
+        email_error: 'Адрес электронной почты Нотогри',
+        message_type: 'Тип сообщения',
+        type_taklif: 'Предложение',
+        type_shiqoyat: 'Жалоба',
+        descr: 'Оставьте свое сообщение',
+        btn: 'Отправить'
     },
 }
 
