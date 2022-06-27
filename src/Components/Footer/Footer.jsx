@@ -17,6 +17,7 @@ import content from '../../Localization/Content';
 
 // Import => Axios
 import axios from "axios";
+import { v4 } from "uuid";
 
 
 function Footer() {
@@ -78,11 +79,11 @@ function Footer() {
                         </section>
                         <section className="footer__holder">
                             <h3 className="footer__holder-title">{content[lang].contact_us}</h3>
-                            <ul className="footer__list">
+                            <>
                                 {
                                     useData.map((res) => {
                                         return (
-                                            <>
+                                            <ul className="footer__list" key={v4()}>
                                                 <li className="footer__item">
                                                     <a href="tel:+998900431160" className="footer__link footer__link-tel">{res.tel}</a>
                                                 </li>
@@ -92,19 +93,19 @@ function Footer() {
                                                 <li className="footer__item">
                                                     <a href="https://yandex.uz/maps/org/244577402097/?ll=72.356849%2C40.746957&z=15" className="footer__link footer__link-address" target={"_blank"} style={address}>{res.location}</a>
                                                 </li>
-                                            </>
+                                            </ul>
                                         )
                                     })
                                 }
-                            </ul>
+                            </>
                         </section>
                         <section className="footer__holder">
                             <h3 className="footer__holder-title">{content[lang].social_networks}</h3>
-                            <ul className="footer__list footer__list-three">
+                            <>
                                 {
                                     useNetWorkData.map((resNetwork) => {
                                         return (
-                                            <>
+                                            <ul className="footer__list footer__list-three" key={v4()}>
                                                 <li className="footer__item-th">
                                                     <a href={resNetwork.instagram} target={"_blank"} className="footer__link-th">
                                                         <Instagram />
@@ -115,11 +116,11 @@ function Footer() {
                                                         <Telegram />
                                                     </a>
                                                 </li>
-                                            </>
+                                            </ul>
                                         )
                                     })
                                 }
-                            </ul>
+                            </>
                         </section>
                     </section>
                 </Container>

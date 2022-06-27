@@ -18,6 +18,7 @@ import ZvezImgIcon from "../../Assets/Img/Icon/zvezda.svg";
 
 // Import => Skeleton
 import ContentLoader from "react-content-loader";
+import { v4 } from "uuid";
 
 function RealtorsCard() {
 
@@ -33,11 +34,12 @@ function RealtorsCard() {
     useEffect(() => {
         setLoading(true)
         setTimeout(() => {
-            axios.get('https://ali98.uz/api/reltors').then(res => {
-                const persons = res.data.data;
-                setReltorsData(persons)
-                setLoading(false)
-            })
+            axios.get('https://ali98.uz/api/reltors')
+                .then(res => {
+                    const persons = res.data.data;
+                    setReltorsData(persons)
+                    setLoading(false)
+                })
         }, 5000)
     }, [])
 
@@ -52,6 +54,7 @@ function RealtorsCard() {
                         elLoadingArrey.map((lod) => {
                             return (
                                 <ContentLoader
+                                    key={v4()}
                                     speed={2}
                                     width={800}
                                     height={200}
@@ -68,9 +71,9 @@ function RealtorsCard() {
                     ) : (
                         reltorData.map((reltor) => {
                             return (
-                                <ul>
+                                <ul key={reltor.id}>
                                     <NavLink to={`/reltorcob/${reltor.id}`}>
-                                        <li key={reltor.id} className="realtor-card">
+                                        <li className="realtor-card">
 
                                             <img className="realtor-card__avatar" src="https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png" alt="reltor-img" width={"100px"} />
                                             <div className="realtor-card__wrap">

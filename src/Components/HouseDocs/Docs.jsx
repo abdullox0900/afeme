@@ -37,6 +37,6 @@ function Docs({ documents, setDocs }) {
       </div>
     </>
   )
-}
+} 
 
 export default Docs

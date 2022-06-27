@@ -5,6 +5,7 @@ import { useState } from "react";
 // Import => Style Component
 import "../../Components/ReytingModal/ReytingModal.scss";
 import StarIcon from "../../Lib/Svg/star";
+import ReactStars from "react-rating-stars-component";
 
 // Import => Mui
 import Button from '@mui/material/Button';
@@ -13,52 +14,47 @@ import Button from '@mui/material/Button';
 import axios from "axios";
 import { useEffect } from "react";
 
-// https://ali98.uz/api/partners
-
 function ReytingModal({ userId, userData, elReytingModal }) {
+    const apiUrl = "https://ali98.uz/api/reting";
+    const [reting, setReting] = useState('')
+    const [comment, setComment] = useState('')
 
-    // console.log(userId)
-
-    useEffect(() => {
-
-
-    },[])
-
-    const apiUrl = "https://ali98.uz/api/reyting";
-    const [postData, setPostData] = useState({
-        userId: 169,
-        reting: "",
-        comment: "",
-    })
-
-    function handel(evt) {
-        const newData = { ...postData }
-        newData[evt.target.id] = evt.target.value
-        setPostData(newData)
-        // console.log(newData)
+    const Rating = {
+        size: 50,
+        count: 5,
+        color: "#dee7ee",
+        activeColor: "gold",
+        value: 2.5,
+        a11y: true,
+        isHalf: true,
+        emptyIcon: `${<StarIcon width="40px" height="40px" />}`,
+        onChange: newValue => {
+            setReting(`${newValue}`);
+        }
     }
-
-    function submit(evt) {
-        evt.preventDefault();
-
-        axios.post(apiUrl, {
-            reltor_id: 170,
-            comment: "lkdsnlkfvndflknvdf",
-            reting: 5,
+    let token = localStorage.getItem('Token')
+    let headers = new Headers();
+    headers.append('Authorization', `Bearer ${token}`)
+    let data = new FormData();
+    data.append('userId', userId);
+    data.append('comment', comment);
+    data.append('reting', reting);
+    var requestOptions = {
+        method: 'POST',
+        headers: headers,
+        body: data,
+        redirect: 'follow'
+    };
+    function onSubmit(){
+        fetch(apiUrl,requestOptions)
+        .then(function(response){
+            let sts = response.status;
+            if(sts = 200){
+                elReytingModal.current.classList.remove("reyting-mod--open")
+            }
         })
     }
 
-    // useEffect(() => {
-    //     function submit(evt) {
-    //         evt.preventDefault();
-
-    //         axios.post(apiUrl, {
-    //             reltor_id: postData.userId,
-    //             comment: postData.comment,
-    //             reting:  postData.reting,
-    //         })
-    //     }
-    // },[])
 
     return (
         <>
@@ -74,34 +70,17 @@ function ReytingModal({ userId, userData, elReytingModal }) {
                     <img
                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1
                         HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU"
-                        className="reyting-mod__user-avatar"
-                    ></img>
-                    <div className="reyting-mod__title">{userData?.name} {userData?.lastname}</div>
+                        className="reyting-mod__user-avatar">
+                    </img>
 
-                    <form action="" onSubmit={(evt) => submit(evt)} className="reyting-mod__form">
+                    <div className="reyting-mod__form">
                         <div className="star_widget">
-
-                            <input onChange={(evt) => handel(evt)} value="5" type="radio" name="rate" id="rate_5 rate" />
-                            <label htmlFor="rate_5"><StarIcon width="40px" height="40px" color="#dee7ee" /></label>
-
-                            <input onChange={(evt) => handel(evt)} value="4" type="radio" name="rate" className="star_2" id="rate_4" />
-                            <label htmlFor="rate_4"><StarIcon width="40px" height="40px" color="#dee7ee" /></label>
-
-                            <input onChange={(evt) => handel(evt)} value="3" type="radio" name="rate" className="star_3" id="rate_3" />
-                            <label htmlFor="rate_3"><StarIcon width="40px" height="40px" color="#dee7ee" /></label>
-
-                            <input onChange={(evt) => handel(evt)} value="2" type="radio" name="rate" className="star_4" id="rate_2" />
-                            <label htmlFor="rate_2"><StarIcon width="40px" height="40px" color="#dee7ee" /></label>
-
-                            <input onChange={(evt) => handel(evt)} value="1" type="radio" name="rate" className="star_5" id="rate_1" />
-                            <label htmlFor="rate_1"><StarIcon width="40px" height="40px" color="#dee7ee" /></label>
-
+                            <ReactStars {...Rating} />
                         </div>
-                        <div class="rateus__text"></div>
-
-                        <textarea onChange={(evt) => handel(evt)} className="reyting-mod__textarea" value={postData.comment} name="comment" id="comment" cols="30" rows="10"></textarea>
-                        <Button type="button" variant="contained" className="reyting-mod__btn">Yuborish</Button>
-                    </form>
+                        <div className="rateus__text"></div>
+                        <textarea className="reyting-mod__textarea" name="comment" onChange={(e) => setComment(e.target.value)} id="comment" cols="30" rows="10"></textarea>
+                        <Button type="submit" onClick={(e) => onSubmit(e)} variant="contained" className="reyting-mod__btn">Yuborish</Button>
+                    </div>
                 </div>
             </div>
         </>
