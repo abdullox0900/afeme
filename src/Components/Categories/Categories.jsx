@@ -9,7 +9,7 @@ import ContentLoader from "react-content-loader";
 import axios from "axios";
 
 // Import => Components
-import Container from "../Container/Container";
+import { Container } from "@mui/material";
 import "../../Assets/scss/colors.scss";
 import "../Categories/Categories.scss";
 
@@ -99,7 +99,7 @@ function Categories() {
     return (
         <>
             <div className="categories">
-                <Container>
+                <Container className="container">
                     <div className="categories__content">
                         {showCategories(5)}
                     </div>

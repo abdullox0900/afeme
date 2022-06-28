@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 
 // Import Mui
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Container } from "@mui/material";
 
 // Import useContext => Localization
 import { Context as LangContext } from "../../Context/LangContext";
@@ -13,9 +13,9 @@ import content from "../../Localization/Content";
 // Import => Components
 import CardSkeleton from "../CardSkeleton/CardSkeleton";
 import Cards from "../Card/Card";
+import AdvertMap from "../AdvertMap/AdvertMap";
 import ApiError from "../ApiError/ApiError";
 import OfflineError from "../OfflineError/OfflineError";
-import Container from "../Container/Container";
 import NewBuildingsCard from "../NewBuildingsCard/NewBuildingsCard";
 
 // Import => Components Img
@@ -31,6 +31,7 @@ function Main() {
     const [dataError, setDataError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const URL = "https://ali98.uz/api/post";
+    const [IP, setIP] = useState(JSON.parse(window.localStorage.getItem('IP')) || "");
 
     useEffect(() => {
         const result = axios
@@ -39,7 +40,7 @@ function Main() {
                 let dataStatus = response.status;
                 if (dataStatus == true || dataStatus == 200) {
                     setData(response.data);
-                    setAdverts(response.data.data)
+                    setAdverts(response.data.data);
                     console.log(response);
                 } else {
                     setDataError(true);
@@ -52,16 +53,26 @@ function Main() {
             .finally(() => {
                 setIsLoading(false);
             });
+        const IPResult = axios
+            .get(`https://ipapi.co/json`)
+            .then((response) => {
+                if (response.status == 200) {
+                    setIP(response.data);
+                    window.localStorage.setItem('IP', JSON.stringify(IP));
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }, []);
 
     function showCards(amount) {
-
         if (isLoading) {
             return <CardSkeleton amount={amount} />;
 
         } else if (data && !dataError) {
-
             return adverts.slice(0, amount).map((row) => {
+                
                 return <Cards data={row} />;
             });
         } else if (!data || dataError) {
@@ -71,7 +82,7 @@ function Main() {
 
     return (
         <main className="main">
-            <Container>
+            <Container className="container">
                 <div className="main__content">
                     <div className="sections">
                         <section className="section recommend">
@@ -109,16 +120,7 @@ function Main() {
                             </div>
                         </div>
                         <div className="panel">
-                            <iframe
-                                className="iframe__map"
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.6608322062507!2d72.3573832156414!3d40.74748804338021!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bced630e0f4795%3A0xf72460c2369068a8!2sDigital%20City!5e0!3m2!1suz!2s!4v1653553961195!5m2!1suz!2s"
-                                width={"100%"}
-                                height={400}
-                                style={{ border: 0 }}
-                                allowFullScreen
-                                loading="lazy"
-                                referrerPolicy="no-referrer-when-downgrade"
-                            />
+                            {<AdvertMap currentAdvert={IP} zoom={8} height={400}/>}
 
                             <Box className="realtors">
                                 <Typography

@@ -17,7 +17,7 @@ function AdvertBtn() {
             <Button
                 className="btn header__button add__advert"
                 variant="contained"
-                sx={{ py: 1, px: 1.5 }}
+                sx={{ py: 1, px: 1.5, minWidth: "120px" }}
             >
                 <img src={plusIcon} alt="" style={{marginRight: '6px'}} />
                 {content[lang].add}
