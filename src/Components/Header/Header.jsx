@@ -1,5 +1,5 @@
 // Import => React
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 // Import useContext => Localization
@@ -29,11 +29,17 @@ import content from "../../Localization/Content";
 import AdvertBtn from "../AddAdvertBtn/AdvertBtn";
 import { getCookie, setCookie } from "../../Utils/cookies";
 
+// Import => Axios
+import axios from "axios";
+
 function Header() {
     const elModal = React.useRef();
     const elHeader = React.useRef();
 
     const navigate = useNavigate();
+
+    // Logo State
+    const [logoImg, setLogoImg] = useState({});
 
     const { lang, setLang } = useContext(Context);
     const { isUser, setIsUser } = useContext(UserContext);
@@ -66,6 +72,26 @@ function Header() {
     const langTooltipClose = () => {
         setLangTooltip(false);
     };
+
+    // Api Axios Logos
+    useEffect(() => {
+        axios.get(`https://ali98.uz/api/logos`)
+            .then(res => {
+                const newImgData = res?.data
+
+                setLogoImg(newImgData);
+            })
+    }, [])
+
+    const newImgArr = [];
+
+    {
+        logoImg.map(i => {
+            return newImgArr.push(i.image)
+        })
+    }
+
+    console.log(newImgArr)
 
     const profile = (
         <>
