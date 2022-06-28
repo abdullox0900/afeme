@@ -1,0 +1,69 @@
+.ymaps-2-1-79-balloon{
+    border-radius: 10px !important;
+    ymaps:not(.ymaps-2-1-79-balloon__close-button){
+        height: 100% !important;
+    }
+    &__layout{
+        border-radius: 10px !important;
+    }
+    &__content{
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    &__close{
+        background-color: #fff;
+        &-button{
+            height: 30px !important;
+            width: 30px !important;
+            opacity: 0.8 !important;
+            transition: all .2s;
+            &:hover{
+                transform: rotate(90deg);
+            }
+        }
+        border-bottom-left-radius: 10px;
+    } 
+}
+.mapBaloon{
+    overflow: hidden;
+    font-family: "Roboto";
+    &__main{
+        padding: 8px;
+    }
+    &__img{
+        border-radius: 10px;
+        width: 250px;
+        height: 150px;
+        transition: all .3s;
+        &:hover{
+            transform: scale(1.1);
+        }
+    }
+    &__title, &__price{
+        margin: 0;
+        font-family: "Roboto";
+    }
+    &__title{
+        width: 230px;
+        color: #121212;
+    }
+    &__price{
+        margin-top: 8px;
+        width: 230px;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 15px;
+        color: #357aff;
+    }
+    &__footer{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 8px 12px 8px;
+    }
+    &__link{
+        color: #0039aa;
+    }
+
+}

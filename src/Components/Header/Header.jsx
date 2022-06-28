@@ -112,6 +112,7 @@ function Header() {
                         </Typography>
                     </MenuItem>
                     <MenuItem onClick={LogOut}>
+                        
                         <Typography textAlign="center" className="profileTools">
                             Log out
                         </Typography>

@@ -71,7 +71,6 @@ function Advert() {
                 setIsLoading(false);
             });
     }, []);
-    console.log(data, data.hasOwnProperty("id"));
 
     const shareData = {
         title: "Afeme",
@@ -79,10 +78,16 @@ function Advert() {
         url: "http://localhost:3000/advert/118",
     };
 
+    function handlePrint() {
+        window.print();
+    }
+
     if (isLoading) {
         return <Spinner />;
 
     } else if (data.hasOwnProperty("id") && !dataError) {
+
+        
 
         return (
             <Box className="advert">
@@ -149,6 +154,7 @@ function Advert() {
                                             title="Yuklab olish (PDF)"
                                             TransitionComponent={Zoom}
                                             arrow
+                                            onClick={() => window.print()}
                                         >
                                             <IconButton
                                                 variant="contained"
@@ -169,6 +175,7 @@ function Advert() {
                                                 color="primary"
                                                 className="advert__btn advert__printBtn"
                                                 sx={{ mr: 1 }}
+                                                onClick={() => window.print()}
                                             >
                                                 <PrintIcon />
                                             </IconButton>
