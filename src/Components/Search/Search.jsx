@@ -1,5 +1,5 @@
 // Import => React and React-Router-Dom
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate, NavLink as Link } from "react-router-dom";
 import axios from "axios";
 // import searchIcon from "../../Assets/Img/search-icon.svg";
@@ -8,17 +8,20 @@ import axios from "axios";
 import { Box, Button, Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 
 // Import => Components
+import { Context } from "../../Context/LangContext";
 import "../Search/Search.scss";
 import searchIcon from "../../Assets/Img/search-icon.svg";
 
 function Search() {
+
     const navigate = useNavigate();
-    const [term, setTerm] = useState(null);
+    const { lang, setLang } = useContext(Context);
+    const [term, setTerm] = useState("");
     const [regions, setRegions] = useState([]);
-    const [region, setRegion] = useState(null);
-    const [priceFrom, setPriceFrom] = useState(null);
-    const [priceTo, setPriceTo] = useState(null);
-    const [room, setRoom] = useState(null);
+    const [region, setRegion] = useState("");
+    const [priceFrom, setPriceFrom] = useState("");
+    const [priceTo, setPriceTo] = useState("");
+    const [room, setRoom] = useState("");
     const [fromMax, setFromMax] = useState("");
     const [toMin, setToMin] = useState("");
 
@@ -51,7 +54,13 @@ function Search() {
 
     function search(e) {
         e.preventDefault();
-        navigate(`/adverts?term=${term}&region=${region}&from=${priceFrom}&to=${priceTo}&room=${room}`);
+        navigate(
+            `/adverts?term=${term ? term : "null"}&region=${
+                region ? region : "null"
+            }&from=${priceFrom ? priceFrom : "null"}&to=${
+                priceTo ? priceTo : "null"
+            }&room=${room ? room : "null"}`
+        );
     }
     useEffect(() => {
         const regions = async () => {
@@ -59,9 +68,8 @@ function Search() {
                 const res = await axios.get("https://ali98.uz/api/regions");
                 if (res) {
                     let data = res.data.data;
+                    console.log(data);
                     setRegions(data);
-                } else {
-                    alert("xato");
                 }
             } catch (error) {
                 console.log(error);
@@ -72,7 +80,11 @@ function Search() {
 
     return (
         <>
-            <form action="/adverts" className="search__form" onSubmit={(e) => search(e)}>
+            <form
+                action="/adverts"
+                className="search__form"
+                onSubmit={(e) => search(e)}
+            >
                 <Box className="form__content">
                     <Box className="filter__content">
                         <FormControl className="filter__items" sx={{ mr: 1 }}>
@@ -87,12 +99,17 @@ function Search() {
                                 value={region}
                                 onChange={regionChange}
                                 sx={{
-                                    borderRadius: '10px',
-                                    height: '45px'
-                                }}>
+                                    borderRadius: "10px",
+                                    height: "45px",
+                                }}
+                            >
                                 {regions.map((region) => (
                                     <MenuItem key={region.id} value={region.id}>
-                                        {region.name}
+                                        {lang == "uz"
+                                            ? region.name_uz
+                                            : lang == "ru"
+                                            ? region.name_ru
+                                            : region.name_en}
                                     </MenuItem>
                                 ))}
                             </Select>
@@ -131,9 +148,10 @@ function Search() {
                                 label="Xona"
                                 onChange={roomChange}
                                 sx={{
-                                    borderRadius: '10px',
-                                    height: "45px"
-                                }}>
+                                    borderRadius: "10px",
+                                    height: "45px",
+                                }}
+                            >
                                 <MenuItem value={2}>2</MenuItem>
                                 <MenuItem value={3}>3</MenuItem>
                                 <MenuItem value={4}>4</MenuItem>
@@ -155,13 +173,13 @@ function Search() {
                         />
                     </Box>
                 </Box>
-                    <Button
-                        className="btn search__submit-btn"
-                        type="submit"
-                        variant="contained"
-                    >
-                        Search
-                    </Button>
+                <Button
+                    className="btn search__submit-btn"
+                    type="submit"
+                    variant="contained"
+                >
+                    Search
+                </Button>
             </form>
             {/* <Link to={{pathname: '/adverts', state: {term: 'data'}}}>salom</Link> */}
         </>

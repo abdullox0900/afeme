@@ -32,9 +32,6 @@ function CardTools(
                         .replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " so'm"
                 );
             }
-            setAdvertTitle(
-                `Ijaraga ${data.room} xonali ${data.htype_id?.name_uz} sotiladi`
-            );
 
             setAdvertLink(`/advert/${data.id}`);
 
@@ -42,14 +39,26 @@ function CardTools(
                 setAdvertType(data?.htype_id?.name_uz);
                 setAdvertAddress(data?.region_id?.name_uz);
                 setAdvertCity(data?.city_id?.name_uz);
+
+                setAdvertTitle(
+                    `${data.sale_id?.name_uz + 'ga'} ${data.room} xonali ${data.htype_id?.name_uz} sotiladi`
+                );
             } else if (lang == "ru") {
                 setAdvertType(data?.htype_id?.name_ru);
                 setAdvertAddress(data?.region_id?.name_ru);
                 setAdvertCity(data?.city_id?.name_ru);
+
+                setAdvertTitle(
+                    `${data.room}-комнатная ${data.htype_id?.name_ru} в ${data.sale_id?.name_ru} на продажу`
+                );
             } else {
                 setAdvertType(data?.htype_id?.name_en);
                 setAdvertAddress(data?.region_id?.name_en);
                 setAdvertCity(data?.city_id?.name_en);
+
+                setAdvertTitle(
+                    `${data.room}-room ${data.htype_id?.name_en} for ${data.sale_id?.name_en} Sale`
+                );
             }
 
             setAdvertTypeImg(
