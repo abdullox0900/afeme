@@ -14,5 +14,4 @@ function Provider({children}) {
         <Context.Provider value={{lang, setLang}}>{children}</Context.Provider>
     )
 }
-
 export { Context, Provider}

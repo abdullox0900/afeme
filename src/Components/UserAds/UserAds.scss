@@ -1,7 +1,13 @@
-.user-ads {
+.user__ads{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.userNoAds {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
-    width: 930px;
+    width: 100%;
 }

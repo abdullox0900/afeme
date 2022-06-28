@@ -58,7 +58,9 @@
     }
     .add__advert {
         width: 100%;
-        min-width: 140px;
+        max-width: 200px;
+        font-size: 13px;
+        white-space: nowrap;
     }
     &__menu-btn {
         display: none;

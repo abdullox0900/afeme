@@ -6,7 +6,7 @@ const UserContext = createContext();
 function Provider({children}) {
 
     const [token, setToken] = useState(localStorage.getItem("Token") || null);
-    const [isUser, setIsUser] = useState(null);
+    const [isUser, setIsUser] = useState([]);
 
     useEffect(() => {
         if (token) {
@@ -20,5 +20,4 @@ function Provider({children}) {
         <UserContext.Provider value={{isUser, setIsUser}}>{children}</UserContext.Provider>
     )
 }
-
 export { UserContext, Provider}

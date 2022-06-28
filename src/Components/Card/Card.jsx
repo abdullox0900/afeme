@@ -3,7 +3,15 @@ import React, { useState, useEffect, useContext } from "react";
 import { NavLink as Redirect } from "react-router-dom";
 
 // Import => Mui
-import { Box, Card, CardMedia, Typography, CardContent, CardActions, IconButton } from "@mui/material";
+import {
+    Box,
+    Card,
+    CardMedia,
+    Typography,
+    CardContent,
+    CardActions,
+    IconButton,
+} from "@mui/material";
 
 // Import => Components
 import LoveBtn from "../LoveBtn/LoveBtn";
@@ -93,11 +101,8 @@ function Cards({ data, editDelete = false, fullCard = false }) {
                                 src={advertTypeImg}
                                 alt=""
                                 className="house__type__icon"
-                                onError={(e) => {
-                                    e.target.style.display = "none";
-                                }}
                             />
-                            {advertType}
+                            <p className="house__type__name">{advertType}</p>
                         </Typography>
                         <Typography variant="body2" className="house__prices">
                             <span className="house__price">{price}</span>
@@ -152,7 +157,14 @@ function Cards({ data, editDelete = false, fullCard = false }) {
                                 component="div"
                                 className="house__type"
                             >
-                                {advertType}
+                                <img
+                                    src={advertTypeImg}
+                                    alt=""
+                                    className="house__type__icon"
+                                />
+                                <p className="house__type__name">
+                                    {advertType}
+                                </p>
                             </Typography>
                         </div>
                         <Typography variant="body2" className="house__prices">

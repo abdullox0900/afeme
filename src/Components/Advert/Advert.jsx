@@ -5,7 +5,6 @@ import { Box, IconButton, Tooltip, Zoom } from "@mui/material";
 
 // Import => Components
 import { Context as LangContext } from "../../Context/LangContext";
-import { UserContext } from "../../Context/UserContext";
 import { CurrencyContext } from "../../Context/CurrencyContext";
 import Container from "../Container/Container";
 import Spinner from "../Spinner/Spinner";
@@ -41,7 +40,6 @@ function Advert() {
     
     const { lang, setLang } = useContext(LangContext);
     const { currency, setCurrency } = useContext(CurrencyContext);
-    const { isUser, setIsUser } = useContext(UserContext);
     const [price, setPrice] = useState("");
     const [advertTitle, setAdvertTitle] = useState("");
     const [advertLink, setAdvertLink] = useState("");
@@ -83,11 +81,13 @@ function Advert() {
     }
 
     if (isLoading) {
-        return <Spinner />;
+        return (
+            <div className="loadingSpinner">
+                <Spinner />
+            </div>
+        );
 
     } else if (data.hasOwnProperty("id") && !dataError) {
-
-        
 
         return (
             <Box className="advert">
@@ -96,20 +96,17 @@ function Advert() {
                         <Box className="advert__content">
                             <Box className="advert__info">
                                 <div className="advert__about__header">
-                                    <h2 className="advert__title">
-                                        {advertTitle}
+                                    <div className="advert__title">
+                                        <h2 className="advert__title__content">{advertTitle}</h2>
                                         <span className="advert__houseType">
                                             <img
-                                                src=""
+                                                src={advertTypeImg}
                                                 alt=""
                                                 className="house__type__icon"
-                                                onError={(e) => {
-                                                    e.target.style.display = "none";
-                                                }}
                                             />
-                                            {advertType}
+                                            <p>{advertType}</p>
                                         </span>
-                                    </h2>
+                                    </div>
                                     <Box className="advert__prices">
                                         <p className="advertPrice">
                                             {price}
