@@ -96,7 +96,7 @@ function AdvertPage() {
     redirect: 'follow'
   };
   //Post Function
-  function onSubmit() {
+  function onSubmit() { 
     fetch("http://ali98.uz/api/post", requestOptions)
       .then(function (response) {
         let status = response.status;

@@ -26,9 +26,6 @@ const content = {
         see_desc: "Barchasini ko’rish",
         reltor_aside_title: "Reltorlar",
         error_desc: "Ma'lumotlar olishda xatolik yuz berdi",
-        // Afeme Iphone Card
-        afeme_reclcard_title: "Afeme endi har doim qo'lingizda bo'ladi",
-        afeme_reclcard_desc: "Ilovada siz uy-joy kommunal xizmatlarini boshqarishingiz va jarayonni kuzatishingiz mumkin: biz barcha muhim narsalar haqida xabar beramiz.",
 
         // Footer
         footer_text: "Masofaviy Uy oldi sotdisi bo'yicha Milliy platforma",
@@ -47,6 +44,7 @@ const content = {
         from_modal_inputtel: "Telfon Raqam",
         from_modal_btnsubmit: "Kirish",
         from_sign: "Ro'yxatdan o'tish",
+        help: 'Yordam',
 
         // Form Page
         form_select_jis: "Jismoniy shaxs",
@@ -57,6 +55,14 @@ const content = {
         form_select_pas: "Passport",
         form_select_tel: "Telefon raqam",
         form_myaccount: "Mening hisobim bor",
+        form_select_type_m: 'Mijoz',
+        form_select_type_r: 'Rieltor',
+        form_select_type_c: 'Companiya',
+        form_select_type_q: 'Quruvchi',
+        rexperience: 'Tajriba',
+        bio: 'Malumot',
+        have: 'Mening Akkauntim bor',
+        sing: 'Royhatdan otish',
 
         // Reltos Page
         reltor_title: "Rieltorlar katalogi",
@@ -75,6 +81,21 @@ const content = {
         user_profil_favorintes: "Tanlanganlar",
         user_profil_news: "Yangiliklar",
         user_profil_clos: "Chiqish",
+
+        //Help
+        title: 'Yordam',
+        title_descr: 'Biz xardoim yordam berishga tayormiz',
+        name: 'Ism',
+        name_error: 'Ism Kiriting',
+        number: 'Telefon Raqam',
+        number_error: 'Iltimos Telefon Raqamingizni Kiriting!!!',
+        email: 'Email Manzili',
+        email_error: 'Email Manzili Notogri',
+        message_type: 'Habar Turi',
+        type_taklif: 'Taqlif',
+        type_shiqoyat: 'Shiqoyat',
+        descr: 'Habaringizni Koldiring',
+        btn: 'Yuborish',
 
         // AdvertPage
         advert_title: "E'lon qo'shish",
@@ -145,6 +166,7 @@ const content = {
         from_modal_inputtel: "Phone number",
         from_modal_btnsubmit: "Get started",
         from_sign: "Register",
+        help: 'Help',
 
         // Form Page
         form_select_jis: "Individual",
@@ -155,6 +177,14 @@ const content = {
         form_select_pas: "Passport",
         form_select_tel: "Phone number",
         form_myaccount: "I have an account",
+        form_select_type_m: 'Client',
+        form_select_type_r: 'Rialtor',
+        form_select_type_c: 'Company',
+        form_select_type_q: 'Builder',
+        rexperience: 'Experience',
+        bio: 'About your self',
+        have: 'I have an account',
+        sing: 'SingUp',
 
         // Reltos Page
         reltor_title: "Directory of Realtors",
@@ -169,9 +199,26 @@ const content = {
         user_profil_news: "News",
         user_profil_clos: "Logout",
 
-        detailedView: "View more",
-    },
+        //Help
+        title: 'Help',
+        title_descr: 'We are always ready to help',
+        name: 'Name',
+        name_error: 'Enter a name',
+        number: 'Telephone Number',
+        number_error: 'Enter a number',
+        email: 'Email',
+        email_error: 'Email address Incorrect',
+        message_type: 'Message Type',
+        type_taklif: 'Offer',
+        type_shiqoyat: 'Complaint',
+        descr: 'Leave your message',
+        btn: 'Send',
 
+        afemePhoneTitle: `now it will always be in your hands`,
+        afemePhonetitleDescr: 'In the app, you can manage housing utilities and monitor the process: we report all the important things.',
+        partners_title: 'Our partners',
+        partners_descr: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium ducimus in, voluptate deserunt magni fugit error atque modi iure maiores possimus nesciunt? Tempore odit ratione sunt, ut dignissimos, exercitationem a mollitia necessitatibus, aliquam asperiores neque! Quae id quod voluptate quos.',
+    },
     ru: {
         // Header
         add: "Добавить объявление",
@@ -210,6 +257,7 @@ const content = {
         from_modal_inputtel: "Номер телефона",
         from_modal_btnsubmit: "Войти",
         from_sign: "Зарегистрироваться",
+        help: 'Помощь',
 
         // Form Page
         form_select_jis: "Физический",
@@ -220,6 +268,14 @@ const content = {
         form_select_pas: "Поспорт",
         form_select_tel: "Номер телефона",
         form_myaccount: "У меня есть аккаунт",
+        form_select_type_m: 'Клиент',
+        form_select_type_r: 'Риэлтор',
+        form_select_type_c: 'Компания',
+        form_select_type_q: 'Строитель',
+        rexperience: 'Опыт работы',
+        bio: 'О себе',
+        sing: 'Зарегистрироваться',
+        have: 'У меня есть аккаунт',
 
         // Reltos Page
         reltor_title: "Каталог риелторов",
@@ -234,7 +290,25 @@ const content = {
         user_profil_news: "Новости",
         user_profil_clos: "Выйти",
 
-        detailedView: "Узнать больше",
+        //Help
+        title: 'Помощь',
+        title_descr: 'Мы всегда готовы помочь',
+        name: 'Имя',
+        name_error: 'Введите имя',
+        number: 'Номер телефона',
+        number_error: 'Пожалуйста введите ваш номер телефона !!!',
+        email: 'Адрес электронной почты',
+        email_error: 'Адрес электронной почты Нотогри',
+        message_type: 'Тип сообщения',
+        type_taklif: 'Предложение',
+        type_shiqoyat: 'Жалоба',
+        descr: 'Оставьте свое сообщение',
+        btn: 'Отправить',
+
+        afemePhoneTitle: `теперь он всегда будет в ваших руках`,
+        afemePhonetitleDescr: 'В приложении можно управлять ЖКХ и следить за процессом: сообщаем обо всем важном.',
+        partners_title: 'Наши партнеры',
+        partners_descr: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium ducimus in, voluptate deserunt magni fugit error atque modi iure maiores possimus nesciunt? Tempore odit ratione sunt, ut dignissimos, exercitationem a mollitia necessitatibus, aliquam asperiores neque! Quae id quod voluptate quos.',
     },
 }
 

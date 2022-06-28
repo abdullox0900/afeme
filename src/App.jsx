@@ -7,11 +7,7 @@ import './App.scss';
 import Loader from "./Components/Loader/Loader";
 import Home from "./Pages/Home/Home";
 import SignUp from './Pages/SignUp/SignUp';
-import AddvertPage from './Pages/AdventPage/advertPage';
-import PersonalCabinet from './Pages/PersonalCabinet/PersonalCabinet';
-import Posts from './Components/Posts/Posts';
-import Liked from './Components/Liked/Liked';
-import Settings from './Components/Settings/Settings';
+import AdvertPage from './Pages/AdventPage/advertPage';
 import Adverts from './Pages/Adverts/Adverts'
 import Advert from './Pages/Advert/Advert';
 import CatalogRealtor from './Pages/CatalogOfRealtors/CatalogRealtors';
@@ -24,6 +20,7 @@ import UserMessagePage from './Pages/UserMessage/UserMessagePage';
 import UserAdsPage from "./Pages/UserAdsPage/UserAdsPage";
 import UserFavoritesPage from './Pages/UserFavoritesPage/UserFavoritesPage';
 import UserNewsPage from './Pages/UserNewsPage/UserNewsPage';
+import Help from './Pages/Help/Help';
 
 function App() {
 
@@ -50,11 +47,7 @@ function App() {
                     <Route path='/' element={<Home />} />
                     <Route path='/Afeme' element={<Home />} />
                     <Route path='/SignUp' element={<SignUp />} />
-                    <Route path='/advertPage' element={<AddvertPage />} />
-                    <Route path='/posts' element={<PersonalCabinet />} />
-                    <Route path='/liked' element={<Liked />} />
-                    <Route path='/posts' element={<Posts />} />
-                    <Route path='/settings' element={<Settings />} />
+                    <Route path='/advertPage' element={<AdvertPage />} />
                     <Route path='/adverts' element={<Adverts />} />
                     <Route path='/advert/:postID' element={<Advert />} />
                     <Route path='/catalogreltor' element={<CatalogRealtor />} />
@@ -66,6 +59,7 @@ function App() {
                     <Route path='/usernews' element={<UserNewsPage />} />
                     <Route path='/chat' element={<Chat />} />
                     <Route path="*" element={<Page404 />} />
+                    <Route path='/help' element={<Help />} />
                 </Routes>
             </Suspense>
         </>
