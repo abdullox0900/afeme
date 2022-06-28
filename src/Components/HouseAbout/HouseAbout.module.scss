@@ -3,11 +3,12 @@
     display: flex;
     justify-content: flex-start;
     align-items: baseline;
+    margin-top: 20px;
     p {
-        width: 190px;
+        width: 130px;
         height: 40px;
         font-weight: 400;
-        font-size: 22px;
+        font-size: 19px;
         color: $black;
     }
     .InpG {

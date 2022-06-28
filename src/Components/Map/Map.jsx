@@ -94,12 +94,12 @@ function Map({ street, setStreet, city_id, setCity, region_id, setRegionID }) {
 						))}
 					</Select>
 				</FormControl>
-				<input type="text" placeholder='Manzil' onChange={(e) => setStreet(e.target.value)} />
+				<input className='input_control' type="text" placeholder='Manzil' onChange={(e) => setStreet(e.target.value)} />
 			</div>
 			<MapPicker
 				zoom={zoom}
 				mapTypeId='roadmap'
-				style={{ weight: '660px', height: '300px' }}
+				style={{ weight: '660px', height: '300px'}}
 				onChangeLocation={(lat, lng) => setLocation(lat, lng)}
 				onChangeZoom={(newZoom) => setZoom(newZoom)}
 				apiKey='AIzaSyB8NHCF-5fMix0w2363RhC3V4vcyw8SHSM' />

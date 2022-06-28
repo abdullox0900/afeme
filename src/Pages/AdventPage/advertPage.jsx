@@ -56,7 +56,7 @@ function AdvertPage() {
   const [living_area, setLivingArea] = useState('')
   const [kitchen_area, setKitchenArea] = useState('')
   const [total_area_type, setTotalAreaType] = useState('')
-  const [photo, setPhoto] = useState([])//ImageFile State  
+  const [photo, setPhoto] = useState([])//ImageFile State
   const [video, setVideo] = useState([])//VideoFile State
 
   //Dates for Send
@@ -88,6 +88,7 @@ function AdvertPage() {
   data.append('kitchen_area', kitchen_area)
   data.append('photo', photo);
   data.append('video', video);
+  
   var requestOptions = {
     method: 'POST',
     headers: headers,
@@ -95,13 +96,13 @@ function AdvertPage() {
     redirect: 'follow'
   };
   //Post Function
-  function onSubmit() {
+  function onSubmit() { 
     fetch("http://ali98.uz/api/post", requestOptions)
-      .then(function(response){
+      .then(function (response) {
         let status = response.status;
-        if(status == 200){
+        if (status == 200) {
           handleSuc();
-        } else if ( status = 500 || 400) {
+        } else if (status = 500 || 400) {
           handleErr();
         } else {
           handleErr();
@@ -119,6 +120,7 @@ function AdvertPage() {
         <div className={style.container}>
           <section>
             <h1 className={style.pageName}>E'lon qo'shish</h1>
+            <h2 className={style.htypeText}>Sotish Turlari</h2>
             <SaleType
               sale_id={sale_id} setsType={setsType} />
             <h2 className={style.htypeText}>Bino Turlari</h2>
@@ -131,10 +133,11 @@ function AdvertPage() {
               city_id={city_id} setCity={setCity}
               region_id={region_id} setRegionID={setRegionID} />
             <h2 className={style.htypeText}>Ofis Haqida</h2>
-            <Date
-              date={date} setDate={setDate} />
-            <Room
-              room={room} setRoom={setRoom} />
+
+              <Date
+                date={date} setDate={setDate} />
+              <Room
+                room={room} setRoom={setRoom} />
             <Area total_area={total_area} setTotalArea={setTotalArea}
               living_area={living_area} setLivingArea={setLivingArea}
               kitchen_area={kitchen_area} setKitchenArea={setKitchenArea}

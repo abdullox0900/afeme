@@ -1,8 +1,9 @@
 .afemePhone {
+    margin: 0 auto;
     margin-top: 50px;
     margin-bottom: 40px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    width: 100%;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;    width: 1300px;
     .container {
         position: relative;
         overflow: hidden;
@@ -69,6 +70,6 @@
         width: 60px;
         height: 60px;
         top: 20px;
-        left: 180px;
+        left: 80px;
     }
 }

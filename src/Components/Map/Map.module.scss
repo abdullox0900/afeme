@@ -1,7 +1,8 @@
-.InpG{
+.InpG {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+
   input {
     padding: 0 15px;
     margin-bottom: 20px;
@@ -11,25 +12,35 @@
     border-radius: 5px;
     font-weight: 600;
   }
+
+  input::placeholder {
+    font-weight: 400;
+    font-size: 1rem;
+  }
 }
-.map{
+
+.map {
   width: 660px;
   height: 330px;
+  border-radius: 10px;
 }
+
 @media only screen and (max-width:767px) {
-  .InpG{
-    input{
+  .InpG {
+    input {
       width: 635px;
       height: 50px;
     }
   }
-  .map{
+
+  .map {
     width: 635px;
     height: 250px;
   }
 }
+
 @media only screen and (max-width:319px) {
-  .map{
+  .map {
     width: 300px;
     height: 250px;
   }

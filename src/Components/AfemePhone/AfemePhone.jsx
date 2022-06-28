@@ -1,5 +1,5 @@
 // Import => React
-import React from "react"
+import React, { useContext } from "react"
 
 // Import => Components
 import PlayStore from "../../Assets/Img/downloadPlayStore.png";
@@ -10,14 +10,19 @@ import { Container } from "@mui/material";
 // Import => Style Component
 import "./AfemePhone.scss";
 
+// Import useContext => Localization
+import { Context } from '../../Context/LangContext';
+import content from '../../Localization/Content';
+
 function AfemePhone() {
+    const { lang, setLang } = useContext(Context);
 
     return (
         <div className="afemePhone">
             <Container className="container">
                 <div className="afemePhone__content">
-                    <h3 className="afemePhone__title"><span>Afeme</span> endi har doim qo'lingizda bo'ladi</h3>
-                    <p className="afemePhone__text">Ilovada siz uy-joy kommunal xizmatlarini boshqarishingiz va jarayonni kuzatishingiz mumkin: biz barcha muhim narsalar haqida xabar beramiz.</p>
+                    <h3 className="afemePhone__title"><span>Afeme </span>{content[lang].afemePhoneTitle}</h3>
+                    <p className="afemePhone__text">{content[lang].afemePhonetitleDescr}</p>
                     <a href="#"><img src={PlayStore} alt="" /></a>
                 </div>
                 <img className="afemePhone__img-phone" src={afemePhone} alt="" />

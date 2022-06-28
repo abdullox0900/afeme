@@ -8,10 +8,6 @@ import { NavLink } from "react-router-dom";
 // Import => Axios
 import axios from "axios";
 
-// Import => @Mui
-import { Skeleton } from "@mui/material";
-import Avatar from '@mui/material/Avatar';
-
 // Import => Components
 import "../RealtorsCard/RealtorsCard.scss";
 import ZvezImgIcon from "../../Assets/Img/Icon/zvezda.svg";

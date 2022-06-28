@@ -7,8 +7,7 @@ import axios from "axios";
 
 // Import => Components
 import RealtorsCard from "../RealtorsCard/RealtorsCard";
-import Container from "../Container/Container"
-import Pogination from "../Pogination/Pogination";
+import Container from "../Container/Container";
 import "../RealtorWrap/RealtorWrap.scss";
 
 // Import useContext => Localization
@@ -43,7 +42,6 @@ function RealtorWrap() {
                         <button className="realtor-wrap__btn">{content[lang].reltor_sort}</button>
                     </div>
                     <RealtorsCard />
-                    <Pogination />
                 </div>
             </Container>
         </>

@@ -15,8 +15,11 @@ import { CurrencyContext } from "../../Context/CurrencyContext";
 import { UserContext } from "../../Context/UserContext";
 import content from "../../Localization/Content";
 
-function UserProfilList() {
+// Import => logout
+import LogOut from "../../Utils/logOut";
 
+function UserProfilList() {
+    
     const navigate = useNavigate();
     const { lang, setLang } = useContext(Context);
     const { isUser, setIsUser } = useContext(UserContext);
@@ -75,10 +78,10 @@ function UserProfilList() {
                     </li>
     
                     <li className="user-prof__item">
-                        <NavLink to={"#"} className="user-prof__link">
+                        <button className="user-prof__link" onClick={LogOut}>
                             <ion-icon name="log-in-outline"></ion-icon>
                             {content[lang].user_profil_clos}
-                        </NavLink>
+                        </button>
                     </li>
     
                 </ul>

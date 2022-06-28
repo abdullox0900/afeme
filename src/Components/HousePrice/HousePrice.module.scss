@@ -3,36 +3,56 @@
     justify-content: flex-start;
     align-items: baseline;
     gap: 10px;
+
     .numInp {
         margin: 0 20px 13px 0;
         width: 190px;
-        height: 30px;
+        height: 40px;
         border: 1px solid #e8e8e8;
         border-radius: 5px;
         font-weight: 600;
         font-size: 16px;
         line-height: 28px;
     }
+
+    .numInp::placeholder {
+        font-size: 16px;
+        font-weight: 500;
+    }
+
     .select {
         width: 107px;
-        height: 30px;
+        height: 40px;
         padding: 5px 0 5px 5px 5px;
         background: #ffffff;
         box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
         border-radius: 5px;
+        outline: none;
         border: none;
     }
+
+    .option {
+        padding: 30px !important;
+    }
+
     .checkInp {
         display: flex;
         justify-content: flex-start;
         align-items: center;
+
         input {
             width: 30px;
-            height: 30px;
+            height: 40px;
             background: #ffffff;
             border: 1px solid #c6bfbf;
             border-radius: 50%;
         }
+
+        input::placeholder {
+            font-size: 16px;
+            font-weight: 400;
+        }
+
         label {
             padding: 6px;
             min-width: 100px;
@@ -47,25 +67,32 @@
         }
     }
 }
+
+
+
 @media (max-width:767px) {
-    .hPrice{
-        .numInp{
+    .hPrice {
+        .numInp {
             width: 250px;
             height: 40px;
         }
-        .select{
+
+        .select {
             height: 40px;
         }
     }
 }
+
 @media (max-width:319px) {
-    .hPrice{
+    .hPrice {
         flex-direction: column;
-        .numInp{
+
+        .numInp {
             width: 250px;
             height: 40px;
         }
-        .select{
+
+        .select {
             height: 40px;
         }
     }

@@ -33,12 +33,6 @@ function ReltorCobinet() {
     // Skeleton useState
     const [isLoading, setLoading] = useState(false);
 
-
-    // Pogination useState
-    // const [currentPage, setCurrentPage] = useState(1);
-    // const [postPerPage] = useState(10);
-    // const [totalPost, setTotalPost] = useState(0);
-
     useEffect(() => {
         axios.get(`https://ali98.uz/api/user/${userId}`)
             .then(res => {
