@@ -33,8 +33,8 @@ function HousePrice({ price_som, setPrice_som, price_usd, setPrice_usd }) {
                     className={style.select}
                     onChange={(e) => Type(e)}
                 >
-                    <option value="uzs">Uzs</option>
-                    <option value="usd">Usd</option>
+                    <option className={style.option} value="uzs">Uzs</option>
+                    <option className={style.option} value="usd">Usd</option>
                 </select>
             </div>
         </div>

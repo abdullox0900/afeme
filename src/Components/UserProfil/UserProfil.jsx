@@ -18,8 +18,19 @@ function UserProfil() {
                 <div className="user-profil-wrap">
                     <UserProfilList />
                     <div className="userprofil">
-                        <img src={UserIlustration} alt="" />
-                        <h3 className="user-prof__title">User Tez kunda...</h3>
+                        <div className="userprofil__wrap">
+                            <div>
+                                <img className="userprofil__avatar" src="" alt="" />
+                                <h3 className="userprofil__username">Abdullox Abdusalomov</h3>
+                                <button className="userprofil__avatar-edit">Rasim Yanglash</button>
+                                <button className="userprofil__avatar-edit">Rasimni olib tawlash</button>
+                            </div>
+
+                            <form action="" className="userprofil__form">
+                                <label htmlFor="">Ism</label>
+                                <input type="text" placeholder="name" />
+                            </form>
+                        </div>
                     </div>
                 </div>
             </Container>

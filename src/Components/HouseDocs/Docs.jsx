@@ -17,7 +17,6 @@ function Docs({ documents, setDocs }) {
     axios.post('http://ali98.uz/api/service', formdata)
       .then(function (response) {
         let res = response.data.data
-        console.log(res);
         setDocs(res)
       })
       .catch(function (res) {
@@ -29,7 +28,6 @@ function Docs({ documents, setDocs }) {
   return (
     <>
       <div className={style.docs}>
-        {console.log(documents)}
       </div>
       <div className={style.Group}>
         <label htmlFor="file" className={style.label}>Uy Hujjatlarini Yuklang</label>
@@ -37,6 +35,6 @@ function Docs({ documents, setDocs }) {
       </div>
     </>
   )
-} 
+}
 
 export default Docs

@@ -66,6 +66,18 @@
         color: #000;
     }
 
+    &__ext {
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 16px;
+        text-align: center;
+        color: #000;
+        border: none;
+        background-color: transparent;
+        margin: 0;
+        padding: 0;
+    }
+
     ion-icon {
         margin-right: 10px;
     }

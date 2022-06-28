@@ -229,7 +229,7 @@ function Header() {
                                     arrow
                                     TransitionComponent={Grow}
                                 >
-                                    <NavLink to={"/liked"}>
+                                    <NavLink to={"/userfavorites"}>
                                         <IconButton
                                             color="primary"
                                             sx={{ mr: "5px" }}

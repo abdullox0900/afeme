@@ -33,7 +33,7 @@ function NewBuildingsCard() {
                     isLoading ? (
                         regionData.map((reg) => {
                             return (
-                                <div className="new-buildin-card" key={reg.id}>
+                                <div className="new-buildin-card" id={reg.id}>
                                     <img className="new-buildin-card__img" src={reg.image} alt="" />
 
                                     <div className="new-buildin-card__body">
