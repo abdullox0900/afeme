@@ -20,7 +20,7 @@ import locationIcon from "../../Assets/Img/location.svg";
 
 // Import => Components
 import LogOut from "../../Utils/logOut";
-import Container from "../Container/Container";
+import { Container } from "@mui/material";
 import Modal from "../LoginModals/ModalAuthorization/Modal";
 import "../LoginModals/ModalAuthorization/Modal.scss";
 import "../Header/Header.scss";
@@ -141,7 +141,7 @@ function Header() {
     return (
         <>
             <header className="header" ref={elHeader}>
-                <Container>
+                <Container className="container">
                     <div className="header__content">
                         <div className="header__logo">
                             <NavLink
@@ -230,7 +230,7 @@ function Header() {
                                     arrow
                                     TransitionComponent={Grow}
                                 >
-                                    <NavLink to={"/liked"}>
+                                    <NavLink to={"/liked"} className="header__likes__link">
                                         <IconButton
                                             color="primary"
                                             sx={{ mr: "5px" }}

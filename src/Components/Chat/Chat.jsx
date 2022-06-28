@@ -29,14 +29,7 @@ function Chat() {
         console.log(attachInput);
         attachInput.click();
     }
-    const data = {
-        houseType: 'Uy',
-        housePrice: 1400,
-        houseTitle: 'Sizga yoqadigan uy',
-        houseAddress: 'Andijan',
-        houseUrl: '/advert',
-        houseImg: CardImg1,
-    };
+    const images = [Person1, Person2, Person3, Person1, Person2, Person3]
     return (
         <Box className="chat" maxWidth={1700} margin={'0 auto'} padding={'0 15px'}>
             <section className="chatsPanel">
@@ -48,90 +41,21 @@ function Chat() {
                 </Box>
                 <Box className="chatsPanel__main">
                     <Box className="chatsPanel__chats">
-                        <Redirect to={"/plonchini__yozishmasi"}>
-                            <div className="chatProfile">
-                                <img src={Person3} alt="" className="chatProfile__img" />
-                                <div className="chatProfile__content">
-                                    <Box className="chatProfile__content__item">
-                                        <h3 className="chatProfile__name">Elmer Polonchi</h3>
-                                        <span className="chatProfile__text">Haha oh man 🔥</span>
-                                    </Box>
-                                    <span className="chatProfile__lastTime">12m</span>
+                        {images.map((img) => (
+                            <Redirect to={"/plonchini__yozishmasi"}>
+                                <div className="chatProfile">
+                                    <img src={img} alt="" className="chatProfile__img" />
+                                    <div className="chatProfile__content">
+                                        <Box className="chatProfile__content__item">
+                                            <h3 className="chatProfile__name">Elmer Polonchi</h3>
+                                            <span className="chatProfile__text">Haha oh man 🔥</span>
+                                        </Box>
+                                        <span className="chatProfile__lastTime">12m</span>
+                                    </div>
                                 </div>
-                            </div>
-                        </Redirect>
-                        <Redirect to={"/plonchini__yozishmasi"}>
-                            <div className="chatProfile">
-                                <img src={Person2} alt="" className="chatProfile__img" />
-                                <div className="chatProfile__content">
-                                    <Box className="chatProfile__content__item">
-                                        <h3 className="chatProfile__name">Elmer Polonchi</h3>
-                                        <span className="chatProfile__text">Haha oh man 🔥</span>
-                                    </Box>
-                                    <span className="chatProfile__lastTime">12m</span>
-                                </div>
-                            </div>
-                        </Redirect>
-                        <Redirect to={"/plonchini__yozishmasi"}>
-                            <div className="chatProfile">
-                                <img src={Person1} alt="" className="chatProfile__img" />
-                                <div className="chatProfile__content">
-                                    <Box className="chatProfile__content__item">
-                                        <h3 className="chatProfile__name">Elmer Polonchi</h3>
-                                        <span className="chatProfile__text">Haha oh man 🔥</span>
-                                    </Box>
-                                    <span className="chatProfile__lastTime">12m</span>
-                                </div>
-                            </div>
-                        </Redirect>
-                        <Redirect to={"/plonchini__yozishmasi"}>
-                            <div className="chatProfile">
-                                <img src={Person3} alt="" className="chatProfile__img" />
-                                <div className="chatProfile__content">
-                                    <Box className="chatProfile__content__item">
-                                        <h3 className="chatProfile__name">Elmer Polonchi</h3>
-                                        <span className="chatProfile__text">Haha oh man 🔥</span>
-                                    </Box>
-                                    <span className="chatProfile__lastTime">12m</span>
-                                </div>
-                            </div>
-                        </Redirect>
-                        <Redirect to={"/plonchini__yozishmasi"}>
-                            <div className="chatProfile">
-                                <img src={Person2} alt="" className="chatProfile__img" />
-                                <div className="chatProfile__content">
-                                    <Box className="chatProfile__content__item">
-                                        <h3 className="chatProfile__name">Elmer Polonchi</h3>
-                                        <span className="chatProfile__text">Haha oh man 🔥</span>
-                                    </Box>
-                                    <span className="chatProfile__lastTime">12m</span>
-                                </div>
-                            </div>
-                        </Redirect>
-                        <Redirect to={"/plonchini__yozishmasi"}>
-                            <div className="chatProfile">
-                                <img src={Person1} alt="" className="chatProfile__img" />
-                                <div className="chatProfile__content">
-                                    <Box className="chatProfile__content__item">
-                                        <h3 className="chatProfile__name">Elmer Polonchi</h3>
-                                        <span className="chatProfile__text">Haha oh man 🔥</span>
-                                    </Box>
-                                    <span className="chatProfile__lastTime">12m</span>
-                                </div>
-                            </div>
-                        </Redirect>
-                        <Redirect to={"/plonchini__yozishmasi"}>
-                            <div className="chatProfile">
-                                <img src={Person2} alt="" className="chatProfile__img" />
-                                <div className="chatProfile__content">
-                                    <Box className="chatProfile__content__item">
-                                        <h3 className="chatProfile__name">Elmer Polonchi</h3>
-                                        <span className="chatProfile__text">Haha oh man 🔥</span>
-                                    </Box>
-                                    <span className="chatProfile__lastTime">12m</span>
-                                </div>
-                            </div>
-                        </Redirect>
+                            </Redirect>
+                        ))}
+                        
                     </Box>
                 </Box>
                 <Box></Box>
@@ -187,8 +111,7 @@ function Chat() {
                 <Box className="infoPanel__main">
                     <h5 className="infoPanel__title">Sizga yoqishi mumkin <img src={ArrowDown} alt="" className="arrowDown"/><span className="chats__indicator">2</span></h5>
                     <div className="infoPanel__cards">
-                        <Cards data={data}/>
-                        <Cards data={data}/>
+
                     </div>
                 </Box>
                 <Box></Box>

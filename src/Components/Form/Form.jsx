@@ -17,7 +17,7 @@ import {
     from "@mui/material";
 
 //Import => Components
-import Container from "../Container/Container"
+import { Container } from "@mui/material";
 import AfemeLogo from "../../Assets/Img/afeme-logo.svg"
 import "../../Assets/scss/colors.scss";
 import "../Form/Form.scss";
@@ -112,7 +112,7 @@ function Form() {
 
     return (
         <>
-            <Container style={{ position: 'relative' }}>
+            <Container style={{ position: 'relative' }} className="container">
                 <Error err={err} setErr={setErr} />
                 <NumberControl control={control} setControl={setControl} phone_number={phone_number} setPhoneNumber={setPhoneNumber} />
                 <form className="form" onSubmit={handleSubmit(onSubmit)}>
