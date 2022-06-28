@@ -5,7 +5,7 @@ import React from "react"
 import PlayStore from "../../Assets/Img/downloadPlayStore.png";
 import afemePhone from "../../Assets/Img/afemePhone.png";
 import Logo from '../../Lib/Svg/logo'
-import Container from "../Container/Container";
+import { Container } from "@mui/material";
 
 // Import => Style Component
 import "./AfemePhone.scss";
@@ -14,7 +14,7 @@ function AfemePhone() {
 
     return (
         <div className="afemePhone">
-            <Container>
+            <Container className="container">
                 <div className="afemePhone__content">
                     <h3 className="afemePhone__title"><span>Afeme</span> endi har doim qo'lingizda bo'ladi</h3>
                     <p className="afemePhone__text">Ilovada siz uy-joy kommunal xizmatlarini boshqarishingiz va jarayonni kuzatishingiz mumkin: biz barcha muhim narsalar haqida xabar beramiz.</p>

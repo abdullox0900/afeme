@@ -5,7 +5,7 @@ import { useContext, useEffect, useState } from 'react';
 
 // Import => Components
 import "../Footer/Footer.scss";
-import Container from "../Container/Container";
+import { Container } from "@mui/material";
 import Logo from "../../Assets/Img/logo.svg";
 import GoogleImg from "../../Assets/Img/google.svg";
 import Instagram from "../../Lib/Svg/Instagram";
@@ -49,7 +49,7 @@ function Footer() {
     return (
         <>
             <footer className="footer">
-                <Container>
+                <Container className="container">
                     <section className="footer__row">
                         <section className="footer__holder">
                             <NavLink to={"/Afeme"}>

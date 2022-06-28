@@ -49,16 +49,23 @@
         width: auto;
         height: auto;
     }
-
+    &__likes__link{
+        display: flex;
+    }
     .login__btn {
         color: $darkBlue;
         background-color: #E5F0FF !important;
     }
-
+    .add__advert {
+        width: 100%;
+        min-width: 140px;
+    }
     &__menu-btn {
         display: none;
     }
-
+    &__icons-nav{
+        display: flex;
+    }
     &__select {
         width: 120%;
         height: 22px;

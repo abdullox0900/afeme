@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 // Import => Components
 import Loader from '../../Components/Loader/Loader';
-import Container from '../../Components/Container/Container';
+import { Container } from "@mui/material";
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer'
 import SaleType from '../../Components/SaleType/SaleType';
@@ -113,7 +113,7 @@ function AdvertPage() {
     <>
       <Loader />
       <Header />
-      <Container>
+      <Container className="container">
         <Error err={err} setErr={setErr} />
         <Success suc={suc} setSuc={setSuc} />
         <div className={style.container}>

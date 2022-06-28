@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 // Import useContext => Localization
 import { Context } from '../../Context/LangContext';
 import content from '../../Localization/Content';
-import Container from "../Container/Container";
+import { Container } from "@mui/material";
 import Search from "../Search/Search";
 
 // Import => Mui
@@ -28,7 +28,7 @@ function Hero() {
 
     return (
         <Box className="hero" style={{ backgroundImage: `url(${randImg})` }}>
-            <Container>
+            <Container className="container">
                 <div className="hero__object">
                     <Box className="hero__blog">
                         <h2 className="hero__main-title">{content[lang].hero_title}</h2>

@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 
 // Import Mui
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Container } from "@mui/material";
 
 // Import useContext => Localization
 import { Context as LangContext } from "../../Context/LangContext";
@@ -16,7 +16,6 @@ import Cards from "../Card/Card";
 import AdvertMap from "../AdvertMap/AdvertMap";
 import ApiError from "../ApiError/ApiError";
 import OfflineError from "../OfflineError/OfflineError";
-import Container from "../Container/Container";
 import NewBuildingsCard from "../NewBuildingsCard/NewBuildingsCard";
 
 // Import => Components Img
@@ -70,8 +69,10 @@ function Main() {
     function showCards(amount) {
         if (isLoading) {
             return <CardSkeleton amount={amount} />;
+
         } else if (data && !dataError) {
             return adverts.slice(0, amount).map((row) => {
+                
                 return <Cards data={row} />;
             });
         } else if (!data || dataError) {
@@ -81,7 +82,7 @@ function Main() {
 
     return (
         <main className="main">
-            <Container>
+            <Container className="container">
                 <div className="main__content">
                     <div className="sections">
                         <section className="section recommend">
