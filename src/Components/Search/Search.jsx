@@ -1,6 +1,6 @@
 // Import => React and React-Router-Dom
 import React, { useState, useEffect, useContext } from "react";
-import { useNavigate, NavLink as Link } from "react-router-dom";
+import { useNavigate, NavLink as Link, useSearchParams } from "react-router-dom";
 import axios from "axios";
 // import searchIcon from "../../Assets/Img/search-icon.svg";
 
@@ -8,15 +8,18 @@ import axios from "axios";
 import { Box, Button, Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 
 // Import => Components
+import { IPContext } from "../../Context/IPContext";
 import { Context } from "../../Context/LangContext";
 import "../Search/Search.scss";
 import searchIcon from "../../Assets/Img/search-icon.svg";
 
 function Search() {
 
+    const [searchParams, setSearchParams] = useSearchParams();
     const navigate = useNavigate();
     const { lang, setLang } = useContext(Context);
-    const [term, setTerm] = useState("");
+    const { IP, setIP } = useContext(IPContext);
+    const [term, setTerm] = useState(IP.region);
     const [regions, setRegions] = useState([]);
     const [region, setRegion] = useState("");
     const [priceFrom, setPriceFrom] = useState("");
@@ -25,6 +28,7 @@ function Search() {
     const [fromMax, setFromMax] = useState("");
     const [toMin, setToMin] = useState("");
 
+    const regionID = searchParams.get("region");
     const fromInput = document.querySelector("#frominput");
     const toInput = document.querySelector("#toInput");
 

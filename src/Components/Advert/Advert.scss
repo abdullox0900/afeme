@@ -1,5 +1,13 @@
 @import "../../Assets/scss/colors.scss";
 
+.loadingSpinner{
+    height: 500px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .advert{
     margin-top: 50px;
     &__content{
@@ -34,13 +42,21 @@
     &__title{
         display: flex;
         align-items: center;
-        margin: 0;
         margin-bottom: 15px;
         color: #333;
-        text-transform: capitalize;
         line-height: 22px;
-        font-weight: 700;
-        font-size: 26px;
+        margin-right: 20px;
+        &__content{
+            font-weight: 700;
+            font-size: 26px;
+            margin: 0;
+        }
+
+    }
+    .house__type__icon{
+        width: 14px;
+        height: 14px;
+        margin-right: 5px;
     }
     &__actions{
         display: flex;
@@ -49,17 +65,26 @@
         justify-content: center;
     }
     &__houseType{
-        display: inline-block;
+        display: flex;
+        align-items: center;
         color: $cardBlue;
         font-weight: 500 !important;
-        font-size: 12px !important;
+        font-size: 13px !important;
         line-height: 10px !important;
-        padding: 3px 7px;
+        padding: 4px 8px;
         border: 1px solid $cardBlue;
         border-radius: 15px;
         cursor: pointer;
-        height: 20px;
         margin-left: 15px;
+        word-wrap: none;
+        & p{
+            margin: 0;
+            line-height: 15px;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            display: -webkit-box;
+        }
     }
     &__info{
         // width: 100%;

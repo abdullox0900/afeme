@@ -9,6 +9,7 @@ import { Box, Typography, Container } from "@mui/material";
 // Import useContext => Localization
 import { Context as LangContext } from "../../Context/LangContext";
 import content from "../../Localization/Content";
+import { IPContext } from "../../Context/IPContext";
 
 // Import => Components
 import CardSkeleton from "../CardSkeleton/CardSkeleton";
@@ -25,13 +26,14 @@ import "./Main.scss";
 
 function Main() {
     const { lang, setLang } = useContext(LangContext);
+    const { IP, setIP } = useContext(IPContext);
 
     const [data, setData] = useState([]);
     const [adverts, setAdverts] = useState([]);
     const [dataError, setDataError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const URL = "https://ali98.uz/api/post";
-    const [IP, setIP] = useState(JSON.parse(window.localStorage.getItem('IP')) || "");
+    const URL = "https://ali98.uz/api/post?page=3";
+    
 
     useEffect(() => {
         const result = axios
@@ -72,7 +74,7 @@ function Main() {
 
         } else if (data && !dataError) {
             return adverts.slice(0, amount).map((row) => {
-                
+
                 return <Cards data={row} />;
             });
         } else if (!data || dataError) {

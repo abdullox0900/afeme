@@ -10,6 +10,8 @@
     border-radius: 15px;
     cursor: pointer;
     height: 20px;
+    display: flex;
+    align-items: center;
 }
 .house__prices {
     font-weight: 500;
@@ -111,11 +113,14 @@
     &__msg {
         margin: 0 !important;
     }
-    .house__type__icon{
-        width: 20px;
-        height: 20px;
-        margin-right: 5px;
-    }
+}
+.house__type__icon{
+    width: 14px;
+    height: 14px;
+    margin-right: 5px;
+}
+.house__type__name{
+    margin: 0;
 }
 
 .card:hover {
@@ -165,7 +170,8 @@
         justify-content: space-between;
     }
     .card__title {
-        margin-right: 10px;
+        margin: 0 !important;
+        margin-right: 10px !important;
     }
     .house__prices {
         min-width: auto !important;
@@ -178,7 +184,11 @@
         line-height: 22px;
         display: inline-block;
         margin-bottom: 15px;
-        width: 60%;
+        width: 75%;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        display: -webkit-box;
     }
     .card__btn {
         margin-left: 10px !important;

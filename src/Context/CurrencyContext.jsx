@@ -16,5 +16,4 @@ function Provider({children}) {
         <CurrencyContext.Provider value={{currency, setCurrency}}>{children}</CurrencyContext.Provider>
     )
 }
-
 export { CurrencyContext, Provider}
