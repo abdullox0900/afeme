@@ -133,10 +133,10 @@ function Form() {
                                 label={content[lang].form_select_jis}
                                 {...register('user_type')}
                             >
-                                <MenuItem value={'mijoz'}>Mijoz</MenuItem>
-                                <MenuItem value={'rieltor'}>Rieltor</MenuItem>
-                                <MenuItem value={'companiya'}>Companiya</MenuItem>
-                                <MenuItem value={'quruvchi firma'}>Quruvchi Firma</MenuItem>
+                                <MenuItem value={'mijoz'}>{content[lang].form_select_type_m}</MenuItem>
+                                <MenuItem value={'rieltor'}>{content[lang].form_select_type_r}</MenuItem>
+                                <MenuItem value={'companiya'}>{content[lang].form_select_type_c}</MenuItem>
+                                <MenuItem value={'quruvchi firma'}>{content[lang].form_select_type_q}</MenuItem>
                             </Select>
                         </FormControl>
 
@@ -203,13 +203,13 @@ function Form() {
                         ref={exper}
                         type="number"
                         className="disable default"
-                        placeholder="Tajriba"
+                        placeholder={content[lang].rexperience}
                         onChange={(e) => setExperience(e.target.value)}
                     />
                     <textarea
                         ref={area}
                         type="text"
-                        placeholder="Malumot"
+                        placeholder={content[lang].bio}
                         className="textarea disable default"
                         onChange={(e) => setDescription(e.target.value)}
                     />
@@ -223,10 +223,6 @@ function Form() {
                         sx={{ mt: 2 }}
                         {...register('passport', {
                             required: 'Passport Seria Kiriting',
-                            // pattern: {
-                            //     value: /^[A-PR-WYa-pr-wy][1-9]\\d\\s?\\d{4}[1-9]$/i,
-                            //     message: 'Passport Notogri'
-                            // }
                         })}
                         error={!!errors?.passport}
                         helperText={errors?.passport ? errors.passport.message : null}
@@ -249,14 +245,14 @@ function Form() {
                         <NavLink
                             to={"/Afeme"}
                             className="form__link-myaccount">
-                            Mening akkauntim bor
+                            {content[lang].have}
                         </NavLink>
                         <button
                             className="button"
                             type="submit"
                             sx={{ p: 1.3, ml: 22.5 }}
                             variant="contained">
-                            Roʻyxatdan oʻtish
+                            {content[lang].sing}
                         </button>
                     </div>
                 </form>

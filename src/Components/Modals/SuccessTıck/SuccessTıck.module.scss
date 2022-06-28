@@ -1,0 +1,15 @@
+@import "../../../Assets/scss/colors.scss";
+.modal {
+    width: 500px !important;
+    height: 507px !important;
+    padding: 70px 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $white;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

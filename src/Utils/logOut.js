@@ -1,5 +1,4 @@
 function LogOut() {
-
     localStorage.removeItem("Token");
     window.location.href = '/Afeme';
 }

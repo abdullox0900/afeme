@@ -18,6 +18,7 @@
         "@testing-library/user-event": "^14.2.0",
         "aos": "^2.3.4",
         "axios": "^0.27.2",
+        "emailjs-com": "^3.2.0",
         "node-sass": "^7.0.1",
         "react": "^18.1.0",
         "react-content-loader": "^6.2.0",
