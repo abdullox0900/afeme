@@ -16,9 +16,8 @@ import OfflineError from "../OfflineError/OfflineError";
 import LoveBtn from "../LoveBtn/LoveBtn";
 
 // Import => Components Img
-import Person from "../../Assets/Img/realtors1.jpg";
+import Person from "../../Assets/Img/prifile-avatar.jpg";
 import callIcon from "../../Assets/Img/call.svg";
-import AdvertImg from "../../Assets/Img/advertImg.jpg";
 import messageIcon from "../../Assets/Img/message.svg";
 import ShareIcon from "../../Lib/Svg/share";
 import EyeIcon from "../../Lib/Svg/eye";
@@ -54,8 +53,8 @@ function Advert() {
         const result = axios
             .get(URL)
             .then((response) => {
-                let dataStatus = response.data;
-                if (dataStatus.status == true || dataStatus.status == 200) {
+                let dataStatus = response.data.status;
+                if (dataStatus == true || dataStatus == 200) {
                     setData(response.data.data);
                     console.log(response);
                 } else {

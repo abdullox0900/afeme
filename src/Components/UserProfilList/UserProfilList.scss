@@ -13,6 +13,11 @@
         margin-top: 20px;
         border-bottom: 1px solid #cacaca;
         width: 280px;
+        & img{
+            width: 80px;
+            height: 80px;
+            color: #a2cdff71;
+        }
     }
 
     &__img {
@@ -39,7 +44,7 @@
     &__item {
         width: 280px;
         border-radius: 5px;
-        transition: 0.5s ease;
+        transition: 0.3s;
         cursor: pointer;
     }
 
@@ -48,11 +53,11 @@
     }
 
     &__item:hover {
-        background-color: #cacaca;
+        background-color: #5cadff;
     }
 
     &__item:hover &__link {
-        color: dodgerblue;
+        color: #fff;
     }
 
     &__link {
@@ -64,6 +69,7 @@
         line-height: 16px;
         text-align: center;
         color: #000;
+        transition: all .3s;
     }
 
     &__ext {
