@@ -36,9 +36,18 @@
     }
 
     .portners-inner__list {
+        display: flex;
+        align-items: center;
+
+        flex-wrap: wrap;
+        width: 1000px;
         margin: 0;
         padding: 0;
         list-style: none;
         display: flex;
+    }
+
+    .portners-inner__item + .portners-inner__item{
+        margin-left: 50px;
     }
 }

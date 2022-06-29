@@ -47,16 +47,16 @@ function AdvertMap({ currentAdvert, zoom = 10, height = 600 }) {
                 setIsLoading(false);
             });
     }, []);
-    
+
     const coordinate = [currentAdvert.latitude, currentAdvert.longitude];
 
     if (isLoading) {
         return <Spinner />
-    } else if (data.length > 0) {
+    } else if (data?.length > 0) {
         return (
             <YMaps query={{
                 load: 'geoObject.addon.balloon'
-              }}>
+            }}>
                 <Map
                     defaultState={{
                         center: coordinate,
@@ -87,7 +87,7 @@ function AdvertMap({ currentAdvert, zoom = 10, height = 600 }) {
                         />
                     </ListBox>
                     {data.map((advert) => (
-                        <AdvertPlacemark advert={advert }/>
+                        <AdvertPlacemark advert={advert} />
                     ))}
                 </Map>
             </YMaps>

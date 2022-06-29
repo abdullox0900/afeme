@@ -39,7 +39,7 @@ function Header() {
     const navigate = useNavigate();
 
     // Logo State
-    const [logoImg, setLogoImg] = useState({});
+    const [logoImg, setLogoImg] = useState([]);
 
     const { lang, setLang } = useContext(Context);
     const { isUser, setIsUser } = useContext(UserContext);
@@ -85,13 +85,10 @@ function Header() {
 
     const newImgArr = [];
 
-    // {
-    //     logoImg.map(i => {
-    //         return newImgArr.push(i.image)
-    //     })
-    // }
+    logoImg.map(i => {
 
-    console.log(newImgArr)
+        return newImgArr.push(i.image)
+    })
 
     const profile = (
         <>
@@ -176,8 +173,8 @@ function Header() {
                             >
                                 <img
                                     className="header__logo-img"
-                                    src={logo}
-                                    alt="logo"
+                                    src={newImgArr.length > 0 ? newImgArr : logo}
+                                    alt="logo" width={60} height={60}
                                 />
                             </NavLink>
 

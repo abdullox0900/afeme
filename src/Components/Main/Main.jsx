@@ -33,7 +33,7 @@ function Main() {
     const [dataError, setDataError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const URL = "https://ali98.uz/api/post?page=3";
-    
+
 
     useEffect(() => {
         const result = axios
@@ -43,7 +43,6 @@ function Main() {
                 if (dataStatus == true || dataStatus == 200) {
                     setData(response.data);
                     setAdverts(response.data.data);
-                    console.log(response);
                 } else {
                     setDataError(true);
                 }
@@ -73,7 +72,7 @@ function Main() {
             return <CardSkeleton amount={amount} />;
 
         } else if (data && !dataError) {
-            return adverts.slice(0, amount).map((row) => {
+            return adverts?.slice(0, amount).map((row) => {
 
                 return <Cards data={row} />;
             });

@@ -28,7 +28,6 @@ function Hero() {
     // Hero Img Random
     const images = [heroData.image];
 
-    console.log(images)
     const [randImg, setRandImg] = useState('');
 
     useEffect(() => {

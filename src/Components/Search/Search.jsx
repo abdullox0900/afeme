@@ -72,7 +72,6 @@ function Search() {
                 const res = await axios.get("https://ali98.uz/api/regions");
                 if (res) {
                     let data = res.data.data;
-                    console.log(data);
                     setRegions(data);
                 }
             } catch (error) {
