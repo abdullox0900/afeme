@@ -41,7 +41,6 @@ function Categories() {
             .get("https://ali98.uz/api/htype")
             .then((res) => {
                 const categs = res.data.data;
-                console.log(categs);
                 setCategoriesData(categs);
             })
             .finally(() => {

@@ -1,23 +1,45 @@
 import { createContext, useEffect, useState } from "react";
-import { getCookie, setCookie } from "../Utils/cookies";
+import axios from "axios";
 
 const UserContext = createContext();
 
 function Provider({children}) {
-
+    
     const [token, setToken] = useState(localStorage.getItem("Token") || null);
-    const [isUser, setIsUser] = useState([]);
+    const [user, setUser] = useState([]);
+    const URL = "https://ali98.uz/api/user/169";
+    let data = {};
+
+    function setErrorData() {
+        data['status'] = false;
+        setUser(data);
+    }
 
     useEffect(() => {
         if (token) {
-            setIsUser(true);
+            axios
+            .get(URL)
+            .then((response) => {
+                let status = response.data.status;
+                let newData = response.data.data
+                if ((status == true || status == 200) && newData.hasOwnProperty("id")) {
+                    data['data'] = newData;
+                    data['status'] = true;
+                    setUser(data);
+                } else {
+                    setErrorData();
+                }
+            })
+            .catch((error) => {
+                setErrorData();
+            })
         } else {
-            setIsUser(false);
+            setErrorData();
         }
-    }, [token])
+    }, [token]);
 
     return (
-        <UserContext.Provider value={{isUser, setIsUser}}>{children}</UserContext.Provider>
+        <UserContext.Provider value={{user, setUser}}>{children}</UserContext.Provider>
     )
 }
 export { UserContext, Provider}

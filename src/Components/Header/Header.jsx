@@ -8,7 +8,7 @@ import { CurrencyContext } from "../../Context/CurrencyContext";
 import { UserContext } from "../../Context/UserContext";
 
 // Import => Mui
-import { Select, IconButton, Tooltip, Button, Grow, Badge, MenuItem, Box, Menu, Avatar, Typography } from "@mui/material";
+import { Select, IconButton, Tooltip, Button, Grow, Badge, MenuItem, Box, Menu, Avatar, Typography, Container } from "@mui/material";
 
 // Import => images
 import flagUz from "../../Assets/Img/Icon/uz.svg";
@@ -20,7 +20,6 @@ import locationIcon from "../../Assets/Img/location.svg";
 
 // Import => Components
 import LogOut from "../../Utils/logOut";
-import { Container } from "@mui/material";
 import Modal from "../LoginModals/ModalAuthorization/Modal";
 import "../LoginModals/ModalAuthorization/Modal.scss";
 import "../Header/Header.scss";
@@ -42,7 +41,7 @@ function Header() {
     const [logoImg, setLogoImg] = useState({});
 
     const { lang, setLang } = useContext(Context);
-    const { isUser, setIsUser } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
     const { currency, setCurrency } = useContext(CurrencyContext);
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
@@ -99,11 +98,14 @@ function Header() {
             <Box sx={{ flexGrow: 0, ml: 2 }}>
                 <Tooltip title="Open settings">
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                        <Avatar
-                            alt="Profile picture"
-                            src=""
-                            sx={{ width: "36px", height: "36px" }}
-                        />
+                        {user?.image ? (
+                            <img src={user.image} alt=""></img>
+                        ) : (
+                            <Avatar
+                                alt="Profile picture"
+                                sx={{ width: "36px", height: "36px" }}
+                            />
+                        )}
                     </IconButton>
                 </Tooltip>
                 <Menu
@@ -129,16 +131,15 @@ function Header() {
                     </MenuItem>
                     <MenuItem onClick={handleCloseUserMenu}>
                         <Typography textAlign="center" className="profileTools">
-                            <NavLink to={"/posts"}>My Adverts</NavLink>
+                            <NavLink to={"/userads"}>My Adverts</NavLink>
                         </Typography>
                     </MenuItem>
                     <MenuItem onClick={handleCloseUserMenu}>
                         <Typography textAlign="center" className="profileTools">
-                            <NavLink to={"/Afeme"}>Main menu</NavLink>
+                            <NavLink to={"/usernews"}>News</NavLink>
                         </Typography>
                     </MenuItem>
                     <MenuItem onClick={LogOut}>
-
                         <Typography textAlign="center" className="profileTools">
                             Log out
                         </Typography>
@@ -306,7 +307,7 @@ function Header() {
                             </div>
                             <Box className="header__buttons" sx={{ ml: 3 }}>
                                 {/* If User have Account show profile else Show Login */}
-                                {isUser ? profile : userTools}
+                                {user.hasOwnProperty('data') ? profile : userTools}
                             </Box>
                         </div>
                         <button

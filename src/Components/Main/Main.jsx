@@ -20,7 +20,7 @@ import OfflineError from "../OfflineError/OfflineError";
 import NewBuildingsCard from "../NewBuildingsCard/NewBuildingsCard";
 
 // Import => Components Img
-import Realtors1 from "../../Assets/Img/realtors1.jpg";
+import Realtors1 from "../../Assets/Img/prifile-photo2.png";
 import RightArrow from "../../Assets/Img/arrow-right.svg";
 import "./Main.scss";
 
