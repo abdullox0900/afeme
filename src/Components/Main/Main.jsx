@@ -34,7 +34,6 @@ function Main() {
     const [isLoading, setIsLoading] = useState(true);
     const URL = "https://ali98.uz/api/post?page=3";
 
-
     useEffect(() => {
         const result = axios
             .get(URL)
@@ -83,7 +82,7 @@ function Main() {
 
     return (
         <main className="main">
-            <Container className="container">
+            <Container className="container" maxWidth="1300px">
                 <div className="main__content">
                     <div className="sections">
                         <section className="section recommend">

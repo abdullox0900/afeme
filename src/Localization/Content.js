@@ -126,7 +126,12 @@ const content = {
         adverd_documents: "Ofis Chizmasi va Hujjatlari:",
         adverd_documents_dow: "Uy Hujjatlarini Yuklang",
         adverd_office_img: "Ofis rasmlari:",
-        adverd_office_video: "Ofis videolari"
+        adverd_office_video: "Ofis videolari",
+
+        afemePhoneTitle: `endi har doim qo'lingizda`,
+        afemePhoneDescr: 'Ilovada siz uy-joy kommunal xizmatlarini boshqarishingiz va jarayonni kuzatishingiz mumkin Biz barcha muhim narsalarni xabar qilamiz.',
+        partners_title: 'Bizning hamkorlar',
+        partners_descr: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium ducimus in, voluptate deserunt magni fugit error atque modi iure maiores possimus nesciunt? Tempore odit ratione sunt, ut dignissimos, exercitationem a mollitia necessitatibus, aliquam asperiores neque! Quae id quod voluptate quos.',
     },
     en: {
         // Header
@@ -215,7 +220,7 @@ const content = {
         btn: 'Send',
 
         afemePhoneTitle: `now it will always be in your hands`,
-        afemePhonetitleDescr: 'In the app, you can manage housing utilities and monitor the process: we report all the important things.',
+        afemePhoneDescr: 'In the app, you can manage housing utilities and monitor the process: we report all the important things.',
         partners_title: 'Our partners',
         partners_descr: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium ducimus in, voluptate deserunt magni fugit error atque modi iure maiores possimus nesciunt? Tempore odit ratione sunt, ut dignissimos, exercitationem a mollitia necessitatibus, aliquam asperiores neque! Quae id quod voluptate quos.',
     },
@@ -306,7 +311,7 @@ const content = {
         btn: 'Отправить',
 
         afemePhoneTitle: `теперь он всегда будет в ваших руках`,
-        afemePhonetitleDescr: 'В приложении можно управлять ЖКХ и следить за процессом: сообщаем обо всем важном.',
+        afemePhoneDescr: 'В приложении можно управлять ЖКХ и следить за процессом: сообщаем обо всем важном.',
         partners_title: 'Наши партнеры',
         partners_descr: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium ducimus in, voluptate deserunt magni fugit error atque modi iure maiores possimus nesciunt? Tempore odit ratione sunt, ut dignissimos, exercitationem a mollitia necessitatibus, aliquam asperiores neque! Quae id quod voluptate quos.',
     },

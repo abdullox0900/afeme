@@ -9,9 +9,11 @@ import AfemePhone from "../../Components/AfemePhone/AfemePhone"
 import Footer from "../../Components/Footer/Footer"
 import PartnersInner from "../../Components/PartnersInner/PartnersInner";
 import Header from "../../Components/Header/Header";
+import useWindowDimensions from "../../Utils/windowDimension";
 
 function Home() {
 
+    const { windowWidth } = useWindowDimensions();
     return (
         <>
             <Header/>
@@ -19,10 +21,9 @@ function Home() {
             <Categories />
             <Main />
             <PartnersInner/>
-            <AfemePhone />
+            {windowWidth > 800 ? (<AfemePhone />) : ''}
             <Footer />
         </>
     )
 }
-
 export default Home;

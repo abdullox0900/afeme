@@ -57,8 +57,8 @@ function App() {
                     <Route path='/userfavorites' element={<UserFavoritesPage />} />
                     <Route path='/usernews' element={<UserNewsPage />} />
                     <Route path='/chat' element={<Chat />} />
-                    <Route path="*" element={<Page404 />} />
                     <Route path='/help' element={<Help />} />
+                    <Route path="*" element={<Page404 />} />
                 </Routes>
             </Suspense>
         </>

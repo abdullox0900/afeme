@@ -14,6 +14,7 @@ import Cards from "../../Components/Card/Card";
 import AfemePhone from "../../Components/AfemePhone/AfemePhone";
 import Footer from "../../Components/Footer/Footer";
 import ApiError from "../../Components/ApiError/ApiError";
+import useWindowDimensions from "../../Utils/windowDimension";
 
 // Import => Style
 import "./Adverts.scss";
@@ -95,6 +96,7 @@ function Adverts() {
             );
         }
     }
+    const { windowWidth } = useWindowDimensions();
 
     return (
         <>
@@ -105,7 +107,7 @@ function Adverts() {
                 <Container>
                     {showCards(6)}
                     {pagination()}
-                    <AfemePhone />
+                    {windowWidth > 800 ? (<AfemePhone />) : ''}
                 </Container>
             </div>
             <Footer />
