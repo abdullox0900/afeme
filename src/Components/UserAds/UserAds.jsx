@@ -24,43 +24,24 @@ function UserAds() {
 
     const navigate = useNavigate();
     const { lang, setLang } = useContext(Context);
-    const { isUser, setIsUser } = useContext(UserContext);
-    
-
-    const [data, setData] = useState([]);
-    const [dataError, setDataError] = useState(false);
+    const { user, setUser } = useContext(UserContext);
     const [isLoading, setIsLoading] = useState(true);
     const URL = "https://ali98.uz/api/user/169";
 
     useEffect(() => {
-        axios
-            .get(URL)
-            .then((response) => {
-                let status = response.data;
-                if (status.status == true || status.status == 200) {
-                    setData(response.data.data);
-                    console.log(data);
-                } else {
-                    setDataError(true);
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-                setDataError(true);
-            })
-            .finally(() => {
-                setIsLoading(false);
-            });
-    }, []);
+        if (user.hasOwnProperty('data') || !user.status) {
+            setIsLoading(false);
+        }
+    }, [user]);
 
     function showPosts(amount) {
         if (isLoading) {
             return <CardSkeleton amount={amount} controls={true} />;
 
-        } else if (!dataError && data.hasOwnProperty("id")) {
+        } else if (user.hasOwnProperty('data')) {
             
-            if (data.posts.length > 0) {
-                return data.posts.map((row) => (
+            if (user.data.posts.length > 0) {
+                return user.data.posts.map((row) => (
                     <Cards data={row} editDelete={true} />
                 ));
             } else {
@@ -83,23 +64,19 @@ function UserAds() {
         }
     }
     
-    if (isUser) {
-        return (
-            <>
-                <Header />
-                <Container>
-                    <div className="user-wrap-router">
-                        <UserProfilList />
-                        <div className="user__ads">
-                            {showPosts(4)}
-                        </div>
+    return (
+        <>
+            <Header />
+            <Container>
+                <div className="user-wrap-router">
+                    <UserProfilList />
+                    <div className="user__ads">
+                        {showPosts(4)}
                     </div>
-                </Container>
-            </>
-        );
-    } else {
-        navigate("/Afeme")
-    }
+                </div>
+            </Container>
+        </>
+    );
     
 }
 

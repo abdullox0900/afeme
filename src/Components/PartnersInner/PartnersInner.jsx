@@ -54,6 +54,7 @@ function PartnersInner() {
     }, [lang])
 
     return
+    ( 
         <>
 
             <section className="partners-inner">

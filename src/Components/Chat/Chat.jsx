@@ -15,8 +15,7 @@ import Dots from "../../Assets/Img/Icon/dots.svg"
 import Person1 from "../../Assets/Img/person1.jpg"
 import Person2 from "../../Assets/Img/person2.jpg"
 import Person3 from "../../Assets/Img/person3.jpg"
-import CardImg1 from "../../Assets/Img/card_img1.jpg";
-import CardImg2 from "../../Assets/Img/card_img2.jpg";
+import HeroImg1 from "../../Assets/Img/home-hero-1.jpg";
 
 // Import => Style
 import "./Chat.scss";
@@ -106,7 +105,7 @@ function Chat() {
             <section className="infoPanel">
                 <Box className="infoPanel__header">
                     <h5 className="infoPanel__title">E'lon Rasmi <img src={ArrowDown} alt=""  className="arrowDown"/></h5>
-                    <img src={CardImg1} alt="" className="infoPanel__header__img"/>
+                    <img src={HeroImg1} alt="" className="infoPanel__header__img"/>
                 </Box>
                 <Box className="infoPanel__main">
                     <h5 className="infoPanel__title">Sizga yoqishi mumkin <img src={ArrowDown} alt="" className="arrowDown"/><span className="chats__indicator">2</span></h5>

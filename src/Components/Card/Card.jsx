@@ -25,7 +25,7 @@ import { CurrencyContext } from "../../Context/CurrencyContext";
 import { Context as LangContext } from "../../Context/LangContext";
 import { UserContext } from "../../Context/UserContext";
 import "./Card.scss";
-import CardImg from "../../Assets/Img/card_img4.jpg";
+import CardImg from "../../Assets/Img/advertImg.jpg";
 import { logRoles } from "@testing-library/react";
 
 const cardControls = (data) => (
@@ -48,7 +48,7 @@ const cardControls = (data) => (
     </>
 );
 
-function Cards({ data, editDelete = false, fullCard = false }) {
+function Cards({ data, editDelete = false, fullCard = false, like = false }) {
     const { lang, setLang } = useContext(LangContext);
     const { currency, setCurrency } = useContext(CurrencyContext);
     const { isUser, setIsUser } = useContext(UserContext);
@@ -124,7 +124,7 @@ function Cards({ data, editDelete = false, fullCard = false }) {
                             {editDelete ? (
                                 cardControls(data)
                             ) : (
-                                <LoveBtn advertID={data?.id} />
+                                <LoveBtn advertID={data?.id} like={true}/>
                             )}
                         </div>
                     </CardActions>

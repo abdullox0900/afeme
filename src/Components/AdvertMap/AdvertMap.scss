@@ -1,3 +1,11 @@
+.advertMapLoader{
+    height: 400px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .ymaps-2-1-79-balloon{
     border-radius: 10px !important;
     ymaps:not(.ymaps-2-1-79-balloon__close-button){
