@@ -53,7 +53,8 @@
     top: 0px;
     right: -100%;
     width: 50%;
-    height: 100vh;
+    height: 350vw;
+    overflow: auto;
     padding: 40px 40px;
     transition: 0.5s;
     background-color: #fff;
@@ -61,27 +62,29 @@
     z-index: 10;
 }
 
+.navbar-menu::-webkit-scrollbar { width: 0; }
+
 .navbar-menu__list {
     margin: 0;
     padding: 0;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
     list-style: none;
+    border-bottom: 1px solid #cacaca;
 }
 
 .navbar-menu__item {
+    display: flex;
+    align-items: center;
     margin-top: 30px;
 }
 
 .navbar-menu__link {
     position: relative;
-    padding-left: 30px;
+    padding-left: 13px;
     font-size: 16px;
     font-weight: 500;
     color: #000;
-}
-
-.navbar-menu__link::before {
-    width: 40px;
-    height: 40px;
 }
 
 .nav-menu__clos-btn {
@@ -94,6 +97,29 @@
     background-color: transparent;   
 }
 
+ion-icon {
+    font-size: 30px;
+}
+
+.nav-menu__list {
+    margin: 0;
+    padding: 0;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    list-style: none;
+    border-bottom: 1px solid #cacaca;
+}
+
+.nav-menu__item + .nav-menu__item{
+    margin-top: 25px;
+}
+
+.nav-menu__link{
+    font-style: 18px;
+    font-weight: 500;
+    color: #a1a1a1;
+}
+
 // Responsiv Navbar Tablet Version
 
 @media only screen and (max-width: 985px) {
@@ -103,7 +129,7 @@
 
     .header--open .navbar-menu {
         right: 0px;
-        width: 60%;
+        width: 100%;
     }
 
     .header--open .navbar-wrapper {
