@@ -34,6 +34,12 @@
         }
     }
 
+    .header__menu-btn {
+        font-size: 30px;
+        border: none;
+        background-color: transparent ;
+    }    
+
     &__items {
         display: flex;
         align-items: center;
@@ -62,6 +68,7 @@
         font-size: 13px;
         white-space: nowrap;
     }
+
     &__menu-btn {
         display: none;
     }
@@ -88,6 +95,7 @@
             padding: 0px;
         }
     }
+    
     &__select-lang {
         padding: 8px;
         width: 27px;
@@ -122,6 +130,7 @@
     margin-right: 10px !important;
 }
 
+
 @media only screen and (max-width: 985px) {
     .header {
 
@@ -137,4 +146,30 @@
             display: flex;
         }
     }
+}
+
+@media only screen and (max-width: 985px) {
+    .header {
+
+        .header__items {
+            display: none;
+        }
+
+        .header__icons-nav {
+            display: none;
+        }
+
+        .header__menu-btn {
+            display: flex;
+        }
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .header {
+ 
+        .header__location {
+            display: none;
+        }
+         }
 }

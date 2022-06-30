@@ -85,15 +85,13 @@
 }
 
 .nav-menu__clos-btn {
+    font-size: 25px;
+    font-weight: 300 !important;
     position: absolute;
     top: 20px;
     right: 20px;
     border: none;
-    background-color: transparent;
-}
-
-ion-icon {
-    font-size: 30px;
+    background-color: transparent;   
 }
 
 // Responsiv Navbar Tablet Version

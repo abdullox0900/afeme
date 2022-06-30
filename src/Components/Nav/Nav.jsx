@@ -26,7 +26,7 @@ function Nav({ elHeader }) {
 
 
     const elNavbarMenu = React.useRef()
-    
+
     // Localization Functions
     const { lang, setLang } = useContext(Context)
 
@@ -66,11 +66,11 @@ function Nav({ elHeader }) {
 
                     <ul className="navbar-menu__list">
                         <li className="navbar-menu__item">
-                            <a href="#" className="navbar-menu__link">{content[lang].sal}</a>
+                            <a href="#" className="navbar-menu__link">Bosh sahifaga o'tish</a>
                         </li>
 
                         <li className="navbar-menu__item">
-                            <a href="#" className="navbar-menu__link">{content[lang].rent}</a>
+                            <a href="#" className="navbar-menu__link"></a>
                         </li>
 
                         <li className="navbar-menu__item">
@@ -79,7 +79,7 @@ function Nav({ elHeader }) {
                     </ul>
 
                     <button className="nav-menu__clos-btn">
-                        <ion-icon name="close-outline" className="close-outline"></ion-icon>
+                    ✖
                     </button>
                 </nav>
             </div>

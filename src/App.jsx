@@ -21,6 +21,8 @@ import UserAdsPage from "./Pages/UserAdsPage/UserAdsPage";
 import UserFavoritesPage from './Pages/UserFavoritesPage/UserFavoritesPage';
 import UserNewsPage from './Pages/UserNewsPage/UserNewsPage';
 import Help from './Pages/Help/Help';
+import Test from './Pages/Test/Test';
+
 
 function App() {
 
@@ -30,13 +32,23 @@ function App() {
         }
         if (document.readyState === "complete") {
             const loader = document.querySelector('.loading');
-            document.body.classList.add('loaded');
+        
             setTimeout(() => {
+                document.body.classList.add('loaded');
                 loader.style.display = 'none';
                 loader.style.zIndex = '-999';
-            }, 500);
+            }, 1500);
         }
     });
+    
+
+    // function test() {
+    //     setTimeout(() => {
+            
+    //     }, 500)
+    // }
+
+    // test()
 
     return (
         <>
@@ -59,6 +71,7 @@ function App() {
                     <Route path='/chat' element={<Chat />} />
                     <Route path="*" element={<Page404 />} />
                     <Route path='/help' element={<Help />} />
+                    <Route path='/test' element={<Test />} />
                 </Routes>
             </Suspense>
         </>

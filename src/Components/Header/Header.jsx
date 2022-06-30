@@ -313,7 +313,7 @@ function Header() {
                                 elHeader.current.classList.add("header--open");
                             }}
                         >
-                            /
+                            ☰
                         </button>
                     </div>
                 </Container>
