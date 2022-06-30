@@ -12,6 +12,9 @@ import { Menu, MenuItem, Divider, Container } from '@mui/material';
 // Import Components
 import "../Nav/Nav.scss";
 
+// Import => Img Componnet
+import GoogleImg from "../../Assets/Img/google.svg";
+
 function Nav({ elHeader }) {
 
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -26,7 +29,7 @@ function Nav({ elHeader }) {
 
 
     const elNavbarMenu = React.useRef()
-    
+
     // Localization Functions
     const { lang, setLang } = useContext(Context)
 
@@ -66,21 +69,75 @@ function Nav({ elHeader }) {
 
                     <ul className="navbar-menu__list">
                         <li className="navbar-menu__item">
-                            <a href="#" className="navbar-menu__link">{content[lang].sal}</a>
+                            <ion-icon name="home-outline"></ion-icon>
+                            <a href="#" className="navbar-menu__link">Bosh sahifaga o'tish</a>
                         </li>
 
                         <li className="navbar-menu__item">
-                            <a href="#" className="navbar-menu__link">{content[lang].rent}</a>
+                            <ion-icon name="add-outline"></ion-icon>
+                            <a href="#" className="navbar-menu__link">E'lon qo'shish</a>
                         </li>
 
                         <li className="navbar-menu__item">
-                            <a href="#" className="navbar-menu__link">{content[lang].rel}</a>
+                            <ion-icon name="heart-outline"></ion-icon>
+                            <a href="#" className="navbar-menu__link">Tanlanganlar</a>
+                        </li>
+
+                        <li className="navbar-menu__item">
+                            <ion-icon name="help-buoy-outline"></ion-icon>
+                            <a href="#" className="navbar-menu__link">Yordam</a>
+                        </li>
+
+                        <li className="navbar-menu__item">
+                            <ion-icon name="alert-circle-outline"></ion-icon>
+                            <a href="#" className="navbar-menu__link">Biz haqimizda</a>
+                        </li>
+
+                        <li className="navbar-menu__item">
+                            <ion-icon name="exit-outline"></ion-icon>
+                            <a href="#" className="navbar-menu__link">Chikish</a>
                         </li>
                     </ul>
 
                     <button className="nav-menu__clos-btn">
-                        <ion-icon name="close-outline" className="close-outline"></ion-icon>
+                        ✖
                     </button>
+
+                    <ul className="nav-menu__list">
+                        <li className="nav-menu__item">
+                            <a href="#" className="nav-menu__link">Sotuv</a>
+                        </li>
+
+                        <li className="nav-menu__item">
+                            <a href="#" className="nav-menu__link">Ijara</a>
+                        </li>
+
+                        <li className="nav-menu__item">
+                            <a href="#" className="nav-menu__link">Ipoteka</a>
+                        </li>
+
+                        <li className="nav-menu__item">
+                            <a href="#" className="nav-menu__link">Hovli</a>
+                        </li>
+
+                        <li className="nav-menu__item">
+                            <a href="#" className="nav-menu__link">Ofis</a>
+                        </li>
+
+                        <li className="nav-menu__item">
+                            <a href="#" className="nav-menu__link">Kvartira</a>
+                        </li>
+
+                        <li className="nav-menu__item">
+                            <a href="#" className="nav-menu__link">Arenda</a>
+                        </li>
+                    </ul>
+
+                    <div className="nav__footer">
+                        <a href="#" className="nav__footer-link">
+                            <img className="nav__footer-link" src={GoogleImg} alt="img" />
+                        </a>
+                    </div>
                 </nav>
             </div>
         </Container>

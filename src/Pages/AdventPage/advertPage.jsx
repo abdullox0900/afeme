@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 
 // Import => Components
-import Loader from '../../Components/Loader/Loader';
 import { Container } from "@mui/material";
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer'
@@ -112,7 +111,6 @@ function AdvertPage() {
 
   return (
     <>
-      <Loader />
       <Header />
       <Container className="container">
         <Error err={err} setErr={setErr} />

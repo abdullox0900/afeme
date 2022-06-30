@@ -34,6 +34,10 @@ function Main() {
     const [isLoading, setIsLoading] = useState(true);
     const URL = "https://ali98.uz/api/post?page=3";
 
+    // Reltor useState
+    const [reltData, setReltData] = useState([]);
+
+
     useEffect(() => {
         const result = axios
             .get(URL)
@@ -80,6 +84,15 @@ function Main() {
         }
     }
 
+    // Axios
+    axios.get('https://ali98.uz/api/reltors')
+        .then(res => {
+            const persons = res.data.data;
+            setReltData(persons)
+        })
+
+        console.log(reltData)
+
     return (
         <main className="main">
             <Container className="container" maxWidth="1300px">
@@ -120,7 +133,7 @@ function Main() {
                             </div>
                         </div>
                         <div className="panel">
-                            {<AdvertMap currentAdvert={IP} zoom={8} height={400}/>}
+                            {<AdvertMap currentAdvert={IP} zoom={8} height={400} />}
 
                             <Box className="realtors">
                                 <Typography
@@ -134,8 +147,8 @@ function Main() {
                                     to={"/catalogreltor"}
                                     className="realtors__list"
                                 >
-                                    {Array.apply(null, { length: 6 }).map(
-                                        () => (
+                                    {
+                                        Array.apply(null, { length: 6 }).map(() => (
                                             <Box className="realtor">
                                                 <img src={Realtors1} alt="" />
                                                 <div className="realtors__content">
@@ -151,7 +164,8 @@ function Main() {
                                                 </div>
                                             </Box>
                                         )
-                                    )}
+                                        )
+                                    }
                                 </NavLink>
                             </Box>
                         </div>

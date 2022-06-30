@@ -4,7 +4,6 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
 
 // Import => Components
-import Loader from "../../Components/Loader/Loader";
 import CardSkeleton from "../../Components/CardSkeleton/CardSkeleton";
 import { Pagination, Grid } from "@mui/material";
 import Container from "../../Components/Container/Container";
@@ -100,7 +99,6 @@ function Adverts() {
 
     return (
         <>
-            <Loader />
             <Header />
             <Hero />
             <div className="adverts">

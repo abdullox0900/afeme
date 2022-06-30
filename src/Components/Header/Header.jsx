@@ -313,9 +313,10 @@ function Header() {
                             className="header__menu-btn"
                             onClick={() => {
                                 elHeader.current.classList.add("header--open");
+                                document.body.style.overflow = "-moz-hidden-unscrollable";
                             }}
                         >
-                            /
+                            ☰
                         </button>
                     </div>
                 </Container>
