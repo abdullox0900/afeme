@@ -1,15 +1,17 @@
 .afemePhone {
     margin: 0 auto;
+    width: 100%;
     margin-top: 50px;
     margin-bottom: 40px;
     border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;    width: 1300px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
     .container {
         position: relative;
         overflow: hidden;
         border-radius: 10px;
         padding: 20px 0;
         display: flex;
+
         justify-content: center;
     }
     &__content {
@@ -71,5 +73,30 @@
         height: 60px;
         top: 20px;
         left: 80px;
+    }
+    @media (max-width: 1050px) {
+        .bubbles4{
+            width: 50px;
+            height: 50px;
+            top: 0;
+            left: 30px;
+        }
+        .afemePhone__img-phone{
+            width: 35%;
+            height: 35%;
+        }
+        .afemePhone__title{
+            font-size: 32px;
+        }
+    }
+    @media (max-width: 940px) {
+        .bubbles1{
+            right: 60px;
+        }
+    }
+    @media (max-width: 800px) {
+        .afemePhone{
+            display: none;
+        }
     }
 }

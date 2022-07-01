@@ -52,12 +52,12 @@ function UserProfilList() {
                 >
                     <rect x="110" y="20" rx="82" width="80" height="80" />
                     <rect x="60" y="120" rx="10" width="160" height="20" />
-                    <rect x="0" y="180" rx="10" width="280" height="46" />
-                    <rect x="0" y="245" rx="10" width="280" height="46" />
-                    <rect x="0" y="310" rx="10" width="280" height="46" />
-                    <rect x="0" y="375" rx="10" width="280" height="46" />
-                    <rect x="0" y="440" rx="10" width="280" height="46" />
-                    <rect x="0" y="505" rx="10" width="280" height="46" />
+                    <rect x="0" y="180" rx="10" width="95%" height="46" />
+                    <rect x="0" y="245" rx="10" width="95%" height="46" />
+                    <rect x="0" y="310" rx="10" width="95%" height="46" />
+                    <rect x="0" y="375" rx="10" width="95%" height="46" />
+                    <rect x="0" y="440" rx="10" width="95%" height="46" />
+                    <rect x="0" y="505" rx="10" width="95%" height="46" />
                 </ContentLoader>
             </div>
         );
