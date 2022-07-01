@@ -24,6 +24,8 @@ import Help from './Pages/Help/Help';
 import Test from './Pages/Test/Test';
 
 
+
+
 function App() {
 
     document.addEventListener('readystatechange', function (event) {

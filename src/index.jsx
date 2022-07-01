@@ -15,6 +15,7 @@ window.replainSettings = { id: "c2f4a578-9a1f-49ac-9214-44448b236714" };
     s.src = u;
     var x = document.getElementsByTagName("script")[0];
     x.parentNode.insertBefore(s, x);
+    x.style.zIndex = "1"
 })("https://widget.replain.cc/dist/client.js");
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
