@@ -280,15 +280,7 @@ function Advert() {
         );
     } else {
         return (
-            <div
-                className="errorBlog"
-                style={{
-                    display: "flex",
-                    width: "100%",
-                    justifyContent: "center",
-                    margin: "40px 0",
-                }}
-            >
+            <div className="errorBlog">
                 <ApiError />
             </div>
         );

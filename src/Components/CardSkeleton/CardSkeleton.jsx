@@ -2,42 +2,37 @@ import React, { useState } from "react";
 import ContentLoader from "react-content-loader";
 
 function CardSkeleton({ amount, controls, fullCard }) {
-    const [skeletonWidth, setSkeletonWidth] = useState("");
+
+    let skeletonWidth = 300;
+    skeletonWidth = document.querySelector(".cardSkeleton")?.clientWidth
+
     if (!fullCard) {
         return Array.apply(null, { length: amount }).map(() => (
             <ContentLoader
                 speed={1.25}
-                width={300}
+                width={'100%'}
                 height={280}
                 interval={0.25}
-                viewBox="0 0 300 280"
                 backgroundColor="#ebebeb"
                 foregroundColor="#0066ff00"
                 className="cardSkeleton"
-                style={{ marginBottom: 20 }}
+                style={{ margin: '0 auto 20px', maxWidth: 350 }}
             >
                 <rect x="0" y="0" rx="10" width="100%" height="140" />
                 <rect x="0" y="160" rx="10" width="50" height="20" />
-                <rect x="196" y="160" rx="5" width="100" height="20" />
+                <rect x={skeletonWidth - 100} y="160" rx="5" width="100" height="20" />
                 <rect x="0" y="195" rx="5" width="100%" height="20" />
                 <rect x="0" y="235" rx="8" width="15" height="20" />
                 <rect x="25" y="240" rx="3" width="125" height="12" />
-                <rect x="260" y="230" rx="100" width="33" height="33" />
+                <rect x={skeletonWidth - 33} y="230" rx="100" width="33" height="33" />
                 {controls ? (
-                    <rect x="220" y="230" rx="100" width="33" height="33" />
+                    <rect x={skeletonWidth - 66} y="230" rx="100" width="33" height="33" />
                 ) : (
                     ""
                 )}
             </ContentLoader>
         ));
     } else {
-        document.addEventListener("readystatechange", function (e) {
-            if (document.readyState === "complete") {
-                setSkeletonWidth(
-                    document.querySelector(".fullCardSkeleton").clientWidth
-                );
-            }
-        });
         return Array.apply(null, { length: amount }).map(() => (
             <ContentLoader
                 speed={1.25}
@@ -46,7 +41,7 @@ function CardSkeleton({ amount, controls, fullCard }) {
                 interval={0.25}
                 backgroundColor="#ebebeb"
                 foregroundColor="#0066ff00"
-                className="fullCardSkeleton"
+                className="cardSkeleton"
                 style={{ marginBottom: 35 }}
             >
                 <rect x="30" y="20" rx="10" width="300" height="200" />

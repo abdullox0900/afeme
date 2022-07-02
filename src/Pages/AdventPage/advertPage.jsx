@@ -111,8 +111,8 @@ function AdvertPage() {
 
   return (
     <>
-      {/* <Loader />
-      <Header /> */}
+      <Loader />
+      <Header />
         <Error err={err} setErr={setErr} />
         <Success suc={suc} setSuc={setSuc} />
         <div className={style.container}>
@@ -149,13 +149,13 @@ function AdvertPage() {
             <h2 className={style.htypeText}>Ofis Chizmasi va Hujjatlari: </h2>
             <Docs
               documents={documents} setDocs={setDocs} />
-            {/* <ImageFile
+            <ImageFile
               photo={photo} setPhoto={setPhoto} />
             <VideoFile
               video={video} setVideo={setVideo} />
             <h2
               className={style.htypeText}
-              style={{ marginTop: '70px' }}>Ofis Haqida</h2> */}
+              style={{ marginTop: '70px' }}>Ofis Haqida</h2>
             <HouseDescr
               description={description} sethDescr={sethDescr} />
             <h2 className={style.htypeText}>Ofis narxi: </h2>
@@ -172,7 +172,7 @@ function AdvertPage() {
             </div>
           </article>
         </div>
-      {/* <Footer /> */}
+      <Footer />
     </>
   )
 }

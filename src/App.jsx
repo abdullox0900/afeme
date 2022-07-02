@@ -21,6 +21,8 @@ import UserAdsPage from "./Pages/UserAdsPage/UserAdsPage";
 import UserFavoritesPage from './Pages/UserFavoritesPage/UserFavoritesPage';
 import UserNewsPage from './Pages/UserNewsPage/UserNewsPage';
 import Help from './Pages/Help/Help';
+import Test from './Pages/Test/Test';
+
 
 function App() {
 
@@ -29,25 +31,37 @@ function App() {
             document.body.style.overflow = "hidden";
         }
         if (document.readyState === "complete") {
-            const loader = document.querySelector('.loading');
-            document.body.classList.add('loaded');
+            const loader = document.querySelectorAll('.loading');
+        
             setTimeout(() => {
-                loader.style.display = 'none';
-                loader.style.zIndex = '-999';
+                document.body.classList.add('loaded');
+                for (let i = 0; i < loader.length; i++) {
+                    loader[i].style.display = 'none';
+                    loader[i].style.zIndex = '-999';
+                }
             }, 500);
         }
     });
+    
+
+    // function test() {
+    //     setTimeout(() => {
+            
+    //     }, 500)
+    // }
+
+    // test()
 
     return (
         <>
             <ScrollTop />
             <Suspense>
                 <Routes>
-                    {/* <Route path='/' element={<Home />} />
+                    <Route path='/' element={<Home />} />
                     <Route path='/Afeme' element={<Home />} />
-                    <Route path='/SignUp' element={<SignUp />} /> */}
+                    <Route path='/SignUp' element={<SignUp />} />
                     <Route path='/advertPage' element={<AdvertPage />} />
-                    {/* <Route path='/adverts' element={<Adverts />} />
+                    <Route path='/adverts' element={<Adverts />} />
                     <Route path='/advert/:postID' element={<Advert />} />
                     <Route path='/catalogreltor' element={<CatalogRealtor />} />
                     <Route path='/reltorcob/:userId' element={<ReltorCob />} />
@@ -57,8 +71,9 @@ function App() {
                     <Route path='/userfavorites' element={<UserFavoritesPage />} />
                     <Route path='/usernews' element={<UserNewsPage />} />
                     <Route path='/chat' element={<Chat />} />
+                    <Route path='/help' element={<Help />} />
+                    <Route path='/test' element={<Test />} />
                     <Route path="*" element={<Page404 />} />
-                    <Route path='/help' element={<Help />} /> */}
                 </Routes>
             </Suspense>
         </>

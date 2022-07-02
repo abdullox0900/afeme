@@ -36,7 +36,7 @@
         @media (max-width: 1110px) {
             grid-template-columns: 1fr 1fr 1fr;
         }
-        @media (max-width: 640px) {
+        @media (max-width: 750px) {
             grid-template-columns: 1fr 1fr;
         }
         @media (max-width: 500px) {
@@ -51,7 +51,7 @@
         width: 100%;
         display: flex;
         flex-wrap: wrap;
-        // margin: -20px;
+        margin-bottom: 60px;
     }
     .section{
         padding-bottom: 40px;

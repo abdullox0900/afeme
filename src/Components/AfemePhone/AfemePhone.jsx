@@ -22,7 +22,7 @@ function AfemePhone() {
             <Container className="container">
                 <div className="afemePhone__content">
                     <h3 className="afemePhone__title"><span>Afeme </span>{content[lang].afemePhoneTitle}</h3>
-                    <p className="afemePhone__text">{content[lang].afemePhonetitleDescr}</p>
+                    <p className="afemePhone__text">{content[lang].afemePhoneDescr}</p>
                     <a href="#"><img src={PlayStore} alt="" /></a>
                 </div>
                 <img className="afemePhone__img-phone" src={afemePhone} alt="" />

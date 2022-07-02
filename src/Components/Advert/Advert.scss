@@ -1,16 +1,23 @@
 @import "../../Assets/scss/colors.scss";
 
-.loadingSpinner{
+.loadingSpinner {
     height: 500px;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+.errorBlog {
+    display: flex;
+    width: 100%;
+    height: 400px;
+    justify-content: center;
+    margin: 40px 0;
+}
 
-.advert{
+.advert {
     margin-top: 50px;
-    &__content{
+    &__content {
         width: 70%;
         margin-right: 20px;
         padding: 20px 15px;
@@ -18,53 +25,52 @@
         border-radius: 10px;
         margin-bottom: 30px;
     }
-    &__blog{
+    &__blog {
         display: flex;
     }
-    &__main__img{
+    &__main__img {
         border-radius: 10px;
         overflow: hidden;
-        & img{
+        & img {
             object-fit: cover;
             width: 100%;
             height: 100%;
-            transition: all .3s;
-            &:hover{
+            transition: all 0.3s;
+            &:hover {
                 transform: scale(1.1);
             }
         }
     }
-    &__about__header{
+    &__about__header {
         width: 100%;
         display: flex;
         justify-content: space-between;
     }
-    &__title{
+    &__title {
         display: flex;
         align-items: center;
         margin-bottom: 15px;
         color: #333;
         line-height: 22px;
         margin-right: 20px;
-        &__content{
+        &__content {
             font-weight: 700;
             font-size: 26px;
             margin: 0;
         }
-
     }
-    .house__type__icon{
+    .house__type__icon {
         width: 14px;
         height: 14px;
         margin-right: 5px;
     }
-    &__actions{
+    &__actions {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
     }
-    &__houseType{
+    &__houseType {
         display: flex;
         align-items: center;
         color: $cardBlue;
@@ -77,7 +83,7 @@
         cursor: pointer;
         margin-left: 15px;
         word-wrap: none;
-        & p{
+        & p {
             margin: 0;
             line-height: 15px;
             -webkit-line-clamp: 1;
@@ -86,41 +92,41 @@
             display: -webkit-box;
         }
     }
-    &__info{
+    &__info {
         // width: 100%;
     }
-    &__address__blog{
+    &__address__blog {
         display: flex;
         align-items: center;
     }
-    &__address{
+    &__address {
         display: flex;
         align-items: center;
         color: #222;
         margin: 0;
         margin-right: 10px;
         line-height: 22px;
-        &__arrow{
+        &__arrow {
             padding-left: 5px;
         }
     }
-    &__description{
+    &__description {
         padding: 30px 0;
     }
-    &__items{
+    &__items {
         margin-top: 10px;
         width: 100%;
         display: flex;
         justify-content: space-between;
     }
-    &__buttons{
+    &__buttons {
         display: flex;
         align-items: center;
     }
-    &__btn{
+    &__btn {
         background-color: hsla(220, 100%, 60%, 0.12) !important;
     }
-    &Price{
+    &Price {
         margin: 0;
         color: $cardBlue;
         font-size: 22px;
@@ -128,87 +134,90 @@
         letter-spacing: 1px;
         padding-bottom: 2px;
     }
-    &__view{
+    &__view {
         display: flex;
         align-items: center;
-        &__count{
+        &__count {
             padding-left: 5px;
         }
     }
-    .descr__title{
+    .descr__title {
         font-weight: 500;
         font-size: 24px;
         line-height: 22px;
         margin: 0;
         margin-bottom: 10px;
     }
-    .descr__text{
+    .descr__text {
         font-weight: 400;
         font-size: 14px;
         line-height: 20px;
-        color: #757C8F;
+        color: #757c8f;
     }
-    &__panel{
+    &__panel {
         width: 30%;
     }
-    .sellerProfile{
+    .sellerProfile {
         box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
         border-radius: 10px;
         padding: 15px 20px;
         margin-bottom: 30px;
-        &__header{
+        &__header {
             margin-top: 20px;
         }
-        &__img{
+        &__img {
             width: 80px;
             height: 80px;
             border-radius: 50%;
             margin-right: 20px;
         }
-        &__header{
+        &__header {
             display: flex;
         }
-        &__content{
+        &__content {
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
-        &__title{
+        &__title {
             font-weight: 600;
             font-size: 20px;
             line-height: 23px;
             margin: 0;
             color: #000;
         }
-        &__type{
+        &__type {
             font-weight: 500;
             font-size: 14px;
             line-height: 20px;
-            color: #6499FF;
+            color: #6499ff;
         }
-        &__actions{
+        &__actions {
             margin-top: 30px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
         }
-        &__msg{
+        &__msg {
             margin: 0;
         }
-        &__btn img{
+        &__btn img {
             width: 16px;
             height: 16px;
         }
-        
     }
-    .sellerProfile__btn{
+    .sellerProfile__btn {
         margin-right: 15px;
-        background: radial-gradient(100% 100% at 50.44% 100%, #367BFF 0%, #6197FF 100%);
+        background: radial-gradient(
+            100% 100% at 50.44% 100%,
+            #367bff 0%,
+            #6197ff 100%
+        );
         border-radius: 10px;
         padding: 8px 16px;
     }
-    .callBtn__text{
+    .callBtn__text {
         margin: 0px;
         font-size: 15px;
         font-weight: 500;

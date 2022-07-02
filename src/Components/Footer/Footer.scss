@@ -13,17 +13,19 @@
         flex-wrap: wrap;
     }
 
-    &__holder{
+    &__holder {
+        width: 250px;
         margin-left: 20px;
         margin-bottom: 20px;
     }
+
     &__subtitle {
         margin: 15px 0px;
-        max-width: 230px;
+        width: 230px;
         font-weight: 400;
         font-size: 20px;
         line-height: 23px;
-        color: #FFFFFF;
+        color: #ffffff;
     }
 
     &__list-three {
@@ -36,7 +38,7 @@
         font-weight: 700;
         font-size: 24px;
         line-height: 28px;
-        color: #347AFF;
+        color: #347aff;
         margin-bottom: 20px;
     }
 
@@ -47,8 +49,9 @@
     }
 
     &__item {
+        width: 250px;
         padding-top: 15px;
-        transition: all .3s;
+        transition: all 0.3s;
     }
 
     &__item:hover {
@@ -60,12 +63,12 @@
         font-weight: 700;
         font-size: 16px;
         line-height: 19px;
-        color: #FFFFFF;
+        color: #ffffff;
         text-decoration: none;
     }
 
     &__link:nth-child(7) {
-        color: #347AFF;
+        color: #347aff;
     }
 
     &__link-tel {
@@ -117,15 +120,88 @@
         background-repeat: no-repeat;
     }
 
-    &__item-th + &__item-th {
+    &__item-th+&__item-th {
         margin-left: 15px;
     }
 
     &__link-th::hover {
-        color: #347AFF;
+        color: #347aff;
     }
 
     .instagram {
-        color: #347AFF;
+        color: #347aff;
+    }
+
+    p {
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 19px;
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    p + p {
+        margin: 0;
+        margin-top: 20px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .footer {
+
+        &__holder {
+            margin: 0px 0px 0px;
+            margin-left: 0px;
+
+        }
+
+        &__holder+&__holder {
+            margin-top: 40px;
+        }
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .footer {
+        .footer__row {
+            align-items: flex-start;
+        }
+
+        &__holder-title {
+            font-size: 20px;
+        }
+
+        &__link {
+            font-size: 16px;
+        }
+    }
+}
+
+@media only screen and (max-width: 531px) {
+    .footer {
+        padding: 30px 0px;
+        background-image: url("../../Assets/Img/Footer.jpg");
+
+        &__row {
+            justify-content: center;
+        }
+
+        &__holder {
+            text-align: center;
+        }
+
+        &__holder-title {
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        p.footer__subtitle {
+            width: 250px;
+            margin-bottom: 30px;
+        }
+
+        &__link {
+            font-size: 16px;
+        }
     }
 }

@@ -223,6 +223,7 @@ function Header() {
                                                 setLang(evt.target.value)
                                             }
                                             onOpen={langTooltipClose}
+                                            onClose={langTooltipClose}
                                         >
                                             <MenuItem value="uz">
                                                 <img
@@ -291,6 +292,7 @@ function Header() {
                                             defaultValue={currency}
                                             onChange={currencyChange}
                                             onOpen={currencyTooltipClose}
+                                            onClose={currencyTooltipClose}
                                         >
                                             <MenuItem value="sum">
                                                 So'm (uzs)
@@ -311,9 +313,10 @@ function Header() {
                             className="header__menu-btn"
                             onClick={() => {
                                 elHeader.current.classList.add("header--open");
+                                document.body.style.overflow = "-moz-hidden-unscrollable";
                             }}
                         >
-                            /
+                            ☰
                         </button>
                     </div>
                 </Container>
