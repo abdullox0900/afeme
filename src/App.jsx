@@ -43,11 +43,11 @@ function App() {
             <ScrollTop />
             <Suspense>
                 <Routes>
-                    <Route path='/' element={<Home />} />
+                    {/* <Route path='/' element={<Home />} />
                     <Route path='/Afeme' element={<Home />} />
-                    <Route path='/SignUp' element={<SignUp />} />
+                    <Route path='/SignUp' element={<SignUp />} /> */}
                     <Route path='/advertPage' element={<AdvertPage />} />
-                    <Route path='/adverts' element={<Adverts />} />
+                    {/* <Route path='/adverts' element={<Adverts />} />
                     <Route path='/advert/:postID' element={<Advert />} />
                     <Route path='/catalogreltor' element={<CatalogRealtor />} />
                     <Route path='/reltorcob/:userId' element={<ReltorCob />} />
@@ -58,7 +58,7 @@ function App() {
                     <Route path='/usernews' element={<UserNewsPage />} />
                     <Route path='/chat' element={<Chat />} />
                     <Route path="*" element={<Page404 />} />
-                    <Route path='/help' element={<Help />} />
+                    <Route path='/help' element={<Help />} /> */}
                 </Routes>
             </Suspense>
         </>

@@ -10,7 +10,7 @@ import MapPicker from 'react-google-map-picker';
 // Import Components
 import style from './Map.module.scss';
 
-const DefaultZomm = 5;
+const DefaultZomm = 1;
 
 function Map({ street, setStreet, city_id, setCity, region_id, setRegionID }) {
 	const [zoom, setZoom] = useState(DefaultZomm)
@@ -57,9 +57,10 @@ function Map({ street, setStreet, city_id, setCity, region_id, setRegionID }) {
 	return (
 		<div>
 			<div className={style.InpG}>
-				<FormControl sx={{ width: "320px", height: "50px", mb: 3 }}>
+				<FormControl className={style.select}>
 					<InputLabel id="viloyat">Viloyat</InputLabel>
 					<Select
+						className={style.select}
 						labelId="viloyat"
 						id={region_id}
 						label="Viloyat"
@@ -76,9 +77,10 @@ function Map({ street, setStreet, city_id, setCity, region_id, setRegionID }) {
 						))}
 					</Select>
 				</FormControl>
-				<FormControl sx={{ ml: 2, width: "320px", height: "50px", mb: 3 }}>
+				<FormControl className={style.select}>
 					<InputLabel id="Shaxar">Shaxar</InputLabel>
 					<Select
+						className={style.select}
 						labelId="Shaxar"
 						id={city_id}
 						label="Shaxar"
@@ -94,12 +96,12 @@ function Map({ street, setStreet, city_id, setCity, region_id, setRegionID }) {
 						))}
 					</Select>
 				</FormControl>
-				<input className='input_control' type="text" placeholder='Manzil' onChange={(e) => setStreet(e.target.value)} />
-			</div>
+				<input className={style.input} type="text" placeholder='Manzil' onChange={(e) => setStreet(e.target.value)} />
+			</div> 
 			<MapPicker
 				zoom={zoom}
 				mapTypeId='roadmap'
-				style={{ weight: '660px', height: '300px'}}
+				style={{ weight: '660px', height: '400px' }}
 				onChangeLocation={(lat, lng) => setLocation(lat, lng)}
 				onChangeZoom={(newZoom) => setZoom(newZoom)}
 				apiKey='AIzaSyB8NHCF-5fMix0w2363RhC3V4vcyw8SHSM' />

@@ -17,10 +17,13 @@
         border-radius: 15px;
         border: 0;
         transition: 0.3s ease-in;
-        color: $black;
-        font-size: 22px;
         background-color: $white;
         box-sizing: border-box;
+        p {
+            margin: 0;
+            color: $black;
+            font-size: 22px;
+        }
     }
     Button:hover,
     Button:focus {
@@ -35,32 +38,35 @@
         }
     }
 }
-@media only screen and (max-width:767px) {
-    .sType{
-        justify-content: flex-start;
-        button{
+@media (min-width: "450px") and (max-width: "768px") {
+    .sType {
+        padding: 0;
+        button {
             width: 150px !important;
             height: 150px !important;
-            font-size: 20px;
-        }
-        .house{
-            width: 70px;
-            height: 70px;
+            .house {
+                width: 80px;
+                height: 80px;
+            }
+            p {
+                font-size: 24px;
+            }
         }
     }
 }
-@media only screen and (max-width:319px) {
-    .sType{
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        button{
-            width: 90px !important;
-            height: 90px !important;
-            font-size: 10px;
-        }
-        .house{
-            width: 50px;
-            height: 50px;
+@media (max-width: "450px") {
+    .sType {
+        justify-content: center;
+        button {
+            width: 130px !important;
+            height: 130px !important;
+            .house {
+                width: 50px;
+                height: 50px;
+            }
+            p {
+                font-size: 16px;
+            }
         }
     }
 }

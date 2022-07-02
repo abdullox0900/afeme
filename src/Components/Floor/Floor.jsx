@@ -3,7 +3,8 @@ import React from 'react';
 import { v4 } from 'uuid';
 
 // Import => Components
-import style from '../HouseAbout/HouseAbout.module.scss';
+import style from '../../Pages/AdventPage/advertPage.module.scss'
+
 
 function Floor({ floor, setFloor, flat, setFlat }) {
     return (
@@ -16,7 +17,7 @@ function Floor({ floor, setFloor, flat, setFlat }) {
                         onChange={(e) => setFloor(e.target.value)}
                         type={'number'}
                         min={0}
-                        className={style.input}
+                        className={style.inputf}
                         defaultValue={floor}>
                     </input>
                 </div>
@@ -27,7 +28,7 @@ function Floor({ floor, setFloor, flat, setFlat }) {
                         onChange={(e) => setFlat(e.target.value)}
                         type={'number'}
                         min={0}
-                        className={style.input}
+                        className={style.inputf}
                         defaultValue={flat}>
                     </input>
                 </div>

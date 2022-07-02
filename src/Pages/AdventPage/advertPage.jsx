@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 
 // Import => Components
 import Loader from '../../Components/Loader/Loader';
-import { Container } from "@mui/material";
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer'
 import SaleType from '../../Components/SaleType/SaleType';
@@ -88,7 +87,7 @@ function AdvertPage() {
   data.append('kitchen_area', kitchen_area)
   data.append('photo', photo);
   data.append('video', video);
-  
+
   var requestOptions = {
     method: 'POST',
     headers: headers,
@@ -96,7 +95,7 @@ function AdvertPage() {
     redirect: 'follow'
   };
   //Post Function
-  function onSubmit() { 
+  function onSubmit() {
     fetch("http://ali98.uz/api/post", requestOptions)
       .then(function (response) {
         let status = response.status;
@@ -112,13 +111,12 @@ function AdvertPage() {
 
   return (
     <>
-      <Loader />
-      <Header />
-      <Container className="container">
+      {/* <Loader />
+      <Header /> */}
         <Error err={err} setErr={setErr} />
         <Success suc={suc} setSuc={setSuc} />
         <div className={style.container}>
-          <section>
+          <article>
             <h1 className={style.pageName}>E'lon qo'shish</h1>
             <h2 className={style.htypeText}>Sotish Turlari</h2>
             <SaleType
@@ -127,17 +125,16 @@ function AdvertPage() {
             <HouseType
               htype_id={htype_id} sethType={sethType} />
             <h2 className={style.htypeText}>Ofis manzili</h2>
-            <Map
+             <Map
               house={house} setHouse={setHouse}
               street={street} setStreet={setStreet}
               city_id={city_id} setCity={setCity}
               region_id={region_id} setRegionID={setRegionID} />
             <h2 className={style.htypeText}>Ofis Haqida</h2>
-
-              <Date
-                date={date} setDate={setDate} />
-              <Room
-                room={room} setRoom={setRoom} />
+            <Date
+              date={date} setDate={setDate} />
+            <Room
+              room={room} setRoom={setRoom} />
             <Area total_area={total_area} setTotalArea={setTotalArea}
               living_area={living_area} setLivingArea={setLivingArea}
               kitchen_area={kitchen_area} setKitchenArea={setKitchenArea}
@@ -152,15 +149,13 @@ function AdvertPage() {
             <h2 className={style.htypeText}>Ofis Chizmasi va Hujjatlari: </h2>
             <Docs
               documents={documents} setDocs={setDocs} />
-            <ImageFile
+            {/* <ImageFile
               photo={photo} setPhoto={setPhoto} />
-            <div className={style.DnD}>
-            </div>
             <VideoFile
               video={video} setVideo={setVideo} />
             <h2
               className={style.htypeText}
-              style={{ marginTop: '70px' }}>Ofis Haqida</h2>
+              style={{ marginTop: '70px' }}>Ofis Haqida</h2> */}
             <HouseDescr
               description={description} sethDescr={sethDescr} />
             <h2 className={style.htypeText}>Ofis narxi: </h2>
@@ -175,10 +170,9 @@ function AdvertPage() {
                 Elonni Yuklash
               </Button>
             </div>
-          </section>
+          </article>
         </div>
-      </Container>
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }

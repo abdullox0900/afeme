@@ -1,5 +1,5 @@
+@import "../../Assets/scss/colors.scss";
 .HouseDescr {
-    display: flex;
     width: 515px !important;
     height: 235px !important;
     font-family: "Roboto";
@@ -11,13 +11,11 @@
     line-height: 25px;
     color: #6d7580;
     padding: 10px 10px;
+    border: 1px solid $shadow;
 }
-@media only screen and (max-width:319px) {
-    .HouseDescr{
-        width: 300px !important;
-        height: 150px !important;
-        font-size: 14px;
-        letter-spacing: 0.5px;
-        line-height: normal;
+@media (max-width: "560px") {
+    .HouseDescr {
+        max-width: 300px !important;
+        max-height: 200px !important;
     }
 }
