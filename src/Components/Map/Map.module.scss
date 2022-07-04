@@ -2,18 +2,25 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-
-  input {
+  .select {
+    min-width: 320px;
+    height: 50px;
+    margin-bottom: 20px;
+  }
+  .select:first-child {
+    margin-right: 20px;
+  }
+  .input {
     padding: 0 15px;
     margin-bottom: 20px;
     height: 50px;
-    width: 655px;
+    width: 660px;
     border: 1px solid #c4c4c4;
     border-radius: 5px;
     font-weight: 600;
   }
 
-  input::placeholder {
+  .input::placeholder {
     font-weight: 400;
     font-size: 1rem;
   }
@@ -24,24 +31,34 @@
   height: 330px;
   border-radius: 10px;
 }
-
-@media only screen and (max-width:767px) {
+@media (min-width: "450px") and (max-width: "768px") {
   .InpG {
-    input {
-      width: 635px;
-      height: 50px;
+    max-width: 768px;
+    min-width: 450px;
+    .select {
+      width: 100%;
     }
-  }
-
-  .map {
-    width: 635px;
-    height: 250px;
+    .select:first-child{
+      margin-right: 0;
+    }
+    .input {
+      width: 100%;
+    }
   }
 }
 
-@media only screen and (max-width:319px) {
-  .map {
-    width: 300px;
-    height: 250px;
+@media (max-width: "450px") {
+  .InpG {
+    max-width: 450px;
+    min-width: 300px;
+    .select {
+      width: 100%;
+    }
+    .select:first-child{
+      margin-right: 0;
+    }
+    .input {
+      width: 100%;
+    }
   }
 }

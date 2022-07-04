@@ -3,7 +3,8 @@ import React from 'react';
 import { v4 } from 'uuid';
 
 // Import => Components
-import style from '../HouseAbout/HouseAbout.module.scss'
+import style from '../../Pages/AdventPage/advertPage.module.scss'
+
 
 function Date({ date, setDate }) {
     return (
