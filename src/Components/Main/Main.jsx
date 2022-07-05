@@ -32,7 +32,7 @@ function Main() {
     const [adverts, setAdverts] = useState([]);
     const [dataError, setDataError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const URL = "https://ali98.uz/api/post?page=3";
+    const URL = "https://ali98.uz/api/post";
 
     // Reltor useState
     const [reltData, setReltData] = useState([]);
@@ -42,8 +42,9 @@ function Main() {
         const result = axios
             .get(URL)
             .then((response) => {
-                let dataStatus = response.status;
-                if (dataStatus == true || dataStatus == 200) {
+                let newData = response.data.data;
+                console.log(response);
+                if (newData && newData.length > 0) {
                     setData(response.data);
                     setAdverts(response.data.data);
                 } else {
@@ -126,7 +127,7 @@ function Main() {
                     <section className="newBuildings">
                         <div className="newBuildings__content">
                             <Typography variant="h3" className="section__title">
-                                Yangi Binolar
+                                {content[lang].new_title}
                             </Typography>
                             <div className="scards">
                                 <NewBuildingsCard />
@@ -140,7 +141,7 @@ function Main() {
                                     variant="h5"
                                     className="realtors__title"
                                 >
-                                    Rieltorlar
+                                    {content[lang].rel}
                                 </Typography>
 
                                 <NavLink

@@ -99,7 +99,8 @@ input:focus {
 .btn {
     text-transform: none !important;
     font-weight: 600 !important;
-    border-radius: 10px !important;
+    border-radius: 8px !important;
+    white-space: nowrap;
 }
 
 .icon__btn {

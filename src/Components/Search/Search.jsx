@@ -10,6 +10,7 @@ import { Box, Button, Select, MenuItem, FormControl, InputLabel } from "@mui/mat
 // Import => Components
 import { IPContext } from "../../Context/IPContext";
 import { Context } from "../../Context/LangContext";
+import content from "../../Localization/Content";
 import "../Search/Search.scss";
 import searchIcon from "../../Assets/Img/search-icon.svg";
 
@@ -92,13 +93,13 @@ function Search() {
                     <Box className="filter__content">
                         <FormControl className="filter__items" sx={{ mr: 1 }}>
                             <InputLabel id="filter__select-label">
-                                Viloyat
+                                {content[lang].form_select_vil}
                             </InputLabel>
                             <Select
                                 labelId="filter__select-label"
                                 id="filter__select"
                                 autoWidth={false}
-                                label="Viloyat"
+                                label={content[lang].form_select_vil}
                                 value={region}
                                 onChange={regionChange}
                                 sx={{
@@ -126,7 +127,7 @@ function Search() {
                                 max={fromMax}
                                 onChange={fromMaxChange}
                                 value={priceFrom}
-                                placeholder="dan"
+                                placeholder={content[lang].priceFrom}
                             />
                         </FormControl>
                         <FormControl className="filter__items" sx={{ mr: 1 }}>
@@ -137,18 +138,18 @@ function Search() {
                                 min={toMin}
                                 onChange={toMinChange}
                                 value={priceTo}
-                                placeholder="gacha"
+                                placeholder={content[lang].priceTo}
                             />
                         </FormControl>
                         <FormControl className="filter__items">
                             <InputLabel id="filter__select-label">
-                                Xona
+                                {content[lang].adverd_room}
                             </InputLabel>
                             <Select
                                 labelId="filter__select-label"
                                 id="filter__select"
                                 value={room}
-                                label="Xona"
+                                label={content[lang].adverd_room}
                                 onChange={roomChange}
                                 sx={{
                                     borderRadius: "10px",
@@ -181,7 +182,7 @@ function Search() {
                     type="submit"
                     variant="contained"
                 >
-                    Search
+                    {content[lang].hero_search}
                 </Button>
             </form>
             {/* <Link to={{pathname: '/adverts', state: {term: 'data'}}}>salom</Link> */}
