@@ -52,7 +52,7 @@ function ReytingModal({ userId, userData, elReytingModal }) {
         fetch(apiUrl, requestOptions)
             .then(function (response) {
                 let sts = response.status;
-                if (sts = 200) {
+                if (sts == 200) {
                     elReytingModal.current.classList.remove("reyting-mod--open")
                 }
             })

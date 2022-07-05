@@ -10,29 +10,23 @@ import { ReactComponent as SaleIcon } from '../../Assets/Img/Icon/house.svg'
 
 
 function HouseType({ htype_id, sethType }) {
-  const [houseType, setHouseType] = useState([
-    {name_uz:'Hona'},
-    {name_uz:'Hovli'},
-    {name_uz:'Dala Hovli'},
-    {name_uz:'Kvartira'},
-    {name_uz:'Ofis'},
-  ]);
+  const [houseType, setHouseType] = useState([]);
 
-  // useEffect(() => {
-  //   const houseT = async () => {
-  //     try {
-  //       const res = await axios.get('http://ali98.uz/api/htype');
-  //       if (res.data.status) {
-  //         setHouseType(res.data.data)
-  //       } else {
-  //         alert('hato')
-  //       }
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-  //   houseT();
-  // }, [])
+  useEffect(() => {
+    const houseT = async () => {
+      try {
+        const res = await axios.get('http://ali98.uz/api/htype');
+        if (res.data.status) {
+          setHouseType(res.data.data)
+        } else {
+          alert('hato')
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    houseT();
+  }, [])
   return (
     <div
       className={style.HType}>
