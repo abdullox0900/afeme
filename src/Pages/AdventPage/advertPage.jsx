@@ -2,7 +2,6 @@
 import React, { useState } from 'react';
 
 // Import => Components
-import Loader from '../../Components/Loader/Loader';
 import Header from '../../Components/Header/Header';
 import Footer from '../../Components/Footer/Footer'
 import SaleType from '../../Components/SaleType/SaleType';
@@ -111,7 +110,6 @@ function AdvertPage() {
 
   return (
     <>
-      <Loader />
       <Header />
         <Error err={err} setErr={setErr} />
         <Success suc={suc} setSuc={setSuc} />

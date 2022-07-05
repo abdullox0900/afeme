@@ -1,7 +1,7 @@
 @import "../../Assets/scss/colors.scss";
 
 .categories {
-    margin-top: 50px;
+    margin-top: 40px;
 
     &__content {
         display: flex;
@@ -25,19 +25,19 @@
         transition: 0.5s ease;
         box-shadow: 0 2px 4px rgba(0,0,0,.12);
         cursor: pointer;
+        margin-top: 15px;
+        margin-right: 10px;
         &:nth-child(3){
             transform: scale(1.15);
         }
         &:hover{
             top: -5px;
         }
-
-        // &__items + &__items {
-        //     margin-left: 20px;
-        // }
-        // &:nth-child(3):hover{
-        //     transform: scale(1);
-        // }
+        @media (max-width: 880px) {
+            &:nth-child(3){
+                transform: scale(1);
+            }
+        }
     }
 
     &__img-icon {

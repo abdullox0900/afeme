@@ -136,7 +136,7 @@ function Main() {
                             </div>
                         </div>
                         <div className="panel">
-                            {<AdvertMap currentAdvert={IP} zoom={8} height={400} />}
+                            <div id="advertMap"><AdvertMap currentAdvert={IP} zoom={8}/></div>
 
                             <Box className="realtors">
                                 <Typography

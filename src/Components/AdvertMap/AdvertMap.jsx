@@ -1,6 +1,7 @@
 // Import => React and Hooks
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import axios from "axios";
+import useResize from "../../Utils/elementDimension";
 
 // Import Yandex map
 import {
@@ -21,7 +22,7 @@ import Spinner from "../Spinner/Spinner";
 import "./AdvertMap.scss";
 
 
-function AdvertMap({ currentAdvert, zoom = 10, height = 600 }) {
+function AdvertMap({ currentAdvert, zoom = 10 }) {
 
     const [data, setData] = useState([]);
     const [dataError, setDataError] = useState(false);
@@ -68,7 +69,7 @@ function AdvertMap({ currentAdvert, zoom = 10, height = 600 }) {
                         // behaviors: ["disable('scrollZoom')"],
                     }}
                     width="100%"
-                    height={height}
+                    height="100%"
                 >
                     <TypeSelector />
                     <ZoomControl />

@@ -1,3 +1,6 @@
+body{
+    overflow: hidden;
+}
 .loading {
     display: flex;
     align-items: center;
@@ -10,13 +13,18 @@
     transition: all .5s;
 }
 body.loaded .loading{
-    // opacity: 0;
-    // z-index: -999;
+    opacity: 0;
+    animation: terminateLoader 0.5;
+    animation-delay: 0.5s;
 }
 body.loaded{
-    overflow: auto !important;
+    overflow: auto;
+} 
+@keyframes terminateLoader {
+    0%{
+        z-index: -99;
+    }
 }
-
 // .loader {
 //     display: flex;
 //     justify-content: center;

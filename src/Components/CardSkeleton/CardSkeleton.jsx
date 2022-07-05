@@ -3,7 +3,7 @@ import ContentLoader from "react-content-loader";
 
 function CardSkeleton({ amount, controls, fullCard }) {
 
-    let skeletonWidth = document.querySelector(".cardSkeleton") ? document.querySelector(".cardSkeleton") : 300;
+    let skeletonWidth = document.querySelector(".cardSkeleton")?.clientWidth ? document.querySelector(".cardSkeleton")?.clientWidth : 300;
 
     if (!fullCard) {
         return Array.apply(null, { length: amount }).map(() => (
