@@ -39,7 +39,7 @@ function ReytingModal({ userId, userData, elReytingModal }) {
     let headers = new Headers();
     headers.append('Authorization', `Bearer ${token}`)
     let data = new FormData();
-    data.append('userId', userId);
+    data.append('user_id', userId);
     data.append('comment', comment);
     data.append('reting', reting);
     var requestOptions = {
@@ -52,7 +52,7 @@ function ReytingModal({ userId, userData, elReytingModal }) {
         fetch(apiUrl, requestOptions)
             .then(function (response) {
                 let sts = response.status;
-                if (sts = 200) {
+                if (sts == 200) {
                     elReytingModal.current.classList.remove("reyting-mod--open")
                 }
             })

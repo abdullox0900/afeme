@@ -43,7 +43,7 @@ function NumberControl({ control, setControl, phone_number, setPhoneNumber }) {
         control.append('passport', passport)
         control.append('region_id', region_id)
         control.append('user_type', user_type)
-        axios.post('http://ali98.uz/api/login', control)
+        axios.post('http://ali98.uz/api/register', control)
             .then(function (response) {
                 sessionStorage.clear();
                 const Token = response.data.data
