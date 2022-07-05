@@ -26,14 +26,14 @@ function AdvertMap({ currentAdvert, zoom = 10, height = 600 }) {
     const [data, setData] = useState([]);
     const [dataError, setDataError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const URL = `https://ali98.uz/api/post?page=3`;
+    const URL = `https://ali98.uz/api/post`;
 
     useEffect(() => {
         const result = axios
             .get(URL)
             .then((response) => {
-                let dataStatus = response.status;
-                if (dataStatus == true || dataStatus == 200) {
+                let newData = response.data.data;
+                if (newData && newData.length > 0) {
                     setData(response.data.data);
                 } else {
                     setDataError(true);

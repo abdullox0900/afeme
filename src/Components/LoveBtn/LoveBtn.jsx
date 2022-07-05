@@ -60,8 +60,8 @@ function LoveBtn({ advertID, elModal, like = false }) {
                 advertid={advertID}
                 onClick={(e) => LoveAnimate(e)}
             >
-                <div className={"content" + like ? " active" : ""}>
-                    <span className={"heart" + like ? " active" : ""}></span>
+                <div className={"content"}>
+                    <span className={"heart"}></span>
                 </div>
             </div>
         </Tooltip>

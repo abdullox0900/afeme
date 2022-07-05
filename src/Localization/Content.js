@@ -17,7 +17,7 @@ const content = {
 
         // Hero
         hero_title: "Toshkent shahridagi ko'chmas mulk",
-        hero_search: "Qidirmoq",
+        hero_search: "Qidirish",
 
         // Main
         recom_title: "Tavsiya etilgan turar-joy majmualari",
@@ -105,7 +105,7 @@ const content = {
         adverd_build_title: "Bino Turlari",
         adverd_house: "Hovli",
         adverd_office: "Ofis",
-        adverd_room: "Hona",
+        adverd_room: "Xona",
         adverd_apartment: "Kvartira",
         adverd_dala: "Dala Hovli",
         adverd_adres_office: "Ofis manzili",
@@ -132,6 +132,9 @@ const content = {
         afemePhoneDescr: 'Ilovada siz uy-joy kommunal xizmatlarini boshqarishingiz va jarayonni kuzatishingiz mumkin Biz barcha muhim narsalarni xabar qilamiz.',
         partners_title: 'Bizning hamkorlar',
         partners_descr: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium ducimus in, voluptate deserunt magni fugit error atque modi iure maiores possimus nesciunt? Tempore odit ratione sunt, ut dignissimos, exercitationem a mollitia necessitatibus, aliquam asperiores neque! Quae id quod voluptate quos.',
+
+        priceFrom: "dan",
+        priceTo: "gacha",
     },
     en: {
         // Header
@@ -223,6 +226,9 @@ const content = {
         afemePhoneDescr: 'In the app, you can manage housing utilities and monitor the process: we report all the important things.',
         partners_title: 'Our partners',
         partners_descr: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium ducimus in, voluptate deserunt magni fugit error atque modi iure maiores possimus nesciunt? Tempore odit ratione sunt, ut dignissimos, exercitationem a mollitia necessitatibus, aliquam asperiores neque! Quae id quod voluptate quos.',
+
+        priceFrom: "from",
+        priceTo: "to",
     },
     ru: {
         // Header
@@ -314,6 +320,9 @@ const content = {
         afemePhoneDescr: 'В приложении можно управлять ЖКХ и следить за процессом: сообщаем обо всем важном.',
         partners_title: 'Наши партнеры',
         partners_descr: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium ducimus in, voluptate deserunt magni fugit error atque modi iure maiores possimus nesciunt? Tempore odit ratione sunt, ut dignissimos, exercitationem a mollitia necessitatibus, aliquam asperiores neque! Quae id quod voluptate quos.',
+
+        priceFrom: "от",
+        priceTo: "до",
     },
 }
 
