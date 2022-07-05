@@ -41,6 +41,7 @@
         }
         @media (max-width: 500px) {
             grid-template-columns: 1fr;
+            place-items: center;
         }
     }
 

@@ -8,7 +8,6 @@ import Spinner from "../Spinner/Spinner";
 
 function Loader() {
 
-    document.body.style.overflow = 'hidden';
     return (
         <>
         

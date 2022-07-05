@@ -6,6 +6,10 @@
     align-items: center;
 }
 
+.advertMap{
+    min-height: 300px;
+}
+
 .ymaps-2-1-79-balloon{
     border-radius: 10px !important;
     ymaps:not(.ymaps-2-1-79-balloon__close-button){
@@ -20,6 +24,7 @@
     }
     &__close{
         background-color: #fff;
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 8px;
         &-button{
             height: 30px !important;
             width: 30px !important;
@@ -35,14 +40,17 @@
 .mapBaloon{
     overflow: hidden;
     font-family: "Roboto";
+    width: 100%;
     &__main{
         padding: 8px;
     }
     &__img{
         border-radius: 10px;
         width: 250px;
-        height: 150px;
+        height: auto;
+        max-height: 300px;
         transition: all .3s;
+        object-fit: cover;
         &:hover{
             transform: scale(1.1);
         }
@@ -73,5 +81,20 @@
     &__link{
         color: #0039aa;
     }
-
+}
+@media (max-width: 576px) {
+    #advertMap{
+        height: 440px;
+    }
+    .mapBaloon__img{
+        max-height: 250px;
+    }
+}
+@media (max-width: 360px) {
+    #advertMap{
+        height: 400px;
+    }
+    .mapBaloon__img{
+        width: 100%;
+    }
 }
