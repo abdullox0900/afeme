@@ -2,7 +2,7 @@
 import React from 'react'
 
 // Import => Style Component
-import style from '../HouseAbout/HouseAbout.module.scss'
+import style from '../../Pages/AdventPage/advertPage.module.scss'
 
 function Area({ total_area, setTotalArea, living_area, setLivingArea, kitchen_area, setKitchenArea, total_area_type, setTotalAreaType }) {
     // console.log(total_area);
@@ -15,33 +15,36 @@ function Area({ total_area, setTotalArea, living_area, setLivingArea, kitchen_ar
                 <p>Maydoni: </p>
                 <div className={style.InpG}>
                     <input
-                        onChange={(e) => setKitchenArea(e.target.value)}
-                        type={'number'}
-                        min={0}
                         className={style.input}
-                        defaultValue={kitchen_area}>
+                        placeholder={'Oshxona'}
+                        type={'number'}
+                        defaultValue={kitchen_area}
+                        onChange={(e) => setKitchenArea(e.target.value)}
+                    >
                     </input>
                     <input
                         onChange={(e) => setLivingArea(e.target.value)}
                         type={'number'}
-                        min={0}
+                        placeholder={'Xona'}
                         className={style.input}
                         defaultValue={living_area}>
                     </input>
-                    <input
-                        onChange={(e) => setTotalArea(e.target.value)}
-                        type={'number'}
-                        min={0}
-                        className={style.input}
-                        defaultValue={total_area}>
-                    </input>
-                    <select name="cash" id="cash"
-                        value={total_area_type}
-                        onChange={(e) => setTotalAreaType(e.target.value)}
-                    >
-                        <option value="m2">Metr Kvadrat</option>
-                        <option value="ar">Sotix</option>
-                    </select>
+                    <div className={style.total}>
+                        <input
+                            onChange={(e) => setTotalArea(e.target.value)}
+                            type={'number'}
+                            placeholder={'Jami'}
+                            className={style.input}
+                            defaultValue={total_area}>
+                        </input>
+                        <select name="cash" id="cash"
+                            value={total_area_type}
+                            onChange={(e) => setTotalAreaType(e.target.value)}
+                        >
+                            <option value="m2">Metr Kvadrat</option>
+                            <option value="ar">Sotix</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
