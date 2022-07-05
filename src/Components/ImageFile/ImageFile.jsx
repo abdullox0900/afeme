@@ -80,7 +80,6 @@ function ImageFile({ photo, setPhoto }) {
         <div className={style.wrapper}>
             <p>Ofis rasmlari:</p>
             <div className={style.images}>
-                {console.log()}
                 {photo.map((i) => (
                     <div className={style.img} key={v4()}>
                         <img src={i} alt={null} className={style.img1}/>

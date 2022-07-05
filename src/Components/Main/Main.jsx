@@ -92,7 +92,7 @@ function Main() {
             setReltData(persons)
         })
 
-        console.log(reltData)
+        // console.log(reltData)
 
     return (
         <main className="main">
