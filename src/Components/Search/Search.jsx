@@ -13,6 +13,7 @@ import { Context } from "../../Context/LangContext";
 import content from "../../Localization/Content";
 import "../Search/Search.scss";
 import searchIcon from "../../Assets/Img/search-icon.svg";
+import Container from "@mui/material";
 
 function Search() {
 
@@ -60,10 +61,8 @@ function Search() {
     function search(e) {
         e.preventDefault();
         navigate(
-            `/adverts?term=${term ? term : "null"}&region=${
-                region ? region : "null"
-            }&from=${priceFrom ? priceFrom : "null"}&to=${
-                priceTo ? priceTo : "null"
+            `/adverts?term=${term ? term : "null"}&region=${region ? region : "null"
+            }&from=${priceFrom ? priceFrom : "null"}&to=${priceTo ? priceTo : "null"
             }&room=${room ? room : "null"}`
         );
     }
@@ -84,108 +83,111 @@ function Search() {
 
     return (
         <>
-            <form
-                action="/adverts"
-                className="search__form"
-                onSubmit={(e) => search(e)}
-            >
-                <Box className="form__content">
-                    <Box className="filter__content">
-                        <FormControl className="filter__items" sx={{ mr: 1 }}>
-                            <InputLabel id="filter__select-label">
-                                {content[lang].form_select_vil}
-                            </InputLabel>
-                            <Select
-                                labelId="filter__select-label"
-                                id="filter__select"
-                                autoWidth={false}
-                                label={content[lang].form_select_vil}
-                                value={region}
-                                onChange={regionChange}
-                                sx={{
-                                    borderRadius: "10px",
-                                    height: "45px",
-                                }}
-                            >
-                                {regions.map((region) => (
-                                    <MenuItem key={region.id} value={region.id}>
-                                        {lang == "uz"
-                                            ? region.name_uz
-                                            : lang == "ru"
-                                            ? region.name_ru
-                                            : region.name_en}
-                                    </MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl>
-                        <FormControl className="filter__items" sx={{ mr: 1 }}>
-                            <input
-                                type="number"
-                                className="filter__input"
-                                id="frominput"
-                                min="0"
-                                max={fromMax}
-                                onChange={fromMaxChange}
-                                value={priceFrom}
-                                placeholder={content[lang].priceFrom}
-                            />
-                        </FormControl>
-                        <FormControl className="filter__items" sx={{ mr: 1 }}>
-                            <input
-                                type="number"
-                                className="filter__input"
-                                id="toInput"
-                                min={toMin}
-                                onChange={toMinChange}
-                                value={priceTo}
-                                placeholder={content[lang].priceTo}
-                            />
-                        </FormControl>
-                        <FormControl className="filter__items">
-                            <InputLabel id="filter__select-label">
-                                {content[lang].adverd_room}
-                            </InputLabel>
-                            <Select
-                                labelId="filter__select-label"
-                                id="filter__select"
-                                value={room}
-                                label={content[lang].adverd_room}
-                                onChange={roomChange}
-                                sx={{
-                                    borderRadius: "10px",
-                                    height: "45px",
-                                }}
-                            >
-                                <MenuItem value={2}>2</MenuItem>
-                                <MenuItem value={3}>3</MenuItem>
-                                <MenuItem value={4}>4</MenuItem>
-                                <MenuItem value={5}>5</MenuItem>
-                                <MenuItem value={"5+"}>5+</MenuItem>
-                            </Select>
-                        </FormControl>
-                    </Box>
-                    <Box className="search__box" sx={{ mr: 1 }}>
-                        <span className="search__icon">
-                            <img src={searchIcon} alt="" />
-                        </span>
-                        <input
-                            type="text"
-                            className="input__search"
-                            placeholder="Search by filtering"
-                            value={term}
-                            onChange={termChange}
-                        />
-                    </Box>
-                </Box>
-                <Button
-                    className="btn search__submit-btn"
-                    type="submit"
-                    variant="contained"
+                {/* <form
+                    action="/adverts"
+                    className="search__form"
+                    onSubmit={(e) => search(e)}
                 >
-                    {content[lang].hero_search}
-                </Button>
-            </form>
-            {/* <Link to={{pathname: '/adverts', state: {term: 'data'}}}>salom</Link> */}
+                    <Box className="form__content">
+                        <Box className="filter__content">
+                            <FormControl className="filter__items" sx={{ mr: 1 }}>
+                                <InputLabel id="filter__select-label">
+                                    {content[lang].form_select_vil}
+                                </InputLabel>
+                                <Select
+                                    labelId="filter__select-label"
+                                    id="filter__select"
+                                    autoWidth={false}
+                                    label={content[lang].form_select_vil}
+                                    value={region}
+                                    onChange={regionChange}
+                                    sx={{
+                                        borderRadius: "10px",
+                                        height: "45px",
+                                    }}
+                                >
+                                    {regions.map((region) => (
+                                        <MenuItem key={region.id} value={region.id}>
+                                            {lang == "uz"
+                                                ? region.name_uz
+                                                : lang == "ru"
+                                                    ? region.name_ru
+                                                    : region.name_en}
+                                        </MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
+                            <FormControl className="filter__items" sx={{ mr: 1 }}>
+                                <input
+                                    type="number"
+                                    className="filter__input"
+                                    id="frominput"
+                                    min="0"
+                                    max={fromMax}
+                                    onChange={fromMaxChange}
+                                    value={priceFrom}
+                                    placeholder={content[lang].priceFrom}
+                                />
+                            </FormControl>
+                            <FormControl className="filter__items" sx={{ mr: 1 }}>
+                                <input
+                                    type="number"
+                                    className="filter__input"
+                                    id="toInput"
+                                    min={toMin}
+                                    onChange={toMinChange}
+                                    value={priceTo}
+                                    placeholder={content[lang].priceTo}
+                                />
+                            </FormControl>
+                            <FormControl className="filter__items">
+                                <InputLabel id="filter__select-label">
+                                    {content[lang].adverd_room}
+                                </InputLabel>
+                                <Select
+                                    labelId="filter__select-label"
+                                    id="filter__select"
+                                    value={room}
+                                    label={content[lang].adverd_room}
+                                    onChange={roomChange}
+                                    sx={{
+                                        borderRadius: "10px",
+                                        height: "45px",
+                                    }}
+                                >
+                                    <MenuItem value={2}>2</MenuItem>
+                                    <MenuItem value={3}>3</MenuItem>
+                                    <MenuItem value={4}>4</MenuItem>
+                                    <MenuItem value={5}>5</MenuItem>
+                                    <MenuItem value={"5+"}>5+</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Box>
+                        <Box className="search__box" sx={{ mr: 1 }}>
+                            <span className="search__icon">
+                                <img src={searchIcon} alt="" />
+                            </span>
+                            <input
+                                type="text"
+                                className="input__search"
+                                placeholder="Search by filtering"
+                                value={term}
+                                onChange={termChange}
+                            />
+                        </Box>
+                    </Box>
+                    <Button
+                        className="btn search__submit-btn"
+                        type="submit"
+                        variant="contained"
+                    >
+                        {content[lang].hero_search}
+                    </Button>
+                </form> */}
+
+                <form action="#" className="search-form">
+                    
+                </form>
         </>
     );
 }

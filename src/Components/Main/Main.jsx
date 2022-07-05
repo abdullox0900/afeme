@@ -43,7 +43,6 @@ function Main() {
             .get(URL)
             .then((response) => {
                 let newData = response.data.data;
-                console.log(response);
                 if (newData && newData.length > 0) {
                     setData(response.data);
                     setAdverts(response.data.data);
@@ -86,13 +85,13 @@ function Main() {
     }
 
     // Axios
-    axios.get('https://ali98.uz/api/reltors')
-        .then(res => {
-            const persons = res.data.data;
-            setReltData(persons)
-        })
-
-        // console.log(reltData)
+    useEffect(() => {
+        axios.get('https://ali98.uz/api/reltors')
+            .then(res => {
+                const persons = res.data.data;
+                setReltData(persons)
+            })
+    }, [])
 
     return (
         <main className="main">
