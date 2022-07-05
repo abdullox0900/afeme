@@ -33,13 +33,15 @@ function App() {
             document.body.style.overflow = "hidden";
         }
         if (document.readyState === "complete") {
-            const loader = document.querySelector('.loading');
+            const loader = document.querySelectorAll('.loading');
         
             setTimeout(() => {
                 document.body.classList.add('loaded');
-                loader.style.display = 'none';
-                loader.style.zIndex = '-999';
-            }, 1500);
+                for (let i = 0; i < loader.length; i++) {
+                    loader[i].style.display = 'none';
+                    loader[i].style.zIndex = '-999';
+                }
+            }, 500);
         }
     });
     
@@ -71,9 +73,9 @@ function App() {
                     <Route path='/userfavorites' element={<UserFavoritesPage />} />
                     <Route path='/usernews' element={<UserNewsPage />} />
                     <Route path='/chat' element={<Chat />} />
-                    <Route path="*" element={<Page404 />} />
                     <Route path='/help' element={<Help />} />
                     <Route path='/test' element={<Test />} />
+                    <Route path="*" element={<Page404 />} />
                 </Routes>
             </Suspense>
         </>

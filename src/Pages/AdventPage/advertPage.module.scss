@@ -1,7 +1,7 @@
 @import "../../Assets/scss/colors.scss";
 
 .container {
-    width: 1000px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 0 20px;
     .pageName {
@@ -9,29 +9,96 @@
         margin-bottom: 20px;
         color: $darkBlue;
     }
-
-    .DnD {
+    .htypeText {
+        margin: 0;
+        margin-top: 35px;
+        margin-bottom: 20px;
+    }
+    .typeInp {
         display: flex;
         justify-content: flex-start;
         align-items: center;
         flex-wrap: wrap;
-        flex-direction: row;
+        p {
+            min-width: 130px !important;
+            font-weight: 400;
+            font-size: 19px;
+            color: $black;
+        }
+        .InpG {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-wrap: wrap;
+            .input,
+            .inputf {
+                margin-right: 20px;
+                width: 100px;
+                height: 50px;
+                border: 1px solid $shadow;
+                border-radius: 5px;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 28px;
+                padding: 15px;
+            }
+            .input::placeholder {
+                font-weight: 300;
+                font-size: 16px;
+                text-align: center;
+            }
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+            input[type="number"] {
+                -moz-appearance: textfield;
+            }
+            select {
+                width: 130px;
+                height: 50px;
+                padding: 5px;
+                background-color: $white;
+                border: 1px solid $shadow;
+                border-radius: 5px;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                text-indent: 1px;
+                text-overflow: "";
+                font-size: 16px;
+                padding: 15px;
+            }
+            span {
+                margin-right: 20px;
+            }
+            button {
+                min-width: 100px;
+                margin-right: 20px;
+                padding: 0 15px;
+                height: 50px;
+                background: $white;
+                border: 1px solid $shadow;
+                border-radius: 5px;
+                font-weight: 600;
+                font-size: 16px;
+                line-height: 19px;
+            }
+            button:active,
+            button:hover,
+            button:focus {
+                background-color: $darkBlue;
+                color: $white;
+            }
+            button:focus {
+                border: 1px solid $darkBlue;
+            }
+        }
     }
-
-    p {
-        padding: 0;
-        margin: 0;
-    }
-
-    .IV {
-        display: flex;
-    }
-
     .BtnW {
         display: flex;
         justify-content: flex-end;
         align-items: center;
-
         .onBtn {
             margin: 20px 0;
             padding: 0 15px;
@@ -50,41 +117,126 @@
             transition: 0.4s ease-in;
         }
     }
-}
+    .Price {
+        .numInp {
+            margin: 0 20px 13px 0;
+            width: 190px;
+            height: 50px;
+            border: 1px solid $shadow;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 28px;
+            padding: 15px;
+        }
 
-.htypeText {
-    margin: 0;
-    margin-top: 35px;
-    margin-bottom: 20px;
-}
+        .numInp::placeholder {
+            font-size: 16px;
+            font-weight: 500;
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
 
-.adverdPageWrap {
-    display: flex;
-}
-
-@media only screen and (max-width:767px) {
-    .container {
-        width: 767px;
-        padding: 0 10px;
-
-        .pageName {
-            font-size: 36px;
+        .select {
+            width: 100px;
+            height: 50px;
+            padding: 5px;
+            background-color: $white;
+            border: 1px solid $shadow;
+            border-radius: 5px;
+            padding: 15px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            text-indent: 1px;
+            font-size: 16px;
+            line-height: 20px;
         }
     }
 }
-
-@media only screen and (max-width:319px) {
+@media (min-width: "768px") and (max-width: "1024px") {
     .container {
-        width: 319px;
-        padding: 0 10px;
-
-        h1 {
-            font-size: 26px;
+        max-width: 1024px;
+        .typeInp {
+            flex-wrap: nowrap;
+            .InpG {
+                button {
+                    margin: 10px 20px 0 0;
+                }
+            }
         }
+    }
+}
+@media (min-width: "450px") and (max-width: "660px") {
+    .total {
+        .input {
+            margin-top: 5px;
+        }
+    }
+}
+@media (min-width: "450px") and (max-width: "768px") {
+    .container {
+        max-width: 768px;
+        .typeInp {
+            flex-wrap: nowrap;
+            .InpG {
+                button {
+                    margin: 10px 20px 0 0;
+                }
+            }
+        }
+    }
+}
+@media (max-width: "450px") {
+    .container {
+        max-width: 450px;
+        min-width: 300px;
+        text-align: center;
+        .typeInp {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .InpG {
+                justify-content: center;
+                align-items: baseline;
+                .inputf {
+                    width: 100px;
+                }
+                .input,
+                select,
+                button {
+                    width: 140px;
+                    margin: 0;
+                    margin-bottom: 10px;
+                }
+                span {
+                    margin-right: 10px;
+                }
+                .input:nth-child(odd),
+                .inputf:nth-child(odd),
+                select:nth-child(odd),
+                button:nth-child(odd) {
+                    margin-right: 10px;
+                }
+            }
+        }
+        .Price{
+            display: flex;
+            justify-content: center;
 
-        .onBtn {
-            font-size: 24px !important;
-            height: 50px !important;
+        }
+        .BtnW{
+            justify-content: center;
+            .onBtn{
+                font-size: 16px;
+                padding: 8px 32px;
+                font-weight: 500;
+            }
         }
     }
 }

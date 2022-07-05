@@ -223,6 +223,7 @@ function Header() {
                                                 setLang(evt.target.value)
                                             }
                                             onOpen={langTooltipClose}
+                                            onClose={langTooltipClose}
                                         >
                                             <MenuItem value="uz">
                                                 <img
@@ -291,6 +292,7 @@ function Header() {
                                             defaultValue={currency}
                                             onChange={currencyChange}
                                             onOpen={currencyTooltipClose}
+                                            onClose={currencyTooltipClose}
                                         >
                                             <MenuItem value="sum">
                                                 So'm (uzs)

@@ -4,7 +4,6 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import axios from "axios";
 
 // Import => Components
-import Loader from "../../Components/Loader/Loader";
 import CardSkeleton from "../../Components/CardSkeleton/CardSkeleton";
 import { Pagination, Grid } from "@mui/material";
 import Container from "../../Components/Container/Container";
@@ -14,6 +13,7 @@ import Cards from "../../Components/Card/Card";
 import AfemePhone from "../../Components/AfemePhone/AfemePhone";
 import Footer from "../../Components/Footer/Footer";
 import ApiError from "../../Components/ApiError/ApiError";
+import useWindowDimensions from "../../Utils/windowDimension";
 
 // Import => Style
 import "./Adverts.scss";
@@ -95,17 +95,17 @@ function Adverts() {
             );
         }
     }
+    const { windowWidth } = useWindowDimensions();
 
     return (
         <>
-            <Loader />
             <Header />
             <Hero />
             <div className="adverts">
                 <Container>
                     {showCards(6)}
                     {pagination()}
-                    <AfemePhone />
+                    {windowWidth > 800 ? (<AfemePhone />) : ''}
                 </Container>
             </div>
             <Footer />

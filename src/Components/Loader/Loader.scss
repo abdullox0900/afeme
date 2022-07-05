@@ -9,10 +9,10 @@
     background-color: #fff;
     transition: all .5s;
 }
-// body.loaded .loading{
-//     // opacity: 0;
-//     // z-index: -999;
-// }
+body.loaded .loading{
+    // opacity: 0;
+    // z-index: -999;
+}
 body.loaded{
     overflow: auto !important;
 }

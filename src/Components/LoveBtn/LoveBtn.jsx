@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import axios from "axios";
 import { UserContext } from "../../Context/UserContext";
 import { Tooltip, Zoom } from "@mui/material";
 import "./LoveBtn.scss";
@@ -7,11 +8,24 @@ function LoveBtn({ advertID, elModal, like = false }) {
     const { user, setUser } = useContext(UserContext);
 
     function LoveAnimate(e) {
-        
         let modal = document.querySelector(".loginModal");
         let loveBtn = document.querySelectorAll(".love-btn");
         let content = document.querySelectorAll(".content");
         let heart = document.querySelectorAll(".heart");
+        const URL = `https://ali98.uz/api/save/${advertID}`;
+
+        function addLove(content, heart) {
+            content.classList.add("active");
+            heart.classList.add("active");
+
+            axios.get(URL).then((response) => {
+                console.log(response);
+            });
+        }
+        function removeLove(content, heart) {
+            content.classList.remove("active");
+            heart.classList.remove("active");
+        }
 
         if (user.hasOwnProperty("status")) {
             if (user.status) {
@@ -21,11 +35,9 @@ function LoveBtn({ advertID, elModal, like = false }) {
                         e.target.getAttribute("advertid")
                     ) {
                         if (content[i].classList.contains("active")) {
-                            content[i].classList.remove("active");
-                            heart[i].classList.remove("active");
+                            removeLove(content[i], heart[i])
                         } else {
-                            content[i].classList.add("active");
-                            heart[i].classList.add("active");
+                            addLove(content[i], heart[i]);
                         }
                     }
                 }
