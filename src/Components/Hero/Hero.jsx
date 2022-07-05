@@ -20,27 +20,43 @@ import axios from "axios";
 
 function Hero() {
 
-    // Localization Functions
+    // // Localization Functions
+    // const { lang, setLang } = useContext(Context);
+
+    // const [randImg, setRandImg] = useState('');
+    // const [heroData, setHeroData] = useState([]);
+    // const [heroImg, setHeroImg] = useState([]);
+
+
     const { lang, setLang } = useContext(Context);
-
-    const [heroData, setHeroData] = useState([]);
-
-    // Hero Img Random
-    const images = [heroData.image];
-
+    const images = [HeroImg1, HeroImg2, HeroImg3, HeroImg4, HeroImg5, HeroImg6];
     const [randImg, setRandImg] = useState('');
-
     useEffect(() => {
         let randomNumb = Math.floor(Math.random() * images.length);
         setRandImg(images[randomNumb]);
     }, []);
 
-    useEffect(() => {
-        axios.get(`https://ali98.uz/api/sliders`).then(res => {
-            const newData = res.data
-            setHeroData(newData)
-        })
-    }, [])
+    // // Hero Img Random
+    // useEffect(() => {
+    //     let randomNumb = Math.floor(Math.random() * images.length);
+    //     setRandImg(images[randomNumb]);
+    // }, []);
+
+    // useEffect(() => {
+    //     axios.get(`https://ali98.uz/api/sliders`).then(res => {
+    //         const newData = res.data
+    //         setHeroData(newData)
+    //     })
+    // }, [])
+
+    // const images = [];
+
+    // useEffect(() => {
+    //     heroData.map(im => {
+    //         images.push(im?.image)
+    //     })
+    // }, [])
+
 
     return (
         <Box className="hero" style={{ backgroundImage: `url(${randImg})` }}>

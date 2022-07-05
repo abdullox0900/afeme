@@ -43,7 +43,6 @@ function Main() {
             .get(URL)
             .then((response) => {
                 let newData = response.data.data;
-                console.log(response);
                 if (newData && newData.length > 0) {
                     setData(response.data);
                     setAdverts(response.data.data);
@@ -93,8 +92,6 @@ function Main() {
                 setReltData(persons)
             })
     }, [])
-
-    console.log(reltData)
 
     return (
         <main className="main">
@@ -151,22 +148,23 @@ function Main() {
                                     className="realtors__list"
                                 >
                                     {
-                                        reltData.map((rel) => {
-                                            <Box className="realtor" id={rel.id}>
-                                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU" alt="" />
+                                        Array.apply(null, { length: 6 }).map(() => (
+                                            <Box className="realtor">
+                                                <img src={Realtors1} alt="" />
                                                 <div className="realtors__content">
                                                     <Typography
                                                         variant="h6"
                                                         className="realtors__name"
                                                     >
-                                                        {rel.name}
+                                                        Abdullox Abdusalomov
                                                     </Typography>
                                                     <p className="realtors__offer">
                                                         2 ta taklif
                                                     </p>
                                                 </div>
                                             </Box>
-                                        })
+                                        )
+                                        )
                                     }
                                 </NavLink>
                             </Box>
