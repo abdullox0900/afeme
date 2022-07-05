@@ -2,7 +2,7 @@
 .modal {
     opacity: 0;
     pointer-events: none;
-    z-index: 0;
+    z-index: 11111111;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -20,7 +20,7 @@
     &--open {
         opacity: 1;
         pointer-events: auto;
-        z-index: 100;
+        z-index: 100000000;
     }
     &--open  &__authorization{
         transform: scale(1);

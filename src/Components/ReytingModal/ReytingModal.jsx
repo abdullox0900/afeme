@@ -39,7 +39,7 @@ function ReytingModal({ userId, userData, elReytingModal }) {
     let headers = new Headers();
     headers.append('Authorization', `Bearer ${token}`)
     let data = new FormData();
-    data.append('userId', userId);
+    data.append('user_id', userId);
     data.append('comment', comment);
     data.append('reting', reting);
     var requestOptions = {

@@ -17,12 +17,13 @@ import {
     from "@mui/material";
 
 //Import => Components
-import { Container } from "@mui/material";
+// import { Container } from "@mui/material";
 import AfemeLogo from "../../Assets/Img/afeme-logo.svg"
 import "../../Assets/scss/colors.scss";
 import "../Form/Form.scss";
 import Error from "../Modals/Error/Error";
 import NumberControl from "../Modals/NumberControl/NumberControl";
+import Container from "../Container/Container"
 
 // Import useContext => Localization
 import { useContext } from 'react';
@@ -86,7 +87,7 @@ function Form() {
                     setRegions(data)
                 }
             } catch (error) {
-                alert(error);
+                console.log("error")
             }
         }
         regions();
@@ -112,7 +113,7 @@ function Form() {
 
     return (
         <>
-            <Container style={{ position: 'relative' }} className="container">
+            <div className="form__wrap">
                 <Error err={err} setErr={setErr} />
                 <NumberControl control={control} setControl={setControl} phone_number={phone_number} setPhoneNumber={setPhoneNumber} />
                 <form className="form" onSubmit={handleSubmit(onSubmit)}>
@@ -123,8 +124,8 @@ function Form() {
                         data-aos-duration="900" />
                     <h1 className="form-title">{content[lang].from_sign}</h1>
                     {/*UserType Input*/}
-                    <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                        <FormControl sx={{ width: "240px", mt: 2, mr: 2.5 }}>
+                    <div className="form__controler-one">
+                        <FormControl className="form__controler-input1">
                             <InputLabel id="demo-simple-select-label">{content[lang].form_select_jis}</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
@@ -141,7 +142,7 @@ function Form() {
                         </FormControl>
 
                         {/* User Region Input */}
-                        <FormControl sx={{ mt: 2, width: "240px" }}>
+                        <FormControl className="form__controler-input2">
                             <InputLabel id="viloyat"> {content[lang].form_select_vil} </InputLabel>
                             <Select
                                 labelId="viloyat"
@@ -161,7 +162,7 @@ function Form() {
                         </FormControl>
                     </div>
                     {/*FirstName Input*/}
-                    <div>
+                    <div className="form__controler-input">
                         <TextField
                             className="form__input form__input-name"
                             id="outlined-basic"
@@ -202,7 +203,7 @@ function Form() {
                     <input
                         ref={exper}
                         type="number"
-                        className="disable default"
+                        className="disable default form__input-password"
                         placeholder={content[lang].rexperience}
                         onChange={(e) => setExperience(e.target.value)}
                     />
@@ -256,7 +257,8 @@ function Form() {
                         </button>
                     </div>
                 </form>
-            </Container>
+            </div>
+
         </>
     )
 }

@@ -4,7 +4,7 @@
     margin-top: 16px;
     padding: 15px;
     font-size: 16px;
-    width: 500px;
+    width: 400px;
     height: 56px;
     border-radius:4px;
     border:1px solid #c4c4c4;
@@ -18,13 +18,36 @@
     text-align: start;
     height: 100px;
 }
+
+.form__controler-one {
+    width: 100px;
+}
+
+.form__wrap {
+    width: 500px;
+    margin-right: 100px;
+}
+
+.form__controler-one {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.form__controler-two {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
 .form {
-    // position: relative;
+    position: relative;
     display: flex;
     flex-direction: column;
-    width: 500px;
+    width: 400px;
     align-items: center;
-    margin-left: 40px;
+    // margin-left: 100px;
+    // margin-right: 200px;
     .form-title {
         margin: 0;
         margin-bottom: 30px;
@@ -35,6 +58,18 @@
         color: #000000;
     }
     width: 500px;
+
+    .form__controler-input1 {
+        // margin: 0;
+        width: 238px;
+        margin-right: 23px;
+    }
+
+    .form__controler-input2 {
+        // margin: 0;
+        width: 238px;
+    }
+
     .form__box {
         display: flex;
         justify-content: space-between;
@@ -99,5 +134,65 @@
         font-size: 16px;
         line-height: 19px;
         color: #ffffff;
+    }
+}
+
+
+// Tablet Responsiv
+
+@media only screen and (max-width: 1350px) {
+    .form {
+        // margin-left: 50px;
+    }
+}
+
+@media only screen and (max-width: 995px) {
+    .form__wrap {
+        margin-right: 0px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .form {
+        margin-right: 0px;
+
+        .form__controler-input1 {
+            width: 100%;
+            margin-bottom: 20px;
+            margin-right: 0px;
+        }
+    
+        .form__controler-input2 {
+            width: 100%;
+        }
+
+        .form__controler-input {
+            width: 100%;
+        }
+
+        .form__input-name {
+            width: 100%;
+        }
+
+        .form__input-lastname {
+            width: 100%;
+            margin-left: 0px;
+        }
+
+        .form__input-email {
+            width: 100%;
+        }
+
+        .form__input-password {
+            width: 100%;
+        }
+    }
+}
+
+@media only screen and (max-width: 530px) {
+    .form {
+        display: flex;
+        justify-content: center;
+        width: 350px;
     }
 }

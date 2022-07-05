@@ -100,9 +100,6 @@ function Footer() {
                                         )
                                     })
                                 }
-                                <p>Afil@gmail.com</p>
-                                <p>Andijon shahri, Boburshox ko'chasi, 2-uy</p>
-                                <p>+998900431160</p>
                             </>
                         </section>
                         <section className="footer__holder">
@@ -126,9 +123,6 @@ function Footer() {
                                         )
                                     })
                                 }
-                                <p>Telegram</p>
-                                <p>Instagram</p>
-                                <p>Youtube</p>
                             </>
                         </section>
                     </section>

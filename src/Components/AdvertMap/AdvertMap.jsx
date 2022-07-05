@@ -56,7 +56,7 @@ function AdvertMap({ currentAdvert, zoom = 10, height = 600 }) {
                 <Spinner />
             </div>
         )
-    } else if (data.length > 0) {
+    } else if (data?.length > 0) {
         return (
             <YMaps query={{
                 load: 'geoObject.addon.balloon'
