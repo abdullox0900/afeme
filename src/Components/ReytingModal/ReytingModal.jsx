@@ -18,7 +18,7 @@ function ReytingModal({ userId, userData, elReytingModal }) {
     const apiUrl = "https://ali98.uz/api/reting";
     const [reting, setReting] = useState('')
     const [comment, setComment] = useState('')
-    console.log(userData);
+    // console.log(userData);
     // let Name = userData.name;
     // console.log(Name);
 
@@ -30,7 +30,7 @@ function ReytingModal({ userId, userData, elReytingModal }) {
         value: 0,
         a11y: true,
         isHalf: true,
-        emptyIcon: `${<StarIcon width="40px" height="40px" />}`,
+        emptyIcon: <StarIcon width="40px" height="40px" />,
         onChange: newValue => {
             setReting(`${newValue}`);
         }
@@ -54,6 +54,7 @@ function ReytingModal({ userId, userData, elReytingModal }) {
                 let sts = response.status;
                 if (sts == 200) {
                     elReytingModal.current.classList.remove("reyting-mod--open")
+                    window.location.reload()
                 }
             })
     }
