@@ -7,7 +7,7 @@ function Provider({children}) {
     
     const [token, setToken] = useState(localStorage.getItem("Token") || null);
     const [user, setUser] = useState([]);
-    const URL = "https://ali98.uz/api/user/169";
+    const URL = "https://ali98.uz/api/user/359";
     let data = {};
 
     function setErrorData() {

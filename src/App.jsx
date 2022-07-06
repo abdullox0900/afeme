@@ -29,14 +29,15 @@ import Test from './Pages/Test/Test';
 function App() {
 
     document.addEventListener('readystatechange', function (event) {
-        if (document.readyState === "loading") {
-            document.body.style.overflow = "hidden";
-        }
+        // if (document.readyState === "loading") {
+        //     document.body.style.overflow = "hidden";
+        // }
         if (document.readyState === "complete") {
+            
             const loader = document.querySelectorAll('.loading');
-        
+            document.body.style.overflow = 'auto';
+            document.body.classList.add('loaded');
             setTimeout(() => {
-                document.body.classList.add('loaded');
                 for (let i = 0; i < loader.length; i++) {
                     loader[i].style.display = 'none';
                     loader[i].style.zIndex = '-999';

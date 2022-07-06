@@ -74,8 +74,10 @@ function VideoFile({ video, setVideo }) {
             <div className={style}>
                 {video.map((i) => (
                     <div key={v4}>
-                        <video width="200px" height="100px" controls />
-                        <source type='video/mp4' alt={"wldölw"} src={i} />
+                        <video width="400px" height="200px" controls >
+                            <source type='video/mp4' alt={"wldölw"} src={i} />
+                            <source type='video/ogg' alt={"wldölw"} src={i} />
+                        </video>
                     </div>
                 ))}
             </div>

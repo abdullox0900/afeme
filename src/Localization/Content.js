@@ -135,6 +135,13 @@ const content = {
 
         priceFrom: "dan",
         priceTo: "gacha",
+
+        // Advert
+        contactBtn: "Bog'lanish",
+        sendMessageBtn: "Xabar yozish",
+        viewInMap: "Kartadan ko'rish",
+        street: "ko'chasi",
+        description: "Tavsif",
     },
     en: {
         // Header
@@ -229,6 +236,13 @@ const content = {
 
         priceFrom: "from",
         priceTo: "to",
+
+        // Advert
+        contactBtn: "Contact",
+        sendMessageBtn: "Message",
+        viewInMap: "View in Map",
+        street: "street",
+        description: "Description",
     },
     ru: {
         // Header
@@ -323,6 +337,13 @@ const content = {
 
         priceFrom: "от",
         priceTo: "до",
+
+        // Advert
+        contactBtn: "Связь",
+        sendMessageBtn: "Сообщение",
+        viewInMap: "Вид с карты",
+        street: "Улица",
+        description: "Описание",
     },
 }
 

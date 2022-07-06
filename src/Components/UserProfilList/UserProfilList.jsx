@@ -14,7 +14,6 @@ import { Context } from "../../Context/LangContext";
 import { CurrencyContext } from "../../Context/CurrencyContext";
 import { UserContext } from "../../Context/UserContext";
 import content from "../../Localization/Content";
-import { Avatar } from "@mui/material";
 
 // Import => logout
 import LogOut from "../../Utils/logOut";

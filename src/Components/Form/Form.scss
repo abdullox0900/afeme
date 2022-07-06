@@ -1,18 +1,34 @@
 @import "../../Assets/scss/colors.scss";
-.disable{
+.disable {
     display: block;
     margin-top: 16px;
     padding: 15px;
     font-size: 16px;
     width: 400px;
     height: 56px;
-    border-radius:4px;
-    border:1px solid #c4c4c4;
+    border-radius: 4px;
+    border: 1px solid #c4c4c4;
 }
-.default{
+.default {
     display: none;
 }
-.textarea{
+.change {
+    width: 300px;
+    height: 150px;
+    position: relative;
+    margin-bottom: 20px;
+    .img {
+        width: 100%;
+        height: 100%;
+        border: 1px solid red;
+    }
+    .icon {
+        cursor: pointer;
+        position: absolute;
+        right: 0;
+    }
+}
+.textarea {
     font-family: sans-serif;
     font-weight: 500;
     text-align: start;
@@ -86,9 +102,9 @@
     }
 
     .form__img {
-    width: 120px;
-    height: 120px;
-    margin-bottom: 30px;
+        width: 120px;
+        height: 120px;
+        margin-bottom: 30px;
     }
 
     .button {
@@ -116,7 +132,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    .title{
+    .title {
         padding: 0;
         text-align: center;
         font-weight: 500;
@@ -136,7 +152,6 @@
         color: #ffffff;
     }
 }
-
 
 // Tablet Responsiv
 
@@ -161,7 +176,7 @@
             margin-bottom: 20px;
             margin-right: 0px;
         }
-    
+
         .form__controler-input2 {
             width: 100%;
         }

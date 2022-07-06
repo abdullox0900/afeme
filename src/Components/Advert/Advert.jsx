@@ -6,6 +6,7 @@ import { Box, IconButton, Tooltip, Zoom } from "@mui/material";
 // Import => Components
 import { Context as LangContext } from "../../Context/LangContext";
 import { CurrencyContext } from "../../Context/CurrencyContext";
+import content from "../../Localization/Content";
 import Container from "../Container/Container";
 import Spinner from "../Spinner/Spinner";
 import AdvertGallery from "../AdvertGallery/AdvertGallery";
@@ -16,7 +17,6 @@ import OfflineError from "../OfflineError/OfflineError";
 import LoveBtn from "../LoveBtn/LoveBtn";
 
 // Import => Components Img
-import Person from "../../Assets/Img/prifile-avatar.jpg";
 import callIcon from "../../Assets/Img/call.svg";
 import messageIcon from "../../Assets/Img/message.svg";
 import ShareIcon from "../../Lib/Svg/share";
@@ -30,13 +30,12 @@ import arrowRight from "../../Assets/Img/arrow-right.svg";
 import "./Advert.scss";
 
 function Advert() {
-
     const { postID } = useParams();
     const [data, setData] = useState([]);
     const [dataError, setDataError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const URL = `https://ali98.uz/api/post/${postID}`;
-    
+
     const { lang, setLang } = useContext(LangContext);
     const { currency, setCurrency } = useContext(CurrencyContext);
     const [price, setPrice] = useState("");
@@ -47,7 +46,7 @@ function Advert() {
     const [advertAddress, setAdvertAddress] = useState("");
     const [advertCity, setAdvertCity] = useState("");
 
-    CardTools( data, lang, currency, setPrice, setAdvertTitle, setAdvertLink, setAdvertType, setAdvertTypeImg, setAdvertAddress, setAdvertCity );
+    CardTools( data, lang, currency, setPrice, setAdvertTitle, setAdvertLink, setAdvertType, setAdvertTypeImg, setAdvertAddress, setAdvertCity);
 
     useEffect(() => {
         const result = axios
@@ -75,19 +74,17 @@ function Advert() {
         url: "http://localhost:3000/advert/118",
     };
 
-    function handlePrint() {
-        window.print();
-    }
-
     if (isLoading) {
         return (
             <div className="loadingSpinner">
                 <Spinner />
             </div>
         );
-
     } else if (data.hasOwnProperty("id") && !dataError) {
-
+        
+        let adOwner = data.user;
+        let ownerPage = `/reltorcob/${adOwner.id}`;
+        let ownerChat = `/chat/${adOwner.id}`;
         return (
             <Box className="advert">
                 <Container>
@@ -96,7 +93,9 @@ function Advert() {
                             <Box className="advert__info">
                                 <div className="advert__about__header">
                                     <div className="advert__title">
-                                        <h2 className="advert__title__content">{advertTitle}</h2>
+                                        <h2 className="advert__title__content">
+                                            {advertTitle}
+                                        </h2>
                                         <span className="advert__houseType">
                                             <img
                                                 src={advertTypeImg}
@@ -107,23 +106,22 @@ function Advert() {
                                         </span>
                                     </div>
                                     <Box className="advert__prices">
-                                        <p className="advertPrice">
-                                            {price}
-                                        </p>
+                                        <p className="advertPrice">{price}</p>
                                         <span>{price}/month</span>
                                     </Box>
                                 </div>
                                 <Box className="advert__address__blog">
                                     <p className="advert__address">
-                                        {advertAddress}, {advertCity}, {data?.street} ko'chasi
+                                        {advertAddress}, {advertCity},{" "}
+                                        {data?.street} {content[lang].street}
                                         <img
                                             src={arrowRight}
                                             alt=""
                                             className="advert__address__arrow"
                                         />
                                     </p>
-                                    <a href="#" className="wiewInMap">
-                                        Kartadan ko'rish
+                                    <a href="#advertMap" className="wiewInMap">
+                                        {content[lang].viewInMap}
                                     </a>
                                 </Box>
                                 <Box className="advert__items">
@@ -181,14 +179,16 @@ function Advert() {
                                             TransitionComponent={Zoom}
                                             arrow
                                         >
-                                            <IconButton
-                                                variant="contained"
-                                                color="primary"
-                                                className="advert__btn advert__reportBtn"
-                                                sx={{ mr: 1 }}
-                                            >
-                                                <ExclamationIcon />
-                                            </IconButton>
+                                            <Link to="/help">
+                                                <IconButton
+                                                    variant="contained"
+                                                    color="primary"
+                                                    className="advert__btn advert__reportBtn"
+                                                    sx={{ mr: 1 }}
+                                                >
+                                                    <ExclamationIcon />
+                                                </IconButton>
+                                            </Link>
                                         </Tooltip>
                                     </div>
                                     <Box
@@ -206,68 +206,71 @@ function Advert() {
                             <AdvertGallery data={data} isLoading={isLoading} />
 
                             <Box className="advert__description">
-                                <h5 className="descr__title">Tavsif</h5>
+                                <h5 className="descr__title">{content[lang].description}</h5>
                                 <p className="descr__text">
                                     {data?.description}
                                 </p>
-                                <Link to={"/chat"}>
+                                <Link to={ownerChat}>
                                     <IconButton
                                         variant="contained"
                                         className="sellerProfile__btn sellerProfile__msg"
                                     >
                                         <img src={messageIcon} alt="" />
                                         <p className="callBtn__text">
-                                            Xabar yozish
+                                            {content[lang].sendMessageBtn}
                                         </p>
                                     </IconButton>
                                 </Link>
                             </Box>
 
-                            <AdvertMap currentAdvert={data}/>
+                            <div id="advertMap">
+                                <AdvertMap currentAdvert={data} />
+                            </div>
                         </Box>
 
                         <Box className="advert__panel">
                             <Box className="sellerProfile">
                                 <Box className="sellerProfile__header">
-                                    <Link to={"#"}>
+                                    <Link to={ownerPage}>
                                         <img
-                                            src={Person}
+                                            src={
+                                                adOwner.image
+                                                    ? adOwner.image
+                                                    : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU"
+                                            }
                                             alt=""
                                             className="sellerProfile__img"
                                         />
                                     </Link>
                                     <Box className="sellerProfile__content">
-                                        <Link
-                                            to={"/reltor"}
-                                            className="sellerProfile__title"
-                                        >
-                                            Abdusalomov Abdullox
-                                        </Link>
+                                        <p className="sellerProfile__title">
+                                            {adOwner.name} {adOwner.last_name}
+                                        </p>
                                         <span className="sellerProfile__type">
-                                            Sotuvchi
+                                            {adOwner.user_type}
                                         </span>
                                     </Box>
                                 </Box>
                                 <Box className="sellerProfile__actions">
-                                    <Link to={"#"}>
+                                    <Link to={ownerPage}>
                                         <IconButton
                                             variant="contained"
                                             className="sellerProfile__btn sellerProfile__call"
                                         >
                                             <img src={callIcon} alt="" />
                                             <p className="callBtn__text">
-                                                Bog'lanish
+                                                {content[lang].contactBtn}
                                             </p>
                                         </IconButton>
                                     </Link>
-                                    <Link to={"/chat"}>
+                                    <Link to={ownerChat}>
                                         <IconButton
                                             variant="contained"
                                             className="sellerProfile__btn sellerProfile__msg"
                                         >
                                             <img src={messageIcon} alt="" />
                                             <p className="callBtn__text">
-                                                Xabar yozish
+                                                {content[lang].sendMessageBtn}
                                             </p>
                                         </IconButton>
                                     </Link>
