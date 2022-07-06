@@ -5,6 +5,8 @@
     height: 500px;
     background-repeat: no-repeat;
     background-size: 100% 500px;
+    background-size: cover;
+    background-position: center center;
     object-fit: cover;
 
     .hero__object {
