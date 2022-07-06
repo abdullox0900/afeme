@@ -20,18 +20,18 @@ window.replainSettings = { id: "c2f4a578-9a1f-49ac-9214-44448b236714" };
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-        <BrowserRouter>
-            <LangProvider>
-                <UserProvider>
-                    <CurrencyProvider>
-                        <IPProvider>
-                            <Loader />
-                            <App />
-                        </IPProvider>
-                    </CurrencyProvider>
-                </UserProvider>
-            </LangProvider>
-        </BrowserRouter>
+    <BrowserRouter>
+        <LangProvider>
+            <UserProvider>
+                <CurrencyProvider>
+                    <IPProvider>
+                        <Loader />
+                        <App />
+                    </IPProvider>
+                </CurrencyProvider>
+            </UserProvider>
+        </LangProvider>
+    </BrowserRouter>
     // <React.StrictMode>
     // </React.StrictMode>
 );
