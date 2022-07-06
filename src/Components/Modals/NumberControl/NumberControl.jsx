@@ -32,6 +32,8 @@ function NumberControl({ control, setControl, phone_number, setPhoneNumber }) {
     const passport = sessionStorage.getItem('passport') !== undefined ? sessionStorage.getItem('passport') : ''
     const user_type = sessionStorage.getItem('user_type') !== undefined ? sessionStorage.getItem('user_type') : ''
     const region_id = sessionStorage.getItem('region_id') !== undefined ? sessionStorage.getItem('region_id') : ''
+    const description = sessionStorage.getItem('description') !== undefined ? sessionStorage.getItem('description') : ''
+    const experience = sessionStorage.getItem('experience') !== undefined ? sessionStorage.getItem('experience') : ''
     //HTTP Request Function
     const onSubmit = (data) => {
         const control = new FormData();
@@ -43,6 +45,8 @@ function NumberControl({ control, setControl, phone_number, setPhoneNumber }) {
         control.append('passport', passport)
         control.append('region_id', region_id)
         control.append('user_type', user_type)
+        control.append('experience', experience)
+        control.append('description', description)
         axios.post('http://ali98.uz/api/register', control)
             .then(function (response) {
                 sessionStorage.clear();

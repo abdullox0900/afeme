@@ -25,7 +25,6 @@ function RealtorWrap() {
         axios.get('https://ali98.uz/api/reltors').then(res => {
             const persons = res.data.data;
             setReltorsData(persons)
-            // setLoading(true)
         })
     }, [])
 

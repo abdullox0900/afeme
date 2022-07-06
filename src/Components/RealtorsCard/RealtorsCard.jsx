@@ -16,6 +16,9 @@ import ZvezImgIcon from "../../Assets/Img/Icon/zvezda.svg";
 import ContentLoader from "react-content-loader";
 import { v4 } from "uuid";
 
+import ReactStars from "react-rating-stars-component";
+import StarIcon from "../../Lib/Svg/star";
+
 function RealtorsCard() {
 
     // Pagination useState
@@ -78,7 +81,17 @@ function RealtorsCard() {
                                             </div>
 
                                             <div className="realtor-card__reyting">
-                                                <img src={ZvezImgIcon} alt="" />
+                                                <ReactStars {...{
+                                                    size: 30,
+                                                    count: 5,
+                                                    color: "#dee7ee",
+                                                    activeColor: "gold",
+                                                    value: Math.round(reltor.reting),
+                                                    a11y: true,
+                                                    isHalf: true,
+                                                    edit: false,
+                                                    emptyIcon: <StarIcon width="40px" height="40px" />,
+                                                }} />
                                             </div>
 
                                             <div className="realtor-card__region-box">

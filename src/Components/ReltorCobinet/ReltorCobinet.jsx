@@ -21,14 +21,18 @@ import "../../Components/ReltorCobinet/ReltorCobinet.scss";
 import { DoNotStepOutlined, Tune } from "@mui/icons-material";
 import { Skeleton } from "@mui/material";
 import Avatar from '@mui/material/Avatar';
+import ReactStars from "react-rating-stars-component";
+import StarIcon from "../../Lib/Svg/star";
+
 
 function ReltorCobinet() {
-
+    const date = useRef(null)
     const { userId } = useParams()
     const [userData, setReltorUserData] = useState([])
     const { lang, setLang } = useContext(LangContext);
     const [userLocData, setReltorUserLocData] = useState({})
     const [userLocationData, setUserLocationData] = useState({});
+    const [comment, setComment] = useState([])
 
     // Skeleton useState
     const [isLoading, setLoading] = useState(false);
@@ -36,44 +40,59 @@ function ReltorCobinet() {
     useEffect(() => {
         axios.get(`https://ali98.uz/api/user/${userId}`)
             .then(res => {
-                const resdat = res.data.data;
-                setReltorUserData(resdat);
+                setReltorUserLocData(res.data.data.region_id)
+                setComment(res.data.data.fullreyting);
+                setReltorUserData(res.data.data);
                 setLoading(true)
             })
     }, [])
 
-    useEffect(() => {
-        axios.get(`https://ali98.uz/api/user/${userId}`)
-            .then(res => {
-                let resData = res.data.data.region_id
-                setReltorUserLocData(resData)
-                console.log(res.data.data);
-            })
-    }, [])
 
-    useEffect(() => {
-        if (lang == 'uz') {
-            setUserLocationData(userLocData.name_uz)
-        } else if (lang == 'ru') {
-            setUserLocationData(userLocData.name_ru)
-        } else {
-            setUserLocationData(userLocData.name_en)
-        }
-    }, [lang])
+    // useEffect(() => {
+    //     if (lang == 'uz') {
+    //         setUserLocationData(userLocData.name_uz)
+    //     } else if (lang == 'ru') {
+    //         setUserLocationData(userLocData.name_ru)
+    //     } else {
+    //         setUserLocationData(userLocData.name_en)
+    //     }
+    // }, [lang])
+
+
+    let oldin = new Date(userData.created_at)
+    let hozir = new Date()
+    let diff = Math.abs(hozir - oldin);
+    let total = Math.ceil(diff / (1000 * 60 * 60 * 24))
+    console.log(total);
+    let days = `${total}  kundan beri`
+    let month = `${Math.ceil(total / 30)}  oydan beri`
+    let year = `${Math.ceil(total / 365)}  yildan beri`
 
     const elReytingModal = React.useRef();
 
+    const Rating = {
+        size: 30,
+        count: 5,
+        color: "#dee7ee",
+        activeColor: "gold",
+        value: Math.round(userData.reting),
+        a11y: true,
+        isHalf: true,
+        edit: false,
+        emptyIcon: <StarIcon width="40px" height="40px" />,
+    }
+
+
+
+
     return (
         <>
-
-            <section className="reltorcob">
-
-                <Container>
+            <Container>
+                <section className="reltorcob">
                     <NavLink to={"/catalogreltor"} className="reltorcob__btn-all">
                         Barchasini ko’rish
                     </NavLink>
                     <div className="reltorcob__box" >
-
                         <div className="reltorcob__wrapper">
                             {
                                 isLoading ? <img className="reltorcob__avatar" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU" alt="" width={"100px"} /> :
@@ -90,14 +109,14 @@ function ReltorCobinet() {
                                             height={40} />
                                 }
                                 {
-                                    isLoading ? <div className="reltorcob__reyting-box">
+                                    isLoading ? <div className="reltorcob__reyting-box" onClick={() => {
+                                        elReytingModal.current.classList.add("reyting-mod--open")
+                                    }}>
                                         <div className="reltorcob__reyting-title">
-                                            4.5
+                                            {Math.round(userData.reting)}
                                         </div>
-                                        <button className="reltorcob__reyting-btn" onClick={() => {
-                                            elReytingModal.current.classList.add("reyting-mod--open")
-                                        }}>
-                                            <img src={ZvezImgIcon} alt="" />
+                                        <button className="reltorcob__reyting-btn">
+                                            <ReactStars {...Rating} />
                                         </button>
                                     </div> : <Skeleton
                                         width={180}
@@ -122,8 +141,10 @@ function ReltorCobinet() {
                                 {
                                     isLoading ? (
                                         <div className="reltorcob__work-box">
-                                            <p className="reltorcob__work-taj">2008 yildan beri</p>
-                                            <p className="reltorcob__work-afeme">2 oydan beri</p>
+                                            <p className="reltorcob__work-taj">{+userData?.experience} yillik tajriba</p>
+                                            <p className="reltorcob__work-afeme" >
+                                                {total <= 30 ? days : total <= 365 ? month : year}
+                                                </p>
                                         </div>
                                     ) : (
                                         <Skeleton
@@ -148,7 +169,7 @@ function ReltorCobinet() {
                                 {
                                     isLoading ? (
                                         <p className="reltorcob__idescrip">
-                                            2008-yildan buyon ko‘chmas mulk sohasida faoliyat yuritaman, ishim davomida yuridik bilim oldim. Mening uchta oliy ma'lumotim bor. Men yakka tartibdagi tadbirkorman. Mening ishim tamoyillari - individual yondashuv, uzoq muddatli hamkorlik, o'zaro ...
+                                            {userData?.description}
                                         </p>
                                     ) : (
                                         <Skeleton
@@ -204,7 +225,7 @@ function ReltorCobinet() {
                                 }
                                 {
                                     isLoading ? (
-                                        <a href={`mailto:${userData.email}`} className="reltorcob__cantact-email">{userData.email}</a>
+                                        <a href={`mailto: ${userData.email}`} className="reltorcob__cantact-email">{userData.email}</a>
                                     ) : (
                                         <Skeleton
                                             width={230}
@@ -215,8 +236,49 @@ function ReltorCobinet() {
                             </div>
                         </div>
                     </div>
-                </Container>
-            </section>
+                    {isLoading ? (
+                        <h2 className="title">Fikr-Mulohazalar</h2>
+                    ) : (
+                        <Skeleton width={200} height={30} />
+                    )
+                    }
+                    {comment?.map((com) => (
+                        <div className="comments">
+                            <div className="comment_box" key={com.id}>
+                                <div className="first">
+                                    {isLoading ? (
+                                        <p className="author">{/* {com.author} */}Aliev Ali</p>
+                                    ) : (
+                                        <Skeleton width={160} height={20} />
+                                    )}
+                                    <div className="reting">
+                                        {isLoading ? (
+                                            <ReactStars {...{
+                                                size: 25,
+                                                count: 5,
+                                                color: "#dee7ee",
+                                                activeColor: "gold",
+                                                value: Math.round(com.reting),
+                                                a11y: true,
+                                                isHalf: true,
+                                                edit: false,
+                                                emptyIcon: <StarIcon />,
+                                            }} />
+                                        ) : (
+                                            <Skeleton width={150} height={30} />
+                                        )}
+                                    </div>
+                                </div>
+                                {isLoading ? (
+                                    <p className="commit">{/* {com.comment} */}Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged</p>
+                                ) : (
+                                    <Skeleton />
+                                )}
+                            </div>
+                        </div>
+                    ))}
+                </section>
+            </Container>
 
             <ReytingModal elReytingModal={elReytingModal} userData={userData} userId={userData.id} />
 
