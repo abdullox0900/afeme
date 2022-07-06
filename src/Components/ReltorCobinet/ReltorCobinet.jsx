@@ -45,7 +45,7 @@ function ReltorCobinet() {
     useEffect(() => {
         axios.get(`https://ali98.uz/api/user/${userId}`)
             .then(res => {
-                let resData = res.data.data.region_id
+                let resData = res?.data.data.region_id
                 setReltorUserLocData(resData)
                 console.log(res.data.data);
             })
