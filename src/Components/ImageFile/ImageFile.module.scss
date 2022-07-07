@@ -1,24 +1,24 @@
-
 .wrapper {
+    width: 410px;
     .images {
-        width: 420px;
+        // width: 100%;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        .img{
+        .img {
             position: relative;
             .img1 {
                 margin-right: 5px;
-                border-radius:10px;
-                border:2px solid red;
+                border-radius: 10px;
+                border: 2px solid red;
                 width: 100px;
                 height: 100px;
             }
-            .icon{
+            .icon {
                 cursor: pointer;
                 right: 5px;
                 position: absolute;
-                color:red;
+                color: red;
             }
         }
     }
@@ -33,7 +33,6 @@
     }
     .imgF,
     .videoF {
-        width: 410px;
         height: 194px;
         background: #e5f0ff;
         box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
@@ -75,20 +74,25 @@
         }
     }
 }
-.btns{
-    .label{
+.btns {
+    .label {
         display: none;
     }
-    label{
+    label {
         text-transform: uppercase;
         font-weight: 500;
         font-size: 14px;
-        border-radius:5px;
+        border-radius: 5px;
         padding: 10px 16px;
-        color:#fff;
+        color: #fff;
         background-color: #1976d2;
     }
-    label:hover{
-        box-shadow:1px;
+    label:hover {
+        box-shadow: 1px;
+    }
+}
+@media (max-width: "450px") {
+    .wrapper{
+        width: 335px !important;
     }
 }
