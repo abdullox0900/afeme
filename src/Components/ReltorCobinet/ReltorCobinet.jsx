@@ -52,26 +52,14 @@ function ReltorCobinet() {
             .then(res => {
                 let resData = res?.data.data.region_id
                 setReltorUserLocData(resData)
-                console.log(res.data.data);
             })
     }, [])
-
-    // useEffect(() => {
-    //     if (lang == 'uz') {
-    //         setUserLocationData(userLocData.name_uz)
-    //     } else if (lang == 'ru') {
-    //         setUserLocationData(userLocData.name_ru)
-    //     } else {
-    //         setUserLocationData(userLocData.name_en)
-    //     }
-    // }, [lang])
 
 
     let oldin = new Date(userData.created_at)
     let hozir = new Date()
     let diff = Math.abs(hozir - oldin);
     let total = Math.ceil(diff / (1000 * 60 * 60 * 24))
-    console.log(total);
     let days = `${total}  kundan beri`
     let month = `${Math.ceil(total / 30)}  oydan beri`
     let year = `${Math.ceil(total / 365)}  yildan beri`
@@ -97,9 +85,6 @@ function ReltorCobinet() {
         <>
             <Container>
                 <section className="reltorcob">
-                    <NavLink to={"/catalogreltor"} className="reltorcob__btn-all">
-                        Barchasini ko’rish
-                    </NavLink>
                     <div className="reltorcob__box" >
                         <div className="reltorcob__wrapper">
                             {
@@ -152,7 +137,7 @@ function ReltorCobinet() {
                                             <p className="reltorcob__work-taj">{+userData?.experience} yillik tajriba</p>
                                             <p className="reltorcob__work-afeme" >
                                                 {total <= 30 ? days : total <= 365 ? month : year}
-                                                </p>
+                                            </p>
                                         </div>
                                     ) : (
                                         <Skeleton
@@ -255,7 +240,7 @@ function ReltorCobinet() {
                             <div className="comment_box" key={com.id}>
                                 <div className="first">
                                     {isLoading ? (
-                                        <p className="author">{/* {com.author} */}Aliev Ali</p>
+                                        <p className="author">{com.author.name} {com.author.lastname}</p>
                                     ) : (
                                         <Skeleton width={160} height={20} />
                                     )}
@@ -278,7 +263,7 @@ function ReltorCobinet() {
                                     </div>
                                 </div>
                                 {isLoading ? (
-                                    <p className="commit">{/* {com.comment} */}Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged</p>
+                                    <p className="commit"> {com.comment ? com.comment : 'Foydalanuvchi izoh koldirmadi'}</p>
                                 ) : (
                                     <Skeleton />
                                 )}
