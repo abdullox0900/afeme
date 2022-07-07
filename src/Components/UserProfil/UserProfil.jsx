@@ -24,7 +24,6 @@ function UserProfil() {
     const [region, setRegion] = useState('')
     const [posts, setPosts] = useState('')
     const [type, setType] = useState('')
-    console.log(user);
 
     useEffect(() => {
         setName(user.data?.name);
@@ -45,14 +44,14 @@ function UserProfil() {
                     <div className="personal">
                         <h1 className="title">Mening Malumotlarim</h1>
                         <div className="inpG">
-                            <p>{name}</p>
-                            <p>{lastname}</p>
-                            <p>{phone}</p>
-                            <p>{email}</p>
-                            <p>{passport}</p>
-                            <p>{region}</p>
-                            <p>{posts?.length}</p>
-                            <p>{type}</p>
+                            <p>{name ? name : ''}</p>
+                            <p>{lastname ? lastname : ''}</p>
+                            <p>{phone ? phone : ''}</p>
+                            <p>{email ? email : ''}</p>
+                            <p>{passport ? passport : ''}</p>
+                            <p>{region ? region : ''}</p>
+                            <p>{posts ? posts.length : ''}</p>
+                            <p>{type ? type : ''}</p>
                         </div>
                     </div>
                 </div>
