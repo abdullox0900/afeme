@@ -22,9 +22,11 @@
     @media (max-width: 1200px) {
         width: 300px;
     }
+
     @media (max-width: 1010px) {
         width: 330px;
     }
+
     .new-buildin-card__img {
         width: 100%;
         height: 150px;
@@ -58,4 +60,72 @@
 
 .new-buildin-card:hover {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
+@media only screen and (max-width: 960px) {
+    .new-buildin-wrap-card {
+        justify-content: center;
+    }
+}
+
+@media only screen and (max-width: 748px) {
+    .new-buildin-wrap-card {
+        .new-buildin-card {
+            width: 600px;
+        }
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .new-buildin-wrap-card {
+        .new-buildin-card {
+            width: 400px;
+        }
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .new-buildin-wrap-card {
+        .new-buildin-card {
+            width: 350px;
+        }
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    .new-buildin-wrap-card {
+        margin: -10px;
+
+        .new-buildin-card {
+            width: 300px;
+            margin: 10px;
+        }
+    }
+}
+
+@media only screen and (max-width: 340px) {
+    .new-buildin-wrap-card {
+        .new-buildin-card {
+            width: 280px;
+            height: 190px;
+        }
+
+        .new-buildin-card__img {
+            height: 130px;
+            border-radius: 5px 5px 0px 0px;
+        }
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .new-buildin-wrap-card {
+        .new-buildin-card {
+            width: 250px;
+            height: 180px;
+        }
+
+        .new-buildin-card__img {
+            height: 120px;
+        }
+    }
 }

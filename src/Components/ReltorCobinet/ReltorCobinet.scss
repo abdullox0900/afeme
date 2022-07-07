@@ -2,7 +2,7 @@
     position: relative;
     // width: 1300px;
     // margin: 0 auto;
-    .reltorcob__btn-all {
+    &__btn-all {
         position: relative;
         // left: 0%;
         top: 30px;
@@ -12,7 +12,7 @@
         color: #357aff;
     }
 
-    .reltorcob__btn-all::after {
+    &__btn-all::after {
         position: absolute;
         top: 1px;
         right: -25px;
@@ -24,30 +24,30 @@
         transition: 0.5s ease;
     }
 
-    .reltorcob__btn-all:hover::after {
+    &__btn-all:hover::after {
         right: -30px;
     }
 
-    .reltorcob__box {
+    &__box {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
         margin-top: 80px;
     }
 
-    .reltorcob__wrapper {
+    &__wrapper {
         display: flex;
         align-items: center;
     }
 
-    .reltorcob__avatar {
+    &__avatar {
         width: 150px;
         height: 150px;
         border-radius: 400px;
         margin-bottom: 20px;
     }
 
-    .reltorcob__title-name {
+    &__title-name {
         margin: 0;
         margin-bottom: 20px;
         font-weight: 500;
@@ -55,12 +55,12 @@
         line-height: 38px;
     }
 
-    .reltorcob__reyting-box {
+    &__reyting-box {
         display: flex;
         align-items: center;
     }
 
-    .reltorcob__reytin {
+    &__reytin {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -70,7 +70,7 @@
         margin-bottom: 20px;
     }
 
-    .reltorcob__reyting-title {
+    &__reyting-title {
         padding-top: 7px;
         margin: 0;
         margin-right: 10px;
@@ -79,7 +79,7 @@
         line-height: 19px;
     }
 
-    .reltorcob__work-box {
+    &__work-box {
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -91,21 +91,21 @@
         border-radius: 5px;
     }
 
-    .reltorcob__work-title {
+    &__work-title {
         font-weight: 500;
         font-size: 16px;
         line-height: 19px;
         margin-bottom: 15px;
     }
 
-    .reltorcob__work-taj {
+    &__work-taj {
         position: relative;
         font-weight: 500;
         font-size: 14px;
         line-height: 16px;
     }
 
-    .reltorcob__work-taj::before {
+    &__work-taj::before {
         position: absolute;
         top: -15px;
         content: "Ish tajribasi";
@@ -115,14 +115,14 @@
         color: #757c8f;
     }
 
-    .reltorcob__work-afeme {
+    &__work-afeme {
         position: relative;
         font-weight: 500;
         font-size: 14px;
         line-height: 16px;
     }
 
-    .reltorcob__work-afeme::before {
+    &__work-afeme::before {
         position: absolute;
         top: -15px;
         content: "Afemeda";
@@ -132,23 +132,23 @@
         color: #757c8f;
     }
 
-    .reltorcob__wrap {
+    &__wrap {
         margin-left: 100px;
         max-width: 500px;
     }
 
-    .reltorcob__idesc-box {
+    &__idesc-box {
         margin-bottom: 25px;
     }
 
-    .reltorcob__idesc-title {
+    &__idesc-title {
         margin-bottom: 15px;
         font-weight: 500;
         font-size: 16px;
         line-height: 19px;
     }
 
-    .reltorcob__idescrip {
+    &__idescrip {
         margin: 0;
         max-width: 400px;
         font-weight: 400;
@@ -157,14 +157,14 @@
         color: #aaaaaa;
     }
 
-    .reltorcob__location-title {
+    &__location-title {
         margin-bottom: 15px;
         font-weight: 500;
         font-size: 16px;
         line-height: 19px;
     }
 
-    .reltorcob__location-region {
+    &__location-region {
         position: relative;
         margin-bottom: 25px;
         padding-left: 23px;
@@ -174,7 +174,7 @@
         color: #aaaaaa;
     }
 
-    .reltorcob__location-region::before {
+    &__location-region::before {
         position: absolute;
         top: -2px;
         left: 0px;
@@ -186,14 +186,14 @@
         background-size: contain;
     }
 
-    .reltorcob__contact-title {
+    &__contact-title {
         margin-bottom: 15px;
         font-weight: 500;
         font-size: 16px;
         line-height: 19px;
     }
 
-    .reltorcob__cantact-tel {
+    &__cantact-tel {
         display: inline-block;
         position: relative;
         margin-right: 30px;
@@ -204,7 +204,7 @@
         color: #000000;
     }
 
-    .reltorcob__cantact-tel::before {
+    &__cantact-tel::before {
         position: absolute;
         top: -3px;
         left: 0px;
@@ -216,7 +216,7 @@
         background-size: contain;
     }
 
-    .reltorcob__cantact-email {
+    &__cantact-email {
         display: inline-block;
         position: relative;
         padding-left: 27px;
@@ -226,7 +226,7 @@
         color: #000000;
     }
 
-    .reltorcob__cantact-email::before {
+    &__cantact-email::before {
         position: absolute;
         left: 0px;
         content: "";
@@ -237,7 +237,7 @@
         background-size: contain;
     }
 
-    .reltorcob__reyting-btn {
+    &__reyting-btn {
         padding: 0;
         border: none;
         cursor: pointer;

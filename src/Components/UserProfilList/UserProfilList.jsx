@@ -120,10 +120,10 @@ function UserProfilList() {
                     </li>
 
                     <li className="user-prof__item">
-                        <button className="user-prof__link" onClick={LogOut}>
+                        <NavLink to={"/"} className="user-prof__link" onClick={LogOut}>
                             <ion-icon name="log-in-outline"></ion-icon>
                             {content[lang].user_profil_clos}
-                        </button>
+                        </NavLink>
                     </li>
                 </ul>
             </div>

@@ -305,7 +305,7 @@ function Header() {
                             </div>
                             <Box className="header__buttons" sx={{ ml: 3 }}>
                                 {/* If User have Account show profile else Show Login */}
-                                <AdvertBtn />
+                                {/* <AdvertBtn /> */}
                                 {localStorage.getItem('Token') ? profile : userTools}
                             </Box>
                         </div>

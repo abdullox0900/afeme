@@ -33,9 +33,9 @@ function AdvertMap({ currentAdvert, zoom = 10 }) {
         const result = axios
             .get(URL)
             .then((response) => {
-                let newData = response.data.data;
-                if (newData && newData.length > 0) {
-                    setData(response.data.data);
+                let newData = response?.data.data;
+                if (newData && newData?.length > 0) {
+                    setData(response?.data.data);
                 } else {
                     setDataError(true);
                 }
@@ -91,7 +91,7 @@ function AdvertMap({ currentAdvert, zoom = 10 }) {
                             }}
                         />
                     </ListBox>
-                    {data.map((advert) => (
+                    {data?.map((advert) => (
                         <AdvertPlacemark advert={advert} />
                     ))}
                 </Map>
