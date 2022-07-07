@@ -1,45 +1,29 @@
 import { createContext, useEffect, useState } from "react";
-import axios from "axios";
 
 const UserContext = createContext();
 
-function Provider({children}) {
-    
-    const [token, setToken] = useState(localStorage.getItem("Token") || null);
+function Provider({ children }) {
     const [user, setUser] = useState([]);
-    const URL = "https://ali98.uz/api/user/359";
-    let data = {};
+    var myHeaders = new Headers();
+    const token = localStorage.getItem("Token")
 
-    function setErrorData() {
-        data['status'] = false;
-        setUser(data);
-    }
+    myHeaders.append("Authorization", `Bearer ${token}`);
+
+    var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+    };
 
     useEffect(() => {
-        if (token) {
-            axios
-            .get(URL)
-            .then((response) => {
-                let status = response.data.status;
-                let newData = response.data.data
-                if ((status == true || status == 200) && newData.hasOwnProperty("id")) {
-                    data['data'] = newData;
-                    data['status'] = true;
-                    setUser(data);
-                } else {
-                    setErrorData();
-                }
-            })
-            .catch((error) => {
-                setErrorData();
-            })
-        } else {
-            setErrorData();
-        }
-    }, [token]);
+        fetch("http://ali98.uz/api/getuser", requestOptions)
+            .then(response => response.text())
+            .then(result => setUser(JSON.parse(result)))
+            .catch(error => console.log('error', error));
+    }, [])
 
     return (
-        <UserContext.Provider value={{user, setUser}}>{children}</UserContext.Provider>
+        <UserContext.Provider value={{ user, setUser }}>{children}</UserContext.Provider>
     )
 }
-export { UserContext, Provider}
+export { UserContext, Provider }

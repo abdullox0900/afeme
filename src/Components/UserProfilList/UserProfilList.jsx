@@ -36,7 +36,6 @@ function UserProfilList() {
         color: "dodgerblue",
         backgroundColor: "#cacaca",
     };
-    console.log(user);
 
     if (isLoading) {
         return (

@@ -1,14 +1,14 @@
+@import '../../Assets/scss/colors.scss';
 .user-profil-wrap {
     display: flex;
     justify-content: space-between;
     width: 1250px;
-
-    .userprofil {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        width: 930px;
-        height: 1000;
+    .personal{
+        width: 50%;
+        margin: 0 auto;
+        text-align: center;
+        .title{
+            color:$darkBlue;
+        }
     }
 }

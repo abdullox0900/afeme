@@ -40,7 +40,7 @@ function UserAds() {
 
         } else if (user.hasOwnProperty('data')) {
             
-            if (user.data.posts.length > 0) {
+            if (user.data.posts?.length > 0) {
                 return user.data.posts.map((row) => (
                     <Cards data={row} editDelete={true} />
                 ));
