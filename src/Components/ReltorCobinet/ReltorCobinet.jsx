@@ -79,8 +79,6 @@ function ReltorCobinet() {
     }
 
 
-
-
     return (
         <>
             <Container>
@@ -101,6 +99,7 @@ function ReltorCobinet() {
                                             width={250}
                                             height={40} />
                                 }
+                                
                                 {
                                     isLoading ? <div className="reltorcob__reyting-box" onClick={() => {
                                         elReytingModal.current.classList.add("reyting-mod--open")

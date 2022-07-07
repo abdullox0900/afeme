@@ -1,6 +1,8 @@
 .search__form{
-    width: 100%;
+    width: 1100px;
     display: flex;
+    // justify-content: center;
+    margin: 0 auto;
     flex-direction: column;
     align-items: flex-end;
     .form__content {
@@ -87,7 +89,23 @@
     .search__submit-btn{
         height: 40px;
         font-size: 16px;
-        margin-right: 40px;
+        margin-right: 55px;
         margin-top: 10px;
+    }
+
+    .search__btn-wrap {
+        display: flex;
+        align-items: center;
+    }
+
+    .search__map-btn {
+        padding: 10px 30px;
+        margin-top: 10px;
+        margin-right: 10px;
+        background: transparent;
+        background-image: url("../../Assets/Img/Кrakow.png");
+        cursor: pointer;
+        color: #fff;
+        border: none;
     }
 }
