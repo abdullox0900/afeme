@@ -74,6 +74,8 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
         setAdvertCity
     );
 
+    console.log(data)
+
     if (!fullCard) {
         return (
             <Card sx={{ maxWidth: 300 }} className="card">

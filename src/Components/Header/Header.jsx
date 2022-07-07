@@ -91,6 +91,7 @@ function Header() {
 
     const profile = (
         <>
+        <AdvertBtn />
             <Box sx={{ flexGrow: 0, ml: 2 }}>
                 <Tooltip title="Open settings">
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -260,7 +261,7 @@ function Header() {
                                             sx={{ mr: "5px" }}
                                         >
                                             <Badge
-                                                badgeContent={2}
+                                                badgeContent={0}
                                                 color="error"
                                             >
                                                 <img
@@ -305,7 +306,7 @@ function Header() {
                             </div>
                             <Box className="header__buttons" sx={{ ml: 3 }}>
                                 {/* If User have Account show profile else Show Login */}
-                                {/* <AdvertBtn /> */}
+                                
                                 {localStorage.getItem('Token') ? profile : userTools}
                             </Box>
                         </div>
