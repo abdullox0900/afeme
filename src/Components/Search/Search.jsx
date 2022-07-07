@@ -93,6 +93,9 @@ function Search() {
                             </InputLabel>
                             <Select
                                 labelId="filter__select-label"
+                                MenuProps={{
+                                    disableScrollLock: true,
+                                }}
                                 id="filter__select"
                                 autoWidth={false}
                                 label={content[lang].form_select_vil}
@@ -123,6 +126,9 @@ function Search() {
                                 labelId="filter__select-label"
                                 id="filter__select"
                                 value={room}
+                                MenuProps={{
+                                    disableScrollLock: true,
+                                }}
                                 label="Kvartira"
                                 onChange={roomChange}
                                 sx={{
@@ -145,6 +151,9 @@ function Search() {
                                 labelId="filter__select-label"
                                 id="filter__select"
                                 value={room}
+                                MenuProps={{
+                                    disableScrollLock: true,
+                                }}
                                 label={content[lang].adverd_room}
                                 onChange={roomChange}
                                 sx={{
@@ -165,6 +174,9 @@ function Search() {
                                 className="filter__input"
                                 id="frominput"
                                 min="0"
+                                MenuProps={{
+                                    disableScrollLock: true,
+                                }}
                                 max={fromMax}
                                 onChange={fromMaxChange}
                                 value={priceFrom}
