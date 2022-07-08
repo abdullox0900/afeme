@@ -32,7 +32,7 @@ function Main() {
     const [adverts, setAdverts] = useState([]);
     const [dataError, setDataError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const URL = "https://ali98.uz/api/post";
+    const URL = "https://ali98.uz/api/popular/";
 
     // Reltor useState
     const [reltData, setReltData] = useState([]);
@@ -40,12 +40,13 @@ function Main() {
 
     useEffect(() => {
         const result = axios
-            .get(URL)
+            .get(URL + '8')
             .then((response) => {
                 let newData = response.data.data;
                 if (newData && newData.length > 0) {
                     setData(response.data);
                     setAdverts(response.data.data);
+                    console.log(data);
                 } else {
                     setDataError(true);
                 }

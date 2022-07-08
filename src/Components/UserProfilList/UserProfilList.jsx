@@ -24,9 +24,10 @@ function UserProfilList() {
     const { lang, setLang } = useContext(Context);
     const { user, setUser } = useContext(UserContext);
     const [isLoading, setIsLoading] = useState(true);
+    console.log(user);
 
     useEffect(() => {
-        if (user.hasOwnProperty("data")) {
+        if (user.hasOwnProperty("status")) {
             setIsLoading(false);
         }
     }, [user]);

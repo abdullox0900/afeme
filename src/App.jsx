@@ -4,7 +4,6 @@ import { Routes, Route } from "react-router-dom";
 
 // Import Components
 import './App.scss';
-import Loader from "./Components/Loader/Loader";
 import Home from "./Pages/Home/Home";
 import SignUp from './Pages/SignUp/SignUp';
 import AdvertPage from './Pages/AdventPage/advertPage';
@@ -29,9 +28,6 @@ import Test from './Pages/Test/Test';
 function App() {
 
     document.addEventListener('readystatechange', function (event) {
-        // if (document.readyState === "loading") {
-        //     document.body.style.overflow = "hidden";
-        // }
         if (document.readyState === "complete") {
             
             const loader = document.querySelectorAll('.loading');

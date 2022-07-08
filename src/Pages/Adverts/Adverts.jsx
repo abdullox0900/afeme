@@ -35,29 +35,58 @@ function Adverts() {
     const [isLoading, setIsLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
-    const URL = `https://ali98.uz/api/post`;
+    const URL = `https://ali98.uz/api/filter`;
+
+    let formData = new FormData();
+    formData.append('region_id', regionID);
 
     useEffect(() => {
-        const result = axios
-            .get(URL + `?page=${currentPage}`, { htype_id: htype })
-            .then((response) => {
-                let dataStatus = response.status;
-                if (dataStatus == true || dataStatus == 200) {
-                    setData(response.data);
-                    setAdverts(response.data.data);
-                    setTotalPages(response.data.meta.last_page + 1);
-                    console.log(data);
-                } else {
-                    setDataError(true);
-                }
-            })
-            .catch((error) => {
+        // const result = axios
+        //     .post(URL, formData)
+        //     .then((response) => {
+        //         let dataStatus = response.status;
+        //         if (dataStatus == true || dataStatus == 200) {
+        //             setData(response.data);
+        //             setAdverts(response.data.data);
+        //             setTotalPages(response.data.meta.last_page + 1);
+        //             console.log(data);
+        //         } else {
+        //             setDataError(true);
+        //         }
+        //     })
+        //     .catch((error) => {
+        //         setDataError(true);
+        //         console.log(error);
+        //     })
+        //     .finally(() => {
+        //         setIsLoading(false);
+        //     });
+        fetch(URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "form-data"
+            },
+            mode: "no-cors",
+            body: formData
+        })
+        .then((response) => {
+            let dataStatus = response.status;
+            if (dataStatus == true || dataStatus == 200) {
+                console.log(response);
+                setData(response.data);
+                setAdverts(response.data.data);
+                setTotalPages(response.data.meta.last_page + 1);
+            } else {
                 setDataError(true);
-                console.log(error);
-            })
-            .finally(() => {
-                setIsLoading(false);
-            });
+            }
+        })
+        .catch((error) => {
+            setDataError(true);
+            console.log(error);
+        })
+        .finally(() => {
+            setIsLoading(false);
+        });
     }, [currentPage]);
 
     function showCards(amount) {
