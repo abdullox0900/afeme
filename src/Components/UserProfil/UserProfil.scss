@@ -6,9 +6,17 @@
     .personal{
         width: 50%;
         margin: 0 auto;
-        text-align: center;
-        .title{
-            color:$darkBlue;
+        text-align: left;
+        .inpG{
+            display: flex;
+            flex-direction: column;
+            input{
+                margin: 15px 0 17px 0;
+                position: relative;
+                border-top: 0;
+                border-left: 0;
+                border-right: 0;
+            }
         }
     }
 }

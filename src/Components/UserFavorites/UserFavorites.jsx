@@ -68,7 +68,7 @@ function UserFavorites() {
 
     function showPosts(amount) {
         if (isLoading) {
-            return <CardSkeleton amount={amount} like={true}/>;
+            return <CardSkeleton amount={amount} like={true} />;
 
         } else if (user.hasOwnProperty("data") && !dataError) {
             if (data.length > 0) {
@@ -79,9 +79,8 @@ function UserFavorites() {
                     <div className="userNoAds">
                         <img src={basketImg} alt="" />
                         <h3 className="user-favorit__title">
-                            Saqlab qo'ygan e'lonlaringiz topilmadi
+                            Siz yoktirgan Elon Yok
                         </h3>
-                        <AdvertBtn />
                     </div>
                 );
             }
