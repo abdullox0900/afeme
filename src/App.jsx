@@ -4,7 +4,6 @@ import { Routes, Route } from "react-router-dom";
 
 // Import Components
 import './App.scss';
-import Loader from "./Components/Loader/Loader";
 import Home from "./Pages/Home/Home";
 import SignUp from './Pages/SignUp/SignUp';
 import AdvertPage from './Pages/AdventPage/advertPage';
