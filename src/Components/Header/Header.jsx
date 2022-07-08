@@ -8,7 +8,20 @@ import { CurrencyContext } from "../../Context/CurrencyContext";
 import { UserContext } from "../../Context/UserContext";
 
 // Import => Mui
-import { Select, IconButton, Tooltip, Button, Grow, Badge, MenuItem, Box, Menu, Avatar, Typography, Container } from "@mui/material";
+import {
+    Select,
+    IconButton,
+    Tooltip,
+    Button,
+    Grow,
+    Badge,
+    MenuItem,
+    Box,
+    Menu,
+    Avatar,
+    Typography,
+    Container,
+} from "@mui/material";
 
 // Import => images
 import flagUz from "../../Assets/Img/Icon/uz.svg";
@@ -74,24 +87,22 @@ function Header() {
 
     // Api Axios Logos
     useEffect(() => {
-        axios.get(`https://ali98.uz/api/logos`)
-            .then(res => {
-                const newImgData = res?.data
+        axios.get(`https://ali98.uz/api/logos`).then((res) => {
+            const newImgData = res?.data;
 
-                setLogoImg(newImgData);
-            })
-    }, [])
+            setLogoImg(newImgData);
+        });
+    }, []);
 
     const newImgArr = [];
 
-    logoImg.map(i => {
-
-        return newImgArr.push(i.image)
-    })
+    logoImg.map((i) => {
+        return newImgArr.push(i.image);
+    });
 
     const profile = (
         <>
-        <AdvertBtn />
+            {window.location.pathname != "/advertPage" ? <AdvertBtn /> : ""}
             <Box sx={{ flexGrow: 0, ml: 2 }}>
                 <Tooltip title="Open settings">
                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -121,21 +132,36 @@ function Header() {
                     open={Boolean(anchorElUser)}
                     onClose={handleCloseUserMenu}
                 >
-                    <MenuItem onClick={handleCloseUserMenu}>
-                        <Typography textAlign="center" className="profileTools">
-                            <NavLink to={"/userprofil"}>My Profile</NavLink>
-                        </Typography>
-                    </MenuItem>
-                    <MenuItem onClick={handleCloseUserMenu}>
-                        <Typography textAlign="center" className="profileTools">
-                            <NavLink to={"/userads"}>My Adverts</NavLink>
-                        </Typography>
-                    </MenuItem>
-                    <MenuItem onClick={handleCloseUserMenu}>
-                        <Typography textAlign="center" className="profileTools">
-                            <NavLink to={"/usernews"}>News</NavLink>
-                        </Typography>
-                    </MenuItem>
+                    <NavLink to={"/userprofil"}>
+                        <MenuItem onClick={handleCloseUserMenu}>
+                            <Typography
+                                textAlign="center"
+                                className="profileTools"
+                            >
+                                My Profile
+                            </Typography>
+                        </MenuItem>
+                    </NavLink>
+                    <NavLink to={"/userads"}>
+                        <MenuItem onClick={handleCloseUserMenu}>
+                            <Typography
+                                textAlign="center"
+                                className="profileTools"
+                            >
+                                My Adverts
+                            </Typography>
+                        </MenuItem>
+                    </NavLink>
+                    <NavLink to={"/usernews"}>
+                        <MenuItem onClick={handleCloseUserMenu}>
+                            <Typography
+                                textAlign="center"
+                                className="profileTools"
+                            >
+                                News
+                            </Typography>
+                        </MenuItem>
+                    </NavLink>
                     <MenuItem onClick={LogOut}>
                         <Typography textAlign="center" className="profileTools">
                             Log out
@@ -174,8 +200,12 @@ function Header() {
                             >
                                 <img
                                     className="header__logo-img"
-                                    src={newImgArr.length > 0 ? newImgArr : logo}
-                                    alt="logo" width={60} height={60}
+                                    src={
+                                        newImgArr.length > 0 ? newImgArr : logo
+                                    }
+                                    alt="logo"
+                                    width={60}
+                                    height={60}
                                 />
                             </NavLink>
 
@@ -255,7 +285,10 @@ function Header() {
                                     arrow
                                     TransitionComponent={Grow}
                                 >
-                                    <NavLink to={"/userfavorites"} className="header__likes__link">
+                                    <NavLink
+                                        to={"/userfavorites"}
+                                        className="header__likes__link"
+                                    >
                                         <IconButton
                                             color="primary"
                                             sx={{ mr: "5px" }}
@@ -306,15 +339,18 @@ function Header() {
                             </div>
                             <Box className="header__buttons" sx={{ ml: 3 }}>
                                 {/* If User have Account show profile else Show Login */}
-                                
-                                {localStorage.getItem('Token') ? profile : userTools}
+
+                                {user.hasOwnProperty('data')
+                                    ? profile
+                                    : userTools}
                             </Box>
                         </div>
                         <button
                             className="header__menu-btn"
                             onClick={() => {
                                 elHeader.current.classList.add("header--open");
-                                document.body.style.overflow = "-moz-hidden-unscrollable";
+                                document.body.style.overflow =
+                                    "-moz-hidden-unscrollable";
                             }}
                         >
                             ☰

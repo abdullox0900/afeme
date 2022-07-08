@@ -3,10 +3,12 @@ import { createContext, useEffect, useState } from "react";
 const UserContext = createContext();
 
 function Provider({ children }) {
+
     const [user, setUser] = useState([]);
     var myHeaders = new Headers();
     const token = localStorage.getItem("Token")
-
+    let data = {};
+    
     myHeaders.append("Authorization", `Bearer ${token}`);
 
     var requestOptions = {
@@ -15,11 +17,33 @@ function Provider({ children }) {
         redirect: 'follow'
     };
 
+    function setErrorData() {
+        data['status'] = false;
+        setUser(data);
+    }
+
     useEffect(() => {
-        fetch("http://ali98.uz/api/getuser", requestOptions)
+        if (token) {
+            fetch("http://ali98.uz/api/getuser", requestOptions)
             .then(response => response.text())
-            .then(result => setUser(JSON.parse(result)))
-            .catch(error => console.log('error', error));
+            .then((response) => {
+                let status = JSON.parse(response).status;
+                let newData = JSON.parse(response).data
+                if (status == true && newData.hasOwnProperty("id")) {
+                    data['data'] = newData;
+                    data['status'] = true;
+                    console.log(data);
+                    setUser(data);
+                } else {
+                    setErrorData();
+                }
+            })
+            .catch((error) => {
+                setErrorData();
+            })
+        } else {
+            setErrorData();
+        }
     }, [])
 
     return (

@@ -28,9 +28,6 @@ import Test from './Pages/Test/Test';
 function App() {
 
     document.addEventListener('readystatechange', function (event) {
-        // if (document.readyState === "loading") {
-        //     document.body.style.overflow = "hidden";
-        // }
         if (document.readyState === "complete") {
             
             const loader = document.querySelectorAll('.loading');
