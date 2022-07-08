@@ -35,7 +35,7 @@ function UserFavorites() {
     useEffect(() => {
         if (user.hasOwnProperty("data")) {
             userFavs = user.data.favorites;
-            if (userFavs.length > 0) {
+            if (userFavs?.length > 0) {
                 for (let i = 0; i < userFavs.length; i++) {
                     axios
                         .get(`https://ali98.uz/api/post/${userFavs[i].post_id}`)

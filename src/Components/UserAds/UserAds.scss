@@ -1,9 +1,13 @@
 .user__ads{
     width: 100%;
+    height: 100vh;
+    padding: 30px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    padding: 15px;
+    grid-gap: 30px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    box-sizing: border-box;
 }
 .userNoAds {
     display: flex;

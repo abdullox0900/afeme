@@ -86,7 +86,7 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
                         height="140"
                         className="card__img"
                         image={
-                            data?.image.length > 0
+                            data.image?.length > 0
                                 ? data?.image[0]?.url
                                 : CardImg
                         }
