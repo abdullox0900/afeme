@@ -32,6 +32,7 @@ function Provider({ children }) {
                 if (status == true && newData.hasOwnProperty("id")) {
                     data['data'] = newData;
                     data['status'] = true;
+                    data['favorites'] = newData.favorites.length;
                     console.log(data);
                     setUser(data);
                 } else {

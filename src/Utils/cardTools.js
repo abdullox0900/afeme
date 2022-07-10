@@ -1,3 +1,4 @@
+import { logDOM } from "@testing-library/react";
 import React, { useState, useEffect, useContext } from "react";
 
 function CardTools(
@@ -25,11 +26,10 @@ function CardTools(
         if (data.hasOwnProperty("id")) {
             if (currency == "usd") {
                 setPrice(numberFormatter(data.price_usd));
-            } else if (currency == "sum") {
+            } else if (currency == "sum" && data.price_som != null) {
                 setPrice(
                     data.price_som
-                        .toString()
-                        .replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " so'm"
+                        .toLocaleString() + " so'm"
                 );
             }
 

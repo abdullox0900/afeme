@@ -47,7 +47,6 @@ function AdvertPlacemark({ advert }) {
                     iconLayout: "default#image",
                     iconImageHref: PlacemarkIcon,
                     iconImageSize: [50, 50],
-                    // iconImageOffset: [0, 0],
                 }}
                 properties={{
                     balloonContentBody: `<div class="mapBaloon">

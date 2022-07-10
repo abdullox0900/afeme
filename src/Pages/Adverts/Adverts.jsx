@@ -28,7 +28,9 @@ function Adverts() {
     const from = searchParams.get("from");
     const to = searchParams.get("to");
     const room = searchParams.get("room");
+    const sale = searchParams.get("sale");
 
+    const [formData, setFormData] = useState();
     const [data, setData] = useState([]);
     const [adverts, setAdverts] = useState([]);
     const [dataError, setDataError] = useState(false);
@@ -37,45 +39,27 @@ function Adverts() {
     const [totalPages, setTotalPages] = useState(0);
     const URL = `https://ali98.uz/api/filter`;
 
-    let formData = new FormData();
-    formData.append('region_id', regionID);
-
+    let searchTerms = new FormData();
+    searchTerms.append('keyword', term ? term : '');
+    searchTerms.append('region_id', regionID ? regionID : '');
+    searchTerms.append('htype', htype ? htype : '');
+    searchTerms.append('room', room ? room : '');
+    searchTerms.append('sale_id', sale ? sale : '');
+    
     useEffect(() => {
-        // const result = axios
-        //     .post(URL, formData)
-        //     .then((response) => {
-        //         let dataStatus = response.status;
-        //         if (dataStatus == true || dataStatus == 200) {
-        //             setData(response.data);
-        //             setAdverts(response.data.data);
-        //             setTotalPages(response.data.meta.last_page + 1);
-        //             console.log(data);
-        //         } else {
-        //             setDataError(true);
-        //         }
-        //     })
-        //     .catch((error) => {
-        //         setDataError(true);
-        //         console.log(error);
-        //     })
-        //     .finally(() => {
-        //         setIsLoading(false);
-        //     });
+        setFormData(searchTerms);
         fetch(URL, {
             method: "POST",
-            headers: {
-                "Content-Type": "form-data"
-            },
-            mode: "no-cors",
-            body: formData
+            body: searchTerms
         })
+        .then(response => response.text())
         .then((response) => {
-            let dataStatus = response.status;
-            if (dataStatus == true || dataStatus == 200) {
-                console.log(response);
-                setData(response.data);
-                setAdverts(response.data.data);
-                setTotalPages(response.data.meta.last_page + 1);
+            let newData = JSON.parse(response);
+            if (newData.status == true || newData.status == 200) {
+                setData(newData);
+                setAdverts(newData.data);
+                console.log(data);
+                // setTotalPages(newData.meta.last_page + 1);
             } else {
                 setDataError(true);
             }
@@ -90,13 +74,12 @@ function Adverts() {
     }, [currentPage]);
 
     function showCards(amount) {
-        
         if (isLoading) {
             return <CardSkeleton amount={amount} fullCard={true} />;
 
-        } else if (adverts.length > 0 && !dataError) {
-
-            return adverts.slice(0, amount).map((row) => {
+        } else if (adverts.length > 0) {
+            
+            return adverts.map((row) => {
                 return <Cards data={row} fullCard={true} />;
             });
         } else {

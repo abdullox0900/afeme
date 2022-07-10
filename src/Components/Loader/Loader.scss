@@ -5,7 +5,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
+    position: fixed;
     height: 100vh;
     width: 100%;
     z-index: 999;
@@ -14,17 +14,11 @@ body{
 }
 body.loaded .loading{
     opacity: 0;
-    animation: terminateLoader 0.5;
-    animation-delay: 0.5s;
+    pointer-events: none;
 }
 body.loaded{
     overflow: auto;
 } 
-@keyframes terminateLoader {
-    0%{
-        z-index: -99;
-    }
-}
 // .loader {
 //     display: flex;
 //     justify-content: center;
