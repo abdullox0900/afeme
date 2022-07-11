@@ -34,6 +34,7 @@ function Provider({ children }) {
                         data['status'] = true;
                         data['favorites'] = newData.favorites.length;
                         setUser(data);
+                        console.log(data);
                     } else {
                         setErrorData();
                     }

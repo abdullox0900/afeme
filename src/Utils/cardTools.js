@@ -10,14 +10,15 @@ function CardTools(
     setAdvertLink,
     setAdvertType,
     setAdvertTypeImg,
+    setAdvertTypeLink,
     setAdvertAddress,
     setAdvertCity
 ) {
 
-    function numberFormatter(numb) {
-        var formatter = new Intl.NumberFormat("en-US", {
+    function numberFormatter(numb, type, currency) {
+        var formatter = new Intl.NumberFormat(type, {
             style: "currency",
-            currency: "USD",
+            currency: currency,
         });
         return formatter.format(numb);
     }
@@ -25,20 +26,20 @@ function CardTools(
     useEffect(() => {
         if (data.hasOwnProperty("id")) {
             if (currency == "usd") {
-                setPrice(numberFormatter(data.price_usd));
+                setPrice(numberFormatter(data.price_usd, 'en-US', "USD"));
             } else if (currency == "sum" && data.price_som != null) {
                 setPrice(
-                    data.price_som
-                        .toLocaleString() + " so'm"
+                    numberFormatter(data.price_som, "uz-UZ", "UZS")
                 );
             }
 
             setAdvertLink(`/advert/${data.id}`);
+            setAdvertTypeLink(`/adverts?htype=${data.htype_id.id}`)
 
             if (lang == "uz") {
                 setAdvertType(data?.htype_id?.name_uz);
                 setAdvertAddress(data?.region_id?.name_uz);
-                setAdvertCity(data?.city_id?.name_uz);
+                // setAdvertCity(data?.city_id?.name_uz);
 
                 setAdvertTitle(
                     `${data.sale_id?.name_uz + 'ga'} ${data.room} xonali ${data.htype_id?.name_uz} sotiladi`
@@ -46,7 +47,7 @@ function CardTools(
             } else if (lang == "ru") {
                 setAdvertType(data?.htype_id?.name_ru);
                 setAdvertAddress(data?.region_id?.name_ru);
-                setAdvertCity(data?.city_id?.name_ru);
+                // setAdvertCity(data?.city_id?.name_ru);
 
                 setAdvertTitle(
                     `${data.room}-комнатная ${data.htype_id?.name_ru} в ${data.sale_id?.name_ru} на продажу`
@@ -54,7 +55,7 @@ function CardTools(
             } else {
                 setAdvertType(data?.htype_id?.name_en);
                 setAdvertAddress(data?.region_id?.name_en);
-                setAdvertCity(data?.city_id?.name_en);
+                // setAdvertCity(data?.city_id?.name_en);
 
                 setAdvertTitle(
                     `${data.room}-room ${data.htype_id?.name_en} for ${data.sale_id?.name_en} Sale`

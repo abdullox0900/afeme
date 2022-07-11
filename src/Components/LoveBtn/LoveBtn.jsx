@@ -25,7 +25,6 @@ function LoveBtn({ advertID }) {
             method: "GET",
             headers: headers,
         };
-        setNotf(true);
 
         function addLove(content, heart) {
             content.classList.add("active");
@@ -51,6 +50,7 @@ function LoveBtn({ advertID }) {
         }
 
         if (user.hasOwnProperty("data")) {
+            setNotf(true);
             for (let i = 0; i < loveBtn.length; i++) {
                 if (
                     loveBtn[i].getAttribute("advertid") != "" &&

@@ -211,7 +211,7 @@ function Header() {
                         Sozlamalar
                     </Link>
                 </MenuItem>
-                <MenuItem onClick={LogOut}>
+                <MenuItem onClick={(e) => LogOut(e)}>
                     <Link to={"#"} className="profile__menu__link">
                         <ListItemIcon>
                             <Logout fontSize="small" />
@@ -342,8 +342,8 @@ function Header() {
                                             sx={{ mr: "5px" }}
                                         >
                                             <Badge
-                                                badgeContent={user?.favorites > 0 ? user?.favorites : ''}
-                                                color="warning"
+                                                badgeContent={user?.favorites ? user?.favorites : 0}
+                                                color="error"
                                             >
                                                 <img
                                                     src={loveIcon}
