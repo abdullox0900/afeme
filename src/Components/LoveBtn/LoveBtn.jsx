@@ -98,7 +98,7 @@ function LoveBtn({ advertID }) {
         if (user.hasOwnProperty("data") && advertID) {
             let userFavorites = user.data.favorites;
 
-            for (let i = 0; i < userFavorites.length; i++) {
+            for (let i = 0; i < userFavorites?.length; i++) {
                 if (userFavorites[i].id == advertID) {
                     setIsLove(true);
                     break;
