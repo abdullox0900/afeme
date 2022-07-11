@@ -20,10 +20,8 @@ import UserAdsPage from "./Pages/UserAdsPage/UserAdsPage";
 import UserFavoritesPage from './Pages/UserFavoritesPage/UserFavoritesPage';
 import UserNewsPage from './Pages/UserNewsPage/UserNewsPage';
 import Help from './Pages/Help/Help';
+import SearchMap from './Pages/SearchMap/SearchMap';
 import Test from './Pages/Test/Test';
-
-
-
 
 function App() {
 
@@ -71,6 +69,7 @@ function App() {
                     <Route path='/usernews' element={<UserNewsPage />} />
                     <Route path='/chat' element={<Chat />} />
                     <Route path='/help' element={<Help />} />
+                    <Route path='/map' element={<SearchMap />} />
                     <Route path='/test' element={<Test />} />
                     <Route path="*" element={<Page404 />} />
                 </Routes>

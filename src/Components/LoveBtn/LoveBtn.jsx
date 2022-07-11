@@ -6,11 +6,10 @@ import Notification from "../Notification/Notification";
 import "./LoveBtn.scss";
 
 function LoveBtn({ advertID }) {
-
     const { user, setUser } = useContext(UserContext);
-    const [notf, setNotf ] = useState(false); 
-    const [notfType, setNotfType ] = useState(''); 
-    const [isLove, setIsLove ] = useState(false); 
+    const [notf, setNotf] = useState(false);
+    const [notfType, setNotfType] = useState("");
+    const [isLove, setIsLove] = useState(false);
 
     function LoveAnimate(e) {
         let modal = document.querySelector(".loginModal");
@@ -32,26 +31,22 @@ function LoveBtn({ advertID }) {
             content.classList.add("active");
             heart.classList.add("active");
 
-            fetch(URL, options)
-                .then((response) => response.text())
-                .then((response) => {
-                    if (JSON.parse(response) == 1) {
-                    }
-                });
-            setNotfType('success');
+            setNotfType("success");
             controlFavorites(true);
         }
         function removeLove(content, heart) {
             content.classList.remove("active");
             heart.classList.remove("active");
 
-            setNotfType('warning');
+            setNotfType("warning");
             controlFavorites(false);
         }
         function controlFavorites(addOrRemove) {
             let newUser = user;
-            newUser.favorites = addOrRemove ? user.favorites + 1 : user.favorites - 1
-            setUser(newUser)
+            newUser.favorites = addOrRemove
+                ? user.favorites + 1
+                : user.favorites - 1;
+            setUser(newUser);
             console.log(user);
         }
 
@@ -62,6 +57,12 @@ function LoveBtn({ advertID }) {
                     loveBtn[i].getAttribute("advertid") ==
                         e.target.getAttribute("advertid")
                 ) {
+                    fetch(URL, options)
+                        .then((response) => response.text())
+                        .then((response) => {
+                            if (JSON.parse(response) == 1) {
+                            }
+                        });
                     if (content[i].classList.contains("active")) {
                         removeLove(content[i], heart[i]);
                     } else {
@@ -75,17 +76,27 @@ function LoveBtn({ advertID }) {
     }
     const addNotf = () => {
         if (notf) {
-            if (notfType == 'success') {
-                return <Notification message={"E'lon yoqtirganlarga qo'shildi"} type={notfType}/>
+            if (notfType == "success") {
+                return (
+                    <Notification
+                        message={"E'lon yoqtirganlarga qo'shildi"}
+                        type={notfType}
+                    />
+                );
             } else {
-                return <Notification message={"E'lon yoqtirganlardan olib tashlandi"} type={notfType}/>
+                return (
+                    <Notification
+                        message={"E'lon yoqtirganlardan olib tashlandi"}
+                        type={notfType}
+                    />
+                );
             }
         }
-    }
+    };
 
     useEffect(() => {
-        if (user.hasOwnProperty('data') && advertID) {
-            let userFavorites = user.data.favorites
+        if (user.hasOwnProperty("data") && advertID) {
+            let userFavorites = user.data.favorites;
 
             for (let i = 0; i < userFavorites.length; i++) {
                 if (userFavorites[i].id == advertID) {
@@ -94,7 +105,7 @@ function LoveBtn({ advertID }) {
                 }
             }
         }
-    }, [user])
+    }, [user]);
 
     return (
         <>
@@ -109,8 +120,10 @@ function LoveBtn({ advertID }) {
                     advertid={advertID}
                     onClick={(e) => LoveAnimate(e)}
                 >
-                    <div className={!isLove ? 'content' : 'content active' }>
-                        <span className={!isLove ? 'heart' : 'heart active' }></span>
+                    <div className={!isLove ? "content" : "content active"}>
+                        <span
+                            className={!isLove ? "heart" : "heart active"}
+                        ></span>
                     </div>
                 </div>
             </Tooltip>
