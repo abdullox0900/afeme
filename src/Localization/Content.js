@@ -142,6 +142,7 @@ const content = {
         viewInMap: "Kartadan ko'rish",
         street: "ko'chasi",
         description: "Tavsif",
+        detailedView: "Batafsil ko'rish"
     },
     en: {
         // Header
@@ -243,6 +244,7 @@ const content = {
         viewInMap: "View in Map",
         street: "street",
         description: "Description",
+        detailedView: "See more"
     },
     ru: {
         // Header
@@ -344,6 +346,7 @@ const content = {
         viewInMap: "Вид с карты",
         street: "Улица",
         description: "Описание",
+        detailedView: "Узнать больше"
     },
 }
 

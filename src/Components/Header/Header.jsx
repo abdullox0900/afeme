@@ -1,6 +1,6 @@
 // Import => React
 import React, { useState, useContext, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink as Link, useNavigate } from "react-router-dom";
 
 // Import useContext => Localization
 import { Context } from "../../Context/LangContext";
@@ -9,6 +9,7 @@ import { UserContext } from "../../Context/UserContext";
 
 // Import => Mui
 import {
+    Container,
     Select,
     IconButton,
     Tooltip,
@@ -19,9 +20,17 @@ import {
     Box,
     Menu,
     Avatar,
-    Typography,
-    Container,
+    Divider,
+    ListItemIcon,
 } from "@mui/material";
+import {
+    PersonAdd,
+    Settings,
+    Logout,
+    Newspaper,
+    PostAdd,
+    Chat as ChatIcon,
+} from "@mui/icons-material/";
 
 // Import => images
 import flagUz from "../../Assets/Img/Icon/uz.svg";
@@ -60,6 +69,7 @@ function Header() {
     const [anchorElUser, setAnchorElUser] = useState(null);
     const [currencyTooltip, setCurrencyTooltip] = useState(false);
     const [langTooltip, setLangTooltip] = useState(false);
+    const userMenuOpen = Boolean(anchorElUser);
 
     const currencyChange = (e) => {
         setCurrency(e.target.value);
@@ -103,72 +113,113 @@ function Header() {
     const profile = (
         <>
             {window.location.pathname != "/advertPage" ? <AdvertBtn /> : ""}
-            <Box sx={{ flexGrow: 0, ml: 2 }}>
-                <Tooltip title="Open settings">
-                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                        {user?.image ? (
-                            <img src={user.image} alt=""></img>
-                        ) : (
-                            <Avatar
-                                alt="Profile picture"
-                                sx={{ width: "36px", height: "36px" }}
-                            />
-                        )}
+            <Box
+                sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    textAlign: "center",
+                }}
+            >
+                <Tooltip title="Account settings">
+                    <IconButton
+                        onClick={handleOpenUserMenu}
+                        size="small"
+                        sx={{ ml: 2 }}
+                        aria-controls={
+                            userMenuOpen ? "account-menu" : undefined
+                        }
+                        aria-haspopup="true"
+                        aria-expanded={userMenuOpen ? "true" : undefined}
+                    >
+                        <Avatar sx={{ width: 32, height: 32 }}>
+                            {user?.data?.name.slice(0, 1)}
+                        </Avatar>
                     </IconButton>
                 </Tooltip>
-                <Menu
-                    sx={{ mt: "45px" }}
-                    id="menu-appbar"
-                    anchorEl={anchorElUser}
-                    anchorOrigin={{
-                        vertical: "top",
-                        horizontal: "right",
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                        vertical: "top",
-                        horizontal: "right",
-                    }}
-                    open={Boolean(anchorElUser)}
-                    onClose={handleCloseUserMenu}
-                >
-                    <NavLink to={"/userprofil"}>
-                        <MenuItem onClick={handleCloseUserMenu}>
-                            <Typography
-                                textAlign="center"
-                                className="profileTools"
-                            >
-                                My Profile
-                            </Typography>
-                        </MenuItem>
-                    </NavLink>
-                    <NavLink to={"/userads"}>
-                        <MenuItem onClick={handleCloseUserMenu}>
-                            <Typography
-                                textAlign="center"
-                                className="profileTools"
-                            >
-                                My Adverts
-                            </Typography>
-                        </MenuItem>
-                    </NavLink>
-                    <NavLink to={"/usernews"}>
-                        <MenuItem onClick={handleCloseUserMenu}>
-                            <Typography
-                                textAlign="center"
-                                className="profileTools"
-                            >
-                                News
-                            </Typography>
-                        </MenuItem>
-                    </NavLink>
-                    <MenuItem onClick={LogOut}>
-                        <Typography textAlign="center" className="profileTools">
-                            Log out
-                        </Typography>
-                    </MenuItem>
-                </Menu>
             </Box>
+            <Menu
+                anchorEl={anchorElUser}
+                id="account-menu"
+                className="userAccountMenu"
+                open={userMenuOpen}
+                onClose={handleCloseUserMenu}
+                onClick={handleCloseUserMenu}
+                PaperProps={{
+                    elevation: 0,
+                    sx: {
+                        overflow: "visible",
+                        filter: "drop-shadow(0px 2px 8px rgba(0,0,0,0.32))",
+                        mt: 1.5,
+                        "& .MuiAvatar-root": {
+                            width: 32,
+                            height: 32,
+                            ml: -0.5,
+                            mr: 1,
+                        },
+                        "&:before": {
+                            content: '""',
+                            display: "block",
+                            position: "absolute",
+                            top: 0,
+                            right: 14,
+                            width: 10,
+                            height: 10,
+                            bgcolor: "background.paper",
+                            transform: "translateY(-50%) rotate(45deg)",
+                            zIndex: 0,
+                        },
+                    },
+                }}
+                transformOrigin={{ horizontal: "right", vertical: "top" }}
+                anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+            >
+                <MenuItem>
+                    <Link to={"/userprofil"} className="profile__menu__link">
+                        <Avatar /> {user?.data?.name} {user?.data?.lastname}
+                    </Link>
+                </MenuItem>
+                <MenuItem>
+                    <Link to={"/userads"} className="profile__menu__link">
+                        <ListItemIcon>
+                            <PostAdd />
+                        </ListItemIcon>
+                        Mening e'lonlarim
+                    </Link>
+                </MenuItem>
+                <MenuItem>
+                    <Link to={"/usernews"} className="profile__menu__link">
+                        <ListItemIcon>
+                            <Newspaper />
+                        </ListItemIcon>
+                        Yangiliklar
+                    </Link>
+                </MenuItem>
+                <MenuItem>
+                    <Link to={"/chat"} className="profile__menu__link">
+                        <ListItemIcon>
+                            <ChatIcon />
+                        </ListItemIcon>
+                        Xabarlar
+                    </Link>
+                </MenuItem>
+                <Divider />
+                <MenuItem>
+                    <Link to={"/userprofil"} className="profile__menu__link">
+                        <ListItemIcon>
+                            <Settings fontSize="small" />
+                        </ListItemIcon>
+                        Sozlamalar
+                    </Link>
+                </MenuItem>
+                <MenuItem onClick={LogOut}>
+                    <Link to={"#"} className="profile__menu__link">
+                        <ListItemIcon>
+                            <Logout fontSize="small" />
+                        </ListItemIcon>
+                        Chiqish
+                    </Link>
+                </MenuItem>
+            </Menu>
         </>
     );
 
@@ -194,10 +245,7 @@ function Header() {
                 <Container className="container">
                     <div className="header__content">
                         <div className="header__logo">
-                            <NavLink
-                                to={"/Afeme"}
-                                className="header__logo-link"
-                            >
+                            <Link to={"/Afeme"} className="header__logo-link">
                                 <img
                                     className="header__logo-img"
                                     src={
@@ -207,7 +255,7 @@ function Header() {
                                     width={60}
                                     height={60}
                                 />
-                            </NavLink>
+                            </Link>
 
                             <Tooltip
                                 className="icon__btn"
@@ -285,7 +333,7 @@ function Header() {
                                     arrow
                                     TransitionComponent={Grow}
                                 >
-                                    <NavLink
+                                    <Link
                                         to={"/userfavorites"}
                                         className="header__likes__link"
                                     >
@@ -294,7 +342,7 @@ function Header() {
                                             sx={{ mr: "5px" }}
                                         >
                                             <Badge
-                                                badgeContent={0}
+                                                badgeContent={user?.favorites}
                                                 color="error"
                                             >
                                                 <img
@@ -304,7 +352,7 @@ function Header() {
                                                 />
                                             </Badge>
                                         </IconButton>
-                                    </NavLink>
+                                    </Link>
                                 </Tooltip>
                                 <Tooltip
                                     title={content[lang].currencyTooltip}
@@ -340,7 +388,7 @@ function Header() {
                             <Box className="header__buttons" sx={{ ml: 3 }}>
                                 {/* If User have Account show profile else Show Login */}
 
-                                {user.hasOwnProperty('data')
+                                {user.hasOwnProperty("data")
                                     ? profile
                                     : userTools}
                             </Box>

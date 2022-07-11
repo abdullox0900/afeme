@@ -126,7 +126,7 @@ function Advert() {
                                 </Box>
                                 <Box className="advert__items">
                                     <div className="advert__buttons">
-                                        <LoveBtn advertid={data.id} />
+                                        <LoveBtn advertID={data.id} />
                                         <Tooltip
                                             title="E'lonni Ulashish"
                                             TransitionComponent={Zoom}

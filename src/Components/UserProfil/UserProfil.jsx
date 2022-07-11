@@ -44,7 +44,7 @@ function UserProfil() {
     all.append('phone', phone)
     all.append('email', 'sıdhfıusdhfıo') 
     all.append('passport', passport)
-    all.append('region_id', user.data.region_id.id)
+    all.append('region_id', user.data?.region_id?.id)
     all.append('user_type', 'companiya')
 
     let headersList = {
