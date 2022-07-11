@@ -342,8 +342,8 @@ function Header() {
                                             sx={{ mr: "5px" }}
                                         >
                                             <Badge
-                                                badgeContent={user?.favorites}
-                                                color="error"
+                                                badgeContent={user?.favorites > 0 ? user?.favorites : ''}
+                                                color="warning"
                                             >
                                                 <img
                                                     src={loveIcon}
