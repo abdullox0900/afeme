@@ -1,5 +1,5 @@
 // Import => React
-import { React, useContext, useState, useEffect } from "react";
+import { React, useContext, useState, useEffect, useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 // Import => Component
@@ -24,9 +24,10 @@ function UserProfilList() {
     const { lang, setLang } = useContext(Context);
     const { user, setUser } = useContext(UserContext);
     const [isLoading, setIsLoading] = useState(true);
+    console.log(user);
 
     useEffect(() => {
-        if (user.hasOwnProperty("data")) {
+        if (user.hasOwnProperty("status")) {
             setIsLoading(false);
         }
     }, [user]);
@@ -36,7 +37,9 @@ function UserProfilList() {
         color: "dodgerblue",
         backgroundColor: "#cacaca",
     };
-    console.log(user);
+
+
+    const active = useRef(null)
 
     if (isLoading) {
         return (
@@ -79,14 +82,14 @@ function UserProfilList() {
 
                 <ul className="user-prof__list">
                     <li className="user-prof__item">
-                        <NavLink to={"/userprofil"} className="user-prof__link">
+                        <NavLink to={"/userprofil"} className="user-prof__link"  >
                             <ion-icon name="person-circle-outline"></ion-icon>
                             {content[lang].user_profil}
                         </NavLink>
                     </li>
 
                     <li className="user-prof__item">
-                        <NavLink to={"/userads"} className={"user-prof__link"}>
+                        <NavLink to={"/userads"} className={"user-prof__link"} >
                             <ion-icon name="albums-outline"></ion-icon>
                             {content[lang].user_profil_ads}
                         </NavLink>
@@ -95,7 +98,7 @@ function UserProfilList() {
                     <li className="user-prof__item">
                         <NavLink
                             to={"/userprofilmessage"}
-                            className="user-prof__link"
+                            className="user-prof__link" 
                         >
                             <ion-icon name="chatbox-ellipses-outline"></ion-icon>
                             {content[lang].user_profil_message}
@@ -105,7 +108,7 @@ function UserProfilList() {
                     <li className="user-prof__item">
                         <NavLink
                             to={"/userfavorites"}
-                            className="user-prof__link"
+                            className="user-prof__link" 
                         >
                             <ion-icon name="heart-outline"></ion-icon>
                             {content[lang].user_profil_favorintes}
@@ -113,7 +116,7 @@ function UserProfilList() {
                     </li>
 
                     <li className="user-prof__item">
-                        <NavLink to={"/usernews"} className="user-prof__link">
+                        <NavLink to={"/usernews"} className="user-prof__link" >
                             <ion-icon name="newspaper-outline"></ion-icon>
                             {content[lang].user_profil_news}
                         </NavLink>

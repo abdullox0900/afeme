@@ -1,14 +1,21 @@
 import { createContext, useEffect, useState } from "react";
-import axios from "axios";
 
 const UserContext = createContext();
 
-function Provider({children}) {
-    
-    const [token, setToken] = useState(localStorage.getItem("Token") || null);
+function Provider({ children }) {
+
     const [user, setUser] = useState([]);
-    const URL = "https://ali98.uz/api/user/359";
+    var myHeaders = new Headers();
+    const token = localStorage.getItem("Token")
     let data = {};
+    
+    myHeaders.append("Authorization", `Bearer ${token}`);
+
+    var requestOptions = {
+        method: 'GET',
+        headers: myHeaders,
+        redirect: 'follow'
+    };
 
     function setErrorData() {
         data['status'] = false;
@@ -17,14 +24,16 @@ function Provider({children}) {
 
     useEffect(() => {
         if (token) {
-            axios
-            .get(URL)
+            fetch("http://ali98.uz/api/getuser", requestOptions)
+            .then(response => response.text())
             .then((response) => {
-                let status = response.data.status;
-                let newData = response.data.data
-                if ((status == true || status == 200) && newData.hasOwnProperty("id")) {
+                let status = JSON.parse(response).status;
+                let newData = JSON.parse(response).data
+                if (status == true && newData.hasOwnProperty("id")) {
                     data['data'] = newData;
                     data['status'] = true;
+                    data['favorites'] = newData.favorites.length;
+                    console.log(data);
                     setUser(data);
                 } else {
                     setErrorData();
@@ -36,10 +45,10 @@ function Provider({children}) {
         } else {
             setErrorData();
         }
-    }, [token]);
+    }, [])
 
     return (
-        <UserContext.Provider value={{user, setUser}}>{children}</UserContext.Provider>
+        <UserContext.Provider value={{ user, setUser }}>{children}</UserContext.Provider>
     )
 }
-export { UserContext, Provider}
+export { UserContext, Provider }

@@ -122,10 +122,20 @@
     .MuiButtonBase-root .MuiIconButton-root {
         padding: 0px !important;
     }
+    .MuiAvatar-root{
+        text-transform: uppercase;
+    }
 };
 
-.profileTools a{
+.userAccountMenu .MuiMenuItem-root{
+    padding: 0 !important;
+}
+.profile__menu__link{
     color: #212121;
+    padding: 8px 16px;
+    width: 100%;
+    display: flex;
+    align-items: center;
 }
 .header__select-img {
     margin-right: 10px !important;

@@ -74,8 +74,6 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
         setAdvertCity
     );
 
-    console.log(data)
-
     if (!fullCard) {
         return (
             <Card sx={{ maxWidth: 300 }} className="card">
@@ -86,7 +84,7 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
                         height="140"
                         className="card__img"
                         image={
-                            data?.image.length > 0
+                            data.image?.length > 0
                                 ? data?.image[0]?.url
                                 : CardImg
                         }
@@ -126,7 +124,7 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
                             {editDelete ? (
                                 cardControls(data)
                             ) : (
-                                <LoveBtn advertID={data?.id} like={true}/>
+                                <LoveBtn advertID={data.id}/>
                             )}
                         </div>
                     </CardActions>
@@ -185,7 +183,7 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
                                 </span>
                             </Typography>
                         </div>
-                        <LoveBtn advertID={data?.id} />
+                        <LoveBtn advertID={data.id}/>
                     </CardActions>
                 </Box>
             </Card>

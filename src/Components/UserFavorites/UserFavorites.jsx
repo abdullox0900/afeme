@@ -35,7 +35,7 @@ function UserFavorites() {
     useEffect(() => {
         if (user.hasOwnProperty("data")) {
             userFavs = user.data.favorites;
-            if (userFavs.length > 0) {
+            if (userFavs?.length > 0) {
                 for (let i = 0; i < userFavs.length; i++) {
                     axios
                         .get(`https://ali98.uz/api/post/${userFavs[i].post_id}`)
@@ -68,7 +68,7 @@ function UserFavorites() {
 
     function showPosts(amount) {
         if (isLoading) {
-            return <CardSkeleton amount={amount} like={true}/>;
+            return <CardSkeleton amount={amount} like={true} />;
 
         } else if (user.hasOwnProperty("data") && !dataError) {
             if (data.length > 0) {
@@ -79,9 +79,8 @@ function UserFavorites() {
                     <div className="userNoAds">
                         <img src={basketImg} alt="" />
                         <h3 className="user-favorit__title">
-                            Saqlab qo'ygan e'lonlaringiz topilmadi
+                            Siz yoktirgan Elon Yok
                         </h3>
-                        <AdvertBtn />
                     </div>
                 );
             }

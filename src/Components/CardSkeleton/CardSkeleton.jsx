@@ -34,7 +34,7 @@ function CardSkeleton({ amount, controls, fullCard }) {
     } else {
         return Array.apply(null, { length: amount }).map(() => (
             <ContentLoader
-                speed={1.25}
+                speed={1.6}
                 width="100%"
                 height={240}
                 interval={0.25}

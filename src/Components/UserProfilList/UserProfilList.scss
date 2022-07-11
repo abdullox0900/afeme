@@ -1,9 +1,5 @@
 .user-prof {
-    // display: flex;
-    // align-items: center;
-    // flex-direction: column;
-    width: 300px;
-    height: 90vh;
+    height: 100vh;
     border-right: 1px solid #cacaca;
 
     &__avatar {
@@ -37,15 +33,14 @@
         width: 280px;
     }
 
-    // a.active {
-    //     color: dodgerblue;
-    // }
-
     &__item {
-        width: 280px;
-        border-radius: 5px;
+        width: 100%;
         transition: 0.3s;
         cursor: pointer;
+        .active{
+            color:white;
+            background-color: #5cadff;
+        }
     }
 
     &__item+&__item {
@@ -71,6 +66,7 @@
         color: #000;
         transition: all .3s;
     }
+
 
     &__ext {
         font-weight: 500;

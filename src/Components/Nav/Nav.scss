@@ -45,6 +45,23 @@
         color: #212121;
     }
 }
+#nav__more-menu .MuiMenuItem-root{
+    padding: 0 !important;
+}
+#nav__more-menu ul hr:last-child{
+    display: none;
+}
+.nav__more__items{
+    padding: 4px 16px;
+    display: inline-block;
+    width: 100%;
+}
+.nav__more__items:first-child{
+    margin-top: 0;
+}
+.nav__more__items:last-child{
+    margin-bottom: 0;
+}
 
 .navbar-menu {
     position: fixed;
