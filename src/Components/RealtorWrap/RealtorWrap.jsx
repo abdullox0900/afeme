@@ -31,14 +31,12 @@ function RealtorWrap() {
     const [isLoading, setLoading] = useState(false);
     useEffect(() => {
         setLoading(true)
-        setTimeout(() => {
-            axios.get('https://ali98.uz/api/reltors')
-                .then(res => {
-                    const persons = res.data.data;
-                    setReltorsData(persons)
-                    setLoading(false)
-                })
-        }, 5000)
+        axios.get('https://ali98.uz/api/reltors')
+            .then(res => {
+                const persons = res.data.data;
+                setReltorsData(persons)
+                setLoading(false)
+            })
     }, [])
 
     const [reltorData, setReltorsData] = useState([]);
