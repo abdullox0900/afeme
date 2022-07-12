@@ -9,7 +9,6 @@ import { NavLink } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import StarIcon from "../../Lib/Svg/star";
 
-
 // Import => Components
 import RealtorsCard from "../RealtorsCard/RealtorsCard";
 import Container from "../Container/Container";
@@ -24,14 +23,21 @@ import { logDOM } from "@testing-library/react";
 
 const elLoadingArrey = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-
-
 function RealtorWrap() {
-    const { lang, setLang } = useContext(Context);
     const [sort, setSort] = useState('')
     const [isLoading, setLoading] = useState(false);
-    const [reltorData, setReltorsData] = useState([]);
+    const [reltorData, setReltorsData] = useState([])
+    const { lang, setLang } = useContext(Context);
     const [items, setItems] = useState(reltorData);
+    useEffect(() => {
+        setLoading(true)
+        axios.get('https://ali98.uz/api/reltors')
+            .then(res => {
+                const persons = res.data.data;
+                setReltorsData(persons)
+                setLoading(false)
+            })
+    }, [])
 
     useEffect(() => {
         setLoading(true)
@@ -45,21 +51,9 @@ function RealtorWrap() {
         }, 5000)
     }, [])
 
-    useEffect(() => {
-        axios.get('https://ali98.uz/api/reltors')
-            .then(res => {
-                const persons = res.data.data;
-                setReltorsData(persons)
-                setItems(persons)
-            })
-    }, [])
 
     useEffect(() => {
-        if (sort === '') {
-            console.log("all");
-            setItems(reltorData);
-        } else if (sort === "name") {
-            console.log("name");
+        if (sort === "name") {
             reltorData.sort(function (a, b) {
                 const nameA = a.name.toUpperCase(); // ignore upper and lowercase
                 const nameB = b.name.toUpperCase(); // ignore upper and lowercase
@@ -73,7 +67,6 @@ function RealtorWrap() {
             });
             setItems(reltorData);
         } else if (sort === "number") {
-            console.log("number");
             reltorData.sort(function (a, b) {
                 const nameA = a.reting; // ignore upper and lowercase
                 const nameB = b.reting; // ignore upper and lowercase
@@ -89,6 +82,15 @@ function RealtorWrap() {
         }
     }, [sort]);
 
+    useEffect(() => {
+        axios.get('https://ali98.uz/api/reltors')
+            .then(res => {
+                const persons = res.data.data;
+                setReltorsData(persons)
+                setItems(persons)
+            })
+    }, [])
+
     return (
         <>
             <Container>
@@ -99,6 +101,8 @@ function RealtorWrap() {
 
                     <div className="realtor-wrap__box">
                         <p className="realtor-wrap__dos"><span className="realtor-wrap__number">{reltorData.length}</span> {content[lang].reltor_lenght}</p>
+                        {/* <button className="realtor-wrap__btn" onClick={Sort}>{content[lang].reltor_sort}</button> */}
+
                         <select name="sort" id="sort" onChange={(e) => setSort(e.target.value)}>
                             <option value="">all</option>
                             <option value="name">A-Z</option>
@@ -133,13 +137,11 @@ function RealtorWrap() {
                                         <ul key={reltor.id}>
                                             <NavLink to={`/reltorcob/${reltor.id}`}>
                                                 <li className="realtor-card">
-
                                                     <img className="realtor-card__avatar" src="https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png" alt="reltor-img" width={"100px"} />
                                                     <div className="realtor-card__wrap">
                                                         <h3 className="realtor-card__title">{reltor.name} {reltor.lastname}</h3>
                                                         <p className="realtor-card__desc">Agent hujjatlari tekshirilgan</p>
                                                     </div>
-
                                                     <div className="realtor-card__reyting">
                                                         <ReactStars {...{
                                                             size: 30,
@@ -153,10 +155,6 @@ function RealtorWrap() {
                                                             emptyIcon: <StarIcon width="40px" height="40px" />,
                                                         }} />
                                                     </div>
-
-                                                    <div className="realtor-card__region-box">
-                                                        {/* <div className="reltor-card__region">{reltor.region_id}</div> */}
-                                                    </div>
                                                 </li>
                                             </NavLink>
                                         </ul>
@@ -169,6 +167,7 @@ function RealtorWrap() {
             </Container>
         </>
     )
-};
+}
+
 
 export default RealtorWrap;

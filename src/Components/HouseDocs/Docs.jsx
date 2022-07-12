@@ -1,6 +1,8 @@
 // Import => React
 import axios from 'axios';
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useContext } from 'react';
+import { Context } from '../../Context/LangContext';
+import content from '../../Localization/Content';
 import { v4 } from 'uuid';
 
 import Trash from '@mui/icons-material/ClearRounded';
@@ -9,9 +11,10 @@ import Trash from '@mui/icons-material/ClearRounded';
 import style from './Docs.module.scss';
 import "../Form/Form.scss";
 
-
 function Docs({ documents, setDocs }) {
+
   const [show, setshow] = useState(false)
+  const { lang, setLang } = useContext(Context);
 
   const doc = useRef(null)
 
@@ -47,7 +50,7 @@ function Docs({ documents, setDocs }) {
 
 
       <div className={style.Group}>
-        <label htmlFor="file" className={style.label}>Uy Hujjatlarini Yuklang</label>
+        <label htmlFor="file" className={style.label}>{content[lang].adverd_documents_dow}</label>
         <input type="file" id='file' onChange={(e) => dropImageHandler(e.target.files[0])} className={style.input} />
       </div>
     </>

@@ -1,14 +1,17 @@
 // Import => React
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 // Import => Mui
 import { TextareaAutosize } from '@mui/material';
 
 // Import Components
+import { Context } from '../../Context/LangContext';
+import content from '../../Localization/Content';
 import style from './HouseDescr.module.scss';
 
 function HouseDescr({hDescr, sethDescr}) {
-    const [text, setText] = useState('Uy hakida kiskacha malumot bering...')
+    const { lang, setLang } = useContext(Context);
+    const [text, setText] = useState()
 
     return (
         <>
@@ -16,7 +19,7 @@ function HouseDescr({hDescr, sethDescr}) {
                 maxLength={400}
                 className={style.HouseDescr}
                 aria-label="empty textarea"
-                placeholder={text}
+                placeholder={content[lang].adverd_office_textior}
                 onChange={(e) => sethDescr(e.target.value)}
             />
         </>

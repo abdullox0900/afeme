@@ -1,5 +1,5 @@
 // Import => React
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 
 // Import => @Mui
 import { Button } from '@mui/material';
@@ -10,9 +10,13 @@ import Trash from '@mui/icons-material/ClearRounded';
 import style from './ImageFile.module.scss'
 import axios from 'axios';
 import { Delete } from '@mui/icons-material';
+import { Context } from '../../Context/LangContext';
+import content from '../../Localization/Content';
 
 function ImageFile({ photo, setPhoto }) {
     const [image, setImage] = useState([]);
+    const { lang, setLang } = useContext(Context);
+
     const [img, setImg] = useState(false);
     function startImageHandler(e) {
         e.preventDefault();
@@ -78,7 +82,7 @@ function ImageFile({ photo, setPhoto }) {
 
     return (
         <div className={style.wrapper}>
-            <p>Ofis rasmlari:</p>
+            <p>{content[lang].adverd_office_img}</p>
             <div className={style.images}>
                 {photo.map((i) => (
                     <div className={style.img} key={v4()}>
@@ -106,7 +110,7 @@ function ImageFile({ photo, setPhoto }) {
                     >
                         <label htmlFor="contained-button-file">
                             <div className={style.btns}>
-                                <label htmlFor="button">Rasmni Tanlang</label>
+                                <label htmlFor="button">{content[lang].adverd_office_drop_img}</label>
                                 <input type="file" id='button' className={style.label}
                                     onChange={(e) => Select(e.target.files)}
                                     multiple />

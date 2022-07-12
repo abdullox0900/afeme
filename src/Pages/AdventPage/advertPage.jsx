@@ -1,5 +1,5 @@
 // Import => React and Components
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 // Import => Components
 import Header from '../../Components/Header/Header';
@@ -22,12 +22,17 @@ import Error from '../../Components/Modals/Error/Error'
 import Success from '../../Components/Modals/Success/Success'
 
 // Import => Styles
-import style from './advertPage.module.scss'
+import style from './advertPage.module.scss';
+
+import { Context } from '../../Context/LangContext';
+import content from '../../Localization/Content';
 
 // Import => Mui
 import { Button } from '@mui/material';
 
 function AdvertPage() {
+
+  const { lang, setLang } = useContext(Context);
   const [err, setErr] = useState(false);
   const [suc, setSuc] = useState(false);//Success State
   const handleErr = () => setErr(true);
@@ -98,19 +103,9 @@ function AdvertPage() {
     fetch("http://ali98.uz/api/post", requestOptions)
       .then(response => response.text())
       .then(function (response) {
-        console.log(response)
-        // console.log(JSON.parse(response));
-        // let status = JSON.parse(response.status);
+
         handleSuc();
-        // console.log(status);
-        // if (status == true) {
-        //   console.log('sda');
-        // } else if (status = 500 || 400) {
-        //   console.log('500');
-        //   handleErr();
-        // } else {
-        //   console.log('ldsfplsd');
-        // }
+
       })
       .catch(function (err) {
         handleErr();
@@ -125,20 +120,24 @@ function AdvertPage() {
       <Success suc={suc} setSuc={setSuc} />
       <div className={style.container}>
         <article>
-          <h1 className={style.pageName}>E'lon qo'shish</h1>
-          <h2 className={style.htypeText}>Sotish Turlari</h2>
+
+          <h1 className={style.pageName}>{content[lang].advert_title}</h1>
+          <h2 className={style.htypeText}>{content[lang].adverd_sotish_turi}</h2>
           <SaleType
             sale_id={sale_id} setsType={setsType} />
-          <h2 className={style.htypeText}>Bino Turlari</h2>
+          <h2 className={style.htypeText}>{content[lang].adverd_build_title}</h2>
           <HouseType
             htype_id={htype_id} sethType={sethType} />
-          <h2 className={style.htypeText}>Ofis manzili</h2>
+          <h2 className={style.htypeText}>{content[lang].adverd_adres_office}</h2>
+
           <Map
             house={house} setHouse={setHouse}
             street={street} setStreet={setStreet}
             city_id={city_id} setCity={setCity}
             region_id={region_id} setRegionID={setRegionID} />
-          <h2 className={style.htypeText}>Ofis Haqida</h2>
+
+          <h2 className={style.htypeText}>{content[lang].adverd_about_the_office}</h2>
+
           <Date
             date={date} setDate={setDate} />
           <Room
@@ -154,7 +153,9 @@ function AdvertPage() {
             repair_id={repair_id} setRepair={setRepair} />
           <Material
             material_id={material_id} setMaterial={setMaterial} />
-          <h2 className={style.htypeText}>Ofis Chizmasi va Hujjatlari: </h2>
+
+          <h2 className={style.htypeText}>{content[lang].adverd_documents}</h2>
+
           <Docs
             documents={documents} setDocs={setDocs} />
           <ImageFile
@@ -163,10 +164,10 @@ function AdvertPage() {
             video={video} setVideo={setVideo} />
           <h2
             className={style.htypeText}
-            style={{ marginTop: '70px' }}>Ofis Haqida</h2>
+            style={{ marginTop: '70px' }}>{content[lang].adverd_about_the_office}</h2>
           <HouseDescr
             description={description} sethDescr={sethDescr} />
-          <h2 className={style.htypeText}>Ofis narxi: </h2>
+          <h2 className={style.htypeText}>{content[lang].adverd_office_price}</h2>
           <HousePrice
             price_som={price_som} setPrice_som={setRrice_som}
             price_usd={price_usd} setPrice_usd={setPrice_usd} />
@@ -175,7 +176,7 @@ function AdvertPage() {
               type='submit'
               className={style.onBtn}
               onClick={(e) => onSubmit(e)}>
-              Elonni Yuklash
+              {content[lang].adverd_submit}
             </Button>
           </div>
         </article>

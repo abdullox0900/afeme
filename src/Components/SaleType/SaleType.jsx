@@ -1,6 +1,9 @@
 // Import => React && useEffect
 import { ReactComponent as SaleIcon } from '../../Assets/Img/Icon/house.svg'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+
+import { Context } from '../../Context/LangContext';
+import content from '../../Localization/Content';
 
 // Import => Components
 import style from './SaleType.module.scss'
@@ -9,6 +12,7 @@ import axios from 'axios';
 
 function SaleType({ sale_id, setsType }) {
   const [saleType, setSaleType] = useState([]);
+  const { lang, setLang } = useContext(Context);
 
   useEffect(() => {
     const saleT = async () => {
@@ -26,6 +30,7 @@ function SaleType({ sale_id, setsType }) {
     saleT();
   }, [])
   return (
+
     <div
       className={style.sType}>
       {saleType.map((type) => (
@@ -43,7 +48,11 @@ function SaleType({ sale_id, setsType }) {
               stroke: sale_id === type.id ? 'white' : ''
             }} />
           <p>
-            {type.name_uz}
+          {lang == "uz"
+                                ? type.name_uz
+                                : lang == "ru"
+                                ? type.name_ru
+                                : type.name_en}
           </p>
         </button>
       ))}

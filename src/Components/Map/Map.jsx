@@ -1,5 +1,5 @@
 // Import => React and Hooks
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext } from 'react';
 //Import MUI
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 //HTTP Request
@@ -7,18 +7,20 @@ import axios from 'axios';
 //Import Package
 import MapPicker from 'react-google-map-picker';
 
+import { Context } from '../../Context/LangContext';
+import content from '../../Localization/Content';
+
 // Import Components
 import style from './Map.module.scss';
 
 const DefaultZomm = 1;
 
 function Map({ street, setStreet, city_id, setCity, region_id, setRegionID }) {
+
 	const [zoom, setZoom] = useState(DefaultZomm)
 	const [regions, setRegions] = useState([])
 	const [cities, setCities] = useState([])
-
-
-
+	const { lang, setLang } = useContext(Context);
 
 	function setLocation(lat, lng) {
 		localStorage.setItem('latitude', lat)
@@ -58,12 +60,12 @@ function Map({ street, setStreet, city_id, setCity, region_id, setRegionID }) {
 		<div>
 			<div className={style.InpG}>
 				<FormControl className={style.select}>
-					<InputLabel id="viloyat">Viloyat</InputLabel>
+					<InputLabel id="viloyat">{content[lang].form_select_vil}</InputLabel>
 					<Select
 						className={style.select}
-						labelId="viloyat"
+						labelId={content[lang].form_select_vil}
 						id={region_id}
-						label="Viloyat"
+						label={content[lang].form_select_vil}
 						onChange={(e) => Selector(e.target.value)}
 					>
 						{regions.map((region) => (
@@ -72,18 +74,22 @@ function Map({ street, setStreet, city_id, setCity, region_id, setRegionID }) {
 								key={region.id}
 								value={region.id}
 							>
-								{region.name_uz}
+								{lang == "uz"
+                                ? region.name_uz
+                                : lang == "ru"
+                                ? region.name_ru
+                                : region.name_en}
 							</MenuItem>
 						))}
 					</Select>
 				</FormControl>
 				<FormControl className={style.select}>
-					<InputLabel id="Shaxar">Shaxar</InputLabel>
+					<InputLabel id="Shaxar">{content[lang].adverd_adres_city}</InputLabel>
 					<Select
 						className={style.select}
-						labelId="Shaxar"
+						labelId={content[lang].adverd_adres_city}
 						id={city_id}
-						label="Shaxar"
+						label={content[lang].adverd_adres_city}
 						onChange={(e) => setCity(e.target.value)}
 					>
 						{cities?.map((city) => (
@@ -96,7 +102,7 @@ function Map({ street, setStreet, city_id, setCity, region_id, setRegionID }) {
 						))}
 					</Select>
 				</FormControl>
-				<input className={style.input} type="text" placeholder='Manzil' onChange={(e) => setStreet(e.target.value)} />
+				<input className={style.input} type="text" placeholder={content[lang].adverd_office} onChange={(e) => setStreet(e.target.value)} />
 			</div> 
 			<MapPicker
 				zoom={zoom}

@@ -1,15 +1,22 @@
 // Import => React
 import React from 'react';
+import { useContext } from 'react';
 import { v4 } from 'uuid';
+import { Context } from '../../Context/LangContext';
+import content from '../../Localization/Content';
 
 // Import => Components
 import style from '../../Pages/AdventPage/advertPage.module.scss'
 
 
 function Floor({ floor, setFloor, flat, setFlat }) {
+
+    const { lang, setLang } = useContext(Context);
+
+
     return (
         <div className={style.typeInp}>
-            <p>Qavat: </p>
+            <p>{content[lang].adverd_about_4}</p>
             <div className={style.InpG}>
                 <div>
                     <input
@@ -21,7 +28,7 @@ function Floor({ floor, setFloor, flat, setFlat }) {
                         defaultValue={floor}>
                     </input>
                 </div>
-                <span>dan:</span>
+                <span>{content[lang].adverd_about_38}</span>
                 <div>
                     <input
                         key={v4}
