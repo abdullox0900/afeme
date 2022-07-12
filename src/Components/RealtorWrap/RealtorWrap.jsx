@@ -24,7 +24,18 @@ import { logDOM } from "@testing-library/react";
 
 const elLoadingArrey = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-
+function RealtorWrap() {
+    const [sort, setSort] = useState('')
+    const [isLoading, setLoading] = useState(false);
+    useEffect(() => {
+        setLoading(true)
+        axios.get('https://ali98.uz/api/reltors')
+            .then(res => {
+                const persons = res.data.data;
+                setReltorsData(persons)
+                setLoading(false)
+            })
+    }, [])
 
 function RealtorWrap() {
     const { lang, setLang } = useContext(Context);
@@ -52,6 +63,37 @@ function RealtorWrap() {
                 setReltorsData(persons)
             })
     }, [])
+    const [items, setItems] = useState(reltorData);
+    console.log(items);
+    useEffect(() => {
+        if (sort === "name") {
+            reltorData.sort(function (a, b) {
+                const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+                const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+                if (nameA < nameB) {
+                    return -1;
+                }
+                if (nameA > nameB) {
+                    return 1;
+                }
+                return 0;
+            });
+            setItems(reltorData);
+        } else if (sort === "number") {
+            reltorData.sort(function (a, b) {
+                const nameA = a.reting; // ignore upper and lowercase
+                const nameB = b.reting; // ignore upper and lowercase
+                if (nameA < nameB) {
+                    return -1;
+                }
+                if (nameA > nameB) {
+                    return 1;
+                }
+                return 0;
+            });
+            setItems(reltorData)
+        }
+    }, [sort]);
 
     useEffect(() => {
         if (sort === '') {
@@ -99,10 +141,12 @@ function RealtorWrap() {
                     <div className="realtor-wrap__box">
                         <p className="realtor-wrap__dos"><span className="realtor-wrap__number">{reltorData.length}</span> {content[lang].reltor_lenght}</p>
                         {/* <button className="realtor-wrap__btn" onClick={Sort}>{content[lang].reltor_sort}</button> */}
-                        <select name="sort" id="sort" value="name" onChange={(e) => setSort(e.target.value)}>
-                            {/* <option value="">all</option> */}
-                            <option value="name">A-Z</option>
-                            <option value="number">1-5</option>
+
+                        <select name="sort" id="sort" onChange={(e) => setSort(e.target.value)}>
+                            {/* <option value="">do nothing</option> */}
+                            <option value="name">by name</option>
+                            <option value="number">by number</option>
+
                         </select>
                     </div>
                     {/* <RealtorsCard /> */}

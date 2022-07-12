@@ -16,7 +16,7 @@ const content = {
         mor: "Yana",
 
         // Hero
-        hero_title: "Toshkent shahridagi ko'chmas mulk",
+        hero_title: "Toping. Uni sayohat qiling. Unga egalik qiling.",
         hero_search: "Qidirish",
 
         // Main
@@ -101,17 +101,25 @@ const content = {
         adverd_sell: "Sotuv",
         adverd_mortgage: "Ipoteka",
         adverd_build_title: "Bino Turlari",
+        adverd_sotish_turi: "Sotish Turlari",
         adverd_house: "Hovli",
         adverd_office: "Ofis",
         adverd_room: "Xona",
         adverd_apartment: "Kvartira",
         adverd_dala: "Dala Hovli",
         adverd_adres_office: "Ofis manzili",
+        adverd_adres_city: "Shahar",
         adverd_office: "Manzil",
         adverd_about_the_office: "Ofis Haqida",
         adverd_about_1: "Qurilgan Yili:",
         adverd_about_2: "Honalar soni:",
         adverd_about_3: "Maydoni:",
+        adverd_about_33: "Oshxona",
+        adverd_about_34: "Xona",
+        adverd_about_35: "Jami",
+        adverd_about_36: "Metr Kvadrat",
+        adverd_about_37: "Sotix",
+        adverd_about_38: "dan:", 
         adverd_about_4: "Qavat:",
         adverd_about_5: "Tamir holati:",
         adverd_about_6: "Materiallari:",
@@ -188,7 +196,7 @@ const content = {
         rel: "Realtors",
         mor: "More",
         // Hero
-        hero_title: "Real estate in Tashkent",
+        hero_title: "Find it. Tour it. Own it.",
         hero_search: "Search",
         // Main
         recom_title: "Recommended residential complexes",
@@ -321,7 +329,7 @@ const content = {
         rel: "Риэлторы",
         mor: "Еще",
         // Hero
-        hero_title: "Недвижимость в Ташкенте",
+        hero_title: "Найди это. Совершите поездку. Владей этим.",
         hero_search: "Поиск",
         // Main
         recom_title: "Рекомендуемые жилые комплексы",
