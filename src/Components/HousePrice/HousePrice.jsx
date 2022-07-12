@@ -1,12 +1,17 @@
 // Import => React
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react';
+import { Context } from '../../Context/LangContext';
+import content from '../../Localization/Content';
+
 // Import => Components
-// import style from './HousePrice.module.scss'
 import style from '../../Pages/AdventPage/advertPage.module.scss'
 
 
 
 function HousePrice({ price_som, setPrice_som, price_usd, setPrice_usd }) {
+
+    const { lang, setLang } = useContext(Context);
+
     // const [type, setType] = useState('')
     // function Price(e) {
     //     if (e.target.name === 'uzs') {
@@ -28,7 +33,7 @@ function HousePrice({ price_som, setPrice_som, price_usd, setPrice_usd }) {
                 // name={type}
                 onChange={(e) => setPrice_som(e.target.value)}
                 type={'number'}
-                placeholder={'Narxni kiriting somda kiriting'}>
+                placeholder={content[lang].adverd_office_price_info}>
             </input>
             {/* <select
                 id="cash"

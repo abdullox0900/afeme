@@ -110,7 +110,7 @@ function ImageFile({ photo, setPhoto }) {
                     >
                         <label htmlFor="contained-button-file">
                             <div className={style.btns}>
-                                <label htmlFor="button">Rasmni Tanlang</label>
+                                <label htmlFor="button">{content[lang].adverd_office_drop_img}</label>
                                 <input type="file" id='button' className={style.label}
                                     onChange={(e) => Select(e.target.files)}
                                     multiple />
