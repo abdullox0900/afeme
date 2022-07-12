@@ -1,5 +1,5 @@
 // Import => React
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink as Redirect } from "react-router-dom";
 
 // Import => Mui
@@ -20,7 +20,13 @@ import HeroImg1 from "../../Assets/Img/home-hero-1.jpg";
 // Import => Style
 import "./Chat.scss";
 
+// Import useContext => Localization
+import { Context } from "../../Context/LangContext";
+import content from "../../Localization/Content";
+
+
 function Chat() {
+    const { lang, setLang } = useContext(Context);
 
     document.body.style = `height: 100vh; overflow: hidden !important;`;
     function attachFile() {
@@ -33,8 +39,8 @@ function Chat() {
         <Box className="chat" maxWidth={1700} margin={'0 auto'} padding={'0 15px'}>
             <section className="chatsPanel">
                 <Box className="chatsPanel__header">
-                    <LogoImg width={45} height={45}/>
-                    <h4 className="chatsPanel__header__title">Xabarlar</h4>
+                    <LogoImg width={45} height={45} />
+                    <h4 className="chatsPanel__header__title">{content[lang].ChatNews}</h4>
                     <span className="arrowDown"><img src={ArrowDown} alt="" /></span>
                     <span className="chats__indicator">6</span>
                 </Box>
@@ -54,7 +60,7 @@ function Chat() {
                                 </div>
                             </Redirect>
                         ))}
-                        
+
                     </Box>
                 </Box>
                 <Box></Box>
@@ -65,7 +71,7 @@ function Chat() {
                         <img src={Person2} alt="" className="chatProfile__img" />
                         <Box className="chatProfile__content">
                             <h3 className="chatProfile__name">Elmer Polonchi</h3>
-                            <span className="chatProfile__text">Sotuvchi</span>
+                            <span className="chatProfile__text">{content[lang].ChatType}</span>
                         </Box>
                     </Box>
                     <div className="header__more">
@@ -76,7 +82,7 @@ function Chat() {
                 </Box>
                 <Box className="messages">
                     <Box className="message incoming">
-                        <img src={Person2} alt="" className="message__sender"/>
+                        <img src={Person2} alt="" className="message__sender" />
                         <div className="sender__messages">
                             <p className="message__text">Salom</p>
                             <p className="message__text">Uyni narxi buncha qimmat</p>
@@ -92,23 +98,23 @@ function Chat() {
                 <div className="inputMessage">
                     <IconButton className="attachFile" onClick={attachFile}>
                         <img src={PaperClip} alt="" />
-                        <input type="file" className="attachFile__input" style={{display: 'none'}}/>
+                        <input type="file" className="attachFile__input" style={{ display: 'none' }} />
                     </IconButton>
                     <div className="chatInput">
-                        <input type="text" className="message__input" autoFocus placeholder="Type a message"/>
+                        <input type="text" className="message__input" autoFocus placeholder="Type a message" />
                         <IconButton className="sendBtn" title="Yuborish">
-                            <img src={PaperPlane} alt=""/>
+                            <img src={PaperPlane} alt="" />
                         </IconButton>
                     </div>
                 </div>
             </section>
             <section className="infoPanel">
                 <Box className="infoPanel__header">
-                    <h5 className="infoPanel__title">E'lon Rasmi <img src={ArrowDown} alt=""  className="arrowDown"/></h5>
-                    <img src={HeroImg1} alt="" className="infoPanel__header__img"/>
+                    <h5 className="infoPanel__title">{content[lang].addPic}<img src={ArrowDown} alt="" className="arrowDown" /></h5>
+                    <img src={HeroImg1} alt="" className="infoPanel__header__img" />
                 </Box>
                 <Box className="infoPanel__main">
-                    <h5 className="infoPanel__title">Sizga yoqishi mumkin <img src={ArrowDown} alt="" className="arrowDown"/><span className="chats__indicator">2</span></h5>
+                    <h5 className="infoPanel__title">{content[lang].doyou}<img src={ArrowDown} alt="" className="arrowDown" /><span className="chats__indicator">2</span></h5>
                     <div className="infoPanel__cards">
 
                     </div>

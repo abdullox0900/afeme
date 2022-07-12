@@ -1,5 +1,5 @@
 //Import React and RRD
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 
 //Import MUI
@@ -11,7 +11,12 @@ import Error from '../../../Assets/Img/error.svg';
 //Import Style
 import style from './Error.module.scss'
 
+// Import useContext => Localization
+import { Context } from "../../../Context/LangContext";
+import content from "../../../Localization/Content";
+
 function Succecc({ err, setErr }) {
+    const { lang, setLang } = useContext(Context);
     const handleClose = () => setErr(false);//Close Error Modal    
     return (
         <div>
@@ -23,9 +28,9 @@ function Succecc({ err, setErr }) {
             >
                 <Box className={style.style}>
                     <img src={Error} alt="alt" style={{ width: '165px', height: '200px' }} />
-                    <p className={style.title}>Muvaffaqiyatsiz !!!</p>
+                    <p className={style.title}>{content[lang].err}</p>
                     <button className={style.button} onClick={() => handleClose()}>
-                        Ortga Kaytish
+                        {content[lang].back}
                     </button>
                 </Box>
             </Modal>

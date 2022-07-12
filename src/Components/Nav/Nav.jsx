@@ -17,8 +17,9 @@ import "../Nav/Nav.scss";
 import GoogleImg from "../../Assets/Img/google.svg";
 
 function Nav({ elHeader }) {
+    const { lang, setLang } = useContext(Context);
     const [categoriesData, setCategoriesData] = useState([]);
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -36,8 +37,6 @@ function Nav({ elHeader }) {
 
     const elNavbarMenu = React.useRef();
 
-    // Localization Functions
-    const { lang, setLang } = useContext(Context);
 
     return (
         <Container>
@@ -89,8 +88,8 @@ function Nav({ elHeader }) {
                                         {lang == "uz"
                                             ? category.name_uz
                                             : lang == "ru"
-                                            ? category.name_ru
-                                            : category.name_en}
+                                                ? category.name_ru
+                                                : category.name_en}
                                     </Link>
                                 </MenuItem>
                                 <Divider sx={{ my: 0.1 }} />
@@ -118,42 +117,42 @@ function Nav({ elHeader }) {
                         <li className="navbar-menu__item">
                             <ion-icon name="home-outline"></ion-icon>
                             <a href="#" className="navbar-menu__link">
-                                Bosh sahifaga o'tish
+                                {content[lang].sMenu}
                             </a>
                         </li>
 
                         <li className="navbar-menu__item">
                             <ion-icon name="add-outline"></ion-icon>
                             <a href="#" className="navbar-menu__link">
-                                E'lon qo'shish
+                                {content[lang].sAdd}
                             </a>
                         </li>
 
                         <li className="navbar-menu__item">
                             <ion-icon name="heart-outline"></ion-icon>
                             <a href="#" className="navbar-menu__link">
-                                Tanlanganlar
+                                {content[lang].sFeatures}
                             </a>
                         </li>
 
                         <li className="navbar-menu__item">
                             <ion-icon name="help-buoy-outline"></ion-icon>
                             <a href="#" className="navbar-menu__link">
-                                Yordam
+                                {content[lang].sHelp}
                             </a>
                         </li>
 
                         <li className="navbar-menu__item">
                             <ion-icon name="alert-circle-outline"></ion-icon>
                             <a href="#" className="navbar-menu__link">
-                                Biz haqimizda
+                                {content[lang].sAbout}
                             </a>
                         </li>
 
                         <li className="navbar-menu__item">
                             <ion-icon name="exit-outline"></ion-icon>
                             <a href="#" className="navbar-menu__link">
-                                Chiqish
+                            {content[lang].sLogout}
                             </a>
                         </li>
                     </ul>
@@ -188,8 +187,8 @@ function Nav({ elHeader }) {
                                     {lang == "uz"
                                         ? category.name_uz
                                         : lang == "ru"
-                                        ? category.name_ru
-                                        : category.name_en}
+                                            ? category.name_ru
+                                            : category.name_en}
                                 </Link>
                             </li>
                         ))}

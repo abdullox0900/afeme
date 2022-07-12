@@ -27,8 +27,12 @@ const elLoadingArrey = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 
 function RealtorWrap() {
+    const { lang, setLang } = useContext(Context);
     const [sort, setSort] = useState('')
     const [isLoading, setLoading] = useState(false);
+    const [reltorData, setReltorsData] = useState([]);
+    const [items, setItems] = useState(reltorData);
+
     useEffect(() => {
         setLoading(true)
         setTimeout(() => {
@@ -41,10 +45,6 @@ function RealtorWrap() {
         }, 5000)
     }, [])
 
-    const [reltorData, setReltorsData] = useState([]);
-
-    const { lang, setLang } = useContext(Context);
-
     useEffect(() => {
         axios.get('https://ali98.uz/api/reltors')
             .then(res => {
@@ -52,10 +52,13 @@ function RealtorWrap() {
                 setReltorsData(persons)
             })
     }, [])
-    const [items, setItems] = useState(reltorData);
-    console.log(items);
+
     useEffect(() => {
-        if (sort === "name") {
+        if (sort === '') {
+            console.log("all");
+            setItems(reltorData);
+        } else if (sort === "name") {
+            console.log("name");
             reltorData.sort(function (a, b) {
                 const nameA = a.name.toUpperCase(); // ignore upper and lowercase
                 const nameB = b.name.toUpperCase(); // ignore upper and lowercase
@@ -69,6 +72,7 @@ function RealtorWrap() {
             });
             setItems(reltorData);
         } else if (sort === "number") {
+            console.log("number");
             reltorData.sort(function (a, b) {
                 const nameA = a.reting; // ignore upper and lowercase
                 const nameB = b.reting; // ignore upper and lowercase
@@ -95,10 +99,10 @@ function RealtorWrap() {
                     <div className="realtor-wrap__box">
                         <p className="realtor-wrap__dos"><span className="realtor-wrap__number">{reltorData.length}</span> {content[lang].reltor_lenght}</p>
                         {/* <button className="realtor-wrap__btn" onClick={Sort}>{content[lang].reltor_sort}</button> */}
-                        <select name="sort" id="sort" onChange={(e) => setSort(e.target.value)}>
-                            {/* <option value="">do nothing</option> */}
-                            <option value="name">by name</option>
-                            <option value="number">by number</option>
+                        <select name="sort" id="sort" value="name" onChange={(e) => setSort(e.target.value)}>
+                            {/* <option value="">all</option> */}
+                            <option value="name">A-Z</option>
+                            <option value="number">1-5</option>
                         </select>
                     </div>
                     {/* <RealtorsCard /> */}
