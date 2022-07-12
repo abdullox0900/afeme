@@ -14,6 +14,7 @@ import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/mater
 
 function UserProfil() {
     const { user } = useContext(UserContext);
+    console.log(user);
     const [name, setName] = useState('')
     const [lastname, setLastName] = useState('')
     const [phone, setPhone] = useState('')

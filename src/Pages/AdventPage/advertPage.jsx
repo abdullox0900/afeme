@@ -96,80 +96,90 @@ function AdvertPage() {
   //Post Function
   function onSubmit() {
     fetch("http://ali98.uz/api/post", requestOptions)
+      .then(response => response.text())
       .then(function (response) {
-        let status = response.status;
-        if (status == 200) {
-          handleSuc();
-        } else if (status = 500 || 400) {
-          handleErr();
-        } else {
-          handleErr();
-        }
+        console.log(response)
+        // console.log(JSON.parse(response));
+        // let status = JSON.parse(response.status);
+        handleSuc();
+        // console.log(status);
+        // if (status == true) {
+        //   console.log('sda');
+        // } else if (status = 500 || 400) {
+        //   console.log('500');
+        //   handleErr();
+        // } else {
+        //   console.log('ldsfplsd');
+        // }
+      })
+      .catch(function (err) {
+        handleErr();
+        console.log(err);
       })
   }
 
   return (
     <>
       <Header />
-        <Error err={err} setErr={setErr} />
-        <Success suc={suc} setSuc={setSuc} />
-        <div className={style.container}>
-          <article>
-            <h1 className={style.pageName}>E'lon qo'shish</h1>
-            <h2 className={style.htypeText}>Sotish Turlari</h2>
-            <SaleType
-              sale_id={sale_id} setsType={setsType} />
-            <h2 className={style.htypeText}>Bino Turlari</h2>
-            <HouseType
-              htype_id={htype_id} sethType={sethType} />
-            <h2 className={style.htypeText}>Ofis manzili</h2>
-             <Map
-              house={house} setHouse={setHouse}
-              street={street} setStreet={setStreet}
-              city_id={city_id} setCity={setCity}
-              region_id={region_id} setRegionID={setRegionID} />
-            <h2 className={style.htypeText}>Ofis Haqida</h2>
-            <Date
-              date={date} setDate={setDate} />
-            <Room
-              room={room} setRoom={setRoom} />
-            <Area total_area={total_area} setTotalArea={setTotalArea}
-              living_area={living_area} setLivingArea={setLivingArea}
-              kitchen_area={kitchen_area} setKitchenArea={setKitchenArea}
-              total_area_type={total_area_type} setTotalAreaType={setTotalAreaType} />
-            <Floor
-              floor={floor} setFloor={setFloor}
-              flat={flat} setFlat={setFlat} />
-            <Repair
-              repair_id={repair_id} setRepair={setRepair} />
-            <Material
-              material_id={material_id} setMaterial={setMaterial} />
-            <h2 className={style.htypeText}>Ofis Chizmasi va Hujjatlari: </h2>
-            <Docs
-              documents={documents} setDocs={setDocs} />
-            <ImageFile
-              photo={photo} setPhoto={setPhoto} />
-            <VideoFile
-              video={video} setVideo={setVideo} />
-            <h2
-              className={style.htypeText}
-              style={{ marginTop: '70px' }}>Ofis Haqida</h2>
-            <HouseDescr
-              description={description} sethDescr={sethDescr} />
-            <h2 className={style.htypeText}>Ofis narxi: </h2>
-            <HousePrice
-              price_som={price_som} setPrice_som={setRrice_som}
-              price_usd={price_usd} setPrice_usd={setPrice_usd} />
-            <div className={style.BtnW}>
-              <Button
-                type='submit'
-                className={style.onBtn}
-                onClick={(e) => onSubmit(e)}>
-                Elonni Yuklash
-              </Button>
-            </div>
-          </article>
-        </div>
+      <Error err={err} setErr={setErr} />
+      <Success suc={suc} setSuc={setSuc} />
+      <div className={style.container}>
+        <article>
+          <h1 className={style.pageName}>E'lon qo'shish</h1>
+          <h2 className={style.htypeText}>Sotish Turlari</h2>
+          <SaleType
+            sale_id={sale_id} setsType={setsType} />
+          <h2 className={style.htypeText}>Bino Turlari</h2>
+          <HouseType
+            htype_id={htype_id} sethType={sethType} />
+          <h2 className={style.htypeText}>Ofis manzili</h2>
+          <Map
+            house={house} setHouse={setHouse}
+            street={street} setStreet={setStreet}
+            city_id={city_id} setCity={setCity}
+            region_id={region_id} setRegionID={setRegionID} />
+          <h2 className={style.htypeText}>Ofis Haqida</h2>
+          <Date
+            date={date} setDate={setDate} />
+          <Room
+            room={room} setRoom={setRoom} />
+          <Area total_area={total_area} setTotalArea={setTotalArea}
+            living_area={living_area} setLivingArea={setLivingArea}
+            kitchen_area={kitchen_area} setKitchenArea={setKitchenArea}
+            total_area_type={total_area_type} setTotalAreaType={setTotalAreaType} />
+          <Floor
+            floor={floor} setFloor={setFloor}
+            flat={flat} setFlat={setFlat} />
+          <Repair
+            repair_id={repair_id} setRepair={setRepair} />
+          <Material
+            material_id={material_id} setMaterial={setMaterial} />
+          <h2 className={style.htypeText}>Ofis Chizmasi va Hujjatlari: </h2>
+          <Docs
+            documents={documents} setDocs={setDocs} />
+          <ImageFile
+            photo={photo} setPhoto={setPhoto} />
+          <VideoFile
+            video={video} setVideo={setVideo} />
+          <h2
+            className={style.htypeText}
+            style={{ marginTop: '70px' }}>Ofis Haqida</h2>
+          <HouseDescr
+            description={description} sethDescr={sethDescr} />
+          <h2 className={style.htypeText}>Ofis narxi: </h2>
+          <HousePrice
+            price_som={price_som} setPrice_som={setRrice_som}
+            price_usd={price_usd} setPrice_usd={setPrice_usd} />
+          <div className={style.BtnW}>
+            <Button
+              type='submit'
+              className={style.onBtn}
+              onClick={(e) => onSubmit(e)}>
+              Elonni Yuklash
+            </Button>
+          </div>
+        </article>
+      </div>
       <Footer />
     </>
   )
