@@ -43,12 +43,26 @@ function Advert() {
     const [advertLink, setAdvertLink] = useState("");
     const [advertType, setAdvertType] = useState("");
     const [advertTypeImg, setAdvertTypeImg] = useState("");
+    const [advertTypeLink, setAdvertTypeLink] = useState("");
     const [advertAddress, setAdvertAddress] = useState("");
     const [advertCity, setAdvertCity] = useState("");
 
-    CardTools( data, lang, currency, setPrice, setAdvertTitle, setAdvertLink, setAdvertType, setAdvertTypeImg, setAdvertAddress, setAdvertCity);
+    CardTools(
+        data,
+        lang,
+        currency,
+        setPrice,
+        setAdvertTitle,
+        setAdvertLink,
+        setAdvertType,
+        setAdvertTypeImg,
+        setAdvertTypeLink,
+        setAdvertAddress,
+        setAdvertCity
+    );
 
     useEffect(() => {
+        setIsLoading(true);
         const result = axios
             .get(URL)
             .then((response) => {
@@ -81,7 +95,6 @@ function Advert() {
             </div>
         );
     } else if (data.hasOwnProperty("id") && !dataError) {
-        
         let adOwner = data.user;
         let ownerPage = `/reltorcob/${adOwner.id}`;
         let ownerChat = `/chat/${adOwner.id}`;
@@ -96,14 +109,19 @@ function Advert() {
                                         <h2 className="advert__title__content">
                                             {advertTitle}
                                         </h2>
-                                        <span className="advert__houseType">
+                                        <Link
+                                            to={advertTypeLink}
+                                            className="advert__houseType"
+                                        >
                                             <img
                                                 src={advertTypeImg}
                                                 alt=""
                                                 className="house__type__icon"
                                             />
-                                            <p>{advertType}</p>
-                                        </span>
+                                            <p className="house__type__name">
+                                                {advertType}
+                                            </p>
+                                        </Link>
                                     </div>
                                     <Box className="advert__prices">
                                         <p className="advertPrice">{price}</p>
@@ -206,7 +224,9 @@ function Advert() {
                             <AdvertGallery data={data} isLoading={isLoading} />
 
                             <Box className="advert__description">
-                                <h5 className="descr__title">{content[lang].description}</h5>
+                                <h5 className="descr__title">
+                                    {content[lang].description}
+                                </h5>
                                 <p className="descr__text">
                                     {data?.description}
                                 </p>

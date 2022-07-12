@@ -87,7 +87,7 @@ function Adverts() {
         if (isLoading) {
             return <CardSkeleton amount={amount} fullCard={true} />;
         } else if (adverts) {
-            console.log(adverts);
+            
             if (adverts.length > 0) {
                 return adverts.map((row) => (
                     <Cards data={row} fullCard={true} />
@@ -98,7 +98,7 @@ function Adverts() {
                         <img src={notFoundIcon} alt="" />
                         <div className="noResults__content">
                             <h3 className="noResults__title">
-                                Hozircha bu so'rov uchun hech qanday e'lon
+                                Hozircha bu so'rov bo'yicha hech qanday e'lon
                                 qo'yilmagan
                             </h3>
                             <ul style={{ padding: 0 }}>

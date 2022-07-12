@@ -39,8 +39,9 @@ function Main() {
 
 
     useEffect(() => {
+        setIsLoading(true);
         const result = axios
-            .get(URL + '8')
+            .get(URL + '12')
             .then((response) => {
                 let newData = response.data.data;
                 if (newData && newData.length > 0) {
@@ -71,12 +72,12 @@ function Main() {
             });
     }, []);
 
-    function showCards(amount) {
+    function showCards(amount, popular = false) {
         if (isLoading) {
-            return <CardSkeleton amount={amount} />;
+            return <CardSkeleton amount={popular ? amount - 8 : amount} />;
 
         } else if (data && !dataError) {
-            return adverts?.slice(0, amount).map((row) => {
+            return adverts?.slice(popular ? 4 : 0, amount).map((row) => {
 
                 return <Cards data={row} />;
             });
@@ -115,7 +116,7 @@ function Main() {
                             <Typography variant="h3" className="section__title">
                                 {content[lang].populr_title}
                             </Typography>
-                            <div className="cards">{showCards(8)}</div>
+                            <div className="cards">{showCards(12, true)}</div>
                             <Box className="viewAll">
                                 <a href="/" className="viewAll__link">
                                     {content[lang].see_desc}

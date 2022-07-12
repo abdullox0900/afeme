@@ -1,6 +1,6 @@
 // Import => Reactl
 import React, { useState, useEffect, useContext } from "react";
-import { NavLink as Redirect } from "react-router-dom";
+import { NavLink as Link } from "react-router-dom";
 
 // Import => Mui
 import {
@@ -25,28 +25,9 @@ import { CurrencyContext } from "../../Context/CurrencyContext";
 import { Context as LangContext } from "../../Context/LangContext";
 import { UserContext } from "../../Context/UserContext";
 import "./Card.scss";
-import CardImg from "../../Assets/Img/advertImg.jpg";
+import CardImg1 from "../../Assets/Img/hero-img.png";
+import CardImg2 from "../../Assets/Img/advertImg.jpg";
 import { logRoles } from "@testing-library/react";
-
-const cardControls = (data) => (
-    <>
-        <IconButton
-            variant="outlined"
-            color="error"
-            className="cardControls cardDelete"
-            sx={{ mr: 1.5 }}
-        >
-            <DeleteIcon />
-        </IconButton>
-        <IconButton
-            variant="solid"
-            color="primary"
-            className="cardControls cardEdit"
-        >
-            <EditIcon />
-        </IconButton>
-    </>
-);
 
 function Cards({ data, editDelete = false, fullCard = false, like = false }) {
     const { lang, setLang } = useContext(LangContext);
@@ -58,6 +39,7 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
     const [advertLink, setAdvertLink] = useState("");
     const [advertType, setAdvertType] = useState("");
     const [advertTypeImg, setAdvertTypeImg] = useState("");
+    const [advertTypeLink, setAdvertTypeLink] = useState("");
     const [advertAddress, setAdvertAddress] = useState("");
     const [advertCity, setAdvertCity] = useState("");
 
@@ -70,14 +52,37 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
         setAdvertLink,
         setAdvertType,
         setAdvertTypeImg,
+        setAdvertTypeLink,
         setAdvertAddress,
         setAdvertCity
+    );
+    let CardImg = Math.floor(Math.random() * 2) == 0 ? CardImg1 : CardImg2;
+
+    const cardControls = (
+        <>
+            <IconButton
+                variant="outlined"
+                color="error"
+                className="cardControls cardDelete"
+                sx={{ mr: 1.5 }}
+                advertId={data.id}
+            >
+                <DeleteIcon />
+            </IconButton>
+            <IconButton
+                variant="solid"
+                color="primary"
+                className="cardControls cardEdit"
+            >
+                <EditIcon />
+            </IconButton>
+        </>
     );
 
     if (!fullCard) {
         return (
             <Card sx={{ maxWidth: 300 }} className="card">
-                <Redirect to={advertLink}>
+                <Link to={advertLink}>
                     <CardMedia
                         component="img"
                         alt="Card img"
@@ -88,30 +93,27 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
                                 ? data?.image[0]?.url
                                 : CardImg
                         }
+                        onError={(e) => (e.target.src = CardImg)}
                     />
-                </Redirect>
+                </Link>
                 <Box className="card__content">
                     <CardContent className="card__header">
-                        <Typography
-                            variant="body1"
-                            component="div"
-                            className="house__type"
-                        >
+                        <Link to={advertTypeLink} className="house__type">
                             <img
                                 src={advertTypeImg}
                                 alt=""
                                 className="house__type__icon"
                             />
                             <p className="house__type__name">{advertType}</p>
-                        </Typography>
+                        </Link>
                         <Typography variant="body2" className="house__prices">
                             <span className="house__price">{price}</span>
                         </Typography>
                     </CardContent>
                     <CardContent className="card__main">
-                        <Redirect to={advertLink} className="card__title">
+                        <Link to={advertLink} className="card__title">
                             {advertTitle}
-                        </Redirect>
+                        </Link>
                     </CardContent>
                     <CardActions className="card__footer">
                         <Typography className="house__address__bar">
@@ -122,9 +124,9 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
                         </Typography>
                         <div className="card__actions">
                             {editDelete ? (
-                                cardControls(data)
+                                cardControls
                             ) : (
-                                <LoveBtn advertID={data.id}/>
+                                <LoveBtn advertID={data.id} />
                             )}
                         </div>
                     </CardActions>
@@ -134,7 +136,7 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
     } else {
         return (
             <Card sx={{}} className="fullCard">
-                <Redirect to={advertLink}>
+                <Link to={advertLink}>
                     <CardMedia
                         className="fullCard__img"
                         component="img"
@@ -145,18 +147,14 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
                                 : CardImg
                         }
                     />
-                </Redirect>
+                </Link>
                 <Box className="card__content">
                     <CardContent className="card__header">
                         <div className="card__header__items">
-                            <Redirect to={advertLink} className="card__title">
+                            <Link to={advertLink} className="card__title">
                                 {advertTitle}
-                            </Redirect>
-                            <Typography
-                                variant="body1"
-                                component="div"
-                                className="house__type"
-                            >
+                            </Link>
+                            <Link to={advertTypeLink} className="house__type">
                                 <img
                                     src={advertTypeImg}
                                     alt=""
@@ -165,7 +163,7 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
                                 <p className="house__type__name">
                                     {advertType}
                                 </p>
-                            </Typography>
+                            </Link>
                         </div>
                         <Typography variant="body2" className="house__prices">
                             <span className="house__price">{price}</span>
@@ -183,7 +181,7 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
                                 </span>
                             </Typography>
                         </div>
-                        <LoveBtn advertID={data.id}/>
+                        <LoveBtn advertID={data.id} />
                     </CardActions>
                 </Box>
             </Card>

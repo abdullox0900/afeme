@@ -29,6 +29,7 @@ function AdvertMap({ currentAdvert, zoom = 10 }) {
     const URL = `https://ali98.uz/api/post`;
 
     useEffect(() => {
+        setIsLoading(true);
         const result = axios
             .get(URL)
             .then((response) => {
