@@ -1,21 +1,43 @@
-@import '../../Assets/scss/colors.scss';
+@import "../../Assets/scss/colors.scss";
 .user-profil-wrap {
     display: flex;
     justify-content: space-between;
     width: 1250px;
-    .personal{
-        width: 50%;
-        margin: 0 auto;
-        text-align: left;
-        .inpG{
+    .personal {
+        .title{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            p{
+                color:$darkgray;
+            }
+        }
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: end;
+        margin: 50px auto;
+        button {
+            cursor:pointer;
+            padding: 8px 32px;
+            background-color: $darkBlue;
+            color: $white;
+            border-radius: 8px;
+            border: 1px solid $darkBlue;
+            margin-bottom: 30px;
+        }
+        button:hover,
+        button:active {
+            background-color: $white;
+            color: $darkBlue;
+        }
+        .inpG {
             display: flex;
             flex-direction: column;
-            input{
-                margin: 15px 0 17px 0;
-                position: relative;
-                border-top: 0;
-                border-left: 0;
-                border-right: 0;
+            grid-gap: 30px;
+            #outlined-basic {
+                width: 350px;
             }
         }
     }

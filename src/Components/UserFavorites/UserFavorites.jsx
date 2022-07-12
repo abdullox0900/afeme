@@ -21,72 +21,41 @@ import Container from "../Container/Container";
 import basketImg from "../../Assets/Img/carzinka.svg";
 
 function UserFavorites() {
-    const navigate = useNavigate();
+
     const { lang, setLang } = useContext(Context);
     const { user, setUser } = useContext(UserContext);
-
-    const [data, setData] = useState([]);
-    const [dataError, setDataError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const [noFavs, setNoFavs] = useState(false);
-    let newData = [];
-    let userFavs;
 
     useEffect(() => {
-        if (user.hasOwnProperty("data")) {
-            userFavs = user.data.favorites;
-            if (userFavs?.length > 0) {
-                for (let i = 0; i < userFavs.length; i++) {
-                    axios
-                        .get(`https://ali98.uz/api/post/${userFavs[i].post_id}`)
-                        .then((response) => {
-                            let status = response.data.status;
-                            if (status == true || status == 200) {
-                                newData.push(response.data.data);
-                                setData(newData);
-                                console.log(data);
-                            } else {
-                                setDataError(true);
-                            }
-                        })
-                        .catch((error) => {
-                            console.log(error);
-                            setDataError(true);
-                        })
-                        .finally(() => {
-                            setIsLoading(false);
-                        });
-                }
-            } else {
-                setNoFavs(true);
-                setIsLoading(false);
-            }
-        } else {
+        if (user.hasOwnProperty('data') || !user.status) {
             setIsLoading(false);
         }
-    }, []);
+    }, [user]);
 
     function showPosts(amount) {
         if (isLoading) {
             return <CardSkeleton amount={amount} like={true} />;
 
-        } else if (user.hasOwnProperty("data") && !dataError) {
-            if (data.length > 0) {
-
-                return data.map((row) => <Cards data={row} />);
+        } else if (user.hasOwnProperty('data')) {
+            
+            if (user.favorites > 0) {
+                return user.data.favorites.map((row) => (
+                    <Cards data={row} like={true} />
+                ));
             } else {
                 return (
                     <div className="userNoAds">
-                        <img src={basketImg} alt="" />
-                        <h3 className="user-favorit__title">
-                            Siz yoktirgan Elon Yok
+                        <img src={basketImg} alt="svg-img" />
+                        <h3 className="user-ads__title">
+                            Yoqtirgan e'lonlaringiz yo'q
                         </h3>
+                        <AdvertBtn />
                     </div>
                 );
             }
         } else {
             return (
-                <div className="user-favorit">
+                <div className="userNoAds">
                     <ApiError />
                 </div>
             );
