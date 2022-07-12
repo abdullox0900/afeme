@@ -55,6 +55,7 @@ function ReltorCobinet() {
             })
     }, [])
 
+    console.log(userData);
 
     let oldin = new Date(userData.created_at)
     let hozir = new Date()
@@ -77,7 +78,6 @@ function ReltorCobinet() {
         edit: false,
         emptyIcon: <StarIcon width="40px" height="40px" />,
     }
-
 
     return (
         <>

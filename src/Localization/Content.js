@@ -16,7 +16,7 @@ const content = {
         mor: "Yana",
 
         // Hero
-        hero_title: "Toshkent shahridagi ko'chmas mulk",
+        hero_title: "Toping. Uni sayohat qiling. Unga egalik qiling.",
         hero_search: "Qidirish",
 
         // Main
@@ -55,10 +55,8 @@ const content = {
         form_select_pas: "Passport",
         form_select_tel: "Telefon raqam",
         form_myaccount: "Mening hisobim bor",
-        form_select_type_m: 'Mijoz',
-        form_select_type_r: 'Rieltor',
-        form_select_type_c: 'Companiya',
-        form_select_type_q: 'Quruvchi',
+        form_select_type_sh: 'Shaxsiy',
+        form_select_type_b: 'Biznez',
         rexperience: 'Tajriba',
         bio: 'Malumot',
         have: 'Mening Akkauntim bor',
@@ -103,17 +101,25 @@ const content = {
         adverd_sell: "Sotuv",
         adverd_mortgage: "Ipoteka",
         adverd_build_title: "Bino Turlari",
+        adverd_sotish_turi: "Sotish Turlari",
         adverd_house: "Hovli",
         adverd_office: "Ofis",
         adverd_room: "Xona",
         adverd_apartment: "Kvartira",
         adverd_dala: "Dala Hovli",
         adverd_adres_office: "Ofis manzili",
+        adverd_adres_city: "Shahar",
         adverd_office: "Manzil",
         adverd_about_the_office: "Ofis Haqida",
         adverd_about_1: "Qurilgan Yili:",
         adverd_about_2: "Honalar soni:",
         adverd_about_3: "Maydoni:",
+        adverd_about_33: "Oshxona",
+        adverd_about_34: "Xona",
+        adverd_about_35: "Jami",
+        adverd_about_36: "Metr Kvadrat",
+        adverd_about_37: "Sotix",
+        adverd_about_38: "dan:", 
         adverd_about_4: "Qavat:",
         adverd_about_5: "Tamir holati:",
         adverd_about_6: "Materiallari:",
@@ -142,7 +148,39 @@ const content = {
         viewInMap: "Kartadan ko'rish",
         street: "ko'chasi",
         description: "Tavsif",
-        detailedView: "Batafsil ko'rish"
+        detailedView: "Batafsil ko'rish",
+
+        //Personal
+        editBtn: 'Tahrirlash',
+        userProfilName:'Ism',
+        userProfilLastName:'Familiya',
+        userProfilPhone:'Telefon Raqami',
+        userProfilPassport:'Passport',
+
+        //SideBar
+        sMenu:`Bosh sahifaga o'tish`,
+        sAdd:`E'lon qo'shish`,
+        sFeatures:'Tanlanganlar',
+        sHelp:'Yordam',
+        sAbout:'Biz haqimizda',
+        sLogout:'Chiqish',
+
+        notfound:'Rasmlar mavjud emas',
+
+        //Chat
+        ChatNews:'Xabarlar',
+        Chat:'Sotuvchi',
+        addPic:`E'lon Rasmi`,
+        doyou:'Sizga yoqishi mumkin',
+
+        liked:`Yoqtirganlarga qo'shish`,
+        err:'Muvaffaqiyatsiz !!!',
+        back:'Ortga Kaytish',
+        confirm:'borgan sms kodni kiriting !!!',
+        to:'ga',
+        codeMessage:'Sms Kodni kiring!!!',
+        succ:'Muvaffaqiyatli !!!',
+
     },
     en: {
         // Header
@@ -158,7 +196,7 @@ const content = {
         rel: "Realtors",
         mor: "More",
         // Hero
-        hero_title: "Real estate in Tashkent",
+        hero_title: "Find it. Tour it. Own it.",
         hero_search: "Search",
         // Main
         recom_title: "Recommended residential complexes",
@@ -193,10 +231,8 @@ const content = {
         form_select_pas: "Passport",
         form_select_tel: "Phone number",
         form_myaccount: "I have an account",
-        form_select_type_m: 'Client',
-        form_select_type_r: 'Rialtor',
-        form_select_type_c: 'Company',
-        form_select_type_q: 'Builder',
+        form_select_type_sh: 'Personal',
+        form_select_type_b: 'Bussines',
         rexperience: 'Experience',
         bio: 'About your self',
         have: 'I have an account',
@@ -244,7 +280,40 @@ const content = {
         viewInMap: "View in Map",
         street: "street",
         description: "Description",
-        detailedView: "See more"
+        detailedView: "See more",
+
+        //Personal
+        editBtn: 'Edit',
+        userProfilName:'Name',
+        userProfilLastName:'LastName',
+        userProfilPhone:'Phone Number',
+        userProfilPassport:'Passport',
+
+        //SideBar
+        sMenu:`Go to home page`,
+        sAdd:`Add an ad`,
+        sFeatures:'Features',
+        sHelp:'Help',
+        sAbout:'About',
+        sLogout:'Log Out',
+
+        notfound:'No pictures available',
+
+        //Chat
+        ChatNews:'News',
+        Chat:'Seller',
+        addPic:`Advert Picture`,
+        doyou:'You might like',
+
+        liked:`Liked`,
+        err:'Unsuccessful!!!',
+        back:'Return Back',
+        confirm:'enter the sms code you went to !!!',
+        to:'to',
+        codeMessage:'Enter SMS Code!!!',
+        succ:'Successful !!!',
+
+
     },
     ru: {
         // Header
@@ -260,7 +329,7 @@ const content = {
         rel: "Риэлторы",
         mor: "Еще",
         // Hero
-        hero_title: "Недвижимость в Ташкенте",
+        hero_title: "Найди это. Совершите поездку. Владей этим.",
         hero_search: "Поиск",
         // Main
         recom_title: "Рекомендуемые жилые комплексы",
@@ -295,10 +364,8 @@ const content = {
         form_select_pas: "Поспорт",
         form_select_tel: "Номер телефона",
         form_myaccount: "У меня есть аккаунт",
-        form_select_type_m: 'Клиент',
-        form_select_type_r: 'Риэлтор',
-        form_select_type_c: 'Компания',
-        form_select_type_q: 'Строитель',
+        form_select_type_sh: 'Личный',
+        form_select_type_b: 'Бизнес',
         rexperience: 'Опыт работы',
         bio: 'О себе',
         sing: 'Зарегистрироваться',
@@ -346,8 +413,46 @@ const content = {
         viewInMap: "Вид с карты",
         street: "Улица",
         description: "Описание",
-        detailedView: "Узнать больше"
+        detailedView: "Узнать больше",
+
+        //Personal
+        editBtn: 'Изменить',
+        userProfilName:'Имя',
+        userProfilLastName:'Фамилия',
+        userProfilPhone:'Номер телефона',
+        userProfilPassport:'Паспорт',
+
+        //SideBar
+        sMenu:`На главную страницу`,
+        sAdd:`Добавить объявление`,
+        sFeatures:'Избранные',
+        sHelp:'Помощь',
+        sAbout:'О компании',
+        sLogout:'Выйти',
+
+        notfound:'Нет доступных изображений',
+
+        //Chat
+        ChatNews:'Новости',
+        Chat:'Продавец',
+        addPic:`Рекламная картинка`,
+        doyou:'Вам может понравиться',
+
+        liked:`Понравилось`,
+        err:'Неудачно!!!',
+        back:'Вернуться Назад',
+        confirm:'введите код смс, на который вы зашли !!!',
+        to:'к',
+        codeMessage:'Введите смс-код!!!',
+        succ:'Успешный !!!',
+
     },
 }
 
 export default content;
+
+
+// Import useContext => Localization
+// import { Context } from "../../Context/LangContext";
+// import content from "../../Localization/Content";
+// const { lang, setLang } = useContext(Context);

@@ -1,5 +1,5 @@
 //Import React and Hooks
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 //Import MUI
@@ -17,7 +17,12 @@ import Error from "../Error/Error";
 import Success from "../Success/Success";
 import { useNavigate } from 'react-router-dom';
 
+// Import useContext => Localization
+import { Context } from "../../../Context/LangContext";
+import content from "../../../Localization/Content";
+
 function NumberControl({ control, setControl, phone_number, setPhoneNumber }) {
+    const { lang, setLang } = useContext(Context);
     const handleClose = () => setControl(false);//Close Control Message function
     const Navigate = useNavigate();
     const handleSuc = () => setSuc(true);//Open Success State
@@ -75,19 +80,19 @@ function NumberControl({ control, setControl, phone_number, setPhoneNumber }) {
                 <form className={style.wrapper} onSubmit={handleSubmit(onSubmit)}>
                     <img src={SuccessIL} alt="alt" style={{width:'185px', height:'200px'}} />
                     <Typography className={style.title} id="modal-modal-title" variant="h6" component="h2">
-                        +{phone_number}<span> ga <br /> borgan sms kodni kiriting !!!</span>
+                        +{phone_number}<span> {content[lang].to} <br />{content[lang].confirm}</span>
                     </Typography>
                     <TextField
                         className="form__input form__input-lastname"
                         id="outlined-basic"
                         variant="outlined"
                         sx={{ mt: 2, mb: 2, width: "260px" }}
-                        {...register('code', { required: 'Sms Kodni kiring!!!' })}
+                        {...register('code', { required: `${content[lang].codemessage}` })}
                         error={!!errors?.code}
                         helperText={errors?.code ? errors.code.message : null}
                     />
                     <div className={style.btnG}>
-                        <button onClick={() => handleClose()} className={style.button}>Orkaga</button>
+                        <button onClick={() => handleClose()} className={style.button}>{content[lang].back}</button>
                         <input type="submit" className={style.button} />
                     </div>
                 </form>

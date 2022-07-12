@@ -98,9 +98,9 @@ function Form() {
     const { ref, ...rest } = register('experience');
     useEffect(() => {
         function Input(e) {
-            const Rieltor = 'rieltor';
+            const Bussines = 'bussines';
             const Type = watch(['user_type']);
-            if (Type == Rieltor) {
+            if (Type == Bussines) {
                 exper.current.classList.remove('default')
                 area.current.classList.remove('default')
             } else {
@@ -130,14 +130,12 @@ function Form() {
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                defaultValue={'mijoz'}
+                                defaultValue={'personal'}
                                 label={content[lang].form_select_jis}
                                 {...register('user_type')}
                             >
-                                <MenuItem value={'mijoz'}>{content[lang].form_select_type_m}</MenuItem>
-                                <MenuItem value={'rieltor'}>{content[lang].form_select_type_r}</MenuItem>
-                                <MenuItem value={'companiya'}>{content[lang].form_select_type_c}</MenuItem>
-                                <MenuItem value={'quruvchi firma'}>{content[lang].form_select_type_q}</MenuItem>
+                                <MenuItem value={'personal'}>{content[lang].form_select_type_sh}</MenuItem>
+                                <MenuItem value={'bussines'}>{content[lang].form_select_type_b}</MenuItem>
                             </Select>
                         </FormControl>
 
@@ -155,7 +153,9 @@ function Form() {
                                         key={region.id}
                                         value={region.id}
                                     >
-                                        {region.name_uz}
+                                        {lang == "uz"
+                                            ? region.name_uz : lang == "ru"
+                                                ? region.name_ru : region.name_en}
                                     </MenuItem>
                                 ))}
                             </Select>
@@ -203,7 +203,7 @@ function Form() {
                     <input
                         ref={exper}
                         type="number"
-                        className="disable default form__input-password"
+                        className="disable default form__input-password rel-input"
                         placeholder={content[lang].rexperience}
                         onChange={(e) => setExperience(e.target.value)}
                     />
@@ -211,7 +211,7 @@ function Form() {
                         ref={area}
                         type="text"
                         placeholder={content[lang].bio}
-                        className="textarea disable default"
+                        className="textarea disable default rel-input"
                         onChange={(e) => setDescription(e.target.value)}
                     />
                     {/*IDCard 'Passport' Input*/}

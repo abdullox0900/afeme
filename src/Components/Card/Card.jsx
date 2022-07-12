@@ -28,6 +28,7 @@ import "./Card.scss";
 import CardImg1 from "../../Assets/Img/hero-img.png";
 import CardImg2 from "../../Assets/Img/advertImg.jpg";
 import { logRoles } from "@testing-library/react";
+import { Token } from "@mui/icons-material";
 
 function Cards({ data, editDelete = false, fullCard = false, like = false }) {
     const { lang, setLang } = useContext(LangContext);
@@ -58,6 +59,23 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
     );
     let CardImg = Math.floor(Math.random() * 2) == 0 ? CardImg1 : CardImg2;
 
+    const token = localStorage.getItem('Token')
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${token}`)
+
+    let requestOptions = {
+        method: 'DELETE',
+        headers: myHeaders,
+        redirect: 'follow'
+    };
+
+    const Delete = (id) => {
+        fetch(`http://ali98.uz/api/post/${id}`, requestOptions)
+            .then(response => response.text())
+            .then(result => console.log(result))
+            .catch(error => console.log('error', error));
+    }
+
     const cardControls = (
         <>
             <IconButton
@@ -66,6 +84,7 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
                 className="cardControls cardDelete"
                 sx={{ mr: 1.5 }}
                 advertId={data.id}
+                onClick={() => Delete(data.id)}
             >
                 <DeleteIcon />
             </IconButton>

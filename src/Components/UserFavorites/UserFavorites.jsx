@@ -49,7 +49,6 @@ function UserFavorites() {
                         <h3 className="user-ads__title">
                             Yoqtirgan e'lonlaringiz yo'q
                         </h3>
-                        <AdvertBtn />
                     </div>
                 );
             }

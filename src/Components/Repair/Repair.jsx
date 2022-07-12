@@ -1,16 +1,21 @@
 // Import => React
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 
 // Import => Axios
 import axios from 'axios';
 
 // Import => Components
+import { Context } from '../../Context/LangContext';
+import content from '../../Localization/Content';
 import style from '../../Pages/AdventPage/advertPage.module.scss'
 
 
 
 function Repair({ repair_id, setRepair }) {
+
     const [houseRepair, setHouseRepair] = useState([])
+    const { lang, setLang } = useContext(Context);
+
     useEffect(() => {
         const Rep = async () => {
             try {
@@ -28,7 +33,7 @@ function Repair({ repair_id, setRepair }) {
     }, [])
     return (
         <div className={style.typeInp}>
-            <p>Tamir holati:</p>
+            <p>{content[lang].adverd_about_5}</p>
             <div className={style.InpG}>
                 {houseRepair.map((type) => (
                     <button
@@ -39,7 +44,15 @@ function Repair({ repair_id, setRepair }) {
                             color: repair_id === type.id ? 'white' : ''
                         }}
                     >
-                        {type.name_uz}
+
+                        {
+                            lang == "uz"
+                                ? type.name_uz
+                                : lang == "ru"
+                                    ? type.name_ru
+                                    : type.name_en
+                        }
+
                     </button>
                 ))}
             </div>

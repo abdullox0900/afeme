@@ -7,12 +7,17 @@ import UserProfilList from "../UserProfilList/UserProfilList";
 
 import { UserContext } from "../../Context/UserContext";
 
+import { Context } from "../../Context/LangContext";
+import content from "../../Localization/Content";
+
+
 // Import => Style Component
 import "../../Components/UserProfil/UserProfil.scss";
 import axios from "axios";
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 
 function UserProfil() {
+    const { lang, setLang } = useContext(Context);
     const { user } = useContext(UserContext);
     console.log(user);
     const [name, setName] = useState('')
@@ -88,25 +93,25 @@ function UserProfil() {
                     <div className="personal">
                         <div className="title">
                             <p>ID//{uniq}</p>
-                            <button type="submit" onClick={(e) => Put(e)}>Edit</button>
+                            <button type="submit" onClick={(e) => Put(e)}>{content[lang].editBtn}</button>
                         </div>
                         <div className="inpG">
                             <TextField
-                                label='Name'
+                                label={content[lang].userProfilName}
                                 id="outlined-basic"
                                 variant="outlined"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                             />
                             <TextField
-                                label='LastName'
+                                label={content[lang].userProfilLastName}
                                 id="outlined-basic"
                                 variant="outlined"
                                 value={lastname}
                                 onChange={(e) => setLastName(e.target.value)}
                             />
                             <TextField
-                                label='phone'
+                                label={content[lang].userProfilPhone}
                                 id="outlined-basic"
                                 variant="outlined"
                                 value={phone}
@@ -120,18 +125,18 @@ function UserProfil() {
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                             <TextField
-                                label='Passport'
+                                label={content[lang].userProfilPassport}
                                 id="outlined-basic"
                                 variant="outlined"
                                 value={passport}
                                 onChange={(e) => setPassport(e.target.value)}
                             />
                             <FormControl className="form__controler-input2">
-                                <InputLabel id="viloyat"> Hudud </InputLabel>
+                                <InputLabel id="viloyat">{content[lang].form_select_vil}</InputLabel>
                                 <Select
                                     labelId="viloyat"
                                     id="viloyat"
-                                    label='Hudud'
+                                    label={content[lang].form_select_vil}
                                     value={region}
                                     onChange={(e) => setRegion(e.target.value)}
                                 >
@@ -140,13 +145,13 @@ function UserProfil() {
                                             key={region.id}
                                             value={region.id}
                                         >
-                                            {region.name_uz}
+                                            {lang == "uz" ? region.name_uz : lang !== "ru" ? region.name_en : region.name_ru}
                                         </MenuItem>
                                     ))}
                                 </Select>
                             </FormControl>
                             <FormControl className="form__controler-input1">
-                                <InputLabel id="demo-simple-select-label">Type</InputLabel>
+                                <InputLabel id="demo-simple-select-label">{content[lang].form_select_jis}</InputLabel>
                                 <Select
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
@@ -154,10 +159,8 @@ function UserProfil() {
                                     label='Type'
                                     onChange={(e) => setType(e.target.value)}
                                 >
-                                    <MenuItem value={'mijoz'}>Mijoz</MenuItem>
-                                    <MenuItem value={'rieltor'}>Rieltor</MenuItem>
-                                    <MenuItem value={'companiya'}>Companiya</MenuItem>
-                                    <MenuItem value={'quruvchi firma'}>Quruvchi firma</MenuItem>
+                                    <MenuItem value={'personal'}>{content[lang].form_select_type_sh}</MenuItem>
+                                    <MenuItem value={'bussines'}>{content[lang].form_select_type_b}</MenuItem>
                                 </Select>
                             </FormControl>
                         </div>
