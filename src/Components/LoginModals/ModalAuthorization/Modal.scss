@@ -22,10 +22,10 @@
         pointer-events: auto;
         z-index: 100000000;
     }
-    &--open  &__authorization .filterModal__content{
+    &--open  &__authorization{
         transform: scale(1);
     }
-    &__authorization .filterModal__content {
+    &__authorization {
         position: relative;
         width: 400px;
         height: 600px;
