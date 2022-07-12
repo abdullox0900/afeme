@@ -6,6 +6,7 @@ import { NavLink as Link, useNavigate } from "react-router-dom";
 import { Context } from "../../Context/LangContext";
 import { CurrencyContext } from "../../Context/CurrencyContext";
 import { UserContext } from "../../Context/UserContext";
+import { IPContext } from "../../Context/IPContext"
 
 // Import => Mui
 import {
@@ -58,7 +59,7 @@ function Header() {
     const elHeader = React.useRef();
 
     const navigate = useNavigate();
-
+    const { IP, setIP } = useContext(IPContext);
     // Logo State
     const [logoImg, setLogoImg] = useState([]);
 
@@ -273,7 +274,11 @@ function Header() {
                                         alt="location-img"
                                         className="header__location-img"
                                     />
-                                    Uzbekistan
+                                    {user.hasOwnProperty('data') ? lang == "uz"
+                                        ? user?.data?.region_id?.name_uz
+                                        : lang == "ru"
+                                        ? user?.data?.region_id?.name_ru
+                                        : user?.data?.region_id?.name_en : IP?.region}
                                 </Button>
                             </Tooltip>
                         </div>
@@ -342,7 +347,11 @@ function Header() {
                                             sx={{ mr: "5px" }}
                                         >
                                             <Badge
-                                                badgeContent={user?.favorites ? user?.favorites : 0}
+                                                badgeContent={
+                                                    user?.favorites
+                                                        ? user?.favorites
+                                                        : 0
+                                                }
                                                 color="error"
                                             >
                                                 <img

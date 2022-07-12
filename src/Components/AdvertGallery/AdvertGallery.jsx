@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 
 // Import Images
@@ -9,12 +9,17 @@ import HeroImg4 from "../../Assets/Img/home-hero-4.jpg";
 import HeroImg5 from "../../Assets/Img/home-hero-5.jpg";
 import HeroImg6 from "../../Assets/Img/home-hero-6.jpg";
 
+// Import useContext => Localization
+import { Context } from "../../Context/LangContext";
+import content from "../../Localization/Content";
+
 // Import Styles
 import "@splidejs/react-splide/css";
 import "../Carousel/Carousel.scss";
 import "./AdvertGallery.scss";
 
 function AdvertGallery({ data, isLoading }) {
+    const { lang, setLang } = useContext(Context);
     const mainRef = useRef();
     const thumbsRef = useRef();
     const [hasImages, setHasImages] = useState(
@@ -50,14 +55,19 @@ function AdvertGallery({ data, isLoading }) {
         focus: "center",
         isNavigation: true,
     };
+    console.log(data);
 
-    function generateSlides(images) {
+    function generateSlides(images, main = false) {
         let arr = [HeroImg1, HeroImg2, HeroImg3, HeroImg4, HeroImg5, HeroImg6];
+        let randNumber = Math.floor(Math.random() * 5)
+        console.log(randNumber);
 
         return images.map((row) => (
-            <SplideSlide>
-                <img src={row.url} className="splide__img" alt="" />
-            </SplideSlide>
+            <>
+                <SplideSlide>
+                    <img src={row.url} className="splide__img" alt="" />
+                </SplideSlide>
+            </>
         ));
     }
 
@@ -79,12 +89,12 @@ function AdvertGallery({ data, isLoading }) {
                     ref={thumbsRef}
                     className="advert__thumbs"
                 >
-                    {generateSlides(data.image)}
+                    {generateSlides(data.image, true)}
                 </Splide>
             </section>
         );
     } else {
-        return <h1>Rasmlar mavjud emas</h1>;
+        return <h1>{content[lang].notfound}</h1>;
     }
 }
 export default AdvertGallery;
