@@ -29,7 +29,7 @@ function UserAds() {
     const URL = "https://ali98.uz/api/user/169";
 
     useEffect(() => {
-        if (user.hasOwnProperty('data') || !user.status) {
+        if (user.hasOwnProperty('status')) {
             setIsLoading(false);
         }
     }, [user]);

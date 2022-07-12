@@ -210,7 +210,7 @@ function Search() {
                 </Box>
 
                 <div className="search__btn-wrap">
-                    <button className="btn search__map-btn">Kartadan Izlash</button>
+                    <Link to={"/map"} className="btn search__map-btn">Kartadan Izlash</Link>
                     <Button type="reset" variant="contained" className="btn search__submit-btn" style={{marginRight: '10px'}}>Tozalash</Button>
                     <Button
                         className="btn search__submit-btn"
