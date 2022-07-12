@@ -50,14 +50,19 @@ function AdvertGallery({ data, isLoading }) {
         focus: "center",
         isNavigation: true,
     };
+    console.log(data);
 
-    function generateSlides(images) {
+    function generateSlides(images, main = false) {
         let arr = [HeroImg1, HeroImg2, HeroImg3, HeroImg4, HeroImg5, HeroImg6];
+        let randNumber = Math.floor(Math.random() * 5)
+        console.log(randNumber);
 
         return images.map((row) => (
-            <SplideSlide>
-                <img src={row.url} className="splide__img" alt="" />
-            </SplideSlide>
+            <>
+                <SplideSlide>
+                    <img src={row.url} className="splide__img" alt="" />
+                </SplideSlide>
+            </>
         ));
     }
 
@@ -79,7 +84,7 @@ function AdvertGallery({ data, isLoading }) {
                     ref={thumbsRef}
                     className="advert__thumbs"
                 >
-                    {generateSlides(data.image)}
+                    {generateSlides(data.image, true)}
                 </Splide>
             </section>
         );

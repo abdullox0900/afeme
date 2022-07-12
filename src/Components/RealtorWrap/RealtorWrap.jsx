@@ -9,7 +9,6 @@ import { NavLink } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import StarIcon from "../../Lib/Svg/star";
 
-
 // Import => Components
 import RealtorsCard from "../RealtorsCard/RealtorsCard";
 import Container from "../Container/Container";
