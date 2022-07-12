@@ -164,10 +164,10 @@ function AdvertPage() {
             video={video} setVideo={setVideo} />
           <h2
             className={style.htypeText}
-            style={{ marginTop: '70px' }}>Ofis Haqida</h2>
+            style={{ marginTop: '70px' }}>{content[lang].adverd_about_the_office}</h2>
           <HouseDescr
             description={description} sethDescr={sethDescr} />
-          <h2 className={style.htypeText}>Ofis narxi: </h2>
+          <h2 className={style.htypeText}>{content[lang].adverd_office_price}</h2>
           <HousePrice
             price_som={price_som} setPrice_som={setRrice_som}
             price_usd={price_usd} setPrice_usd={setPrice_usd} />
@@ -176,7 +176,7 @@ function AdvertPage() {
               type='submit'
               className={style.onBtn}
               onClick={(e) => onSubmit(e)}>
-              Elonni Yuklash
+              {content[lang].adverd_submit}
             </Button>
           </div>
         </article>

@@ -1,15 +1,21 @@
 // Import => React
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 
 // Import => Mui
 import { Button } from '@mui/material';
 import { v4 } from 'uuid';
 
+
 // Import => Components
+import { Context } from '../../Context/LangContext';
+import content from '../../Localization/Content';
 import style from '../ImageFile/ImageFile.module.scss'
 import axios from 'axios';
 
 function VideoFile({ video, setVideo }) {
+
+    const { lang, setLang } = useContext(Context);
+
     const [videoFile, setVideoFile] = useState(false);
     function startVideoHandler(e) {
         e.preventDefault();
@@ -70,7 +76,7 @@ function VideoFile({ video, setVideo }) {
 
     return (
         <div className={style.wrapper}>
-            <p className={style.htypeText}>Ofis  videolari:</p>
+            <p className={style.htypeText}>{content[lang].adverd_office_video}</p>
             <div className={style}>
                 {video.map((i) => (
                     <div key={v4}>
@@ -101,7 +107,7 @@ function VideoFile({ video, setVideo }) {
                     >
                         <label htmlFor="contained-button-file">
                             <div className={style.btns}>
-                                <label htmlFor="button">Videoni Tanlang</label>
+                                <label htmlFor="button">{content[lang].adverd_office_drop_video}</label>
                                 <input type="file" id='button' onChange={(e) => Select(e.target.files)} className={style.label} />
                             </div>
                         </label>
