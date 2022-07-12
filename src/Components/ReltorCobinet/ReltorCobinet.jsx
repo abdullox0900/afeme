@@ -78,7 +78,6 @@ function ReltorCobinet() {
         emptyIcon: <StarIcon width="40px" height="40px" />,
     }
 
-
     return (
         <>
             <Container>

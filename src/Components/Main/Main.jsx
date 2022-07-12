@@ -37,7 +37,6 @@ function Main() {
     // Reltor useState
     const [reltData, setReltData] = useState([]);
 
-
     useEffect(() => {
         setIsLoading(true);
         const result = axios
@@ -135,7 +134,7 @@ function Main() {
                             </div>
                         </div>
                         <div className="panel">
-                            <div id="advertMap"><AdvertMap currentAdvert={IP} zoom={8}/></div>
+                            <div id="advertMap"><AdvertMap currentAdvert={IP} zoom={8} /></div>
 
                             <Box className="realtors">
                                 <Typography
@@ -149,7 +148,30 @@ function Main() {
                                     to={"/catalogreltor"}
                                     className="realtors__list"
                                 >
+
                                     {
+                                        reltData.slice(0,10).map(rel => {
+                                            return (
+                                                <>
+                                                    <Box className="realtor">
+                                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU" alt="" />
+                                                        <div className="realtors__content">
+                                                            <Typography
+                                                                variant="h6"
+                                                                className="realtors__name"
+                                                            >
+                                                                {rel.name}
+                                                            </Typography>
+                                                            <p className="realtors__offer">
+                                                                2 ta taklif
+                                                            </p>
+                                                        </div>
+                                                    </Box>
+                                                </>
+                                            )
+                                        })
+                                    }
+                                    {/* {
                                         Array.apply(null, { length: 6 }).map(() => (
                                             <Box className="realtor">
                                                 <img src={Realtors1} alt="" />
@@ -167,7 +189,7 @@ function Main() {
                                             </Box>
                                         )
                                         )
-                                    }
+                                    } */}
                                 </NavLink>
                             </Box>
                         </div>

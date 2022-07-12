@@ -1,5 +1,7 @@
 // Import => React
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { Context } from '../../Context/LangContext';
+import content from '../../Localization/Content';
 
 // Import => Axios
 import axios from 'axios';
@@ -11,6 +13,8 @@ import { ReactComponent as SaleIcon } from '../../Assets/Img/Icon/house.svg'
 
 function HouseType({ htype_id, sethType }) {
   const [houseType, setHouseType] = useState([]);
+  const { lang, setLang } = useContext(Context);
+
 
   useEffect(() => {
     const houseT = async () => {
@@ -45,7 +49,11 @@ function HouseType({ htype_id, sethType }) {
               stroke: htype_id === sType.id ? 'white' : ''
             }} />
           <p>
-            {sType.name_uz}
+            { lang == "uz"
+              ? sType.name_uz
+              : lang == "ru"
+                ? sType.name_ru
+                : sType.name_en}
           </p>
         </button>
       ))}

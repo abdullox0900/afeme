@@ -203,7 +203,7 @@ function Form() {
                     <input
                         ref={exper}
                         type="number"
-                        className="disable default form__input-password"
+                        className="disable default form__input-password rel-input"
                         placeholder={content[lang].rexperience}
                         onChange={(e) => setExperience(e.target.value)}
                     />
@@ -211,7 +211,7 @@ function Form() {
                         ref={area}
                         type="text"
                         placeholder={content[lang].bio}
-                        className="textarea disable default"
+                        className="textarea disable default rel-input"
                         onChange={(e) => setDescription(e.target.value)}
                     />
                     {/*IDCard 'Passport' Input*/}

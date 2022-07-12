@@ -1,15 +1,19 @@
 // Import => React
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 
 // Import => Axios
 import axios from 'axios'
 
 // Import => Components
+import { Context } from '../../Context/LangContext';
+import content from '../../Localization/Content';
 import style from '../../Pages/AdventPage/advertPage.module.scss'
 
 
 function Material({material_id, setMaterial}) {
     const [houseMaterial, setHouseMaterial] = useState([])
+    const { lang, setLang } = useContext(Context);
+
     useEffect(() => {
         const hAbout = async () => {
             try {
@@ -28,7 +32,7 @@ function Material({material_id, setMaterial}) {
     return (
         <div>
             <div className={style.typeInp}>
-                <p>Materiallari:</p>
+                <p>{content[lang].adverd_about_6}</p>
                 <div className={style.InpG}>
                     {houseMaterial.map((type) => (
                         <button
@@ -39,7 +43,14 @@ function Material({material_id, setMaterial}) {
                                 color: material_id === type.id ? 'white' : ''
                             }}
                         >
-                            {type.name_uz}
+                            {
+                            lang == "uz"
+                                ? type.name_uz
+                                : lang == "ru"
+                                    ? type.name_ru
+                                    : type.name_en
+                        }
+
                         </button>
                     ))}
                 </div>
