@@ -10,17 +10,10 @@ import ReactStars from "react-rating-stars-component";
 // Import => Mui
 import Button from '@mui/material/Button';
 
-// Import => Axios
-import axios from "axios";
-import { useEffect } from "react";
-
 function ReytingModal({ userId, userData, elReytingModal }) {
     const apiUrl = "https://ali98.uz/api/reting";
     const [reting, setReting] = useState('')
     const [comment, setComment] = useState('')
-    // console.log(userData);
-    // let Name = userData.name;
-    // console.log(Name);
 
     const Rating = {
         size: 50,
@@ -29,7 +22,7 @@ function ReytingModal({ userId, userData, elReytingModal }) {
         activeColor: "gold",
         value: 0,
         a11y: true,
-        isHalf: true,
+        isHalf: false,
         emptyIcon: <StarIcon width="40px" height="40px" />,
         onChange: newValue => {
             setReting(`${newValue}`);
@@ -50,12 +43,10 @@ function ReytingModal({ userId, userData, elReytingModal }) {
     };
     function onSubmit() {
         fetch(apiUrl, requestOptions)
+            .then(response => response.text())
             .then(function (response) {
-                let sts = response.status;
-                if (sts == 200) {
-                    elReytingModal.current.classList.remove("reyting-mod--open")
-                    window.location.reload()
-                }
+                elReytingModal.current.classList.remove("reyting-mod--open")
+                window.location.reload();
             })
     }
 

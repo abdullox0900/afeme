@@ -1,5 +1,5 @@
 //Import React and RRD
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
 //Import MUI
 import { Box, Modal } from '@mui/material'
@@ -7,8 +7,13 @@ import { Box, Modal } from '@mui/material'
 import SuccessIL from '../../../Assets/Img/successIL.svg'
 //Import Style
 import style from './success.module.scss'
+// Import useContext => Localization
+import { Context } from "../../../Context/LangContext";
+import content from "../../../Localization/Content";
 
-function Succecc({suc, setSuc}) {
+
+function Succecc({ suc, setSuc }) {
+    const { lang, setLang } = useContext(Context);
     const handleClose = () => setSuc(false);//Close Success Modal
     return (
         <div>
@@ -19,11 +24,11 @@ function Succecc({suc, setSuc}) {
                 aria-describedby="modal-modal-description"
             >
                 <Box className={style.style}>
-                <img src={SuccessIL} alt="alt" style={{width:'165px', height:'200px'}} />
-                    <p className={style.title}>Muvaffaqiyatli !!!</p>
+                    <img src={SuccessIL} alt="alt" style={{ width: '165px', height: '200px' }} />
+                    <p className={style.title}>{content[lang].succ}</p>
                     <NavLink to={"/Afeme"}>
                         <button className={style.button}>
-                            Bosh Sahifaga O'tish
+                            {content[lang].sMenu}
                         </button>
                     </NavLink>
                 </Box>

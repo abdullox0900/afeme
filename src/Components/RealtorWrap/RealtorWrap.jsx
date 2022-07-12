@@ -24,8 +24,6 @@ import { logDOM } from "@testing-library/react";
 
 const elLoadingArrey = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
-
-
 function RealtorWrap() {
     const [sort, setSort] = useState('')
     const [isLoading, setLoading] = useState(false);
@@ -39,9 +37,24 @@ function RealtorWrap() {
             })
     }, [])
 
-    const [reltorData, setReltorsData] = useState([]);
-
+function RealtorWrap() {
     const { lang, setLang } = useContext(Context);
+    const [sort, setSort] = useState('')
+    const [isLoading, setLoading] = useState(false);
+    const [reltorData, setReltorsData] = useState([]);
+    const [items, setItems] = useState(reltorData);
+
+    useEffect(() => {
+        setLoading(true)
+        setTimeout(() => {
+            axios.get('https://ali98.uz/api/reltors')
+                .then(res => {
+                    const persons = res.data.data;
+                    setReltorsData(persons)
+                    setLoading(false)
+                })
+        }, 5000)
+    }, [])
 
     useEffect(() => {
         axios.get('https://ali98.uz/api/reltors')
@@ -82,6 +95,41 @@ function RealtorWrap() {
         }
     }, [sort]);
 
+    useEffect(() => {
+        if (sort === '') {
+            console.log("all");
+            setItems(reltorData);
+        } else if (sort === "name") {
+            console.log("name");
+            reltorData.sort(function (a, b) {
+                const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+                const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+                if (nameA < nameB) {
+                    return -1;
+                }
+                if (nameA > nameB) {
+                    return 1;
+                }
+                return 0;
+            });
+            setItems(reltorData);
+        } else if (sort === "number") {
+            console.log("number");
+            reltorData.sort(function (a, b) {
+                const nameA = a.reting; // ignore upper and lowercase
+                const nameB = b.reting; // ignore upper and lowercase
+                if (nameA < nameB) {
+                    return -1;
+                }
+                if (nameA > nameB) {
+                    return 1;
+                }
+                return 0;
+            });
+            setItems(reltorData)
+        }
+    }, [sort]);
+
     return (
         <>
             <Container>
@@ -93,10 +141,12 @@ function RealtorWrap() {
                     <div className="realtor-wrap__box">
                         <p className="realtor-wrap__dos"><span className="realtor-wrap__number">{reltorData.length}</span> {content[lang].reltor_lenght}</p>
                         {/* <button className="realtor-wrap__btn" onClick={Sort}>{content[lang].reltor_sort}</button> */}
+
                         <select name="sort" id="sort" onChange={(e) => setSort(e.target.value)}>
                             {/* <option value="">do nothing</option> */}
                             <option value="name">by name</option>
                             <option value="number">by number</option>
+
                         </select>
                     </div>
                     {/* <RealtorsCard /> */}

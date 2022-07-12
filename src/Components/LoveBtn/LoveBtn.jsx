@@ -5,7 +5,13 @@ import { Tooltip, Zoom } from "@mui/material";
 import Notification from "../Notification/Notification";
 import "./LoveBtn.scss";
 
+// Import useContext => Localization
+import { Context } from "../../Context/LangContext";
+import content from "../../Localization/Content";
+
+
 function LoveBtn({ advertID }) {
+    const { lang, setLang } = useContext(Context);
     const { user, setUser } = useContext(UserContext);
     const [notf, setNotf] = useState(false);
     const [notfType, setNotfType] = useState("");
@@ -111,7 +117,7 @@ function LoveBtn({ advertID }) {
         <>
             {addNotf()}
             <Tooltip
-                title="Yoqtirganlarga qo'shish"
+                title={content[lang].liked}
                 TransitionComponent={Zoom}
                 arrow
             >

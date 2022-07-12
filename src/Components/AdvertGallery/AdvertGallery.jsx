@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 
 // Import Images
@@ -9,12 +9,17 @@ import HeroImg4 from "../../Assets/Img/home-hero-4.jpg";
 import HeroImg5 from "../../Assets/Img/home-hero-5.jpg";
 import HeroImg6 from "../../Assets/Img/home-hero-6.jpg";
 
+// Import useContext => Localization
+import { Context } from "../../Context/LangContext";
+import content from "../../Localization/Content";
+
 // Import Styles
 import "@splidejs/react-splide/css";
 import "../Carousel/Carousel.scss";
 import "./AdvertGallery.scss";
 
 function AdvertGallery({ data, isLoading }) {
+    const { lang, setLang } = useContext(Context);
     const mainRef = useRef();
     const thumbsRef = useRef();
     const [hasImages, setHasImages] = useState(
@@ -84,7 +89,7 @@ function AdvertGallery({ data, isLoading }) {
             </section>
         );
     } else {
-        return <h1>Rasmlar mavjud emas</h1>;
+        return <h1>{content[lang].notfound}</h1>;
     }
 }
 export default AdvertGallery;
