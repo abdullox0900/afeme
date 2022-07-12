@@ -50,6 +50,7 @@ function RealtorWrap() {
             .then(res => {
                 const persons = res.data.data;
                 setReltorsData(persons)
+                setItems(persons)
             })
     }, [])
 
@@ -98,9 +99,8 @@ function RealtorWrap() {
 
                     <div className="realtor-wrap__box">
                         <p className="realtor-wrap__dos"><span className="realtor-wrap__number">{reltorData.length}</span> {content[lang].reltor_lenght}</p>
-                        {/* <button className="realtor-wrap__btn" onClick={Sort}>{content[lang].reltor_sort}</button> */}
-                        <select name="sort" id="sort" value="name" onChange={(e) => setSort(e.target.value)}>
-                            {/* <option value="">all</option> */}
+                        <select name="sort" id="sort" onChange={(e) => setSort(e.target.value)}>
+                            <option value="">all</option>
                             <option value="name">A-Z</option>
                             <option value="number">1-5</option>
                         </select>
