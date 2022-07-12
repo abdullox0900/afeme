@@ -55,20 +55,45 @@ function AdvertGallery({ data, isLoading }) {
         focus: "center",
         isNavigation: true,
     };
-    console.log(data);
+    let arr = [HeroImg1, HeroImg2, HeroImg3, HeroImg4, HeroImg5, HeroImg6];
+    let randNumber = Math.floor(Math.random() * 5);
 
-    function generateSlides(images, main = false) {
-        let arr = [HeroImg1, HeroImg2, HeroImg3, HeroImg4, HeroImg5, HeroImg6];
-        let randNumber = Math.floor(Math.random() * 5)
-        console.log(randNumber);
-
+    function generateSlides(images) {
         return images.map((row) => (
+            <SplideSlide>
+                <img
+                    src={row.url}
+                    className="splide__img"
+                    alt=""
+                    onError={(e) => (e.target.src = arr[randNumber])}
+                />
+            </SplideSlide>
+        ));
+    }
+    function showVideo(thumb = false) {
+        return (
             <>
+                {data.video.length > 0 ? (
+                    <SplideSlide>
+                        <video
+                            src={data.video[0].url}
+                            controls={thumb ? false : true}
+                            className="splide__img splide__video"
+                        ></video>
+                    </SplideSlide>
+                ) : (
+                    ""
+                )}
                 <SplideSlide>
-                    <img src={row.url} className="splide__img" alt="" />
+                    <img
+                        src={data.documents}
+                        className="splide__img"
+                        alt=""
+                        onError={(e) => (e.target.src = arr[randNumber])}
+                    />
                 </SplideSlide>
             </>
-        ));
+        );
     }
 
     if (isLoading) {
@@ -82,6 +107,7 @@ function AdvertGallery({ data, isLoading }) {
                     className="advert__main__image"
                 >
                     {generateSlides(data.image)}
+                    {showVideo()}
                 </Splide>
 
                 <Splide
@@ -89,7 +115,8 @@ function AdvertGallery({ data, isLoading }) {
                     ref={thumbsRef}
                     className="advert__thumbs"
                 >
-                    {generateSlides(data.image, true)}
+                    {generateSlides(data.image)}
+                    {showVideo(true)}
                 </Splide>
             </section>
         );

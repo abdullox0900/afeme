@@ -125,7 +125,6 @@ function Advert() {
                                     </div>
                                     <Box className="advert__prices">
                                         <p className="advertPrice">{price}</p>
-                                        <span>{price}/month</span>
                                     </Box>
                                 </div>
                                 <Box className="advert__address__blog">

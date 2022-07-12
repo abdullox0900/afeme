@@ -24,19 +24,6 @@ import { logDOM } from "@testing-library/react";
 const elLoadingArrey = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 function RealtorWrap() {
-    const [sort, setSort] = useState('')
-    const [isLoading, setLoading] = useState(false);
-    useEffect(() => {
-        setLoading(true)
-        axios.get('https://ali98.uz/api/reltors')
-            .then(res => {
-                const persons = res.data.data;
-                setReltorsData(persons)
-                setLoading(false)
-            })
-    }, [])
-
-function RealtorWrap() {
     const { lang, setLang } = useContext(Context);
     const [sort, setSort] = useState('')
     const [isLoading, setLoading] = useState(false);
@@ -62,7 +49,6 @@ function RealtorWrap() {
                 setReltorsData(persons)
             })
     }, [])
-    const [items, setItems] = useState(reltorData);
     console.log(items);
     useEffect(() => {
         if (sort === "name") {

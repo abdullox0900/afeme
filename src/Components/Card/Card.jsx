@@ -165,6 +165,7 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
                                 ? data?.image[0]?.url
                                 : CardImg
                         }
+                        onError={(e) => (e.target.src = CardImg)}
                     />
                 </Link>
                 <Box className="card__content">
