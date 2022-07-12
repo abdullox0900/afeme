@@ -30,28 +30,29 @@ function Adverts() {
     const location = useLocation();
 
     const term = searchParams.get("term");
+    const sale = searchParams.get("sale");
     const htype = searchParams.get("htype");
-    const regionID = searchParams.get("region");
+    const room = searchParams.get("room");
     const from = searchParams.get("from");
     const to = searchParams.get("to");
-    const room = searchParams.get("room");
-    const sale = searchParams.get("sale");
 
     const [formData, setFormData] = useState();
     const [data, setData] = useState([]);
     const [adverts, setAdverts] = useState([]);
     const [dataError, setDataError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const [currentPage, setCurrentPage] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
-    const URL = `https://ali98.uz/api/filter`;
+    const URL = `https://ali98.uz/api/filter?page=${currentPage}`;
 
     let searchTerms = new FormData();
     searchTerms.append("keyword", term ? term : "");
-    searchTerms.append("region_id", regionID ? regionID : "");
+    searchTerms.append("sale_id", sale ? sale : "");
     searchTerms.append("htype", htype ? htype : "");
     searchTerms.append("room", room ? room : "");
-    searchTerms.append("sale_id", sale ? sale : "");
+    searchTerms.append("from", from ? from : "");
+    searchTerms.append("to", to ? to : "");
+    searchTerms.append("perpage", 2);
     
     useEffect(() => {
         setFormData(searchTerms);
@@ -65,11 +66,11 @@ function Adverts() {
             .then((response) => response.text())
             .then((response) => {
                 let newData = JSON.parse(response);
-                if (newData.status == true || newData.status == 200) {
+                if (newData.hasOwnProperty('meta')) {
                     setData(newData);
                     setAdverts(newData.data);
                     console.log(data);
-                    // setTotalPages(newData.meta.last_page + 1);
+                    setTotalPages(newData.meta.last_page);
                 } else {
                     setDataError(true);
                 }
@@ -81,7 +82,7 @@ function Adverts() {
             .finally(() => {
                 setIsLoading(false);
             });
-    }, [currentPage, term, htype, regionID, from, to, room, sale]);
+    }, [currentPage, term, htype, from, to, room, sale]);
 
     function showCards(amount) {
         if (isLoading) {
@@ -133,8 +134,10 @@ function Adverts() {
 
     function pagination() {
         const changePage = (e, value) => {
-            setCurrentPage(value - 1);
-            setIsLoading(true);
+            if (currentPage != value) {
+                setCurrentPage(value);
+                setIsLoading(true);
+            }
         };
 
         if (adverts.length > 0) {
