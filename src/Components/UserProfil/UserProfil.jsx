@@ -156,7 +156,7 @@ function UserProfil() {
                                     labelId="demo-simple-select-label"
                                     id="demo-simple-select"
                                     value={type}
-                                    label='Type'
+                                    label={content[lang].form_select_jis}
                                     onChange={(e) => setType(e.target.value)}
                                 >
                                     <MenuItem value={'personal'}>{content[lang].form_select_type_sh}</MenuItem>

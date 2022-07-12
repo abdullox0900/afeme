@@ -51,6 +51,8 @@ function Form() {
 
     const onSubmit = (data) => {
         const singup = new FormData();
+        singup.append('name', data.name)
+        singup.append('phone', Number(data.phone))
         sessionStorage.setItem('name', data.name)
         sessionStorage.setItem('experience', experience)
         sessionStorage.setItem('description', description)
@@ -61,17 +63,15 @@ function Form() {
         sessionStorage.setItem('passport', data.passport);
         sessionStorage.setItem('user_type', data.user_type);
         sessionStorage.setItem('region_id', data.region_id);
-        singup.append('phone', data.phone)
         axios.post('http://ali98.uz/api/sms', singup)
             .then(function (response) {
+                console.log(response);
                 const Token = response.data.data
-                const Sts = response.data.status
                 localStorage.setItem('Token', Token);
-                if (Sts) {
-                    handleControl();
-                }
+                handleControl();
             })
             .catch(function (error) {
+                console.log(error);
                 handleErr(error);
             })
         setPhoneNumber(data.phone)
@@ -234,7 +234,7 @@ function Form() {
                         className="form__input form__input-number"
                         id="outlined-number"
                         label="Telefon Raqami*"
-                        type="number"
+                        type="text"
                         fullWidth
                         sx={{ mt: 2, }}
                         {...register('phone', { required: 'Raqam Kiriting' })}
