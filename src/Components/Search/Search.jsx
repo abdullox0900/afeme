@@ -72,6 +72,21 @@ function Search() {
         setPriceTo(e.target.value);
     };
 
+    const Clear = () => {
+        setRegion('');
+        setHtype('');
+        setRoom('');
+        setToMin('');
+        setPriceFrom('');
+        setFromMax('');
+        setPriceTo('');
+        setTerm('');
+        console.log('Tozalandi');
+    }
+    useEffect(() => {
+    }, [])
+
+
     function search(e) {
         e.preventDefault();
         navigate(
@@ -91,7 +106,7 @@ function Search() {
                     let data = res.data.data;
                     setSales(data);
                 }
-            } catch (error) {}
+            } catch (error) { }
         };
         salesData();
 
@@ -138,8 +153,8 @@ function Search() {
                                         {lang == "uz"
                                             ? region.name_uz
                                             : lang == "ru"
-                                            ? region.name_ru
-                                            : region.name_en}
+                                                ? region.name_ru
+                                                : region.name_en}
                                     </MenuItem>
                                 ))}
                             </Select>
@@ -169,8 +184,8 @@ function Search() {
                                         {lang == "uz"
                                             ? htype.name_uz
                                             : lang == "ru"
-                                            ? htype.name_ru
-                                            : htype.name_en}
+                                                ? htype.name_ru
+                                                : htype.name_en}
                                     </MenuItem>
                                 ))}
                             </Select>
@@ -238,6 +253,7 @@ function Search() {
                                 type="reset"
                                 variant="contained"
                                 className="btn search__submit-btn search__reset-btn"
+                                onClick={() => Clear()}
                             >
                                 Tozalash
                             </Button>
@@ -289,8 +305,8 @@ function Search() {
                                         {lang == "uz"
                                             ? region.name_uz
                                             : lang == "ru"
-                                            ? region.name_ru
-                                            : region.name_en}
+                                                ? region.name_ru
+                                                : region.name_en}
                                     </MenuItem>
                                 ))}
                             </Select>
@@ -320,8 +336,8 @@ function Search() {
                                         {lang == "uz"
                                             ? htype.name_uz
                                             : lang == "ru"
-                                            ? htype.name_ru
-                                            : htype.name_en}
+                                                ? htype.name_ru
+                                                : htype.name_en}
                                     </MenuItem>
                                 ))}
                             </Select>
@@ -407,6 +423,7 @@ function Search() {
                         variant="contained"
                         className="btn search__submit-btn search__reset-btn"
                         style={{ marginRight: "10px" }}
+                        onClick={Clear}
                     >
                         Tozalash
                     </Button>

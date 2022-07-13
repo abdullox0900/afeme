@@ -63,6 +63,7 @@ function NumberControl({ control, setControl, phone_number, setPhoneNumber }) {
                 window.location.reload()
             })
             .catch(function (error) {
+                console.log(error);
                 handleClose();
                 handleErr();
             })
@@ -80,7 +81,7 @@ function NumberControl({ control, setControl, phone_number, setPhoneNumber }) {
                 <form className={style.wrapper} onSubmit={handleSubmit(onSubmit)}>
                     <img src={SuccessIL} alt="alt" style={{width:'185px', height:'200px'}} />
                     <Typography className={style.title} id="modal-modal-title" variant="h6" component="h2">
-                        +{phone_number}<span> {content[lang].to} <br />{content[lang].confirm}</span>
+                        {phone_number}<span> {content[lang].to} <br />{content[lang].confirm}</span>
                     </Typography>
                     <TextField
                         className="form__input form__input-lastname"
