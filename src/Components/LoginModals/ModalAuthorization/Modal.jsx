@@ -35,7 +35,7 @@ function Modal({ elModal }) {
         log.append('phone', data.phone)
         axios.post('http://ali98.uz/api/sms', log)
             .then(function (response) {
-                console.log(response);
+                console.log(response.data.message);
                 const Token = JSON.stringify(response.data.data)
                 localStorage.setItem('Token', Token);
                 second.current.classList.add("modal--open");

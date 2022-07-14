@@ -11,7 +11,7 @@ import Trash from '@mui/icons-material/ClearRounded';
 import style from './Docs.module.scss';
 import "../Form/Form.scss";
 
-function Docs({ documents, setDocs }) {
+function Docs({ document, setDocs }) {
 
   const [show, setshow] = useState(false)
   const { lang, setLang } = useContext(Context);
@@ -44,7 +44,7 @@ function Docs({ documents, setDocs }) {
     <>
 
       <div className="change" style={{display:show ? 'block' : 'none'}}  >
-        <img src={documents} alt={documents} className="img" />
+        <img src={document} alt={document} className="img" />
         <Trash onClick={(e) => Delete(e)} className="icon" />
       </div>
 
