@@ -12,6 +12,7 @@
     height: 20px;
     display: flex;
     align-items: center;
+    // margin-bottom: 10px;
 }
 .house__prices {
     font-weight: 500;
@@ -44,6 +45,25 @@
     overflow: hidden;
     display: -webkit-box;
 }
+
+.card__box-wrap{
+display: flex;
+justify-content: space-between; 
+// align-items: center;
+}
+
+.card__men {
+    font-size: 14px;
+    color: #6d7580;
+    margin-right: 10px;
+}
+
+.card__wrap {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+
 .failText {
     padding: 10px 20px;
     background-color: #ffacac;
@@ -148,8 +168,8 @@
     border-radius: 15px !important;
     margin-bottom: 35px;
     &__img {
-        max-height: 200px;
-        height: 200px;
+        max-height: 230px;
+        height: 230px;
         max-width: 350px;
         min-width: 300px;
         border-radius: 10px;

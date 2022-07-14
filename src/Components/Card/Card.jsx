@@ -69,6 +69,8 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
         redirect: 'follow'
     };
 
+    console.log(data)
+
     const Delete = (id) => {
         fetch(`http://ali98.uz/api/post/${id}`, requestOptions)
             .then(response => response.text())
@@ -170,26 +172,37 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
                 </Link>
                 <Box className="card__content">
                     <CardContent className="card__header">
+
+                        <Link to={advertTypeLink} className="house__type">
+                            <img
+                                src={advertTypeImg}
+                                alt=""
+                                className="house__type__icon"
+                            />
+                            <p className="house__type__name">
+                                {advertType}
+                            </p>
+                        </Link>
+
+                        <Typography variant="body2" className="house__prices">
+                            <span className="house__price">{price}</span>
+                        </Typography>
+
+                    </CardContent>
+
+                    <CardContent className="card__main">
                         <div className="card__header__items">
                             <Link to={advertLink} className="card__title">
                                 {advertTitle}
                             </Link>
-                            <Link to={advertTypeLink} className="house__type">
-                                <img
-                                    src={advertTypeImg}
-                                    alt=""
-                                    className="house__type__icon"
-                                />
-                                <p className="house__type__name">
-                                    {advertType}
-                                </p>
-                            </Link>
                         </div>
-                        <Typography variant="body2" className="house__prices">
-                            <span className="house__price">{price}</span>
-                        </Typography>
-                    </CardContent>
-                    <CardContent className="card__main">
+
+                        <div className="card__wrap">
+                            <div className="card__room card__men">Xonalar: {data.room}</div>
+                            <div className="card__flet card__men">Qavat: {data.floor}</div>
+                            <div className="card__ara card__men">Maydoni: {data.total_area} m²</div>
+                        </div>
+
                         <p className="card__desc">{data?.description}</p>
                     </CardContent>
                     <CardActions className="card__footer">
