@@ -1,0 +1,60 @@
+.searchMap{
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    &__content{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    } 
+    &__map{
+        grid-column: span 2;
+    }
+    &__adverts{
+        overflow-y: hidden;
+        height: 100%;
+        max-height: 85vh;
+        max-width: 640px;
+        min-width: 325px;
+        padding: 10px 15px;
+        padding-top: 0;
+        padding-right: 0;
+        background-color: #fff;
+        border-left: 1px solid #cacaca;
+        z-index: 2500;
+        display: flex;
+        flex-direction: column;
+    }
+    &__cards{
+        overflow-y: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 15px;
+        padding-right: 15px;
+    }
+}
+
+@media (max-width: 1600px) {
+    .searchMap__cards{
+        grid-template-columns: 1fr;
+        place-items: center;
+    }
+    .searchMap__content{
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    .searchMap__map{
+        grid-column: span 3;
+    }
+}
+@media (max-width: 666px) {
+    .searchMap__cards{
+        grid-template-columns: 1fr;
+        place-items: center;
+    }
+    .searchMap__content{
+        grid-template-columns: 1fr;
+    }
+    .searchMap__map{
+        grid-column: span 1fr;
+        min-height: 450px;
+    }
+}
