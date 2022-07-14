@@ -51,7 +51,6 @@ function RealtorWrap() {
         }, 5000)
     }, [])
 
-
     useEffect(() => {
         if (sort === "name") {
             reltorData.sort(function (a, b) {
