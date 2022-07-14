@@ -148,6 +148,8 @@ const content = {
         priceFrom: "dan",
         priceTo: "gacha",
 
+        chat: "Chat",
+
         // Advert
         contactBtn: "Bog'lanish",
         sendMessageBtn: "Xabar yozish",
@@ -189,6 +191,7 @@ const content = {
 
     },
     en: {
+        chat: "Chat",
         // Header
         add: "Add an ad",
         fromBtn: "Sign in",
@@ -367,6 +370,7 @@ const content = {
 
     },
     ru: {
+        chat: "Чат",
         // Header
         add: "Добавить объявление",
         fromBtn: "Войти",

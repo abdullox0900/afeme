@@ -53,7 +53,7 @@ function Adverts() {
     searchTerms.append("from", from ? from : "");
     searchTerms.append("to", to ? to : "");
     searchTerms.append("perpage", 2);
-    
+
     useEffect(() => {
         setFormData(searchTerms);
         console.log(formData);
@@ -82,13 +82,13 @@ function Adverts() {
             .finally(() => {
                 setIsLoading(false);
             });
-    }, [currentPage, term, htype, from, to, room, sale ]);
+    }, [currentPage, term, htype, from, to, room, sale]);
 
     function showCards(amount) {
         if (isLoading) {
             return <CardSkeleton amount={amount} fullCard={true} />;
         } else if (adverts) {
-            
+
             if (adverts.length > 0) {
                 return adverts.map((row) => (
                     <Cards data={row} fullCard={true} />
@@ -163,6 +163,11 @@ function Adverts() {
             <div className="adverts">
                 <Container>
                     {showCards(6)}
+                    <div className="rek">
+                    <noindex>
+                        <ins data-revive-zoneid={3} data-revive-id="e210f6dea6e07de052d5801028468e21" rel="nofollow" data-revive-seq={1} id="revive-0-1" data-revive-loaded={1} style={{ textDecoration: 'none' }}><a href="https://diru.uybor.uz/www/delivery/ck.php?oaparams=2__bannerid=577__zoneid=3__cb=2ecb0764cd__oadest=https%3A%2F%2Finstagram.com%2Fdreamhouseuz%3Figshid%3DYmMyMTA2M2Y%3D" target="_blank"><img src="https://diru.uybor.uz/www/images/f0d138a2bdd82cba5836252c174bb267.png" width={636} height={100} alt title border={0} /></a><div id="beacon_2ecb0764cd" style={{ position: 'absolute', left: 0, top: 0, visibility: 'hidden' }}><img src="https://diru.uybor.uz/www/delivery/lg.php?bannerid=577&campaignid=8&zoneid=3&loc=https%3A%2F%2Fuybor.uz%2Fuz%2Fsotuv-kvartir%2Fkvartiry-v-tashkente&referer=https%3A%2F%2Fuybor.uz%2Fuz&cb=2ecb0764cd" width={0} height={0} alt style={{ width: 0, height: 0 }} /></div></ins>
+                    </noindex>
+                    </div>
                     {pagination()}
                     {windowWidth > 800 ? <AfemePhone /> : ""}
                 </Container>

@@ -69,8 +69,6 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
         redirect: 'follow'
     };
 
-    console.log(data)
-
     const Delete = (id) => {
         fetch(`http://ali98.uz/api/post/${id}`, requestOptions)
             .then(response => response.text())

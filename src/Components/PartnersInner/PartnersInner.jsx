@@ -50,24 +50,15 @@ function PartnersInner() {
             <section className="partners-inner">
                 <Container>
                     <div className="partners-inner__box">
-                        <h3 className="partners-inner__title">{langData}</h3>
-                        <p className="partners-inner__desc"> {langDataBody}</p>
-                        <ul className="portners-inner__list">
-                            <li className="portners-inner__item">
-                                <a
-                                    className="portners-innner__link"
-                                    href="#"
-                                >
+                        <h3 className="partners-inner__title">Bizning Hamkorlar</h3>
+                        <p className="partners-inner__desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Praesentium sapiente quaerat reiciendis quas numquam a assumenda unde excepturi repellat possimus.</p>
                                     <img
                                         className="portners-inner__img"
                                         src={ImgPortnor}
                                         alt="img"
-                                        width={150}
-                                        height={100}
+                                        width={750}
+                                        height={300}
                                     />
-                                </a>
-                            </li>
-                        </ul>
                     </div>
                 </Container>
             </section>

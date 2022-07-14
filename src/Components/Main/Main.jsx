@@ -32,6 +32,8 @@ function Main() {
     const [adverts, setAdverts] = useState([]);
     const [dataError, setDataError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [rekData, setRekData] = useState([]);
+
     const URL = "https://ali98.uz/api/popular/";
 
     // Reltor useState
@@ -46,7 +48,6 @@ function Main() {
                 if (newData && newData.length > 0) {
                     setData(response.data);
                     setAdverts(response.data.data);
-                    console.log(data);
                 } else {
                     setDataError(true);
                 }
@@ -70,6 +71,15 @@ function Main() {
                 console.log(err);
             });
     }, []);
+
+    useEffect(() => {
+        axios.get(`http://ali98.uz/api/advertisements`)
+            .then(res => {
+                const resdata = res?.data;
+                setRekData(resdata)
+            })
+    }, [])
+
 
     function showCards(amount, popular = false) {
         if (isLoading) {
@@ -150,7 +160,7 @@ function Main() {
                                 >
 
                                     {
-                                        reltData.slice(0,10).map(rel => {
+                                        reltData.slice(0, 10).map(rel => {
                                             return (
                                                 <>
                                                     <Box className="realtor">
@@ -171,27 +181,23 @@ function Main() {
                                             )
                                         })
                                     }
-                                    {/* {
-                                        Array.apply(null, { length: 6 }).map(() => (
-                                            <Box className="realtor">
-                                                <img src={Realtors1} alt="" />
-                                                <div className="realtors__content">
-                                                    <Typography
-                                                        variant="h6"
-                                                        className="realtors__name"
-                                                    >
-                                                        Abdullox Abdusalomov
-                                                    </Typography>
-                                                    <p className="realtors__offer">
-                                                        2 ta taklif
-                                                    </p>
-                                                </div>
-                                            </Box>
-                                        )
-                                        )
-                                    } */}
                                 </NavLink>
                             </Box>
+
+                            <section className="advertising">
+                                {
+                                    rekData?.map((res) => {
+                                        return (
+                                            <>
+                                                <a href={res?.url}>
+                                                    <img className="advertising__img" src={res?.image} alt="" />
+                                                </a>
+                                            </>
+                                        )
+                                    })
+                                }
+                            </section>
+
                         </div>
                     </section>
                 </div>

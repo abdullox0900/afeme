@@ -86,6 +86,9 @@ function Footer() {
                                 <li className="footer__item">
                                     <NavLink to={"/help"} className="footer__link">{content[lang].help}</NavLink>
                                 </li>
+                                <li className="footer__item">
+                                    <a href="https://ali98.uz/" className="footer__link">{content[lang].chat}</a>
+                                </li>
                             </ul>
                         </section>
                         <section className="footer__holder">

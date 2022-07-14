@@ -30,6 +30,8 @@
         }
     }
 
+    
+
     .panel{
         width: 33%;
         padding-left: 15px;
@@ -127,7 +129,30 @@
             margin: 0;
         }
     }
-    // .scards{
-    //     display: flex;
-    // }
+
+    .advertising {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 417px;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 6px;
+        margin-top: 50px;
+        border-radius: 12px;
+        
+
+        .advertising__img {
+            width: 417px;
+            border-radius: 12px;
+        }
+    } 
+}
+
+@media only screen and (max-width: 1250px)  {
+
+    .main {
+        .advertising {
+            display: none;
+        }
+    }
+    
 }
