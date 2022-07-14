@@ -27,6 +27,7 @@ function ImageFile({ photo, setPhoto }) {
         setImg(false)
     }
     const arr = new Array();
+
     function dropImageHandler(e) {
         e.preventDefault();
         var formdata = new FormData();
@@ -51,12 +52,13 @@ function ImageFile({ photo, setPhoto }) {
         setImage(files)
         setImg(false)
     }
-    function Select(e) {
+    function SelectI(e) {
         let files = [...e];
         let formdata = new FormData();
         for (let i = 0; i < files.length; i++) {
             formdata.append('key', 'Service For C Group')
             formdata.append('file', files[i])
+            console.log('sendi', files[i]);
             axios.post('http://ali98.uz/api/service', formdata)
                 .then(function (res) {
                     let data = res.data;
@@ -71,7 +73,6 @@ function ImageFile({ photo, setPhoto }) {
                     console.log(err);
                 })
         }
-        // setImage(files)
     }
     function Delete(e) {
         let src = e;
@@ -86,7 +87,7 @@ function ImageFile({ photo, setPhoto }) {
             <div className={style.images}>
                 {photo.map((i) => (
                     <div className={style.img} key={v4()}>
-                        <img src={i} alt={null} className={style.img1}/>
+                        <img src={i} alt={null} className={style.img1} />
                         <Trash onClick={(e) => Delete(i)} className={style.icon} />
                     </div>
                 ))}
@@ -110,15 +111,18 @@ function ImageFile({ photo, setPhoto }) {
                     >
                         <label htmlFor="contained-button-file">
                             <div className={style.btns}>
-                                <label htmlFor="button">{content[lang].adverd_office_drop_img}</label>
-                                <input type="file" id='button' className={style.label}
-                                    onChange={(e) => Select(e.target.files)}
-                                    multiple />
+                                <label htmlFor="buttonI">{content[lang].adverd_office_drop_img}</label>
+                                <input
+                                    type="file"
+                                    id='buttonI'
+                                    className={style.label}
+                                    onChange={(e) => SelectI(e.target.files)}
+                                    multiple
+                                />
                             </div>
                         </label>
                         <span>Drop Here...</span>
                     </div>
-
                 }
             </div >
         </div>

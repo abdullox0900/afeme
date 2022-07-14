@@ -46,6 +46,14 @@ function Footer() {
         width: "200px",
     }
 
+    // const style = {
+    //     position: "fixed",
+    //     left: "0",
+    //     bottom: "0",
+    //     height: "380px",
+    //     width: "100%"
+    //   };
+
     return (
         <>
             <footer className="footer">

@@ -51,25 +51,28 @@ function VideoFile({ video, setVideo }) {
         setVideo(files)
     }
     let Arr = [];
-    function Select(e) {
+    function SelectV(e) {
+        console.log(e);
         let files = [...e]
-        let formdata = new FormData();
+        let formdataV = new FormData();
         for (let i = 0; i < files.length; i++) {
-            formdata.append('key', 'Service For C Group')
-            formdata.append('file', files)
-            axios.post('http://ali98.uz/api/service', formdata)
+            formdataV.append('key', 'Service For C Group')
+            formdataV.append('file', files)
+            console.log('send',files[i]);
+            axios.post('http://ali98.uz/api/service', formdataV)
                 .then(function (res) {
+                    console.log('v',res);
                     let data = res.data;
                     Object.entries(data).forEach(([name, value]) => {
                         if (typeof value === 'string') {
                             Arr.push(value);
                             setVideo(Arr)
-                            console.log(Arr);
+                            console.log(video);
                         }
                     })
                 })
                 .catch(function (err) {
-                    console.log(err);
+                    console.log('v',err);
                 })
         }
     }
@@ -77,7 +80,7 @@ function VideoFile({ video, setVideo }) {
     return (
         <div className={style.wrapper}>
             <p className={style.htypeText}>{content[lang].adverd_office_video}</p>
-            <div className={style}>
+            <div className={style.videos}>
                 {video.map((i) => (
                     <div key={v4}>
                         <video width="400px" height="200px" controls >
@@ -107,8 +110,13 @@ function VideoFile({ video, setVideo }) {
                     >
                         <label htmlFor="contained-button-file">
                             <div className={style.btns}>
-                                <label htmlFor="button">{content[lang].adverd_office_drop_video}</label>
-                                <input type="file" id='button' onChange={(e) => Select(e.target.files)} className={style.label} />
+                                <label htmlFor="buttonV">{content[lang].adverd_office_drop_video}</label>
+                                <input
+                                    type="file"
+                                    id='buttonV'
+                                    onChange={(e) => SelectV(e.target.files)}
+                                    className={style.label}
+                                />
                             </div>
                         </label>
                         <span>Drop Here...</span>
