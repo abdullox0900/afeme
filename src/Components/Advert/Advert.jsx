@@ -47,19 +47,21 @@ function Advert() {
     const [advertAddress, setAdvertAddress] = useState("");
     const [advertCity, setAdvertCity] = useState("");
 
-    CardTools(
-        data,
-        lang,
-        currency,
-        setPrice,
-        setAdvertTitle,
-        setAdvertLink,
-        setAdvertType,
-        setAdvertTypeImg,
-        setAdvertTypeLink,
-        setAdvertAddress,
-        setAdvertCity
-    );
+    if (data) {
+        CardTools(
+            data,
+            lang,
+            currency,
+            setPrice,
+            setAdvertTitle,
+            setAdvertLink,
+            setAdvertType,
+            setAdvertTypeImg,
+            setAdvertTypeLink,
+            setAdvertAddress,
+            setAdvertCity
+        );
+    }
 
     useEffect(() => {
         setIsLoading(true);

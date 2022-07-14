@@ -16,7 +16,7 @@ const content = {
         mor: "Yana",
 
         // Hero
-        hero_title: "Toping. Uni sayohat qiling. Unga egalik qiling.",
+        hero_title: "Toping. Sayohat qiling. Egalik qiling.",
         hero_search: "Qidirish",
 
         // Main

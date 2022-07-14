@@ -66,7 +66,7 @@ function Adverts() {
             .then((response) => response.text())
             .then((response) => {
                 let newData = JSON.parse(response);
-                if (newData.hasOwnProperty('meta')) {
+                if (!newData.hasOwnProperty('status')) {
                     setData(newData);
                     setAdverts(newData.data);
                     console.log(data);
@@ -82,7 +82,7 @@ function Adverts() {
             .finally(() => {
                 setIsLoading(false);
             });
-    }, [currentPage, term, htype, from, to, room, sale]);
+    }, [currentPage, term, htype, from, to, room, sale ]);
 
     function showCards(amount) {
         if (isLoading) {

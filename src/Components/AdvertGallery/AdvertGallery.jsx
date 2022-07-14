@@ -84,14 +84,18 @@ function AdvertGallery({ data, isLoading }) {
                 ) : (
                     ""
                 )}
-                <SplideSlide>
-                    <img
-                        src={data.documents}
-                        className="splide__img"
-                        alt=""
-                        onError={(e) => (e.target.src = arr[randNumber])}
-                    />
-                </SplideSlide>
+                {data.documents ? (
+                    <SplideSlide>
+                        <img
+                            src={data.documents}
+                            className="splide__img"
+                            alt=""
+                            onError={(e) => (e.target.src = arr[randNumber])}
+                        />
+                    </SplideSlide>
+                ) : (
+                    ""
+                )}
             </>
         );
     }
