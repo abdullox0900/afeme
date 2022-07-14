@@ -14,23 +14,27 @@
     align-items: center;
     // margin-bottom: 10px;
 }
+
 .house__prices {
     font-weight: 500;
     font-size: 12px;
     line-height: 10px;
     color: #6d7580;
 }
+
 .house__price {
     font-weight: 600;
     font-size: 16px;
     line-height: 15px;
     color: $cardBlue;
 }
+
 .house__address {
     font-size: 16px;
     font-weight: 400;
     padding-left: 5px;
 }
+
 .card__title {
     font-weight: 600;
     font-size: 16px;
@@ -46,10 +50,9 @@
     display: -webkit-box;
 }
 
-.card__box-wrap{
-display: flex;
-justify-content: space-between; 
-// align-items: center;
+.card__box-wrap {
+    display: flex;
+    justify-content: space-between;
 }
 
 .card__men {
@@ -73,6 +76,7 @@ justify-content: space-between;
     width: 100%;
     text-align: center;
 }
+
 .card {
     width: 100%;
     max-width: 350px;
@@ -83,28 +87,35 @@ justify-content: space-between;
     margin-bottom: 15px;
     position: relative;
     padding-bottom: 3px;
-    &Controls{
-       border: 1px solid #ff000080 !important;
+
+    &Controls {
+        border: 1px solid #ff000080 !important;
     }
-    &Edit{
+
+    &Edit {
         border-color: #0468ffaf !important;
     }
+
     &__header,
     &__footer {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
+
     &__img {
         // object-fit: cover;
         // width: 100%;
         // height: 100%;
     }
+
     &__main {
         padding: 0 16px !important;
     }
+
     &__footer {
         padding: 0 16px 10px !important;
+
         p {
             display: flex;
             align-items: center;
@@ -114,41 +125,47 @@ justify-content: space-between;
             color: #6d7580;
         }
     }
+
     &__btn img {
         width: 16px;
         height: 16px;
     }
+
     &__call,
     &__msg {
-        background: radial-gradient(
-            100% 100% at 50.44% 100%,
-            #367bff 0%,
-            #6197ff 100%
-        );
+        background: radial-gradient(100% 100% at 50.44% 100%,
+                #367bff 0%,
+                #6197ff 100%);
     }
+
     &__call {
         padding: 8px 16px !important;
         border-radius: 5px !important;
     }
+
     &__msg {
         margin: 0 !important;
     }
 }
-.house__type__icon{
+
+.house__type__icon {
     width: 14px;
     height: 14px;
     margin-right: 5px;
 }
-.house__type__name{
+
+.house__type__name {
     margin: 0;
 }
 
 .card:hover {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
-.card__actions{
+
+.card__actions {
     display: flex;
 }
+
 .scard {
     margin-right: 30px;
     min-width: 350px;
@@ -167,6 +184,7 @@ justify-content: space-between;
     background-color: #f6f6f6 !important;
     border-radius: 15px !important;
     margin-bottom: 35px;
+
     &__img {
         max-height: 230px;
         height: 230px;
@@ -174,6 +192,7 @@ justify-content: space-between;
         min-width: 300px;
         border-radius: 10px;
     }
+
     .card__header {
         display: flex;
         justify-content: space-between;
@@ -181,24 +200,29 @@ justify-content: space-between;
         padding-top: 10px;
         padding-bottom: 10px;
     }
+
     .card__header__items {
         display: flex;
         align-items: center;
     }
+
     .card__content {
         width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
     }
+
     .card__title {
         margin: 0 !important;
         margin-right: 10px !important;
     }
+
     .house__prices {
         min-width: auto !important;
         margin-left: 10px;
     }
+
     .card__desc {
         height: auto;
         font-size: 16px;
@@ -212,9 +236,11 @@ justify-content: space-between;
         overflow: hidden;
         display: -webkit-box;
     }
+
     .card__btn {
         margin-left: 10px !important;
     }
+
     &__foot {
         display: flex;
         align-items: center;

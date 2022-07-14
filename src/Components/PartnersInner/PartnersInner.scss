@@ -47,7 +47,15 @@
         display: flex;
     }
 
-    .portners-inner__item + .portners-inner__item{
+    .portners-inner__item+.portners-inner__item {
         margin-left: 50px;
     }
+}
+
+@media only screen and (max-width: 880px) {
+
+    .partners-inner {
+        display: none;
+    }
+
 }
