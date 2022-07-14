@@ -338,8 +338,8 @@ function Header() {
                                     arrow
                                     TransitionComponent={Grow}
                                 >
-                                    <Link
-                                        to={"/userfavorites"}
+                                    <a
+                                        href={"/userfavorites"}
                                         className="header__likes__link"
                                     >
                                         <IconButton
@@ -361,7 +361,7 @@ function Header() {
                                                 />
                                             </Badge>
                                         </IconButton>
-                                    </Link>
+                                    </a>
                                 </Tooltip>
                                 <Tooltip
                                     title={content[lang].currencyTooltip}
