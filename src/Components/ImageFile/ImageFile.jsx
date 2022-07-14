@@ -27,6 +27,7 @@ function ImageFile({ photo, setPhoto }) {
         setImg(false)
     }
     const arr = new Array();
+
     function dropImageHandler(e) {
         e.preventDefault();
         var formdata = new FormData();
@@ -57,7 +58,7 @@ function ImageFile({ photo, setPhoto }) {
         for (let i = 0; i < files.length; i++) {
             formdata.append('key', 'Service For C Group')
             formdata.append('file', files[i])
-            console.log('sendi',files[i]);
+            console.log('sendi', files[i]);
             axios.post('http://ali98.uz/api/service', formdata)
                 .then(function (res) {
                     let data = res.data;
@@ -122,7 +123,6 @@ function ImageFile({ photo, setPhoto }) {
                         </label>
                         <span>Drop Here...</span>
                     </div>
-
                 }
             </div >
         </div>

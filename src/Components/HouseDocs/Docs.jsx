@@ -34,6 +34,7 @@ function Docs({ document, setDocs }) {
         setshow(true)
         let res = response.data.data
         setDocs(res)
+        console.log(document);
       })
       .catch(function (res) {
         console.log(res.response.data.status);
@@ -47,7 +48,6 @@ function Docs({ document, setDocs }) {
         <img src={document} alt={document} className="img" />
         <Trash onClick={(e) => Delete(e)} className="icon" />
       </div>
-
 
       <div className={style.Group}>
         <label htmlFor="file" className={style.label}>{content[lang].adverd_documents_dow}</label>
