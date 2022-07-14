@@ -46,14 +46,12 @@ function Main() {
                 if (newData && newData.length > 0) {
                     setData(response.data);
                     setAdverts(response.data.data);
-                    console.log(data);
                 } else {
                     setDataError(true);
                 }
             })
             .catch((error) => {
                 setDataError(true);
-                console.log(error);
             })
             .finally(() => {
                 setIsLoading(false);

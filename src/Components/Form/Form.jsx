@@ -65,7 +65,6 @@ function Form() {
         sessionStorage.setItem('region_id', data.region_id);
         axios.post('http://ali98.uz/api/sms', singup)
             .then(function (response) {
-                console.log(response.data.message);
                 const Token = response.data.data
                 localStorage.setItem('Token', Token);
                 handleControl();
@@ -86,7 +85,7 @@ function Form() {
                     setRegions(data)
                 }
             } catch (error) {
-                console.log("error")
+                console.log(error)
             }
         }
         regions();

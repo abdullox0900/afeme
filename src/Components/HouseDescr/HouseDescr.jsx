@@ -9,9 +9,8 @@ import { Context } from '../../Context/LangContext';
 import content from '../../Localization/Content';
 import style from './HouseDescr.module.scss';
 
-function HouseDescr({hDescr, sethDescr}) {
+function HouseDescr({sethDescr}) {
     const { lang, setLang } = useContext(Context);
-    const [text, setText] = useState()
 
     return (
         <>

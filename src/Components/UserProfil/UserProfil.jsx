@@ -19,7 +19,6 @@ import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/mater
 function UserProfil() {
     const { lang, setLang } = useContext(Context);
     const { user } = useContext(UserContext);
-    console.log(user);
     const [name, setName] = useState('')
     const [lastname, setLastName] = useState('')
     const [phone, setPhone] = useState('')
@@ -65,7 +64,6 @@ function UserProfil() {
         }).then(function (response) {
             return response.text();
         }).then(function (data) {
-            console.log(data);
             window.location.reload()
         })
     }
@@ -79,7 +77,7 @@ function UserProfil() {
                     setRegions(data)
                 }
             } catch (error) {
-                console.log("error")
+                console.log(error)
             }
         }
         regions();

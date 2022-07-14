@@ -56,7 +56,6 @@ function Adverts() {
     
     useEffect(() => {
         setFormData(searchTerms);
-        console.log(formData);
         setIsLoading(true);
 
         fetch(URL, {
@@ -69,7 +68,6 @@ function Adverts() {
                 if (!newData.hasOwnProperty('status')) {
                     setData(newData);
                     setAdverts(newData.data);
-                    console.log(data);
                     setTotalPages(newData.meta.last_page);
                 } else {
                     setDataError(true);
@@ -77,7 +75,6 @@ function Adverts() {
             })
             .catch((error) => {
                 setDataError(true);
-                console.log(error);
             })
             .finally(() => {
                 setIsLoading(false);
