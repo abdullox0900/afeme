@@ -71,7 +71,6 @@ function Advert() {
                 let dataStatus = response.data.status;
                 if (dataStatus == true || dataStatus == 200) {
                     setData(response.data.data);
-                    console.log(response);
                 } else {
                     setDataError(true);
                 }

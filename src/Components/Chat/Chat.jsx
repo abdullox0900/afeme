@@ -31,7 +31,6 @@ function Chat() {
     document.body.style = `height: 100vh; overflow: hidden !important;`;
     function attachFile() {
         let attachInput = document.querySelector('.attachFile__input');
-        console.log(attachInput);
         attachInput.click();
     }
     const images = [Person1, Person2, Person3, Person1, Person2, Person3]

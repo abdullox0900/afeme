@@ -55,7 +55,6 @@ function ReltorCobinet() {
             })
     }, [])
 
-    console.log(userData);
 
     let oldin = new Date(userData.created_at)
     let hozir = new Date()

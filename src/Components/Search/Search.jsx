@@ -96,7 +96,6 @@ function Search({ map = false }) {
             formData.append("room", room);
             formData.append("from", priceFrom);
             formData.append("to", priceTo);
-            console.log({sale, htype, room, priceFrom, priceTo, term});
             setSearchTerms(formData);
         }
     }

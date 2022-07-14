@@ -43,7 +43,6 @@ function Confirm({ second }) {
                 window.location.reload();
             })
             .catch(function (error) {
-                console.error(error);
                 handleErr()
             })
         second.current.classList.remove("modal--open");

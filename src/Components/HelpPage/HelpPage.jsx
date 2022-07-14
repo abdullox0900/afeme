@@ -21,10 +21,8 @@ function HelpPage() {
     const form = useRef()
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = (data) => {
-        console.log(data)
         emailjs.sendForm('afeme.corp.help', 'afeme.corp.template', form.current, 'uWgLbWZbgdBumWoRW')
             .then((result) => {
-                console.log(result);
                 handleOpen();
                 reset()
                 Navigate('/Afeme')

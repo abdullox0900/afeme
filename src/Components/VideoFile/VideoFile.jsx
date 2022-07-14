@@ -52,27 +52,23 @@ function VideoFile({ video, setVideo }) {
     }
     let Arr = [];
     function SelectV(e) {
-        console.log(e);
         let files = [...e]
         let formdataV = new FormData();
         for (let i = 0; i < files.length; i++) {
             formdataV.append('key', 'Service For C Group')
             formdataV.append('file', files)
-            console.log('send',files[i]);
             axios.post('http://ali98.uz/api/service', formdataV)
                 .then(function (res) {
-                    console.log('v',res);
                     let data = res.data;
                     Object.entries(data).forEach(([name, value]) => {
                         if (typeof value === 'string') {
                             Arr.push(value);
                             setVideo(Arr)
-                            console.log(video);
                         }
                     })
                 })
                 .catch(function (err) {
-                    console.log('v',err);
+                    console.log(err);
                 })
         }
     }

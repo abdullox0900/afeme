@@ -54,7 +54,6 @@ function Main() {
             })
             .catch((error) => {
                 setDataError(true);
-                console.log(error);
             })
             .finally(() => {
                 setIsLoading(false);
@@ -144,7 +143,7 @@ function Main() {
                             </div>
                         </div>
                         <div className="panel">
-                            <div id="advertMap"><AdvertMap currentAdvert={IP} zoom={8} /></div>
+                            <div style={{marginTop:'40px'}} id="advertMap"><AdvertMap currentAdvert={IP} zoom={8} /></div>
 
                             <Box className="realtors">
                                 <Typography

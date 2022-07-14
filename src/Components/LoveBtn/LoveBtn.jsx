@@ -52,7 +52,6 @@ function LoveBtn({ advertID }) {
                 ? user.favorites + 1
                 : user.favorites - 1;
             setUser(newUser);
-            console.log(user);
         }
 
         if (user.hasOwnProperty("data")) {

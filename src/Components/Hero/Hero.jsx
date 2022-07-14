@@ -15,9 +15,6 @@ import HeroImg5 from "../../Assets/Img/home-hero-5.jpg";
 import HeroImg6 from "../../Assets/Img/home-hero-6.jpg";
 import "../Hero/Hero.scss";
 
-// Import => Axios
-import axios from "axios";
-
 function Hero() {
 
     const { lang, setLang } = useContext(Context);

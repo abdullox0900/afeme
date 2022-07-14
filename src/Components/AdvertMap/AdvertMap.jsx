@@ -42,7 +42,6 @@ function AdvertMap({ currentAdvert, zoom = 10 }) {
             })
             .catch((error) => {
                 setDataError(true);
-                console.log(error);
             })
             .finally(() => {
                 setIsLoading(false);
