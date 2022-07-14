@@ -76,7 +76,7 @@ function AdvertPage() {
   data.append('date', date);
   data.append('room', room);
   data.append('repair_id', repair_id);
-  data.append('documents', document);
+  data.append('document', document);
   data.append('description', description);
   data.append('material_id', material_id);
   data.append('region_id', region_id);
@@ -91,7 +91,7 @@ function AdvertPage() {
   data.append('kitchen_area', kitchen_area)
   data.append('photo', photo);
   data.append('video', video);
-
+  
   var requestOptions = {
     method: 'POST',
     headers: headers,
@@ -100,13 +100,14 @@ function AdvertPage() {
   };
   //Post Function
   function onSubmit() {
+    // console.log(document);
     fetch("http://ali98.uz/api/post", requestOptions)
-      .then(response => response.text())
-      .then(function (response) {
-
-        handleSuc();
-
-      })
+    .then(response => response.text())
+    .then(function (response) {
+      console.log(response);
+      handleSuc();
+      
+    })
       .catch(function (err) {
         handleErr();
         console.log(err);
@@ -157,7 +158,7 @@ function AdvertPage() {
           <h2 className={style.htypeText}>{content[lang].adverd_documents}</h2>
 
           <Docs
-            documents={document} setDocs={setDocs} />
+            document={document} setDocs={setDocs} />
           <ImageFile
             photo={photo} setPhoto={setPhoto} />
           <VideoFile
