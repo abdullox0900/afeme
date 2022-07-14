@@ -1,5 +1,5 @@
 // Import => React and Hooks
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
     useNavigate,
     useSearchParams,
@@ -15,6 +15,7 @@ import Container from "../../Components/Container/Container";
 import Header from "../../Components/Header/Header";
 import Hero from "../../Components/Hero/Hero";
 import Cards from "../../Components/Card/Card";
+import { CurrencyContext } from "../../Context/CurrencyContext";
 import AfemePhone from "../../Components/AfemePhone/AfemePhone";
 import Footer from "../../Components/Footer/Footer";
 import ApiError from "../../Components/ApiError/ApiError";
@@ -27,6 +28,7 @@ import "./Adverts.scss";
 function Adverts() {
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
+    const { currency, setCurrency } = useContext(CurrencyContext);
     const location = useLocation();
 
     const term = searchParams.get("term");
@@ -52,7 +54,12 @@ function Adverts() {
     searchTerms.append("room", room ? room : "");
     searchTerms.append("from", from ? from : "");
     searchTerms.append("to", to ? to : "");
-    searchTerms.append("perpage", 2);
+    // searchTerms.append("perpage", 10);
+    if (from && to) {
+        if (from != '' && to != '') {
+            searchTerms.append("price_type", currency == 'sum' ? 'som': currency);
+        }
+    }
     
     useEffect(() => {
         setFormData(searchTerms);
