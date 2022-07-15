@@ -39,15 +39,7 @@ function App() {
             }, 500);
         }
     });
-    
-
-    // function test() {
-    //     setTimeout(() => {
-            
-    //     }, 500)
-    // }
-
-    // test()
+ 
 
     return (
         <>
