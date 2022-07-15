@@ -29,24 +29,30 @@ function Confirm({ second }) {
     const { lang, setLang } = useContext(Context);
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
+    const log = new FormData();
 
+    let requestOptions = {
+        method: 'POST',
+        body: log,
+        redirect: 'follow'
+    };
     //Request Function
     const onSubmit = (data) => {
-        const log = new FormData();
         log.append('phone', phone)
         log.append('code', data.code)
-        axios.post('http://ali98.uz/api/login', log)
+        fetch("https://ali98.uz/api/login", requestOptions)
+            .then(response => response.text())
             .then(function (response) {
                 sessionStorage.clear();
-                const Token = (response.data.data)
-                localStorage.setItem('Token', Token);
+                const Token = JSON.parse(response)
+                localStorage.setItem('Token', Token.data);
                 window.location.reload();
+                reset();
             })
             .catch(function (error) {
                 handleErr()
             })
         second.current.classList.remove("modal--open");
-        reset();
     }
 
 

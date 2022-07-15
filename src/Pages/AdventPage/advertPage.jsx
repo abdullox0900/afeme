@@ -17,14 +17,16 @@ import ImageFile from '../../Components/ImageFile/ImageFile';
 import VideoFile from '../../Components/VideoFile/VideoFile';
 import HouseDescr from '../../Components/HouseDescr/HouseDescr';
 import HousePrice from '../../Components/HousePrice/HousePrice';
-import Map from '../../Components/Map/Map'
-import Error from '../../Components/Modals/Error/Error'
-import Success from '../../Components/Modals/Success/Success'
+import Map from '../../Components/Map/Map';
+import Error from '../../Components/Modals/Error/Error';
+import Success from '../../Components/Modals/Success/Success';
+import Page404 from "../404/404";
 
 // Import => Styles
 import style from './advertPage.module.scss';
 
 import { Context } from '../../Context/LangContext';
+import { UserContext } from '../../Context/UserContext';
 import content from '../../Localization/Content';
 
 // Import => Mui
@@ -33,6 +35,7 @@ import { Button } from '@mui/material';
 function AdvertPage() {
 
   const { lang } = useContext(Context);
+  const { user, setUser } = useContext(UserContext);
   const [err, setErr] = useState(false);
   const [suc, setSuc] = useState(false);//Success State
   const handleErr = () => setErr(true);
@@ -100,88 +103,95 @@ function AdvertPage() {
   };
   //Post Function
   function onSubmit() {
-    fetch("http://ali98.uz/api/post", requestOptions)
+    fetch("https://ali98.uz/api/post", requestOptions)
       .then(response => response.text())
       .then(function (response) {
         handleSuc();
-
       })
       .catch(function (err) {
         handleErr();
       })
   }
 
-  return (
-    <>
-      <Header />
-      <Error err={err} setErr={setErr} />
-      <Success suc={suc} setSuc={setSuc} />
-      <div className={style.container}>
-        <article>
-
-          <h1 className={style.pageName}>{content[lang].advert_title}</h1>
-          <h2 className={style.htypeText}>{content[lang].adverd_sotish_turi}</h2>
-          <SaleType
-            sale_id={sale_id} setsType={setsType} />
-          <h2 className={style.htypeText}>{content[lang].adverd_build_title}</h2>
-          <HouseType
-            htype_id={htype_id} sethType={sethType} />
-          <h2 className={style.htypeText}>{content[lang].adverd_adres_office}</h2>
-
-          <Map
-            house={house} setHouse={setHouse}
-            street={street} setStreet={setStreet}
-            city_id={city_id} setCity={setCity}
-            region_id={region_id} setRegionID={setRegionID} />
-
-          <h2 className={style.htypeText}>{content[lang].adverd_about_the_office}</h2>
-
-          <Date
-            date={date} setDate={setDate} />
-          <Room
-            room={room} setRoom={setRoom} />
-          <Area total_area={total_area} setTotalArea={setTotalArea}
-            living_area={living_area} setLivingArea={setLivingArea}
-            kitchen_area={kitchen_area} setKitchenArea={setKitchenArea}
-            total_area_type={total_area_type} setTotalAreaType={setTotalAreaType} />
-          <Floor
-            floor={floor} setFloor={setFloor}
-            flat={flat} setFlat={setFlat} />
-          <Repair
-            repair_id={repair_id} setRepair={setRepair} />
-          <Material
-            material_id={material_id} setMaterial={setMaterial} />
-
-          <h2 className={style.htypeText}>{content[lang].adverd_documents}</h2>
-
-          <Docs
-            document={document} setDocs={setDocs} />
-          <ImageFile
-            photo={photo} setPhoto={setPhoto} />
-          <VideoFile
-            video={video} setVideo={setVideo} />
-          <h2
-            className={style.htypeText}
-            style={{ marginTop: '70px' }}>{content[lang].adverd_about_the_office}</h2>
-          <HouseDescr
-            description={description} sethDescr={sethDescr} />
-          <h2 className={style.htypeText}>{content[lang].adverd_office_price}</h2>
-          <HousePrice
-            price_som={price_som} setPrice_som={setRrice_som}
-            price_usd={price_usd} setPrice_usd={setPrice_usd} />
-          <div className={style.BtnW}>
-            <Button
-              type='submit'
-              className={style.onBtn}
-              onClick={(e) => onSubmit(e)}>
-              {content[lang].adverd_submit}
-            </Button>
+  if (token) {
+    if (user.hasOwnProperty('data')) {
+      return (
+        <>
+          <Header />
+          <Error err={err} setErr={setErr} />
+          <Success suc={suc} setSuc={setSuc} />
+          <div className={style.container}>
+            <article>
+    
+              <h1 className={style.pageName}>{content[lang].advert_title}</h1>
+              <h2 className={style.htypeText}>{content[lang].adverd_sotish_turi}</h2>
+              <SaleType
+                sale_id={sale_id} setsType={setsType} />
+              <h2 className={style.htypeText}>{content[lang].adverd_build_title}</h2>
+              <HouseType
+                htype_id={htype_id} sethType={sethType} />
+              <h2 className={style.htypeText}>{content[lang].adverd_adres_office}</h2>
+    
+              <Map
+                house={house} setHouse={setHouse}
+                street={street} setStreet={setStreet}
+                city_id={city_id} setCity={setCity}
+                region_id={region_id} setRegionID={setRegionID} />
+    
+              <h2 className={style.htypeText}>{content[lang].adverd_about_the_office}</h2>
+    
+              <Date
+                date={date} setDate={setDate} />
+              <Room
+                room={room} setRoom={setRoom} />
+              <Area total_area={total_area} setTotalArea={setTotalArea}
+                living_area={living_area} setLivingArea={setLivingArea}
+                kitchen_area={kitchen_area} setKitchenArea={setKitchenArea}
+                total_area_type={total_area_type} setTotalAreaType={setTotalAreaType} />
+              <Floor
+                floor={floor} setFloor={setFloor}
+                flat={flat} setFlat={setFlat} />
+              <Repair
+                repair_id={repair_id} setRepair={setRepair} />
+              <Material
+                material_id={material_id} setMaterial={setMaterial} />
+    
+              <h2 className={style.htypeText}>{content[lang].adverd_documents}</h2>
+    
+              <Docs
+                document={document} setDocs={setDocs} />
+              <ImageFile
+                photo={photo} setPhoto={setPhoto} />
+              <VideoFile
+                video={video} setVideo={setVideo} />
+              <h2
+                className={style.htypeText}
+                style={{ marginTop: '70px' }}>{content[lang].adverd_about_the_office}</h2>
+              <HouseDescr
+                description={description} sethDescr={sethDescr} />
+              <h2 className={style.htypeText}>{content[lang].adverd_office_price}</h2>
+              <HousePrice
+                price_som={price_som} setPrice_som={setRrice_som}
+                price_usd={price_usd} setPrice_usd={setPrice_usd} />
+              <div className={style.BtnW}>
+                <Button
+                  type='submit'
+                  className={style.onBtn}
+                  onClick={(e) => onSubmit(e)}>
+                  {content[lang].adverd_submit}
+                </Button>
+              </div>
+            </article>
           </div>
-        </article>
-      </div>
-      <Footer />
-    </>
-  )
+          <Footer />
+        </>
+      )
+    } else {
+      return <Page404 />
+    }
+  } else {
+    return <Page404 />
+  }  
 }
 
 export default AdvertPage

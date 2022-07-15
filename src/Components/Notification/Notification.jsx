@@ -28,13 +28,7 @@ function Notification({ message, type }) {
                 setVertical('top');
                 setHorizontal('right');
             }
-        }
-
-        setInterval(() => {
-            for (let i = 0; i < notification?.length; i++) {
-                notification[i]?.classList?.toggle('active');
-            }
-        }, 1100); 
+        } 
     }, [])
 
     useEffect(() => {

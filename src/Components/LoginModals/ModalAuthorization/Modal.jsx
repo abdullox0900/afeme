@@ -22,27 +22,32 @@ import axios from "axios";
 import Confirm from "../ConfirmLogin/Confirm";
 
 function Modal({ elModal }) {
-    const second = useRef(null)
+    const second = useRef(null);
     const { lang, setLang } = useContext(Context);
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
 
+    const log = new FormData();
+
+    var requestOptions = {
+        method: 'POST',
+        body: log,
+        redirect: 'follow'
+    };
     //Request Function
     const onSubmit = (data) => {
-        const log = new FormData();
         sessionStorage.setItem('phone', data.phone)
         log.append('phone', data.phone)
-        axios.post('http://ali98.uz/api/sms', log)
+        fetch("https://ali98.uz/api/sms", requestOptions)
+            .then(response => response.text())
             .then(function (response) {
-                console.log(response.data.message);
-                const Token = JSON.stringify(response.data.data)
-                localStorage.setItem('Token', Token);
+                console.log(response)
                 second.current.classList.add("modal--open");
+                reset();
             })
             .catch(function (error) {
                 console.error(error);
             })
-        reset();
         elModal.current.classList.remove("modal--open");
     }
 
