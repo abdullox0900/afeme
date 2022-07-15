@@ -42,7 +42,7 @@ function CardTools(
                 // setAdvertCity(data?.city_id?.name_uz);
 
                 setAdvertTitle(
-                    `${data.sale_id?.name_uz + 'ga'} ${data.room} xonali ${data.htype_id?.name_uz} sotiladi`
+                    `${data.room} xonali ${data.htype_id?.name_uz} sotiladi`
                 );
             } else if (lang == "ru") {
                 setAdvertType(data?.htype_id?.name_ru);

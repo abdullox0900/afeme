@@ -113,7 +113,6 @@ function Header() {
 
     const profile = (
         <>
-            {window.location.pathname != "/advertPage" ? <AdvertBtn /> : ""}
             <Box
                 sx={{
                     display: "flex",
@@ -396,6 +395,7 @@ function Header() {
                             </div>
                             <Box className="header__buttons" sx={{ ml: 3 }}>
                                 {/* If User have Account show profile else Show Login */}
+                                {window.location.pathname != "/advertPage" ? <AdvertBtn /> : ""}
 
                                 {user.hasOwnProperty("data")
                                     ? profile
