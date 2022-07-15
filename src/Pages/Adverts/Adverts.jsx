@@ -54,10 +54,6 @@ function Adverts() {
     searchTerms.append("room", room ? room : "");
     searchTerms.append("from", from ? from : "");
     searchTerms.append("to", to ? to : "");
-<<<<<<< HEAD
-    searchTerms.append("perpage", 2);
-
-=======
     // searchTerms.append("perpage", 10);
     if (from && to) {
         if (from != '' && to != '') {
@@ -65,7 +61,6 @@ function Adverts() {
         }
     }
     
->>>>>>> 7677cb1d19f6fb5b9fb21f6cf379083b39969837
     useEffect(() => {
         setFormData(searchTerms);
         setIsLoading(true);

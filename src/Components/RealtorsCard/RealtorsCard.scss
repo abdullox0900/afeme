@@ -1,7 +1,17 @@
 .realtor-container {
     max-width: 1000px;
-    padding: 0px 20px;
+    width: 100%;
+    // padding: 0px 20px;
     margin: 0 auto;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul+ul {
+    margin-top: 30px;
 }
 
 .realtor-card {
@@ -16,6 +26,11 @@
     border-radius: 5px;
     transition: 0.5s ease;
 }
+
+.realtor-card+.realtor-card {
+    margin-top: 30px;
+}
+
 
 .realtor-card:hover {
 
@@ -34,6 +49,7 @@
     width: 100px;
     height: 100px;
 }
+
 
 .realtor-card__title {
     margin: 0;
@@ -89,3 +105,247 @@
     background-image: url("../../Assets/Img/location-reltor-card.svg");
     background-repeat: no-repeat;
 }
+
+// Responsiv Tablet
+
+@media only screen and (max-width: 1130px) {
+    .realtor-wrap {
+        .realtor-card {
+            width: 800px;
+        }
+    }
+}
+
+@media only screen and (max-width: 970px) {
+    .realtor-wrap {
+        .realtor-card {
+            width: 750px;
+        }
+
+        .realtor-card__title {
+            font-size: 24px;
+            line-height: 38px;
+        }
+    }
+}
+
+@media only screen and (max-width: 870px) {
+    .realtor-wrap {
+        .realtor-card {
+            width: 650px;
+        }
+
+        .realtor-card__title {
+            font-size: 20px;
+            line-height: 38px;
+        }
+
+        .realtor-card__reyting {
+            position: absolute;
+            top: 60px;
+            right: 20px;
+        }
+
+        .realtor-card__reyting {
+            font-size: 18px;
+        }
+    }
+}
+
+//============ Mobil Responsiv //===============
+
+@media only screen and (max-width: 768px) {
+    .realtor-wrap {
+        .realtor-card {
+            width: 550px;
+            height: 150px;
+        }
+
+        .realtor-card__title {
+            margin-bottom: 10px;
+            font-size: 20px;
+            line-height: 25px;
+        }
+
+        .realtor-card__reyting {
+            top: 30px;
+            right: 20px;
+        }
+
+        .realtor-card__reyting {
+            font-size: 18px;
+        }
+
+        .realtor-card__desc {
+            font-size: 14px;
+        }
+
+        .realtor-card__wrap {
+            margin-left: 20px;
+        }
+
+        .realtor-card__reyting {
+            display: none;
+        }
+    }
+
+    .realtor-card__avatar {
+        width: 70px;
+        height: 60px;
+    }
+}
+
+@media only screen and (max-width: 590px) {
+    .realtor-wrap {
+        .realtor-card {
+            width: 450px;
+            height: 130px;
+        }
+
+        .realtor-card__title {
+            margin-bottom: 8px;
+            font-size: 16px;
+            line-height: 20px;
+        }
+
+        .realtor-card__wrap {
+            margin-left: 20px;
+        }
+
+        .realtor-card__avatar {
+            width: 70px;
+            height: 60px;
+        }
+
+        .realtor-card__desc {
+            font-size: 12px;
+            padding-left: 20px;
+        }
+
+        .realtor-card__desc::before {
+            top: 3px;
+            width: 15px;
+            height: 15px;
+            background-size: cover;
+        }
+    }
+}
+
+@media only screen and (max-width: 490px) {
+    .realtor-wrap {
+        .realtor-card {
+            width: 100%;
+            height: 100px;
+        }
+
+        ul+ul {
+            margin-top: 20px;
+        }
+
+        .realtor-card__avatar {
+            width: 60px;
+            height: 50px;
+        }
+    }
+}
+
+@media only screen and (max-width: 490px) {
+    .realtor-wrap {
+
+        .realtor-card {
+            text-align: center;
+            flex-direction: column;
+            padding: 25px;
+            height: 210px;
+            width: 400px;
+        }
+
+        .realtor-card__title {
+            font-size: 18px;
+            margin-bottom: 8px;
+            line-height: 20px;
+        }
+
+        .realtor-card__wrap {
+            margin-left: 0px;
+        }
+
+        ul+ul {
+            margin-top: 15px;
+        }
+
+        .realtor-card__avatar {
+            width: 70px;
+            height: 60px;
+            margin-bottom: 20px;
+        }
+
+        .realtor-card__desc {
+            font-size: 16px;
+        }
+
+        .realtor-card__reyting {
+            display: flex;
+            top: 160px;
+            left: 135px;
+        }
+    }
+}
+
+@media only screen and (max-width: 440px) {
+    .realtor-wrap {
+
+        .realtor-card {
+            text-align: center;
+            flex-direction: column;
+            padding: 25px;
+            height: 210px;
+            width: 100%;
+        }
+
+        .realtor-card__reyting {
+            display: flex;
+            top: 160px;
+            left: 80px;
+        }
+    }
+}
+
+@media only screen and (max-width: 412px) {
+    .realtor-wrap {
+        .realtor-card__reyting {
+            display: flex;
+            top: 160px;
+            left: 100px;
+        }
+    }
+}
+
+@media only screen and (max-width: 376px) {
+    .realtor-wrap {
+        .realtor-card__reyting {
+            display: flex;
+            top: 160px;
+            left: 95px;
+        }
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .realtor-wrap {
+
+        .realtor-card__title {
+            font-size: 16px;
+            margin-bottom: 8px;
+            line-height: 20px;
+        }
+
+        .realtor-card__reyting {
+            display: flex;
+            top: 160px;
+            left: 80px;
+        }
+    }
+}
+
+
