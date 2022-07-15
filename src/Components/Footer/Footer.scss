@@ -195,10 +195,18 @@
             font-size: 22px;
             margin-bottom: 5px;
         }
+        &__item:hover{
+            transform: none;
+        }
 
         p.footer__subtitle {
             width: 250px;
             margin-bottom: 30px;
+        }
+
+        &__list-three{
+            display: flex;
+            justify-content: center;
         }
 
         &__link {

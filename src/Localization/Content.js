@@ -170,7 +170,7 @@ const content = {
         sAdd:`E'lon qo'shish`,
         sFeatures:'Tanlanganlar',
         sHelp:'Yordam',
-        sAbout:'Biz haqimizda',
+        sAds:'Mening Elonlarim',
         sLogout:'Chiqish',
 
         notfound:'Rasmlar mavjud emas',
@@ -353,7 +353,7 @@ const content = {
         sAdd:`Add an ad`,
         sFeatures:'Features',
         sHelp:'Help',
-        sAbout:'About',
+        sAds:'Adverts',
         sLogout:'Log Out',
 
         notfound:'No pictures available',
@@ -536,7 +536,7 @@ const content = {
         sAdd:`Добавить объявление`,
         sFeatures:'Избранные',
         sHelp:'Помощь',
-        sAbout:'О компании',
+        sAds:'Oбъявление',
         sLogout:'Выйти',
 
         notfound:'Нет доступных изображений',

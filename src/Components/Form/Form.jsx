@@ -129,18 +129,18 @@ function Form() {
         setName(ali.name);
         setPic(ali.picture);
     }
-    useEffect(() => {
-        /* global google */
-        google.accounts.id.initialize({
-            client_id: '883875379069-jmovjpk9mc3pcfe4h5egocrjs0s3abt6.apps.googleusercontent.com',
-            callback: handleCallbackResponse
-        });
+    // useEffect(() => {
+    //     /* global google */
+    //     google.accounts.id.initialize({
+    //         client_id: '883875379069-jmovjpk9mc3pcfe4h5egocrjs0s3abt6.apps.googleusercontent.com',
+    //         callback: handleCallbackResponse
+    //     });
 
-        google.accounts.id.renderButton(
-            document.getElementById('btn'),
-            { theme: 'outline', size: 'large' }
-        )
-    }, [])
+    //     google.accounts.id.renderButton(
+    //         document.getElementById('btn'),
+    //         { theme: 'outline', size: 'large' }
+    //     )
+    // }, [])
     // useEffect(() => {
 
     //     function Ya() {

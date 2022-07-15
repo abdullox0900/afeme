@@ -15,6 +15,8 @@ import "../Nav/Nav.scss";
 
 // Import => Img Componnet
 import GoogleImg from "../../Assets/Img/google.svg";
+import LogOut from "../../Utils/logOut";
+
 
 function Nav({ elHeader }) {
     const { lang, setLang } = useContext(Context);
@@ -116,44 +118,51 @@ function Nav({ elHeader }) {
                     <ul className="navbar-menu__list">
                         <li className="navbar-menu__item">
                             <ion-icon name="home-outline"></ion-icon>
-                            <a href="#" className="navbar-menu__link">
+                            <Link to={'/'} className="navbar-menu__link">
                                 {content[lang].sMenu}
-                            </a>
+                            </Link>
                         </li>
 
                         <li className="navbar-menu__item">
                             <ion-icon name="add-outline"></ion-icon>
-                            <a href="#" className="navbar-menu__link">
+                            <Link to={'/advertPage'} className="navbar-menu__link">
+                                {/* {content[lang].sAdd} */} Royhatdan otish
+                            </Link>
+                        </li>
+                        
+                        <li className="navbar-menu__item">
+                            <ion-icon name="add-outline"></ion-icon>
+                            <Link to={'/SignUp'} className="navbar-menu__link">
                                 {content[lang].sAdd}
-                            </a>
+                            </Link>
                         </li>
 
                         <li className="navbar-menu__item">
                             <ion-icon name="heart-outline"></ion-icon>
-                            <a href="#" className="navbar-menu__link">
+                            <Link to={'/userfavorites'} className="navbar-menu__link">
                                 {content[lang].sFeatures}
-                            </a>
+                            </Link>
                         </li>
 
                         <li className="navbar-menu__item">
                             <ion-icon name="help-buoy-outline"></ion-icon>
-                            <a href="#" className="navbar-menu__link">
+                            <Link to={'/help'} className="navbar-menu__link">
                                 {content[lang].sHelp}
-                            </a>
+                            </Link>
                         </li>
 
                         <li className="navbar-menu__item">
                             <ion-icon name="alert-circle-outline"></ion-icon>
-                            <a href="#" className="navbar-menu__link">
-                                {content[lang].sAbout}
-                            </a>
+                            <Link to={'/userads'} className="navbar-menu__link">
+                                {content[lang].sAds}
+                            </Link>
                         </li>
 
-                        <li className="navbar-menu__item">
+                        <li className="navbar-menu__item" >
                             <ion-icon name="exit-outline"></ion-icon>
-                            <a href="#" className="navbar-menu__link">
+                            <Link to={'/'} onClick={(e) => LogOut(e)} className="navbar-menu__link">
                             {content[lang].sLogout}
-                            </a>
+                            </Link>
                         </li>
                     </ul>
 
