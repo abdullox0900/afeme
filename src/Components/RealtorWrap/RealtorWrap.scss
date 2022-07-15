@@ -53,3 +53,36 @@
         background-image: url("../../Assets/Img/Icon/sort-icon.svg");
     }
 }
+
+// Responsiv Tablet 
+
+@media only screen and (max-width: 490px) {
+    .realtor-wrap {
+        margin-top: 40px;
+        margin-bottom: 40px;    
+        .realtor-wrap__title {
+            margin-bottom: 20px;
+        }
+    
+        .realtor-wrap__dos {
+            font-size: 16px;
+            line-height: 21px;
+        }
+    }
+}
+
+@media only screen and (max-width: 368px) {
+    .realtor-wrap {
+        margin-top: 30px;
+        margin-bottom: 30px;    
+        .realtor-wrap__title {
+            font-size: 20px;
+            margin-bottom: 18px;
+        }
+    
+        .realtor-wrap__dos {
+            font-size: 16px;
+            line-height: 21px;
+        }
+    }
+}

@@ -19,7 +19,7 @@ function HouseType({ htype_id, sethType }) {
   useEffect(() => {
     const houseT = async () => {
       try {
-        const res = await axios.get('http://ali98.uz/api/htype');
+        const res = await axios.get('https://ali98.uz/api/htype');
         if (res.data.status) {
           setHouseType(res.data.data)
         } else {

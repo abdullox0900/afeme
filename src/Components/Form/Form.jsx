@@ -75,7 +75,7 @@ function Form() {
         sessionStorage.setItem('user_type', data.user_type);
         sessionStorage.setItem('region_id', data.region_id);
 
-        fetch("http://ali98.uz/api/sms", requestOptions)
+        fetch("https://ali98.uz/api/sms", requestOptions)
             .then(response => response.text())
             .then(function (response) {
                 console.log(response);

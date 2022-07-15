@@ -38,7 +38,7 @@ function Modal({ elModal }) {
     const onSubmit = (data) => {
         sessionStorage.setItem('phone', data.phone)
         log.append('phone', data.phone)
-        fetch("http://ali98.uz/api/sms", requestOptions)
+        fetch("https://ali98.uz/api/sms", requestOptions)
             .then(response => response.text())
             .then(function (response) {
                 console.log(response)

@@ -73,7 +73,7 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
     myHeaders.append("Authorization", `Bearer ${token}`);
 
     let requestOptions = {
-        method: "GET",
+        method: "DELETE",
         headers: myHeaders,
         redirect: "follow",
     };
@@ -82,7 +82,7 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
         delButton.disabled = true;
         let oldButton = delButton.innerHTML;
         delButton.innerHTML = "...";
-        fetch(`http://ali98.uz/api/post/${id}`, requestOptions)
+        fetch(`https://ali98.uz/api/post/${id}`, requestOptions)
             .then((response) => response.text())
             .then((result) => {
                 if (result) {

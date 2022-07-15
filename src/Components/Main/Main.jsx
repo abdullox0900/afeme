@@ -72,7 +72,7 @@ function Main() {
     }, []);
 
     useEffect(() => {
-        axios.get(`http://ali98.uz/api/advertisements`)
+        axios.get(`https://ali98.uz/api/advertisements`)
             .then(res => {
                 const resdata = res?.data;
                 setRekData(resdata)

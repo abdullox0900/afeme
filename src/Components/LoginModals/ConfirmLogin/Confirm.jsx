@@ -40,7 +40,7 @@ function Confirm({ second }) {
     const onSubmit = (data) => {
         log.append('phone', phone)
         log.append('code', data.code)
-        fetch("http://ali98.uz/api/login", requestOptions)
+        fetch("https://ali98.uz/api/login", requestOptions)
             .then(response => response.text())
             .then(function (response) {
                 sessionStorage.clear();

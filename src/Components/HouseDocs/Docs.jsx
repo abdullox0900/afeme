@@ -30,7 +30,7 @@ function Docs({ document, setDocs }) {
   function dropImageHandler(e) {
     formdata.append('key', 'Service For C Group')
     formdata.append("file", e);
-    fetch("http://ali98.uz/api/service", requestOptions)
+    fetch("https://ali98.uz/api/service", requestOptions)
       .then(response => response.text())
       .then(function (response) {
         setshow(true)

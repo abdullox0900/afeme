@@ -62,7 +62,7 @@ function NumberControl({ control, setControl, phone_number, setPhoneNumber }) {
     //HTTP Request Function
     const onSubmit = (data) => {
         Data.append('code', data.code)
-        fetch("http://ali98.uz/api/register", requestOptions)
+        fetch("https://ali98.uz/api/register", requestOptions)
             .then(response => response.text())
             .then(function (response) {
                 sessionStorage.clear();

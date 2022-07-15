@@ -17,7 +17,7 @@ function SaleType({ sale_id, setsType }) {
   useEffect(() => {
     const saleT = async () => {
       try {
-        const res = await axios.get('http://ali98.uz/api/sales');
+        const res = await axios.get('https://ali98.uz/api/sales');
         if (res.data.status) {
           setSaleType(res.data.data)
         } else {

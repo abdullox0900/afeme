@@ -70,11 +70,11 @@ function RealtorsCard() {
                     ) : (
                         reltorData.map((reltor) => {
                             return (
-                                <ul key={reltor.id}>
+                                <ul className="reltor-card__list" key={reltor.id}>
                                     <NavLink to={`/reltorcob/${reltor.id}`}>
                                         <li className="realtor-card">
 
-                                            <img className="realtor-card__avatar" src="https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png" alt="reltor-img" width={"100px"} />
+                                            <img className="realtor-card__avatar" src="https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png" alt="reltor-img" />
                                             <div className="realtor-card__wrap">
                                                 <h3 className="realtor-card__title">{reltor.name} {reltor.lastname}</h3>
                                                 <p className="realtor-card__desc">Agent hujjatlari tekshirilgan</p>
@@ -95,7 +95,7 @@ function RealtorsCard() {
                                             </div>
 
                                             <div className="realtor-card__region-box">
-                                                {/* <div className="reltor-card__region">{reltor.region_id}</div> */}
+                                                {/* <div className="reltor-card__region">{reltor?.region_id}</div> */}
                                             </div>
                                         </li>
                                     </NavLink>

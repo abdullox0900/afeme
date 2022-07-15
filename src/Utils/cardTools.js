@@ -42,7 +42,7 @@ function CardTools(
                 // setAdvertCity(data?.city_id?.name_uz);
 
                 setAdvertTitle(
-                    `${data.room} xonali ${data.htype_id?.name_uz} sotiladi`
+                    `${data.room} xonali ${data.htype_id?.name_uz} ${data?.sale_id.id == 6 ? "Sotiladi" : "Ijaraga beriladi"}`
                 );
             } else if (lang == "ru") {
                 setAdvertType(data?.htype_id?.name_ru);
