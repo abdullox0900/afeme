@@ -54,10 +54,6 @@ function Adverts() {
     searchTerms.append("room", room ? room : "");
     searchTerms.append("from", from ? from : "");
     searchTerms.append("to", to ? to : "");
-<<<<<<< HEAD
-    // searchTerms.append("perpage", 10);
-=======
->>>>>>> 89716d032fecd264e1c38aa568eaae20ba8d4bc8
     if (from && to) {
         if (from != '' && to != '') {
             searchTerms.append("price_type", currency == 'sum' ? 'som': currency);
