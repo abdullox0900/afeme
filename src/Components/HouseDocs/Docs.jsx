@@ -34,7 +34,6 @@ function Docs({ document, setDocs }) {
         setshow(true)
         let res = response.data.data
         setDocs(res)
-        console.log(document);
       })
       .catch(function (res) {
         console.log(res.response.data.status);

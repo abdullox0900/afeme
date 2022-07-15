@@ -25,7 +25,7 @@ function AfemePhone() {
                     <p className="afemePhone__text">{content[lang].afemePhoneDescr}</p>
                     <a href="#"><img src={PlayStore} alt="" /></a>
                 </div>
-                <img className="afemePhone__img-phone" src={afemePhone} alt="" />
+                <img className="afemePhone__img-phone" src={afemePhone} alt="afeme" />
                 <span className="afemePhone__bubbles bubbles1"><Logo width="80" height="80"/></span>
                 <span className="afemePhone__bubbles bubbles2"></span>
                 <span className="afemePhone__bubbles bubbles3"></span>

@@ -13,7 +13,6 @@ function MapSearch() {
     const [isLoading, setIsLoading] = useState(true);
     const { searchTerms, setSearchTerms } = useContext(SearchContext);
     const URL = `https://ali98.uz/api/filter`;
-    console.log(searchTerms);
 
     useEffect(() => {
         setIsLoading(true);
@@ -24,18 +23,15 @@ function MapSearch() {
         })
             .then((response) => response.text())
             .then((response) => {
-                console.log(JSON.parse(response));
                 let newData = JSON.parse(response);
                 if (!newData.hasOwnProperty("status")) {
                     setData(newData.data);
-                    console.log(data);
                 } else {
                     setDataError(true);
                 }
             })
             .catch((error) => {
                 setDataError(true);
-                console.log(error);
             })
             .finally(() => {
                 setIsLoading(false);

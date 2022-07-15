@@ -20,7 +20,6 @@ function Notification({ message, type }) {
         
         let notification = document.querySelectorAll('.notification');
         if (notification) {
-            console.log(notification.length);
             if (notification.length == 2) {
                 setHorizontal('right');
             } else if (notification.length == 3) {

@@ -63,7 +63,6 @@ function NumberControl({ control, setControl, phone_number, setPhoneNumber }) {
                 window.location.reload()
             })
             .catch(function (error) {
-                console.log(error);
                 handleClose();
                 handleErr();
             })

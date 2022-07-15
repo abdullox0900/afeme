@@ -54,7 +54,10 @@ function Adverts() {
     searchTerms.append("room", room ? room : "");
     searchTerms.append("from", from ? from : "");
     searchTerms.append("to", to ? to : "");
+<<<<<<< HEAD
     // searchTerms.append("perpage", 10);
+=======
+>>>>>>> 89716d032fecd264e1c38aa568eaae20ba8d4bc8
     if (from && to) {
         if (from != '' && to != '') {
             searchTerms.append("price_type", currency == 'sum' ? 'som': currency);
@@ -75,7 +78,6 @@ function Adverts() {
                 if (!newData.hasOwnProperty('status')) {
                     setData(newData);
                     setAdverts(newData.data);
-                    console.log(data);
                     setTotalPages(newData.meta.last_page);
                 } else {
                     setDataError(true);
@@ -83,7 +85,6 @@ function Adverts() {
             })
             .catch((error) => {
                 setDataError(true);
-                console.log(error);
             })
             .finally(() => {
                 setIsLoading(false);

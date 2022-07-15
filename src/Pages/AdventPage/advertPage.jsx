@@ -32,7 +32,7 @@ import { Button } from '@mui/material';
 
 function AdvertPage() {
 
-  const { lang, setLang } = useContext(Context);
+  const { lang } = useContext(Context);
   const [err, setErr] = useState(false);
   const [suc, setSuc] = useState(false);//Success State
   const handleErr = () => setErr(true);
@@ -91,7 +91,7 @@ function AdvertPage() {
   data.append('kitchen_area', kitchen_area)
   data.append('photo', photo);
   data.append('video', video);
-  
+
   var requestOptions = {
     method: 'POST',
     headers: headers,
@@ -100,17 +100,14 @@ function AdvertPage() {
   };
   //Post Function
   function onSubmit() {
-    // console.log(document);
     fetch("http://ali98.uz/api/post", requestOptions)
-    .then(response => response.text())
-    .then(function (response) {
-      console.log(response);
-      handleSuc();
-      
-    })
+      .then(response => response.text())
+      .then(function (response) {
+        handleSuc();
+
+      })
       .catch(function (err) {
         handleErr();
-        console.log(err);
       })
   }
 

@@ -31,7 +31,6 @@ function Modal({ elModal }) {
     const onSubmit = (data) => {
         const log = new FormData();
         sessionStorage.setItem('phone', data.phone)
-        console.log(data.phone);
         log.append('phone', data.phone)
         axios.post('http://ali98.uz/api/sms', log)
             .then(function (response) {
