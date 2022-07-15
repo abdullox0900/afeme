@@ -24,7 +24,7 @@ function Provider({ children }) {
 
     useEffect(() => {
         if (token) {
-            fetch("http://ali98.uz/api/getuser", requestOptions)
+            fetch("https://ali98.uz/api/getuser", requestOptions)
                 .then(response => response.text())
                 .then((response) => {
                     let status = JSON.parse(response).status;

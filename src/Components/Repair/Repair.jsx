@@ -19,7 +19,7 @@ function Repair({ repair_id, setRepair }) {
     useEffect(() => {
         const Rep = async () => {
             try {
-                const res = await axios.get('http://ali98.uz/api/repairs');
+                const res = await axios.get('https://ali98.uz/api/repairs');
                 if (res.data.status) {
                     setHouseRepair(res.data.data)
                 } else {

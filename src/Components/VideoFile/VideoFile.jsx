@@ -38,7 +38,7 @@ function VideoFile({ video, setVideo }) {
         for (let i = 0; i < files.length; i++) {
             formdata.append('key', 'Service For C Group')
             formdata.append("file", files[i]);
-            fetch("http://ali98.uz/api/service", drop)
+            fetch("https://ali98.uz/api/service", drop)
                 .then(response => response.text())
                 .then(function (response) {
                     let res = JSON.parse(response);
@@ -66,7 +66,7 @@ function VideoFile({ video, setVideo }) {
         for (let i = 0; i < files.length; i++) {
             Select.append('key', 'Service For C Group')
             Select.append('file', files)
-            fetch("http://ali98.uz/api/service", select)
+            fetch("https://ali98.uz/api/service", select)
                 .then(response => response.text())
                 .then(function (response) {
                     let res = JSON.parse(response);

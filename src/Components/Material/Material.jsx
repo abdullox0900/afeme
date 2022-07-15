@@ -17,7 +17,7 @@ function Material({material_id, setMaterial}) {
     useEffect(() => {
         const hAbout = async () => {
             try {
-                const res = await axios.get('http://ali98.uz/api/materials')
+                const res = await axios.get('https://ali98.uz/api/materials')
                 if (res.data.status) {
                     setHouseMaterial(res.data.data)
                 } else {
