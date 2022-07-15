@@ -159,7 +159,7 @@ function Main() {
                                 >
 
                                     {
-                                        reltData.slice(0, 10).map(rel => {
+                                        reltData.slice(0, 6).map(rel => {
                                             return (
                                                 <>
                                                     <Box className="realtor">

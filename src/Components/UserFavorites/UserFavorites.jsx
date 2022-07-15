@@ -33,6 +33,12 @@ function UserFavorites() {
         }
     }, [user]);
 
+    function showWarning() {
+        let cards = document.querySelector('.user__cards');
+        cards.style.gridTemplateColumns = '1fr';
+        cards.style.placeItems = 'center';
+    }
+
     function showPosts(amount) {
         if (isLoading) {
             return <CardSkeleton amount={amount} like={true} />;
@@ -44,6 +50,7 @@ function UserFavorites() {
                     <Cards data={row} like={true} />
                 ));
             } else {
+                showWarning();
                 return (
                     <div className="userNoAds">
                         <img src={basketImg} alt="svg-img" />
@@ -54,6 +61,7 @@ function UserFavorites() {
                 );
             }
         } else {
+            showWarning();
             return (
                 <div className="userNoAds">
                     <ApiError />
@@ -68,7 +76,7 @@ function UserFavorites() {
             <Container>
                 <div className="user-wrap-router">
                     <UserProfilList />
-                    <div className="user-favorit">
+                    <div className="user__cards">
                         {showPosts(4)}
                     </div>
                 </div>

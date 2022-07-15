@@ -120,7 +120,7 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
                         setIsClickDelete(true);
                         setTimeout(() => {
                             delModal.current?.classList.add("modal--open");
-                        }, 10);
+                        }, 50);
                     } else {
                         delMod.classList.add("modal--open");
                     }

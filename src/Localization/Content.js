@@ -189,6 +189,11 @@ const content = {
         codeMessage:'Sms Kodni kiring!!!',
         succ:'Muvaffaqiyatli !!!',
 
+        noResults: "Hozircha bu so'rov bo'yicha hech qanday e'lon qo'yilmagan",
+        changeFilterThings: "Filterda biror narsani o'zgartirib ko'ring",
+        cleanFilterThings: "Filterni tozalashga harakat qilib ko'ring",
+        viaWith: "orqali qidiring",
+        map: "Xarita"
     },
     en: {
         chat: "Chat",
@@ -367,7 +372,11 @@ const content = {
         codeMessage:'Enter SMS Code!!!',
         succ:'Successful !!!',
 
-
+        noResults: "There are currently no ads posted for this request",
+        changeFilterThings: "Try changing something in the filter",
+        cleanFilterThings: "Try cleaning the filter",
+        viaWith: "search through",
+        map: "Map"
     },
     ru: {
         chat: "Чат",
@@ -546,13 +555,11 @@ const content = {
         codeMessage:'Введите смс-код!!!',
         succ:'Успешный !!!',
 
-    },
+        noResults: "В настоящее время нет размещенных объявлений по этому запросу",
+        changeFilterThings: "Попробуйте изменить что-то в фильтре",
+        cleanFilterThings: "попробуй почистить фильтр",
+        viaWith: "искать через",
+        map: "Карта",
+    }
 }
-
 export default content;
-
-
-// Import useContext => Localization
-// import { Context } from "../../Context/LangContext";
-// import content from "../../Localization/Content";
-// const { lang, setLang } = useContext(Context);
