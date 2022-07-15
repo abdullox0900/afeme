@@ -30,33 +30,44 @@ function NumberControl({ control, setControl, phone_number, setPhoneNumber }) {
     const { register, handleSubmit, formState: { errors } } = useForm()
     const [suc, setSuc] = useState(false);//Success State
     const [err, setErr] = useState(false);//Error State
-    const name = sessionStorage.getItem('name') !== undefined ? sessionStorage.getItem('name') : ''
-    const lastname = sessionStorage.getItem('lastname') !== undefined ? sessionStorage.getItem('lastname') : ''
-    const email = sessionStorage.getItem('email') !== undefined ? sessionStorage.getItem('email') : ''
-    const phone = sessionStorage.getItem('phone') !== undefined ? sessionStorage.getItem('phone') : ''
-    const passport = sessionStorage.getItem('passport') !== undefined ? sessionStorage.getItem('passport') : ''
-    const user_type = sessionStorage.getItem('user_type') !== undefined ? sessionStorage.getItem('user_type') : ''
-    const region_id = sessionStorage.getItem('region_id') !== undefined ? sessionStorage.getItem('region_id') : ''
-    const description = sessionStorage.getItem('description') !== undefined ? sessionStorage.getItem('description') : ''
-    const experience = sessionStorage.getItem('experience') !== undefined ? sessionStorage.getItem('experience') : ''
+    const name = sessionStorage.getItem('name')
+    const lastname = sessionStorage.getItem('lastname')
+    const email = sessionStorage.getItem('email')
+    const phone = sessionStorage.getItem('phone')
+    const passport = sessionStorage.getItem('passport')
+    const user_type = sessionStorage.getItem('user_type')
+    const region_id = sessionStorage.getItem('region_id')
+    const description = sessionStorage.getItem('description')
+    const experience = sessionStorage.getItem('experience')
+
+
+    const Data = new FormData();
+
+    Data.append('name', name)
+    Data.append('lastname', lastname)
+    Data.append('email', email)
+    Data.append('phone', phone)
+    Data.append('passport', passport)
+    Data.append('region_id', region_id)
+    Data.append('user_type', user_type)
+    Data.append('experience', experience)
+    Data.append('description', description)
+
+    let requestOptions = {
+        method: 'POST',
+        body: Data,
+        redirect: 'follow'
+    };
+
     //HTTP Request Function
     const onSubmit = (data) => {
-        const control = new FormData();
-        control.append('code', data.code)
-        control.append('name', name)
-        control.append('lastname', lastname)
-        control.append('email', email)
-        control.append('phone', phone)
-        control.append('passport', passport)
-        control.append('region_id', region_id)
-        control.append('user_type', user_type)
-        control.append('experience', experience)
-        control.append('description', description)
-        axios.post('http://ali98.uz/api/register', control)
+        Data.append('code', data.code)
+        fetch("http://ali98.uz/api/register", requestOptions)
+            .then(response => response.text())
             .then(function (response) {
                 sessionStorage.clear();
-                const Token = response.data.data
-                localStorage.setItem('Token', Token);
+                const Token = JSON.parse(response)
+                localStorage.setItem('Token', Token.data);
                 handleClose();
                 handleSuc();
                 Navigate('/Afeme')
@@ -78,7 +89,7 @@ function NumberControl({ control, setControl, phone_number, setPhoneNumber }) {
                 aria-describedby="modal-modal-description"
             >
                 <form className={style.wrapper} onSubmit={handleSubmit(onSubmit)}>
-                    <img src={SuccessIL} alt="alt" style={{width:'185px', height:'200px'}} />
+                    <img src={SuccessIL} alt="alt" style={{ width: '185px', height: '200px' }} />
                     <Typography className={style.title} id="modal-modal-title" variant="h6" component="h2">
                         {phone_number}<span> {content[lang].to} <br />{content[lang].confirm}</span>
                     </Typography>

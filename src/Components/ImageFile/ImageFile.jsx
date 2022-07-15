@@ -27,17 +27,24 @@ function ImageFile({ photo, setPhoto }) {
         setImg(false)
     }
     const arr = new Array();
+    var formdata = new FormData();
+
+    let drop = {
+        method: 'POST',
+        body: formdata,
+        redirect: 'follow'
+    };
 
     function dropImageHandler(e) {
         e.preventDefault();
-        var formdata = new FormData();
         let files = [...e.dataTransfer.files]
         for (let i = 0; i < files.length; i++) {
             formdata.append('key', 'Service For C Group')
             formdata.append("file", files[i]);
-            axios.post('http://ali98.uz/api/service', formdata)
+            fetch("http://ali98.uz/api/service", drop)
+                .then(response => response.text())
                 .then(function (response) {
-                    let res = response.data;
+                    let res = JSON.parse(response);
                     Object.entries(res).forEach(([name, value]) => {
                         if (typeof value === 'string') {
                             arr.push(value);
@@ -45,32 +52,35 @@ function ImageFile({ photo, setPhoto }) {
                         }
                     })
                 })
-                .catch(function (res) {
-                    console.log(res.response.data.message);
-                })
+                .catch(error => console.log('error', error));
         }
         setImage(files)
         setImg(false)
     }
+
+    let Select = new FormData();
+    let select = {
+        method: 'POST',
+        body: Select,
+        redirect: 'follow'
+    };
     function SelectI(e) {
         let files = [...e];
-        let formdata = new FormData();
         for (let i = 0; i < files.length; i++) {
-            formdata.append('key', 'Service For C Group')
-            formdata.append('file', files[i])
-            axios.post('http://ali98.uz/api/service', formdata)
-                .then(function (res) {
-                    let data = res.data;
-                    Object.entries(data).forEach(([name, value]) => {
+            Select.append('key', 'Service For C Group')
+            Select.append('file', files[i])
+            fetch("http://ali98.uz/api/service", select)
+                .then(response => response.text())
+                .then(function (response) {
+                    let res = JSON.parse(response);
+                    Object.entries(res).forEach(([name, value]) => {
                         if (typeof value === 'string') {
                             arr.push(value);
                             setPhoto(arr)
                         }
                     })
                 })
-                .catch(function (err) {
-                    console.log(err);
-                })
+                .catch(error => console.log('error', error));
         }
     }
     function Delete(e) {
