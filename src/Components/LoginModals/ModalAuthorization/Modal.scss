@@ -22,10 +22,10 @@
         pointer-events: auto;
         z-index: 100000000;
     }
-    &--open  &__authorization{
-        transform: scale(1);
+    &--open  &__authorization, &--open .deleteModal__content{
+        transform: scale(1) !important;
     }
-    &__authorization {
+    &__authorization, .deleteModal__content {
         position: relative;
         width: 400px;
         height: 600px;
@@ -33,6 +33,19 @@
         border-radius: 20px;
         transition: all 0.3s;
         transform: scale(0);
+    }
+    .deleteModal__content{
+        height: max-content;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .deleteModal__text{
+        margin: 0;
+        margin-bottom: 15px;
+        text-align: center;
+        color: #777;
     }
     &__img-auth {
         margin-top: 45px;

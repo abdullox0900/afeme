@@ -22,7 +22,7 @@ import axios from "axios";
 import Confirm from "../ConfirmLogin/Confirm";
 
 function Modal({ elModal }) {
-    const second = useRef(null)
+    const second = useRef(null);
     const { lang, setLang } = useContext(Context);
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
