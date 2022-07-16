@@ -280,3 +280,44 @@
         }
     }
 }
+
+// =============== Tablet Responsiv =============== //
+
+@media only screen and (max-width: 1050px) {
+    .reltorcob {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        &__box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 80px;
+        }
+    
+        &__wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+
+        &__wrap {
+            margin-left: 0px;
+        }
+
+        &__reytin {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0px;
+        }
+
+        &____idescrip {
+            max-width: 900px;
+        }
+    }
+}
