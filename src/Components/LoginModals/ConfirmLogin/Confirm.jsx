@@ -19,8 +19,7 @@ import { Context } from '../../../Context/LangContext';
 import content from '../../../Localization/Content';
 import Error from '../../Modals/Error/Error'
 
-//Import Request Package
-import axios from "axios";
+let url = process.env.REACT_APP_URL;
 
 function Confirm({ second }) {
     const [err, setErr] = useState(false);//Error State
@@ -40,7 +39,7 @@ function Confirm({ second }) {
     const onSubmit = (data) => {
         log.append('phone', phone)
         log.append('code', data.code)
-        fetch("https://ali98.uz/api/login", requestOptions)
+        fetch(`${url}login`, requestOptions)
             .then(response => response.text())
             .then(function (response) {
                 sessionStorage.clear();

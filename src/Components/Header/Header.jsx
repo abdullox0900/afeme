@@ -96,9 +96,11 @@ function Header() {
         setLangTooltip(false);
     };
 
+    let url = process.env.REACT_APP_URL;
+
     // Api Axios Logos
     useEffect(() => {
-        axios.get(`https://ali98.uz/api/logos`).then((res) => {
+        axios.get(`${url}logos`).then((res) => {
             const newImgData = res?.data;
 
             setLogoImg(newImgData);

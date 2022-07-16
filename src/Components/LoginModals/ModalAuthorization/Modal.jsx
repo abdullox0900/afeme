@@ -18,8 +18,9 @@ import { Context } from '../../../Context/LangContext';
 import content from '../../../Localization/Content';
 
 //Import Request Package
-import axios from "axios";
 import Confirm from "../ConfirmLogin/Confirm";
+
+let url = process.env.REACT_APP_URL;
 
 function Modal({ elModal }) {
     const second = useRef(null);
@@ -38,7 +39,7 @@ function Modal({ elModal }) {
     const onSubmit = (data) => {
         sessionStorage.setItem('phone', data.phone)
         log.append('phone', data.phone)
-        fetch("https://ali98.uz/api/sms", requestOptions)
+        fetch(`${url}sms`, requestOptions)
             .then(response => response.text())
             .then(function (response) {
                 console.log(response)

@@ -19,6 +19,7 @@ import content from '../../Localization/Content';
 import axios from "axios";
 import { v4 } from "uuid";
 
+let url = process.env.REACT_APP_URL;
 
 function Footer() {
 
@@ -27,7 +28,7 @@ function Footer() {
     const [useNetWorkData, setNetWorkData] = useState([])
 
     useEffect(() => {
-        axios.get(`https://ali98.uz/api/addresses`)
+        axios.get(`${url}addresses`)
             .then(res => {
                 const resdat = res?.data;
                 setUseData(resdat)
@@ -35,7 +36,7 @@ function Footer() {
     }, [])
 
     useEffect(() => {
-        axios.get(`https://ali98.uz/api/networks`)
+        axios.get(`${url}networks`)
             .then(res => {
                 const resdat = res?.data;
                 setNetWorkData(resdat)

@@ -10,7 +10,8 @@ import { v4 } from 'uuid';
 import { Context } from '../../Context/LangContext';
 import content from '../../Localization/Content';
 import style from '../ImageFile/ImageFile.module.scss'
-import axios from 'axios';
+
+let url = process.env.REACT_APP_URL;
 
 function VideoFile({ video, setVideo }) {
 
@@ -38,7 +39,7 @@ function VideoFile({ video, setVideo }) {
         for (let i = 0; i < files.length; i++) {
             formdata.append('key', 'Service For C Group')
             formdata.append("file", files[i]);
-            fetch("https://ali98.uz/api/service", drop)
+            fetch(`${url}service`, drop)
                 .then(response => response.text())
                 .then(function (response) {
                     let res = JSON.parse(response);
@@ -66,7 +67,7 @@ function VideoFile({ video, setVideo }) {
         for (let i = 0; i < files.length; i++) {
             Select.append('key', 'Service For C Group')
             Select.append('file', files)
-            fetch("https://ali98.uz/api/service", select)
+            fetch(`${url}service`, select)
                 .then(response => response.text())
                 .then(function (response) {
                     let res = JSON.parse(response);

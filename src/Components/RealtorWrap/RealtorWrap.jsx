@@ -19,9 +19,10 @@ import { useContext } from 'react';
 import { Context } from '../../Context/LangContext';
 import content from '../../Localization/Content';
 import { v4 } from "uuid";
-import { logDOM } from "@testing-library/react";
 
 const elLoadingArrey = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+let url = process.env.REACT_APP_URL;
 
 function RealtorWrap() {
     const [sort, setSort] = useState('')
@@ -31,7 +32,7 @@ function RealtorWrap() {
     const [items, setItems] = useState(reltorData);
     useEffect(() => {
         setLoading(true)
-        axios.get('https://ali98.uz/api/reltors')
+        axios.get(`${url}reltors`)
             .then(res => {
                 const persons = res.data.data;
                 setReltorsData(persons)
@@ -42,7 +43,7 @@ function RealtorWrap() {
     useEffect(() => {
         setLoading(true)
         setTimeout(() => {
-            axios.get('https://ali98.uz/api/reltors')
+            axios.get(`${url}reltors`)
                 .then(res => {
                     const persons = res.data.data;
                     setReltorsData(persons)
@@ -82,7 +83,7 @@ function RealtorWrap() {
     }, [sort]);
 
     useEffect(() => {
-        axios.get('https://ali98.uz/api/reltors')
+        axios.get(`${url}reltors`)
             .then(res => {
                 const persons = res.data.data;
                 setReltorsData(persons)
@@ -112,7 +113,6 @@ function RealtorWrap() {
                     <div className="realtor-container">
                         {
                             isLoading ? (
-
                                 elLoadingArrey.map((lod) => {
                                     return (
                                         <ContentLoader

@@ -32,6 +32,8 @@ import content from '../../Localization/Content';
 // Import => Mui
 import { Button } from '@mui/material';
 
+let url = process.env.REACT_APP_URL;
+
 function AdvertPage() {
 
   const { lang } = useContext(Context);
@@ -103,7 +105,7 @@ function AdvertPage() {
   };
   //Post Function
   function onSubmit() {
-    fetch("https://ali98.uz/api/post", requestOptions)
+    fetch(`${url}post`, requestOptions)
       .then(response => response.text())
       .then(function (response) {
         handleSuc();

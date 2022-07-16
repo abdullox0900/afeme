@@ -9,6 +9,7 @@ import "./LoveBtn.scss";
 import { Context } from "../../Context/LangContext";
 import content from "../../Localization/Content";
 
+let url = process.env.REACT_APP_URL;
 
 function LoveBtn({ advertID }) {
     const { lang, setLang } = useContext(Context);
@@ -22,7 +23,7 @@ function LoveBtn({ advertID }) {
         let loveBtn = document.querySelectorAll(".love-btn");
         let content = document.querySelectorAll(".content");
         let heart = document.querySelectorAll(".heart");
-        const URL = `https://ali98.uz/api/save/${advertID}`;
+        const URL = `${url}save/${advertID}`;
 
         const token = localStorage.getItem("Token");
         let headers = new Headers();

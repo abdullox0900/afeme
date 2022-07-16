@@ -20,6 +20,8 @@ import content from "../../Localization/Content";
 import "../Search/Search.scss";
 import searchIcon from "../../Assets/Img/search-icon.svg";
 
+let url = process.env.REACT_APP_URL;
+
 function Search({ map = false }) {
 
     const [searchParams, setSearchParams] = useSearchParams();
@@ -110,7 +112,7 @@ function Search({ map = false }) {
     useEffect(() => {
         const salesData = async () => {
             try {
-                const res = await axios.get("https://ali98.uz/api/sales");
+                const res = await axios.get(`${url}sales`);
                 if (res) {
                     let data = res.data.data;
                     setSales(data);
@@ -119,7 +121,7 @@ function Search({ map = false }) {
         };
         salesData();
 
-        axios.get("https://ali98.uz/api/htype").then((response) => {
+        axios.get(`${url}htype`).then((response) => {
             if (response.hasOwnProperty("data")) {
                 setHtypes(response.data.data);
             }

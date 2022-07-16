@@ -27,10 +27,12 @@ function Docs({ document, setDocs }) {
     redirect: 'follow'
   };
 
+  let url = process.env.REACT_APP_URL;
+
   function dropImageHandler(e) {
     formdata.append('key', 'Service For C Group')
     formdata.append("file", e);
-    fetch("https://ali98.uz/api/service", requestOptions)
+    fetch(`${url}service`, requestOptions)
       .then(response => response.text())
       .then(function (response) {
         setshow(true)

@@ -11,13 +11,15 @@ import axios from "axios";
 // Import => Skeleton
 import ContentLoader from "react-content-loader";
 
+let url = process.env.REACT_APP_URL;
+
 function NewBuildingsCard() {
 
     const [regionData, setRegionData] = useState([]);
     const [isLoading, setLoading] = useState(false);
 
     useEffect(() => {
-        axios.get(`https://ali98.uz/api/regions`)
+        axios.get(`${url}regions`)
             .then(res => {
                 const resdata = res.data.data;
                 setRegionData(resdata)
