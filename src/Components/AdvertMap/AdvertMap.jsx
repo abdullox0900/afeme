@@ -26,12 +26,13 @@ function AdvertMap({ currentAdvert, zoom = 10 }) {
     const [data, setData] = useState([]);
     const [dataError, setDataError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const URL = `https://ali98.uz/api/post`;
+    let url = process.env.REACT_APP_URL;
+
 
     useEffect(() => {
         setIsLoading(true);
         const result = axios
-            .get(URL)
+            .get(`${url}post`)
             .then((response) => {
                 let newData = response?.data.data;
                 if (newData && newData?.length > 0) {

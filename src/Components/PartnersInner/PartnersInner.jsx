@@ -14,6 +14,8 @@ import "../../Components/PartnersInner/PartnersInner.scss";
 // Import => Axios
 import axios from "axios";
 
+let url = process.env.REACT_APP_URL;
+
 function PartnersInner() {
     const [portData, setPortData] = useState([]);
     const [portDataImg, setPortDataImg] = useState([]);
@@ -22,11 +24,11 @@ function PartnersInner() {
     const { lang, setLang } = useContext(LangContext);
 
     useEffect(() => {
-        axios.get(`https://ali98.uz/api/partners`).then((res) => {
+        axios.get(`${url}partners`).then((res) => {
             const resdata = res.data[0];
             setPortData(resdata);
         });
-        axios.get(`https://ali98.uz/api/partnericons`).then((res) => {
+        axios.get(`${url}partnericons`).then((res) => {
             const resdataImg = res.data;
             setPortDataImg(resdataImg);
         });

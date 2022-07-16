@@ -21,6 +21,8 @@ import { useNavigate } from 'react-router-dom';
 import { Context } from "../../../Context/LangContext";
 import content from "../../../Localization/Content";
 
+let url = process.env.REACT_APP_URL;
+
 function NumberControl({ control, setControl, phone_number, setPhoneNumber }) {
     const { lang, setLang } = useContext(Context);
     const handleClose = () => setControl(false);//Close Control Message function
@@ -34,7 +36,7 @@ function NumberControl({ control, setControl, phone_number, setPhoneNumber }) {
     const lastname = sessionStorage.getItem('lastname')
     const email = sessionStorage.getItem('email')
     const phone = sessionStorage.getItem('phone')
-    const passport = sessionStorage.getItem('passport')
+    const password = sessionStorage.getItem('password')
     const user_type = sessionStorage.getItem('user_type')
     const region_id = sessionStorage.getItem('region_id')
     const description = sessionStorage.getItem('description')
@@ -47,7 +49,7 @@ function NumberControl({ control, setControl, phone_number, setPhoneNumber }) {
     Data.append('lastname', lastname)
     Data.append('email', email)
     Data.append('phone', phone)
-    Data.append('passport', passport)
+    Data.append('password', password)
     Data.append('region_id', region_id)
     Data.append('user_type', user_type)
     Data.append('experience', experience)
@@ -62,7 +64,7 @@ function NumberControl({ control, setControl, phone_number, setPhoneNumber }) {
     //HTTP Request Function
     const onSubmit = (data) => {
         Data.append('code', data.code)
-        fetch("https://ali98.uz/api/register", requestOptions)
+        fetch(`${url}register`, requestOptions)
             .then(response => response.text())
             .then(function (response) {
                 sessionStorage.clear();

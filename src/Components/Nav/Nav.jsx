@@ -17,6 +17,7 @@ import "../Nav/Nav.scss";
 import GoogleImg from "../../Assets/Img/google.svg";
 import LogOut from "../../Utils/logOut";
 
+let url = process.env.REACT_APP_URL;
 
 function Nav({ elHeader }) {
     const { lang, setLang } = useContext(Context);
@@ -32,7 +33,7 @@ function Nav({ elHeader }) {
     };
 
     useEffect(() => {
-        axios.get("https://ali98.uz/api/htype").then((res) => {
+        axios.get(`${url}htype`).then((res) => {
             setCategoriesData(res.data.data);
         });
     }, []);
@@ -126,14 +127,14 @@ function Nav({ elHeader }) {
                         <li className="navbar-menu__item">
                             <ion-icon name="add-outline"></ion-icon>
                             <Link to={'/advertPage'} className="navbar-menu__link">
-                                {/* {content[lang].sAdd} */} Royhatdan otish
+                                {content[lang].sAdd}
                             </Link>
                         </li>
-                        
+
                         <li className="navbar-menu__item">
-                            <ion-icon name="add-outline"></ion-icon>
-                            <Link to={'/SignUp'} className="navbar-menu__link">
-                                {content[lang].sAdd}
+                            <ion-icon name="albums-outline"></ion-icon>
+                            <Link to={'/userads'} className="navbar-menu__link">
+                                {content[lang].sAds}
                             </Link>
                         </li>
 
@@ -152,16 +153,16 @@ function Nav({ elHeader }) {
                         </li>
 
                         <li className="navbar-menu__item">
-                            <ion-icon name="alert-circle-outline"></ion-icon>
-                            <Link to={'/userads'} className="navbar-menu__link">
-                                {content[lang].sAds}
+                            <ion-icon name="enter-outline"></ion-icon>
+                            <Link to={'/SignUp'} className="navbar-menu__link">
+                                {/* {content[lang].sAdd} */} Royhatdan otish
                             </Link>
                         </li>
 
                         <li className="navbar-menu__item" >
                             <ion-icon name="exit-outline"></ion-icon>
                             <Link to={'/'} onClick={(e) => LogOut(e)} className="navbar-menu__link">
-                            {content[lang].sLogout}
+                                {content[lang].sLogout}
                             </Link>
                         </li>
                     </ul>

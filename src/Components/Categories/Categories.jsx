@@ -35,10 +35,12 @@ function Categories() {
         setRoom(event.target.value);
     };
 
+    let url = process.env.REACT_APP_URL;
+
     // Axios
     useEffect(() => {
         axios
-            .get("https://ali98.uz/api/htype")
+            .get(`${url}htype`)
             .then((res) => {
                 const categs = res.data.data;
                 setCategoriesData(categs);

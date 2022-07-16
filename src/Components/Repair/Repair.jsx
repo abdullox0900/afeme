@@ -9,7 +9,7 @@ import { Context } from '../../Context/LangContext';
 import content from '../../Localization/Content';
 import style from '../../Pages/AdventPage/advertPage.module.scss'
 
-
+let url = process.env.REACT_APP_URL;
 
 function Repair({ repair_id, setRepair }) {
 
@@ -19,7 +19,7 @@ function Repair({ repair_id, setRepair }) {
     useEffect(() => {
         const Rep = async () => {
             try {
-                const res = await axios.get('https://ali98.uz/api/repairs');
+                const res = await axios.get(`${url}repairs`);
                 if (res.data.status) {
                     setHouseRepair(res.data.data)
                 } else {

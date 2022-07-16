@@ -9,6 +9,7 @@ import content from '../../Localization/Content';
 import style from './SaleType.module.scss'
 import axios from 'axios';
 
+let url = process.env.REACT_APP_URL;
 
 function SaleType({ sale_id, setsType }) {
   const [saleType, setSaleType] = useState([]);
@@ -17,7 +18,7 @@ function SaleType({ sale_id, setsType }) {
   useEffect(() => {
     const saleT = async () => {
       try {
-        const res = await axios.get('https://ali98.uz/api/sales');
+        const res = await axios.get(`${url}sales`);
         if (res.data.status) {
           setSaleType(res.data.data)
         } else {

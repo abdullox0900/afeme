@@ -10,8 +10,9 @@ import ReactStars from "react-rating-stars-component";
 // Import => Mui
 import Button from '@mui/material/Button';
 
+let url = process.env.REACT_APP_URL;
+
 function ReytingModal({ userId, userData, elReytingModal }) {
-    const apiUrl = "https://ali98.uz/api/reting";
     const [reting, setReting] = useState('')
     const [comment, setComment] = useState('')
 
@@ -42,7 +43,7 @@ function ReytingModal({ userId, userData, elReytingModal }) {
         redirect: 'follow'
     };
     function onSubmit() {
-        fetch(apiUrl, requestOptions)
+        fetch(`${url}reting`, requestOptions)
             .then(response => response.text())
             .then(function (response) {
                 elReytingModal.current.classList.remove("reyting-mod--open")
