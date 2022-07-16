@@ -1,5 +1,6 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
+import { UpdateUserContext } from "./UpdateUserContext";
 const UserContext = createContext();
 
 let url = process.env.REACT_APP_URL;
@@ -7,8 +8,9 @@ let url = process.env.REACT_APP_URL;
 function Provider({ children }) {
 
     const [user, setUser] = useState([]);
+    const { updateUser, setUpdateUser } = useContext(UpdateUserContext);
     var myHeaders = new Headers();
-    const token = localStorage.getItem("Token")
+    const token = localStorage.getItem("Token");
     let data = {};
 
     myHeaders.append("Authorization", `Bearer ${token}`);
@@ -42,11 +44,11 @@ function Provider({ children }) {
                 })
                 .catch((error) => {
                     setErrorData();
-                })
+                });
         } else {
             setErrorData();
         }
-    }, [])
+    }, [updateUser])
 
     return (
         <UserContext.Provider value={{ user, setUser }}>{children}</UserContext.Provider>

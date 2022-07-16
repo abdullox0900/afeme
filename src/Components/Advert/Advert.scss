@@ -48,12 +48,11 @@
     }
     &__title {
         display: flex;
-        align-items: center;
         margin-bottom: 15px;
         color: #333;
-        line-height: 22px;
         margin-right: 20px;
         &__content {
+            line-height: 24px;
             font-weight: 700;
             font-size: 26px;
             margin: 0;
@@ -83,6 +82,7 @@
         cursor: pointer;
         margin-left: 15px;
         word-wrap: none;
+        height: max-content;
         & p {
             margin: 0;
             line-height: 15px;
@@ -114,7 +114,7 @@
         padding: 30px 0;
     }
     &__items {
-        margin-top: 10px;
+        margin-top: 15px;
         width: 100%;
         display: flex;
         justify-content: space-between;
@@ -126,7 +126,7 @@
     &__btn {
         background-color: hsla(220, 100%, 60%, 0.12) !important;
     }
-    #advertMap{
+    #advertMap {
         height: 600px;
     }
     &Price {
@@ -198,11 +198,17 @@
             color: #6499ff;
         }
         &__actions {
-            margin-top: 30px;
+            margin-top: 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
+            a {
+                margin-top: 10px;
+            }
+            @media (max-width: 1110px) {
+                justify-content: center;
+            }
         }
         &__msg {
             margin: 0;
@@ -228,5 +234,90 @@
         font-weight: 500;
         color: #fff;
         padding-left: 5px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .advert{
+        &__title{
+            flex-wrap: wrap;
+        }
+        &__houseType{
+            margin: 15px 0 5px;
+        }
+    }
+}
+
+@media (max-width: 950px) {
+    .advert{
+        &__blog {
+            flex-direction: column;
+        }
+        &__content{
+            width: 100%;
+            margin: 0;
+        }
+        &__panel{
+            width: 100%;
+        }
+        .sellerProfile__header {
+            justify-content: center;
+        }
+        #advertMap{
+            height: 440px;
+        }
+    }
+}
+
+@media (max-width: 640px) {
+    .advert{
+        margin-top: 25px;
+        &__about__header{
+            flex-direction: column-reverse;
+        }
+        .advertPrice{
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        #advertMap{
+            height: 400px;
+        }
+        &__title__content{
+            font-size: 22px;
+            line-height: 26pz;
+        }
+    }
+}
+@media (max-width: 425px) {
+    .advert{
+        &__title__content{
+            font-size: 20px;
+        }
+        .advertPrice{
+            font-size: 24px;
+        }
+        .advertGallery{
+            margin-top: 20px;
+        }
+        .advert__main__image  .splide__slide {
+            height: 330px !important;
+        }
+        .advertGallery .splide__main__img{
+            max-height: 330px;
+        }
+    }
+}
+@media (max-width: 380px) {
+    .advert{
+        margin-top: 20px;
+        &__address__blog{
+            font-size: 14px;
+        }
+        .advert__main__image  .splide__slide {
+            height: 300px !important;
+        }
+        .advertGallery .splide__main__img{
+            max-height: 300px;
+        }
     }
 }

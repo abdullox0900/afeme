@@ -34,18 +34,18 @@ function LoveBtn({ advertID }) {
         };
 
         function addLove(content, heart) {
+            controlFavorites(true);
             content.classList.add("active");
             heart.classList.add("active");
 
             setNotfType("success");
-            controlFavorites(true);
         }
         function removeLove(content, heart) {
+            controlFavorites(false);
             content.classList.remove("active");
             heart.classList.remove("active");
 
             setNotfType("warning");
-            controlFavorites(false);
         }
         function controlFavorites(addOrRemove) {
             let newUser = user;

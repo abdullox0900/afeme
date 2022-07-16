@@ -13,6 +13,7 @@ import ContentLoader from "react-content-loader";
 import { Context } from "../../Context/LangContext";
 import { CurrencyContext } from "../../Context/CurrencyContext";
 import { UserContext } from "../../Context/UserContext";
+import { UpdateUserContext } from "../../Context/UpdateUserContext";
 import content from "../../Localization/Content";
 
 // Import => logout
@@ -23,8 +24,12 @@ function UserProfilList() {
     const navigate = useNavigate();
     const { lang, setLang } = useContext(Context);
     const { user, setUser } = useContext(UserContext);
+    const { updateUser, setUpdateUser } = useContext(UpdateUserContext);
     const [isLoading, setIsLoading] = useState(true);
 
+    useEffect(() => {
+        setUpdateUser(updateUser + 1);
+    }, [])
     useEffect(() => {
         if (user.hasOwnProperty("status")) {
             setIsLoading(false);

@@ -1,5 +1,4 @@
 .user-prof {
-    height: 100vh;
     border-right: 1px solid #cacaca;
 
     &__avatar {
@@ -21,40 +20,29 @@
         height: 80px;
         border-radius: 50%;
     }
-
     &__list {
         display: flex;
         align-items: flex-start;
         flex-direction: column;
-        margin: 0;
+        margin: 20px 15px 0 0;
         padding: 0;
         list-style: none;
-        margin-top: 20px;
         width: 280px;
     }
 
     &__item {
         width: 100%;
         transition: 0.3s;
+        border-radius: 8px;
         cursor: pointer;
-        .active{
-            color:white;
+        &:hover, .active{
+            color: #fff !important;
             background-color: #5cadff;
         }
     }
-
     &__item+&__item {
         margin-top: 15px;
     }
-
-    &__item:hover {
-        background-color: #5cadff;
-    }
-
-    &__item:hover &__link {
-        color: #fff;
-    }
-
     &__link {
         display: flex;
         padding: 8px 0px 8px 5px;
@@ -64,9 +52,12 @@
         line-height: 16px;
         text-align: center;
         color: #000;
+        border-radius: 8px;
         transition: all .3s;
+        &:hover{
+            color: #fff;
+        }
     }
-
 
     &__ext {
         font-weight: 500;
@@ -79,7 +70,6 @@
         margin: 0;
         padding: 0;
     }
-
     ion-icon {
         margin-right: 10px;
     }

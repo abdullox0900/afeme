@@ -48,11 +48,13 @@ function NewBuildingsCard() {
                             return (
                                 <ContentLoader
                                     speed={2}
-                                    width={400}
+                                    width={"100%"}
                                     height={260}
                                     viewBox="0 0 400 260"
                                     backgroundColor="#f3f3f3"
-                                    foregroundColor="#ecebeb">
+                                    foregroundColor="#ecebeb"
+                                    style={{ maxWidth: 400 }}
+                                    >
                                     <rect x="88" y="229" rx="8" width="150" height="15" />
                                     <circle cx="46" cy="236" r="22" />
                                     <rect x="19" y="47" rx="10" width="350" height="150" />

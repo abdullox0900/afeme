@@ -104,14 +104,15 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
 
     const cardControls = (
         <>
-            <IconButton
-                variant="solid"
-                color="primary"
-                className="cardControls cardEdit"
-                sx={{ mr: 1.5 }}
-            >
-                <EditIcon />
-            </IconButton>
+            <Link to={`/userpostedit/${data.id}`} className="edit-btn">
+                <IconButton
+                    variant="solid"
+                    color="primary"
+                    className="cardControls cardEdit"
+                    sx={{ mr: 1.5 }}>
+                    <EditIcon />
+                </IconButton >
+            </Link>
             <IconButton
                 variant="outlined"
                 color="error"
@@ -196,7 +197,6 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
                         <CardMedia
                             component="img"
                             alt="Card img"
-                            height="140"
                             className="card__img"
                             image={
                                 data.image?.length > 0

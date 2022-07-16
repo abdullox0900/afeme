@@ -29,6 +29,10 @@
         grid-template-columns: 1fr 1fr;
         grid-gap: 15px;
         padding-right: 15px;
+        .card{
+            min-height: 305px;
+            margin-bottom: 5px;
+        }
     }
 }
 

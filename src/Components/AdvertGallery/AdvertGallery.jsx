@@ -58,12 +58,12 @@ function AdvertGallery({ data, isLoading }) {
     let arr = [HeroImg1, HeroImg2, HeroImg3, HeroImg4, HeroImg5, HeroImg6];
     let randNumber = Math.floor(Math.random() * 5);
 
-    function generateSlides(images) {
+    function generateSlides(images, main) {
         return images.map((row) => (
             <SplideSlide>
                 <img
                     src={row.url}
-                    className="splide__img"
+                    className={main ? "splide__img splide__main__img" : "splide__img"}
                     alt=""
                     onError={(e) => (e.target.src = arr[randNumber])}
                 />
@@ -110,7 +110,7 @@ function AdvertGallery({ data, isLoading }) {
                     ref={mainRef}
                     className="advert__main__image"
                 >
-                    {generateSlides(data.image)}
+                    {generateSlides(data.image, true)}
                     {showVideo()}
                 </Splide>
 

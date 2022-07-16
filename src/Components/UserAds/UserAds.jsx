@@ -16,6 +16,7 @@ import { UserContext } from "../../Context/UserContext";
 import Header from "../../Components/Header/Header";
 import UserProfilList from "../UserProfilList/UserProfilList";
 import Container from "../../Components/Container/Container";
+import UserPostEdit from "../UserPostEdit/UserPostEdit";
 
 // Import => Img
 import CommercemImg from "../../Assets/Img/e-commerce.svg";
@@ -80,8 +81,8 @@ function UserAds() {
                     <div className="user__cards">
                         {showPosts(4)}
                     </div>
-                    
                 </div>
+                
             </Container>
         </>
     );
