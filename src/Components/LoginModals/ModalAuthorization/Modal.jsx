@@ -17,9 +17,6 @@ import "./Modal.scss";
 import { Context } from '../../../Context/LangContext';
 import content from '../../../Localization/Content';
 
-//Import Request Package
-import Confirm from "../ConfirmLogin/Confirm";
-
 let url = process.env.REACT_APP_URL;
 
 function Modal({ elModal }) {
@@ -37,13 +34,14 @@ function Modal({ elModal }) {
     };
     //Request Function
     const onSubmit = (data) => {
-        sessionStorage.setItem('phone', data.phone)
         log.append('phone', data.phone)
-        fetch(`${url}sms`, requestOptions)
+        log.append('password', data.password)
+        fetch(`${url}login`, requestOptions)
             .then(response => response.text())
             .then(function (response) {
-                console.log(response)
-                second.current.classList.add("modal--open");
+                const Token = JSON.parse(response)
+                localStorage.setItem('Token', Token.data);
+                window.location.reload();
                 reset();
             })
             .catch(function (error) {
@@ -54,8 +52,6 @@ function Modal({ elModal }) {
 
     return (
         <>
-
-            <Confirm second={second} />
             <div
                 className="modal loginModal"
                 ref={elModal}
@@ -85,6 +81,15 @@ function Modal({ elModal }) {
                             {...register('phone', { required: 'Raqam Kiriting' })}
                             error={!!errors?.phone}
                             helperText={errors?.phone ? errors.phone.message : null}
+                        />
+                        <TextField
+                            sx={{ width: '280px', marginBottom: '20px' }}
+                            variant='outlined'
+                            type={'password'}
+                            label={'Password'}
+                            {...register('password', { required: 'Password kiriting' })}
+                            error={!!errors?.password}
+                            helperText={errors?.password ? errors.password.message : null}
                         />
                         <Button
                             className="form__authorization-btn"

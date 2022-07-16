@@ -31,15 +31,12 @@ import content from '../../Localization/Content';
 
 
 let url = process.env.REACT_APP_URL;
-
+ 
 function Form() {
     // Localization == useContext
     const { lang, setLang } = useContext(Context);
-    const [email, setEmail] = useState('')
-    const [name, setName] = useState('')
-    const [pic, setPic] = useState('')
     
-    const { register, handleSubmit, formState: { errors }, watch } = useForm();
+    const { register, handleSubmit, formState: { errors }, watch, reset } = useForm();
     //Modal States
     const [phone_number, setPhoneNumber] = useState('')
     const [err, setErr] = useState(false);
@@ -78,8 +75,8 @@ function Form() {
         fetch(`${url}sms`, requestOptions)
             .then(response => response.text())
             .then(function (response) {
-                console.log(response);
                 handleControl();
+                reset();
             })
             .catch(function (error) {
                 handleErr(error);

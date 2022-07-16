@@ -25,7 +25,6 @@ function UserProfil() {
     const [lastname, setLastName] = useState('')
     const [phone, setPhone] = useState('')
     const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
     const [region, setRegion] = useState('')
     const [type, setType] = useState('')
     const [uniq, setUniq] = useState('')
@@ -37,7 +36,6 @@ function UserProfil() {
             setLastName(user.data.lastname);
             setPhone(user.data.phone);
             setEmail(user.data.email);
-            setPassword(user.data.pasport);
             setType(user.data.user_type);
             setRegion(user.data.region_id.id);
             setUniq(user.data.id);
@@ -50,7 +48,6 @@ function UserProfil() {
     all.append('lastname', lastname)
     all.append('phone', phone)
     all.append('email', email)
-    all.append('password', password)
     all.append('user_type', type)
     all.append('region_id', region)
 
@@ -123,13 +120,6 @@ function UserProfil() {
                                 variant="outlined"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                            />
-                            <TextField
-                                label={content[lang].userProfilPassport}
-                                id="outlined-basic"
-                                variant="outlined"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
                             />
                             <FormControl className="form__controler-input2">
                                 <InputLabel id="viloyat">{content[lang].form_select_vil}</InputLabel>

@@ -27,7 +27,6 @@ function UserFavorites() {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        console.log(user);
         if (user.hasOwnProperty('status')) {
             setIsLoading(false);
         }
