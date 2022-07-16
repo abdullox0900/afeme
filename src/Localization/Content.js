@@ -170,7 +170,7 @@ const content = {
         sAdd:`E'lon qo'shish`,
         sFeatures:'Tanlanganlar',
         sHelp:'Yordam',
-        sAbout:'Biz haqimizda',
+        sAds:'Mening Elonlarim',
         sLogout:'Chiqish',
 
         notfound:'Rasmlar mavjud emas',
@@ -189,6 +189,11 @@ const content = {
         codeMessage:'Sms Kodni kiring!!!',
         succ:'Muvaffaqiyatli !!!',
 
+        noResults: "Hozircha bu so'rov bo'yicha hech qanday e'lon qo'yilmagan",
+        changeFilterThings: "Filterda biror narsani o'zgartirib ko'ring",
+        cleanFilterThings: "Filterni tozalashga harakat qilib ko'ring",
+        viaWith: "orqali qidiring",
+        map: "Xarita"
     },
     en: {
         chat: "Chat",
@@ -348,7 +353,7 @@ const content = {
         sAdd:`Add an ad`,
         sFeatures:'Features',
         sHelp:'Help',
-        sAbout:'About',
+        sAds:'Adverts',
         sLogout:'Log Out',
 
         notfound:'No pictures available',
@@ -367,7 +372,11 @@ const content = {
         codeMessage:'Enter SMS Code!!!',
         succ:'Successful !!!',
 
-
+        noResults: "There are currently no ads posted for this request",
+        changeFilterThings: "Try changing something in the filter",
+        cleanFilterThings: "Try cleaning the filter",
+        viaWith: "search through",
+        map: "Map"
     },
     ru: {
         chat: "Чат",
@@ -527,7 +536,7 @@ const content = {
         sAdd:`Добавить объявление`,
         sFeatures:'Избранные',
         sHelp:'Помощь',
-        sAbout:'О компании',
+        sAds:'Oбъявление',
         sLogout:'Выйти',
 
         notfound:'Нет доступных изображений',
@@ -546,13 +555,11 @@ const content = {
         codeMessage:'Введите смс-код!!!',
         succ:'Успешный !!!',
 
-    },
+        noResults: "В настоящее время нет размещенных объявлений по этому запросу",
+        changeFilterThings: "Попробуйте изменить что-то в фильтре",
+        cleanFilterThings: "попробуй почистить фильтр",
+        viaWith: "искать через",
+        map: "Карта",
+    }
 }
-
 export default content;
-
-
-// Import useContext => Localization
-// import { Context } from "../../Context/LangContext";
-// import content from "../../Localization/Content";
-// const { lang, setLang } = useContext(Context);

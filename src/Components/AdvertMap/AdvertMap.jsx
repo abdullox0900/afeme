@@ -87,22 +87,6 @@ function AdvertMap({ currentAdvert, zoom = 10 }) {
                     <ZoomControl />
                     <GeolocationControl />
                     <FullscreenControl />
-                    <ListBox
-                        data={{
-                            content: "Select city",
-                        }}
-                    >
-                        <ListBoxItem
-                            data={{
-                                content: "Moscow",
-                            }}
-                        />
-                        <ListBoxItem
-                            data={{
-                                content: "Saint Petersburg",
-                            }}
-                        />
-                    </ListBox>
                     {data?.map((advert) => (
                         <AdvertPlacemark advert={advert} />
                     ))}

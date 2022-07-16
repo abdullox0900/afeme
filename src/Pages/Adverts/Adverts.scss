@@ -1,26 +1,7 @@
 .adverts{
     margin: 60px 0;
 }
-
 .rek {
     display: flex;
     justify-content: center;
-}
-.noResults{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 20px;
-    margin-top: 0;
-    &__content{
-        margin-left: 30px;
-    }
-    &__text{
-        color: #6a6e6e;
-        padding: 3px 0;
-    }
-    &__text a{
-        color: dodgerblue;
-    }
 }

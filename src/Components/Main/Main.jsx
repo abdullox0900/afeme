@@ -72,7 +72,7 @@ function Main() {
     }, []);
 
     useEffect(() => {
-        axios.get(`http://ali98.uz/api/advertisements`)
+        axios.get(`https://ali98.uz/api/advertisements`)
             .then(res => {
                 const resdata = res?.data;
                 setRekData(resdata)
@@ -82,10 +82,10 @@ function Main() {
 
     function showCards(amount, popular = false) {
         if (isLoading) {
-            return <CardSkeleton amount={popular ? amount - 8 : amount} />;
+            return <CardSkeleton amount={amount} />;
 
         } else if (data && !dataError) {
-            return adverts?.slice(popular ? 4 : 0, amount).map((row) => {
+            return adverts?.slice(popular ? 4 : 0, popular ? amount + 4 : 4).map((row) => {
 
                 return <Cards data={row} />;
             });
@@ -124,7 +124,7 @@ function Main() {
                             <Typography variant="h3" className="section__title">
                                 {content[lang].populr_title}
                             </Typography>
-                            <div className="cards">{showCards(12, true)}</div>
+                            <div className="cards">{showCards(4, true)}</div>
                             <Box className="viewAll">
                                 <a href="/" className="viewAll__link">
                                     {content[lang].see_desc}
@@ -159,7 +159,7 @@ function Main() {
                                 >
 
                                     {
-                                        reltData.slice(0, 10).map(rel => {
+                                        reltData.slice(0, 6).map(rel => {
                                             return (
                                                 <>
                                                     <Box className="realtor">

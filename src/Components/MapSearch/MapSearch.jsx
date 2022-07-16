@@ -1,11 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
-import { NavLink as Link } from "react-router-dom";
 
 import ApiError from "../../Components/ApiError/ApiError";
 import CardSkeleton from "../../Components/CardSkeleton/CardSkeleton";
 import Cards from "../../Components/Card/Card";
-import notFoundIcon from "../../Assets/Img/Icon/not-found.svg";
 import { SearchContext } from "../../Context/SearchContext";
+import NoResults from "../NoResults/NoResults";
 
 function MapSearch() {
     const [data, setData] = useState([]);
@@ -45,38 +44,7 @@ function MapSearch() {
             if (data.length > 0) {
                 return data.map((row) => <Cards data={row} />);
             } else {
-                return (
-                    <div className="noResults">
-                        <img src={notFoundIcon} alt="" />
-                        <div className="noResults__content">
-                            <h3 className="noResults__title">
-                                Hozircha bu so'rov bo'yicha hech qanday e'lon
-                                qo'yilmagan
-                            </h3>
-                            <ul style={{ padding: 0 }}>
-                                <li
-                                    className="noResults__text"
-                                    style={{ listStyle: "inside" }}
-                                >
-                                    Filterda biror narsani o'zgartirib ko'ring
-                                </li>
-                                <li
-                                    className="noResults__text"
-                                    style={{ listStyle: "inside" }}
-                                >
-                                    Filterni tozalashga harakat qilib ko'ring
-                                </li>
-                                <li
-                                    className="noResults__text"
-                                    style={{ listStyle: "inside" }}
-                                >
-                                    <Link to={"/map"}>Xarita</Link> orqali
-                                    qidiring
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                );
+                return <NoResults />;
             }
         } else {
             return <ApiError />;

@@ -1,9 +1,7 @@
 // Import => React
-import axios from 'axios';
-import React, { useRef, useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { Context } from '../../Context/LangContext';
 import content from '../../Localization/Content';
-import { v4 } from 'uuid';
 
 import Trash from '@mui/icons-material/ClearRounded';
 
@@ -16,34 +14,36 @@ function Docs({ document, setDocs }) {
   const [show, setshow] = useState(false)
   const { lang, setLang } = useContext(Context);
 
-  const doc = useRef(null)
-
   function Delete(e) {
     setDocs('')
     setshow(false)
   }
 
-  
+  let formdata = new FormData();
+
+  var requestOptions = {
+    method: 'POST',
+    body: formdata,
+    redirect: 'follow'
+  };
+
   function dropImageHandler(e) {
-    var formdata = new FormData();
-    let files = e;
     formdata.append('key', 'Service For C Group')
-    formdata.append("file", files);
-    axios.post('http://ali98.uz/api/service', formdata)
-    .then(function (response) {
+    formdata.append("file", e);
+    fetch("https://ali98.uz/api/service", requestOptions)
+      .then(response => response.text())
+      .then(function (response) {
         setshow(true)
-        let res = response.data.data
-        setDocs(res)
+        let res = JSON.parse(response)
+        setDocs(res.data)
       })
-      .catch(function (res) {
-        console.log(res.response.data.status);
-      })
+      .catch(error => console.log('error', error));
   }
 
   return (
     <>
 
-      <div className="change" style={{display:show ? 'block' : 'none'}}  >
+      <div className="change" style={{ display: show ? 'block' : 'none' }}  >
         <img src={document} alt={document} className="img" />
         <Trash onClick={(e) => Delete(e)} className="icon" />
       </div>

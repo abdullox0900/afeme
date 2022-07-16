@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useForm } from 'react-hook-form'
+import jwt_decode from "jwt-decode";
 
 //Import => Request Package
 import axios from "axios";
@@ -34,6 +35,9 @@ import content from '../../Localization/Content';
 function Form() {
     // Localization == useContext
     const { lang, setLang } = useContext(Context);
+    const [email, setEmail] = useState('')
+    const [name, setName] = useState('')
+    const [pic, setPic] = useState('')
 
     const { register, handleSubmit, formState: { errors }, watch } = useForm();
     //Modal States
@@ -49,8 +53,15 @@ function Form() {
 
     //Send Date's and set Token in localStorage, Reset Input Value's
 
+    const singup = new FormData();
+
+    let requestOptions = {
+        method: 'POST',
+        body: singup,
+        redirect: 'follow'
+    };
+
     const onSubmit = (data) => {
-        const singup = new FormData();
         singup.append('name', data.name)
         singup.append('phone', data.phone)
         sessionStorage.setItem('name', data.name)
@@ -63,10 +74,11 @@ function Form() {
         sessionStorage.setItem('passport', data.passport);
         sessionStorage.setItem('user_type', data.user_type);
         sessionStorage.setItem('region_id', data.region_id);
-        axios.post('http://ali98.uz/api/sms', singup)
+
+        fetch("https://ali98.uz/api/sms", requestOptions)
+            .then(response => response.text())
             .then(function (response) {
-                const Token = response.data.data
-                localStorage.setItem('Token', Token);
+                console.log(response);
                 handleControl();
             })
             .catch(function (error) {
@@ -108,6 +120,48 @@ function Form() {
         }
         Input()
     })
+
+
+    function handleCallbackResponse(response) {
+        console.log('Encoded', response.credential);
+        let ali = jwt_decode(response.credential);
+        setEmail(ali.email);
+        setName(ali.name);
+        setPic(ali.picture);
+    }
+    // useEffect(() => {
+    //     /* global google */
+    //     google.accounts.id.initialize({
+    //         client_id: '883875379069-jmovjpk9mc3pcfe4h5egocrjs0s3abt6.apps.googleusercontent.com',
+    //         callback: handleCallbackResponse
+    //     });
+
+    //     google.accounts.id.renderButton(
+    //         document.getElementById('btn'),
+    //         { theme: 'outline', size: 'large' }
+    //     )
+    // }, [])
+    // useEffect(() => {
+
+    //     function Ya() {
+
+    //         YaAuthSuggest.init(
+    //             {
+    //                 client_id: '92f089c61679485691ad4c721964441f',
+    //                 response_type: 'token',
+    //                 redirect_uri: 'https%3A%2F%2Foauth.yandex.ru%2Fverification_code'
+    //             },
+    //             'https%3A%2F%2Foauth.yandex.ru%2Fverification_code'
+    //         )
+    //             .then(({ handler }) => handler())
+    //             .then(data => console.log('Сообщение с токеном', data))
+    //             .catch(error => console.log('Обработка ошибки', error));
+    //     }
+
+    // }, [])
+
+
+
 
     return (
         <>
@@ -246,6 +300,8 @@ function Form() {
                             className="form__link-myaccount">
                             {content[lang].have}
                         </NavLink>
+                        <div id="btn"></div>
+                        {/* <div id='ya' onClick={Ya()}>sdfsd</div> */}
                         <button
                             className="button"
                             type="submit"

@@ -26,16 +26,22 @@ function VideoFile({ video, setVideo }) {
         setVideoFile(false)
     }
     const arr = [];
+    var formdata = new FormData();
+    let drop = {
+        method: 'POST',
+        body: formdata,
+        redirect: 'follow'
+    };
     function dropVideoHandler(e) {
         e.preventDefault()
-        var formdata = new FormData();
         let files = [...e.dataTransfer.files]
         for (let i = 0; i < files.length; i++) {
             formdata.append('key', 'Service For C Group')
             formdata.append("file", files[i]);
-            axios.post('http://ali98.uz/api/service', formdata)
+            fetch("https://ali98.uz/api/service", drop)
+                .then(response => response.text())
                 .then(function (response) {
-                    let res = response.data
+                    let res = JSON.parse(response);
                     Object.entries(res).forEach(([name, value]) => {
                         if (typeof value === 'string') {
                             arr.push(value);
@@ -43,33 +49,35 @@ function VideoFile({ video, setVideo }) {
                         }
                     })
                 })
-                .catch(function (res) {
-                    console.log(res.response.data.message);
-                })
+                .catch(error => console.log('error', error));
         }
         setVideoFile(false)
         setVideo(files)
     }
     let Arr = [];
+    let Select = new FormData();
+    let select = {
+        method: 'POST',
+        body: Select,
+        redirect: 'follow'
+    };
     function SelectV(e) {
         let files = [...e]
-        let formdataV = new FormData();
         for (let i = 0; i < files.length; i++) {
-            formdataV.append('key', 'Service For C Group')
-            formdataV.append('file', files)
-            axios.post('http://ali98.uz/api/service', formdataV)
-                .then(function (res) {
-                    let data = res.data;
-                    Object.entries(data).forEach(([name, value]) => {
+            Select.append('key', 'Service For C Group')
+            Select.append('file', files)
+            fetch("https://ali98.uz/api/service", select)
+                .then(response => response.text())
+                .then(function (response) {
+                    let res = JSON.parse(response);
+                    Object.entries(res).forEach(([name, value]) => {
                         if (typeof value === 'string') {
-                            Arr.push(value);
-                            setVideo(Arr)
+                            arr.push(value);
+                            setVideo(arr)
                         }
                     })
                 })
-                .catch(function (err) {
-                    console.log(err);
-                })
+                .catch(error => console.log('error', error));
         }
     }
 

@@ -20,7 +20,7 @@ import AfemePhone from "../../Components/AfemePhone/AfemePhone";
 import Footer from "../../Components/Footer/Footer";
 import ApiError from "../../Components/ApiError/ApiError";
 import useWindowDimensions from "../../Utils/windowDimension";
-import notFoundIcon from "../../Assets/Img/Icon/not-found.svg";
+import NoResults from "../../Components/NoResults/NoResults";
 
 // Import => Style
 import "./Adverts.scss";
@@ -71,7 +71,7 @@ function Adverts() {
             .then((response) => response.text())
             .then((response) => {
                 let newData = JSON.parse(response);
-                if (!newData.hasOwnProperty('status')) {
+                if (newData.data) {
                     setData(newData);
                     setAdverts(newData.data);
                     setTotalPages(newData.meta.last_page);
@@ -91,44 +91,12 @@ function Adverts() {
         if (isLoading) {
             return <CardSkeleton amount={amount} fullCard={true} />;
         } else if (adverts) {
-
             if (adverts.length > 0) {
                 return adverts.map((row) => (
                     <Cards data={row} fullCard={true} />
                 ));
             } else {
-                return (
-                    <div className="noResults">
-                        <img src={notFoundIcon} alt="" />
-                        <div className="noResults__content">
-                            <h3 className="noResults__title">
-                                Hozircha bu so'rov bo'yicha hech qanday e'lon
-                                qo'yilmagan
-                            </h3>
-                            <ul style={{ padding: 0 }}>
-                                <li
-                                    className="noResults__text"
-                                    style={{ listStyle: "inside" }}
-                                >
-                                    Filterda biror narsani o'zgartirib ko'ring
-                                </li>
-                                <li
-                                    className="noResults__text"
-                                    style={{ listStyle: "inside" }}
-                                >
-                                    Filterni tozalashga harakat qilib ko'ring
-                                </li>
-                                <li
-                                    className="noResults__text"
-                                    style={{ listStyle: "inside" }}
-                                >
-                                    <Link to={"/map"}>Xarita</Link> orqali
-                                    qidiring
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                );
+                return <NoResults />
             }
         } else {
             return <ApiError />;
@@ -143,7 +111,7 @@ function Adverts() {
             }
         };
 
-        if (adverts.length > 0) {
+        if (adverts.length > 0 && !dataError) {
             return (
                 <Grid sx={{ my: 3 }}>
                     <Pagination

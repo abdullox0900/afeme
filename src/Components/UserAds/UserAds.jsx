@@ -34,6 +34,12 @@ function UserAds() {
         }
     }, [user]);
 
+    function showWarning() {
+        let cards = document.querySelector('.user__cards');
+        cards.style.gridTemplateColumns = '1fr';
+        cards.style.placeItems = 'center';
+    }
+
     function showPosts(amount) {
         if (isLoading) {
             return <CardSkeleton amount={amount} controls={true} />;
@@ -45,6 +51,7 @@ function UserAds() {
                     <Cards data={row} editDelete={true} />
                 ));
             } else {
+                showWarning();
                 return (
                     <div className="userNoAds">
                         <img src={CommercemImg} alt="svg-img" />
@@ -56,6 +63,7 @@ function UserAds() {
                 );
             }
         } else {
+            showWarning();
             return (
                 <div className="userNoAds">
                     <ApiError />
@@ -70,7 +78,7 @@ function UserAds() {
             <Container>
                 <div className="user-wrap-router">
                     <UserProfilList />
-                    <div className="user__ads">
+                    <div className="user__cards">
                         {showPosts(4)}
                     </div>
                     
