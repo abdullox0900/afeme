@@ -1,7 +1,6 @@
 // Import => React
 import React, { useContext } from "react";
 import { NavLink as Redirect } from "react-router-dom";
-import io from "socket.io-client"
 
 // Import => Mui
 import { Box, Button, IconButton } from "@mui/material";
