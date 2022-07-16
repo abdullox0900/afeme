@@ -22,6 +22,7 @@ import UserNewsPage from './Pages/UserNewsPage/UserNewsPage';
 import Help from './Pages/Help/Help';
 import SearchMap from './Pages/SearchMap/SearchMap';
 import Test from './Pages/Test/Test';
+import UserPostEditPage from './Pages/UserPostEditPage/UserPostEditPage';
 
 function App() {
 
@@ -72,6 +73,7 @@ function App() {
                     <Route path='/userads' element={<UserAdsPage />} />
                     <Route path='/userfavorites' element={<UserFavoritesPage />} />
                     <Route path='/usernews' element={<UserNewsPage />} />
+                    <Route path='/userpostedit/:postID' element={<UserPostEditPage/>} />
                     <Route path='/chat' element={<Chat />} />
                     <Route path='/help' element={<Help />} />
                     <Route path='/map' element={<SearchMap />} />
