@@ -62,7 +62,9 @@ function Advert() {
             setAdvertCity
         );
     }
-
+    document.body.addEventListener('click', function(){
+        console.log('fgdsh');
+    });
     useEffect(() => {
         setIsLoading(true);
         const result = axios

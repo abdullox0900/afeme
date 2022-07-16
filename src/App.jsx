@@ -48,8 +48,7 @@ function App() {
             document.body.classList.add('loaded');
             setTimeout(() => {
                 for (let i = 0; i < loader.length; i++) {
-                    loader[i].style.display = 'none';
-                    loader[i].style.zIndex = '-999';
+                    loader[i].remove();
                 }
             }, 500);
         }

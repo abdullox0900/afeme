@@ -2,4 +2,8 @@
     max-width: 1360px;
     padding: 0px 15px;
     margin: 0 auto;
+    @media (max-width: 425px) {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
 }

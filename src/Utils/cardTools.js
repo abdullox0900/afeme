@@ -50,7 +50,7 @@ function CardTools(
                 // setAdvertCity(data?.city_id?.name_ru);
 
                 setAdvertTitle(
-                    `${data.room}-комнатная ${data.htype_id?.name_ru} в ${data.sale_id?.name_ru} на продажу`
+                    data.sale_id?.id == 6 ? `Продается ${data.room} комнатный ${data.htype_id?.name_ru}` : `${data.room} комнатный ${data.htype_id?.name_ru} в аренду`
                 );
             } else {
                 setAdvertType(data?.htype_id?.name_en);
@@ -58,7 +58,7 @@ function CardTools(
                 // setAdvertCity(data?.city_id?.name_en);
 
                 setAdvertTitle(
-                    `${data.room}-room ${data.htype_id?.name_en} for ${data.sale_id?.name_en} Sale`
+                    `${data.room}-room ${data.htype_id?.name_en} for ${data?.sale_id.name_en}`
                 );
             }
 
