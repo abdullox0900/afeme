@@ -194,7 +194,6 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
                         <CardMedia
                             component="img"
                             alt="Card img"
-                            height="140"
                             className="card__img"
                             image={
                                 data.image?.length > 0

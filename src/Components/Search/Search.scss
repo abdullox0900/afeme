@@ -242,10 +242,10 @@
         flex-wrap: wrap;
     }
 }
-@media (max-width: 450px) {
+@media (max-width: 660px) {
     .hero__main-title{
         margin: 50px 0 30px !important;
-        font-size: 36px !important;
+        font-size: 32px !important;
     }
     .form__content {
         padding: 12px !important;
@@ -266,11 +266,17 @@
         margin-right: 10px !important;
     }
 }
+@media (max-width: 450px) {
+    .hero__main-title{
+        margin: 40px 0 30px !important;
+        font-size: 28px !important;
+    }
+}
 @media (max-width: 375px) {
     .section__title{
         font-size: 24px !important;
     }
     .hero__main-title{
-        font-size: 32px !important;
+        font-size: 24px !important;
     }
 }

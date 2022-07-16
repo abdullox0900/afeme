@@ -12,7 +12,7 @@
     height: 20px;
     display: flex;
     align-items: center;
-    // margin-bottom: 10px;
+    margin-right: 10px;
 }
 
 .house__prices {
@@ -21,14 +21,12 @@
     line-height: 10px;
     color: #6d7580;
 }
-
 .house__price {
     font-weight: 600;
     font-size: 16px;
     line-height: 15px;
     color: $cardBlue;
 }
-
 .house__address {
     font-size: 16px;
     font-weight: 400;
@@ -79,19 +77,16 @@
 
 .card {
     width: 100%;
-    max-width: 350px;
-    min-width: 200px;
-    height: 280px;
+    max-width: 350px !important;
+    min-width: 275px;
+    min-height: 275px;
     border-radius: 8px !important;
-    // box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.4) !important;
     margin-bottom: 15px;
     position: relative;
-    padding-bottom: 3px;
-
+    padding-bottom: 8px;
     &Controls {
         border: 1px solid #ff000080 !important;
     }
-
     &Edit {
         border-color: #0468ffaf !important;
     }
@@ -102,20 +97,18 @@
         justify-content: space-between;
         align-items: center;
     }
-
     &__img {
-        // object-fit: cover;
-        // width: 100%;
-        // height: 100%;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        max-height: 175px;
     }
-
     &__main {
         padding: 0 16px !important;
     }
 
     &__footer {
-        padding: 0 16px 10px !important;
-
+        padding: 0 16px 0 !important;
         p {
             display: flex;
             align-items: center;
@@ -133,9 +126,11 @@
 
     &__call,
     &__msg {
-        background: radial-gradient(100% 100% at 50.44% 100%,
-                #367bff 0%,
-                #6197ff 100%);
+        background: radial-gradient(
+            100% 100% at 50.44% 100%,
+            #367bff 0%,
+            #6197ff 100%
+        );
     }
 
     &__call {
@@ -147,33 +142,35 @@
         margin: 0 !important;
     }
 }
-
 .house__type__icon {
     width: 14px;
     height: 14px;
     margin-right: 5px;
 }
-
 .house__type__name {
+    max-width: 80px;
     margin: 0;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    display: -webkit-box;
 }
 
 .card:hover {
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+        rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
-
 .card__actions {
     display: flex;
 }
-
 .scard {
     margin-right: 30px;
     min-width: 350px;
     width: 390px;
 }
-
 .scard:hover {
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+        rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 .fullCard {
@@ -222,7 +219,9 @@
         min-width: auto !important;
         margin-left: 10px;
     }
-
+    .house__price {
+        font-size: 20px;
+    }
     .card__desc {
         height: auto;
         font-size: 16px;
@@ -244,5 +243,66 @@
     &__foot {
         display: flex;
         align-items: center;
+    }
+}
+
+@media (max-width: 992px) {
+    .fullCard {
+        padding: 10px 15px;
+        .card__desc {
+            width: 100% !important;
+        }
+    }
+}
+@media (max-width: 715px) {
+    .fullCard {
+        flex-direction: column;
+        padding: 0;
+        padding-bottom: 10px;
+        &__img {
+            max-width: 100%;
+            max-height: 300px;
+        }
+        .card__desc {
+            margin-bottom: 10px;
+        }
+        .card__header {
+            padding: 15px 16px;
+        }
+    }
+}
+@media (max-width: 425px) {
+    .adverts{
+        margin: 30px 0 !important;
+    }
+    .fullCard {
+        .house__price {
+            font-size: 18px;
+        }
+        .card__desc {
+            -webkit-line-clamp: 2 !important;
+        }
+        &__img {
+            max-height: 200px;
+        }
+    }
+}
+@media (max-width: 380px) {
+    .fullCard {
+        &__img {
+            max-height: 175px;
+        }
+        .card__desc {
+            font-size: 14px;
+        }
+        .house__price {
+            font-size: 16px;
+        }
+        .card__header{
+            padding: 12px;
+        }
+        .card__main, .card__footer{
+            padding: 0 12px !important;
+        }
     }
 }
