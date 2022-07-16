@@ -3,6 +3,8 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { UpdateUserContext } from "./UpdateUserContext";
 const UserContext = createContext();
 
+let url = process.env.REACT_APP_URL;
+
 function Provider({ children }) {
 
     const [user, setUser] = useState([]);
@@ -26,7 +28,7 @@ function Provider({ children }) {
 
     useEffect(() => {
         if (token) {
-            fetch("https://ali98.uz/api/getuser", requestOptions)
+            fetch(`${url}getuser`, requestOptions)
                 .then(response => response.text())
                 .then((response) => {
                     let status = JSON.parse(response).status;

@@ -25,6 +25,8 @@ import NoResults from "../../Components/NoResults/NoResults";
 // Import => Style
 import "./Adverts.scss";
 
+let url = process.env.REACT_APP_URL;
+
 function Adverts() {
     const navigate = useNavigate();
     const [searchParams, setSearchParams] = useSearchParams();
@@ -45,7 +47,6 @@ function Adverts() {
     const [isLoading, setIsLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
-    const URL = `https://ali98.uz/api/filter?page=${currentPage}`;
 
     let searchTerms = new FormData();
     searchTerms.append("keyword", term ? term : "");
@@ -64,7 +65,7 @@ function Adverts() {
         setFormData(searchTerms);
         setIsLoading(true);
 
-        fetch(URL, {
+        fetch(`${url}filter?page=${currentPage}`, {
             method: "POST",
             body: searchTerms,
         })

@@ -9,6 +9,7 @@ import { Context } from '../../Context/LangContext';
 import content from '../../Localization/Content';
 import style from '../../Pages/AdventPage/advertPage.module.scss'
 
+let url = process.env.REACT_APP_URL
 
 function Material({material_id, setMaterial}) {
     const [houseMaterial, setHouseMaterial] = useState([])
@@ -17,7 +18,7 @@ function Material({material_id, setMaterial}) {
     useEffect(() => {
         const hAbout = async () => {
             try {
-                const res = await axios.get('https://ali98.uz/api/materials')
+                const res = await axios.get(`${url}materials`)
                 if (res.data.status) {
                     setHouseMaterial(res.data.data)
                 } else {

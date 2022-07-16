@@ -19,6 +19,8 @@ import { v4 } from "uuid";
 import ReactStars from "react-rating-stars-component";
 import StarIcon from "../../Lib/Svg/star";
 
+let url = process.env.REACT_APP_URL;
+
 function RealtorsCard() {
 
     // Pagination useState
@@ -33,7 +35,7 @@ function RealtorsCard() {
     useEffect(() => {
         setLoading(true)
         setTimeout(() => {
-            axios.get('https://ali98.uz/api/reltors')
+            axios.get(`${url}reltors`)
                 .then(res => {
                     const persons = res.data.data;
                     setReltorsData(persons)

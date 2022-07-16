@@ -27,7 +27,6 @@ function UserAds() {
     const { lang, setLang } = useContext(Context);
     const { user, setUser } = useContext(UserContext);
     const [isLoading, setIsLoading] = useState(true);
-    const URL = "https://ali98.uz/api/user/169";
 
     useEffect(() => {
         if (user.hasOwnProperty('status')) {

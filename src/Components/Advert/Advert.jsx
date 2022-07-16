@@ -28,13 +28,13 @@ import arrowRight from "../../Assets/Img/arrow-right.svg";
 
 // Import => Style Component
 import "./Advert.scss";
+let url = process.env.REACT_APP_URL;
 
 function Advert() {
     const { postID } = useParams();
     const [data, setData] = useState([]);
     const [dataError, setDataError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const URL = `https://ali98.uz/api/post/${postID}`;
 
     const { lang, setLang } = useContext(LangContext);
     const { currency, setCurrency } = useContext(CurrencyContext);
@@ -68,7 +68,7 @@ function Advert() {
     useEffect(() => {
         setIsLoading(true);
         const result = axios
-            .get(URL)
+            .get(`${url}post/${postID}`)
             .then((response) => {
                 let dataStatus = response.data.status;
                 if (dataStatus == true || dataStatus == 200) {

@@ -34,7 +34,7 @@ function Main() {
     const [isLoading, setIsLoading] = useState(true);
     const [rekData, setRekData] = useState([]);
 
-    const URL = "https://ali98.uz/api/popular/";
+    let url = process.env.REACT_APP_URL;
 
     // Reltor useState
     const [reltData, setReltData] = useState([]);
@@ -42,7 +42,7 @@ function Main() {
     useEffect(() => {
         setIsLoading(true);
         const result = axios
-            .get(URL + '12')
+            .get(`${url}popular/` + '8')
             .then((response) => {
                 let newData = response.data.data;
                 if (newData && newData.length > 0) {
@@ -72,7 +72,7 @@ function Main() {
     }, []);
 
     useEffect(() => {
-        axios.get(`https://ali98.uz/api/advertisements`)
+        axios.get(`${url}advertisements`)
             .then(res => {
                 const resdata = res?.data;
                 setRekData(resdata)
@@ -96,7 +96,7 @@ function Main() {
 
     // Axios
     useEffect(() => {
-        axios.get('https://ali98.uz/api/reltors')
+        axios.get(`${url}reltors`)
             .then(res => {
                 const persons = res.data.data;
                 setReltData(persons)

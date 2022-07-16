@@ -6,17 +6,18 @@ import Cards from "../../Components/Card/Card";
 import { SearchContext } from "../../Context/SearchContext";
 import NoResults from "../NoResults/NoResults";
 
+let url = process.env.REACT_APP_URL;
+
 function MapSearch() {
     const [data, setData] = useState([]);
     const [dataError, setDataError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const { searchTerms, setSearchTerms } = useContext(SearchContext);
-    const URL = `https://ali98.uz/api/filter`;
 
     useEffect(() => {
         setIsLoading(true);
 
-        fetch(URL, {
+        fetch(`${url}filter`, {
             method: "POST",
             body: searchTerms,
         })

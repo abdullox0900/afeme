@@ -2,11 +2,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useForm } from 'react-hook-form'
-import jwt_decode from "jwt-decode";
 
 //Import => Request Package
 import axios from "axios";
-
 // Import => MUI Components
 import {
     FormControl,
@@ -15,7 +13,7 @@ import {
     Select,
     TextField,
 }
-    from "@mui/material";
+from "@mui/material";
 
 //Import => Components
 // import { Container } from "@mui/material";
@@ -32,13 +30,15 @@ import { Context } from '../../Context/LangContext';
 import content from '../../Localization/Content';
 
 
+let url = process.env.REACT_APP_URL;
+
 function Form() {
     // Localization == useContext
     const { lang, setLang } = useContext(Context);
     const [email, setEmail] = useState('')
     const [name, setName] = useState('')
     const [pic, setPic] = useState('')
-
+    
     const { register, handleSubmit, formState: { errors }, watch } = useForm();
     //Modal States
     const [phone_number, setPhoneNumber] = useState('')
@@ -71,11 +71,11 @@ function Form() {
         sessionStorage.setItem('lastname', data.lastname);
         sessionStorage.setItem('email', data.email);
         sessionStorage.setItem('phone', data.phone);
-        sessionStorage.setItem('passport', data.passport);
+        sessionStorage.setItem('password', data.password);
         sessionStorage.setItem('user_type', data.user_type);
         sessionStorage.setItem('region_id', data.region_id);
 
-        fetch("https://ali98.uz/api/sms", requestOptions)
+        fetch(`${url}sms`, requestOptions)
             .then(response => response.text())
             .then(function (response) {
                 console.log(response);
@@ -91,7 +91,7 @@ function Form() {
     useEffect(() => {
         const regions = async () => {
             try {
-                const res = await axios.get('https://ali98.uz/api/regions');
+                const res = await axios.get(`${url}regions`);
                 if (res) {
                     let data = res.data.data
                     setRegions(data)
@@ -120,48 +120,6 @@ function Form() {
         }
         Input()
     })
-
-
-    function handleCallbackResponse(response) {
-        console.log('Encoded', response.credential);
-        let ali = jwt_decode(response.credential);
-        setEmail(ali.email);
-        setName(ali.name);
-        setPic(ali.picture);
-    }
-    // useEffect(() => {
-    //     /* global google */
-    //     google.accounts.id.initialize({
-    //         client_id: '883875379069-jmovjpk9mc3pcfe4h5egocrjs0s3abt6.apps.googleusercontent.com',
-    //         callback: handleCallbackResponse
-    //     });
-
-    //     google.accounts.id.renderButton(
-    //         document.getElementById('btn'),
-    //         { theme: 'outline', size: 'large' }
-    //     )
-    // }, [])
-    // useEffect(() => {
-
-    //     function Ya() {
-
-    //         YaAuthSuggest.init(
-    //             {
-    //                 client_id: '92f089c61679485691ad4c721964441f',
-    //                 response_type: 'token',
-    //                 redirect_uri: 'https%3A%2F%2Foauth.yandex.ru%2Fverification_code'
-    //             },
-    //             'https%3A%2F%2Foauth.yandex.ru%2Fverification_code'
-    //         )
-    //             .then(({ handler }) => handler())
-    //             .then(data => console.log('Сообщение с токеном', data))
-    //             .catch(error => console.log('Обработка ошибки', error));
-    //     }
-
-    // }, [])
-
-
-
 
     return (
         <>
@@ -266,19 +224,20 @@ function Form() {
                         className="textarea disable default rel-input"
                         onChange={(e) => setDescription(e.target.value)}
                     />
-                    {/*IDCard 'Passport' Input*/}
+                    {/*IDCard 'Password' Input*/}
                     <TextField
                         className="form__input form__input-passport"
                         id="outlined-basic"
-                        label="Passport*"
+                        label="Password*"
                         variant="outlined"
                         fullWidth
+                        type={'password'}
                         sx={{ mt: 2 }}
-                        {...register('passport', {
-                            required: 'Passport Seria Kiriting',
+                        {...register('password', {
+                            required: 'Password kiriting',
                         })}
-                        error={!!errors?.passport}
-                        helperText={errors?.passport ? errors.passport.message : null}
+                        error={!!errors?.password}
+                        helperText={errors?.password ? errors.password.message : null}
                     />
 
                     {/*PhoneNumber Input*/}

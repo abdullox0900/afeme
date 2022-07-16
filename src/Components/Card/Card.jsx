@@ -78,11 +78,13 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
         redirect: "follow",
     };
 
+    let url = process.env.REACT_APP_URL;
+
     const Delete = (id, delButton) => {
         delButton.disabled = true;
         let oldButton = delButton.innerHTML;
         delButton.innerHTML = "...";
-        fetch(`https://ali98.uz/api/post/${id}`, requestOptions)
+        fetch(`${url}post/${id}`, requestOptions)
             .then((response) => response.text())
             .then((result) => {
                 if (result) {

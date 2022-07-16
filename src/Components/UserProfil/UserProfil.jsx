@@ -16,6 +16,8 @@ import "../../Components/UserProfil/UserProfil.scss";
 import axios from "axios";
 import { FormControl, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 
+let url = process.env.REACT_APP_URL;
+
 function UserProfil() {
     const { lang, setLang } = useContext(Context);
     const { user } = useContext(UserContext);
@@ -23,7 +25,7 @@ function UserProfil() {
     const [lastname, setLastName] = useState('')
     const [phone, setPhone] = useState('')
     const [email, setEmail] = useState('')
-    const [passport, setPassport] = useState('')
+    const [password, setPassword] = useState('')
     const [region, setRegion] = useState('')
     const [type, setType] = useState('')
     const [uniq, setUniq] = useState('')
@@ -35,7 +37,7 @@ function UserProfil() {
             setLastName(user.data.lastname);
             setPhone(user.data.phone);
             setEmail(user.data.email);
-            setPassport(user.data.pasport);
+            setPassword(user.data.pasport);
             setType(user.data.user_type);
             setRegion(user.data.region_id.id);
             setUniq(user.data.id);
@@ -48,7 +50,7 @@ function UserProfil() {
     all.append('lastname', lastname)
     all.append('phone', phone)
     all.append('email', email)
-    all.append('passport', passport)
+    all.append('password', password)
     all.append('user_type', type)
     all.append('region_id', region)
 
@@ -57,7 +59,7 @@ function UserProfil() {
         'Authorization': `Bearer ${token}`
     }
     const Put = (e) => {
-        fetch(`https://ali98.uz/api/user/${user.data.id}?paremeter=PUT`, {
+        fetch(`${url}user/${user.data.id}?paremeter=PUT`, {
             method: "PUT",
             headers: headersList,
             body: all
@@ -71,7 +73,7 @@ function UserProfil() {
     useEffect(() => {
         const regions = async () => {
             try {
-                const res = await axios.get('https://ali98.uz/api/regions');
+                const res = await axios.get(`${url}regions`);
                 if (res) {
                     let data = res.data.data
                     setRegions(data)
@@ -126,8 +128,8 @@ function UserProfil() {
                                 label={content[lang].userProfilPassport}
                                 id="outlined-basic"
                                 variant="outlined"
-                                value={passport}
-                                onChange={(e) => setPassport(e.target.value)}
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                             />
                             <FormControl className="form__controler-input2">
                                 <InputLabel id="viloyat">{content[lang].form_select_vil}</InputLabel>

@@ -37,8 +37,10 @@ function ReltorCobinet() {
     // Skeleton useState
     const [isLoading, setLoading] = useState(false);
 
+    let url = process.env.REACT_APP_URL;
+
     useEffect(() => {
-        axios.get(`https://ali98.uz/api/user/${userId}`)
+        axios.get(`${url}user/${userId}`)
             .then(res => {
                 setReltorUserLocData(res.data.data.region_id)
                 setComment(res.data.data.fullreyting);
@@ -48,7 +50,7 @@ function ReltorCobinet() {
     }, [])
 
     useEffect(() => {
-        axios.get(`https://ali98.uz/api/user/${userId}`)
+        axios.get(`${url}user/${userId}`)
             .then(res => {
                 let resData = res?.data.data.region_id
                 setReltorUserLocData(resData)

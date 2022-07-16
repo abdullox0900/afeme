@@ -15,6 +15,8 @@ import style from './Map.module.scss';
 
 const DefaultZomm = 1;
 
+let url = process.env.REACT_APP_URL;
+
 function Map({ street, setStreet, city_id, setCity, region_id, setRegionID }) {
 
 	const [zoom, setZoom] = useState(DefaultZomm)
@@ -29,7 +31,7 @@ function Map({ street, setStreet, city_id, setCity, region_id, setRegionID }) {
 	useEffect(() => {
 		const regions1 = async () => {
 			try {
-				const res = await axios.get('https://ali98.uz/api/regions');
+				const res = await axios.get(`${url}regions`);
 				if (res) {
 					let data = res.data.data
 					setRegions(data)
