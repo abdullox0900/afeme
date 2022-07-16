@@ -2,7 +2,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useForm } from 'react-hook-form'
-import jwt_decode from "jwt-decode";
 
 //Import => Request Package
 import axios from "axios";
@@ -121,15 +120,6 @@ function Form() {
         }
         Input()
     })
-
-
-    function handleCallbackResponse(response) {
-        console.log('Encoded', response.credential);
-        let ali = jwt_decode(response.credential);
-        setEmail(ali.email);
-        setName(ali.name);
-        setPic(ali.picture);
-    }
 
     return (
         <>
