@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useContext, createContext } from "react";
-import { NavLink as Link } from "react-router-dom";
 
 import Header from "../../Components/Header/Header";
 import Search from "../../Components/Search/Search";

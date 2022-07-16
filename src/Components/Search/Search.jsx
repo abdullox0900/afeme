@@ -14,10 +14,11 @@ import { Box, Button, Select, MenuItem, FormControl, InputLabel, Modal, Containe
 // Import => Components
 import { IPContext } from "../../Context/IPContext";
 import { Context } from "../../Context/LangContext";
+import { CurrencyContext } from "../../Context/CurrencyContext";
+import { SearchContext } from "../../Context/SearchContext";
 import content from "../../Localization/Content";
 import "../Search/Search.scss";
 import searchIcon from "../../Assets/Img/search-icon.svg";
-import { SearchContext } from "../../Context/SearchContext";
 
 function Search({ map = false }) {
 
@@ -25,7 +26,9 @@ function Search({ map = false }) {
     const navigate = useNavigate();
     const { lang, setLang } = useContext(Context);
     const { IP, setIP } = useContext(IPContext);
-    const [term, setTerm] = useState();
+    const { currency, setCurrency } = useContext(CurrencyContext);
+    const { searchTerms, setSearchTerms } = useContext(SearchContext);
+    const [term, setTerm] = useState("");
     const [sales, setSales] = useState([]);
     const [htypes, setHtypes] = useState([]);
     const [sale, setSale] = useState("");
@@ -35,7 +38,6 @@ function Search({ map = false }) {
     const [room, setRoom] = useState("");
     const [fromMax, setFromMax] = useState("");
     const [toMin, setToMin] = useState(0);
-    const { searchTerms, setSearchTerms } = useContext(SearchContext);
 
     const regionID = searchParams.get("region");
     const fromInput = document.querySelector("#frominput");
@@ -96,6 +98,12 @@ function Search({ map = false }) {
             formData.append("room", room);
             formData.append("from", priceFrom);
             formData.append("to", priceTo);
+            console.log({term, sale, htype, room, priceFrom, priceTo});
+            if (priceFrom && priceTo) {
+                if (priceFrom != '' && priceTo != '') {
+                    formData.append("price_type", currency == 'sum' ? 'som': currency);
+                }
+            }
             setSearchTerms(formData);
         }
     }

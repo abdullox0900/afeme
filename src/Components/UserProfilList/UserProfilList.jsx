@@ -96,7 +96,7 @@ function UserProfilList() {
 
                     <li className="user-prof__item">
                         <NavLink
-                            to={"/userprofilmessage"}
+                            to={"/chat"}
                             className="user-prof__link" 
                         >
                             <ion-icon name="chatbox-ellipses-outline"></ion-icon>
