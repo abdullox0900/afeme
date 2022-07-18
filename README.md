@@ -8,7 +8,6 @@
     <img src="https://img.shields.io/github/repo-size/abdullox0900/Afeme?style=flat">
     <img src="https://img.shields.io/github/downloads/abdullox0900/Afeme/total">
     <img src="https://img.shields.io/github/languages/count/abdullox0900/Afeme?style=flat">
-    <img src="https://img.shields.io/github/commit-status/abdullox0900/Afeme/master/81984fc?style=flat">
     <img src="https://img.shields.io/github/issues/abdullox0900/Afeme?style=flat">
     <img src="https://img.shields.io/github/issues-pr/abdullox0900/Afeme?style=flat">
     <img src="https://img.shields.io/badge/React-18.1-blue?style=flat">

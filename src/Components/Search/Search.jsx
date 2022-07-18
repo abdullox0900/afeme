@@ -100,7 +100,6 @@ function Search({ map = false }) {
             formData.append("room", room);
             formData.append("from", priceFrom);
             formData.append("to", priceTo);
-            console.log({term, sale, htype, room, priceFrom, priceTo});
             if (priceFrom && priceTo) {
                 if (priceFrom != '' && priceTo != '') {
                     formData.append("price_type", currency == 'sum' ? 'som': currency);

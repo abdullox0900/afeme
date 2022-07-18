@@ -2,7 +2,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useForm } from 'react-hook-form'
-import jwt_decode from "jwt-decode";
 
 //Import => Request Package
 import axios from "axios";
@@ -32,15 +31,12 @@ import content from '../../Localization/Content';
 
 
 let url = process.env.REACT_APP_URL;
-
+ 
 function Form() {
     // Localization == useContext
     const { lang, setLang } = useContext(Context);
-    const [email, setEmail] = useState('')
-    const [name, setName] = useState('')
-    const [pic, setPic] = useState('')
     
-    const { register, handleSubmit, formState: { errors }, watch } = useForm();
+    const { register, handleSubmit, formState: { errors }, watch, reset } = useForm();
     //Modal States
     const [phone_number, setPhoneNumber] = useState('')
     const [err, setErr] = useState(false);
@@ -79,8 +75,8 @@ function Form() {
         fetch(`${url}sms`, requestOptions)
             .then(response => response.text())
             .then(function (response) {
-                console.log(response);
                 handleControl();
+                reset();
             })
             .catch(function (error) {
                 handleErr(error);
@@ -121,15 +117,6 @@ function Form() {
         }
         Input()
     })
-
-
-    function handleCallbackResponse(response) {
-        console.log('Encoded', response.credential);
-        let ali = jwt_decode(response.credential);
-        setEmail(ali.email);
-        setName(ali.name);
-        setPic(ali.picture);
-    }
 
     return (
         <>

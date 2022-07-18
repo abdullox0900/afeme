@@ -38,21 +38,30 @@ function App() {
                 x.style.zIndex = "1";
             })("https://widget.replain.cc/dist/client.js");
         }
+
+        setTimeout(() => {
+            const loader = document.querySelectorAll('.loading');
+            if (loader.length > 0) {
+                for (let i = 0; i < loader.length; i++) {
+                    loader[i].remove();
+                }
+            }
+        }, 30000);
     }, [])
 
-    // document.addEventListener('readystatechange', function (event) {
-    //     if (document.readyState === "complete") {
+    document.addEventListener('readystatechange', function (event) {
+        if (document.readyState === "complete") {
             
-    //         const loader = document.querySelectorAll('.loading');
-    //         document.body.style.overflow = 'auto';
-    //         document.body.classList.add('loaded');
-    //         setTimeout(() => {
-    //             for (let i = 0; i < loader.length; i++) {
-    //                 loader[i].remove();
-    //             }
-    //         }, 500);
-    //     }
-    // });
+            const loader = document.querySelectorAll('.loading');
+            document.body.style.overflow = 'auto';
+            document.body.classList.add('loaded');
+            setTimeout(() => {
+                for (let i = 0; i < loader.length; i++) {
+                    loader[i].remove();
+                }
+            }, 500);
+        }
+    });
 
     return (
         <>

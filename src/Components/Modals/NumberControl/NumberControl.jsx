@@ -29,7 +29,7 @@ function NumberControl({ control, setControl, phone_number, setPhoneNumber }) {
     const Navigate = useNavigate();
     const handleSuc = () => setSuc(true);//Open Success State
     const handleErr = () => setErr(true);//Open Error State
-    const { register, handleSubmit, formState: { errors } } = useForm()
+    const { register, handleSubmit, formState: { errors }, reset } = useForm()
     const [suc, setSuc] = useState(false);//Success State
     const [err, setErr] = useState(false);//Error State
     const name = sessionStorage.getItem('name')
@@ -74,6 +74,7 @@ function NumberControl({ control, setControl, phone_number, setPhoneNumber }) {
                 handleSuc();
                 Navigate('/Afeme')
                 window.location.reload()
+                reset()
             })
             .catch(function (error) {
                 handleClose();
