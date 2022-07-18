@@ -1,6 +1,6 @@
 // Import React
 import React from "react";
-import { useState, useEffect, } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 
 // Import Components
@@ -9,6 +9,9 @@ import UserProfilList from "../UserProfilList/UserProfilList";
 import Container from "../Container/Container";
 import "../UserPostEdit/UserPostEdit.scss";
 import axios from "axios"
+import { Context } from "../../Context/LangContext";
+import content from "../../Localization/Content";
+
 
 // Import Mui 
 import MenuItem from '@mui/material/MenuItem';
@@ -18,16 +21,45 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 function UserPostEdit() {
 
+    const { lang, setLang } = useContext(Context);
     const [postData, setPostData] = useState([]);
-    const { postID } = useParams()
+    const { postID } = useParams();
+    const [usRegion, setUsRegion] = useState('');
+
+    const [region, setRegion] = useState([]);
+    const [htype, setHtype] = useState('');
+    const [sale, setSale] = useState('');
+    const [material, setMaterial] = useState('');
+    const [desstreet, setdesstreet] = useState('');
+    const [des, setDes] = useState('');
+    const [repair, setRepair] = useState('');
+    const [room, setRoom] = useState('');
+    const [longitude, setLongitude] = useState('');
+    const [latitude, setLatitude] = useState('');
+    const [price, setPrice] = useState('');
+    const [priceUsd, setPriceUsd] = useState('');
+    const [postimg, setPostImg] = useState([]);
+
+    useEffect(() => {
+        axios.get(`https://ali98.uz/api/regions`)
+            .then(res => {
+                const persons = res?.data.data;
+                setRegion(persons)
+            })
+    }, [])
 
     useEffect(() => {
         axios.get(`https://ali98.uz/api/post/${postID}`)
             .then(res => {
                 const persons = res?.data.data;
                 setPostData(persons)
+                setUsRegion(persons.region_id.id)
             })
-    }, [])
+        }, [])
+        
+        console.log(usRegion);
+    
+    
 
     return (
         <>
@@ -56,7 +88,7 @@ function UserPostEdit() {
                                     >
                                         <MenuItem placeholder="Sotish Turlari" value="">
                                         </MenuItem>
-                                        
+
                                         <MenuItem value={10}></MenuItem>
                                         <MenuItem value={20}></MenuItem>
 
@@ -91,15 +123,18 @@ function UserPostEdit() {
                                 <div className="user-post__main-title">Ofis manzili</div>
                                 <FormControl sx={{ m: 1, minWidth: "50%" }}>
                                     <Select
-                                        // value={age}
-                                        // onChange={handleChange}
+                                        value={usRegion}
                                         displayEmpty
-                                        inputProps={{ 'aria-label': 'Without label' }}
-                                    >
-                                        <MenuItem placeholder="Sotish Turlari" value="">
-                                        </MenuItem>
-                                        <MenuItem value={10}>Ijara</MenuItem>
-                                        <MenuItem value={20}>Sotish</MenuItem>
+                                        onChange={(e) => setRegion(e.target.value)}>
+
+                                        {region.map((region) => (
+                                            <MenuItem
+                                                key={region.id}
+
+                                            >
+                                                {lang == "uz" ? region.name_uz : lang !== "ru" ? region.name_en : region.name_ru}
+                                            </MenuItem>
+                                        ))}
                                     </Select>
                                 </FormControl>
 
