@@ -325,3 +325,56 @@ body.loaded{
         transform: rotate(360deg);
     }
 }
+
+@media (max-width: 660px) {
+    .loader{
+        .circle4::before, .circle3::before{
+            width: 50px;
+            height: 50px;
+        }
+        .loading-img{
+            width: 100px;
+            height: 100px;
+        }
+        .circle5::before, .circle6::before, .circle8::before{
+            width: 35px;
+            height: 35px;
+        }
+        .circle6::before, .circle7::before{
+            width: 40px;
+            height: 40px;
+        }
+    }
+}
+@media (max-width: 460px) {
+    .loader{
+        .circle::before{
+            width: 20px;
+            height: 20px;
+        }
+        .circle-1::before{
+            width: 15px;
+            height: 15px;
+        }
+        .circle4::before{
+            width: 40px;
+            height: 40px;
+        }
+        .circle3::before{
+            width: 25px;
+            height: 25px;
+        }
+        .loading-img{
+            width: 80px;
+            height: 80px;
+        }
+        .circle5::before, .circle6::before, .circle8::before{
+            width: 30px;
+            height: 30px;
+        }
+        .circle6::before, .circle7::before{
+            width: 35px;
+            height: 35px;
+        }
+    }
+}

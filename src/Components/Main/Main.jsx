@@ -42,7 +42,7 @@ function Main() {
     useEffect(() => {
         setIsLoading(true);
         const result = axios
-            .get(`${url}popular/` + '12')
+            .get(`${url}popular/` + '8')
             .then((response) => {
                 let newData = response.data.data;
                 if (newData && newData.length > 0) {

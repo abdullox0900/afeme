@@ -1,20 +1,22 @@
 // Import => React
 import React, { useContext } from "react";
 import { NavLink as Redirect } from "react-router-dom";
+import Echo from "laravel-echo";
+import Pusher from "pusher-js";
 
 // Import => Mui
 import { Box, Button, IconButton } from "@mui/material";
 
 // Import => Components
-import Cards from "../Card/Card"
+import Cards from "../Card/Card";
 import LogoImg from "../../Lib/Svg/logo";
-import ArrowDown from "../../Assets/Img/Icon/arrow-down.svg"
-import PaperClip from "../../Assets/Img/Icon/paperclip.svg"
-import PaperPlane from "../../Assets/Img/Icon/paper-plane.svg"
-import Dots from "../../Assets/Img/Icon/dots.svg"
-import Person1 from "../../Assets/Img/person1.jpg"
-import Person2 from "../../Assets/Img/person2.jpg"
-import Person3 from "../../Assets/Img/person3.jpg"
+import ArrowDown from "../../Assets/Img/Icon/arrow-down.svg";
+import PaperClip from "../../Assets/Img/Icon/paperclip.svg";
+import PaperPlane from "../../Assets/Img/Icon/paper-plane.svg";
+import Dots from "../../Assets/Img/Icon/dots.svg";
+import Person1 from "../../Assets/Img/person1.jpg";
+import Person2 from "../../Assets/Img/person2.jpg";
+import Person3 from "../../Assets/Img/person3.jpg";
 import HeroImg1 from "../../Assets/Img/home-hero-1.jpg";
 
 // Import => Style
@@ -24,15 +26,14 @@ import "./Chat.scss";
 import { Context } from "../../Context/LangContext";
 import content from "../../Localization/Content";
 
-
 function Chat() {
     const { lang, setLang } = useContext(Context);
 
     function attachFile() {
-        let attachInput = document.querySelector('.attachFile__input');
+        let attachInput = document.querySelector(".attachFile__input");
         attachInput.click();
     }
-    const images = [Person1, Person2, Person3, Person1, Person2, Person3]
+    const images = [Person1, Person2, Person3, Person1, Person2, Person3];
 
     // return (
     //     <Box className="chat" maxWidth={1700} margin={'0 auto'} padding={'0 15px'}>
