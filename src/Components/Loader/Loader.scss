@@ -96,28 +96,6 @@ body.loaded{
     // box-shadow: 0 0 20px;
 }
 
-// .circle2 {
-//     position: absolute;
-//     width: 350px;
-//     height: 350px;
-//     // border: 2px solid #fff;
-//     border-radius: 50%;
-//     animation: loader 0s linear infinite;
-// }
-
-// .circle2::before {
-//     content: "";
-//     position: absolute;
-//     top: -12px;
-//     left: 120%;
-//     transform: translateX(-90%);
-//     width: 20px;
-//     height: 20px;
-//     background-color: #04fc43;
-//     border-radius: 50%;
-    // box-shadow: 0 0 20px;
-// }
-
 .circle3 {
     position: absolute;
     width: 350px;
@@ -315,6 +293,7 @@ body.loaded{
     border-radius: 50%;
     // box-shadow: 0 0 20px;
 }
+
 @keyframes loader{
     0%
     {
@@ -323,5 +302,301 @@ body.loaded{
     100%
     {
         transform: rotate(360deg);
+    }
+}
+
+@media only screen and (max-width: 620px) {
+    .loader {
+        width: 500px;
+        height: 500px;
+    }
+
+    .loader__img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .circle {
+        width: 130px;
+        height: 130px;
+        animation: loader 1s linear infinite;
+    }
+
+    .circle::before {
+        width: 15px;
+        height: 15px;
+        box-shadow: 0px 10px 10px -5px rgba(21,50,117,0.5);
+    }
+
+    .circle-1 {
+        width: 160px;
+        height: 160px;
+        animation: loader  1s linear infinite;
+    }
+    
+    .circle-1::before {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .circle-2 {
+        width: 200px;
+        height: 200px;
+        animation: loader 5s linear infinite;
+    }
+    
+    .circle-2::before {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .circle3 {
+        width: 250px;
+        height: 250px;
+        animation: loader 10s linear infinite;
+    }
+    
+    .circle3::before {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .circle4 {
+        width: 300px;
+        height: 300px;
+        animation: loader 5s linear infinite;
+    }
+    
+    .circle4::before {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .circle5 {
+        width: 320px;
+        height: 320px;
+        animation: loader 5s linear infinite;
+    }
+    
+    .circle5::before {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .circle6 {
+        width: 350px;
+        height: 350px;
+        animation: loader 5s linear infinite;
+    }
+    
+    .circle6::before {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .circle7 {
+        width: 380px;
+        height: 380px;
+        animation: loader 9s linear infinite;
+    }
+    
+    .circle7::before {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .circle8 {
+        width: 390px;
+        height: 390px;
+        animation: loader 10s linear infinite;
+    }
+    
+    .circle8::before {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .circle9 {
+        width: 390px;
+        height: 390px;
+        animation: loader 5s linear infinite;
+    }
+    
+    .circle9::before {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .circle10 {
+        position: absolute;
+        width: 410px;
+        height: 410px;
+        animation: loader  13s linear infinite;
+    }
+    
+    .circle10::before {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .circle11 {
+        width: 420px;
+        height: 420px;
+        animation: loader  30s linear infinite;
+    }
+    
+    .circle11::before {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+    }
+}
+
+// ================Responsiv=============== //
+
+@media only screen and (max-width: 420px) {
+    .loader {
+        width: 900px;
+        height: 900px;
+    }
+
+    .loader__img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .circle {
+        width: 90px;
+        height: 90px;
+        animation: loader 4s linear infinite;
+    }
+
+    .circle::before {
+        width: 10px;
+        height: 10px;
+        box-shadow: 0px 10px 10px -5px rgba(21,50,117,0.5);
+    }
+
+    .circle-1 {
+        width: 120px;
+        height: 120px;
+        animation: loader  11s linear infinite;
+    }
+    
+    .circle-1::before {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .circle-2 {
+        width: 200px;
+        height: 200px;
+        animation: loader 5s linear infinite;
+    }
+    
+    .circle-2::before {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .circle3 {
+        width: 250px;
+        height: 250px;
+        animation: loader 10s linear infinite;
+    }
+    
+    .circle3::before {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .circle4 {
+        width: 300px;
+        height: 300px;
+        animation: loader 5s linear infinite;
+    }
+    
+    .circle4::before {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .circle5 {
+        width: 320px;
+        height: 320px;
+        animation: loader 5s linear infinite;
+    }
+    
+    .circle5::before {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .circle6 {
+        width: 350px;
+        height: 350px;
+        animation: loader 5s linear infinite;
+    }
+    
+    .circle6::before {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .circle7 {
+        width: 380px;
+        height: 380px;
+        animation: loader 9s linear infinite;
+    }
+    
+    .circle7::before {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .circle8 {
+        width: 390px;
+        height: 390px;
+        animation: loader 10s linear infinite;
+    }
+    
+    .circle8::before {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .circle9 {
+        width: 390px;
+        height: 390px;
+        animation: loader 5s linear infinite;
+    }
+    
+    .circle9::before {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .circle10 {
+        position: absolute;
+        width: 410px;
+        height: 410px;
+        animation: loader  13s linear infinite;
+    }
+    
+    .circle10::before {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .circle11 {
+        width: 420px;
+        height: 420px;
+        animation: loader  30s linear infinite;
+    }
+    
+    .circle11::before {
+        position: absolute;
+        width: 20px;
+        height: 20px;
     }
 }

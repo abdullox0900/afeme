@@ -40,19 +40,19 @@ function App() {
         }
     }, [])
 
-    document.addEventListener('readystatechange', function (event) {
-        if (document.readyState === "complete") {
+    // document.addEventListener('readystatechange', function (event) {
+    //     if (document.readyState === "complete") {
             
-            const loader = document.querySelectorAll('.loading');
-            document.body.style.overflow = 'auto';
-            document.body.classList.add('loaded');
-            setTimeout(() => {
-                for (let i = 0; i < loader.length; i++) {
-                    loader[i].remove();
-                }
-            }, 500);
-        }
-    });
+    //         const loader = document.querySelectorAll('.loading');
+    //         document.body.style.overflow = 'auto';
+    //         document.body.classList.add('loaded');
+    //         setTimeout(() => {
+    //             for (let i = 0; i < loader.length; i++) {
+    //                 loader[i].remove();
+    //             }
+    //         }, 500);
+    //     }
+    // });
 
     return (
         <>
