@@ -8,7 +8,7 @@ import { Context } from "../../Context/LangContext";
 import content from "../../Localization/Content";
 
 // Import Mui
-import { Menu, MenuItem, Divider, Container } from "@mui/material";
+import { Menu, MenuItem, Divider, Container, Select } from "@mui/material";
 
 // Import Components
 import "../Nav/Nav.scss";
