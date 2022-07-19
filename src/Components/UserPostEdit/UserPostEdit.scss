@@ -1,6 +1,7 @@
 .user-post {
     width: 100%;
     border-right: 1px solid #cacaca;
+
     &__header {
         width: 100%;
         max-width: 100%;
@@ -30,7 +31,7 @@
         width: 50%;
     }
 
-    &__item + &__item {
+    &__item+&__item {
         margin-top: 40px;
     }
 
@@ -64,4 +65,17 @@
     .input-post__name {
         font-size: 16px;
     }
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 1px solid #cacaca;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+    outline: none;
+    resize: none;
 }
