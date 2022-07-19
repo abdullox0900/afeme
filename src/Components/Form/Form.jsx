@@ -194,14 +194,14 @@ function Form() {
                     <TextField
                         className="form__input form__input-email"
                         id="outlined-basic"
-                        label="Email"
+                        label={content[lang].from_select_email}
                         variant="outlined"
                         fullWidth
                         {...register('email', {
-                            required: false,
+                            required:  `${content[lang].forgot_email_req}`,
                             pattern: {
                                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                message: 'Email manzili noto‘g‘ri'
+                                message: `${content[lang].forgot_email_err}`
                             }
                         })}
                         error={!!errors?.email}

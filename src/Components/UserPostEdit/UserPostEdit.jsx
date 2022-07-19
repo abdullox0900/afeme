@@ -17,6 +17,7 @@ import content from "../../Localization/Content";
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { logDOM } from "@testing-library/react";
 
 
 function UserPostEdit() {
@@ -55,11 +56,11 @@ function UserPostEdit() {
                 setPostData(persons)
                 setUsRegion(persons.region_id.id)
             })
-        }, [])
-        
-        console.log(usRegion);
-    
-    
+    }, [])
+
+    console.log(usRegion);
+
+
 
     return (
         <>
@@ -124,13 +125,12 @@ function UserPostEdit() {
                                 <FormControl sx={{ m: 1, minWidth: "50%" }}>
                                     <Select
                                         value={usRegion}
-                                        displayEmpty
-                                        onChange={(e) => setRegion(e.target.value)}>
-
+                                        onChange={(e) => setUsRegion(e.target.value)}
+                                    > 
                                         {region.map((region) => (
                                             <MenuItem
                                                 key={region.id}
-
+                                                value={region.id}
                                             >
                                                 {lang == "uz" ? region.name_uz : lang !== "ru" ? region.name_en : region.name_ru}
                                             </MenuItem>

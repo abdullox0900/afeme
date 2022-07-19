@@ -125,7 +125,7 @@ function UserProfil() {
                                 <InputLabel id="viloyat">{content[lang].form_select_vil}</InputLabel>
                                 <Select
                                     labelId="viloyat"
-                                    id="viloyat"
+                                    id="viloyat"n 
                                     label={content[lang].form_select_vil}
                                     value={region}
                                     onChange={(e) => setRegion(e.target.value)}
