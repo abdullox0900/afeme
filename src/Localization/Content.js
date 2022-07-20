@@ -177,8 +177,6 @@ const content = {
 
         //Chat
         ChatNews:'Xabarlar',
-        Chat:'Sotuvchi',
-        addPic:`E'lon Rasmi`,
         doyou:'Sizga yoqishi mumkin',
 
         liked:`Yoqtirganlarga qo'shish`,
@@ -193,7 +191,15 @@ const content = {
         changeFilterThings: "Filterda biror narsani o'zgartirib ko'ring",
         cleanFilterThings: "Filterni tozalashga harakat qilib ko'ring",
         viaWith: "orqali qidiring",
-        map: "Xarita"
+        map: "Xarita",
+
+        // Search
+        saleType: "Sotish turi",
+        homeType: "Uy turi",
+        searchPlaceholder: "Manzil, shahar, viloyat, qishloq va h.k",
+        clean: "Tozalash",
+        viewOnMap: "Xaritadan ko'rish",
+        filter: "Filter",
     },
     en: {
         chat: "Chat",
@@ -360,8 +366,6 @@ const content = {
 
         //Chat
         ChatNews:'News',
-        Chat:'Seller',
-        addPic:`Advert Picture`,
         doyou:'You might like',
 
         liked:`Liked`,
@@ -376,7 +380,15 @@ const content = {
         changeFilterThings: "Try changing something in the filter",
         cleanFilterThings: "Try cleaning the filter",
         viaWith: "search through",
-        map: "Map"
+        map: "Map",
+
+        // Search
+        saleType: "Sale type",
+        homeType: "Home type",
+        searchPlaceholder: "Address, city, region, village, etc",
+        clean: "Clean",
+        viewOnMap: "View on Map",
+        filter: "Filter",
     },
     ru: {
         chat: "Чат",
@@ -543,8 +555,6 @@ const content = {
 
         //Chat
         ChatNews:'Новости',
-        Chat:'Продавец',
-        addPic:`Рекламная картинка`,
         doyou:'Вам может понравиться',
 
         liked:`Понравилось`,
@@ -560,6 +570,14 @@ const content = {
         cleanFilterThings: "попробуй почистить фильтр",
         viaWith: "искать через",
         map: "Карта",
+
+        // Search
+        saleType: "Тип продажи",
+        homeType: "Тип дома",
+        searchPlaceholder: "Адрес, город, район, село и т.д.",
+        clean: "Чистый",
+        viewOnMap: "Посмотреть на карте",
+        filter: "Фильтр",
     }
 }
 export default content;

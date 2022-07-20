@@ -15,7 +15,6 @@ import Page404 from './Pages/404/404';
 import ReltorCob from './Pages/ReltorCobinet/Reltor';
 import ScrollTop from './Utils/ScrollTop';
 import UsProfil from './Pages/UserProfil/UsProfil';
-import UserMessagePage from './Pages/UserMessage/UserMessagePage';
 import UserAdsPage from "./Pages/UserAdsPage/UserAdsPage";
 import UserFavoritesPage from './Pages/UserFavoritesPage/UserFavoritesPage';
 import UserNewsPage from './Pages/UserNewsPage/UserNewsPage';
@@ -27,7 +26,7 @@ import UserPostEditPage from './Pages/UserPostEditPage/UserPostEditPage';
 function App() {
 
     useEffect(() => {
-        if (!document.querySelector('.page404')) {
+        if (!document.querySelector('.page404') || !document.querySelector('.chatsPanel')) {
             window.replainSettings = { id: "c2f4a578-9a1f-49ac-9214-44448b236714" };
             (function (u) {
                 var s = document.createElement("script");
@@ -43,18 +42,16 @@ function App() {
             const loader = document.querySelectorAll('.loading');
             if (loader.length > 0) {
                 for (let i = 0; i < loader.length; i++) {
-                    loader[i].remove();
+                    loader[i]?.remove();
                 }
             }
-        }, 30000);
+        }, 15000);
     }, [])
 
     document.addEventListener('readystatechange', function (event) {
         if (document.readyState === "complete") {
             
             const loader = document.querySelectorAll('.loading');
-            document.body.style.overflow = 'auto';
-            document.body.classList.add('loaded');
             setTimeout(() => {
                 for (let i = 0; i < loader.length; i++) {
                     loader[i].remove();
@@ -77,7 +74,6 @@ function App() {
                     <Route path='/catalogreltor' element={<CatalogRealtor />} />
                     <Route path='/reltorcob/:userId' element={<ReltorCob />} />
                     <Route path='/userprofil' element={<UsProfil />} />
-                    <Route path='/userprofilmessage' element={<UserMessagePage />} />
                     <Route path='/userads' element={<UserAdsPage />} />
                     <Route path='/userfavorites' element={<UserFavoritesPage />} />
                     <Route path='/usernews' element={<UserNewsPage />} />
