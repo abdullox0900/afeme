@@ -28,6 +28,7 @@ function Map({ street, setStreet, city_id, setCity, region_id, setRegionID }) {
 		localStorage.setItem('latitude', lat)
 		localStorage.setItem('longitude', lng)
 	}
+	
 	useEffect(() => {
 		const regions1 = async () => {
 			try {

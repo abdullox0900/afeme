@@ -5,6 +5,7 @@ import React, { useEffect } from "react";
 import useWindowDimensions from "../../Utils/windowDimension";
 import "./Loader.scss";
 import LogoImg from "../../Lib/Svg/logo";
+// import LogoImg from "../../Assets/Img/LogoImg.svg"
 
 function Loader() {
 

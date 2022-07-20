@@ -29,6 +29,7 @@ import { Context } from "../../Context/LangContext";
 import content from "../../Localization/Content";
 let url = process.env.REACT_APP_URL;
 
+
 function Chat() {
     let token = localStorage.getItem("Token");
     let urlHash = window.location.hash.substring(1);
