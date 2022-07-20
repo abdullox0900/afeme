@@ -76,7 +76,7 @@ function RealtorsCard() {
                                     <NavLink to={`/reltorcob/${reltor.id}`}>
                                         <li className="realtor-card">
 
-                                            <img className="realtor-card__avatar" src="https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png" alt="reltor-img" />
+                                            <img className="realtor-card__avatar" src={reltor.image ? reltor.image : "https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png"} alt="reltor-img" />
                                             <div className="realtor-card__wrap">
                                                 <h3 className="realtor-card__title">{reltor.name} {reltor.lastname}</h3>
                                                 <p className="realtor-card__desc">Agent hujjatlari tekshirilgan</p>
