@@ -10,6 +10,8 @@ import { UserContext } from "../../Context/UserContext";
 import { Context } from "../../Context/LangContext";
 import content from "../../Localization/Content";
 
+// import Edit from ''
+
 
 // Import => Style Component
 import "../../Components/UserProfil/UserProfil.scss";
@@ -28,10 +30,12 @@ function UserProfil() {
     const [region, setRegion] = useState('')
     const [type, setType] = useState('')
     const [uniq, setUniq] = useState('')
+    const [pic, setPic] = useState('')
     const [regions, setRegions] = useState([]);
 
     useEffect(() => {
         if (user.hasOwnProperty('data')) {
+            setPic(user.data.image)
             setName(user.data.name);
             setLastName(user.data.lastname);
             setPhone(user.data.phone);
@@ -42,6 +46,20 @@ function UserProfil() {
         }
     }, [user]);
 
+    let picture = new FormData();
+
+    const setPicture = (e) => {
+        picture.append('file', e[0])
+        picture.append('key', 'Service For C Group')
+        axios.post(`${url}service`, picture)
+            .then(function (response) {
+                setPic(response.data.data);
+            })
+            .catch(function (error) {
+                console.error(error);
+            })
+    }
+
     let token = localStorage.getItem('Token')
     let all = new URLSearchParams();
     all.append('name', name)
@@ -50,12 +68,14 @@ function UserProfil() {
     all.append('email', email)
     all.append('user_type', type)
     all.append('region_id', region)
+    all.append('image', pic)
 
     let headersList = {
         "Accept": "*/*",
         'Authorization': `Bearer ${token}`
     }
     const Put = (e) => {
+        console.log(pic);
         fetch(`${url}user/${user.data.id}?paremeter=PUT`, {
             method: "PUT",
             headers: headersList,
@@ -66,6 +86,7 @@ function UserProfil() {
             window.location.reload()
         })
     }
+
 
     useEffect(() => {
         const regions = async () => {
@@ -88,10 +109,18 @@ function UserProfil() {
                 <div className="user-profil-wrap">
                     <UserProfilList />
                     <div className="personal">
+                        <div className="pic">
+                            <img className="profile" src={pic ? pic : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU"} alt="profile" />
+                            <div className="edit">
+                                <label htmlFor="img" className="editBtn"></label>
+                                <input className="ppn" type="file" id="img" onChange={e => setPicture(e.target.files)} />
+                            </div>
+                        </div>
                         <div className="title">
                             <p>ID//{uniq}</p>
                             <button type="submit" onClick={(e) => Put(e)}>{content[lang].editBtn}</button>
                         </div>
+
                         <div className="inpG">
                             <TextField
                                 label={content[lang].userProfilName}
@@ -110,7 +139,7 @@ function UserProfil() {
                             <TextField
                                 label={content[lang].userProfilPhone}
                                 id="outlined-basic"
-                                variant="outlined"x
+                                variant="outlined" x
                                 value={phone}
                                 onChange={(e) => setPhone(e.target.value)}
                             />
@@ -125,7 +154,7 @@ function UserProfil() {
                                 <InputLabel id="viloyat">{content[lang].form_select_vil}</InputLabel>
                                 <Select
                                     labelId="viloyat"
-                                    id="viloyat"
+                                    id="viloyat" n
                                     label={content[lang].form_select_vil}
                                     value={region}
                                     onChange={(e) => setRegion(e.target.value)}

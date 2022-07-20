@@ -20,7 +20,9 @@ import content from "../../Localization/Content";
 import LogOut from "../../Utils/logOut";
 
 function UserProfilList() {
-    
+
+    const elUserProfil = useRef();
+
     const navigate = useNavigate();
     const { lang, setLang } = useContext(Context);
     const { user, setUser } = useContext(UserContext);
@@ -41,6 +43,10 @@ function UserProfilList() {
         color: "dodgerblue",
         backgroundColor: "#cacaca",
     };
+
+    // function toggleClose() {
+        
+    // }
 
 
     const active = useRef(null)
@@ -69,7 +75,7 @@ function UserProfilList() {
         );
     } else if (user.hasOwnProperty("data")) {
         return (
-            <div className="user-prof">
+            <div className="user-prof" ref={elUserProfil}>
                 <div className="user-prof__avatar">
                     <img
                         className="user-prof__img"
@@ -82,54 +88,71 @@ function UserProfilList() {
                     <h3 className="user-prof__title">
                         {user.data.name} {user.data.lastname}
                     </h3>
+
+                    <button className="user-prof__close" onClick={() => {
+                        elUserProfil.current.classList.toggle("close-b")
+                    }}>
+                        <ion-icon name="chevron-forward-outline"></ion-icon>
+                    </button>
                 </div>
 
                 <ul className="user-prof__list">
                     <li className="user-prof__item">
-                        <NavLink to={"/userprofil"} className="user-prof__link"  >
+                        <NavLink to={"/userprofil"} className="user-prof__link">
                             <ion-icon name="person-circle-outline"></ion-icon>
-                            {content[lang].user_profil}
+                            <p className="user-prof__text">
+                                {content[lang].user_profil}
+                            </p>
                         </NavLink>
                     </li>
 
                     <li className="user-prof__item">
-                        <NavLink to={"/userads"} className={"user-prof__link"} >
+                        <NavLink to={"/userads"} className={"user-prof__link"}>
                             <ion-icon name="albums-outline"></ion-icon>
-                            {content[lang].user_profil_ads}
+                            <p className="user-prof__text">
+                                {content[lang].user_profil_ads}
+                            </p>
                         </NavLink>
                     </li>
 
                     <li className="user-prof__item">
                         <NavLink
                             to={"/chat"}
-                            className="user-prof__link" 
-                        >
+                            className="user-prof__link">
                             <ion-icon name="chatbox-ellipses-outline"></ion-icon>
-                            {content[lang].user_profil_message}
+                            <p className="user-prof__text">
+                                {content[lang].user_profil_message}
+                            </p>
                         </NavLink>
                     </li>
 
                     <li className="user-prof__item">
                         <NavLink
                             to={"/userfavorites"}
-                            className="user-prof__link" 
+                            className="user-prof__link"
                         >
                             <ion-icon name="heart-outline"></ion-icon>
-                            {content[lang].user_profil_favorintes}
+                            <p className="user-prof__text">
+                                {content[lang].user_profil_favorintes}
+                            </p>
                         </NavLink>
                     </li>
 
                     <li className="user-prof__item">
-                        <NavLink to={"/usernews"} className="user-prof__link" >
+                        <NavLink to={"/usernews"} className="user-prof__link">
                             <ion-icon name="newspaper-outline"></ion-icon>
-                            {content[lang].user_profil_news}
+                            <p className="user-prof__text">
+                                {content[lang].user_profil_news}
+                            </p>
                         </NavLink>
                     </li>
 
                     <li className="user-prof__item">
                         <NavLink to={"/"} className="user-prof__link" onClick={(e) => LogOut(e)}>
                             <ion-icon name="log-in-outline"></ion-icon>
-                            {content[lang].user_profil_clos}
+                            <p className="user-prof__text">
+                                {content[lang].user_profil_clos}
+                            </p>
                         </NavLink>
                     </li>
                 </ul>

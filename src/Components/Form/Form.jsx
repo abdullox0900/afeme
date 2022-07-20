@@ -176,7 +176,7 @@ function Form() {
                             label={content[lang].from_select_nam}
                             variant="outlined"
                             sx={{ mt: 2, width: "240px", }}
-                            {...register('name', { required: 'Ism Kiriting' })}
+                            {...register('name', { required: `${content[lang].form_select_nam_req}` })}
                             error={!!errors?.name}
                             helperText={errors?.name ? errors.name.message : null}
                         />
@@ -194,14 +194,14 @@ function Form() {
                     <TextField
                         className="form__input form__input-email"
                         id="outlined-basic"
-                        label="Email"
+                        label={content[lang].form_select_email}
                         variant="outlined"
                         fullWidth
                         {...register('email', {
-                            required: false,
+                            required:  `${content[lang].form_select_email_req}`,
                             pattern: {
                                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                                message: 'Email manzili noto‘g‘ri'
+                                message: `${content[lang].forgot_email_err}`
                             }
                         })}
                         error={!!errors?.email}
@@ -225,13 +225,13 @@ function Form() {
                     <TextField
                         className="form__input form__input-passport"
                         id="outlined-basic"
-                        label="Password*"
+                        label={content[lang].form_select_pass}
                         variant="outlined"
                         fullWidth
                         type={'password'}
                         sx={{ mt: 2 }}
                         {...register('password', {
-                            required: 'Password kiriting',
+                            required: `${content[lang].form_select_pass_req}`,
                         })}
                         error={!!errors?.password}
                         helperText={errors?.password ? errors.password.message : null}
@@ -241,11 +241,11 @@ function Form() {
                     <TextField
                         className="form__input form__input-number"
                         id="outlined-number"
-                        label="Telefon Raqami*"
+                        label={content[lang].form_select_tel}
                         type="text"
                         fullWidth
                         sx={{ mt: 2, }}
-                        {...register('phone', { required: 'Raqam Kiriting' })}
+                        {...register('phone', { required: `${content[lang].form_select_tel_req}` })}
                         error={!!errors?.phone}
                         helperText={errors?.phone ? errors.phone.message : null}
                     />

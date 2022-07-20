@@ -4,29 +4,59 @@
     justify-content: space-between;
     width: 1250px;
     .personal {
-        .title{
+        .pic {
+            position: relative;
+            .profile {
+                border-radius: 50%;
+                width: 100px;
+                height: 100px;
+            }
+            .edit {
+                cursor: pointer;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50%;
+                position: absolute;
+                right: 5px;
+                bottom: 5px;
+                background-color: $lightBlue;
+                padding: 2px;
+                width: 30px;
+                height: 30px;
+                .editBtn {
+                    width: 20px;
+                    height: 20px;
+                    background: url("../../Assets/Img/Icon/edit.svg") no-repeat center center/cover;
+                }
+                .ppn {
+                    display: none;
+                }
+            }
+        }
+        .title {
             width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: baseline;
-            p{
-                color:$darkgray;
+            p {
+                color: $darkgray;
             }
         }
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        align-items: end;
+        align-items: center;
         margin: 50px auto;
         button {
-            cursor:pointer;
+            cursor: pointer;
             padding: 8px 32px;
             background-color: $darkBlue;
             color: $white;
             border-radius: 8px;
             border: 1px solid $darkBlue;
             margin-bottom: 30px;
-            transition: all .3s;
+            transition: all 0.3s;
         }
         button:hover,
         button:active {

@@ -35,6 +35,52 @@
     height: 100px;
 }
 
+.forget {
+    min-width: 280px;
+    margin: 100px auto;
+    padding: 100px 80px;
+    background-color: $lightBlue;
+    border-radius: 10px;
+    .forget__wrap{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        .form__input {
+            max-width: 300px !important;
+            min-width: 230px !important;
+            margin-bottom: 20px;
+        }
+        .button {
+            padding: 8px 16px;
+            background-color: $darkBlue;
+            border: 2px solid $darkBlue;
+            color: $white;
+            border-radius: 5px;
+        }
+        .button:hover,
+        .button:active,
+        .button:focus {
+            background-color: transparent;
+            border: 2px solid $darkBlue;
+            color: $darkBlue;
+        }
+        .title {
+            margin: 0 0 20px 0;
+            color: $darkBlue;
+        }        
+        .descr{
+            margin: 0 0 20px 0;
+            color: $lightgray;
+        }
+        .error {
+            margin: 0 0 10px 0;
+            color: $crimson;
+        }
+    }
+}
+
 .form__controler-one {
     width: 100px;
 }
@@ -215,5 +261,8 @@
         display: flex;
         justify-content: center;
         width: 350px;
+    }
+    .forgot{
+        margin: 100px 20px 0 20px;
     }
 }

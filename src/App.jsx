@@ -22,6 +22,8 @@ import Help from './Pages/Help/Help';
 import SearchMap from './Pages/SearchMap/SearchMap';
 import Test from './Pages/Test/Test';
 import UserPostEditPage from './Pages/UserPostEditPage/UserPostEditPage';
+import Email from './Components/Forgot/Email/Email';
+import NewPassword from './Components/Forgot/newPassword/NewPassword';
 
 function App() {
 
@@ -82,6 +84,8 @@ function App() {
                     <Route path='/help' element={<Help />} />
                     <Route path='/map' element={<SearchMap />} />
                     <Route path='/test' element={<Test />} />
+                    <Route path='/forgot' element={<Email />} />
+                    <Route path='/newPassword' element={<NewPassword />} />
                     <Route path="*" element={<Page404 />} />
                 </Routes>
             </Suspense>
