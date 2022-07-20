@@ -1,6 +1,6 @@
 .user-post {
     width: 100%;
-    border-right: 1px solid #cacaca;
+    // border-right: 1px solid #cacaca;
 
     &__header {
         width: 100%;
@@ -64,6 +64,12 @@
 
     .input-post__name {
         font-size: 16px;
+    }
+
+    .form-row__img {
+        width: 300px;
+        height: 200px;
+        border-radius: 10px;
     }
 }
 

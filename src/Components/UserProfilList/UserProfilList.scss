@@ -1,5 +1,8 @@
 .user-prof {
+    height: 100vh;
+    position: relative;
     border-right: 1px solid #cacaca;
+    transition: ease 0.5s;
 
     &__avatar {
         display: flex;
@@ -8,11 +11,37 @@
         margin-top: 20px;
         border-bottom: 1px solid #cacaca;
         width: 280px;
-        & img{
+        transition: ease 0.5s;
+
+        & img {
             width: 80px;
             height: 80px;
             color: #a2cdff71;
         }
+    }
+
+    &__close {
+        position: absolute;
+        top: 42px;
+        right: -25px;
+        border: none;
+        padding: 0;
+        background-color: transparent;
+    }
+
+    .user-prof__title {
+        white-space: nowrap;
+        opacity: 1;
+        transition: ease 0.5s;
+    }
+
+    &__close ion-icon {
+        padding: 4px;
+        font-size: 25px;
+        border-radius: 50%;
+        cursor: pointer;
+        background-color: #fff;
+        box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.25);
     }
 
     &__img {
@@ -20,6 +49,7 @@
         height: 80px;
         border-radius: 50%;
     }
+
     &__list {
         display: flex;
         align-items: flex-start;
@@ -35,14 +65,18 @@
         transition: 0.3s;
         border-radius: 8px;
         cursor: pointer;
-        &:hover, .active{
+
+        &:hover,
+        .active {
             color: #fff !important;
             background-color: #5cadff;
         }
     }
+
     &__item+&__item {
         margin-top: 15px;
     }
+
     &__link {
         display: flex;
         padding: 8px 0px 8px 5px;
@@ -54,9 +88,18 @@
         color: #000;
         border-radius: 8px;
         transition: all .3s;
-        &:hover{
-            color: #fff;
-        }
+    }
+
+    &__link p {
+        margin: 0;
+    }
+
+    &__link:hover p {
+        color: #fff;
+    }
+
+    &__link:hover ion-icon {
+        color: #fff;
     }
 
     &__ext {
@@ -70,7 +113,61 @@
         margin: 0;
         padding: 0;
     }
+
     ion-icon {
         margin-right: 10px;
     }
+}
+
+.user-prof.close-b {
+    width: 80px;
+    // transition: ease 0.5s;
+}
+
+.user-prof.close-b .user-prof__avatar {
+    margin-top: 100px;
+    width: 70px;
+    // transition: ease 0.5s;
+}
+
+.user-prof.close-b .user-prof__avatar img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 15px;
+    // transition: ease 0.5s;
+}
+
+.user-prof.close-b .user-prof__title {
+    display: none;
+    transition: ease 0.5s;
+    opacity: 0;
+    white-space: nowrap;
+}
+
+.user-prof.close-b .user-prof__list {
+    width: 70px;
+    // transition: ease 0.5s;
+}
+
+.user-prof.close-b .user-prof__link {
+    display: flex;
+    justify-content: center;
+    // transition: ease 0.5s;
+    // width: 60px;
+}
+
+.user-prof.close-b .user-prof__link p {
+    // width: 60px;
+    // opacity: 0;
+    display: none;
+}
+
+.user-prof.close-b .user-prof__link ion-icon {
+    margin-left: 0px;
+    font-size: 35px;
+    // transition: ease 0.5s;
+}
+
+.user-prof.close-b .user-prof__link:hover ion-icon {
+    color: #fff;
 }

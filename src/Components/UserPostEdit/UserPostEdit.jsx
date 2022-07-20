@@ -20,7 +20,6 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { TextareaAutosize } from '@mui/material'
 
-
 function UserPostEdit() {
 
     const { lang, setLang } = useContext(Context);
@@ -41,6 +40,7 @@ function UserPostEdit() {
     const [usLivingArea, setUsLivingArea] = useState('');
     const [usFloor, setUsFloor] = useState('');
     const [usFlat, setUsFlat] = useState('');
+    const [usImg, setUsImg] = useState([]);
 
     const [region, setRegion] = useState([]);
     const [htype, setHtype] = useState([]);
@@ -107,21 +107,20 @@ function UserPostEdit() {
                 setUsPrice(persons.price_som);
                 setUsTotalAre(persons.total_area);
                 setUsKitchenArea(persons.kitchen_area);
-                setUsLivingArea(persons.living_area)
-                setUsFloor(persons.floor)
-                setUsFlat(persons.flat)
+                setUsLivingArea(persons.living_area);
+                setUsFloor(persons.floor);
+                setUsFlat(persons.flat);
+                setUsImg(persons.image);
             })
     }, [])
 
     region.map((reg) => {
         return (
-
             cityArr.push(reg.citys)
-
         )
     })
 
-    console.log(materials)
+    console.log(usImg)
 
     return (
         <>
@@ -130,12 +129,14 @@ function UserPostEdit() {
                 <div className="user-wrap-router">
                     <UserProfilList />
                     <div className="user-post">
+                        {/* POST Header */}
                         <div className="user-post__header">
                             <h2 className="user-post__title">
                                 E'lonni tahrirlash №{postData.id}
                             </h2>
                         </div>
 
+                        {/* POST MAIN LIST */}
                         <ul className="user-post__list">
 
                             <li className="user-post__item">
@@ -265,13 +266,13 @@ function UserPostEdit() {
                                         <p className="input-post__name">Qavat:</p>
                                         <input className="user-post__main-input input-post"
                                             value={usFloor}
-                                            type="number" 
-                                            onChange={(e) => setUsFloor(e.target.value)}/>
+                                            type="number"
+                                            onChange={(e) => setUsFloor(e.target.value)} />
                                         <p className="input-post__name">gacha</p>
                                         <input className="user-post__main-input input-post"
                                             value={usFlat}
-                                            type="number" 
-                                            onChange={(e) => setUsFlat(e.target.value)}/>
+                                            type="number"
+                                            onChange={(e) => setUsFlat(e.target.value)} />
                                     </li>
 
                                     <li className="user-post__main-item">
@@ -340,9 +341,21 @@ function UserPostEdit() {
                             </li>
                         </ul>
 
-                        <div className="form__row">
-                            
-                        </div>
+                        {/* POST FORM */}
+                        <ul className="form-list">
+                            {
+                                usImg.map((im) => {
+                                    return (
+                                        <>
+                                            <li className="form-item">
+                                                <img id={im.id} src={im.url} className="form-row__img"></img>
+                                            </li>
+
+                                        </>
+                                    )
+                                })
+                            }
+                        </ul>
                     </div>
                 </div>
 

@@ -92,6 +92,7 @@ function UserProfil() {
                             <p>ID//{uniq}</p>
                             <button type="submit" onClick={(e) => Put(e)}>{content[lang].editBtn}</button>
                         </div>
+
                         <div className="inpG">
                             <TextField
                                 label={content[lang].userProfilName}
