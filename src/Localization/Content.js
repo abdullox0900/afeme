@@ -181,6 +181,16 @@ const content = {
         notfound: 'Rasmlar mavjud emas',
 
         //Chat
+        ChatNews:'Xabarlar',
+        doyou:'Sizga yoqishi mumkin',
+
+        liked:`Yoqtirganlarga qo'shish`,
+        err:'Muvaffaqiyatsiz !!!',
+        back:'Ortga Kaytish',
+        confirm:'borgan sms kodni kiriting !!!',
+        to:'ga',
+        codeMessage:'Sms Kodni kiring!!!',
+        succ:'Muvaffaqiyatli !!!',
         ChatNews: 'Xabarlar',
         Chat: 'Sotuvchi',
         addPic: `E'lon Rasmi`,
@@ -199,6 +209,14 @@ const content = {
         cleanFilterThings: "Filterni tozalashga harakat qilib ko'ring",
         viaWith: "orqali qidiring",
         map: "Xarita",
+
+        // Search
+        saleType: "Sotish turi",
+        homeType: "Uy turi",
+        searchPlaceholder: "Manzil, shahar, viloyat, qishloq va h.k",
+        clean: "Tozalash",
+        viewOnMap: "Xaritadan ko'rish",
+        filter: "Filter",
         forgot: 'Parolni unutdingizmi',
         forgot_title: 'Parolni tiklash',
         forgot_descr: 'Parolingizni tiklash uchun pastga emailingizni kiriting',
@@ -382,6 +400,16 @@ const content = {
         notfound: 'No pictures available',
 
         //Chat
+        ChatNews:'News',
+        doyou:'You might like',
+
+        liked:`Liked`,
+        err:'Unsuccessful!!!',
+        back:'Return Back',
+        confirm:'enter the sms code you went to !!!',
+        to:'to',
+        codeMessage:'Enter SMS Code!!!',
+        succ:'Successful !!!',
         ChatNews: 'News',
         Chat: 'Seller',
         addPic: `Advert Picture`,
@@ -400,6 +428,14 @@ const content = {
         cleanFilterThings: "Try cleaning the filter",
         viaWith: "search through",
         map: "Map",
+
+        // Search
+        saleType: "Sale type",
+        homeType: "Home type",
+        searchPlaceholder: "Address, city, region, village, etc",
+        clean: "Clean",
+        viewOnMap: "View on Map",
+        filter: "Filter",
         forgot: 'Forgot Password',
         forgot_title: 'Password reset',
         forgot_descr: 'Enter your email below to reset your password',
@@ -583,6 +619,16 @@ const content = {
         notfound: 'Нет доступных изображений',
 
         //Chat
+        ChatNews:'Новости',
+        doyou:'Вам может понравиться',
+
+        liked:`Понравилось`,
+        err:'Неудачно!!!',
+        back:'Вернуться Назад',
+        confirm:'введите код смс, на который вы зашли !!!',
+        to:'к',
+        codeMessage:'Введите смс-код!!!',
+        succ:'Успешный !!!',
         ChatNews: 'Новости',
         Chat: 'Продавец',
         addPic: `Рекламная картинка`,
@@ -601,6 +647,15 @@ const content = {
         cleanFilterThings: "попробуй почистить фильтр",
         viaWith: "искать через",
         map: "Карта",
+
+        // Search
+        saleType: "Тип продажи",
+        homeType: "Тип дома",
+        searchPlaceholder: "Адрес, город, район, село и т.д.",
+        clean: "Чистый",
+        viewOnMap: "Посмотреть на карте",
+        filter: "Фильтр",
+
         forgot: 'Забыл пароль',
         forgot_title: 'Сброс пароля',
         forgot_descr: 'Введите ниже свой адрес элек. почты, чтобы сбросить пароль',
