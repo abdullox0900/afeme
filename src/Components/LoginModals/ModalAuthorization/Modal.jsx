@@ -83,7 +83,7 @@ function Modal({ elModal }) {
                             helperText={errors?.phone ? errors.phone.message : null}
                         />
                         <TextField
-                            sx={{ width: '280px', marginBottom: '20px' }}
+                            sx={{ width: '280px', marginBottom: '5px' }}
                             variant='outlined'
                             type={'password'}
                             label={'Password'}
@@ -91,6 +91,9 @@ function Modal({ elModal }) {
                             error={!!errors?.password}
                             helperText={errors?.password ? errors.password.message : null}
                         />
+                        <NavLink to={'/forgot'}>
+                            <p className="forgot">{content[lang].forgot}</p>
+                        </NavLink>
                         <Button
                             className="form__authorization-btn"
                             type='submit'
