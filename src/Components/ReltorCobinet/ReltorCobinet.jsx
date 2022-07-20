@@ -80,6 +80,8 @@ function ReltorCobinet() {
         emptyIcon: <StarIcon width="40px" height="40px" />,
     }
 
+    console.log(userData);
+
     return (
         <>
             <Container>
@@ -87,7 +89,7 @@ function ReltorCobinet() {
                     <div className="reltorcob__box" >
                         <div className="reltorcob__wrapper">
                             {
-                                isLoading ? <img className="reltorcob__avatar" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU" alt="" width={"100px"} /> :
+                                isLoading ? <img className="reltorcob__avatar" src={userData.image ? userData.image : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU"} alt="" width={"100px"} /> :
                                     <Skeleton variant="circular" width={150} height={150}>
                                         <Avatar />
                                     </Skeleton>
@@ -240,7 +242,7 @@ function ReltorCobinet() {
                             <div className="comment_box" key={com.id}>
                                 <div className="first">
                                     {isLoading ? (
-                                        <p className="author">{com.author.name} {com.author.lastname}</p>
+                                        <p className="author">{com.author?.name} {com.author?.lastname}</p>
                                     ) : (
                                         <Skeleton width={160} height={20} />
                                     )}
