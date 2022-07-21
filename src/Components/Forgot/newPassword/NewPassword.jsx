@@ -24,8 +24,9 @@ function NewPassword() {
     const onSubmit = (data) => {
         forgot.append('email', data.email)
         forgot.append('password', data.password)
+        forgot.append('code', data.code)
 
-        fetch(`${url}reset`, requestOptions)
+        fetch(`${url}resset`, requestOptions)
             .then(response => response.text())
             .then(function (response) {
                 let i = response

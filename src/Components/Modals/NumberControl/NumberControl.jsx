@@ -67,6 +67,7 @@ function NumberControl({ control, setControl, phone_number, setPhoneNumber }) {
         fetch(`${url}register`, requestOptions)
             .then(response => response.text())
             .then(function (response) {
+                console.log(response);
                 sessionStorage.clear();
                 const Token = JSON.parse(response)
                 localStorage.setItem('Token', Token.data);
