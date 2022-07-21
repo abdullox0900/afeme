@@ -4,6 +4,25 @@
         align-items: center;
         padding-right: 15px;
         z-index: 999;
+        .attachFile{
+            position: relative;
+            width: 34px;
+            height: 37px;
+            * {
+                cursor: pointer;
+            }
+            transition: .3s;
+            &:hover{
+                background-color: #5EBBF033;
+            }
+            &__input{
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                z-index: 9;
+            }
+        }
         .chatInput{
             height: 50px;
             width: 100%;
@@ -41,6 +60,34 @@
                     height: 20px;
                 }
             }
+        }
+    }
+    .imagePreview{
+        &__content{
+            max-height: 600px;
+            padding: 20px;
+        }
+        &__group{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5px;
+        }
+        &__image{
+            width: 100%;
+            height: auto;
+            max-width: 400px;
+            max-height: 220px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        &__buttons{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        &__btn{
+            border-radius: 10px;
         }
     }
 }

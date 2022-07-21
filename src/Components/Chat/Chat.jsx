@@ -11,6 +11,7 @@ import { Box, Button, IconButton } from "@mui/material";
 import ChatUsers from "../ChatUsers/ChatUsers";
 import ChatMessages from "../ChatMessages/ChatMessages";
 import ChatSend from "../ChatSend/ChatSend";
+import Notification from "../Notification/Notification";
 import Cards from "../Card/Card";
 import { v4 } from "uuid";
 import ArrowDown from "../../Lib/Svg/arrowDown";
@@ -29,94 +30,133 @@ import { Context } from "../../Context/LangContext";
 import content from "../../Localization/Content";
 let url = process.env.REACT_APP_URL;
 
-
 function Chat() {
     let token = localStorage.getItem("Token");
     let urlHash = window.location.hash.substring(1);
+    let headers = new Headers();
+    headers.append("Authorization", `Bearer ${token}`);
 
     const { lang, setLang } = useContext(Context);
     const [messages, setMessagesData] = useState([]);
-    const [message, setMessage] = useState("");
     const [chats, setChats] = useState(null);
-    const [chatID, setChatID] = useState(urlHash.trim() != '' && !isNaN(urlHash) ? urlHash : null);
+    const [chatID, setChatID] = useState(
+        urlHash.trim() != "" && !isNaN(urlHash) ? urlHash : null
+    );
     const [chatUser, setChatUser] = useState();
     const [isLoading, setIsLoading] = useState(true);
+    const [chatFound, setChatFound] = useState(true);
+    const [dataError, setDataError] = useState(false);
+    const [notificationOpen, setNotificationOpen] = useState(false);
+
     console.log(chatID);
 
     useEffect(() => {
-        let headers = new Headers();
-        headers.append("Authorization", `Bearer ${token}`);
         if (chatID) {
-            getMessages();
-
-            const echo = new Echo({
-                broadcaster: "pusher",
-                key: "c837940215701b405def",
-                cluster: "mt1",
-                encrypted: true,
-            });
-
-            echo.channel("chat")
-                .subscribed(() => {
-                    console.log("You are subscribed");
+            function getUser() {
+                fetch(`${url}user/${chatID}`, {
+                    method: "GET",
                 })
-                .listen("MessageSent", (data) => {
-                    getMessages();
-                });
-
-        }
-
-        async function getMessages() {
-            await fetch(`${url}message/${chatID}`, {
-                method: "GET",
-                headers: headers,
-            })
-                .then((response) => response.text())
-                .then((response) => {
-                    let data = JSON.parse(response);
-                    if (data.length > 0) {
-                        setMessagesData(data);
-                        scrollBottom();
+                    .then((response) => response.text())
+                    .then((response) => {
+                        let data = JSON.parse(response);
                         console.log(data);
-                    }
-                });
-        }
-        async function getChats() {
-            await fetch(`${url}message`, {
-                method: "GET",
-                headers: headers,
-            })
-                .then((response) => response.text())
-                .then((response) => {
-                    setChats(JSON.parse(response));
-                    setIsLoading(false);
-                    console.log(chats);
-                });
-        }
-        getChats();
-
-        window.addEventListener("hashchange", getHashUrl);
-        function getHashUrl() {
-            let hash = window.location.hash.substring(1);
-            if (hash.trim() != '' && !isNaN(hash)) {
-                setChatID(hash);
-                console.log(hash);
-            } else {
-                window.addEventListener("hashchange", getHashUrl, {once: true});
-                window.location.hash = '';
+                        if (data.hasOwnProperty("data")) {
+                            setChatUser(data.data);
+                            getMessages();
+                            setChatFound(true);
+                            console.log(chatUser);
+                        } else {
+                            setChatFound(false);
+                            setMessagesData(null);
+                        }
+                    })
+                    .catch(() => {
+                        setChatFound(false);
+                        setMessagesData(null);
+                        console.log(chatFound);
+                    });
             }
-        }
+            getUser();
 
-        function scrollBottom() {
-            let msgScroller = document.querySelector(".messages");
-            if (msgScroller) {
-                msgScroller.scrollTop = msgScroller.scrollHeight
+            if (chatUser) {
+                const echo = new Echo({
+                    broadcaster: "pusher",
+                    key: "c837940215701b405def",
+                    cluster: "mt1",
+                    encrypted: true,
+                });
+
+                echo.channel("chat")
+                    .subscribed(() => {
+                        console.log("You are subscribed");
+                    })
+                    .listen("MessageSent", (data) => {
+                        setNotificationOpen(true);
+                        setTimeout(() => {
+                            setNotificationOpen(false);
+                        }, 5000);
+                        // getMessages();
+                        // getChats();
+                        console.log('event');
+                    });
             }
         }
     }, [chatID]);
 
+    async function getMessages() {
+        await fetch(`${url}message/${chatID}`, {
+            method: "DELETE",
+            headers: headers,
+        })
+            .then((response) => response.text())
+            .then((response) => {
+                let data = JSON.parse(response);
+                console.log(data);
+                if (data) {
+                    setMessagesData(data);
+                } else {
+                    setMessagesData(null);
+                }
+            });
+    }
+
+    async function getChats() {
+        await fetch(`${url}message`, {
+            method: "GET",
+            headers: headers,
+        })
+            .then((response) => response.text())
+            .then((response) => {
+                setChats(JSON.parse(response));
+                setIsLoading(false);
+            });
+    }
+
+    useEffect(() => {
+        getChats();
+        window.addEventListener("hashchange", getHashUrl);
+        function getHashUrl() {
+            let hash = window.location.hash.substring(1);
+            if (hash.trim() != "" && !isNaN(hash)) {
+                setChatID(hash);
+                console.log(hash);
+            } else {
+                window.addEventListener("hashchange", getHashUrl, {
+                    once: true,
+                });
+                window.location.hash = "";
+            }
+        }
+    }, []);
+
     return (
         <Box className="chat">
+            <Notification
+                message={"Sizda o'qilmagan xabar bor"}
+                type={"success"}
+                isOpen={notificationOpen}
+            />
+
             <ChatUsers
                 chats={chats}
                 setChatUser={setChatUser}
@@ -126,22 +166,26 @@ function Chat() {
             />
 
             <section className="messagesPanel">
-                {chatID ? (
+                {chatUser && chatFound ? (
                     <Box className="messagesPanel__header">
                         <Box className="chatProfile">
-                            <Link to="/reltorcob/">
+                            <Link to={"/reltorcob/" + chatUser.id}>
                                 <img
-                                    src={Person2}
+                                    src={
+                                        chatUser.image
+                                            ? chatUser.image
+                                            : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU"
+                                    }
                                     alt=""
                                     className="chatProfile__img"
                                 />
                             </Link>
                             <Box className="chatProfile__content">
                                 <Link
-                                    to="/reltorcob/"
+                                    to={"/reltorcob/" + chatUser.id}
                                     className="chatProfile__name"
                                 >
-                                    {chatUser?.name} {chatUser?.lastname}
+                                    {chatUser.name} {chatUser.lastname}
                                 </Link>
                                 <span className="chatProfile__text">
                                     {chatUser?.user_type}
@@ -158,14 +202,17 @@ function Chat() {
                     ""
                 )}
 
-                <ChatMessages messages={messages} userID={chatUser?.id} chatID={chatID} />
+                <ChatMessages
+                    messages={messages}
+                    userID={chatUser?.id}
+                    chatID={chatID}
+                />
 
-                {chatID ? (
+                {chatUser && chatFound ? (
                     <ChatSend
-                        chats={chats}
                         chatUser={chatUser}
-                        message={message}
-                        setMessage={setMessage}
+                        getMessages={getMessages}
+                        getChats={getChats}
                     />
                 ) : (
                     ""
@@ -176,7 +223,7 @@ function Chat() {
                 <Box className="infoPanel__header">
                     <h5 className="infoPanel__title">
                         Elmerdan boshqa e'lonlar
-                        <ArrowDown className="arrowDown"/>
+                        <ArrowDown className="arrowDown" />
                     </h5>
                     <img
                         src={HeroImg1}
@@ -187,7 +234,7 @@ function Chat() {
                 <Box className="infoPanel__main">
                     <h5 className="infoPanel__title">
                         {content[lang].doyou}
-                        <ArrowDown className="arrowDown"/>
+                        <ArrowDown className="arrowDown" />
                         <span className="chats__indicator">2</span>
                     </h5>
                     <div className="infoPanel__cards"></div>

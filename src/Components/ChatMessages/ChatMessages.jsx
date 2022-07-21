@@ -9,6 +9,7 @@ import noMessageIcon from "../../Assets/Img/noMessages.svg";
 import welcomeToChat from "../../Assets/Img/Icon/welcomeToChat.svg";
 
 function ChatMessages({ messages, userID, chatID }) {
+
     let i = 0;
     useEffect(() => {
         AOS.init({
@@ -23,12 +24,25 @@ function ChatMessages({ messages, userID, chatID }) {
 
     messagesBlog?.addEventListener("scroll", function () {
         console.log();
-        if (this.scrollHeight - this.clientHeight - this.scrollTop > 400) {
+        if (this.scrollHeight - this.clientHeight - this.scrollTop > 500) {
             scrollBottomBtn.classList.add("active");
         } else {
             scrollBottomBtn.classList.remove("active");
         }
     });
+    scrollBottomBtn?.addEventListener("click", function () {
+        messagesBlog.scrollTop = messagesBlog.scrollHeight;
+    });
+
+    function timeConverter(unix){
+        let a = new Date(unix * 1000);
+        let months = ['Yanvar', 'Fevral', 'Mart', 'Aprel', "May", "Iyun", "Iyul", "Avgust", "Sentabr", "Oktabr", "Noyabr", "Dekabr"];
+        let month = months[a.getMonth()];
+        let hour = a.getHours();
+        let min = a.getMinutes();
+        let time = a.getMonth() + '-' + month + ' ' + hour + ':' + min;
+        return time;
+    }
 
     if (!chatID) {
         return (
@@ -55,6 +69,9 @@ function ChatMessages({ messages, userID, chatID }) {
                         <ReactScrollableFeed>
                             {messages.map((message) => {
                                 i++;
+                                let messageText = message.message.trim();
+                                let date = timeConverter(message.created);
+
                                 if (message.to == userID) {
                                     let className = `message outgoing${
                                         messages[i + 1]?.to == userID
@@ -65,10 +82,10 @@ function ChatMessages({ messages, userID, chatID }) {
                                         <div className={className} key={v4()}>
                                             <div className="message__content">
                                                 <p className="message__text">
-                                                    {message.message}
+                                                    {messageText}
                                                 </p>
                                                 <p className="message__date">
-                                                    18-may, 11:11
+                                                    {date}
                                                 </p>
                                             </div>
                                         </div>
@@ -86,10 +103,10 @@ function ChatMessages({ messages, userID, chatID }) {
                                             />
                                             <div className="message__content">
                                                 <p className="message__text">
-                                                    {message.message}
+                                                    {messageText}
                                                 </p>
                                                 <p className="message__date">
-                                                    18-may, 11:11
+                                                    {date}
                                                 </p>
                                             </div>
                                         </div>
