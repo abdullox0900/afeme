@@ -59,11 +59,14 @@ function UserPostEdit() {
     const [living_area, setLivingArea] = useState('')
     const [kitchen_area, setKitchenArea] = useState('')
     const [total_area_type, setTotalAreaType] = useState('')
-    const [document, setDocs] = useState([])//Documents State
-    const [photo, setPhoto] = useState([])//ImageFile State
-    const [video, setVideo] = useState([])//VideoFile State
+    const [usDocument, setUsDocs] = useState([])//Documents State
+    const [usPhoto, setUsPhoto] = useState([])//ImageFile State
+    const [usVideo, setUsVideo] = useState([])//VideoFile State
 
-    const [city, setdCity] = useState([])// City State
+    const [city, setdCity] = useState([])
+    const [photo, setPhoto] = useState([])
+    const [video, setVideo] = useState([])
+    const [docs, setDocs] = useState([])
 
     const [region, setRegion] = useState([]);
     const [htype, setHtype] = useState([]);
@@ -124,9 +127,9 @@ function UserPostEdit() {
             setRoom(Number(postData.data.room))
             setFloor(Number(postData.data.floor))
             setFlat(Number(postData.data.flat))
-            setPhoto(postData.data.image)
-            setVideo(postData.data.video)
-            setDocs(postData.data.documents)
+            setUsPhoto(postData.data.image)
+            setUsVideo(postData.data.video)
+            setUsDocs(postData.data.documents)
             sethDescr(postData.data.description)
             setPrice_som(Number(postData.data.price_som))
         }
@@ -134,8 +137,6 @@ function UserPostEdit() {
 
     let token = localStorage.getItem('Token')
     let editPost = new URLSearchParams();
-    console.log(photo);
-    console.log(latitude);
 
     editPost.append('htype_id', htype_id);
     editPost.append('sale_id', sale_id);
@@ -145,7 +146,7 @@ function UserPostEdit() {
     editPost.append('date', date);
     editPost.append('room', room);
     editPost.append('repair_id', repair_id);
-    editPost.append('documents', document);
+    editPost.append('document', docs);
     editPost.append('description', description);
     editPost.append('material_id', material_id);
     editPost.append('region_id', region_id);
@@ -160,13 +161,13 @@ function UserPostEdit() {
     editPost.append('kitchen_area', kitchen_area)
     editPost.append('photo', photo);
     editPost.append('video', video);
-    editPost.append('check', '')
 
     let headersList = {
         "Accept": "*/*",
         'Authorization': `Bearer ${token}`
     }
     const Submit = (e) => {
+        console.log(photo);
         fetch(`${url}post/${postData.data.id}?paremeter=PUT`, {
             method: "PUT",
             headers: headersList,
@@ -178,6 +179,23 @@ function UserPostEdit() {
             // window.location.reload()
         })
     }
+    useEffect(() => {
+        let img = [];
+        for (let i = 0; i < usPhoto.length; i++) {
+            img.push(usPhoto[i].url)
+            setPhoto(img);
+        }
+        let vid = [];
+        for (let v = 0; v < usVideo.length; v++) {
+            vid.push(usVideo[v].url)
+            setVideo(vid)
+        }
+        let doc = [];
+        for (let d = 0; d < usDocument.length; d++) {
+            doc.push(usDocument[d].url)
+            setDocs(doc)
+        }
+    }, [usPhoto, usVideo, usDocument])
 
     const Selector = (id) => {
         setRegionID(id)
@@ -195,18 +213,102 @@ function UserPostEdit() {
     // }
 
     function Delete(e) {
-        let deleted = photo.filter(pic => e !== pic.id);
+        let deleted = photo.filter(pic => e !== pic);
         setPhoto(deleted);
     }
 
     function Reset(e) {
-        let reseted = video.filter(pic => e !== pic.id);
+        let reseted = video.filter(pic => e !== pic);
         setVideo(reseted);
     }
 
     function Reseted(e) {
-        let reseted = document.filter(pic => e !== pic.id);
+        let reseted = docs.filter(pic => e !== pic);
         setDocs(reseted);
+    }
+
+    let newImage = new FormData();
+    let newVideo = new FormData();
+    let newDocs = new FormData();
+
+    let newPicture = {
+        method: 'POST',
+        body: newImage,
+        redirect: 'follow'
+    };
+
+    function addImage(e) {
+        let files = [...e];
+        for (let i = 0; i < files.length; i++) {
+            newImage.append('key', 'Service For C Group')
+            newImage.append('file', files[i])
+            fetch(`${url}service`, newPicture)
+                .then(response => response.text())
+                .then(function (response) {
+                    let res = JSON.parse(response);
+                    Object.entries(res).forEach(([name, value]) => {
+                        if (typeof value === 'string') {
+                            let array = [...photo]
+                            array = [...array, value]
+                            setPhoto(array);
+                        }
+                    })
+                })
+                .catch(error => console.log('error', error));
+        }
+    }
+
+    let newvideo = {
+        method: 'POST',
+        body: newVideo,
+        redirect: 'follow'
+    };
+
+    function addVideo(e) {
+        let files = [...e];
+        for (let i = 0; i < files.length; i++) {
+            newVideo.append('key', 'Service For C Group')
+            newVideo.append('file', files[i])
+            fetch(`${url}service`, newvideo)
+                .then(response => response.text())
+                .then(function (response) {
+                    let res = JSON.parse(response);
+                    Object.entries(res).forEach(([name, value]) => {
+                        if (typeof value === 'string') {
+                            let array = [...video]
+                            array = [...array, value]
+                            setVideo(array);
+                        }
+                    })
+                })
+                .catch(error => console.log('error', error));
+        }
+    }
+    let newdocs = {
+        method: 'POST',
+        body: newDocs,
+        redirect: 'follow'
+    };
+
+    function addDocs(e) {
+        let files = [...e];
+        for (let i = 0; i < files.length; i++) {
+            newDocs.append('key', 'Service For C Group')
+            newDocs.append('file', files[i])
+            fetch(`${url}service`, newdocs)
+                .then(response => response.text())
+                .then(function (response) {
+                    let res = JSON.parse(response);
+                    Object.entries(res).forEach(([name, value]) => {
+                        if (typeof value === 'string') {
+                            let array = [...docs]
+                            array = [...array, value]
+                            setDocs(array);
+                        }
+                    })
+                })
+                .catch(error => console.log('error', error));
+        }
     }
 
     return (
@@ -355,7 +457,7 @@ function UserPostEdit() {
                                 onChange={(e) => setHouse(e.target.value)}
                             />
                         </div>
-                        <div className="saleHouse">
+                        {/* <div className="saleHouse">
                             <MapPicker
                                 // defaultLocation={defaultLocation}
                                 zoom={zoom}
@@ -364,7 +466,7 @@ function UserPostEdit() {
                                 // onChangeLocation={(lat, lng) => setLocation(lat, lng)}
                                 onChangeZoom={(newZoom) => setZoom(newZoom)}
                                 apiKey='AIzaSyB8NHCF-5fMix0w2363RhC3V4vcyw8SHSM' />
-                        </div>
+                        </div> */}
                         <div className="saleHouse">
                             <TextField
                                 className="area"
@@ -438,35 +540,65 @@ function UserPostEdit() {
                                 onChange={(e) => setFlat(e.target.value)}
                             />
                         </div>
+
                         <div className="images">
                             {photo.map((type) => (
-                                <div className='img' key={type.id} style={{ background: `url(${type.url})no-repeat center center/cover` }} >
-                                    <Trash onClick={(e) => Delete(type.id)} className='icon' />
+                                <div className='img' key={v4()} style={{ background: `url(${type})no-repeat center center/cover` }} >
+                                    <Trash onClick={(e) => Delete(type)} className='icon' />
                                 </div>
                             ))}
+                            <div className="addImg">
+                                <label htmlFor="addImage" className="addImage"></label>
+                                <input
+                                    type="file"
+                                    id="addImage"
+                                    className="inp"
+                                    onChange={e => addImage(e.target.files)}
+                                    multiple
+                                />
+                            </div>
                         </div>
                         <div className="video">
                             {video.map((type) => (
-                                <div className="video" key={type.id}>
+                                <div className="video" key={v4()}>
                                     <video controls>
-                                        <source type="video/mp4" alt={type.id} src={type.url} />
-                                        <source type="video/ogg" alt={type.id} src={type.url} />
+                                        <source type="video/mp4" alt={v4()} src={type} />
+                                        <source type="video/ogg" alt={v4()} src={type} />
                                     </video>
-                                    <Trash onClick={(e) => Reset(type.id)} className='icon' />
+                                    <Trash onClick={(e) => Reset(type)} className='icon' />
                                 </div>
                             ))}
+                            <div className="addVid">
+                                <label htmlFor="addVideo" className="addVideo"> Add Video </label>
+                                <input
+                                    className="inp"
+                                    type="file"
+                                    id="addVideo"
+                                    onChange={e => addVideo(e.target.files)}
+                                />
+                            </div>
                         </div>
                         <div className="document">
-                            {document.map((type) => (
-                                <div className='docs' key={type.id} style={{ background: `url(${type.url})no-repeat center center/cover` }} >
-                                    <Trash onClick={(e) => Reseted(type.id)} className='icon' />
+                            {docs.map((type) => (
+                                <div className='docs' key={type} style={{ background: `url(${type})no-repeat center center/cover` }} >
+                                    <Trash onClick={(e) => Reseted(type)} className='icon' />
                                 </div>
                             ))}
+                            <div className="addDocs">
+                                <label htmlFor="addDocument" className="addDocument"> Add Document </label>
+                                <input
+                                    className="inp"
+                                    type="file"
+                                    id="addDocument"
+                                    onChange={e => addDocs(e.target.files)}
+                                />
+                            </div>
                         </div>
                         <div className="descr">
                             <h3 className="descrTitle">Description</h3>
                             <textarea className="descrArea" id='descr' cols="30" rows="10" defaultValue={description}></textarea>
                         </div>
+
                         <div className="priceSubmit">
                             <TextField
                                 className="price"

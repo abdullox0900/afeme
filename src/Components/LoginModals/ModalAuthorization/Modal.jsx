@@ -39,6 +39,7 @@ function Modal({ elModal }) {
         fetch(`${url}login`, requestOptions)
             .then(response => response.text())
             .then(function (response) {
+                console.log(response);
                 const Token = JSON.parse(response)
                 localStorage.setItem('Token', Token.data);
                 window.location.reload();
