@@ -19,7 +19,7 @@ root.render(
                     <CurrencyProvider>
                         <IPProvider>
                             <SearchContext>
-                                <Loader />
+                                {/* <Loader /> */}
                                 <App />
                             </SearchContext>
                         </IPProvider>

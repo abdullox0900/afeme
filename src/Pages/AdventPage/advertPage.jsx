@@ -47,7 +47,6 @@ function AdvertPage() {
   const longitude = localStorage.getItem('longitude') !== undefined ? localStorage.getItem('longitude') : ''
   const latitude = localStorage.getItem('latitude') !== undefined ? localStorage.getItem('latitude') : ''
   const [price_som, setRrice_som] = useState('')//Price State //// tekshirish keree
-  const [price_usd, setPrice_usd] = useState('')
   const [date, setDate] = useState('')//Building Year State
   const [room, setRoom] = useState('')//Room State
   const [repair_id, setRepair] = useState('')//Reapairs State
@@ -77,7 +76,6 @@ function AdvertPage() {
   data.append('longitude', longitude);
   data.append('latitude', latitude);
   data.append('price_som', price_som);
-  data.append('price_usd', price_usd);
   data.append('date', date);
   data.append('room', room);
   data.append('repair_id', repair_id);
@@ -173,8 +171,7 @@ function AdvertPage() {
                 description={description} sethDescr={sethDescr} />
               <h2 className={style.htypeText}>{content[lang].adverd_office_price}</h2>
               <HousePrice
-                price_som={price_som} setPrice_som={setRrice_som}
-                price_usd={price_usd} setPrice_usd={setPrice_usd} />
+                price_som={price_som} setPrice_som={setRrice_som} />
               <div className={style.BtnW}>
                 <Button
                   type='submit'

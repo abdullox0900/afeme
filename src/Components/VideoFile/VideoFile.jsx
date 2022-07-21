@@ -42,6 +42,7 @@ function VideoFile({ video, setVideo }) {
             fetch(`${url}service`, drop)
                 .then(response => response.text())
                 .then(function (response) {
+                    console.log(response);
                     let res = JSON.parse(response);
                     Object.entries(res).forEach(([name, value]) => {
                         if (typeof value === 'string') {
@@ -55,6 +56,7 @@ function VideoFile({ video, setVideo }) {
         setVideoFile(false)
         setVideo(files)
     }
+    console.log(video);
     let Arr = [];
     let Select = new FormData();
     let select = {
@@ -70,6 +72,7 @@ function VideoFile({ video, setVideo }) {
             fetch(`${url}service`, select)
                 .then(response => response.text())
                 .then(function (response) {
+                    console.log(response);
                     let res = JSON.parse(response);
                     Object.entries(res).forEach(([name, value]) => {
                         if (typeof value === 'string') {
