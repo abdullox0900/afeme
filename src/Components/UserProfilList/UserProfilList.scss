@@ -1,7 +1,12 @@
-.user-prof {
-    height: 100vh;
-    position: relative;
+.user-profil-wer {
+    position: sticky;
+    left: 0px;
     border-right: 1px solid #cacaca;
+}
+
+.user-prof {
+    height: 100%;
+    // position: relative;
     transition: ease 0.5s;
 
     &__avatar {
@@ -170,4 +175,8 @@
 
 .user-prof.close-b .user-prof__link:hover ion-icon {
     color: #fff;
+}
+
+@media only screen and (max-width: 1280px) {
+
 }

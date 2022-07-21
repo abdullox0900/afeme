@@ -189,66 +189,68 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
     }
 
     if (!fullCard) {
-        return (
-            <>
-                {isClickDelete ? deleteModal() : ""}
-                <Card sx={{ maxWidth: 300 }} className="card" cardid={data.id}>
-                    <Link to={advertLink}>
-                        <CardMedia
-                            component="img"
-                            alt="Card img"
-                            className="card__img"
-                            image={
-                                data.image?.length > 0
-                                    ? data.image[0]?.url
-                                    : CardImg
-                            }
-                            onError={(e) => (e.target.src = CardImg)}
-                        />
-                    </Link>
-                    <Box className="card__content">
-                        <CardContent className="card__header">
-                            <Link to={advertTypeLink} className="house__type">
-                                <img
-                                    src={advertTypeImg}
-                                    alt=""
-                                    className="house__type__icon"
-                                />
-                                <p className="house__type__name">
-                                    {advertType}
-                                </p>
-                            </Link>
-                            <Typography
-                                variant="body2"
-                                className="house__prices"
-                            >
-                                <span className="house__price">{price}</span>
-                            </Typography>
-                        </CardContent>
-                        <CardContent className="card__main">
-                            <Link to={advertLink} className="card__title">
-                                {advertTitle}
-                            </Link>
-                        </CardContent>
-                        <CardActions className="card__footer">
-                            <Typography className="house__address__bar">
-                                <LocationIcon className="card__location" />{" "}
-                                <span className="house__address">
-                                    {advertAddress}
-                                </span>
-                            </Typography>
-                            <div className="card__actions">
-                                {editDelete ? (
-                                    cardControls
-                                ) : (
-                                    <LoveBtn advertID={data.id} />
-                                )}
-                            </div>
-                        </CardActions>
-                    </Box>
-                </Card>
-            </>
-        );
+        if (data.check) {
+            return (
+                <>
+                    {isClickDelete ? deleteModal() : ""}
+                    <Card sx={{ maxWidth: 300 }} className="card" cardid={data.id}>
+                        <Link to={advertLink}>
+                            <CardMedia
+                                component="img"
+                                alt="Card img"
+                                className="card__img"
+                                image={
+                                    data.image?.length > 0
+                                        ? data.image[0]?.url
+                                        : CardImg
+                                }
+                                onError={(e) => (e.target.src = CardImg)}
+                            />
+                        </Link>
+                        <Box className="card__content">
+                            <CardContent className="card__header">
+                                <Link to={advertTypeLink} className="house__type">
+                                    <img
+                                        src={advertTypeImg}
+                                        alt=""
+                                        className="house__type__icon"
+                                    />
+                                    <p className="house__type__name">
+                                        {advertType}
+                                    </p>
+                                </Link>
+                                <Typography
+                                    variant="body2"
+                                    className="house__prices"
+                                >
+                                    <span className="house__price">{price}</span>
+                                </Typography>
+                            </CardContent>
+                            <CardContent className="card__main">
+                                <Link to={advertLink} className="card__title">
+                                    {advertTitle}
+                                </Link>
+                            </CardContent>
+                            <CardActions className="card__footer">
+                                <Typography className="house__address__bar">
+                                    <LocationIcon className="card__location" />{" "}
+                                    <span className="house__address">
+                                        {advertAddress}
+                                    </span>
+                                </Typography>
+                                <div className="card__actions">
+                                    {editDelete ? (
+                                        cardControls
+                                    ) : (
+                                        <LoveBtn advertID={data.id} />
+                                    )}
+                                </div>
+                            </CardActions>
+                        </Box>
+                    </Card>
+                </>
+            );
+        }
     } else {
         return (
             <Card sx={{}} className="fullCard">

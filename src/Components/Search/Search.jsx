@@ -140,7 +140,7 @@ function Search({ map = false }) {
                     <Box className="filterModal__content">
                         <FormControl className="filter__items" sx={{ mr: 1 }}>
                             <InputLabel id="filter__select-label">
-                                {"Sotish turi"}
+                                {content[lang].saleType}
                             </InputLabel>
                             <Select
                                 labelId="filter__select-label"
@@ -149,7 +149,6 @@ function Search({ map = false }) {
                                 }}
                                 id="filter__select"
                                 autoWidth={false}
-                                label={"Sotish turi"}
                                 value={sale}
                                 onChange={salesChange}
                                 sx={{
@@ -171,7 +170,7 @@ function Search({ map = false }) {
 
                         <FormControl className="filter__items" sx={{ mr: 1 }}>
                             <InputLabel id="filter__select-label">
-                                {"Uy turi"}
+                                {content[lang].homeType}
                             </InputLabel>
                             <Select
                                 labelId="filter__select-label"
@@ -180,7 +179,6 @@ function Search({ map = false }) {
                                 }}
                                 id="filter__select"
                                 autoWidth={false}
-                                label={"Uy turi"}
                                 value={htype}
                                 onChange={htypeChange}
                                 sx={{
@@ -264,7 +262,7 @@ function Search({ map = false }) {
                                 className="btn search__submit-btn search__reset-btn"
                                 onClick={() => Clear()}
                             >
-                                Tozalash
+                                {content[lang].clean}
                             </Button>
                             <Button
                                 className="btn search__submit-btn"
@@ -296,7 +294,7 @@ function Search({ map = false }) {
                                 sx={{ mr: 1 }}
                             >
                                 <InputLabel id="filter__select-label">
-                                    {"Sotish turi"}
+                                    {content[lang].saleType}
                                 </InputLabel>
                                 <Select
                                     labelId="filter__select-label"
@@ -305,7 +303,6 @@ function Search({ map = false }) {
                                     }}
                                     id="filter__select"
                                     autoWidth={false}
-                                    label={"Sotish turi"}
                                     value={sale}
                                     onChange={salesChange}
                                     sx={{
@@ -333,7 +330,7 @@ function Search({ map = false }) {
                                 sx={{ mr: 1 }}
                             >
                                 <InputLabel id="filter__select-label">
-                                    {"Uy turi"}
+                                    {content[lang].homeType}
                                 </InputLabel>
                                 <Select
                                     labelId="filter__select-label"
@@ -342,7 +339,6 @@ function Search({ map = false }) {
                                     }}
                                     id="filter__select"
                                     autoWidth={false}
-                                    label={"Uy turi"}
                                     value={htype}
                                     onChange={htypeChange}
                                     sx={{
@@ -432,7 +428,7 @@ function Search({ map = false }) {
                             <input
                                 type="text"
                                 className="input__search"
-                                placeholder="Manzil, shahar, viloyat, qishloq va h.k "
+                                placeholder={content[lang].searchPlaceholder}
                                 value={term}
                                 onChange={termChange}
                             />
@@ -441,7 +437,7 @@ function Search({ map = false }) {
 
                     <div className="search__btn-wrap">
                         <Link to={"/map"} className="btn search__map-btn">
-                            Kartadan Izlash
+                            {content[lang].viewOnMap} 
                         </Link>
                         <Button
                             type="reset"
@@ -450,7 +446,7 @@ function Search({ map = false }) {
                             style={{ marginRight: "10px" }}
                             onClick={Clear}
                         >
-                            Tozalash
+                            {content[lang].clean}
                         </Button>
                         <Button
                             type="button"
@@ -485,14 +481,14 @@ function Search({ map = false }) {
                             <input
                                 type="text"
                                 className="input__search"
-                                placeholder="Manzil, shahar, viloyat, qishloq va h.k "
+                                placeholder={content[lang].searchPlaceholder}
                                 value={term}
                                 onChange={termChange}
                             />
                         </Box>
                         <FormControl className="filter__items" sx={{ mr: 1 }}>
                             <InputLabel id="filter__select-label">
-                                {"Sotish turi"}
+                                {content[lang].saleType}
                             </InputLabel>
                             <Select
                                 labelId="filter__select-label"
@@ -500,7 +496,6 @@ function Search({ map = false }) {
                                     disableScrollLock: true,
                                 }}
                                 id="filter__select"
-                                label={"Sotish turi"}
                                 value={sale}
                                 onChange={salesChange}
                                 sx={{
@@ -522,7 +517,7 @@ function Search({ map = false }) {
 
                         <FormControl className="filter__items" sx={{ mr: 1 }}>
                             <InputLabel id="filter__select-label">
-                                {"Uy turi"}
+                                {content[lang].homeType}
                             </InputLabel>
                             <Select
                                 labelId="filter__select-label"
@@ -530,7 +525,6 @@ function Search({ map = false }) {
                                     disableScrollLock: true,
                                 }}
                                 id="filter__select"
-                                label={"Uy turi"}
                                 value={htype}
                                 onChange={htypeChange}
                                 sx={{
@@ -613,7 +607,7 @@ function Search({ map = false }) {
                                 className="btn search__submit-btn search__reset-btn"
                                 onClick={() => Clear()}
                             >
-                                Tozalash
+                                {content[lang].clean}
                             </Button>
                             <Button
                                 className="btn search__submit-btn"

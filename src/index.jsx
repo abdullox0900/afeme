@@ -11,6 +11,11 @@ import { Provider as IPProvider } from "./Context/IPContext";
 import { Provider as SearchContext } from "./Context/SearchContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
+window.addEventListener('load', function(){
+    document.body.style.overflow = 'auto';
+    document.body.classList.add('loaded');
+})
 root.render(
     <BrowserRouter>
         <LangProvider>

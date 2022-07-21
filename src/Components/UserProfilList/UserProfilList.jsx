@@ -44,10 +44,16 @@ function UserProfilList() {
         backgroundColor: "#cacaca",
     };
 
-    // function toggleClose() {
-        
-    // }
+    const locWindow = window.localStorage.getItem("close");
 
+
+    // {
+    //     (locWindow) ? (
+    //         elUserProfil.current.classList.add("close-b")
+    //     ) : (
+    //         elUserProfil.classList.remove("close-b")
+    //     )
+    // }
 
     const active = useRef(null)
 
@@ -75,87 +81,90 @@ function UserProfilList() {
         );
     } else if (user.hasOwnProperty("data")) {
         return (
-            <div className="user-prof" ref={elUserProfil}>
-                <div className="user-prof__avatar">
-                    <img
-                        className="user-prof__img"
-                        src={
-                            user.data.image
-                                ? user.data.image
-                                : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU"
-                        }
-                    />
-                    <h3 className="user-prof__title">
-                        {user.data.name} {user.data.lastname}
-                    </h3>
+            <div className="user-profil-wer">
+                <div className="user-prof" ref={elUserProfil}>
+                    <div className="user-prof__avatar">
+                        <img
+                            className="user-prof__img"
+                            src={
+                                user.data.image
+                                    ? user.data.image
+                                    : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU"
+                            }
+                        />
+                        <h3 className="user-prof__title">
+                            {user.data.name} {user.data.lastname}
+                        </h3>
 
-                    <button className="user-prof__close" onClick={() => {
-                        elUserProfil.current.classList.toggle("close-b")
-                    }}>
-                        <ion-icon name="chevron-forward-outline"></ion-icon>
-                    </button>
+                        <button className="user-prof__close" onClick={() => {
+                            elUserProfil.current.classList.toggle("close-b");
+                            window.localStorage.setItem("close", "elUserProfil");
+                        }}>
+                            <ion-icon name="chevron-forward-outline"></ion-icon>
+                        </button>
+                    </div>
+
+                    <ul className="user-prof__list">
+                        <li className="user-prof__item">
+                            <NavLink to={"/userprofil"} className="user-prof__link">
+                                <ion-icon name="person-circle-outline"></ion-icon>
+                                <p className="user-prof__text">
+                                    {content[lang].user_profil}
+                                </p>
+                            </NavLink>
+                        </li>
+
+                        <li className="user-prof__item">
+                            <NavLink to={"/userads"} className={"user-prof__link"}>
+                                <ion-icon name="albums-outline"></ion-icon>
+                                <p className="user-prof__text">
+                                    {content[lang].user_profil_ads}
+                                </p>
+                            </NavLink>
+                        </li>
+
+                        <li className="user-prof__item">
+                            <NavLink
+                                to={"/chat"}
+                                className="user-prof__link">
+                                <ion-icon name="chatbox-ellipses-outline"></ion-icon>
+                                <p className="user-prof__text">
+                                    {content[lang].user_profil_message}
+                                </p>
+                            </NavLink>
+                        </li>
+
+                        <li className="user-prof__item">
+                            <NavLink
+                                to={"/userfavorites"}
+                                className="user-prof__link"
+                            >
+                                <ion-icon name="heart-outline"></ion-icon>
+                                <p className="user-prof__text">
+                                    {content[lang].user_profil_favorintes}
+                                </p>
+                            </NavLink>
+                        </li>
+
+                        <li className="user-prof__item">
+                            <NavLink to={"/usernews"} className="user-prof__link">
+                                <ion-icon name="newspaper-outline"></ion-icon>
+                                <p className="user-prof__text">
+                                    {content[lang].user_profil_news}
+                                </p>
+                            </NavLink>
+                        </li>
+
+                        <li className="user-prof__item">
+                            <NavLink to={"/"} className="user-prof__link" onClick={(e) => LogOut(e)}>
+                                <ion-icon name="log-in-outline"></ion-icon>
+                                <p className="user-prof__text">
+                                    {content[lang].user_profil_clos}
+                                </p>
+                            </NavLink>
+                        </li>
+                    </ul>
                 </div>
-
-                <ul className="user-prof__list">
-                    <li className="user-prof__item">
-                        <NavLink to={"/userprofil"} className="user-prof__link">
-                            <ion-icon name="person-circle-outline"></ion-icon>
-                            <p className="user-prof__text">
-                                {content[lang].user_profil}
-                            </p>
-                        </NavLink>
-                    </li>
-
-                    <li className="user-prof__item">
-                        <NavLink to={"/userads"} className={"user-prof__link"}>
-                            <ion-icon name="albums-outline"></ion-icon>
-                            <p className="user-prof__text">
-                                {content[lang].user_profil_ads}
-                            </p>
-                        </NavLink>
-                    </li>
-
-                    <li className="user-prof__item">
-                        <NavLink
-                            to={"/chat"}
-                            className="user-prof__link">
-                            <ion-icon name="chatbox-ellipses-outline"></ion-icon>
-                            <p className="user-prof__text">
-                                {content[lang].user_profil_message}
-                            </p>
-                        </NavLink>
-                    </li>
-
-                    <li className="user-prof__item">
-                        <NavLink
-                            to={"/userfavorites"}
-                            className="user-prof__link"
-                        >
-                            <ion-icon name="heart-outline"></ion-icon>
-                            <p className="user-prof__text">
-                                {content[lang].user_profil_favorintes}
-                            </p>
-                        </NavLink>
-                    </li>
-
-                    <li className="user-prof__item">
-                        <NavLink to={"/usernews"} className="user-prof__link">
-                            <ion-icon name="newspaper-outline"></ion-icon>
-                            <p className="user-prof__text">
-                                {content[lang].user_profil_news}
-                            </p>
-                        </NavLink>
-                    </li>
-
-                    <li className="user-prof__item">
-                        <NavLink to={"/"} className="user-prof__link" onClick={(e) => LogOut(e)}>
-                            <ion-icon name="log-in-outline"></ion-icon>
-                            <p className="user-prof__text">
-                                {content[lang].user_profil_clos}
-                            </p>
-                        </NavLink>
-                    </li>
-                </ul>
             </div>
         );
     } else {
