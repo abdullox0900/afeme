@@ -84,6 +84,8 @@ function Header() {
 
     let url = process.env.REACT_APP_URL;
 
+    console.log()
+
     // Api Axios Logos
     useEffect(() => {
         axios.get(`${url}logos`).then((res) => {
@@ -119,9 +121,15 @@ function Header() {
                         aria-haspopup="true"
                         aria-expanded={userMenuOpen ? "true" : undefined}
                     >
-                        <Avatar sx={{ width: 32, height: 32 }}>
-                            {user?.data?.name.slice(0, 1)}
-                        </Avatar>
+                        {
+                            (user?.data?.image) ? (
+                                < img className="user-profil__avatar" src={user?.data?.image} alt="" />
+                            ) : (
+                                <Avatar sx={{ width: 32, height: 32 }}>
+                                    {user?.data?.name.slice(0, 1)}
+                                </Avatar>
+                            )
+                        }
                     </IconButton>
                 </Tooltip>
             </Box>
@@ -163,7 +171,17 @@ function Header() {
             >
                 <MenuItem>
                     <Link to={"/userprofil"} className="profile__menu__link">
-                        <Avatar /> {user?.data?.name} {user?.data?.lastname}
+
+                        {
+                            (user?.data?.image) ? (
+                                < img className="user-profil__avatar" src={user?.data?.image} alt="" />
+                            ) : (
+                                <Avatar />
+                            )
+                        }
+
+
+                        {user?.data?.name} {user?.data?.lastname}
                     </Link>
                 </MenuItem>
                 <MenuItem>
@@ -264,8 +282,8 @@ function Header() {
                                     {user.hasOwnProperty('data') ? lang == "uz"
                                         ? user?.data?.region_id?.name_uz
                                         : lang == "ru"
-                                        ? user?.data?.region_id?.name_ru
-                                        : user?.data?.region_id?.name_en : IP?.region}
+                                            ? user?.data?.region_id?.name_ru
+                                            : user?.data?.region_id?.name_en : IP?.region}
                                 </Button>
                             </Tooltip>
                         </div>
