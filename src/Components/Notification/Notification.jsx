@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Snackbar, Alert } from "@mui/material";
 import "./Notification.scss";
 
-function Notification({ message, type }) {
+function Notification({ message, type, isOpen = true }) {
 
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(isOpen);
     const [vertical, setVertical] = useState('bottom');
     const [horizontal, setHorizontal] = useState('left');
     const [duration, setDuration] = useState(5000);

@@ -75,7 +75,6 @@ function UserProfil() {
         'Authorization': `Bearer ${token}`
     }
     const Put = (e) => {
-        console.log(pic);
         fetch(`${url}user/${user.data.id}?paremeter=PUT`, {
             method: "PUT",
             headers: headersList,

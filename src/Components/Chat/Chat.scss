@@ -19,7 +19,7 @@
         border-right: 1px solid rgba(0, 0, 0, 0.08);
         padding-bottom: 20px;
         padding-right: 0;
-        position: relative;
+        // position: relative;
         &__header{
             display: flex;
             align-items: center;
@@ -40,6 +40,7 @@
             &__img{
                 width: 44px;
                 height: 44px;
+                border-radius: 8px;
             }
             &__content{
                 padding-left: 15px;

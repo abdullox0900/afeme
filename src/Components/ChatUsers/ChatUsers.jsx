@@ -21,7 +21,6 @@ function ChatUsers({ chats, setChatUser, chatID, setChatID, isLoading }) {
     let rand = Math.floor(Math.random() * 500);
 
     function showChats(amount) {
-
         if (isLoading) {
             let i = -75;
             return (
@@ -66,42 +65,50 @@ function ChatUsers({ chats, setChatUser, chatID, setChatID, isLoading }) {
             );
         } else {
             if (chats) {
-                if (chats && chatID) {
-                    for (let i = 0; i < chats.length; i++) {
-                        console.log(chats[i]);
-                        if (chats[i].chat.id == chatID) {
-                            setChatUser(chats[i].user);
-                        }
-                    }
-                }
-                return chats.map((chat) => (
-                    <a
-                        href={`#${chat.chat.id}`}
-                        key={v4()}
-                        // onClick={() => openUserChat(chat.chat.id, chat.user.id)}
-                    >
-                        <div className="chatProfile">
-                            <img
-                                src=""
-                                alt=""
-                                className="chatProfile__img"
-                            />
-                            <div className="chatProfile__content">
-                                <Box className="chatProfile__content__item">
-                                    <h3 className="chatProfile__name">
-                                        {chat.user?.name} {chat.user?.lastname}
-                                    </h3>
-                                    <span className="chatProfile__text">
-                                        Haha oh man 🔥
+                return chats.map((chat) => {
+
+                    let a = new Date(chat.latest.created * 1000);
+                    let hour = a.getHours();
+                    let min = a.getMinutes();
+                    let lastMsgDate = hour + ':' + min;
+                    return (
+                        <a
+                            href={`#${chat.user.id}`}
+                            key={v4()}
+                            // onClick={() => openUserChat(chat.chat.id, chat.user.id)}
+                        >
+                            <div className="chatProfile">
+                                <img
+                                    src={
+                                        chat.user.image
+                                            ? chat.user.image
+                                            : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU"
+                                    }
+                                    alt=""
+                                    className="chatProfile__img"
+                                />
+                                <div className="chatProfile__content">
+                                    <Box className="chatProfile__content__item">
+                                        <h3 className="chatProfile__name">
+                                            {chat.user?.name}{" "}
+                                            {chat.user?.lastname}
+                                        </h3>
+                                        <span className="chatProfile__text">
+                                            {chat?.latest?.message}
+                                        </span>
+                                    </Box>
+                                    <span
+                                        className={`chatProfile__read${
+                                            chat.chat.reading ? "" : " active"
+                                        }`}
+                                    >
+                                        {lastMsgDate}
                                     </span>
-                                </Box>
-                                <span className="chatProfile__lastTime">
-                                    12m
-                                </span>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                ));
+                        </a>
+                    );
+                });
             } else {
                 return (
                     <div className="noChats">
@@ -128,8 +135,8 @@ function ChatUsers({ chats, setChatUser, chatID, setChatID, isLoading }) {
                         {content[lang].ChatNews}
                     </h4>
                 </Link>
-                <ArrowDown className="arrowDown"/>
-                <span className="chats__indicator">6</span>
+                <ArrowDown className="arrowDown" />
+                {/* {chats.hasOwnProperty('length') ? (<span className="chats__indicator">{chats.length}</span>) : ''} */}
             </Box>
             <Box className="chatsPanel__main">
                 <Box className="chatsPanel__chats">{showChats(7)}</Box>
