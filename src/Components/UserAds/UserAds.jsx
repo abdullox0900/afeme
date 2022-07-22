@@ -76,13 +76,12 @@ function UserAds() {
         <>
             <Header />
             <Container>
-                <div className="user-wrap-router">
-                    <UserProfilList />
+                <div className="user-profil-wrap">
+                <UserProfilList />
                     <div className="user__cards">
                         {showPosts(4)}
                     </div>
                 </div>
-                
             </Container>
         </>
     );

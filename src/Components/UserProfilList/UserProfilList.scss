@@ -1,13 +1,17 @@
 .user-profil-wer {
-    position: sticky;
+    position: relative;
     left: 0px;
     border-right: 1px solid #cacaca;
+    background-color: #fff;
 }
 
 .user-prof {
+    // position: sticky;
+    // left: -100px;
     height: 100%;
     // position: relative;
     transition: ease 0.5s;
+    background: #fff;
 
     &__avatar {
         display: flex;
@@ -177,6 +181,110 @@
     color: #fff;
 }
 
-@media only screen and (max-width: 1280px) {
+@media only screen and (max-width: 768px) {
+    .user-prof {
+        width: 80px;
+        // transition: ease 0.5s;
+    }
 
+    .user-prof__close {
+        display: none;
+    }
+    
+    .user-prof .user-prof__avatar {
+        margin-top: 100px;
+        width: 70px;
+        // transition: ease 0.5s;
+    }
+    
+    .user-prof .user-prof__avatar img {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 15px;
+        // transition: ease 0.5s;
+    }
+    
+    .user-prof .user-prof__title {
+        display: none;
+        transition: ease 0.5s;
+        opacity: 0;
+        white-space: nowrap;
+    }
+    
+    .user-prof .user-prof__list {
+        width: 70px;
+        // transition: ease 0.5s;
+    }
+    
+    .user-prof .user-prof__link {
+        display: flex;
+        justify-content: center;
+        // transition: ease 0.5s;
+        // width: 60px;
+    }
+    
+    .user-prof .user-prof__link p {
+        // width: 60px;
+        // opacity: 0;
+        display: none;
+    }
+    
+    .user-prof .user-prof__link ion-icon {
+        margin-left: 0px;
+        font-size: 35px;
+        // transition: ease 0.5s;
+    }
+    
+    .user-prof .user-prof__link:hover ion-icon {
+        color: #fff;
+    }
+    
+}
+
+@media only screen and (max-width: 425px) {
+    .user-prof {
+        width: 55px;
+        // transition: ease 0.5s;
+    }
+
+    .user-prof__close {
+        display: none;
+    }
+    
+    .user-prof .user-prof__avatar {
+        margin-top: 100px;
+        width: 40px;
+        // transition: ease 0.5s;
+    }
+    
+    .user-prof .user-prof__avatar img {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .user-prof .user-prof__title {
+        display: none;
+        transition: ease 0.5s;
+        opacity: 0;
+        white-space: nowrap;
+    }
+    
+    .user-prof .user-prof__list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 40px;
+        // transition: ease 0.5s;
+    }
+    
+    .user-prof .user-prof__link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .user-prof .user-prof__link ion-icon {
+        margin-left: 4px;
+        font-size: 30px;
+    }
 }

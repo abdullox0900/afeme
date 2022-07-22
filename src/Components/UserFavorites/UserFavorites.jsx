@@ -73,7 +73,7 @@ function UserFavorites() {
         <>
             <Header />
             <Container>
-                <div className="user-wrap-router">
+                <div className="user-profil-wrap">
                     <UserProfilList />
                     <div className="user__cards">
                         {showPosts(4)}
