@@ -70,7 +70,6 @@ function VideoFile({ video, setVideo }) {
                 .then(response => response.text())
                 .then(function (response) {
                     let res = JSON.parse(response);
-                    console.log(res.data);
                     Object.entries(res).forEach(([name, value]) => {
                         if (typeof value === 'string') {
                             arr.push(value);

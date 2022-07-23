@@ -1,112 +1,122 @@
 // Import React
-import React from "react";
-import { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 
-// Import Components
+// Components
 import Header from "../Header/Header";
 import UserProfilList from "../UserProfilList/UserProfilList";
 import Container from "../Container/Container";
-import "../UserPostEdit/UserPostEdit.scss";
-import axios from "axios"
+
+//Localization Components
 import { Context } from "../../Context/LangContext";
 import content from "../../Localization/Content";
+//Style
+import "../UserPostEdit/UserPostEdit.scss";
 
-// Import Mui 
+// Import Packages 
 import InputLabel from '@mui/material/InputLabel';
+import Trash from '@mui/icons-material/ClearRounded';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { TextareaAutosize, TextField } from '@mui/material'
+import Select from '@mui/material/Select';
+import { TextField } from '@mui/material'
 import MapPicker from "react-google-map-picker";
-import Trash from '@mui/icons-material/ClearRounded';
 import { v4 } from "uuid";
-import { typography } from "@mui/system";
+import axios from "axios"
 
-const DefaultZomm = 2;
-// const DefaultLocation = { lat: latitude, lng: longitude };
+// Map Variables
+const DefaultZomm = 4;
+const DefaultLocation = { lat: 41.29789837558708, lng: 69.23906484167179 };
 
+//Url Variable
 let url = process.env.REACT_APP_URL;
 
 function UserPostEdit() {
-
+    // Localization Context
     const { lang, setLang } = useContext(Context);
 
     const { postID } = useParams();
-    const [zoom, setZoom] = useState(DefaultZomm);
-    // const [defaultLocation, setDefaultLocation] = useState(DefaultLocation);
-    // const [location, setLocation] = useState(defaultLocation);
 
+    // Map 
+    const [zoom, setZoom] = useState(DefaultZomm);
+    const [defaultLocation, setDefaultLocation] = useState(DefaultLocation);
+    const [location, setLocation] = useState(defaultLocation);
+
+    // Recieve Data Post
     const [postData, setPostData] = useState([]);
 
-    const [sale_id, setsType] = useState('')// SaleType State
-    const [htype_id, sethType] = useState('')//HouseType State
-    const [material_id, setMaterial] = useState('')// Materials State
-    const [repair_id, setUsRepair] = useState('')//Reapairs State
-    const [region_id, setRegionID] = useState('')//Region State
-    const [city_id, setCity] = useState('')// City State
+    // Send Data 
+    const [sale_id, setsType] = useState('')
+    const [htype_id, sethType] = useState('')
+    const [material_id, setMaterial] = useState('')
+    const [repair_id, setUsRepair] = useState('')
+    const [region_id, setRegionID] = useState('')
+    const [city_id, setCity] = useState('')
     const [longitude, setLongitude] = useState('')
     const [latitude, setLatitude] = useState('')
-    const [price_som, setPrice_som] = useState('')//Price State //// tekshirish keree
-    const [date, setDate] = useState('')//Building Year State
-    const [room, setRoom] = useState('')//Room State
-    const [description, sethDescr] = useState('')//House Description State
-    const [street, setStreet] = useState('')// Street State
-    const [house, setHouse] = useState('')// State
-    const [floor, setFloor] = useState('')//Floor and Flat States
-    const [flat, setFlat] = useState('')//
+    const [price_som, setPrice_som] = useState('')
+    const [date, setDate] = useState('')
+    const [room, setRoom] = useState('')
+    const [description, sethDescr] = useState('')
+    const [street, setStreet] = useState('')
+    const [house, setHouse] = useState('')
+    const [floor, setFloor] = useState('')
+    const [flat, setFlat] = useState('')
     const [total_area, setTotalArea] = useState('')
     const [living_area, setLivingArea] = useState('')
     const [kitchen_area, setKitchenArea] = useState('')
     const [total_area_type, setTotalAreaType] = useState('')
-    const [usDocument, setUsDocs] = useState([])//Documents State
-    const [usPhoto, setUsPhoto] = useState([])//ImageFile State
-    const [usVideo, setUsVideo] = useState([])//VideoFile State
+    const [usDocument, setUsDocs] = useState([])
+    const [usPhoto, setUsPhoto] = useState([])
+    const [usVideo, setUsVideo] = useState([])
 
+    // Send New Edited Data 
     const [city, setdCity] = useState([])
     const [photo, setPhoto] = useState([])
     const [video, setVideo] = useState([])
     const [docs, setDocs] = useState([])
 
+    // CallBack Database
     const [region, setRegion] = useState([]);
     const [htype, setHtype] = useState([]);
     const [sale, setSale] = useState([]);
     const [repair, setRepair] = useState([]);
     const [materials, setMaterials] = useState([]);
 
+    // Recieving Dates
     useEffect(() => {
-        axios.get(`https://ali98.uz/api/regions`)
+        axios.get(`${url}regions`)
             .then(res => {
                 const persons = res?.data.data;
                 setRegion(persons)
             })
-        axios.get(`https://ali98.uz/api/sales`)
+        axios.get(`${url}sales`)
             .then(res => {
                 const persons = res?.data.data;
                 setSale(persons)
             })
-        axios.get(`https://ali98.uz/api/htype`)
+        axios.get(`${url}htype`)
             .then(res => {
                 const persons = res?.data.data;
                 setHtype(persons)
             })
-        axios.get(`https://ali98.uz/api/repairs`)
+        axios.get(`${url}repairs`)
             .then(res => {
                 const persons = res?.data.data;
                 setRepair(persons)
             })
-        axios.get(`https://ali98.uz/api/materials`)
+        axios.get(`${url}materials`)
             .then(res => {
                 const persons = res?.data.data;
                 setMaterials(persons)
             })
-        axios.get(`https://ali98.uz/api/post/${postID}`)
+        axios.get(`${url}post/${postID}`)
             .then(function (response) {
                 setPostData(response.data);
             })
     }, [])
 
-
+    // INitialize Dates
     useEffect(() => {
         if (postData.hasOwnProperty('data')) {
             setsType(Number(postData.data.sale_id.id))
@@ -134,10 +144,11 @@ function UserPostEdit() {
             setPrice_som(Number(postData.data.price_som))
         }
     }, [postData])
-
+    // Get Token
     let token = localStorage.getItem('Token')
-    let editPost = new URLSearchParams();
 
+    // Sending
+    let editPost = new URLSearchParams();
     editPost.append('htype_id', htype_id);
     editPost.append('sale_id', sale_id);
     editPost.append('longitude', longitude);
@@ -162,12 +173,13 @@ function UserPostEdit() {
     editPost.append('photo', photo);
     editPost.append('video', video);
 
+    // Send Variable
     let headersList = {
         "Accept": "*/*",
         'Authorization': `Bearer ${token}`
     }
+    // Send Function
     const Submit = (e) => {
-        console.log(photo);
         fetch(`${url}post/${postData.data.id}?paremeter=PUT`, {
             method: "PUT",
             headers: headersList,
@@ -175,10 +187,11 @@ function UserPostEdit() {
         }).then(function (response) {
             return response.text();
         }).then(function (data) {
-            console.log(data);
-            // window.location.reload()
+            window.location.reload()
         })
     }
+
+    // Filter Old Data 
     useEffect(() => {
         let img = [];
         for (let i = 0; i < usPhoto.length; i++) {
@@ -197,6 +210,7 @@ function UserPostEdit() {
         }
     }, [usPhoto, usVideo, usDocument])
 
+    // Filter City
     const Selector = (id) => {
         setRegionID(id)
         let filtered = region.filter((item) => {
@@ -207,11 +221,13 @@ function UserPostEdit() {
         setdCity(filtered[0].citys);
     }
 
-    // function setLocation(lat, lng) {
-    //     setLatitude('latitude', lat)
-    //     setLongitude('longitude', lng)
-    // }
+    // New Location
+    function Location(lat, lng) {
+        setLatitude(lat)
+        setLongitude(lng)
+    }
 
+    // Filter 
     function Delete(e) {
         let deleted = photo.filter(pic => e !== pic);
         setPhoto(deleted);
@@ -227,10 +243,8 @@ function UserPostEdit() {
         setDocs(reseted);
     }
 
+    // Sending a Service New Files
     let newImage = new FormData();
-    let newVideo = new FormData();
-    let newDocs = new FormData();
-
     let newPicture = {
         method: 'POST',
         body: newImage,
@@ -258,6 +272,7 @@ function UserPostEdit() {
         }
     }
 
+    let newVideo = new FormData();
     let newvideo = {
         method: 'POST',
         body: newVideo,
@@ -284,12 +299,13 @@ function UserPostEdit() {
                 .catch(error => console.log('error', error));
         }
     }
+
+    let newDocs = new FormData();
     let newdocs = {
         method: 'POST',
         body: newDocs,
         redirect: 'follow'
     };
-
     function addDocs(e) {
         let files = [...e];
         for (let i = 0; i < files.length; i++) {
@@ -316,16 +332,16 @@ function UserPostEdit() {
             <Header />
             <Container>
                 <div className="user-wrap-router">
-                    <UserProfilList />
+                    {/* <UserProfilList /> */}
                     <div className="postEdit">
-                        <p>{postData.data?.id}</p>
+                        <h1>{content[lang].edit_postTitle}</h1>
+                        <p>{postData.data?.id}{content[lang].edit_post}</p>
                         <div className="saleHouse">
                             <FormControl className="selectInp">
-                                <InputLabel id="Sotish turi">Sotish Turi</InputLabel>
+                                <InputLabel id="Sotish turi">{content[lang].edit_saleType}</InputLabel>
                                 <Select
-                                    labelId="Sotish turi"
                                     id="Sotish turi"
-                                    label='Sotish turi'
+                                    label={content[lang].edit_saleType}
                                     value={sale_id}
                                     onChange={(e) => setsType(e.target.value)}
                                 >
@@ -340,11 +356,10 @@ function UserPostEdit() {
                                 </Select>
                             </FormControl>
                             <FormControl className="selectInp">
-                                <InputLabel id="Uy turi">Uy Turi</InputLabel>
+                                <InputLabel id="Uy turi">{content[lang].edit_houseType}</InputLabel>
                                 <Select
-                                    labelId="Uy turi"
                                     id="Uy turi"
-                                    label='Uy turi'
+                                    label={content[lang].edit_houseType}
                                     value={htype_id}
                                     onChange={(e) => sethType(e.target.value)}
                                 >
@@ -361,11 +376,10 @@ function UserPostEdit() {
                         </div>
                         <div className="saleHouse">
                             <FormControl className="selectInp">
-                                <InputLabel id="Tamir turi">Tamir Turi</InputLabel>
+                                <InputLabel id="Tamir turi">{content[lang].edit_repairType}</InputLabel>
                                 <Select
-                                    labelId="Tamir turi"
                                     id="Tamir turi"
-                                    label='Tamir turi'
+                                    label={content[lang].edit_repairType}
                                     value={repair_id}
                                     onChange={(e) => setUsRepair(e.target.value)}
                                 >
@@ -380,11 +394,10 @@ function UserPostEdit() {
                                 </Select>
                             </FormControl>
                             <FormControl className="selectInp">
-                                <InputLabel id="Material turi">Material Turi</InputLabel>
+                                <InputLabel id="Material turi">{content[lang].edit_materialType}</InputLabel>
                                 <Select
-                                    labelId="Material turi"
                                     id="Material turi"
-                                    label='Material turi'
+                                    label={content[lang].edit_materialType}
                                     value={material_id}
                                     onChange={(e) => setMaterial(e.target.value)}
                                 >
@@ -401,11 +414,10 @@ function UserPostEdit() {
                         </div>
                         <div className="saleHouse">
                             <FormControl className="selectInp">
-                                <InputLabel id="Viloyat">Viloyat</InputLabel>
+                                <InputLabel id="Viloyat">{content[lang].edit_Region}</InputLabel>
                                 <Select
-                                    labelId="Viloyat"
                                     id="Viloyat"
-                                    label='Viloyat'
+                                    label={content[lang].edit_Region}
                                     value={region_id}
                                     onChange={(e) => Selector(e.target.value)}
                                 >
@@ -420,11 +432,10 @@ function UserPostEdit() {
                                 </Select>
                             </FormControl>
                             <FormControl className="selectInp">
-                                <InputLabel id="shaxar">Shaxar</InputLabel>
+                                <InputLabel id="shaxar">{content[lang].edit_City}</InputLabel>
                                 <Select
-                                    labelId="shaxar"
                                     id="shaxar"
-                                    label='shaxar'
+                                    label={content[lang].edit_City}
                                     value={city_id}
                                     onChange={(e) => setCity(e.target.value)}
                                 >
@@ -442,7 +453,7 @@ function UserPostEdit() {
                         <div className="saleHouse">
                             <TextField
                                 className="address"
-                                label='Kocha Nomi'
+                                label={content[lang].edit_Street}
                                 id="outlined-basic"
                                 variant="outlined"
                                 value={street}
@@ -450,27 +461,27 @@ function UserPostEdit() {
                             />
                             <TextField
                                 className="address"
-                                label='Uy manzili'
+                                label={content[lang].edit_House}
                                 id="outlined-basic"
                                 variant="outlined"
                                 value={house}
                                 onChange={(e) => setHouse(e.target.value)}
                             />
                         </div>
-                        {/* <div className="saleHouse">
+                        <div className="saleHouse">
                             <MapPicker
-                                // defaultLocation={defaultLocation}
+                                defaultLocation={defaultLocation}
                                 zoom={zoom}
                                 mapTypeId='roadmap'
                                 style={{ height: '300px' }}
-                                // onChangeLocation={(lat, lng) => setLocation(lat, lng)}
+                                onChangeLocation={(lat, lng) => Location(lat, lng)}
                                 onChangeZoom={(newZoom) => setZoom(newZoom)}
                                 apiKey='AIzaSyB8NHCF-5fMix0w2363RhC3V4vcyw8SHSM' />
-                        </div> */}
+                        </div>
                         <div className="saleHouse">
                             <TextField
                                 className="area"
-                                label='Kitchen'
+                                label={content[lang].edit_Kitchen}
                                 id="outlined-basic"
                                 variant="outlined"
                                 value={kitchen_area}
@@ -478,7 +489,7 @@ function UserPostEdit() {
                             />
                             <TextField
                                 className="area"
-                                label='Living'
+                                label={content[lang].edit_Living}
                                 id="outlined-basic"
                                 variant="outlined"
                                 value={living_area}
@@ -486,30 +497,29 @@ function UserPostEdit() {
                             />
                             <TextField
                                 className="area"
-                                label='Total'
+                                label={content[lang].edit_Total}
                                 id="outlined-basic"
                                 variant="outlined"
                                 value={total_area}
                                 onChange={(e) => setTotalArea(e.target.value)}
                             />
                             <FormControl className="areaselect">
-                                <InputLabel id="Type">Type</InputLabel>
+                                <InputLabel id="Type">{content[lang].edit_Type}</InputLabel>
                                 <Select
-                                    labelId="Type"
                                     id="Type"
-                                    label='Type'
+                                    label={content[lang].edit_Type}
                                     value={total_area_type}
                                     onChange={(e) => setTotalAreaType(e.target.value)}
                                 >
-                                    <MenuItem value={'m2'}>Metr Kvadrat</MenuItem>
-                                    <MenuItem value={'ar'}>Sotix</MenuItem>
+                                    <MenuItem value={'m2'}>{content[lang].edit_M2}</MenuItem>
+                                    <MenuItem value={'ar'}>{content[lang].edit_AR}</MenuItem>
                                 </Select>
                             </FormControl>
                         </div>
                         <div className="saleHouse">
                             <TextField
                                 className="tools"
-                                label='Date'
+                                label={content[lang].edit_Date}
                                 id="outlined-basic"
                                 variant="outlined"
                                 value={date}
@@ -517,7 +527,7 @@ function UserPostEdit() {
                             />
                             <TextField
                                 className="tools"
-                                label='Room'
+                                label={content[lang].edit_Rooms}
                                 id="outlined-basic"
                                 variant="outlined"
                                 value={room}
@@ -525,7 +535,7 @@ function UserPostEdit() {
                             />
                             <TextField
                                 className="tools"
-                                label='Floor'
+                                label={content[lang].edit_Floor}
                                 id="outlined-basic"
                                 variant="outlined"
                                 value={floor}
@@ -533,14 +543,13 @@ function UserPostEdit() {
                             />
                             <TextField
                                 className="tools"
-                                label='Flat'
+                                label={content[lang].edit_Flat}
                                 id="outlined-basic"
                                 variant="outlined"
                                 value={flat}
                                 onChange={(e) => setFlat(e.target.value)}
                             />
                         </div>
-
                         <div className="images">
                             {photo.map((type) => (
                                 <div className='img' key={v4()} style={{ background: `url(${type})no-repeat center center/cover` }} >
@@ -554,7 +563,6 @@ function UserPostEdit() {
                                     id="addImage"
                                     className="inp"
                                     onChange={e => addImage(e.target.files)}
-                                    multiple
                                 />
                             </div>
                         </div>
@@ -569,7 +577,7 @@ function UserPostEdit() {
                                 </div>
                             ))}
                             <div className="addVid">
-                                <label htmlFor="addVideo" className="addVideo"> Add Video </label>
+                                <label htmlFor="addVideo" className="addVideo">{content[lang].edit_Video}</label>
                                 <input
                                     className="inp"
                                     type="file"
@@ -585,7 +593,7 @@ function UserPostEdit() {
                                 </div>
                             ))}
                             <div className="addDocs">
-                                <label htmlFor="addDocument" className="addDocument"> Add Document </label>
+                                <label htmlFor="addDocument" className="addDocument">{content[lang].edit_Docs}</label>
                                 <input
                                     className="inp"
                                     type="file"
@@ -595,20 +603,19 @@ function UserPostEdit() {
                             </div>
                         </div>
                         <div className="descr">
-                            <h3 className="descrTitle">Description</h3>
+                            <h3 className="descrTitle">{content[lang].edit_Descr}</h3>
                             <textarea className="descrArea" id='descr' cols="30" rows="10" defaultValue={description}></textarea>
                         </div>
-
                         <div className="priceSubmit">
                             <TextField
                                 className="price"
-                                label='Narhi'
+                                label={content[lang].edit_Price}
                                 id="outlined-basic"
                                 variant="outlined"
                                 value={price_som}
                                 onChange={(e) => setPrice_som(e.target.value)}
                             />
-                            <button onClick={Submit} className='btnSubmit'>Tasdiqlash</button>
+                            <button onClick={Submit} className='btnSubmit'>{content[lang].edit_Submit}</button>
                         </div>
                     </div>
                 </div>

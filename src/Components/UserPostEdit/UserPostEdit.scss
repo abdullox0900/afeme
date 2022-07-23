@@ -5,7 +5,13 @@
 .postEdit {
     margin: 0 auto;
     max-width: 630px !important;
+    h1 {
+        text-align: center;
+        color: $darkBlue;
+        margin: 10px 0;
+    }
     p {
+        color: $gray;
         text-align: center;
     }
     .priceSubmit {
@@ -85,7 +91,7 @@
             display: flex;
             justify-content: flex-end;
             width: 630px;
-            .inp{
+            .inp {
                 display: none;
             }
             .addDocument {
@@ -93,19 +99,19 @@
                 text-align: center;
                 display: block;
                 padding: 8px 32px;
-                color:$white;
+                color: $white;
                 font-size: 16px;
                 letter-spacing: 1px;
-                border-radius:5px;
-                border:2px solid $darkBlue;
+                border-radius: 5px;
+                border: 2px solid $darkBlue;
                 background-color: $darkBlue;
             }
             .addDocument:hover,
             .addDocument:focus,
-            .addDocument:active{
+            .addDocument:active {
                 cursor: pointer;
                 background-color: transparent;
-                color:$darkBlue;
+                color: $darkBlue;
             }
         }
     }
@@ -140,24 +146,24 @@
             }
         }
         .addVid {
-            .inp{
+            .inp {
                 display: none;
             }
             .addVideo {
                 padding: 8px 32px;
-                color:$white;
+                color: $white;
                 font-size: 16px;
                 letter-spacing: 1px;
-                border-radius:5px;
-                border:2px solid $darkBlue;
+                border-radius: 5px;
+                border: 2px solid $darkBlue;
                 background-color: $darkBlue;
             }
             .addVideo:hover,
             .addVideo:focus,
-            .addVideo:active{
+            .addVideo:active {
                 cursor: pointer;
                 background-color: transparent;
-                color:$darkBlue;
+                color: $darkBlue;
             }
         }
     }
