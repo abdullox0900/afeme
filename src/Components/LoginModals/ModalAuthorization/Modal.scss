@@ -22,10 +22,10 @@
         pointer-events: auto;
         z-index: 100000000;
     }
-    &--open  &__authorization, &--open .deleteModal__content{
+    &--open  &__authorization, &--open .deleteModal__content, .imagePreview__content{
         transform: scale(1) !important;
     }
-    &__authorization, .deleteModal__content {
+    &__authorization, .deleteModal__content, .imagePreview__content {
         position: relative;
         width: 400px;
         height: 600px;
@@ -34,7 +34,7 @@
         transition: all 0.3s;
         transform: scale(0);
     }
-    .deleteModal__content{
+    .deleteModal__content, .imagePreview__content{
         height: max-content;
         padding: 15px;
         display: flex;
