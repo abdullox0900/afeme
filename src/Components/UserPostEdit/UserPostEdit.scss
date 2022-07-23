@@ -1,7 +1,4 @@
 @import "../../Assets/scss/colors.scss";
-.user-wrap-router {
-    display: flex;
-}
 .postEdit {
     margin: 0 auto;
     max-width: 630px !important;
@@ -62,13 +59,14 @@
     }
     .document {
         display: flex;
-        justify-content: flex-start;
+        justify-content: space-between;
         align-items: center;
         flex-wrap: wrap;
         margin-bottom: 20px;
         width: 630px;
+        gap: 10px;
         .docs {
-            margin: 5px;
+            border-radius: 10px;
             width: 48%;
             height: 20vh;
             position: relative;
@@ -90,12 +88,12 @@
         .addDocs {
             display: flex;
             justify-content: flex-end;
-            width: 630px;
+            width: 100%;
             .inp {
                 display: none;
             }
             .addDocument {
-                max-width: 200px;
+                width: 100%;
                 text-align: center;
                 display: block;
                 padding: 8px 32px;
@@ -115,7 +113,7 @@
             }
         }
     }
-    .video {
+    .videos {
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -123,10 +121,8 @@
         margin-bottom: 20px;
         width: 630px;
         .video {
+            width: 100%;
             position: relative;
-            video {
-                width: 100%;
-            }
             .icon {
                 position: absolute;
                 top: 5px;
@@ -146,11 +142,15 @@
             }
         }
         .addVid {
+            width: 100%;
+            margin-bottom: 20px;
             .inp {
                 display: none;
             }
             .addVideo {
+                display: block;
                 padding: 8px 32px;
+                text-align: center;
                 color: $white;
                 font-size: 16px;
                 letter-spacing: 1px;
@@ -196,6 +196,26 @@
                 transform: scale(1.3);
             }
         }
+        .addImgInp {
+            display: none;
+        }
+        .addImgBtn {
+            display: none;
+            width: 100%;
+            background-color: $darkBlue;
+            border: 2px solid $darkBlue;
+            color: $white;
+            padding: 8px 0;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .addImgBtn:hover,
+        .addImgBtn:active,
+        .addImgBtn:focus {
+            cursor: pointer;
+            background-color: $white;
+            color: $darkBlue;
+        }
         .addImg {
             .inp {
                 display: none;
@@ -205,7 +225,7 @@
                 border: 2px solid $darkBlue;
                 cursor: pointer;
                 border-radius: 10px;
-                padding: 73px 73px;
+                padding: 73px;
                 background: $lightBlue url(../../Assets/Img/Icon/add.svg) no-repeat center center/cover;
                 fill: $darkBlue;
             }
@@ -229,6 +249,137 @@
         }
         .tools {
             width: 23%;
+        }
+    }
+}
+
+@media (min-width: 450px) and (max-width: 650px) {
+    .postEdit {
+        .saleHouse {
+            gap: 15px;
+            .selectInp,
+            .address {
+                width: 100% !important;
+            }
+            .area,
+            .tools {
+                width: 20%;
+            }
+            .areaselect {
+                width: 20%;
+            }
+        }
+        .images {
+            width: 100%;
+            row-gap: 15px;
+            justify-content: space-between;
+            .addImgBtn {
+                display: block;
+            }
+            .img1,
+            .img {
+                min-width: 48%;
+                min-height: 49%;
+            }
+            .addImg {
+                display: none;
+            }
+        }
+        .videos {
+            width: 100%;
+            .video {
+                width: 100%;
+            }
+        }
+        .document {
+            justify-content: space-between;
+            width: 100%;
+            .docs {
+                width: 48%;
+            }
+        }
+        .descr {
+            width: 100%;
+            .descrArea {
+                width: 100%;
+            }
+        }
+        .priceSubmit {
+            justify-content: space-between;
+            width: 100%;
+            .price {
+                width: 50vw;
+            }
+        }
+    }
+}
+
+@media (min-width: 450px) and (max-width: 530px) {
+    .images {
+        row-gap: 15px !important;
+        .img,
+        .img1 {
+            min-width: 48% !important;
+        }
+    }
+}
+
+@media (max-width: 450px) {
+    .postEdit {
+        min-width: 290px;
+        .saleHouse {
+            row-gap: 20px;
+            .selectInp,
+            .address {
+                width: 100% !important;
+            }
+            .area,
+            .areaselect,
+            .tools {
+                width: 45%;
+            }
+        }
+        .images {
+            row-gap: 20px;
+            width: 100%;
+            justify-content: space-between;
+            .addImgBtn {
+                display: block;
+            }
+            .img1,
+            .img {
+                width: 48%;
+                min-height: 45%;
+            }
+            .addImg {
+                display: none;
+            }
+        }
+        .videos {
+            width: 100%;
+            .video {
+                width: 100%;
+            }
+        }
+        .document {
+            justify-content: space-between;
+            width: 100%;
+            min-width: 320px;
+            .docs {
+                width: 48%;
+            }
+        }
+        .descr {
+            width: 100%;
+            .descrArea {
+                width: 100%;
+            }
+        }
+        .priceSubmit {
+            width: 100%;
+            .price {
+                width: 40vw;
+            }
         }
     }
 }

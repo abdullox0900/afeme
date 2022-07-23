@@ -332,7 +332,7 @@ function UserPostEdit() {
             <Header />
             <Container>
                 <div className="user-wrap-router">
-                    {/* <UserProfilList /> */}
+                    <UserProfilList />
                     <div className="postEdit">
                         <h1>{content[lang].edit_postTitle}</h1>
                         <p>{postData.data?.id}{content[lang].edit_post}</p>
@@ -551,11 +551,8 @@ function UserPostEdit() {
                             />
                         </div>
                         <div className="images">
-                            {photo.map((type) => (
-                                <div className='img' key={v4()} style={{ background: `url(${type})no-repeat center center/cover` }} >
-                                    <Trash onClick={(e) => Delete(type)} className='icon' />
-                                </div>
-                            ))}
+                            <label htmlFor="addImgBtn" className="addImgBtn">Add Image</label>
+                            <input type='file' className="addImgInp" id="addImgBtn" onChange={e => addImage(e.target.files)}></input>
                             <div className="addImg">
                                 <label htmlFor="addImage" className="addImage"></label>
                                 <input
@@ -565,17 +562,13 @@ function UserPostEdit() {
                                     onChange={e => addImage(e.target.files)}
                                 />
                             </div>
-                        </div>
-                        <div className="video">
-                            {video.map((type) => (
-                                <div className="video" key={v4()}>
-                                    <video controls>
-                                        <source type="video/mp4" alt={v4()} src={type} />
-                                        <source type="video/ogg" alt={v4()} src={type} />
-                                    </video>
-                                    <Trash onClick={(e) => Reset(type)} className='icon' />
+                            {photo.map((type) => (
+                                <div className='img' key={v4()} style={{ background: `url(${type})no-repeat center center/cover` }} >
+                                    <Trash onClick={(e) => Delete(type)} className='icon' />
                                 </div>
                             ))}
+                        </div>
+                        <div className="videos">
                             <div className="addVid">
                                 <label htmlFor="addVideo" className="addVideo">{content[lang].edit_Video}</label>
                                 <input
@@ -585,13 +578,17 @@ function UserPostEdit() {
                                     onChange={e => addVideo(e.target.files)}
                                 />
                             </div>
-                        </div>
-                        <div className="document">
-                            {docs.map((type) => (
-                                <div className='docs' key={type} style={{ background: `url(${type})no-repeat center center/cover` }} >
-                                    <Trash onClick={(e) => Reseted(type)} className='icon' />
+                            {video.map((type) => (
+                                <div className="video" key={v4()}>
+                                    <video controls className="video">
+                                        <source type="video/mp4" alt={v4()} src={type} />
+                                        <source type="video/ogg" alt={v4()} src={type} />
+                                    </video>
+                                    <Trash onClick={(e) => Reset(type)} className='icon' />
                                 </div>
                             ))}
+                        </div>
+                        <div className="document">
                             <div className="addDocs">
                                 <label htmlFor="addDocument" className="addDocument">{content[lang].edit_Docs}</label>
                                 <input
@@ -601,6 +598,11 @@ function UserPostEdit() {
                                     onChange={e => addDocs(e.target.files)}
                                 />
                             </div>
+                            {docs.map((type) => (
+                                <div className='docs' key={type} style={{ background: `url(${type})no-repeat center center/cover` }} >
+                                    <Trash onClick={(e) => Reseted(type)} className='icon' />
+                                </div>
+                            ))}
                         </div>
                         <div className="descr">
                             <h3 className="descrTitle">{content[lang].edit_Descr}</h3>
