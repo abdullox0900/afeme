@@ -1,28 +1,29 @@
-import React, { createRef, useRef } from "react";
+import React, { createRef, useRef, useState } from "react";
 
-import { IconButton } from "@mui/material";
+import { IconButton, Button } from "@mui/material";
 import PaperClip from "../../Assets/Img/Icon/paperclip.svg";
 import PaperPlane from "../../Assets/Img/Icon/paper-plane.svg";
 import "./ChatSend.scss";
 
 let url = process.env.REACT_APP_URL;
 
-function ChatSend({ chats, chatUser, message, setMessage }) {
-
-    let token = localStorage.getItem('Token');
-    let msgValue = createRef()
+function ChatSend({ chatUser, getMessages, getChats }) {
+    const [previewImages, setPreviewImages] = useState();
+    let msgValue = createRef();
+    let previewModal = createRef();
+    let fileInput = createRef();
+    let token = localStorage.getItem("Token");
+    let headers = new Headers();
+    headers.append("Authorization", `Bearer ${token}`);
 
     async function sendMessage(e) {
-        
         e.preventDefault();
         let formData = new FormData();
-        formData.append("to", chatUser.id);
+        formData.append("to", chatUser.id); 
         formData.append("message", msgValue.current.value);
         console.log(chatUser.id, msgValue.current.value);
-        messageChange('');
+        messageChange("");
 
-        let headers = new Headers();
-        headers.append("Authorization", `Bearer ${token}`);
         await fetch(`${url}message`, {
             method: "POST",
             body: formData,
@@ -31,6 +32,8 @@ function ChatSend({ chats, chatUser, message, setMessage }) {
             .then((response) => response.text())
             .then((response) => {
                 console.log(JSON.parse(response));
+                getMessages();
+                getChats();
             });
     }
 
@@ -40,17 +43,53 @@ function ChatSend({ chats, chatUser, message, setMessage }) {
 
         if (msg.trim() != "") {
             sendBtn.classList.add("active");
-            sendBtn.removeAttribute('disabled', '');
+            sendBtn.removeAttribute("disabled", "");
         } else {
-            msgValue.current.value = '';
+            msgValue.current.value = "";
             sendBtn.classList.remove("active");
-            sendBtn.setAttribute('disabled', '');
+            sendBtn.setAttribute("disabled", "");
         }
     }
 
-    function attachFile() {
-        let attachInput = document.querySelector(".attachFile__input");
-        attachInput.click();
+    function sendFile() {
+
+        let formData = new FormData();
+        formData.append('key', 'Service For C Group')
+        formData.append("file", fileInput.current.files[0]);
+
+        fetch(`${url}service`, {
+            method: 'POST',
+            body: formData,
+            // redirect: 'follow'
+        })
+            .then((response) => response.text())
+            .then(function (response) {
+                let res = JSON.parse(response);
+                console.log(res);
+            })
+            .catch((error) => console.log("error", error));
+    }
+
+    function openModal() {
+        previewModal.current.classList.add("modal--open");
+    }
+    function closeModal() {
+        previewModal.current.classList.remove("modal--open");
+        fileInput.current.value = "";
+    }
+
+    function previewImage() {
+        const objectUrl = [];
+        let regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_ ]+$/;
+
+        if (fileInput.current.files.length > 0) {
+            for (let i = 0; i < fileInput.current.files.length; i++) {
+                objectUrl.push(URL.createObjectURL(fileInput.current.files[i]));
+            }
+            setPreviewImages(objectUrl);
+            openModal();
+            console.log(objectUrl);
+        }
     }
 
     return (
@@ -59,13 +98,46 @@ function ChatSend({ chats, chatUser, message, setMessage }) {
             className="inputMessage sendMsgForm"
             onSubmit={(e) => sendMessage(e)}
         >
-            <IconButton className="attachFile" onClick={attachFile}>
+            <div className="modal imagePreview" ref={previewModal}>
+                <div className="imagePreview__content">
+                    <div className="imagePreview__group">
+                        {previewImages?.map((image) => (
+                            <img
+                                src={image}
+                                alt=""
+                                className="imagePreview__image"
+                            />
+                        ))}
+                    </div>
+                    <div className="imagePreview__buttons">
+                        <Button
+                            variant="outlined"
+                            color="error"
+                            className="imagePreview__btn"
+                            onClick={() => closeModal()}
+                        >
+                            Bekor qilish
+                        </Button>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            className="imagePreview__btn"
+                            onClick={() => sendFile()}
+                        >
+                            Yuborish
+                        </Button>
+                    </div>
+                </div>
+            </div>
+            <IconButton className="attachFile" color="primary">
                 <img src={PaperClip} alt="" />
                 <input
                     type="file"
                     className="attachFile__input"
                     name="media"
-                    style={{ display: "none" }}
+                    onChange={() => previewImage()}
+                    multiple
+                    ref={fileInput}
                 />
             </IconButton>
             <div className="chatInput">

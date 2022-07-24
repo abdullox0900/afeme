@@ -9,21 +9,7 @@ import { UserContext } from "../../Context/UserContext";
 import { IPContext } from "../../Context/IPContext"
 
 // Import => Mui
-import {
-    Container,
-    Select,
-    IconButton,
-    Tooltip,
-    Button,
-    Grow,
-    Badge,
-    MenuItem,
-    Box,
-    Menu,
-    Avatar,
-    Divider,
-    ListItemIcon,
-} from "@mui/material";
+import { Container, Select, IconButton, Tooltip, Button, Grow, Badge, MenuItem, Box, Menu, Avatar, Divider, ListItemIcon } from "@mui/material";
 import {
     PersonAdd,
     Settings,
@@ -97,8 +83,6 @@ function Header() {
     };
 
     let url = process.env.REACT_APP_URL;
-
-    console.log()
 
     // Api Axios Logos
     useEffect(() => {

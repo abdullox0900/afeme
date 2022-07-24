@@ -55,7 +55,6 @@ function VideoFile({ video, setVideo }) {
         setVideoFile(false)
         setVideo(files)
     }
-    let Arr = [];
     let Select = new FormData();
     let select = {
         method: 'POST',
@@ -66,7 +65,7 @@ function VideoFile({ video, setVideo }) {
         let files = [...e]
         for (let i = 0; i < files.length; i++) {
             Select.append('key', 'Service For C Group')
-            Select.append('file', files)
+            Select.append('file', files[i])
             fetch(`${url}service`, select)
                 .then(response => response.text())
                 .then(function (response) {
