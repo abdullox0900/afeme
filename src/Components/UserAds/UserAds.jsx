@@ -54,7 +54,7 @@ function UserAds() {
                 showWarning();
                 return (
                     <div className="userNoAds">
-                        <img src={CommercemImg} alt="svg-img" />
+                        <img className="user-ads__img" src={CommercemImg} alt="svg-img" />
                         <h3 className="user-ads__title">
                             Birorta ham e'lon joylamagansiz
                         </h3>

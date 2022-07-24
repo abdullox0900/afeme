@@ -103,7 +103,21 @@
 
 @media only screen and (max-width: 425px) {
     .user-profil-wrap {
-        width: 410px;
+        width: 380px;
+
+        .personal {
+            width: 200px;
+        }
+
+        .us-input {
+            width: 100% !important;
+        }
+    }
+} 
+
+@media only screen and (max-width: 368px) {
+    .user-profil-wrap {
+        width: 290px;
 
         .personal {
             width: 200px;

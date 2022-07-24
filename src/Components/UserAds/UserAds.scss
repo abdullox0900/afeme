@@ -1,7 +1,27 @@
 .userNoAds {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     // justify-content: space-between;
     flex-direction: column;
     width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+    .user-ads__img {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media only screen and (max-width: 380px) {
+
+    .user-ads__title {
+        font-size: 16px;
+    }
+
+    .user-ads__img {
+        width: 90px;
+        height: 90px;
+    }
 }
