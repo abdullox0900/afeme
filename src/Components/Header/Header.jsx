@@ -84,8 +84,6 @@ function Header() {
 
     let url = process.env.REACT_APP_URL;
 
-    console.log()
-
     // Api Axios Logos
     useEffect(() => {
         axios.get(`${url}logos`).then((res) => {
