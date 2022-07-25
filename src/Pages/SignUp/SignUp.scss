@@ -1,27 +1,10 @@
 .login-control {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
     position: relative;
     margin: 0 auto;
+    padding: 15px;
 }
-
-// Tablet Responsiv
-// @media only screen and (max-width: 995px) {
-//     .login-control {
-//         display: flex;
-//         justify-content: center;
-//         margin-top: 30px;
-//     }
-
-//     // .logo-oval {
-//     //     top: 50px;
-//     //     left: 400px;
-//     // }
-
-//     // .logo-home {
-//     //     top: 140px;
-//     //     left: 410px;
-//     // }
-// }
