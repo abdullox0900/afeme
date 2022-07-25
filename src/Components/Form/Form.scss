@@ -1,13 +1,12 @@
 @import "../../Assets/scss/colors.scss";
 .disable {
     display: block;
-    margin-top: 16px;
-    padding: 15px;
+    width: 100%;
+    padding: 10px;
     font-size: 16px;
-    width: 400px;
     height: 56px;
     border-radius: 4px;
-    border: 1px solid #c4c4c4;
+    border: 1px solid $lightgray;
 }
 .default {
     display: none;
@@ -41,7 +40,7 @@
     padding: 100px 80px;
     background-color: $lightBlue;
     border-radius: 10px;
-    .forget__wrap{
+    .forget__wrap {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -69,8 +68,8 @@
         .title {
             margin: 0 0 20px 0;
             color: $darkBlue;
-        }        
-        .descr{
+        }
+        .descr {
             margin: 0 0 20px 0;
             color: $lightgray;
         }
@@ -81,188 +80,100 @@
     }
 }
 
-.form__controler-one {
-    width: 100px;
-}
-
-.form__wrap {
-    width: 500px;
-    margin-right: 100px;
-}
-
-.form__controler-one {
-    display: flex;
+.form_wrap {
     width: 100%;
-    flex-wrap: wrap;
-}
-
-.form__controler-two {
-    display: flex;
-    width: 100%;
-    flex-wrap: wrap;
-}
-
-.form {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    width: 400px;
-    align-items: center;
-    // margin-left: 100px;
-    // margin-right: 200px;
-    .form-title {
-        margin: 0;
-        margin-bottom: 30px;
-        text-align: center;
-        font-weight: 500;
-        font-size: 28px;
-        line-height: 33px;
-        color: #000000;
-    }
-    width: 500px;
-
-    .form__controler-input1 {
-        // margin: 0;
-        width: 238px;
-        margin-right: 23px;
-    }
-
-    .form__controler-input2 {
-        // margin: 0;
-        width: 238px;
-    }
-
-    .form__box {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        align-items: center;
-        margin-top: 35px;
-    }
-
-    .form__link-myaccount {
-        display: inline-block;
-        color: $darkBlue;
-        font-weight: 500;
-        text-decoration: underline;
-    }
-
-    .form__img {
-        width: 120px;
-        height: 120px;
-        margin-bottom: 30px;
-    }
-
-    .button {
-        cursor: pointer;
-        width: 178px;
-        height: 50px;
-        background-color: $darkBlue !important;
-        border-radius: 10px;
-        border: none;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 19px;
-        color: #ffffff;
-    }
-}
-
-.rel-input {
-    width: 100%;
-    resize: none;
-}
-
-.style {
-    padding: 70px 100px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: $white;
-    border-radius: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    .title {
-        padding: 0;
-        text-align: center;
-        font-weight: 500;
-        color: $LightGreen;
-        font-size: 36px;
+    .ilus {
+        margin-right: 100px;
     }
-    .button {
-        cursor: pointer;
-        width: 178px;
-        height: 50px;
-        background-color: $darkBlue !important;
-        border-radius: 10px;
-        border: none;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 19px;
-        color: #ffffff;
-    }
-}
-
-// Tablet Responsiv
-
-@media only screen and (max-width: 1350px) {
     .form {
-        // margin-left: 50px;
+        min-width: 500px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        row-gap: 15px;
+        .form_img {
+            width: 120px;
+            height: 120px;
+        }
+        .form_title {
+            margin: 0;
+            font-weight: 500;
+            font-size: 28px;
+            color: $black;
+        }
+        .usertregion,
+        .fullname {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            .region,
+            .type,
+            .name,
+            .lastname {
+                width: 240px;
+            }
+        }
+        .btns {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .button {
+                cursor: pointer;
+                width: 178px;
+                height: 50px;
+                background-color: $darkBlue;
+                border-radius: 10px;
+                border: 2px solid $darkBlue;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 19px;
+                color: $white;
+            }
+            .button:hover,
+            .button:active,
+            .button:focus {
+                background-color: $white;
+                color: $darkBlue;
+                transition: 0.4s ease-in-out;
+            }
+        }
     }
 }
 
-@media only screen and (max-width: 995px) {
-    .form__wrap {
-        margin-right: 0px;
-    }
-}
-
-@media only screen and (max-width: 600px) {
-    .form {
-        margin-right: 0px;
-
-        .form__controler-input1 {
-            width: 100%;
-            margin-bottom: 20px;
-            margin-right: 0px;
-        }
-
-        .form__controler-input2 {
-            width: 100%;
-        }
-
-        .form__controler-input {
-            width: 100%;
-        }
-
-        .form__input-name {
-            width: 100%;
-        }
-
-        .form__input-lastname {
-            width: 100%;
-            margin-left: 0px;
-        }
-
-        .form__input-email {
-            width: 100%;
-        }
-
-        .form__input-password {
-            width: 100%;
-        }
-    }
-}
-
-@media only screen and (max-width: 530px) {
-    .form {
+@media (max-width: 1100px) {
+    .form_wrap {
+        margin: 0;
+        width: 100%;
         display: flex;
         justify-content: center;
-        width: 350px;
+        align-items: center;
+        .ilus {
+            display: none;
+        }
     }
-    .forgot{
-        margin: 100px 20px 0 20px;
+}
+@media (max-width: 510px) {
+    .form_wrap {
+        .form {
+            min-width: 300px;
+            margin: 0 10px;
+            .usertregion,
+            .fullname {
+                row-gap: 10px;
+                .region,
+                .type,
+                .name,
+                .lastname {
+                    width: 100%;
+                }
+            }
+        }
     }
 }

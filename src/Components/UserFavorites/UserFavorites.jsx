@@ -52,7 +52,7 @@ function UserFavorites() {
                 showWarning();
                 return (
                     <div className="userNoAds">
-                        <img src={basketImg} alt="svg-img" />
+                        <img className="user-ads__img" src={basketImg} alt="svg-img" />
                         <h3 className="user-ads__title">
                             Yoqtirgan e'lonlaringiz yo'q
                         </h3>
@@ -73,7 +73,7 @@ function UserFavorites() {
         <>
             <Header />
             <Container>
-                <div className="user-wrap-router">
+                <div className="user-profil-wrap">
                     <UserProfilList />
                     <div className="user__cards">
                         {showPosts(4)}

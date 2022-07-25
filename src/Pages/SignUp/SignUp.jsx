@@ -14,7 +14,7 @@ function SignUp() {
     return (
         <>
             <div className="login-control">
-                <LoginImg />
+                {/* <LoginImg /> */}
                 <Form />
             </div>
         </>

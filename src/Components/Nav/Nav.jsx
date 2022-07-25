@@ -1,6 +1,6 @@
 // Import React
 import React, { useContext, useEffect, useState } from "react";
-import { NavLink as Link } from "react-router-dom";
+import { NavLink as Link, NavLink } from "react-router-dom";
 import axios from "axios";
 
 // Import useContext => Localization
@@ -20,6 +20,11 @@ import LogOut from "../../Utils/logOut";
 let url = process.env.REACT_APP_URL;
 
 function Nav({ elHeader }) {
+
+    let modal = document.querySelector(".loginModal");
+
+    const Token = localStorage.getItem('Token') ? localStorage.getItem('Token') : null;
+    const [show, setShow] = useState(false)
     const { lang, setLang } = useContext(Context);
     const [categoriesData, setCategoriesData] = useState([]);
     const [anchorEl, setAnchorEl] = useState(null);
@@ -40,6 +45,19 @@ function Nav({ elHeader }) {
 
     const elNavbarMenu = React.useRef();
 
+    useEffect(() => {
+        if (Token === null) {
+            setShow(false)
+        } else {
+            setShow(true)
+        }
+    }, [])
+
+    // const hanClick = () => {
+    //     if (Token === null) {
+    //         modal.classList.add("modal--open");
+    //     }
+    // }
 
     return (
         <Container>
@@ -126,19 +144,29 @@ function Nav({ elHeader }) {
 
                         <li className="navbar-menu__item">
                             <ion-icon name="add-outline"></ion-icon>
-                            <Link to={'/advertPage'} className="navbar-menu__link">
-                                {content[lang].sAdd}
-                            </Link>
+                            {
+                                (Token === null) ? (
+                                    <a onClick={() => {
+                                        modal.classList.add("modal--open");
+                                    }} className="navbar-menu__link">
+                                        {content[lang].sAdd}
+                                    </a>
+                                ) : (
+                                    <Link to={'/advertPage'} className="navbar-menu__link">
+                                        {content[lang].sAdd}
+                                    </Link>
+                                )
+                            }
                         </li>
 
-                        <li className="navbar-menu__item">
+                        <li className="navbar-menu__item" style={{ display: show ? '' : 'none' }}>
                             <ion-icon name="albums-outline"></ion-icon>
                             <Link to={'/userads'} className="navbar-menu__link">
                                 {content[lang].sAds}
                             </Link>
                         </li>
 
-                        <li className="navbar-menu__item">
+                        <li className="navbar-menu__item" style={{ display: show ? '' : 'none' }}>
                             <ion-icon name="heart-outline"></ion-icon>
                             <Link to={'/userfavorites'} className="navbar-menu__link">
                                 {content[lang].sFeatures}
@@ -159,7 +187,7 @@ function Nav({ elHeader }) {
                             </Link>
                         </li>
 
-                        <li className="navbar-menu__item" >
+                        <li className="navbar-menu__item" style={{ display: show ? '' : 'none' }}>
                             <ion-icon name="exit-outline"></ion-icon>
                             <Link to={'/'} onClick={(e) => LogOut(e)} className="navbar-menu__link">
                                 {content[lang].sLogout}

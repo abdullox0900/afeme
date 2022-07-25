@@ -6,3 +6,48 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-column-gap: 15px;
 }
+
+@media only screen and (max-width: 1130px) {
+    .user__cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .user-ads__img {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+@media only screen and (max-width: 730px) {
+    .user__cards {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+@media only screen and (max-width: 410px) {
+    .user__cards {
+        grid-template-columns: repeat(500px, 1fr);
+        display: inline-grid
+    }
+}
+
+@media only screen and (max-width: 380px) {
+
+    .user-ads__title {
+        font-size: 16px;
+    }
+
+    .user-ads__img {
+        width: 90px;
+        height: 90px;
+    }
+}
+
+@media only screen and (max-width: 368px) {
+
+    .user-ads__title {
+        font-size: 14px;
+    }
+}

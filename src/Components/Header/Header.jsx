@@ -84,8 +84,6 @@ function Header() {
 
     let url = process.env.REACT_APP_URL;
 
-    console.log()
-
     // Api Axios Logos
     useEffect(() => {
         axios.get(`${url}logos`).then((res) => {
@@ -94,6 +92,10 @@ function Header() {
             setLogoImg(newImgData);
         });
     }, []);
+
+    const token = localStorage.getItem("Token")
+
+    console.log(token)
 
     const newImgArr = [];
 
@@ -180,7 +182,6 @@ function Header() {
                             )
                         }
 
-
                         {user?.data?.name} {user?.data?.lastname}
                     </Link>
                 </MenuItem>
@@ -217,14 +218,20 @@ function Header() {
                         Sozlamalar
                     </Link>
                 </MenuItem>
-                <MenuItem onClick={(e) => LogOut(e)}>
-                    <Link to={"#"} className="profile__menu__link">
-                        <ListItemIcon>
-                            <Logout fontSize="small" />
-                        </ListItemIcon>
-                        Chiqish
-                    </Link>
-                </MenuItem>
+                {
+                    (token) ? (
+                        <MenuItem onClick={(e) => LogOut(e)}>
+                        <Link to={"#"} className="profile__menu__link">
+                            <ListItemIcon>
+                                <Logout fontSize="small" />
+                            </ListItemIcon>
+                            Chiqish
+                        </Link>
+                    </MenuItem>
+                    ) : (
+                        <p>salom eshek</p>
+                    )
+                }
             </Menu>
         </>
     );
