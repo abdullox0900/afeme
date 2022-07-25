@@ -52,7 +52,7 @@ function UserFavorites() {
                 showWarning();
                 return (
                     <div className="userNoAds">
-                        <img src={basketImg} alt="svg-img" />
+                        <img className="user-ads__img" src={basketImg} alt="svg-img" />
                         <h3 className="user-ads__title">
                             Yoqtirgan e'lonlaringiz yo'q
                         </h3>

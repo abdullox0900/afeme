@@ -20,7 +20,7 @@ function UserNews() {
                 <div className="user-profil-wrap">
                     <UserProfilList />
                     <div className="user-news">
-                        <img src={UserNewsImg} alt="" />
+                        <img className="user-new__img" src={UserNewsImg} alt="" />
                         <h3 className="user-news__title">Hozircha Afemeda yanglik yok</h3>
                     </div>
                 </div>

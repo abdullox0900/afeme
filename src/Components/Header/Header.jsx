@@ -93,6 +93,10 @@ function Header() {
         });
     }, []);
 
+    const token = localStorage.getItem("Token")
+
+    console.log(token)
+
     const newImgArr = [];
 
     logoImg.map((i) => {
@@ -178,7 +182,6 @@ function Header() {
                             )
                         }
 
-
                         {user?.data?.name} {user?.data?.lastname}
                     </Link>
                 </MenuItem>
@@ -215,14 +218,20 @@ function Header() {
                         Sozlamalar
                     </Link>
                 </MenuItem>
-                <MenuItem onClick={(e) => LogOut(e)}>
-                    <Link to={"#"} className="profile__menu__link">
-                        <ListItemIcon>
-                            <Logout fontSize="small" />
-                        </ListItemIcon>
-                        Chiqish
-                    </Link>
-                </MenuItem>
+                {
+                    (token) ? (
+                        <MenuItem onClick={(e) => LogOut(e)}>
+                        <Link to={"#"} className="profile__menu__link">
+                            <ListItemIcon>
+                                <Logout fontSize="small" />
+                            </ListItemIcon>
+                            Chiqish
+                        </Link>
+                    </MenuItem>
+                    ) : (
+                        <p>salom eshek</p>
+                    )
+                }
             </Menu>
         </>
     );

@@ -101,30 +101,32 @@
     }
 } 
 
+@media only screen and (max-width: 630px) {
+    .user-profil-wrap {
+        width: 450px;
+    }
+} 
+
+@media only screen and (max-width: 470px) {
+    .user-profil-wrap {
+        width: 400px;
+    }
+} 
+
 @media only screen and (max-width: 425px) {
     .user-profil-wrap {
         width: 380px;
+    }
+} 
 
-        .personal {
-            width: 200px;
-        }
-
-        .us-input {
-            width: 100% !important;
-        }
+@media only screen and (max-width: 375px) {
+    .user-profil-wrap {
+        width: 350px;
     }
 } 
 
 @media only screen and (max-width: 368px) {
     .user-profil-wrap {
         width: 290px;
-
-        .personal {
-            width: 200px;
-        }
-
-        .us-input {
-            width: 100% !important;
-        }
     }
 } 
