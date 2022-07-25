@@ -13,7 +13,7 @@ import {
     Select,
     TextField,
 }
-from "@mui/material";
+    from "@mui/material";
 
 //Import => Components
 // import { Container } from "@mui/material";
@@ -28,14 +28,15 @@ import Container from "../Container/Container"
 import { useContext } from 'react';
 import { Context } from '../../Context/LangContext';
 import content from '../../Localization/Content';
+import LoginImg from "../LoginImg/LoginImg";
 
 
 let url = process.env.REACT_APP_URL;
- 
+
 function Form() {
     // Localization == useContext
     const { lang, setLang } = useContext(Context);
-    
+
     const { register, handleSubmit, formState: { errors }, watch, reset } = useForm();
     //Modal States
     const [phone_number, setPhoneNumber] = useState('')
@@ -120,19 +121,22 @@ function Form() {
 
     return (
         <>
-            <div className="form__wrap">
+            <div className="form_wrap">
+                <div className="ilus">
+                    <LoginImg />
+                </div>
                 <Error err={err} setErr={setErr} />
                 <NumberControl control={control} setControl={setControl} phone_number={phone_number} setPhoneNumber={setPhoneNumber} />
                 <form className="form" onSubmit={handleSubmit(onSubmit)}>
-                    <img className="form__img" src={AfemeLogo} alt="" data-aos="zoom-in"
+                    <img className="form_img" src={AfemeLogo} alt="" data-aos="zoom-in"
                         data-aos-easing="ease-in-back"
                         data-aos-delay="200"
                         data-aos-offset="10"
                         data-aos-duration="900" />
-                    <h1 className="form-title">{content[lang].from_sign}</h1>
+                    <h1 className="form_title">{content[lang].from_sign}</h1>
                     {/*UserType Input*/}
-                    <div className="form__controler-one">
-                        <FormControl className="form__controler-input1">
+                    <div className="usertregion">
+                        <FormControl className="type">
                             <InputLabel id="demo-simple-select-label">{content[lang].form_select_jis}</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
@@ -147,7 +151,7 @@ function Form() {
                         </FormControl>
 
                         {/* User Region Input */}
-                        <FormControl className="form__controler-input2">
+                        <FormControl className="region">
                             <InputLabel id="viloyat"> {content[lang].form_select_vil} </InputLabel>
                             <Select
                                 labelId="viloyat"
@@ -169,36 +173,34 @@ function Form() {
                         </FormControl>
                     </div>
                     {/*FirstName Input*/}
-                    <div className="form__controler-input">
+                    <div className="fullname">
                         <TextField
-                            className="form__input form__input-name"
+                            className="name"
                             id="outlined-basic"
                             label={content[lang].from_select_nam}
                             variant="outlined"
-                            sx={{ mt: 2, width: "240px", }}
                             {...register('name', { required: `${content[lang].form_select_nam_req}` })}
                             error={!!errors?.name}
                             helperText={errors?.name ? errors.name.message : null}
                         />
                         {/*LastName Input*/}
                         <TextField
-                            className="form__input form__input-lastname"
+                            className="lastname"
                             id="outlined-basic"
                             label={content[lang].form_select_las}
                             variant="outlined"
-                            sx={{ mt: 2, ml: 2.5, mb: 2, width: "240px" }}
                             {...register('lastname')}
                         />
                     </div>
                     {/*Email Input*/}
                     <TextField
-                        className="form__input form__input-email"
+                        className="email"
                         id="outlined-basic"
                         label={content[lang].form_select_email}
                         variant="outlined"
                         fullWidth
                         {...register('email', {
-                            required:  `${content[lang].form_select_email_req}`,
+                            required: `${content[lang].form_select_email_req}`,
                             pattern: {
                                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                                 message: `${content[lang].forgot_email_err}`
@@ -210,7 +212,7 @@ function Form() {
                     <input
                         ref={exper}
                         type="number"
-                        className="disable default form__input-password rel-input"
+                        className="disable default"
                         placeholder={content[lang].rexperience}
                         onChange={(e) => setExperience(e.target.value)}
                     />
@@ -218,18 +220,17 @@ function Form() {
                         ref={area}
                         type="text"
                         placeholder={content[lang].bio}
-                        className="textarea disable default rel-input"
+                        className="textarea disable default"
                         onChange={(e) => setDescription(e.target.value)}
                     />
                     {/*IDCard 'Password' Input*/}
                     <TextField
-                        className="form__input form__input-passport"
+                        className="password"
                         id="outlined-basic"
                         label={content[lang].form_select_pass}
                         variant="outlined"
                         fullWidth
                         type={'password'}
-                        sx={{ mt: 2 }}
                         {...register('password', {
                             required: `${content[lang].form_select_pass_req}`,
                         })}
@@ -239,25 +240,22 @@ function Form() {
 
                     {/*PhoneNumber Input*/}
                     <TextField
-                        className="form__input form__input-number"
+                        className="number"
                         id="outlined-number"
                         label={content[lang].form_select_tel}
                         type="text"
                         fullWidth
-                        sx={{ mt: 2, }}
                         {...register('phone', { required: `${content[lang].form_select_tel_req}` })}
                         error={!!errors?.phone}
                         helperText={errors?.phone ? errors.phone.message : null}
                     />
                     {/* SingUp and LogIn Buttons */}
-                    <div className="form__box">
+                    <div className="btns">
                         <NavLink
                             to={"/Afeme"}
-                            className="form__link-myaccount">
+                            className="link">
                             {content[lang].have}
                         </NavLink>
-                        <div id="btn"></div>
-                        {/* <div id='ya' onClick={Ya()}>sdfsd</div> */}
                         <button
                             className="button"
                             type="submit"
