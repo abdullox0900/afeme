@@ -9,15 +9,11 @@ import content from "../../Localization/Content";
 import { Context } from "../../Context/LangContext";
 import noChatsIcon from "../../Assets/Img/Icon/noChats.svg";
 import ArrowDown from "../../Lib/Svg/arrowDown";
-import Person1 from "../../Assets/Img/person1.jpg";
-import Person2 from "../../Assets/Img/person2.jpg";
-import Person3 from "../../Assets/Img/person3.jpg";
 import LogoImg from "../../Lib/Svg/logo";
 import "./ChatUsers.scss";
 
 function ChatUsers({ chats, isLoading, defaultAvatar, chatMenu }) {
     const { lang, setLang } = useContext(Context);
-    const images = [Person1, Person2, Person3, Person1, Person2, Person3];
     const userIndicator = createRef();
 
     function showChats(amount) {

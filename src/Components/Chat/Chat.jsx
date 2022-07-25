@@ -20,10 +20,6 @@ import MenuIcon from "../../Lib/Svg/menu";
 import { v4 } from "uuid";
 import ArrowDown from "../../Lib/Svg/arrowDown";
 import Dots from "../../Assets/Img/Icon/dots.svg";
-import Person1 from "../../Assets/Img/person1.jpg";
-import Person2 from "../../Assets/Img/person2.jpg";
-import Person3 from "../../Assets/Img/person3.jpg";
-import HeroImg1 from "../../Assets/Img/home-hero-1.jpg";
 
 // Import => Style
 import "./Chat.scss";
@@ -54,8 +50,7 @@ function Chat() {
     const [chatFound, setChatFound] = useState(true);
     const [dataError, setDataError] = useState(false);
     const [notificationOpen, setNotificationOpen] = useState(false);
-    const defaultAvatar =
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU";
+    const defaultAvatar = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU";
     const { windowWidth } = useWindowDimensions();
     const chatMenu = createRef();
 
