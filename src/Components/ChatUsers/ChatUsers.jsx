@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment, useContext, createRef, useRef } from "react";
 import { NavLink as Link } from "react-router-dom";
 
 import { Box } from "@mui/material";
@@ -15,10 +15,10 @@ import Person3 from "../../Assets/Img/person3.jpg";
 import LogoImg from "../../Lib/Svg/logo";
 import "./ChatUsers.scss";
 
-function ChatUsers({ chats, setChatUser, chatID, setChatID, isLoading }) {
+function ChatUsers({ chats, isLoading, defaultAvatar, chatMenu }) {
     const { lang, setLang } = useContext(Context);
     const images = [Person1, Person2, Person3, Person1, Person2, Person3];
-    let rand = Math.floor(Math.random() * 500);
+    const userIndicator = createRef();
 
     function showChats(amount) {
         if (isLoading) {
@@ -75,17 +75,21 @@ function ChatUsers({ chats, setChatUser, chatID, setChatID, isLoading }) {
                         <a
                             href={`#${chat.user.id}`}
                             key={v4()}
-                            // onClick={() => openUserChat(chat.chat.id, chat.user.id)}
+                            onClick={() => {
+                                userIndicator.current.classList.remove('active');
+                                console.log(userIndicator.current);
+                            }}
                         >
                             <div className="chatProfile">
                                 <img
                                     src={
                                         chat.user.image
                                             ? chat.user.image
-                                            : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU"
+                                            : defaultAvatar
                                     }
                                     alt=""
                                     className="chatProfile__img"
+                                    onError={(e) => e.target.src = defaultAvatar}
                                 />
                                 <div className="chatProfile__content">
                                     <Box className="chatProfile__content__item">
@@ -93,11 +97,12 @@ function ChatUsers({ chats, setChatUser, chatID, setChatID, isLoading }) {
                                             {chat.user?.name}{" "}
                                             {chat.user?.lastname}
                                         </h3>
-                                        <span className="chatProfile__text">
-                                            {chat?.latest?.message}
-                                        </span>
+                                        <p className="chatProfile__text">
+                                            {chat?.latest?.message.slice(0, 20)}
+                                        </p>
                                     </Box>
                                     <span
+                                        ref={userIndicator}
                                         className={`chatProfile__read${
                                             chat.chat.reading ? "" : " active"
                                         }`}
@@ -127,7 +132,7 @@ function ChatUsers({ chats, setChatUser, chatID, setChatID, isLoading }) {
     }
 
     return (
-        <section className="chatsPanel">
+        <section className="chatsPanel" ref={chatMenu}>
             <Box className="chatsPanel__header">
                 <Link to="/" className="chatsPanel__logo">
                     <LogoImg width={45} height={45} />
@@ -136,7 +141,7 @@ function ChatUsers({ chats, setChatUser, chatID, setChatID, isLoading }) {
                     </h4>
                 </Link>
                 <ArrowDown className="arrowDown" />
-                {/* {chats.hasOwnProperty('length') ? (<span className="chats__indicator">{chats.length}</span>) : ''} */}
+                {chats?.hasOwnProperty('length') ? (<span className="chats__indicator">{chats.length}</span>) : ''}
             </Box>
             <Box className="chatsPanel__main">
                 <Box className="chatsPanel__chats">{showChats(7)}</Box>

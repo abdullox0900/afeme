@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Snackbar, Alert } from "@mui/material";
 import "./Notification.scss";
 
-function Notification({ message, type, isOpen = true }) {
+function Notification({ message, type}) {
 
-    const [open, setOpen] = useState(isOpen);
+    const [open, setOpen] = useState(true);
     const [vertical, setVertical] = useState('bottom');
     const [horizontal, setHorizontal] = useState('left');
     const [duration, setDuration] = useState(5000);
@@ -31,9 +31,9 @@ function Notification({ message, type, isOpen = true }) {
         } 
     }, [])
 
-    useEffect(() => {
-        setOpen(true);
-    }, [message, type])
+    // useEffect(() => {
+    //     setOpen(true);
+    // }, [message, type])
     
     return (
         <Snackbar

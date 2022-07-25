@@ -8,7 +8,7 @@ import "./ChatMessages.scss";
 import noMessageIcon from "../../Assets/Img/noMessages.svg";
 import welcomeToChat from "../../Assets/Img/Icon/welcomeToChat.svg";
 
-function ChatMessages({ messages, userID, chatID }) {
+function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
 
     let i = 0;
     useEffect(() => {
@@ -24,7 +24,7 @@ function ChatMessages({ messages, userID, chatID }) {
 
     messagesBlog?.addEventListener("scroll", function () {
         console.log();
-        if (this.scrollHeight - this.clientHeight - this.scrollTop > 500) {
+        if (this.scrollHeight - this.clientHeight - this.scrollTop > 400) {
             scrollBottomBtn.classList.add("active");
         } else {
             scrollBottomBtn.classList.remove("active");
@@ -62,7 +62,8 @@ function ChatMessages({ messages, userID, chatID }) {
             </div>
         );
     } else {
-        if (messages) {
+        if (messages && chatUser) {
+            console.log(chatUser);
             return (
                 <div className="messages">
                     <div className="bubbles">
@@ -72,9 +73,9 @@ function ChatMessages({ messages, userID, chatID }) {
                                 let messageText = message.message.trim();
                                 let date = timeConverter(message.created);
 
-                                if (message.to == userID) {
+                                if (message.to == chatUser.id) {
                                     let className = `message outgoing${
-                                        messages[i + 1]?.to == userID
+                                        messages[i + 1]?.to == chatUser.id
                                             ? " messageGroup"
                                             : ""
                                     }`;
@@ -97,9 +98,14 @@ function ChatMessages({ messages, userID, chatID }) {
                                             key={v4()}
                                         >
                                             <img
-                                                src=""
+                                                src={
+                                                    chatUser.image
+                                                        ? chatUser.image
+                                                        : defaultAvatar
+                                                }
                                                 alt=""
                                                 className="message__sender"
+                                                onError={(e) => e.target.src = defaultAvatar}
                                             />
                                             <div className="message__content">
                                                 <p className="message__text">
