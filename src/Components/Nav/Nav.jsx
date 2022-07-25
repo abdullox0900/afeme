@@ -20,6 +20,9 @@ import LogOut from "../../Utils/logOut";
 let url = process.env.REACT_APP_URL;
 
 function Nav({ elHeader }) {
+    const Token = localStorage.getItem('Token') ? localStorage.getItem('Token') : null;
+    console.log(Token);
+    const [show, setShow] = useState(false)
     const { lang, setLang } = useContext(Context);
     const [categoriesData, setCategoriesData] = useState([]);
     const [anchorEl, setAnchorEl] = useState(null);
@@ -39,6 +42,14 @@ function Nav({ elHeader }) {
     }, []);
 
     const elNavbarMenu = React.useRef();
+
+    useEffect(() => {
+        if (Token === null) {
+            setShow(false)
+        } else {
+            setShow(true)
+        }
+    }, [])
 
 
     return (
@@ -131,14 +142,14 @@ function Nav({ elHeader }) {
                             </Link>
                         </li>
 
-                        <li className="navbar-menu__item">
+                        <li className="navbar-menu__item" style={{ display: show ? '' : 'none' }}>
                             <ion-icon name="albums-outline"></ion-icon>
                             <Link to={'/userads'} className="navbar-menu__link">
                                 {content[lang].sAds}
                             </Link>
                         </li>
 
-                        <li className="navbar-menu__item">
+                        <li className="navbar-menu__item" style={{ display: show ? '' : 'none' }}>
                             <ion-icon name="heart-outline"></ion-icon>
                             <Link to={'/userfavorites'} className="navbar-menu__link">
                                 {content[lang].sFeatures}
