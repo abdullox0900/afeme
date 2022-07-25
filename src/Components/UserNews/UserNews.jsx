@@ -17,7 +17,7 @@ function UserNews() {
         <>
             <Header/>
             <Container>
-                <div className="user-wrap-router">
+                <div className="user-profil-wrap">
                     <UserProfilList />
                     <div className="user-news">
                         <img src={UserNewsImg} alt="" />

@@ -122,6 +122,9 @@ function UserProfil() {
 
                         <div className="inpG">
                             <TextField
+                                // sx={{  }}
+                                fullWidth
+                                className="us-input"
                                 label={content[lang].userProfilName}
                                 id="outlined-basic"
                                 variant="outlined"
@@ -129,6 +132,7 @@ function UserProfil() {
                                 onChange={(e) => setName(e.target.value)}
                             />
                             <TextField
+                            className="us-input"
                                 label={content[lang].userProfilLastName}
                                 id="outlined-basic"
                                 variant="outlined"
@@ -136,6 +140,7 @@ function UserProfil() {
                                 onChange={(e) => setLastName(e.target.value)}
                             />
                             <TextField
+                            className="us-input"
                                 label={content[lang].userProfilPhone}
                                 id="outlined-basic"
                                 variant="outlined" x
@@ -143,6 +148,7 @@ function UserProfil() {
                                 onChange={(e) => setPhone(e.target.value)}
                             />
                             <TextField
+                            className="us-input"
                                 label='Email'
                                 id="outlined-basic"
                                 variant="outlined"
@@ -152,6 +158,8 @@ function UserProfil() {
                             <FormControl className="form__controler-input2">
                                 <InputLabel id="viloyat">{content[lang].form_select_vil}</InputLabel>
                                 <Select
+                                fullWidth
+                                className="us-input"
                                     labelId="viloyat"
                                     id="viloyat" n
                                     label={content[lang].form_select_vil}

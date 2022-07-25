@@ -1,8 +1,11 @@
 @import "../../Assets/scss/colors.scss";
+
 .user-profil-wrap {
     display: flex;
     justify-content: space-between;
     width: 1250px;
+    min-height: 100vh;
+    height: 100%;
     .personal {
         .pic {
             position: relative;
@@ -74,8 +77,54 @@
     }
 }
 
-@media only screen and (max-width: 1280px) {
+@media only screen and (max-width: 1200px) {
     .user-profil-wrap {
-        width: 100%;
+        width: 1100px;
+    }
+} 
+
+@media only screen and (max-width: 1100px) {
+    .user-profil-wrap {
+        width: 900px;
+    }
+} 
+
+@media only screen and (max-width: 960px) {
+    .user-profil-wrap {
+        width: 700px;
+    }
+} 
+
+@media only screen and (max-width: 730px) {
+    .user-profil-wrap {
+        width: 600px;
+    }
+} 
+
+@media only screen and (max-width: 425px) {
+    .user-profil-wrap {
+        width: 380px;
+
+        .personal {
+            width: 200px;
+        }
+
+        .us-input {
+            width: 100% !important;
+        }
+    }
+} 
+
+@media only screen and (max-width: 368px) {
+    .user-profil-wrap {
+        width: 290px;
+
+        .personal {
+            width: 200px;
+        }
+
+        .us-input {
+            width: 100% !important;
+        }
     }
 } 
