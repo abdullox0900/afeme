@@ -21,6 +21,7 @@ let url = process.env.REACT_APP_URL;
 
 function Modal({ elModal }) {
     const second = useRef(null);
+    const [show, setShow] = useState(false)
     const { lang, setLang } = useContext(Context);
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm()
@@ -39,15 +40,21 @@ function Modal({ elModal }) {
         fetch(`${url}login`, requestOptions)
             .then(response => response.text())
             .then(function (response) {
-                const Token = JSON.parse(response)
-                localStorage.setItem('Token', Token.data);
-                window.location.reload();
-                reset();
+                let a = JSON.parse(response);
+                if (a.status === true) {
+                    console.log(a.data);
+                    localStorage.setItem('Token', a.data);
+                    window.location.reload();
+                    reset();
+                } else {
+                    console.log(a);
+                    setShow(true)
+                }
             })
-            .catch(function (error) {
-                console.error(error);
-            })
-        elModal.current.classList.remove("modal--open");
+            // .catch(function (error) {
+            //     console.error(error);
+            // })
+        // elModal.current.classList.remove("modal--open");
     }
 
     return (
@@ -91,6 +98,7 @@ function Modal({ elModal }) {
                             error={!!errors?.password}
                             helperText={errors?.password ? errors.password.message : null}
                         />
+                        <p className='error' style={{ display: show ? 'block' : 'none' }}>Parol Notogri</p>
                         <NavLink to={'/forgot'}>
                             <p className="forgot">{content[lang].forgot}</p>
                         </NavLink>

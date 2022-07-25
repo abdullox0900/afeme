@@ -9,6 +9,7 @@ import { Provider as UpdateUserProvider } from "./Context/UpdateUserContext";
 import { Provider as CurrencyProvider } from "./Context/CurrencyContext";
 import { Provider as IPProvider } from "./Context/IPContext";
 import { Provider as SearchContext } from "./Context/SearchContext";
+import Modal from "./Components/LoginModals/ModalAuthorization/Modal"
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -24,8 +25,9 @@ root.render(
                     <CurrencyProvider>
                         <IPProvider>
                             <SearchContext>
-                                {/* <Loader /> */}
+                                <Loader />
                                 <App />
+                                <Modal/>
                             </SearchContext>
                         </IPProvider>
                     </CurrencyProvider>

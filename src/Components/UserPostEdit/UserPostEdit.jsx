@@ -331,7 +331,7 @@ function UserPostEdit() {
         <>
             <Header />
             <Container>
-                <div className="user-wrap-router">
+                <div className="user-profil-wrap">
                     <UserProfilList />
                     <div className="postEdit">
                         <h1>{content[lang].edit_postTitle}</h1>

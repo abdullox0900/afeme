@@ -4,6 +4,7 @@
     display: flex;
     justify-content: space-between;
     width: 1250px;
+    min-width: 320px !important;
     min-height: 100vh;
     height: 100%;
     .personal {
@@ -81,52 +82,86 @@
     .user-profil-wrap {
         width: 1100px;
     }
-} 
+}
 
 @media only screen and (max-width: 1100px) {
     .user-profil-wrap {
         width: 900px;
     }
-} 
+}
 
 @media only screen and (max-width: 960px) {
     .user-profil-wrap {
         width: 700px;
     }
-} 
+}
 
 @media only screen and (max-width: 730px) {
     .user-profil-wrap {
         width: 600px;
     }
-} 
-
-@media only screen and (max-width: 630px) {
+}
+@media only screen and (max-width: 640px) {
     .user-profil-wrap {
-        width: 450px;
+        width: 500px;
     }
-} 
-
-@media only screen and (max-width: 470px) {
-    .user-profil-wrap {
-        width: 400px;
+}
+@media only screen and (max-width: 540px) {
+    .container {
+        margin: 0;
+        .user-profil-wrap {
+            width: 300px;
+            .personal {
+                margin: 10px;
+            }
+        }
     }
-} 
-
-@media only screen and (max-width: 425px) {
-    .user-profil-wrap {
-        width: 380px;
+}
+@media only screen and (max-width: 480px) {
+    .container {
+        margin: 0;
+        .user-profil-wrap {
+            width: 200px !important;
+            .personal {
+                margin: 10px;
+                .inpG{
+                    .us-input{
+                        width: 300px;
+                    }
+                }
+            }
+        }
     }
-} 
-
-@media only screen and (max-width: 375px) {
-    .user-profil-wrap {
-        width: 350px;
+}
+@media only screen and (max-width: 380px) {
+    .container {
+        margin: 0;
+        .user-profil-wrap {
+            width: 200px !important;
+            .personal {
+                margin: 10px;
+                .inpG{
+                    .us-input{
+                        width: 250px;
+                    }
+                }
+            }
+        }
     }
-} 
-
-@media only screen and (max-width: 368px) {
-    .user-profil-wrap {
-        width: 290px;
+}
+@media only screen and (max-width: 330px) {
+    .container {
+        margin: 0;
+        .user-profil-wrap {
+            width: 200px !important;
+            .personal {
+                margin: 10px;
+                .inpG{
+                    .us-input{
+                        width: 210px;
+                    }
+                }
+            }
+        }
     }
-} 
+}
