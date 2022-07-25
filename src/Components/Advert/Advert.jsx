@@ -62,7 +62,7 @@ function Advert() {
             setAdvertCity
         );
     }
-    
+
     useEffect(() => {
         setIsLoading(true);
         const result = axios
@@ -89,6 +89,21 @@ function Advert() {
         url: "http://localhost:3000/advert/118",
     };
 
+    let adOwner = data.user;
+    let ownerPage = `/reltorcob/${adOwner?.id}`;
+    let ownerChat = `/chat#${adOwner?.id}`;
+    const sendMsgButton = (
+        <Link to={ownerChat}>
+            <IconButton
+                variant="contained"
+                className="sellerProfile__btn sellerProfile__msg"
+            >
+                <img src={messageIcon} alt="" />
+                <p className="callBtn__text">{content[lang].sendMessageBtn}</p>
+            </IconButton>
+        </Link>
+    );
+
     if (isLoading) {
         return (
             <div className="loadingSpinner">
@@ -96,9 +111,7 @@ function Advert() {
             </div>
         );
     } else if (data.hasOwnProperty("id") && !dataError) {
-        let adOwner = data.user;
-        let ownerPage = `/reltorcob/${adOwner.id}`;
-        let ownerChat = `/chat/${adOwner.id}`;
+        
         return (
             <Box className="advert">
                 <Container>
@@ -230,17 +243,7 @@ function Advert() {
                                 <p className="descr__text">
                                     {data?.description}
                                 </p>
-                                <Link to={ownerChat}>
-                                    <IconButton
-                                        variant="contained"
-                                        className="sellerProfile__btn sellerProfile__msg"
-                                    >
-                                        <img src={messageIcon} alt="" />
-                                        <p className="callBtn__text">
-                                            {content[lang].sendMessageBtn}
-                                        </p>
-                                    </IconButton>
-                                </Link>
+                                {sendMsgButton}
                             </Box>
 
                             <div id="advertMap">
@@ -249,53 +252,48 @@ function Advert() {
                         </Box>
 
                         <Box className="advert__panel">
-                            <Box className="sellerProfile">
-                                <Box className="sellerProfile__header">
-                                    <Link to={ownerPage}>
-                                        <img
-                                            src={
-                                                adOwner.image
-                                                    ? adOwner.image
-                                                    : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU"
-                                            }
-                                            alt=""
-                                            className="sellerProfile__img"
-                                        />
-                                    </Link>
-                                    <Box className="sellerProfile__content">
-                                        <p className="sellerProfile__title">
-                                            {adOwner.name} {adOwner.last_name}
-                                        </p>
-                                        <span className="sellerProfile__type">
-                                            {adOwner.user_type}
-                                        </span>
+                            {adOwner ? (
+                                <Box className="sellerProfile">
+                                    <Box className="sellerProfile__header">
+                                        <Link to={ownerPage}>
+                                            <img
+                                                src={
+                                                    adOwner.image
+                                                        ? adOwner.image
+                                                        : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU"
+                                                }
+                                                alt=""
+                                                className="sellerProfile__img"
+                                            />
+                                        </Link>
+                                        <Box className="sellerProfile__content">
+                                            <p className="sellerProfile__title">
+                                                {adOwner.name}{" "}
+                                                {adOwner.last_name}
+                                            </p>
+                                            <span className="sellerProfile__type">
+                                                {adOwner.user_type}
+                                            </span>
+                                        </Box>
+                                    </Box>
+                                    <Box className="sellerProfile__actions">
+                                        <Link to={ownerPage}>
+                                            <IconButton
+                                                variant="contained"
+                                                className="sellerProfile__btn sellerProfile__call"
+                                            >
+                                                <img src={callIcon} alt="" />
+                                                <p className="callBtn__text">
+                                                    {content[lang].contactBtn}
+                                                </p>
+                                            </IconButton>
+                                        </Link>
+                                        {sendMsgButton}
                                     </Box>
                                 </Box>
-                                <Box className="sellerProfile__actions">
-                                    <Link to={ownerPage}>
-                                        <IconButton
-                                            variant="contained"
-                                            className="sellerProfile__btn sellerProfile__call"
-                                        >
-                                            <img src={callIcon} alt="" />
-                                            <p className="callBtn__text">
-                                                {content[lang].contactBtn}
-                                            </p>
-                                        </IconButton>
-                                    </Link>
-                                    <Link to={ownerChat}>
-                                        <IconButton
-                                            variant="contained"
-                                            className="sellerProfile__btn sellerProfile__msg"
-                                        >
-                                            <img src={messageIcon} alt="" />
-                                            <p className="callBtn__text">
-                                                {content[lang].sendMessageBtn}
-                                            </p>
-                                        </IconButton>
-                                    </Link>
-                                </Box>
-                            </Box>
+                            ) : (
+                                ""
+                            )}
                         </Box>
                     </div>
                 </Container>

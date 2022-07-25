@@ -20,8 +20,8 @@ function ChatSend({ chatUser, getMessages, getChats }) {
         e.preventDefault();
         let formData = new FormData();
         formData.append("to", chatUser.id); 
-        formData.append("message", msgValue.current.value);
-        console.log(chatUser.id, msgValue.current.value);
+        formData.append("message", msgValue.current.value.trim());
+        console.log(chatUser.id, msgValue.current.value.trim());
         messageChange("");
 
         await fetch(`${url}message`, {

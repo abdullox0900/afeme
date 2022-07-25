@@ -141,3 +141,29 @@
         }
     }
 }
+
+@media (max-width: 1280px) {
+    .chat{
+        padding: 0;
+    }
+    .chatsPanel{
+        grid-column: span 3 !important;
+    }
+    .messagesPanel{
+        grid-column: span 5 !important;
+    }
+    .infoPanel{
+        display: none !important;
+    }
+}
+@media (max-width: 768px) {
+    .chat{
+        grid-template-columns: 1fr;
+    }
+    .chatsPanel{
+        grid-column: span 1 !important;
+    }
+    .chatProfile{
+        margin: 5px 0 !important;
+    }
+}

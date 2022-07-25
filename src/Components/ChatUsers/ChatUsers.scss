@@ -67,6 +67,7 @@
                 margin: 0;
             }
             &__text{
+                word-wrap: break-word;
                 font-weight: 600;
                 font-size: 12px;
                 line-height: 150%;
@@ -75,11 +76,11 @@
                 -webkit-box-orient: vertical;
                 overflow: hidden;
                 display: -webkit-box;
-                word-wrap: break-word;
+                margin: 0;
             }
             &__read{
                 position: relative;
-                font-size: 14px;
+                font-size: 12px;
                 font-weight: 500;
                 color: #444;
                 padding-top: 5px;
@@ -98,6 +99,28 @@
                 &.active::before{
                     opacity: 1;
                 }
+            }
+            @media (max-width: 900px) {
+                padding: 12px 10px;
+                &__img{
+                    width: 40px;
+                    height: 40px;
+                }
+            }
+        }
+        @media (max-width: 768px) {
+            position: fixed;
+            width: 60%;
+            height: 100vh;
+            top: 0;
+            left: -100%;
+            z-index: 999;
+            transition: all .3s;
+            background-color: #fff;
+            box-shadow: 0 0 8px rgba(0,0,0,0.75);
+
+            &.active{
+                left: 0;
             }
         }
     }

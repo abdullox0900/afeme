@@ -113,7 +113,7 @@ function AdvertPage() {
       })
   }
 
-  if (token) {
+  if (token && token.trim() != '') {
     if (user.hasOwnProperty('data')) {
       return (
         <>
