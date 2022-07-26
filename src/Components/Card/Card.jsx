@@ -188,9 +188,7 @@ function Cards({ data, editDelete = false, fullCard = false, isUserPost = false 
         );
     }
 
-    console.log(data);
     if (data.check == 'true' || isUserPost) {
-        console.log(data.check);
         if (!fullCard) {
             return (
                 <>

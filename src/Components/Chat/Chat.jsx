@@ -68,7 +68,6 @@ function Chat() {
                             setChatUser(data.data);
                             getMessages();
                             setChatFound(true);
-                            console.log(chatUser);
                         } else {
                             setChatFound(false);
                             setMessagesData(null);
@@ -77,7 +76,6 @@ function Chat() {
                     .catch(() => {
                         setChatFound(false);
                         setMessagesData(null);
-                        console.log(chatFound);
                     });
             }
             getUser();
@@ -109,7 +107,6 @@ function Chat() {
             let hash = window.location.hash.substring(1);
             if (hash.trim() != "" && !isNaN(hash)) {
                 setChatID(hash);
-                console.log(hash);
             } else {
                 window.addEventListener("hashchange", getHashUrl, {
                     once: true,
