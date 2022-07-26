@@ -213,7 +213,7 @@ const content = {
         // Search
         saleType: "Sotish turi",
         homeType: "Uy turi",
-        searchPlaceholder: "Manzil, shahar, viloyat, qishloq va h.k",
+        searchPlaceholder: "E'lon detallari orqali qidiring",
         clean: "Tozalash",
         viewOnMap: "Xaritadan ko'rish",
         filter: "Filter",

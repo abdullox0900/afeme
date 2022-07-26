@@ -10,14 +10,7 @@ import { IPContext } from "../../Context/IPContext"
 
 // Import => Mui
 import { Container, Select, IconButton, Tooltip, Button, Grow, Badge, MenuItem, Box, Menu, Avatar, Divider, ListItemIcon } from "@mui/material";
-import {
-    PersonAdd,
-    Settings,
-    Logout,
-    Newspaper,
-    PostAdd,
-    Chat as ChatIcon,
-} from "@mui/icons-material/";
+import { Settings, Logout, Newspaper, PostAdd, Chat as ChatIcon } from "@mui/icons-material/";
 
 // Import => images
 import flagUz from "../../Assets/Img/Icon/uz.svg";
@@ -35,7 +28,7 @@ import "../Header/Header.scss";
 import Nav from "../Nav/Nav";
 import content from "../../Localization/Content";
 import AdvertBtn from "../AddAdvertBtn/AdvertBtn";
-import { getCookie, setCookie } from "../../Utils/cookies";
+import CheckUserLogin from "../../Utils/modalOpener";
 
 // Import => Axios
 import axios from "axios";
@@ -94,8 +87,6 @@ function Header() {
     }, []);
 
     const token = localStorage.getItem("Token")
-
-    console.log(token)
 
     const newImgArr = [];
 
@@ -244,7 +235,6 @@ function Header() {
                 sx={{ ml: 2, py: 1.5, px: 2.5 }}
                 onClick={() => {
                     elModal.current.classList.add("modal--open");
-                    elModal.current.classList.add("modal--style");
                 }}
             >
                 {content[lang].fromBtn}
@@ -353,6 +343,7 @@ function Header() {
                                     <Link
                                         to={"/userfavorites"}
                                         className="header__likes__link"
+                                        onClick={(e) => CheckUserLogin(e, user)}
                                     >
                                         <IconButton
                                             color="primary"

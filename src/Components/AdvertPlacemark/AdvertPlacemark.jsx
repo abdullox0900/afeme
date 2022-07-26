@@ -46,7 +46,7 @@ function AdvertPlacemark({ advert }) {
                     openBalloonOnClick: true,
                     iconLayout: "default#image",
                     iconImageHref: PlacemarkIcon,
-                    iconImageSize: [50, 50],
+                    iconImageSize: [26, 36],
                 }}
                 properties={{
                     balloonContentBody: `<div class="mapBaloon">

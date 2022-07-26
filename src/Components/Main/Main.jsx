@@ -42,7 +42,7 @@ function Main() {
     useEffect(() => {
         setIsLoading(true);
         const result = axios
-            .get(`${url}popular/` + '8')
+            .get(`${url}popular/` + '16')
             .then((response) => {
                 let newData = response.data.data;
                 if (newData && newData.length > 0) {
@@ -85,7 +85,7 @@ function Main() {
             return <CardSkeleton amount={amount} />;
 
         } else if (data && !dataError) {
-            return adverts?.slice(popular ? 4 : 0, popular ? amount + 4 : 4).map((row) => {
+            return adverts?.slice(popular ? 8 : 0, popular ? amount + 8 : 8).map((row) => {
 
                 return <Cards data={row} />;
             });

@@ -1,20 +1,23 @@
 import React, { Fragment, useContext, createRef, useRef } from "react";
 import { NavLink as Link } from "react-router-dom";
 
-import { Box } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import { v4 } from "uuid";
 
 import ContentLoader from "react-content-loader";
 import content from "../../Localization/Content";
 import { Context } from "../../Context/LangContext";
+import useWindowDimensions from "../../Utils/windowDimension";
 import noChatsIcon from "../../Assets/Img/Icon/noChats.svg";
 import ArrowDown from "../../Lib/Svg/arrowDown";
 import LogoImg from "../../Lib/Svg/logo";
+import TimesIcon from "../../Lib/Svg/xmark";
 import "./ChatUsers.scss";
 
 function ChatUsers({ chats, isLoading, defaultAvatar, chatMenu }) {
     const { lang, setLang } = useContext(Context);
     const userIndicator = createRef();
+    const { windowWidth } = useWindowDimensions();
 
     function showChats(amount) {
         if (isLoading) {
@@ -62,17 +65,18 @@ function ChatUsers({ chats, isLoading, defaultAvatar, chatMenu }) {
         } else {
             if (chats) {
                 return chats.map((chat) => {
-
                     let a = new Date(chat.latest.created * 1000);
                     let hour = a.getHours();
                     let min = a.getMinutes();
-                    let lastMsgDate = hour + ':' + min;
+                    let lastMsgDate = hour + ":" + min;
                     return (
                         <a
                             href={`#${chat.user.id}`}
                             key={v4()}
                             onClick={() => {
-                                userIndicator.current.classList.remove('active');
+                                userIndicator.current.classList.remove(
+                                    "active"
+                                );
                                 console.log(userIndicator.current);
                             }}
                         >
@@ -85,7 +89,9 @@ function ChatUsers({ chats, isLoading, defaultAvatar, chatMenu }) {
                                     }
                                     alt=""
                                     className="chatProfile__img"
-                                    onError={(e) => e.target.src = defaultAvatar}
+                                    onError={(e) =>
+                                        (e.target.src = defaultAvatar)
+                                    }
                                 />
                                 <div className="chatProfile__content">
                                     <Box className="chatProfile__content__item">
@@ -130,14 +136,33 @@ function ChatUsers({ chats, isLoading, defaultAvatar, chatMenu }) {
     return (
         <section className="chatsPanel" ref={chatMenu}>
             <Box className="chatsPanel__header">
-                <Link to="/" className="chatsPanel__logo">
-                    <LogoImg width={45} height={45} />
-                    <h4 className="chatsPanel__header__title">
-                        {content[lang].ChatNews}
-                    </h4>
-                </Link>
-                <ArrowDown className="arrowDown" />
-                {chats?.hasOwnProperty('length') ? (<span className="chats__indicator">{chats.length}</span>) : ''}
+                <div className="chatsPanel__blog">
+                    <Link to="/" className="chatsPanel__logo">
+                        <LogoImg width={45} height={45} />
+                        <h4 className="chatsPanel__header__title">
+                            {content[lang].ChatNews}
+                        </h4>
+                    </Link>
+                    <ArrowDown className="arrowDown" />
+                    {chats?.hasOwnProperty("length") ? (
+                        <span className="chats__indicator">{chats.length}</span>
+                    ) : (
+                        ""
+                    )}
+                </div>
+                {windowWidth < 768 ? (
+                    <IconButton
+                        className="chatMenuClose"
+                        variant="text"
+                        onClick={() =>
+                            chatMenu.current.classList.remove("active")
+                        }
+                    >
+                        <TimesIcon />
+                    </IconButton>
+                ) : (
+                    ""
+                )}
             </Box>
             <Box className="chatsPanel__main">
                 <Box className="chatsPanel__chats">{showChats(7)}</Box>

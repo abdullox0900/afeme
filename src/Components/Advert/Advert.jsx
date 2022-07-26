@@ -143,8 +143,7 @@ function Advert() {
                                 </div>
                                 <Box className="advert__address__blog">
                                     <p className="advert__address">
-                                        {advertAddress}, {advertCity},{" "}
-                                        {data?.street} {content[lang].street}
+                                        {advertAddress}, {data?.street} {content[lang].street}
                                         <img
                                             src={arrowRight}
                                             alt=""
@@ -277,7 +276,7 @@ function Advert() {
                                         </Box>
                                     </Box>
                                     <Box className="sellerProfile__actions">
-                                        <Link to={ownerPage}>
+                                        <a href={`tel:${adOwner.phone}`}>
                                             <IconButton
                                                 variant="contained"
                                                 className="sellerProfile__btn sellerProfile__call"
@@ -287,7 +286,7 @@ function Advert() {
                                                     {content[lang].contactBtn}
                                                 </p>
                                             </IconButton>
-                                        </Link>
+                                        </a>
                                         {sendMsgButton}
                                     </Box>
                                 </Box>

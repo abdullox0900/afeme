@@ -173,7 +173,7 @@ function Chat() {
     function closeMenu() {
         
         function handleClickOutside(e) {
-            if ((chatMenu.current && !chatMenu.current.contains(e.target)) && !document.querySelector('.chatMenuBtn').contains(e.target)) {
+            if ((chatMenu.current && !chatMenu.current.contains(e.target)) || !document.querySelector('.chatMenuBtn').contains(e.target) || !document.querySelector('.chatMenuClose').contains(e.target)) {
                 chatMenu.current.classList.remove('active');
             }
         }
