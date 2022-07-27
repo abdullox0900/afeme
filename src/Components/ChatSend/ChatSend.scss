@@ -36,6 +36,7 @@
                 padding: 10px 20px;
                 padding-right: 50px;
                 background-color: #fff;
+                caret-color: #357aff;
                 color: #333;
                 font-size: 16px;
             }
@@ -58,6 +59,22 @@
                 & img{
                     width: 20px;
                     height: 20px;
+                }
+            }
+            @media (max-width: 400px) {
+                margin-left: 10px;
+                height: 44px;
+                .message__input{
+                    padding: 10px 15px;
+                    padding-right: 45px;
+                    font-size: 15px;
+                    &::placeholder{
+                        font-size: 15px;
+                    }
+                }
+                .sendBtn{
+                    width: 33px;
+                    height: 33px;
                 }
             }
         }

@@ -92,9 +92,6 @@
             display: -webkit-box;
         }
     }
-    &__info {
-        // width: 100%;
-    }
     &__address__blog {
         display: flex;
         align-items: center;
@@ -320,4 +317,11 @@
             max-height: 300px;
         }
     }
+}
+
+@media print {
+    #advertMap, header, footer, .modal, .errorBlog{
+        display: none !important;
+    }
+    
 }

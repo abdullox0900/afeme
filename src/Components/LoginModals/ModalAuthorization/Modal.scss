@@ -27,12 +27,16 @@
     }
     &__authorization, .deleteModal__content, .imagePreview__content {
         position: relative;
-        width: 400px;
-        height: 600px;
+        min-width: 400px;
+        height: auto;
         background: #ffffff;
         border-radius: 20px;
         transition: all 0.3s;
         transform: scale(0);
+        @media (max-width: 425px) {
+            min-width: 300px;
+            width: 100%;
+        }
     }
     .deleteModal__content, .imagePreview__content{
         height: max-content;

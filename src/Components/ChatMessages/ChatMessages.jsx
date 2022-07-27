@@ -63,7 +63,6 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
         );
     } else {
         if (messages && chatUser) {
-            console.log(chatUser);
             return (
                 <div className="messages">
                     <div className="bubbles">
@@ -72,12 +71,12 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
                                 i++;
                                 let messageText = message.message.trim();
                                 let date = timeConverter(message.created);
-
+                                
                                 if (message.to == chatUser.id) {
-                                    let className = `message outgoing${
-                                        messages[i + 1]?.to == chatUser.id
-                                            ? " messageGroup"
-                                            : ""
+                                    let className = `message ${
+                                        message.to == chatUser.id && messages[i]?.to == chatUser.id
+                                            ? "messageGroup outgoing"
+                                            : "outgoing"
                                     }`;
                                     return (
                                         <div className={className} key={v4()}>
@@ -92,9 +91,14 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
                                         </div>
                                     );
                                 } else {
+                                    let className = `message ${
+                                        message.to != chatUser.id && messages[i]?.to != chatUser.id
+                                            ? "messageGroup incoming"
+                                            : "incoming"
+                                    }`;
                                     return (
                                         <div
-                                            className="message incoming"
+                                            className={className}
                                             key={v4()}
                                         >
                                             <img

@@ -104,6 +104,18 @@ function Advert() {
         </Link>
     );
 
+    function printAdvert() {
+        // var content = document.querySelector(".advert");
+        // document.createElement('link');
+        // // link.href = 
+        // var pri = document.querySelector("#advertPrint").contentWindow;
+        // pri.document.open();
+        // pri.document.write(content.innerHTML);
+        // pri.document.close();
+        // pri.focus();
+        window.print();
+    }
+
     if (isLoading) {
         return (
             <div className="loadingSpinner">
@@ -178,7 +190,7 @@ function Advert() {
                                             title="Yuklab olish (PDF)"
                                             TransitionComponent={Zoom}
                                             arrow
-                                            onClick={() => window.print()}
+                                            onClick={() => printAdvert()}
                                         >
                                             <IconButton
                                                 variant="contained"
@@ -199,7 +211,7 @@ function Advert() {
                                                 color="primary"
                                                 className="advert__btn advert__printBtn"
                                                 sx={{ mr: 1 }}
-                                                onClick={() => window.print()}
+                                                onClick={() => printAdvert()}
                                             >
                                                 <PrintIcon />
                                             </IconButton>
