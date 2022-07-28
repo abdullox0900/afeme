@@ -17,9 +17,9 @@ function Loader() {
                 for (let i = 0; i < circles.length; i++) {
                     let width = circles[i].offsetWidth;
                     circles[i].style.width =
-                        (windowWidth > 460 ? width / 1.4 : width / 1.8) + "px";
+                        (windowWidth > 460 ? width / 1.2 : width / 1.4) + "px";
                     circles[i].style.height =
-                        (windowWidth > 460 ? width / 1.4 : width / 1.8) + "px";
+                        (windowWidth > 460 ? width / 1.2 : width / 1.4) + "px";
                 }
             }
         }

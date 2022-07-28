@@ -104,6 +104,18 @@ function Advert() {
         </Link>
     );
 
+    function printAdvert() {
+        // var content = document.querySelector(".advert");
+        // document.createElement('link');
+        // // link.href = 
+        // var pri = document.querySelector("#advertPrint").contentWindow;
+        // pri.document.open();
+        // pri.document.write(content.innerHTML);
+        // pri.document.close();
+        // pri.focus();
+        window.print();
+    }
+
     if (isLoading) {
         return (
             <div className="loadingSpinner">
@@ -143,8 +155,7 @@ function Advert() {
                                 </div>
                                 <Box className="advert__address__blog">
                                     <p className="advert__address">
-                                        {advertAddress}, {advertCity},{" "}
-                                        {data?.street} {content[lang].street}
+                                        {advertAddress}, {data?.street} {content[lang].street}
                                         <img
                                             src={arrowRight}
                                             alt=""
@@ -179,7 +190,7 @@ function Advert() {
                                             title="Yuklab olish (PDF)"
                                             TransitionComponent={Zoom}
                                             arrow
-                                            onClick={() => window.print()}
+                                            onClick={() => printAdvert()}
                                         >
                                             <IconButton
                                                 variant="contained"
@@ -200,7 +211,7 @@ function Advert() {
                                                 color="primary"
                                                 className="advert__btn advert__printBtn"
                                                 sx={{ mr: 1 }}
-                                                onClick={() => window.print()}
+                                                onClick={() => printAdvert()}
                                             >
                                                 <PrintIcon />
                                             </IconButton>
@@ -277,7 +288,7 @@ function Advert() {
                                         </Box>
                                     </Box>
                                     <Box className="sellerProfile__actions">
-                                        <Link to={ownerPage}>
+                                        <a href={`tel:${adOwner.phone}`}>
                                             <IconButton
                                                 variant="contained"
                                                 className="sellerProfile__btn sellerProfile__call"
@@ -287,7 +298,7 @@ function Advert() {
                                                     {content[lang].contactBtn}
                                                 </p>
                                             </IconButton>
-                                        </Link>
+                                        </a>
                                         {sendMsgButton}
                                     </Box>
                                 </Box>

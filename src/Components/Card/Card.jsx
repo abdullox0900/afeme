@@ -32,10 +32,10 @@ import CardImg2 from "../../Assets/Img/advertImg.jpg";
 import timesIcon from "../../Assets/Img/Icon/times.svg";
 import { logRoles } from "@testing-library/react";
 
-function Cards({ data, editDelete = false, fullCard = false, like = false }) {
+function Cards({ data, editDelete = false, fullCard = false, isUserPost = false }) {
     const { lang, setLang } = useContext(LangContext);
     const { currency, setCurrency } = useContext(CurrencyContext);
-    const { isUser, setIsUser } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
     const delModal = useRef();
 
     const [price, setPrice] = useState("");
@@ -188,8 +188,8 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
         );
     }
 
-    if (!fullCard) {
-        if (data.check) {
+    if (data.check == 'true' || isUserPost) {
+        if (!fullCard) {
             return (
                 <>
                     {isClickDelete ? deleteModal() : ""}
@@ -250,74 +250,74 @@ function Cards({ data, editDelete = false, fullCard = false, like = false }) {
                     </Card>
                 </>
             );
-        }
-    } else {
-        return (
-            <Card sx={{}} className="fullCard">
-                <Link to={advertLink}>
-                    <CardMedia
-                        className="fullCard__img"
-                        component="img"
-                        alt="Card img"
-                        image={
-                            data?.image.length > 0
-                                ? data?.image[0]?.url
-                                : CardImg
-                        }
-                        onError={(e) => (e.target.src = CardImg)}
-                    />
-                </Link>
-                <Box className="card__content">
-                    <CardContent className="card__header">
-                        <Link to={advertTypeLink} className="house__type">
-                            <img
-                                src={advertTypeImg}
-                                alt=""
-                                className="house__type__icon"
-                            />
-                            <p className="house__type__name">{advertType}</p>
-                        </Link>
-
-                        <Typography variant="body2" className="house__prices">
-                            <span className="house__price">{price}</span>
-                        </Typography>
-                    </CardContent>
-
-                    <CardContent className="card__main">
-                        <div className="card__header__items">
-                            <Link to={advertLink} className="card__title">
-                                {advertTitle}
+        } else {
+            return (
+                <Card sx={{}} className="fullCard">
+                    <Link to={advertLink}>
+                        <CardMedia
+                            className="fullCard__img"
+                            component="img"
+                            alt="Card img"
+                            image={
+                                data?.image.length > 0
+                                    ? data?.image[0]?.url
+                                    : CardImg
+                            }
+                            onError={(e) => (e.target.src = CardImg)}
+                        />
+                    </Link>
+                    <Box className="card__content">
+                        <CardContent className="card__header">
+                            <Link to={advertTypeLink} className="house__type">
+                                <img
+                                    src={advertTypeImg}
+                                    alt=""
+                                    className="house__type__icon"
+                                />
+                                <p className="house__type__name">{advertType}</p>
                             </Link>
-                        </div>
 
-                        <div className="card__wrap">
-                            <div className="card__room card__men">
-                                Xonalar: {data.room}
-                            </div>
-                            <div className="card__flet card__men">
-                                Qavat: {data.floor}
-                            </div>
-                            <div className="card__ara card__men">
-                                Maydoni: {data.total_area} m²
-                            </div>
-                        </div>
-
-                        <p className="card__desc">{data?.description}</p>
-                    </CardContent>
-                    <CardActions className="card__footer">
-                        <div className="fullCard__foot">
-                            <Typography className="house__address__bar">
-                                <LocationIcon className="card__location" />{" "}
-                                <span className="house__address">
-                                    {advertAddress}
-                                </span>
+                            <Typography variant="body2" className="house__prices">
+                                <span className="house__price">{price}</span>
                             </Typography>
-                        </div>
-                        <LoveBtn advertID={data.id} />
-                    </CardActions>
-                </Box>
-            </Card>
-        );
+                        </CardContent>
+
+                        <CardContent className="card__main">
+                            <div className="card__header__items">
+                                <Link to={advertLink} className="card__title">
+                                    {advertTitle}
+                                </Link>
+                            </div>
+
+                            <div className="card__wrap">
+                                <div className="card__room card__men">
+                                    Xonalar: {data.room}
+                                </div>
+                                <div className="card__flet card__men">
+                                    Qavat: {data.floor}
+                                </div>
+                                <div className="card__ara card__men">
+                                    Maydoni: {data.total_area} m²
+                                </div>
+                            </div>
+
+                            <p className="card__desc">{data?.description}</p>
+                        </CardContent>
+                        <CardActions className="card__footer">
+                            <div className="fullCard__foot">
+                                <Typography className="house__address__bar">
+                                    <LocationIcon className="card__location" />{" "}
+                                    <span className="house__address">
+                                        {advertAddress}
+                                    </span>
+                                </Typography>
+                            </div>
+                            <LoveBtn advertID={data.id} />
+                        </CardActions>
+                    </Box>
+                </Card>
+            );
+        }
     }
 }
 export default Cards;

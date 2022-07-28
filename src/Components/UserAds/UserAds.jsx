@@ -48,7 +48,7 @@ function UserAds() {
             
             if (user.data.posts?.length > 0) {
                 return user.data.posts.map((row) => (
-                    <Cards data={row} editDelete={true} />
+                    <Cards data={row} editDelete={true} isUserPost={true}/>
                 ));
             } else {
                 showWarning();

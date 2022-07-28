@@ -15,7 +15,8 @@ function AdvertBtn() {
     const { lang, setLang } = useContext(Context);
     const { user, setUser } = useContext(UserContext);
 
-    function checkUser() {
+    function checkUser(e) {
+        e.preventDefault();
         if (user.hasOwnProperty('data')) {
             navigate("/advertPage");
         } else {
@@ -28,7 +29,7 @@ function AdvertBtn() {
             className="btn header__button add__advert"
             variant="contained"
             sx={{ py: 1, px: 1.5, minWidth: "120px" }}
-            onClick={checkUser}
+            onClick={(e) => checkUser(e)}
         >
             <img src={plusIcon} alt="" style={{marginRight: '6px'}} />
             {content[lang].add} 

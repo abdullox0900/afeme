@@ -42,7 +42,7 @@ function Main() {
     useEffect(() => {
         setIsLoading(true);
         const result = axios
-            .get(`${url}popular/` + '8')
+            .get(`${url}popular/32`)
             .then((response) => {
                 let newData = response.data.data;
                 if (newData && newData.length > 0) {
@@ -65,9 +65,6 @@ function Main() {
                     setIP(response.data);
                     window.localStorage.setItem('IP', JSON.stringify(IP));
                 }
-            })
-            .catch((err) => {
-                console.log(err);
             });
     }, []);
 
@@ -85,7 +82,7 @@ function Main() {
             return <CardSkeleton amount={amount} />;
 
         } else if (data && !dataError) {
-            return adverts?.slice(popular ? 4 : 0, popular ? amount + 4 : 4).map((row) => {
+            return adverts?.slice(popular ? 9 : 0, popular ? amount + 9 : 9).map((row) => {
 
                 return <Cards data={row} />;
             });

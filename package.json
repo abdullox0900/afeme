@@ -1,7 +1,6 @@
 {
     "name": "afeme",
-    "version": "0.2.1",
-    "homepage": "https://Uzcoin404.github.io/Afeme",
+    "version": "0.4.0",
     "private": true,
     "dependencies": {
         "@emotion/react": "^11.9.0",
@@ -20,10 +19,8 @@
         "axios": "^0.27.2",
         "dotenv": "^16.0.1",
         "emailjs-com": "^3.2.0",
-        "jwt-decode": "^3.1.2",
         "laravel-echo": "^1.12.1",
         "node-sass": "^7.0.1",
-        "postcss-loader": "^7.0.0",
         "pusher-js": "^7.2.0",
         "react": "^18.1.0",
         "react-content-loader": "^6.2.0",

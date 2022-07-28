@@ -16,14 +16,10 @@ import Notification from "../Notification/Notification";
 import Page404 from "../../Pages/404/404";
 import Cards from "../Card/Card";
 import useWindowDimensions from "../../Utils/windowDimension";
-import MenuIcon from "../../Lib/Svg/menu";
+import ArrowLeft from "../../Lib/Svg/arrowLeft";
 import { v4 } from "uuid";
 import ArrowDown from "../../Lib/Svg/arrowDown";
 import Dots from "../../Assets/Img/Icon/dots.svg";
-import Person1 from "../../Assets/Img/person1.jpg";
-import Person2 from "../../Assets/Img/person2.jpg";
-import Person3 from "../../Assets/Img/person3.jpg";
-import HeroImg1 from "../../Assets/Img/home-hero-1.jpg";
 
 // Import => Style
 import "./Chat.scss";
@@ -73,7 +69,6 @@ function Chat() {
                             setChatUser(data.data);
                             getMessages();
                             setChatFound(true);
-                            console.log(chatUser);
                         } else {
                             setChatFound(false);
                             setMessagesData(null);
@@ -82,7 +77,6 @@ function Chat() {
                     .catch(() => {
                         setChatFound(false);
                         setMessagesData(null);
-                        console.log(chatFound);
                     });
             }
             getUser();
@@ -114,8 +108,8 @@ function Chat() {
             let hash = window.location.hash.substring(1);
             if (hash.trim() != "" && !isNaN(hash)) {
                 setChatID(hash);
-                console.log(hash);
             } else {
+                setChatID(null);
                 window.addEventListener("hashchange", getHashUrl, {
                     once: true,
                 });
@@ -125,6 +119,7 @@ function Chat() {
 
         fetch(url + "popular/", {
             method: "GET",
+            mode: 'no-cors'
         })
             .then((response) => response.text())
             .then((response) => {
@@ -175,21 +170,7 @@ function Chat() {
         }, 5000);
     }
 
-    function closeMenu() {
-        
-        function handleClickOutside(e) {
-            if ((chatMenu.current && !chatMenu.current.contains(e.target)) && !document.querySelector('.chatMenuBtn').contains(e.target)) {
-                chatMenu.current.classList.remove('active');
-            }
-        }
-
-        document.addEventListener("click", handleClickOutside);
-        return () => {
-            document.removeEventListener("click", handleClickOutside);
-        };
-    }
-    closeMenu();
-
+    console.log(!chatID, chatID);
     if (token && token.trim() != "") {
         if (user.hasOwnProperty("data")) {
             return (
@@ -205,9 +186,11 @@ function Chat() {
 
                     <ChatUsers
                         chats={chats}
+                        chatID={chatID}
                         isLoading={isLoading}
                         defaultAvatar={defaultAvatar}
                         chatMenu={chatMenu}
+                        isOpen={windowWidth < 768 && !chatID ? true : false}
                     />
 
                     <section className="messagesPanel">
@@ -219,13 +202,16 @@ function Chat() {
                                     <IconButton
                                         className="chatMenuBtn"
                                         variant="text"
+                                        color="primary"
                                         onClick={() =>
                                             chatMenu.current.classList.add(
                                                 "active"
                                             )
                                         }
                                     >
-                                        <MenuIcon />
+                                        <Link to={"/chat#"}>
+                                            <ArrowLeft />
+                                        </Link>
                                     </IconButton>
                                 )}
                                 <Box className="chatProfile">
@@ -283,27 +269,31 @@ function Chat() {
                         )}
                     </section>
 
-                    <section className="infoPanel">
-                        {/* <Box className="infoPanel__header">
+                    {windowWidth > 1280 ? (
+                        <section className="infoPanel">
+                            {/* <Box className="infoPanel__header">
                             <h5 className="infoPanel__title">
                                 Elmerdan boshqa e'lonlar
                                 <ArrowDown className="arrowDown" />
                             </h5>
                         </Box> */}
-                        <Box className="infoPanel__main">
-                            <h5 className="infoPanel__title">
-                                {content[lang].doyou}
-                                <ArrowDown className="arrowDown" />
-                                <span className="chats__indicator">4</span>
-                            </h5>
-                            <div className="infoPanel__cards">
-                                {adverts.map((advert) => (
-                                    <Cards data={advert} />
-                                ))}
-                            </div>
-                        </Box>
-                        <Box></Box>
-                    </section>
+                            <Box className="infoPanel__main">
+                                <h5 className="infoPanel__title">
+                                    {content[lang].doyou}
+                                    <ArrowDown className="arrowDown" />
+                                    <span className="chats__indicator">4</span>
+                                </h5>
+                                <div className="infoPanel__cards">
+                                    {adverts.map((advert) => (
+                                        <Cards data={advert} />
+                                    ))}
+                                </div>
+                            </Box>
+                            <Box></Box>
+                        </section>
+                    ) : (
+                        ""
+                    )}
                 </Box>
             );
         } else {
