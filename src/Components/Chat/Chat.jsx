@@ -1,5 +1,5 @@
 // Import => React
-import React, { useContext, useEffect, useState, createRef } from "react";
+import React, { useContext, useEffect, useState, createRef, useTransition } from "react";
 import { NavLink as Link, HashRouter, Route } from "react-router-dom";
 import Echo from "laravel-echo";
 import Pusher from "pusher-js";
@@ -32,7 +32,9 @@ let url = process.env.REACT_APP_URL;
 let CHATKEY = process.env.REACT_APP_CHAT_KEY;
 
 function Chat() {
+
     let token = localStorage.getItem("Token");
+    let userID = localStorage.getItem("user_id");
     let urlHash = window.location.hash.substring(1);
     let headers = new Headers();
     headers.append("Authorization", `Bearer ${token}`);
@@ -92,15 +94,15 @@ function Chat() {
         });
 
         getChats();
-        echo.channel("chat" + 458)
+        echo.channel("chat" + userID)
             .subscribed(() => {
                 console.log("You are subscribed");
             })
-            .listen("MessageSent", (data) => {
+            .listen("MessageSent", () => {
+                console.log("xabar keldi");
                 getMessages();
                 getChats();
                 showNotification();
-                console.log("xabar keldi");
             });
 
         window.addEventListener("hashchange", getHashUrl);
@@ -119,11 +121,9 @@ function Chat() {
 
         fetch(url + "popular/", {
             method: "GET",
-            mode: 'no-cors'
         })
             .then((response) => response.text())
             .then((response) => {
-                console.log(response);
                 let data = JSON.parse(response);
                 console.log(data);
             })
@@ -131,6 +131,7 @@ function Chat() {
     }, []);
 
     async function getMessages() {
+        console.log(chatID);
         await fetch(`${url}message/${chatID}`, {
             method: "DELETE",
             headers: headers,
@@ -171,7 +172,6 @@ function Chat() {
         }, 5000);
     }
 
-    console.log(!chatID, chatID);
     if (token && token.trim() != "") {
         if (user.hasOwnProperty("data")) {
             return (

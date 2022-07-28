@@ -11,6 +11,7 @@ function Provider({ children }) {
     const { updateUser, setUpdateUser } = useContext(UpdateUserContext);
     var myHeaders = new Headers();
     const token = localStorage.getItem("Token");
+    const userID = localStorage.getItem("user_id");
     let data = {};
 
     myHeaders.append("Authorization", `Bearer ${token}`);
@@ -20,6 +21,14 @@ function Provider({ children }) {
         headers: myHeaders,
         redirect: 'follow'
     };
+
+    function successData(newData) {
+        data['data'] = newData;
+        data['status'] = true;
+        data['favorites'] = newData.favorites.length;
+        localStorage.setItem('user_id', newData.id);
+        setUser(data);
+    }
 
     function setErrorData() {
         data['status'] = false;
@@ -34,10 +43,7 @@ function Provider({ children }) {
                     let status = JSON.parse(response).status;
                     let newData = JSON.parse(response).data
                     if (status == true && newData.hasOwnProperty("id")) {
-                        data['data'] = newData;
-                        data['status'] = true;
-                        data['favorites'] = newData.favorites.length;
-                        setUser(data);
+                        successData(newData);
                     } else {
                         setErrorData();
                     }
