@@ -7,14 +7,10 @@ import useResize from "../../Utils/elementDimension";
 import {
     YMaps,
     Map,
-    Placemark,
     ZoomControl,
     TypeSelector,
-    ListBox,
-    ListBoxItem,
     GeolocationControl,
     FullscreenControl,
-    ObjectManager,
 } from "react-yandex-maps";
 
 // Import Components
@@ -23,26 +19,25 @@ import Spinner from "../Spinner/Spinner";
 import "./AdvertMap.scss";
 
 function AdvertMap({ currentAdvert, zoom = 10 }) {
+    
     const [data, setData] = useState([]);
-    const [dataError, setDataError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     let url = process.env.REACT_APP_URL;
 
-
     useEffect(() => {
         setIsLoading(true);
-        const result = axios
-            .get(`${url}post`)
+        axios
+            .post(`${url}filter`)
             .then((response) => {
                 let newData = response?.data.data;
                 if (newData && newData?.length > 0) {
                     setData(response?.data.data);
                 } else {
-                    setDataError(true);
+                    setData(null);
                 }
             })
-            .catch((error) => {
-                setDataError(true);
+            .catch(() => {
+                setData(null);
             })
             .finally(() => {
                 setIsLoading(false);
@@ -50,7 +45,6 @@ function AdvertMap({ currentAdvert, zoom = 10 }) {
     }, []);
 
     const coordinate = [currentAdvert.latitude, currentAdvert.longitude];
-    let objects = [];
 
     if (isLoading) {
         return (
@@ -59,16 +53,6 @@ function AdvertMap({ currentAdvert, zoom = 10 }) {
             </div>
         );
     } else if (data?.length > 0) {
-        data.map(() => {
-            objects.push({
-                type: "Feature",
-                id: 3,
-                geometry: {
-                    type: "Point",
-                    coordinates: [24.34, 65.24],
-                },
-            });
-        });
         return (
             <YMaps
                 query={{
@@ -88,35 +72,8 @@ function AdvertMap({ currentAdvert, zoom = 10 }) {
                     <ZoomControl />
                     <GeolocationControl />
                     <FullscreenControl />
-                    {data?.map((advert) => (
-                        <AdvertPlacemark advert={advert} />
-                    ))}
-                    <ObjectManager
-                        options={{
-                            clusterize: true,
-                            gridSize: 32,
-                        }}
-                        objects={{
-                            openBalloonOnClick: true,
-                            preset: "islands#greenDotIcon",
-                        }}
-                        clusters={{
-                            preset: "islands#redClusterIcons",
-                        }}
-                        filter={(object) => object.id % 2 === 0}
-                        defaultFeatures={{
-                            type: "Feature",
-                            id: 3,
-                            geometry: {
-                                type: "Point",
-                                coordinates: [24.34, 65.24],
-                            },
-                        }}
-                        modules={[
-                            "objectManager.addon.objectsBalloon",
-                            "objectManager.addon.objectsHint",
-                        ]}
-                    />
+
+                    <AdvertPlacemark data={data} />
                 </Map>
             </YMaps>
         );

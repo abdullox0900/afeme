@@ -31,5 +31,4 @@ function Carousel() {
         </section>
     )
 }
-
 export default Carousel

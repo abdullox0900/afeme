@@ -174,13 +174,6 @@ function Nav({ elHeader }) {
                         </li>
 
                         <li className="navbar-menu__item">
-                            <ion-icon name="help-buoy-outline"></ion-icon>
-                            <Link to={'/help'} className="navbar-menu__link">
-                                {content[lang].sHelp}
-                            </Link>
-                        </li>
-
-                        <li className="navbar-menu__item">
                             <ion-icon name="enter-outline"></ion-icon>
                             <Link to={'/SignUp'} className="navbar-menu__link">
                                 {/* {content[lang].sAdd} */} Royhatdan otish

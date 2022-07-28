@@ -188,12 +188,12 @@ function AdvertPage() {
     } else {
       setTimeout(() => {
         return <Page404 />
-      }, 2000);
+      }, 1000);
     }
   } else {
     setTimeout(() => {
       return <Page404 />
-    }, 2000);
+    }, 1000);
   }  
 }
 

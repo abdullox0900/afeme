@@ -151,8 +151,8 @@ const content = {
         partners_title: 'Bizning hamkorlar',
         partners_descr: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium ducimus in, voluptate deserunt magni fugit error atque modi iure maiores possimus nesciunt? Tempore odit ratione sunt, ut dignissimos, exercitationem a mollitia necessitatibus, aliquam asperiores neque! Quae id quod voluptate quos.',
 
-        priceFrom: "dan",
-        priceTo: "gacha",
+        priceFrom: "Narxidan",
+        priceTo: "Narxigacha",
 
         chat: "Chat",
 

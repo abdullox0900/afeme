@@ -48,6 +48,7 @@
     }
     &__title {
         display: flex;
+        align-items: center;
         margin-bottom: 15px;
         color: #333;
         margin-right: 20px;
@@ -323,5 +324,14 @@
     #advertMap, header, footer, .modal, .errorBlog{
         display: none !important;
     }
-    
+    .advert__houseType{
+        margin-bottom: 15px !important;
+        margin-left: 15px !important;
+    }
+    #__replain_widget_iframe, #__replain_widget{
+        display: none !important;
+    }
+    .advert__content {
+        box-shadow: none !important;
+    }
 }
