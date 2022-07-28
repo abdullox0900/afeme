@@ -11,10 +11,9 @@ import useWindowDimensions from "../../Utils/windowDimension";
 import noChatsIcon from "../../Assets/Img/Icon/noChats.svg";
 import ArrowDown from "../../Lib/Svg/arrowDown";
 import LogoImg from "../../Lib/Svg/logo";
-import TimesIcon from "../../Lib/Svg/xmark";
 import "./ChatUsers.scss";
 
-function ChatUsers({ chats, isLoading, defaultAvatar, chatMenu }) {
+function ChatUsers({ chats, chatID, isLoading, defaultAvatar, chatMenu, isOpen }) {
     const { lang, setLang } = useContext(Context);
     const userIndicator = createRef();
     const { windowWidth } = useWindowDimensions();
@@ -77,10 +76,10 @@ function ChatUsers({ chats, isLoading, defaultAvatar, chatMenu }) {
                                 userIndicator.current.classList.remove(
                                     "active"
                                 );
-                                console.log(userIndicator.current);
+                                chatMenu.current.classList.remove("active");
                             }}
                         >
-                            <div className="chatProfile">
+                            <div className={chatID != chat.chat.id ? "chatProfile" : "chatProfile active"}>
                                 <img
                                     src={
                                         chat.user.image
@@ -134,32 +133,17 @@ function ChatUsers({ chats, isLoading, defaultAvatar, chatMenu }) {
     }
 
     return (
-        <section className="chatsPanel" ref={chatMenu}>
+        <section className={isOpen ? "chatsPanel active" : "chatsPanel"} ref={chatMenu}>
             <Box className="chatsPanel__header">
-                <div className="chatsPanel__blog">
-                    <Link to="/" className="chatsPanel__logo">
-                        <LogoImg width={45} height={45} />
-                        <h4 className="chatsPanel__header__title">
-                            {content[lang].ChatNews}
-                        </h4>
-                    </Link>
-                    <ArrowDown className="arrowDown" />
-                    {chats?.hasOwnProperty("length") ? (
-                        <span className="chats__indicator">{chats.length}</span>
-                    ) : (
-                        ""
-                    )}
-                </div>
-                {windowWidth < 768 ? (
-                    <IconButton
-                        className="chatMenuClose"
-                        variant="text"
-                        onClick={() =>
-                            chatMenu.current.classList.remove("active")
-                        }
-                    >
-                        <TimesIcon />
-                    </IconButton>
+                <Link to="/" className="chatsPanel__logo">
+                    <LogoImg width={45} height={45} />
+                    <h4 className="chatsPanel__header__title">
+                        {content[lang].ChatNews}
+                    </h4>
+                </Link>
+                <ArrowDown className="arrowDown" />
+                {chats?.hasOwnProperty("length") ? (
+                    <span className="chats__indicator">{chats.length}</span>
                 ) : (
                     ""
                 )}

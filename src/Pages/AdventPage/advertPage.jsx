@@ -186,10 +186,14 @@ function AdvertPage() {
         </>
       )
     } else {
-      return <Page404 />
+      setTimeout(() => {
+        return <Page404 />
+      }, 2000);
     }
   } else {
-    return <Page404 />
+    setTimeout(() => {
+      return <Page404 />
+    }, 2000);
   }  
 }
 

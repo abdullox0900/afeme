@@ -53,7 +53,10 @@
                 line-height: 125%;
                 color: #000000;
                 margin: 0;
-                display: inline-block;
+                -webkit-line-clamp: 1;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                display: -webkit-box;
             }
             &__text{
                 position: relative;
@@ -73,6 +76,27 @@
                     border-radius: 50%;
                     background-color: #68D391;
                 }
+            }
+        }
+        @media (max-width: 425px) {
+            .chatProfile{
+                &__img{
+                    width: 40px;
+                    height: 40px;
+                }
+                &__name{
+                    font-size: 17px;
+                }
+                &__content{
+                    padding-left: 10px;
+                }
+            }
+            &__header{
+                padding-right: 10px;
+            }
+            .header__more__btn{
+                width: 36px;
+                height: 36px;
             }
         }
     }
@@ -152,9 +176,6 @@
     .messagesPanel{
         grid-column: span 5 !important;
     }
-    .infoPanel{
-        display: none !important;
-    }
 }
 @media (max-width: 768px) {
     .chat{
@@ -163,7 +184,22 @@
     .chatsPanel{
         grid-column: span 1 !important;
     }
-    .chatProfile{
-        margin: 5px 0 !important;
+    .chat section{
+        border: none !important;
+    }
+    .messagesPanel{
+        padding: 0 0 15px 10px !important;
+    }
+}
+@media (max-width: 425px) {
+    .scrollBottom {
+        width: 40px !important;
+        height: 40px !important;
+        &.active{
+            bottom: 20px !important;
+        }
+    }
+    .messagesPanel{
+        padding: 0 0 10px 10px !important;
     }
 }

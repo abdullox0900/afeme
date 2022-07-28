@@ -28,39 +28,41 @@ import NewPassword from './Components/Forgot/newPassword/NewPassword';
 function App() {
 
     useEffect(() => {
-        if (!document.querySelector('.page404') || !document.querySelector('.chatsPanel')) {
-            window.replainSettings = { id: "c2f4a578-9a1f-49ac-9214-44448b236714" };
-            (function (u) {
-                var s = document.createElement("script");
-                s.async = true;
-                s.src = u;
-                var x = document.getElementsByTagName("script")[0];
-                x.parentNode.insertBefore(s, x);
-                x.style.zIndex = "1";
-            })("https://widget.replain.cc/dist/client.js");
+        if (window.location.pathname.substring(0, 5) != '/chat') {
+            if (!document.querySelector('.page404')) {
+                window.replainSettings = { id: "c2f4a578-9a1f-49ac-9214-44448b236714" };
+                (function (u) {
+                    var s = document.createElement("script");
+                    s.async = true;
+                    s.src = u;
+                    var x = document.getElementsByTagName("script")[0];
+                    x.parentNode.insertBefore(s, x);
+                    x.style.zIndex = "1";
+                })("https://widget.replain.cc/dist/client.js");
+            }
         }
 
-        // setTimeout(() => {
-        //     const loader = document.querySelectorAll('.loading');
-        //     if (loader.length > 0) {
-        //         for (let i = 0; i < loader.length; i++) {
-        //             loader[i]?.remove();
-        //         }
-        //     }
-        // }, 15000);
+        setTimeout(() => {
+            const loader = document.querySelectorAll('.loading');
+            if (loader.length > 0) {
+                for (let i = 0; i < loader.length; i++) {
+                    loader[i]?.remove();
+                }
+            }
+        }, 15000);
     }, [])
 
-    // document.addEventListener('readystatechange', function (event) {
-    //     if (document.readyState === "complete") {
+    document.addEventListener('readystatechange', function (event) {
+        if (document.readyState === "complete") {
             
-    //         const loader = document.querySelectorAll('.loading');
-    //         setTimeout(() => {
-    //             for (let i = 0; i < loader.length; i++) {
-    //                 loader[i].remove();
-    //             }
-    //         }, 500);
-    //     }
-    // });
+            const loader = document.querySelectorAll('.loading');
+            setTimeout(() => {
+                for (let i = 0; i < loader.length; i++) {
+                    loader[i].remove();
+                }
+            }, 500);
+        }
+    });
 
     return (
         <>
