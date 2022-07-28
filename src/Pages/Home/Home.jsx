@@ -7,7 +7,7 @@ import Categories from "../../Components/Categories/Categories";
 import Main from "../../Components/Main/Main";
 import AfemePhone from "../../Components/AfemePhone/AfemePhone"
 import Footer from "../../Components/Footer/Footer"
-import PartnersInner from "../../Components/PartnersInner/PartnersInner";
+import Carousel from "../../Components/Carousel/Carousel";
 import Header from "../../Components/Header/Header";
 import useWindowDimensions from "../../Utils/windowDimension";
 
@@ -20,7 +20,7 @@ function Home() {
             <Hero/>
             <Categories />
             <Main />
-            <PartnersInner/>
+            <Carousel />
             {windowWidth > 800 ? (<AfemePhone />) : ''}
             <Footer />
         </>

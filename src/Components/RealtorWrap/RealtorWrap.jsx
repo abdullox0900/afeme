@@ -19,19 +19,21 @@ import { useContext } from "react";
 import { Context } from "../../Context/LangContext";
 import content from "../../Localization/Content";
 import { v4 } from "uuid";
-const defaultAvatar =
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 const elLoadingArrey = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 let url = process.env.REACT_APP_URL;
 
 function RealtorWrap() {
+
     const [sort, setSort] = useState("");
     const [isLoading, setLoading] = useState(false);
     const [reltorData, setReltorsData] = useState([]);
     const { lang, setLang } = useContext(Context);
     const [items, setItems] = useState(reltorData);
+    const defaultAvatar = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU";
+
     useEffect(() => {
         setLoading(true);
         axios.get(`${url}reltors`).then((res) => {
@@ -99,23 +101,19 @@ function RealtorWrap() {
                     </h2>
 
                     <div className="realtor-wrap__box">
-                        <p className="realtor-wrap__dos">
-                            <span className="realtor-wrap__number">
-                                {reltorData.length}
-                            </span>{" "}
-                            {content[lang].reltor_lenght}
-                        </p>
-                        {/* <button className="realtor-wrap__btn" onClick={Sort}>{content[lang].reltor_sort}</button> */}
-
-                        <select
-                            name="sort"
-                            id="sort"
-                            onChange={(e) => setSort(e.target.value)}
-                        >
-                            <option value="">all</option>
-                            <option value="name">A-Z</option>
-                            <option value="number">1-5</option>
-                        </select>
+                        <p className="realtor-wrap__dos"><span className="realtor-wrap__number">{reltorData.length}</span> {content[lang].reltor_lenght}</p>
+                        <FormControl className="type">
+                            <Select
+                                id="demo-simple-select"
+                                sx={{width:'100px',height:'30px'}}
+                                defaultValue={'all'}
+                                onChange={(e) => setSort(e.target.value)}
+                            >
+                                <MenuItem value={'all'}>All</MenuItem>
+                                <MenuItem value={'name'}>A-Z</MenuItem>
+                                <MenuItem value={'number'}>1-5</MenuItem>
+                            </Select>
+                        </FormControl>
                     </div>
                     {/* <RealtorsCard /> */}
                     <div className="realtor-container">
