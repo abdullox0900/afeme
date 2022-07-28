@@ -34,38 +34,44 @@ function PartnersInner() {
         });
     }, []);
 
-    useEffect(() => {
-        if (lang == "uz") {
-            setLangData(portData?.title_uz);
-            setLangDataBody(portData?.body_uz);
-        } else if (lang == "ru") {
-            setLangData(portData?.title_ru);
-            setLangDataBody(portData?.body_ru);
-        } else if (lang == "en") {
-            setLangData(portData?.title_en);
-            setLangDataBody(portData?.body_en);
-        }
-    }, [lang]);
+    // useEffect(() => {
+    //     if (lang == "uz") {
+    //         setLangData(portData?.title_uz);
+    //         setLangDataBody(portData?.body_uz);
+    //     } else if (lang == "ru") {
+    //         setLangData(portData?.title_ru);
+    //         setLangDataBody(portData?.body_ru);
+    //     } else if (lang == "en") {
+    //         setLangData(portData?.title_en);
+    //         setLangDataBody(portData?.body_en);
+    //     }
+    // }, [lang]);
 
     return (
         <>
             <section className="partners-inner">
                 <Container>
                     <div className="partners-inner__box">
-                        <h3 className="partners-inner__title">Bizning Hamkorlar</h3>
-                        <p className="partners-inner__desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Praesentium sapiente quaerat reiciendis quas numquam a assumenda unde excepturi repellat possimus.</p>
-                                    <img
-                                        className="portners-inner__img"
-                                        src={ImgPortnor}
-                                        alt="img"
-                                        width={750}
-                                        height={300}
-                                    />
+                        <h3 className="partners-inner__title">
+                            Bizning Hamkorlar
+                        </h3>
+                        <p className="partners-inner__desc">
+                            Lorem ipsum dolor, sit amet consectetur adipisicing
+                            elit. Praesentium sapiente quaerat reiciendis quas
+                            numquam a assumenda unde excepturi repellat
+                            possimus.
+                        </p>
+                        <img
+                            className="portners-inner__img"
+                            src={ImgPortnor}
+                            alt="img"
+                            width={750}
+                            height={300}
+                        />
                     </div>
                 </Container>
             </section>
         </>
-    )
-
+    );
 }
 export default PartnersInner;

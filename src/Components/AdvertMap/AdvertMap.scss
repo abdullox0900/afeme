@@ -75,12 +75,21 @@
     &__footer{
         width: 100%;
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
         align-items: center;
         padding: 0 8px 12px 8px;
     }
     &__link{
         color: #0039aa;
+    }
+    &__address{
+        max-width: 140px;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        display: -webkit-box;
+        margin-right: 5px;
     }
 }
 @media (max-width: 576px) {

@@ -6,11 +6,31 @@ import { NavLink as Link, useNavigate } from "react-router-dom";
 import { Context } from "../../Context/LangContext";
 import { CurrencyContext } from "../../Context/CurrencyContext";
 import { UserContext } from "../../Context/UserContext";
-import { IPContext } from "../../Context/IPContext"
+import { IPContext } from "../../Context/IPContext";
 
 // Import => Mui
-import { Container, Select, IconButton, Tooltip, Button, Grow, Badge, MenuItem, Box, Menu, Avatar, Divider, ListItemIcon } from "@mui/material";
-import { Settings, Logout, Newspaper, PostAdd, Chat as ChatIcon } from "@mui/icons-material/";
+import {
+    Container,
+    Select,
+    IconButton,
+    Tooltip,
+    Button,
+    Grow,
+    Badge,
+    MenuItem,
+    Box,
+    Menu,
+    Avatar,
+    Divider,
+    ListItemIcon,
+} from "@mui/material";
+import {
+    Settings,
+    Logout,
+    Newspaper,
+    PostAdd,
+    Chat as ChatIcon,
+} from "@mui/icons-material/";
 
 // Import => images
 import flagUz from "../../Assets/Img/Icon/uz.svg";
@@ -41,6 +61,7 @@ function Header() {
     const { IP, setIP } = useContext(IPContext);
     // Logo State
     const [logoImg, setLogoImg] = useState([]);
+    const defaultAvatar = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU"
 
     const { lang, setLang } = useContext(Context);
     const { user, setUser } = useContext(UserContext);
@@ -86,7 +107,7 @@ function Header() {
         });
     }, []);
 
-    const token = localStorage.getItem("Token")
+    const token = localStorage.getItem("Token");
 
     const newImgArr = [];
 
@@ -112,17 +133,24 @@ function Header() {
                             userMenuOpen ? "account-menu" : undefined
                         }
                         aria-haspopup="true"
-                        aria-expanded={userMenuOpen ? "true" : undefined}
-                    >
-                        {
-                            (user?.data?.image) ? (
-                                < img className="user-profil__avatar" src={user?.data?.image} alt="" />
-                            ) : (
-                                <Avatar sx={{ width: 32, height: 32 }}>
-                                    {user?.data?.name.slice(0, 1)}
-                                </Avatar>
-                            )
+                        aria-expanded={
+                            userMenuOpen ? "true" : undefined
                         }
+                    >
+                        {user.data?.image ? (
+                            <img
+                                className="user-profil__avatar"
+                                src={user.data.image}
+                                alt=""
+                                onError={(e) =>
+                                    (e.target.src = defaultAvatar)
+                                }
+                            />
+                        ) : (
+                            <Avatar sx={{ width: 32, height: 32 }}>
+                                {user?.data?.name.slice(0, 1)}
+                            </Avatar>
+                        )}
                     </IconButton>
                 </Tooltip>
             </Box>
@@ -159,25 +187,31 @@ function Header() {
                         },
                     },
                 }}
-                transformOrigin={{ horizontal: "right", vertical: "top" }}
-                anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+                transformOrigin={{
+                    horizontal: "right",
+                    vertical: "top",
+                }}
+                anchorOrigin={{
+                    horizontal: "right",
+                    vertical: "bottom",
+                }}
             >
                 <MenuItem>
-                    <Link to={"/userprofil"} className="profile__menu__link">
-
-                        {
-                            (user?.data?.image) ? (
-                                < img className="user-profil__avatar" src={user?.data?.image} alt="" />
-                            ) : (
-                                <Avatar />
-                            )
-                        }
-
+                    <Link
+                        to={"/userprofil"}
+                        className="profile__menu__link"
+                    >
+                        <Avatar sx={{ width: 32, height: 32 }}>
+                            {user?.data?.name.slice(0, 1)}
+                        </Avatar>
                         {user?.data?.name} {user?.data?.lastname}
                     </Link>
                 </MenuItem>
                 <MenuItem>
-                    <Link to={"/userads"} className="profile__menu__link">
+                    <Link
+                        to={"/userads"}
+                        className="profile__menu__link"
+                    >
                         <ListItemIcon>
                             <PostAdd />
                         </ListItemIcon>
@@ -185,7 +219,10 @@ function Header() {
                     </Link>
                 </MenuItem>
                 <MenuItem>
-                    <Link to={"/usernews"} className="profile__menu__link">
+                    <Link
+                        to={"/usernews"}
+                        className="profile__menu__link"
+                    >
                         <ListItemIcon>
                             <Newspaper />
                         </ListItemIcon>
@@ -202,27 +239,24 @@ function Header() {
                 </MenuItem>
                 <Divider />
                 <MenuItem>
-                    <Link to={"/userprofil"} className="profile__menu__link">
+                    <Link
+                        to={"/userprofil"}
+                        className="profile__menu__link"
+                    >
                         <ListItemIcon>
                             <Settings fontSize="small" />
                         </ListItemIcon>
                         Sozlamalar
                     </Link>
                 </MenuItem>
-                {
-                    (token) ? (
-                        <MenuItem onClick={(e) => LogOut(e)}>
-                        <Link to={"#"} className="profile__menu__link">
-                            <ListItemIcon>
-                                <Logout fontSize="small" />
-                            </ListItemIcon>
-                            Chiqish
-                        </Link>
-                    </MenuItem>
-                    ) : (
-                        <p>salom eshek</p>
-                    )
-                }
+                <MenuItem onClick={(e) => LogOut(e)}>
+                    <Link to={"#"} className="profile__menu__link">
+                        <ListItemIcon>
+                            <Logout fontSize="small" />
+                        </ListItemIcon>
+                        Chiqish
+                    </Link>
+                </MenuItem>
             </Menu>
         </>
     );
@@ -276,11 +310,13 @@ function Header() {
                                         alt="location-img"
                                         className="header__location-img"
                                     />
-                                    {user.hasOwnProperty('data') ? lang == "uz"
-                                        ? user?.data?.region_id?.name_uz
-                                        : lang == "ru"
+                                    {user.hasOwnProperty("data")
+                                        ? lang == "uz"
+                                            ? user?.data?.region_id?.name_uz
+                                            : lang == "ru"
                                             ? user?.data?.region_id?.name_ru
-                                            : user?.data?.region_id?.name_en : IP?.region}
+                                            : user?.data?.region_id?.name_en
+                                        : IP?.region}
                                 </Button>
                             </Tooltip>
                         </div>
@@ -399,7 +435,11 @@ function Header() {
                             </div>
                             <Box className="header__buttons" sx={{ ml: 3 }}>
                                 {/* If User have Account show profile else Show Login */}
-                                {window.location.pathname != "/advertPage" ? <AdvertBtn /> : ""}
+                                {window.location.pathname != "/advertPage" ? (
+                                    <AdvertBtn />
+                                ) : (
+                                    ""
+                                )}
 
                                 {user.hasOwnProperty("data")
                                     ? profile

@@ -45,7 +45,6 @@ function Advert() {
     const [advertTypeImg, setAdvertTypeImg] = useState("");
     const [advertTypeLink, setAdvertTypeLink] = useState("");
     const [advertAddress, setAdvertAddress] = useState("");
-    const [advertCity, setAdvertCity] = useState("");
 
     if (data) {
         CardTools(
@@ -59,7 +58,6 @@ function Advert() {
             setAdvertTypeImg,
             setAdvertTypeLink,
             setAdvertAddress,
-            setAdvertCity
         );
     }
 

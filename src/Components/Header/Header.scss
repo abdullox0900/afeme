@@ -10,12 +10,10 @@
         align-items: center;
         justify-content: space-between;
     }
-
     &__logo-img {
-        width: 150px;
-        height: 50px;
+        width: 120px;
+        height: 40px;
     }
-
     &__logo {
         display: flex;
         align-items: center;
@@ -147,49 +145,27 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    margin-right: 5px;
-}
-
-
-@media only screen and (max-width: 985px) {
-    .header {
-
-        .header__items {
-            display: none;
-        }
-
-        .header__icons-nav {
-            display: none;
-        }
-
-        .header__menu-btn {
-            display: flex;
-        }
-    }
 }
 
 @media only screen and (max-width: 985px) {
     .header {
-
-        .header__items {
+        &__icons-nav, .add__advert {
             display: none;
         }
-
-        .header__icons-nav {
-            display: none;
-        }
-
-        .header__menu-btn {
+        &__menu-btn {
             display: flex;
+        }
+        &__buttons{
+            margin-left: 0;
+            margin-right: 10px;
         }
     }
 }
 
 @media only screen and (max-width: 450px) {
     .header {
- 
         .header__location {
             display: none;
         }
-         }
+    }
 }

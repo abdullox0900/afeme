@@ -74,6 +74,12 @@ function Main() {
                 const resdata = res?.data;
                 setRekData(resdata)
             })
+
+        axios.get(`${url}reltors`)
+        .then(res => {
+            const persons = res.data.data;
+            setReltData(persons)
+        })
     }, [])
 
 
@@ -90,15 +96,6 @@ function Main() {
             return <ApiError />;
         }
     }
-
-    // Axios
-    useEffect(() => {
-        axios.get(`${url}reltors`)
-            .then(res => {
-                const persons = res.data.data;
-                setReltData(persons)
-            })
-    }, [])
 
     return (
         <main className="main">

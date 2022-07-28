@@ -28,7 +28,7 @@ import "./Adverts.scss";
 let url = process.env.REACT_APP_URL;
 
 function Adverts() {
-    const navigate = useNavigate();
+
     const [searchParams, setSearchParams] = useSearchParams();
     const { currency, setCurrency } = useContext(CurrencyContext);
     const location = useLocation();
@@ -57,9 +57,10 @@ function Adverts() {
     searchTerms.append("to", to ? to : "");
     if (from && to) {
         if (from != '' && to != '') {
-            searchTerms.append("price_type", currency == 'sum' ? 'som': currency);
+            searchTerms.append("price_type", currency == 'sum' ? 'uzs': currency);
         }
     }
+    console.log(currency);
     
     useEffect(() => {
         setFormData(searchTerms);
@@ -76,12 +77,15 @@ function Adverts() {
                     setData(newData);
                     setAdverts(newData.data);
                     setTotalPages(newData.meta.last_page);
+                    console.log(newData);
                 } else {
                     setDataError(true);
+                    setAdverts([]);
                 }
             })
             .catch((error) => {
                 setDataError(true);
+                setAdverts([]);
             })
             .finally(() => {
                 setIsLoading(false);

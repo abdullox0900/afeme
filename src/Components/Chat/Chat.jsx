@@ -123,6 +123,7 @@ function Chat() {
         })
             .then((response) => response.text())
             .then((response) => {
+                console.log(response);
                 let data = JSON.parse(response);
                 console.log(data);
             })
@@ -299,12 +300,12 @@ function Chat() {
         } else {
             setTimeout(() => {
                 return <Page404 />;
-            }, 2000);
+            }, 1000);
         }
     } else {
         setTimeout(() => {
             return <Page404 />;
-        }, 2000);
+        }, 1000);
     }
 }
 export default Chat;
