@@ -5,9 +5,6 @@ import React, { useState, useEffect, useContext } from "react";
 import Container from "../Container/Container";
 import { Context as LangContext } from "../../Context/LangContext";
 
-// Import => Img Component
-import ImgPortnor from "../../Assets/Img/port-img.png";
-
 // Import => Style Component
 import "../../Components/PartnersInner/PartnersInner.scss";
 
@@ -54,13 +51,6 @@ function PartnersInner() {
                     <div className="partners-inner__box">
                         <h3 className="partners-inner__title">Bizning Hamkorlar</h3>
                         <p className="partners-inner__desc">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Praesentium sapiente quaerat reiciendis quas numquam a assumenda unde excepturi repellat possimus.</p>
-                                    <img
-                                        className="portners-inner__img"
-                                        src={ImgPortnor}
-                                        alt="img"
-                                        width={750}
-                                        height={300}
-                                    />
                     </div>
                 </Container>
             </section>

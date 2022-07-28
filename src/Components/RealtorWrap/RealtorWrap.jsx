@@ -19,6 +19,7 @@ import { useContext } from 'react';
 import { Context } from '../../Context/LangContext';
 import content from '../../Localization/Content';
 import { v4 } from "uuid";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 const elLoadingArrey = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
@@ -101,13 +102,18 @@ function RealtorWrap() {
 
                     <div className="realtor-wrap__box">
                         <p className="realtor-wrap__dos"><span className="realtor-wrap__number">{reltorData.length}</span> {content[lang].reltor_lenght}</p>
-                        {/* <button className="realtor-wrap__btn" onClick={Sort}>{content[lang].reltor_sort}</button> */}
-
-                        <select name="sort" id="sort" onChange={(e) => setSort(e.target.value)}>
-                            <option value="">all</option>
-                            <option value="name">A-Z</option>
-                            <option value="number">1-5</option>
-                        </select>
+                        <FormControl className="type">
+                            <Select
+                                id="demo-simple-select"
+                                sx={{width:'100px',height:'30px'}}
+                                defaultValue={'all'}
+                                onChange={(e) => setSort(e.target.value)}
+                            >
+                                <MenuItem value={'all'}>All</MenuItem>
+                                <MenuItem value={'name'}>A-Z</MenuItem>
+                                <MenuItem value={'number'}>1-5</MenuItem>
+                            </Select>
+                        </FormControl>
                     </div>
                     {/* <RealtorsCard /> */}
                     <div className="realtor-container">

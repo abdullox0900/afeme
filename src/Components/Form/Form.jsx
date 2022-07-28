@@ -20,9 +20,7 @@ import {
 import AfemeLogo from "../../Assets/Img/afeme-logo.svg"
 import "../../Assets/scss/colors.scss";
 import "../Form/Form.scss";
-import Error from "../Modals/Error/Error";
 import NumberControl from "../Modals/NumberControl/NumberControl";
-import Container from "../Container/Container"
 
 // Import useContext => Localization
 import { useContext } from 'react';
@@ -36,14 +34,13 @@ let url = process.env.REACT_APP_URL;
 function Form() {
     // Localization == useContext
     const { lang, setLang } = useContext(Context);
+    const [show, setShow] = useState(false)
 
     const { register, handleSubmit, formState: { errors }, watch, reset } = useForm();
     //Modal States
     const [phone_number, setPhoneNumber] = useState('')
-    const [err, setErr] = useState(false);
     const [control, setControl] = useState(false);
     const handleControl = () => setControl(true);
-    const handleErr = () => setErr(true);
     //Recieve Regions State
     const [regions, setRegions] = useState([]);
     const [experience, setExperience] = useState('');
@@ -76,11 +73,13 @@ function Form() {
         fetch(`${url}sms`, requestOptions)
             .then(response => response.text())
             .then(function (response) {
-                handleControl();
-                reset();
-            })
-            .catch(function (error) {
-                handleErr(error);
+                let status = JSON.parse(response);
+                if (status.status == true) {
+                    handleControl();
+                    setShow(false)
+                } else {
+                    setShow(true)
+                }
             })
         setPhoneNumber(data.phone)
     }
@@ -125,7 +124,6 @@ function Form() {
                 <div className="ilus">
                     <LoginImg />
                 </div>
-                <Error err={err} setErr={setErr} />
                 <NumberControl control={control} setControl={setControl} phone_number={phone_number} setPhoneNumber={setPhoneNumber} />
                 <form className="form" onSubmit={handleSubmit(onSubmit)}>
                     <img className="form_img" src={AfemeLogo} alt="" data-aos="zoom-in"
@@ -189,7 +187,9 @@ function Form() {
                             id="outlined-basic"
                             label={content[lang].form_select_las}
                             variant="outlined"
-                            {...register('lastname')}
+                            {...register('lastname', { required: `${content[lang].form_select_nam_req}` })}
+                            error={!!errors?.lastname}
+                            helperText={errors?.lastname ? errors.lastname.message : null}
                         />
                     </div>
                     {/*Email Input*/}
@@ -249,6 +249,7 @@ function Form() {
                         error={!!errors?.phone}
                         helperText={errors?.phone ? errors.phone.message : null}
                     />
+                    <p style={{ display: show ? 'block' : 'none' }}>Bu raqam mavjud</p>
                     {/* SingUp and LogIn Buttons */}
                     <div className="btns">
                         <NavLink
