@@ -30,8 +30,6 @@
         }
     }
 
-    
-
     .panel{
         width: 33%;
         padding-left: 15px;
@@ -43,10 +41,10 @@
         grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-gap: 20px;
 
-        @media (max-width: 1110px) {
+        @media (max-width: 1240px) {
             grid-template-columns: 1fr 1fr 1fr;
         }
-        @media (max-width: 930px) {
+        @media (max-width: 992px) {
             grid-template-columns: 1fr 1fr;
         }
         @media (max-width: 600px) {

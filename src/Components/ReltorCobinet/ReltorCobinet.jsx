@@ -3,13 +3,12 @@ import React, { useRef } from "react";
 import { useEffect, useState, useContext } from "react";
 
 // Import => React-Router-Dom
-import { NavLink, useParams } from "react-router-dom";
-
-// Import => Axios
+import { NavLink as Link, useParams } from "react-router-dom";
 import axios from "axios";
 
 // Import => Components
 import { Context as LangContext } from '../../Context/LangContext';
+import AdvertMap from "../AdvertMap/AdvertMap"
 import Container from "../Container/Container";
 import ZvezImgIcon from "../../Assets/Img/Icon/zvezda.svg";
 import ReytingModal from "../ReytingModal/ReytingModal";
@@ -30,8 +29,7 @@ function ReltorCobinet() {
     const { userId } = useParams()
     const [userData, setReltorUserData] = useState([])
     const { lang, setLang } = useContext(LangContext);
-    const [userLocData, setReltorUserLocData] = useState({})
-    const [userLocationData, setUserLocationData] = useState({});
+    const [userPosts, setUserPosts] = useState([]);
     const [comment, setComment] = useState([])
 
     // Skeleton useState
@@ -42,23 +40,21 @@ function ReltorCobinet() {
     useEffect(() => {
         axios.get(`${url}user/${userId}`)
             .then(res => {
-                setReltorUserLocData(res.data.data.region_id)
-                setComment(res.data.data.fullreyting);
-                setReltorUserData(res.data.data);
-                setLoading(true)
+                if (res.data.hasOwnProperty('data')) {
+                    let data = res.data.data;
+                    setComment(data.fullreyting);
+                    setReltorUserData(data);
+                    setUserPosts(data.posts);
+                    setLoading(true);
+                    console.log(userPosts);
+                } else {
+                    setReltorUserData(null);
+                }
             })
+            .catch(() => setReltorUserData(null));
     }, [])
 
-    useEffect(() => {
-        axios.get(`${url}user/${userId}`)
-            .then(res => {
-                let resData = res?.data.data.region_id
-                setReltorUserLocData(resData)
-            })
-    }, [])
-
-
-    let oldin = new Date(userData.created_at)
+    let oldin = new Date(userData?.created_at)
     let hozir = new Date()
     let diff = Math.abs(hozir - oldin);
     let total = Math.ceil(diff / (1000 * 60 * 60 * 24))
@@ -81,6 +77,15 @@ function ReltorCobinet() {
     }
 
     console.log(comment);
+
+    function showMap() {
+        if (userPosts) {
+            if (userPosts.length > 0) {
+                console.log(userPosts);
+                return <AdvertMap advert={userPosts}/>
+            }
+        }
+    }
 
     return (
         <>
@@ -237,41 +242,46 @@ function ReltorCobinet() {
                         <Skeleton width={200} height={30} />
                     )
                     }
-                    {comment?.map((com) => (
-                        <div className="comments">
-                            <div className="comment_box" key={com.id}>
-                                <div className="first">
-                                    {isLoading ? (
-                                        <p className="author">{com.author?.name} {com.author?.lastname}</p>
-                                    ) : (
-                                        <Skeleton width={160} height={20} />
-                                    )}
-                                    <div className="reting">
+                    <div className="realtor__comments">
+                        {comment?.map((com) => (
+                            <div className="comments">
+                                <div className="comment_box" key={com.id}>
+                                    <div className="first">
                                         {isLoading ? (
-                                            <ReactStars {...{
-                                                size: 25,
-                                                count: 5,
-                                                color: "#dee7ee",
-                                                activeColor: "gold",
-                                                value: Math.round(com.reting),
-                                                a11y: true,
-                                                isHalf: true,
-                                                edit: false,
-                                                emptyIcon: <StarIcon />,
-                                            }} />
+                                            <p className="author">{com.author?.name} {com.author?.lastname}</p>
                                         ) : (
-                                            <Skeleton width={150} height={30} />
+                                            <Skeleton width={160} height={20} />
                                         )}
+                                        <div className="reting">
+                                            {isLoading ? (
+                                                <ReactStars {...{
+                                                    size: 25,
+                                                    count: 5,
+                                                    color: "#dee7ee",
+                                                    activeColor: "gold",
+                                                    value: Math.round(com.reting),
+                                                    a11y: true,
+                                                    isHalf: true,
+                                                    edit: false,
+                                                    emptyIcon: <StarIcon />,
+                                                }} />
+                                            ) : (
+                                                <Skeleton width={150} height={30} />
+                                            )}
+                                        </div>
                                     </div>
+                                    {isLoading ? (
+                                        <p className="commit"> {com.comment ? com.comment : 'Foydalanuvchi izoh koldirmadi'}</p>
+                                    ) : (
+                                        <Skeleton />
+                                    )}
                                 </div>
-                                {isLoading ? (
-                                    <p className="commit"> {com.comment ? com.comment : 'Foydalanuvchi izoh koldirmadi'}</p>
-                                ) : (
-                                    <Skeleton />
-                                )}
                             </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
+                    <div className="realtor__map">
+                        {showMap()}
+                    </div>
                 </section>
             </Container>
 
