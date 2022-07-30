@@ -1,5 +1,5 @@
 // Import => React and Hooks
-import React, { useEffect, useState, useContext, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import useResize from "../../Utils/elementDimension";
 
@@ -18,20 +18,21 @@ import AdvertPlacemark from "../AdvertPlacemark/AdvertPlacemark";
 import Spinner from "../Spinner/Spinner";
 import "./AdvertMap.scss";
 
-function AdvertMap({ currentAdvert, zoom = 10 }) {
+function AdvertMap({ advert = null, zoom = 10, coordinate = [] }) {
     
-    const [data, setData] = useState([]);
+    const [data, setData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     let url = process.env.REACT_APP_URL;
 
     useEffect(() => {
         setIsLoading(true);
-        axios
+        if (!advert) {
+            axios
             .post(`${url}filter`)
             .then((response) => {
                 let newData = response?.data.data;
-                if (newData && newData?.length > 0) {
-                    setData(response?.data.data);
+                if (newData) {
+                    setData(newData);
                 } else {
                     setData(null);
                 }
@@ -42,9 +43,17 @@ function AdvertMap({ currentAdvert, zoom = 10 }) {
             .finally(() => {
                 setIsLoading(false);
             });
+        } else {
+            if (advert.hasOwnProperty('latitude') || advert.hasOwnProperty(0)) {
+                setData(advert);
+                setIsLoading(false);
+            } else {
+                setData(null);
+            }
+        }
     }, []);
 
-    const coordinate = [currentAdvert.latitude, currentAdvert.longitude];
+    coordinate = [40, 70];
 
     if (isLoading) {
         return (
@@ -52,7 +61,15 @@ function AdvertMap({ currentAdvert, zoom = 10 }) {
                 <Spinner />
             </div>
         );
-    } else if (data?.length > 0) {
+    } else if (data) {
+
+        if (data.hasOwnProperty('latitude')) {
+            coordinate = [data.latitude, data.longitude];
+    
+        } else if (data.hasOwnProperty(0)) {
+    
+            coordinate = [data[0].latitude && data[0].longitude];
+        }
         return (
             <YMaps
                 query={{

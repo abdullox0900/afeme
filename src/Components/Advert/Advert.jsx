@@ -256,7 +256,7 @@ function Advert() {
                             </Box>
 
                             <div id="advertMap">
-                                <AdvertMap currentAdvert={data} />
+                                <AdvertMap advert={data} />
                             </div>
                         </Box>
 
@@ -276,10 +276,10 @@ function Advert() {
                                             />
                                         </Link>
                                         <Box className="sellerProfile__content">
-                                            <p className="sellerProfile__title">
+                                            <Link to={ownerPage} className="sellerProfile__title">
                                                 {adOwner.name}{" "}
                                                 {adOwner.last_name}
-                                            </p>
+                                            </Link>
                                             <span className="sellerProfile__type">
                                                 {adOwner.user_type}
                                             </span>
