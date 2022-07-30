@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext, createContext } from "react";
+import React, { useContext } from "react";
 
 import Header from "../../Components/Header/Header";
 import Search from "../../Components/Search/Search";
@@ -11,7 +11,7 @@ import useWindowDimensions from "../../Utils/windowDimension";
 import "./SearchMap.scss";
 
 function SearchMap() {
-    const { IP, setIP } = useContext(IPContext);
+    const { IP } = useContext(IPContext);
     const { windowWidth } = useWindowDimensions();
 
     return (

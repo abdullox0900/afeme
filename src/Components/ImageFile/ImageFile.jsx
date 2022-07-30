@@ -51,9 +51,11 @@ function ImageFile({ photo, setPhoto }) {
                     Object.entries(res).forEach(([name, value]) => {
                         if (typeof value === 'string') {
                             arr.push(value);
-                            setPhoto(arr)
                         }
                     })
+                    if (arr.length === files.length) {
+                        setPhoto(arr)
+                    }
                 })
                 .catch(error => console.log('error', error));
         }
@@ -81,9 +83,11 @@ function ImageFile({ photo, setPhoto }) {
                     Object.entries(res).forEach(([name, value]) => {
                         if (typeof value === 'string') {
                             arr.push(value);
-                            setPhoto(arr)
                         }
                     })
+                    if (arr.length === files.length) {
+                        setPhoto(arr)
+                    }
                 })
                 .catch(error => console.log('error', error));
         }

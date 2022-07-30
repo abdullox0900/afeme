@@ -77,9 +77,9 @@ function Map({ street, setStreet, city_id, setCity, region_id, setRegionID }) {
 								key={region.id}
 								value={region.id}
 							>
-								{lang == "uz"
+								{lang === "uz"
                                 ? region.name_uz
-                                : lang == "ru"
+                                : lang === "ru"
                                 ? region.name_ru
                                 : region.name_en}
 							</MenuItem>
