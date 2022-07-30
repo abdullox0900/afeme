@@ -56,7 +56,7 @@ function AdvertPage() {
   const [region_id, setRegionID] = useState('')//Region State
   const [city_id, setCity] = useState('')// City State
   const [street, setStreet] = useState('')// Street State
-  const [house, setHouse] = useState(2)// State
+  const [house, setHouse] = useState('')// State
   const [floor, setFloor] = useState('')//Floor and Flat States
   const [flat, setFlat] = useState('')//
   const [total_area, setTotalArea] = useState('')
