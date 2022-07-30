@@ -10,6 +10,7 @@ import { Box, Typography, Container } from "@mui/material";
 import { Context as LangContext } from "../../Context/LangContext";
 import content from "../../Localization/Content";
 import { IPContext } from "../../Context/IPContext";
+import { UserContext } from "../../Context/UserContext";
 
 // Import => Components
 import CardSkeleton from "../CardSkeleton/CardSkeleton";
@@ -27,8 +28,9 @@ import "./Main.scss";
 function Main() {
     const { lang, setLang } = useContext(LangContext);
     const { IP, setIP } = useContext(IPContext);
+    const { user, setUser } = useContext(UserContext);
 
-    const [data, setData] = useState([]);
+    const [data, setData] = useState(null);
     const [adverts, setAdverts] = useState([]);
     const [dataError, setDataError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
@@ -36,12 +38,11 @@ function Main() {
 
     let url = process.env.REACT_APP_URL;
 
-    // Reltor useState
     const [reltData, setReltData] = useState([]);
 
     useEffect(() => {
         setIsLoading(true);
-        const result = axios
+        axios
             .get(`${url}popular/32`)
             .then((response) => {
                 let newData = response.data.data;
@@ -49,16 +50,16 @@ function Main() {
                     setData(response.data);
                     setAdverts(response.data.data);
                 } else {
-                    setDataError(true);
+                    setData(null)
                 }
             })
-            .catch((error) => {
-                setDataError(true);
+            .catch(() => {
+                setData(null)
             })
             .finally(() => {
                 setIsLoading(false);
             });
-        const IPResult = axios
+        axios
             .get(`https://ipapi.co/json`)
             .then((response) => {
                 if (response.status == 200) {
@@ -83,12 +84,12 @@ function Main() {
     }, [])
 
 
-    function showCards(amount, popular = false) {
+    function showCards(amount) {
         if (isLoading) {
             return <CardSkeleton amount={amount} />;
 
         } else if (data && !dataError) {
-            return adverts?.slice(popular ? 9 : 0, popular ? amount + 9 : 9).map((row) => {
+            return adverts?.slice(0, 8).map((row) => {
 
                 return <Cards data={row} />;
             });
@@ -104,21 +105,9 @@ function Main() {
                     <div className="sections">
                         <section className="section recommend">
                             <Typography variant="h3" className="section__title">
-                                {content[lang].recom_title}
-                            </Typography>
-                            <div className="cards">{showCards(4)}</div>
-                            <Box className="viewAll">
-                                <a href="/" className="viewAll__link">
-                                    {content[lang].see_desc}
-                                </a>
-                                <img src={RightArrow} alt="" />
-                            </Box>
-                        </section>
-                        <section className="section popular">
-                            <Typography variant="h3" className="section__title">
                                 {content[lang].populr_title}
                             </Typography>
-                            <div className="cards">{showCards(4, true)}</div>
+                            <div className="cards">{showCards(8)}</div>
                             <Box className="viewAll">
                                 <a href="/" className="viewAll__link">
                                     {content[lang].see_desc}

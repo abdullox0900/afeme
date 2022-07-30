@@ -20,7 +20,7 @@ const content = {
         hero_search: "Qidirish",
 
         // Main
-        recom_title: "Tavsiya etilgan turar-joy majmualari",
+        nearHomes: "Yaqin atrofdagi uylar",
         populr_title: "Ommabop Uylar",
         new_title: "Yangi Binolar",
         see_desc: "Barchasini ko’rish",
@@ -277,7 +277,7 @@ const content = {
         hero_title: "Find it. Tour it. Own it.",
         hero_search: "Search",
         // Main
-        recom_title: "Recommended residential complexes",
+        nearHomes: "Nearby houses",
         populr_title: "Popular Houses",
         new_title: "New Buildings",
         see_desc: "See more",
@@ -524,7 +524,7 @@ const content = {
         hero_title: "Найди это. Совершите поездку. Владей этим.",
         hero_search: "Поиск",
         // Main
-        recom_title: "Рекомендуемые жилые комплексы",
+        nearHomes: "Ближайшие дома",
         populr_title: "Популярные дома",
         new_title: "Новые Здания",
         see_desc: "Увидеть их всех",
