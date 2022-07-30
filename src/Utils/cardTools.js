@@ -18,25 +18,25 @@ function CardTools(data) {
 
     useEffect(() => {
         if (data.hasOwnProperty("region_id")) {
-            if (currency == "usd") {
+            if (currency === "usd") {
                 setPrice(numberFormatter(data.price_usd, "en-US", "USD"));
-            } else if (currency == "sum" && data.price_som != null) {
+            } else if (currency === "sum" && data.price_som !== null) {
                 setPrice(numberFormatter(data.price_som, "uz-UZ", "UZS"));
             }
 
             setAdvertLink(`/advert/${data.id}`);
             setAdvertTypeLink(`/adverts?htype=${data.htype_id.id}`);
 
-            if (lang == "uz") {
+            if (lang === "uz") {
                 setAdvertType(data.htype_id?.name_uz);
                 setAdvertAddress(data.region_id?.name_uz);
 
                 setAdvertTitle(
                     `${data.room} xonali ${data.htype_id?.name_uz} ${
-                        data.sale_id.id == 6 ? "Sotiladi" : "Ijaraga beriladi"
+                        data.sale_id.id === 6 ? "Sotiladi" : "Ijaraga beriladi"
                     }`
                 );
-            } else if (lang == "ru") {
+            } else if (lang === "ru") {
                 setAdvertType(data.htype_id?.name_ru);
                 setAdvertAddress(data.region_id?.name_ru);
 

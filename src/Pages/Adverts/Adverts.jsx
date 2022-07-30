@@ -58,11 +58,10 @@ function Adverts() {
     searchTerms.append("from", from ? from : "");
     searchTerms.append("to", to ? to : "");
     if (from && to) {
-        if (from != '' && to != '') {
-            searchTerms.append("price_type", currency == 'sum' ? 'uzs': currency);
+        if (from !== '' && to !== '') {
+            searchTerms.append("price_type", currency === 'sum' ? 'uzs': currency);
         }
     }
-    console.log(currency);
     
     useEffect(() => {
         setFormData(searchTerms);
@@ -112,7 +111,7 @@ function Adverts() {
 
     function pagination() {
         const changePage = (e, value) => {
-            if (currentPage != value) {
+            if (currentPage !== value) {
                 setCurrentPage(value);
                 setIsLoading(true);
             }

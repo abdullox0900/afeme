@@ -56,7 +56,7 @@ function AdvertPage() {
   const [region_id, setRegionID] = useState('')//Region State
   const [city_id, setCity] = useState('')// City State
   const [street, setStreet] = useState('')// Street State
-  const [house, setHouse] = useState(2)// State
+  const [house, setHouse] = useState('')// State
   const [floor, setFloor] = useState('')//Floor and Flat States
   const [flat, setFlat] = useState('')//
   const [total_area, setTotalArea] = useState('')
@@ -113,7 +113,7 @@ function AdvertPage() {
       })
   }
 
-  if (token && token.trim() != '') {
+  if (token && token.trim() !== '') {
     if (user.hasOwnProperty('data')) {
       return (
         <>
@@ -122,7 +122,7 @@ function AdvertPage() {
           <Success suc={suc} setSuc={setSuc} />
           <div className={style.container}>
             <article>
-    
+
               <h1 className={style.pageName}>{content[lang].advert_title}</h1>
               <h2 className={style.htypeText}>{content[lang].adverd_sotish_turi}</h2>
               <SaleType
@@ -131,15 +131,15 @@ function AdvertPage() {
               <HouseType
                 htype_id={htype_id} sethType={sethType} />
               <h2 className={style.htypeText}>{content[lang].adverd_adres_office}</h2>
-    
+
               <Map
                 house={house} setHouse={setHouse}
                 street={street} setStreet={setStreet}
                 city_id={city_id} setCity={setCity}
                 region_id={region_id} setRegionID={setRegionID} />
-    
+
               <h2 className={style.htypeText}>{content[lang].adverd_about_the_office}</h2>
-    
+
               <Date
                 date={date} setDate={setDate} />
               <Room
@@ -155,9 +155,9 @@ function AdvertPage() {
                 repair_id={repair_id} setRepair={setRepair} />
               <Material
                 material_id={material_id} setMaterial={setMaterial} />
-    
+
               <h2 className={style.htypeText}>{content[lang].adverd_documents}</h2>
-    
+
               <Docs
                 document={document} setDocs={setDocs} />
               <ImageFile
@@ -194,7 +194,7 @@ function AdvertPage() {
     setTimeout(() => {
       return <Page404 />
     }, 1000);
-  }  
+  }
 }
 
 export default AdvertPage

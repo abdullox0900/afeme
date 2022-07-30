@@ -14,10 +14,13 @@
     padding: 0 15px;
     margin-bottom: 20px;
     height: 50px;
-    width: 660px;
+    width: 320px;
     border: 1px solid #c4c4c4;
     border-radius: 5px;
     font-weight: 600;
+  }
+  .input:nth-child(odd){
+    margin-right: 20px;
   }
 
   .input::placeholder {
