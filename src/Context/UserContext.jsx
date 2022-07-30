@@ -48,7 +48,7 @@ function Provider({ children }) {
                         setErrorData();
                     }
                 })
-                .catch((error) => {
+                .catch(() => {
                     setErrorData();
                 });
         } else {

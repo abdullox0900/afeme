@@ -11,6 +11,8 @@ import {
     TypeSelector,
     GeolocationControl,
     FullscreenControl,
+    Placemark,
+    Clusterer,
 } from "react-yandex-maps";
 
 // Import Components
@@ -18,8 +20,7 @@ import AdvertPlacemark from "../AdvertPlacemark/AdvertPlacemark";
 import Spinner from "../Spinner/Spinner";
 import "./AdvertMap.scss";
 
-function AdvertMap({ advert = null, zoom = 10, coordinate = [] }) {
-    
+function AdvertMap({ advert = null, zoom = 11, coordinate = null }) {
     const [data, setData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     let url = process.env.REACT_APP_URL;
@@ -28,23 +29,23 @@ function AdvertMap({ advert = null, zoom = 10, coordinate = [] }) {
         setIsLoading(true);
         if (!advert) {
             axios
-            .post(`${url}filter`)
-            .then((response) => {
-                let newData = response?.data.data;
-                if (newData) {
-                    setData(newData);
-                } else {
+                .post(`${url}filter`)
+                .then((response) => {
+                    let newData = response?.data.data;
+                    if (newData) {
+                        setData(newData);
+                    } else {
+                        setData(null);
+                    }
+                })
+                .catch(() => {
                     setData(null);
-                }
-            })
-            .catch(() => {
-                setData(null);
-            })
-            .finally(() => {
-                setIsLoading(false);
-            });
+                })
+                .finally(() => {
+                    setIsLoading(false);
+                });
         } else {
-            if (advert.hasOwnProperty('latitude') || advert.hasOwnProperty(0)) {
+            if (advert.hasOwnProperty("latitude") || advert.hasOwnProperty(0)) {
                 setData(advert);
                 setIsLoading(false);
             } else {
@@ -53,8 +54,6 @@ function AdvertMap({ advert = null, zoom = 10, coordinate = [] }) {
         }
     }, []);
 
-    coordinate = [40, 70];
-
     if (isLoading) {
         return (
             <div className="advertMapLoader">
@@ -62,13 +61,12 @@ function AdvertMap({ advert = null, zoom = 10, coordinate = [] }) {
             </div>
         );
     } else if (data) {
-
-        if (data.hasOwnProperty('latitude')) {
-            coordinate = [data.latitude, data.longitude];
-    
-        } else if (data.hasOwnProperty(0)) {
-    
-            coordinate = [data[0].latitude && data[0].longitude];
+        if (!coordinate) {
+            if (data.hasOwnProperty("latitude")) {
+                coordinate = [data.latitude, data.longitude];
+            } else if (data.hasOwnProperty(0)) {
+                coordinate = [data[0].latitude, data[0].longitude];
+            }
         }
         return (
             <YMaps
@@ -81,6 +79,7 @@ function AdvertMap({ advert = null, zoom = 10, coordinate = [] }) {
                         center: coordinate,
                         zoom: zoom,
                         // behaviors: ["disable('scrollZoom')"],
+
                     }}
                     width="100%"
                     height="100%"
@@ -89,7 +88,6 @@ function AdvertMap({ advert = null, zoom = 10, coordinate = [] }) {
                     <ZoomControl />
                     <GeolocationControl />
                     <FullscreenControl />
-
                     <AdvertPlacemark data={data} />
                 </Map>
             </YMaps>

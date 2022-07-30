@@ -36,6 +36,7 @@ function Adverts() {
     const term = searchParams.get("term");
     const sale = searchParams.get("sale");
     const htype = searchParams.get("htype");
+    const region = searchParams.get("region");
     const room = searchParams.get("room");
     const from = searchParams.get("from");
     const to = searchParams.get("to");
@@ -52,6 +53,7 @@ function Adverts() {
     searchTerms.append("keyword", term ? term : "");
     searchTerms.append("sale_id", sale ? sale : "");
     searchTerms.append("htype", htype ? htype : "");
+    searchTerms.append("region_id", region ? region : "");
     searchTerms.append("room", room ? room : "");
     searchTerms.append("from", from ? from : "");
     searchTerms.append("to", to ? to : "");

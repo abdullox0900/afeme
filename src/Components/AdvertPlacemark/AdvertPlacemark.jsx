@@ -5,41 +5,25 @@ import { Placemark, Clusterer } from "react-yandex-maps";
 
 // Import Components
 import { Context as LangContext } from "../../Context/LangContext";
-import { UserContext } from "../../Context/UserContext";
-import { CurrencyContext } from "../../Context/CurrencyContext";
 import CardTools from "../../Utils/cardTools";
 import content from "../../Localization/Content";
 import PlacemarkIcon from "../../Assets/Img/Icon/placemark-brand.svg";
-import LoveBtn from "../LoveBtn/LoveBtn";
 
 function AdvertPlacemark({ data }) {
 
     const { lang, setLang } = useContext(LangContext);
-    const { currency, setCurrency } = useContext(CurrencyContext);
-    const [price, setPrice] = useState("");
-    const [advertTitle, setAdvertTitle] = useState("");
-    const [advertLink, setAdvertLink] = useState("");
-    const [advertType, setAdvertType] = useState("");
-    const [advertTypeLink, setAdvertTypeLink] = useState("");
-    const [advertTypeImg, setAdvertTypeImg] = useState("");
-    const [advertAddress, setAdvertAddress] = useState("");
-
     let i = 0;
-    console.log(data);
+    
     function showPlacemarks(advert) {
-
-        CardTools(
-            advert,
-            lang,
-            currency,
-            setPrice,
-            setAdvertTitle,
-            setAdvertLink,
-            setAdvertType,
-            setAdvertTypeImg,
-            setAdvertTypeLink,
-            setAdvertAddress
-        );
+        const {
+            price,
+            advertTitle,
+            advertLink,
+            advertType,
+            advertTypeImg,
+            advertTypeLink,
+            advertAddress,
+        } = CardTools(data.hasOwnProperty('latitude') ? data : data[i]);
 
         i += 1;
         return (
@@ -76,7 +60,8 @@ function AdvertPlacemark({ data }) {
             />
         );
     }
-    if (Array.isArray(data)) {
+
+    if (data) {
         return (
             <Clusterer
                 options={{

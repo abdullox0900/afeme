@@ -32,7 +32,6 @@ function Main() {
 
     const [data, setData] = useState(null);
     const [adverts, setAdverts] = useState([]);
-    const [dataError, setDataError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [rekData, setRekData] = useState([]);
 
@@ -43,7 +42,7 @@ function Main() {
     useEffect(() => {
         setIsLoading(true);
         axios
-            .get(`${url}popular/32`)
+            .get(`${url}popular/8`)
             .then((response) => {
                 let newData = response.data.data;
                 if (newData && newData.length > 0) {
@@ -88,12 +87,12 @@ function Main() {
         if (isLoading) {
             return <CardSkeleton amount={amount} />;
 
-        } else if (data && !dataError) {
+        } else if (data) {
             return adverts?.slice(0, 8).map((row) => {
 
                 return <Cards data={row} />;
             });
-        } else if (!data || dataError) {
+        } else {
             return <ApiError />;
         }
     }
@@ -126,7 +125,7 @@ function Main() {
                             </div>
                         </div>
                         <div className="panel">
-                            <div style={{marginTop:'40px'}} id="advertMap"><AdvertMap zoom={8} /></div>
+                            <div style={{marginTop:'40px'}} id="advertMap"><AdvertMap coordinate={[40.788059, 72.308069]} zoom={9}/></div>
 
                             <Box className="realtors">
                                 <Typography

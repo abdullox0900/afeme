@@ -17,7 +17,7 @@ function SearchMap() {
                 <Search map={windowWidth > 1000 ? true : false} />
                 <div className="searchMap__content">
                     <div className="searchMap__map">
-                        <AdvertMap zoom={8} />
+                        <AdvertMap coordinate={[40.788059, 72.308069]} zoom={9}/>
                     </div>
                     {windowWidth > 666 ? <MapSearch /> : ''}
                 </div>

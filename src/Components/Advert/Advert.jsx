@@ -5,7 +5,6 @@ import { Box, IconButton, Tooltip, Zoom } from "@mui/material";
 
 // Import => Components
 import { Context as LangContext } from "../../Context/LangContext";
-import { CurrencyContext } from "../../Context/CurrencyContext";
 import content from "../../Localization/Content";
 import Container from "../Container/Container";
 import Spinner from "../Spinner/Spinner";
@@ -13,12 +12,10 @@ import AdvertGallery from "../AdvertGallery/AdvertGallery";
 import CardTools from "../../Utils/cardTools";
 import AdvertMap from "../AdvertMap/AdvertMap";
 import ApiError from "../ApiError/ApiError";
-import OfflineError from "../OfflineError/OfflineError";
 import LoveBtn from "../LoveBtn/LoveBtn";
+import UserContactButtons from "../UserContactButtons/UserContactButtons";
 
 // Import => Components Img
-import callIcon from "../../Assets/Img/call.svg";
-import messageIcon from "../../Assets/Img/message.svg";
 import ShareIcon from "../../Lib/Svg/share";
 import EyeIcon from "../../Lib/Svg/eye";
 import DownloadIcon from "../../Lib/Svg/download";
@@ -35,31 +32,18 @@ function Advert() {
     const [data, setData] = useState([]);
     const [dataError, setDataError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-
     const { lang, setLang } = useContext(LangContext);
-    const { currency, setCurrency } = useContext(CurrencyContext);
-    const [price, setPrice] = useState("");
-    const [advertTitle, setAdvertTitle] = useState("");
-    const [advertLink, setAdvertLink] = useState("");
-    const [advertType, setAdvertType] = useState("");
-    const [advertTypeImg, setAdvertTypeImg] = useState("");
-    const [advertTypeLink, setAdvertTypeLink] = useState("");
-    const [advertAddress, setAdvertAddress] = useState("");
+    const userID = localStorage.getItem("user_id");
 
-    if (data) {
-        CardTools(
-            data,
-            lang,
-            currency,
-            setPrice,
-            setAdvertTitle,
-            setAdvertLink,
-            setAdvertType,
-            setAdvertTypeImg,
-            setAdvertTypeLink,
-            setAdvertAddress,
-        );
-    }
+    const {
+        price,
+        advertTitle,
+        advertLink,
+        advertType,
+        advertTypeLink,
+        advertTypeImg,
+        advertAddress,
+    } = CardTools(data);
 
     useEffect(() => {
         setIsLoading(true);
@@ -89,23 +73,11 @@ function Advert() {
 
     let adOwner = data.user;
     let ownerPage = `/reltorcob/${adOwner?.id}`;
-    let ownerChat = `/chat#${adOwner?.id}`;
-    const sendMsgButton = (
-        <Link to={ownerChat}>
-            <IconButton
-                variant="contained"
-                className="sellerProfile__btn sellerProfile__msg"
-            >
-                <img src={messageIcon} alt="" />
-                <p className="callBtn__text">{content[lang].sendMessageBtn}</p>
-            </IconButton>
-        </Link>
-    );
 
     function printAdvert() {
         // var content = document.querySelector(".advert");
         // document.createElement('link');
-        // // link.href = 
+        // // link.href =
         // var pri = document.querySelector("#advertPrint").contentWindow;
         // pri.document.open();
         // pri.document.write(content.innerHTML);
@@ -121,7 +93,6 @@ function Advert() {
             </div>
         );
     } else if (data.hasOwnProperty("id") && !dataError) {
-        
         return (
             <Box className="advert">
                 <Container>
@@ -153,7 +124,8 @@ function Advert() {
                                 </div>
                                 <Box className="advert__address__blog">
                                     <p className="advert__address">
-                                        {advertAddress}, {data?.street} {content[lang].street}
+                                        {advertAddress}, {data?.street}{" "}
+                                        {content[lang].street}
                                         <img
                                             src={arrowRight}
                                             alt=""
@@ -252,11 +224,10 @@ function Advert() {
                                 <p className="descr__text">
                                     {data?.description}
                                 </p>
-                                {sendMsgButton}
                             </Box>
 
                             <div id="advertMap">
-                                <AdvertMap advert={data} />
+                                <AdvertMap advert={data} zoom={12}/>
                             </div>
                         </Box>
 
@@ -276,7 +247,10 @@ function Advert() {
                                             />
                                         </Link>
                                         <Box className="sellerProfile__content">
-                                            <Link to={ownerPage} className="sellerProfile__title">
+                                            <Link
+                                                to={ownerPage}
+                                                className="sellerProfile__title"
+                                            >
                                                 {adOwner.name}{" "}
                                                 {adOwner.last_name}
                                             </Link>
@@ -286,18 +260,7 @@ function Advert() {
                                         </Box>
                                     </Box>
                                     <Box className="sellerProfile__actions">
-                                        <a href={`tel:${adOwner.phone}`}>
-                                            <IconButton
-                                                variant="contained"
-                                                className="sellerProfile__btn sellerProfile__call"
-                                            >
-                                                <img src={callIcon} alt="" />
-                                                <p className="callBtn__text">
-                                                    {content[lang].contactBtn}
-                                                </p>
-                                            </IconButton>
-                                        </a>
-                                        {sendMsgButton}
+                                        <UserContactButtons data={adOwner}/>
                                     </Box>
                                 </Box>
                             ) : (
