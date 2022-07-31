@@ -9,7 +9,6 @@ import noMessageIcon from "../../Assets/Img/noMessages.svg";
 import welcomeToChat from "../../Assets/Img/Icon/welcomeToChat.svg";
 
 function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
-
     let i = 0;
     useEffect(() => {
         AOS.init({
@@ -34,13 +33,26 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
         messagesBlog.scrollTop = messagesBlog.scrollHeight;
     });
 
-    function timeConverter(unix){
+    function timeConverter(unix) {
         let a = new Date(unix * 1000);
-        let months = ['Yanvar', 'Fevral', 'Mart', 'Aprel', "May", "Iyun", "Iyul", "Avgust", "Sentabr", "Oktabr", "Noyabr", "Dekabr"];
+        let months = [
+            "Yanvar",
+            "Fevral",
+            "Mart",
+            "Aprel",
+            "May",
+            "Iyun",
+            "Iyul",
+            "Avgust",
+            "Sentabr",
+            "Oktabr",
+            "Noyabr",
+            "Dekabr",
+        ];
         let month = months[a.getMonth()];
         let hour = a.getHours();
         let min = a.getMinutes();
-        let time = a.getMonth() + '-' + month + ' ' + hour + ':' + min;
+        let time = a.getMonth() + "-" + month + " " + hour + ":" + min;
         return time;
     }
 
@@ -71,10 +83,11 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
                                 i++;
                                 let messageText = message.message.trim();
                                 let date = timeConverter(message.created);
-                                
+
                                 if (message.to == chatUser.id) {
                                     let className = `message ${
-                                        message.to == chatUser.id && messages[i]?.to == chatUser.id
+                                        message.to == chatUser.id &&
+                                        messages[i]?.to == chatUser.id
                                             ? "messageGroup outgoing"
                                             : "outgoing"
                                     }`;
@@ -92,15 +105,13 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
                                     );
                                 } else {
                                     let className = `message ${
-                                        message.to != chatUser.id && messages[i]?.to != chatUser.id
+                                        message.to != chatUser.id &&
+                                        messages[i]?.to != chatUser.id
                                             ? "messageGroup incoming"
                                             : "incoming"
                                     }`;
                                     return (
-                                        <div
-                                            className={className}
-                                            key={v4()}
-                                        >
+                                        <div className={className} key={v4()}>
                                             <img
                                                 src={
                                                     chatUser.image
@@ -109,7 +120,10 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
                                                 }
                                                 alt=""
                                                 className="message__sender"
-                                                onError={(e) => e.target.src = defaultAvatar}
+                                                onError={(e) =>
+                                                    (e.target.src =
+                                                        defaultAvatar)
+                                                }
                                             />
                                             <div className="message__content">
                                                 <p className="message__text">

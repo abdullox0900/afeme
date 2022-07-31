@@ -25,19 +25,26 @@ let url = process.env.REACT_APP_URL;
 function Search({ map = false }) {
 
     const [searchParams, setSearchParams] = useSearchParams();
+    const searchTerm = searchParams.get("term");
+    const searchSale = searchParams.get("sale");
+    const searchHtype = searchParams.get("htype");
+    const searchRoom = searchParams.get("room");
+    const searchFrom = searchParams.get("from");
+    const searchTo = searchParams.get("to");
+
     const navigate = useNavigate();
     const { lang, setLang } = useContext(Context);
     const { IP, setIP } = useContext(IPContext);
     const { currency, setCurrency } = useContext(CurrencyContext);
     const { searchTerms, setSearchTerms } = useContext(SearchContext);
-    const [term, setTerm] = useState("");
+    const [term, setTerm] = useState(searchTerm);
     const [sales, setSales] = useState([]);
     const [htypes, setHtypes] = useState([]);
-    const [sale, setSale] = useState("");
-    const [htype, setHtype] = useState("");
-    const [priceFrom, setPriceFrom] = useState("");
-    const [priceTo, setPriceTo] = useState("");
-    const [room, setRoom] = useState("");
+    const [sale, setSale] = useState(searchSale);
+    const [htype, setHtype] = useState(searchHtype);
+    const [priceFrom, setPriceFrom] = useState(searchFrom);
+    const [priceTo, setPriceTo] = useState(searchTo);
+    const [room, setRoom] = useState(searchRoom);
     const [fromMax, setFromMax] = useState("");
     const [toMin, setToMin] = useState(0);
 
@@ -90,7 +97,7 @@ function Search({ map = false }) {
                 }${room ? "&room=" + room : ""
                 }${priceFrom ? "&from=" + priceFrom : ""
                 }${priceTo ? "&to=" + priceTo : ""
-                }${term ? "term=" + term : ""}`
+                }${term ? "&term=" + term : ""}`
             );
         } else {
             let formData = new FormData();
@@ -216,9 +223,7 @@ function Search({ map = false }) {
                                     height: "45px",
                                 }}
                             >
-                                <MenuItem disabled value={2}>
-                                    2
-                                </MenuItem>
+                                <MenuItem value={2}>2</MenuItem>
                                 <MenuItem value={3}>3</MenuItem>
                                 <MenuItem value={4}>4</MenuItem>
                                 <MenuItem value={5}>5</MenuItem>
@@ -379,9 +384,7 @@ function Search({ map = false }) {
                                         height: "45px",
                                     }}
                                 >
-                                    <MenuItem disabled value={2}>
-                                        2
-                                    </MenuItem>
+                                    <MenuItem value={2}>2</MenuItem>
                                     <MenuItem value={3}>3</MenuItem>
                                     <MenuItem value={4}>4</MenuItem>
                                     <MenuItem value={5}>5</MenuItem>
@@ -562,9 +565,7 @@ function Search({ map = false }) {
                                     height: "45px",
                                 }}
                             >
-                                <MenuItem disabled value={2}>
-                                    2
-                                </MenuItem>
+                                <MenuItem value={2}>2</MenuItem>
                                 <MenuItem value={3}>3</MenuItem>
                                 <MenuItem value={4}>4</MenuItem>
                                 <MenuItem value={5}>5</MenuItem>

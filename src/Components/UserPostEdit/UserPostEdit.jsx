@@ -25,13 +25,14 @@ import { v4 } from "uuid";
 import axios from "axios"
 
 // Map Variables
-const DefaultZomm = 4;
-const DefaultLocation = { lat: 41.29789837558708, lng: 69.23906484167179 };
 
 //Url Variable
-let url = process.env.REACT_APP_URL;
 
 function UserPostEdit() {
+    let url = process.env.REACT_APP_URL;
+    const DefaultZomm = 4;
+    const [longitude, setLongitude] = useState(0)
+    const [latitude, setLatitude] = useState(0)
     // Localization Context
     const { lang, setLang } = useContext(Context);
 
@@ -39,8 +40,8 @@ function UserPostEdit() {
 
     // Map 
     const [zoom, setZoom] = useState(DefaultZomm);
-    const [defaultLocation, setDefaultLocation] = useState(DefaultLocation);
-    const [location, setLocation] = useState(defaultLocation);
+    // const [location, setLocation] = useState(defaultLocation);
+    const [defaultLocation, setDefaultLocation] = useState({});
 
     // Recieve Data Post
     const [postData, setPostData] = useState([]);
@@ -52,8 +53,6 @@ function UserPostEdit() {
     const [repair_id, setUsRepair] = useState('')
     const [region_id, setRegionID] = useState('')
     const [city_id, setCity] = useState('')
-    const [longitude, setLongitude] = useState('')
-    const [latitude, setLatitude] = useState('')
     const [price_som, setPrice_som] = useState('')
     const [date, setDate] = useState('')
     const [room, setRoom] = useState('')
@@ -82,6 +81,7 @@ function UserPostEdit() {
     const [sale, setSale] = useState([]);
     const [repair, setRepair] = useState([]);
     const [materials, setMaterials] = useState([]);
+    const [tuman, settuman] = useState('buloqboshı')
 
     // Recieving Dates
     useEffect(() => {
@@ -113,8 +113,10 @@ function UserPostEdit() {
         axios.get(`${url}post/${postID}`)
             .then(function (response) {
                 setPostData(response.data);
+                setDefaultLocation({ lat: response.data.data.latitude * 1, lng: response.data.data.longitude * 1 })
             })
     }, [])
+
 
     // INitialize Dates
     useEffect(() => {
@@ -127,8 +129,6 @@ function UserPostEdit() {
             setCity(Number(postData.data.city_id.id))
             setStreet(postData.data.street)
             setHouse(postData.data.house)
-            setLongitude(Math.round(postData.data.longitude))
-            setLatitude(Math.round(postData.data.latitude))
             setKitchenArea(Number(postData.data.kitchen_area))
             setLivingArea(Number(postData.data.living_area))
             setTotalArea(Number(postData.data.total_area))
@@ -142,6 +142,7 @@ function UserPostEdit() {
             setUsDocs(postData.data.documents)
             sethDescr(postData.data.description)
             setPrice_som(Number(postData.data.price_som))
+            Selector(postData.data.region_id.id);
         }
     }, [postData])
     // Get Token
@@ -151,8 +152,8 @@ function UserPostEdit() {
     let editPost = new URLSearchParams();
     editPost.append('htype_id', htype_id);
     editPost.append('sale_id', sale_id);
-    editPost.append('longitude', longitude);
-    editPost.append('latitude', latitude);
+    editPost.append('longitude', 72);
+    editPost.append('latitude', 40);
     editPost.append('price_som', price_som);
     editPost.append('date', date);
     editPost.append('room', room);
@@ -172,6 +173,7 @@ function UserPostEdit() {
     editPost.append('kitchen_area', kitchen_area)
     editPost.append('photo', photo);
     editPost.append('video', video);
+    editPost.append('check', '')
 
     // Send Variable
     let headersList = {
@@ -187,7 +189,8 @@ function UserPostEdit() {
         }).then(function (response) {
             return response.text();
         }).then(function (data) {
-            window.location.reload()
+            console.log(data);
+            // window.location.reload()
         })
     }
 
@@ -223,8 +226,9 @@ function UserPostEdit() {
 
     // New Location
     function Location(lat, lng) {
-        setLatitude(lat)
-        setLongitude(lng)
+        setLatitude(lat * 1)
+        setLongitude(lng * 1)
+        console.log('locatıon', lat, lng);
     }
 
     // Filter 
@@ -336,6 +340,7 @@ function UserPostEdit() {
                     <div className="postEdit">
                         <h1>{content[lang].edit_postTitle}</h1>
                         <p>{postData.data?.id}{content[lang].edit_post}</p>
+
                         <div className="saleHouse">
                             <FormControl className="selectInp">
                                 <InputLabel id="Sotish turi">{content[lang].edit_saleType}</InputLabel>
@@ -432,10 +437,10 @@ function UserPostEdit() {
                                 </Select>
                             </FormControl>
                             <FormControl className="selectInp">
-                                <InputLabel id="shaxar">{content[lang].edit_City}</InputLabel>
+                                <InputLabel id="shaxar">Tuman</InputLabel>
                                 <Select
                                     id="shaxar"
-                                    label={content[lang].edit_City}
+                                    label={'Tuman'}
                                     value={city_id}
                                     onChange={(e) => setCity(e.target.value)}
                                 >
@@ -443,6 +448,7 @@ function UserPostEdit() {
                                         <MenuItem
                                             key={type.id}
                                             value={type.id}
+                                            selected={city_id == type.id ? 'selected' : null}
                                         >
                                             {lang == "uz" ? type.name_uz : lang !== "ru" ? type.name_en : type.name_ru}
                                         </MenuItem>

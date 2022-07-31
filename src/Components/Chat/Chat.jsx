@@ -12,7 +12,6 @@ import ChatUsers from "../ChatUsers/ChatUsers";
 import ChatMessages from "../ChatMessages/ChatMessages";
 import ChatSend from "../ChatSend/ChatSend";
 import { UserContext } from "../../Context/UserContext";
-import Notification from "../Notification/Notification";
 import Page404 from "../../Pages/404/404";
 import Cards from "../Card/Card";
 import useWindowDimensions from "../../Utils/windowDimension";
@@ -32,7 +31,9 @@ let url = process.env.REACT_APP_URL;
 let CHATKEY = process.env.REACT_APP_CHAT_KEY;
 
 function Chat() {
+
     let token = localStorage.getItem("Token");
+    let userID = localStorage.getItem("user_id");
     let urlHash = window.location.hash.substring(1);
     let headers = new Headers();
     headers.append("Authorization", `Bearer ${token}`);
@@ -43,7 +44,7 @@ function Chat() {
     const [adverts, setAdverts] = useState([]);
     const [chats, setChats] = useState(null);
     const [chatID, setChatID] = useState(
-        urlHash.trim() != "" && !isNaN(urlHash) ? urlHash : null
+        urlHash.trim() != "" && !isNaN(urlHash) && urlHash != userID ? urlHash : null
     );
     const [chatUser, setChatUser] = useState();
     const [isLoading, setIsLoading] = useState(true);
@@ -92,21 +93,21 @@ function Chat() {
         });
 
         getChats();
-        echo.channel("chat" + 458)
+        echo.channel("chat" + userID)
             .subscribed(() => {
                 console.log("You are subscribed");
             })
-            .listen("MessageSent", (data) => {
+            .listen("MessageSent", () => {
+                console.log("xabar keldi");
                 getMessages();
                 getChats();
                 showNotification();
-                console.log("xabar keldi");
             });
 
         window.addEventListener("hashchange", getHashUrl);
         function getHashUrl() {
             let hash = window.location.hash.substring(1);
-            if (hash.trim() != "" && !isNaN(hash)) {
+            if (hash.trim() != "" && !isNaN(hash) && hash != userID) {
                 setChatID(hash);
             } else {
                 setChatID(null);
@@ -119,7 +120,6 @@ function Chat() {
 
         fetch(url + "popular/", {
             method: "GET",
-            mode: 'no-cors'
         })
             .then((response) => response.text())
             .then((response) => {
@@ -127,9 +127,17 @@ function Chat() {
                 console.log(data);
             })
             .catch((error) => console.log(error));
+
+        setTimeout(() => {
+            Notification.requestPermission().then((result) => {
+                console.log(result);
+            });
+        }, 3000);
+
     }, []);
 
     async function getMessages() {
+        console.log(chatID);
         await fetch(`${url}message/${chatID}`, {
             method: "DELETE",
             headers: headers,
@@ -164,26 +172,14 @@ function Chat() {
     }
 
     function showNotification() {
-        setNotificationOpen(true);
-        setTimeout(() => {
-            setNotificationOpen(false);
-        }, 5000);
+        const notification = new Notification('To do list', { body: chats[0].latest.message, icon: chats[0].user.image ? chats[0].user.image : defaultAvatar });
     }
 
-    console.log(!chatID, chatID);
     if (token && token.trim() != "") {
         if (user.hasOwnProperty("data")) {
             return (
                 <Box className="chat">
-                    {notificationOpen ? (
-                        <Notification
-                            message={chats[0]?.latest?.message.slice(0, 50)}
-                            type={"success"}
-                        />
-                    ) : (
-                        ""
-                    )}
-
+                    
                     <ChatUsers
                         chats={chats}
                         chatID={chatID}
@@ -299,12 +295,12 @@ function Chat() {
         } else {
             setTimeout(() => {
                 return <Page404 />;
-            }, 2000);
+            }, 1000);
         }
     } else {
         setTimeout(() => {
             return <Page404 />;
-        }, 2000);
+        }, 1000);
     }
 }
 export default Chat;

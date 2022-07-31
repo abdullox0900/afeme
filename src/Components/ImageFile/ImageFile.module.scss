@@ -7,6 +7,7 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        margin-top: 15px;
         .img {
             position: relative;
             .img1 {
@@ -74,6 +75,25 @@
                 display: none;
             }
         }
+    }
+    .addImgInp {
+        display: none;
+    }
+    .addImgBtn {
+        min-width: 420px;
+        background-color: $darkBlue;
+        border: 2px solid $darkBlue;
+        color: $white;
+        padding: 8px 169px;
+        border-radius: 10px;
+        text-align: center;
+    }
+    .addImgBtn:hover,
+    .addImgBtn:active,
+    .addImgBtn:focus {
+        cursor: pointer;
+        background-color: $white;
+        color: $darkBlue;
     }
 }
 .btns {

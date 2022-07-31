@@ -10,7 +10,6 @@ let url = process.env.REACT_APP_URL;
 
 function MapSearch() {
     const [data, setData] = useState([]);
-    const [dataError, setDataError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const { searchTerms, setSearchTerms } = useContext(SearchContext);
 
@@ -27,11 +26,11 @@ function MapSearch() {
                 if (!newData.hasOwnProperty("status")) {
                     setData(newData.data);
                 } else {
-                    setDataError(true);
+                    setData([]);
                 }
             })
-            .catch((error) => {
-                setDataError(true);
+            .catch(() => {
+                setData([]);
             })
             .finally(() => {
                 setIsLoading(false);

@@ -20,7 +20,7 @@ const content = {
         hero_search: "Qidirish",
 
         // Main
-        recom_title: "Tavsiya etilgan turar-joy majmualari",
+        nearHomes: "Yaqin atrofdagi uylar",
         populr_title: "Ommabop Uylar",
         new_title: "Yangi Binolar",
         see_desc: "Barchasini ko’rish",
@@ -52,6 +52,7 @@ const content = {
         from_select_nam: "Ism",
         form_select_nam_req: "Ism kiriting",
         form_select_las: "Familiya",
+        form_select_las_req: "Familiya kiting",
         form_select_email: "Email",
         form_select_email_req: "Email manzili kiriting",
         form_select_email_err: "Email manzili noto‘g‘ri",
@@ -115,6 +116,7 @@ const content = {
         adverd_adres_office: "Ofis manzili",
         adverd_adres_city: "Shahar",
         adverd_office: "Manzil",
+        adverd_house_num: "Uy Raqami",
         adverd_about_the_office: "Ofis Haqida",
         adverd_about_1: "Qurilgan Yili:",
         adverd_about_2: "Honalar soni:",
@@ -150,8 +152,8 @@ const content = {
         partners_title: 'Bizning hamkorlar',
         partners_descr: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium ducimus in, voluptate deserunt magni fugit error atque modi iure maiores possimus nesciunt? Tempore odit ratione sunt, ut dignissimos, exercitationem a mollitia necessitatibus, aliquam asperiores neque! Quae id quod voluptate quos.',
 
-        priceFrom: "dan",
-        priceTo: "gacha",
+        priceFrom: "Narxidan",
+        priceTo: "Narxigacha",
 
         chat: "Chat",
 
@@ -276,7 +278,7 @@ const content = {
         hero_title: "Find it. Tour it. Own it.",
         hero_search: "Search",
         // Main
-        recom_title: "Recommended residential complexes",
+        nearHomes: "Nearby houses",
         populr_title: "Popular Houses",
         new_title: "New Buildings",
         see_desc: "See more",
@@ -304,7 +306,8 @@ const content = {
         form_select_vil: "Province",
         from_select_nam: "Name",
         form_select_nam_req: "Enter name",
-        form_select_las: "Surname",
+        form_select_las: "Lastname",
+        form_select_las_req: "Enter lastname",
         form_select_email: "Email",
         form_select_email_req: "Enter your email address",
         form_select_email_err: "The email address is invalid",
@@ -363,6 +366,7 @@ const content = {
         adverd_adres_office: "Office address",
         adverd_adres_city: "City",
         adverd_office: "Address",
+        adverd_house_num: "House number",
         adverd_about_the_office: "About the office",
         adverd_about_1: "Built Year:",
         adverd_about_2: "Number of rooms:",
@@ -522,7 +526,7 @@ const content = {
         hero_title: "Найди это. Совершите поездку. Владей этим.",
         hero_search: "Поиск",
         // Main
-        recom_title: "Рекомендуемые жилые комплексы",
+        nearHomes: "Ближайшие дома",
         populr_title: "Популярные дома",
         new_title: "Новые Здания",
         see_desc: "Увидеть их всех",
@@ -551,6 +555,7 @@ const content = {
         from_select_nam: "Имя",
         form_select_nam_req: "Введите имя",
         form_select_las: "Фамилия",
+        form_select_las_req: "Введите фамилию",
         form_select_email: "Элек. почта",
         form_select_email_req: "Введите ваш адрес элек. почты",
         form_select_email_err: "Адрес элек. почты недействителен",
@@ -609,6 +614,7 @@ const content = {
         adverd_adres_office: "Адрес офиса",
         adverd_adres_city: "Город",
         adverd_office: "Адрес",
+        adverd_house_num: "№ дома",
         adverd_about_the_office: "О офисе",
         adverd_about_1: "Год постройки:",
         adverd_about_2: "Количество комнат:",

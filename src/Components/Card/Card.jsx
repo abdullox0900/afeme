@@ -38,47 +38,34 @@ function Cards({ data, editDelete = false, fullCard = false, isUserPost = false 
     const { user, setUser } = useContext(UserContext);
     const delModal = useRef();
 
-    const [price, setPrice] = useState("");
-    const [advertTitle, setAdvertTitle] = useState("");
-    const [advertLink, setAdvertLink] = useState("");
-    const [advertType, setAdvertType] = useState("");
-    const [advertTypeImg, setAdvertTypeImg] = useState("");
-    const [advertTypeLink, setAdvertTypeLink] = useState("");
-    const [advertAddress, setAdvertAddress] = useState("");
-    const [advertCity, setAdvertCity] = useState("");
     const [isClickDelete, setIsClickDelete] = useState(false);
     const [isAdvertDelete, setIsAdvertDelete] = useState(false);
     const [CardImg, setCardImg] = useState();
 
-    CardTools(
-        data,
-        lang,
-        currency,
-        setPrice,
-        setAdvertTitle,
-        setAdvertLink,
-        setAdvertType,
-        setAdvertTypeImg,
-        setAdvertTypeLink,
-        setAdvertAddress,
-        setAdvertCity
-    );
-
-    useEffect(() => {
-        setCardImg(Math.floor(Math.random() * 2) == 0 ? CardImg1 : CardImg2);
-    }, []);
-
     const token = localStorage.getItem("Token");
     var myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${token}`);
-
+    
     let requestOptions = {
         method: "DELETE",
         headers: myHeaders,
         redirect: "follow",
     };
-
     let url = process.env.REACT_APP_URL;
+
+    const {
+        price,
+        advertTitle,
+        advertLink,
+        advertType,
+        advertTypeLink,
+        advertTypeImg,
+        advertAddress,
+    } = CardTools(data);
+
+    useEffect(() => {
+        setCardImg(Math.floor(Math.random() * 2) == 0 ? CardImg1 : CardImg2);
+    }, []);
 
     const Delete = (id, delButton) => {
         delButton.disabled = true;

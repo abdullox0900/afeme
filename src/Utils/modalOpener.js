@@ -1,12 +1,7 @@
-import React, { useContext } from "react";
-
 function CheckUserLogin(e, user) {
 
-    e.preventDefault();
-
-    if (user.hasOwnProperty('data')) {
-        console.log("links allowed!");
-    } else {
+    if (!user.hasOwnProperty('data')) {
+        e.preventDefault();
         document.querySelector('.loginModal').classList.add('modal--open');
     }
 }

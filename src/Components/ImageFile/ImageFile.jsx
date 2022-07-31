@@ -18,7 +18,7 @@ let url = process.env.REACT_APP_URL;
 function ImageFile({ photo, setPhoto }) {
     const [image, setImage] = useState([]);
     const { lang, setLang } = useContext(Context);
-
+    const [show, setShow] = useState(false)
     const [img, setImg] = useState(false);
     function startImageHandler(e) {
         e.preventDefault();
@@ -37,6 +37,7 @@ function ImageFile({ photo, setPhoto }) {
         redirect: 'follow'
     };
 
+
     function dropImageHandler(e) {
         e.preventDefault();
         let files = [...e.dataTransfer.files]
@@ -50,15 +51,19 @@ function ImageFile({ photo, setPhoto }) {
                     Object.entries(res).forEach(([name, value]) => {
                         if (typeof value === 'string') {
                             arr.push(value);
-                            setPhoto(arr)
                         }
                     })
+                    if (arr.length === files.length) {
+                        setPhoto(arr)
+                    }
                 })
                 .catch(error => console.log('error', error));
         }
         setImage(files)
         setImg(false)
+        setShow(true)
     }
+
 
     let Select = new FormData();
     let select = {
@@ -78,9 +83,11 @@ function ImageFile({ photo, setPhoto }) {
                     Object.entries(res).forEach(([name, value]) => {
                         if (typeof value === 'string') {
                             arr.push(value);
-                            setPhoto(arr)
                         }
                     })
+                    if (arr.length === files.length) {
+                        setPhoto(arr)
+                    }
                 })
                 .catch(error => console.log('error', error));
         }
@@ -92,9 +99,39 @@ function ImageFile({ photo, setPhoto }) {
         setPhoto(photo);
     }
 
+    let newImage = new FormData();
+    let newPicture = {
+        method: 'POST',
+        body: newImage,
+        redirect: 'follow'
+    };
+
+    function addImage(e) {
+        let files = [...e];
+        for (let i = 0; i < files.length; i++) {
+            newImage.append('key', 'Service For C Group')
+            newImage.append('file', files[i])
+            fetch(`${url}service`, newPicture)
+                .then(response => response.text())
+                .then(function (response) {
+                    let res = JSON.parse(response);
+                    Object.entries(res).forEach(([name, value]) => {
+                        if (typeof value === 'string') {
+                            let array = [...photo]
+                            array = [...array, value]
+                            setPhoto(array);
+                        }
+                    })
+                })
+                .catch(error => console.log('error', error));
+        }
+    }
+
     return (
         <div className={style.wrapper}>
             <p>{content[lang].adverd_office_img}</p>
+            <label htmlFor="addImgBtn" className={style.addImgBtn} style={{ display: show ? '' : 'none' }}>Add Image</label>
+            <input type='file' className={style.addImgInp} id="addImgBtn" onChange={e => addImage(e.target.files)}></input>
             <div className={style.images}>
                 {photo.map((i) => (
                     <div className={style.img} key={v4()}>
@@ -103,7 +140,7 @@ function ImageFile({ photo, setPhoto }) {
                     </div>
                 ))}
             </div>
-            <div className={style.imgF}>
+            <div className={style.imgF} style={{ display: show ? 'none' : '' }}>
                 {img
                     ? <div
                         className={style.dragArea}

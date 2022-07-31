@@ -100,6 +100,7 @@ function NumberControl({ control, setControl, phone_number, setPhoneNumber }) {
                         className="form__input form__input-lastname"
                         id="outlined-basic"
                         variant="outlined"
+                        placeholder='Default: 1234'
                         sx={{ mt: 2, mb: 2, width: "260px" }}
                         {...register('code', { required: `${content[lang].codemessage}` })}
                         error={!!errors?.code}

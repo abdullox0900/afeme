@@ -28,7 +28,7 @@ import "./Adverts.scss";
 let url = process.env.REACT_APP_URL;
 
 function Adverts() {
-    const navigate = useNavigate();
+
     const [searchParams, setSearchParams] = useSearchParams();
     const { currency, setCurrency } = useContext(CurrencyContext);
     const location = useLocation();
@@ -36,6 +36,7 @@ function Adverts() {
     const term = searchParams.get("term");
     const sale = searchParams.get("sale");
     const htype = searchParams.get("htype");
+    const region = searchParams.get("region");
     const room = searchParams.get("room");
     const from = searchParams.get("from");
     const to = searchParams.get("to");
@@ -52,12 +53,13 @@ function Adverts() {
     searchTerms.append("keyword", term ? term : "");
     searchTerms.append("sale_id", sale ? sale : "");
     searchTerms.append("htype", htype ? htype : "");
+    searchTerms.append("region_id", region ? region : "");
     searchTerms.append("room", room ? room : "");
     searchTerms.append("from", from ? from : "");
     searchTerms.append("to", to ? to : "");
     if (from && to) {
-        if (from != '' && to != '') {
-            searchTerms.append("price_type", currency == 'sum' ? 'som': currency);
+        if (from !== '' && to !== '') {
+            searchTerms.append("price_type", currency === 'sum' ? 'uzs': currency);
         }
     }
     
@@ -76,12 +78,15 @@ function Adverts() {
                     setData(newData);
                     setAdverts(newData.data);
                     setTotalPages(newData.meta.last_page);
+                    console.log(newData);
                 } else {
                     setDataError(true);
+                    setAdverts([]);
                 }
             })
             .catch((error) => {
                 setDataError(true);
+                setAdverts([]);
             })
             .finally(() => {
                 setIsLoading(false);
@@ -106,7 +111,7 @@ function Adverts() {
 
     function pagination() {
         const changePage = (e, value) => {
-            if (currentPage != value) {
+            if (currentPage !== value) {
                 setCurrentPage(value);
                 setIsLoading(true);
             }

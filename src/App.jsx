@@ -58,7 +58,7 @@ function App() {
             const loader = document.querySelectorAll('.loading');
             setTimeout(() => {
                 for (let i = 0; i < loader.length; i++) {
-                    loader[i].remove();
+                    loader[i]?.remove();
                 }
             }, 500);
         }
