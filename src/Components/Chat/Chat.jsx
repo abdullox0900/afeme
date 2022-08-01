@@ -65,7 +65,6 @@ function Chat() {
                     .then((response) => response.text())
                     .then((response) => {
                         let data = JSON.parse(response);
-                        console.log(data);
                         if (data.hasOwnProperty("data")) {
                             setChatUser(data.data);
                             getMessages();
@@ -124,7 +123,6 @@ function Chat() {
             .then((response) => response.text())
             .then((response) => {
                 let data = JSON.parse(response);
-                console.log(data);
             })
             .catch((error) => console.log(error));
 
@@ -137,7 +135,6 @@ function Chat() {
     }, []);
 
     async function getMessages() {
-        console.log(chatID);
         await fetch(`${url}message/${chatID}`, {
             method: "DELETE",
             headers: headers,
@@ -145,7 +142,6 @@ function Chat() {
             .then((response) => response.text())
             .then((response) => {
                 let data = JSON.parse(response);
-                console.log(data);
                 if (data) {
                     setMessagesData(data);
                 } else {
@@ -162,7 +158,6 @@ function Chat() {
             .then((response) => response.text())
             .then((response) => {
                 let res = JSON.parse(response);
-                console.log(res);
                 setChats(res);
             })
             .catch(() => {

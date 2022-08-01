@@ -22,7 +22,6 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
     let scrollBottomBtn = document.querySelector(".scrollBottom");
 
     messagesBlog?.addEventListener("scroll", function () {
-        console.log();
         if (this.scrollHeight - this.clientHeight - this.scrollTop > 400) {
             scrollBottomBtn.classList.add("active");
         } else {

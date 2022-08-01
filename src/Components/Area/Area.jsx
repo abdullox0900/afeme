@@ -43,6 +43,7 @@ function Area({ total_area, setTotalArea, living_area, setLivingArea, kitchen_ar
                             value={total_area_type}
                             onChange={(e) => setTotalAreaType(e.target.value)}
                         >
+                            <option value=''>Tanlang</option>
                             <option value="m2">{content[lang].adverd_about_36}</option>
                             <option value="ar">{content[lang].adverd_about_37}</option>
                         </select>

@@ -78,7 +78,6 @@ function Adverts() {
                     setData(newData);
                     setAdverts(newData.data);
                     setTotalPages(newData.meta.last_page);
-                    console.log(newData);
                 } else {
                     setDataError(true);
                     setAdverts([]);

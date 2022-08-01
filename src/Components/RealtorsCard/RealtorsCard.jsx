@@ -39,7 +39,6 @@ function RealtorsCard() {
                 const persons = res.data.data;
                 setReltorsData(persons);
                 setLoading(false);
-                console.log(res.data.data);
             });
         }, 5000);
     }, []);
@@ -90,7 +89,6 @@ function RealtorsCard() {
                           );
                       })
                     : reltorData.map((reltor) => {
-                        console.log(reltor);
                           return (
                               <ul className="reltor-card__list" key={reltor.id}>
                                   <NavLink to={`/reltorcob/${reltor.id}`}>

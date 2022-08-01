@@ -39,7 +39,7 @@ function Docs({ document, setDocs }) {
         let res = JSON.parse(response)
         setDocs(res.data)
       })
-      .catch(error => console.log('error', error));
+      .catch(error => console.log( error));
   }
 
   return (

@@ -1,5 +1,8 @@
 @import "../../Assets/scss/colors.scss";
-
+p {
+    padding: 0;
+    margin: 0;
+}
 .loadingSpinner {
     height: 500px;
     width: 100%;
@@ -159,12 +162,12 @@
         width: 30%;
     }
     .sellerProfile {
+        position: sticky;
+        top: 15px;
         box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
         border-radius: 10px;
         padding: 15px 20px;
         margin-bottom: 30px;
-        position: sticky;
-        top: 15px;
         &__header {
             margin-top: 20px;
         }
@@ -183,6 +186,7 @@
             justify-content: center;
         }
         &__title {
+            text-transform: capitalize;
             font-weight: 600;
             font-size: 20px;
             line-height: 23px;
@@ -190,6 +194,7 @@
             color: #000;
         }
         &__type {
+            text-transform: capitalize;
             font-weight: 500;
             font-size: 14px;
             line-height: 20px;
@@ -216,102 +221,125 @@
             height: 16px;
         }
     }
+    .more {
+        box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        padding: 15px 20px;
+        position: sticky;
+        top: 240px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+        .areas {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+        }
+    }
 }
 
 @media (max-width: 1200px) {
-    .advert{
-        &__title{
+    .advert {
+        &__title {
             flex-wrap: wrap;
         }
-        &__houseType{
+        &__houseType {
             margin: 15px 0 5px;
         }
     }
 }
 
 @media (max-width: 950px) {
-    .advert{
+    .advert {
         &__blog {
             flex-direction: column;
         }
-        &__content{
+        &__content {
             width: 100%;
             margin: 0;
         }
-        &__panel{
+        &__panel {
             width: 100%;
         }
         .sellerProfile__header {
             justify-content: center;
         }
-        #advertMap{
+        #advertMap {
             height: 440px;
         }
     }
 }
 
 @media (max-width: 640px) {
-    .advert{
+    .advert {
         margin-top: 25px;
-        &__about__header{
+        &__about__header {
             flex-direction: column-reverse;
         }
-        .advertPrice{
+        .advertPrice {
             font-size: 28px;
             margin-bottom: 10px;
         }
-        #advertMap{
+        #advertMap {
             height: 400px;
         }
-        &__title__content{
+        &__title__content {
             font-size: 22px;
             line-height: 26pz;
         }
     }
 }
 @media (max-width: 425px) {
-    .advert{
-        &__title__content{
+    .advert {
+        &__title__content {
             font-size: 20px;
         }
-        .advertPrice{
+        .advertPrice {
             font-size: 24px;
         }
-        .advertGallery{
+        .advertGallery {
             margin-top: 20px;
         }
-        .advert__main__image  .splide__slide {
+        .advert__main__image .splide__slide {
             height: 330px !important;
         }
-        .advertGallery .splide__main__img{
+        .advertGallery .splide__main__img {
             max-height: 330px;
         }
     }
 }
 @media (max-width: 380px) {
-    .advert{
+    .advert {
         margin-top: 20px;
-        &__address__blog{
+        &__address__blog {
             font-size: 14px;
         }
-        .advert__main__image  .splide__slide {
+        .advert__main__image .splide__slide {
             height: 300px !important;
         }
-        .advertGallery .splide__main__img{
+        .advertGallery .splide__main__img {
             max-height: 300px;
         }
     }
 }
 
 @media print {
-    #advertMap, header, footer, .modal, .errorBlog{
+    #advertMap,
+    header,
+    footer,
+    .modal,
+    .errorBlog {
         display: none !important;
     }
-    .advert__houseType{
+    .advert__houseType {
         margin-bottom: 15px !important;
         margin-left: 15px !important;
     }
-    #__replain_widget_iframe, #__replain_widget{
+    #__replain_widget_iframe,
+    #__replain_widget {
         display: none !important;
     }
     .advert__content {

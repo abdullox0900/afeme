@@ -40,7 +40,6 @@ function UserPostEdit() {
 
     // Map 
     const [zoom, setZoom] = useState(DefaultZomm);
-    // const [location, setLocation] = useState(defaultLocation);
     const [defaultLocation, setDefaultLocation] = useState({});
 
     // Recieve Data Post
@@ -152,8 +151,8 @@ function UserPostEdit() {
     let editPost = new URLSearchParams();
     editPost.append('htype_id', htype_id);
     editPost.append('sale_id', sale_id);
-    editPost.append('longitude', 72);
-    editPost.append('latitude', 40);
+    editPost.append('longitude', longitude);
+    editPost.append('latitude', latitude);
     editPost.append('price_som', price_som);
     editPost.append('date', date);
     editPost.append('room', room);
@@ -189,8 +188,7 @@ function UserPostEdit() {
         }).then(function (response) {
             return response.text();
         }).then(function (data) {
-            console.log(data);
-            // window.location.reload()
+            window.location.reload()
         })
     }
 
@@ -226,9 +224,8 @@ function UserPostEdit() {
 
     // New Location
     function Location(lat, lng) {
-        setLatitude(lat * 1)
-        setLongitude(lng * 1)
-        console.log('locatıon', lat, lng);
+        setLatitude(lat)
+        setLongitude(lng)
     }
 
     // Filter 

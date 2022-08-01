@@ -33,8 +33,6 @@ function NewPassword() {
                 if (i != 'false') {
                     setHide(true)
                     setMain(false)
-                } else {
-                    console.log(response);
                 }
             })
         reset();

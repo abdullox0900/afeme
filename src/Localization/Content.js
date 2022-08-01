@@ -259,6 +259,19 @@ const content = {
         edit_Descr: 'Tavsif',
         edit_Price: 'Narhi',
         edit_Submit: 'Tasdiqlash',
+
+        // Advert Tools
+        advert_id:'Elon Raqami',
+        advert_areas:'maydoni',
+        advert_kitchen:'Oshxona',
+        advert_living:'Yashash',
+        advert_total:'Umumiy',
+        advert_flat:'qavatli',
+        advert_floor:'qavat',
+        advert_date:'Qurilgan yili',
+        advert_year:'yil',
+        advert_materials:'Materiallar',
+        advert_repairs:'Tamir holati',
     },
     en: {
         chat: "Chat",
@@ -507,6 +520,19 @@ const content = {
         edit_Descr: 'Description',
         edit_Price: 'Price',
         edit_Submit: 'Affirmation',
+
+        // Advert Tools
+        advert_id:'Post ID',
+        advert_areas:'square',
+        advert_kitchen:'Kitchen',
+        advert_living:'Residential',
+        advert_total:'Total',
+        advert_flat:'flat',
+        advert_floor:'floor',
+        advert_date:'Built year',
+        advert_year:'year',
+        advert_materials:'Materails',
+        advert_repairs:'Repair condition',
     },
     ru: {
         chat: "Чат",
@@ -732,7 +758,7 @@ const content = {
 
         //Post Edit
         edit_postTitle: 'Редактирование объявления',
-        edit_post:' chi Elon',
+        edit_post:'-е объявление',
         edit_saleType: 'Тип продажи',
         edit_houseType: 'Тип дома',
         edit_repairType: 'Состояние ремонта',
@@ -756,6 +782,19 @@ const content = {
         edit_Descr: 'Описание',
         edit_Price: 'Цена',
         edit_Submit: 'Подтвердить',
+
+        // Advert Tools
+        advert_id:'ID поста',
+        advert_areas:'площадь',
+        advert_kitchen:'кухня',
+        advert_living:'жилой',
+        advert_total:'oбщее',
+        advert_flat:'этажность',
+        advert_floor:'этаж',
+        advert_date:'Год постройки',
+        advert_year:'год',
+        advert_materials:'Материалы',
+        advert_repairs:'Состояние ремонта',
     },
 }
 export default content;

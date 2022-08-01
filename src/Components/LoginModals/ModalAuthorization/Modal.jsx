@@ -42,19 +42,13 @@ function Modal({ elModal }) {
             .then(function (response) {
                 let a = JSON.parse(response);
                 if (a.status === true) {
-                    console.log(a.data);
                     localStorage.setItem('Token', a.data);
                     window.location.reload();
                     reset();
                 } else {
-                    console.log(a);
                     setShow(true)
                 }
             })
-            // .catch(function (error) {
-            //     console.error(error);
-            // })
-        // elModal.current.classList.remove("modal--open");
     }
 
     return (

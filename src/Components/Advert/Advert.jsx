@@ -227,7 +227,7 @@ function Advert() {
                             </Box>
 
                             <div id="advertMap">
-                                <AdvertMap advert={data} zoom={12}/>
+                                <AdvertMap advert={data} zoom={12} />
                             </div>
                         </Box>
 
@@ -260,12 +260,27 @@ function Advert() {
                                         </Box>
                                     </Box>
                                     <Box className="sellerProfile__actions">
-                                        <UserContactButtons data={adOwner}/>
+                                        <UserContactButtons data={adOwner} />
                                     </Box>
                                 </Box>
                             ) : (
                                 ""
                             )}
+                            {
+                                <Box className="more">
+                                    <p>{content[lang].advert_id}//{data?.id}</p>
+                                    <p>{lang == "uz" ? data?.htype_id.name_uz : lang == "ru" ? data?.htype_id.name_ru : data?.htype_id.name_en} {content[lang].advert_areas}</p>
+                                    <div className="areas">
+                                        <p>{content[lang].advert_kitchen}: {data?.kitchen_area}</p>
+                                        <p>{content[lang].advert_living}: {data?.living_area}</p>
+                                        <p>{content[lang].advert_total}: {data?.total_area} {data?.total_area_type}</p>
+                                    </div>
+                                    <p>{lang == "uz" ? data?.htype_id.name_uz : lang == "ru" ? data?.htype_id.name_ru : data?.htype_id.name_en}: {data?.flat} {content[lang].advert_flat} {data?.floor} {content[lang].advert_floor}</p>
+                                    <p>{content[lang].advert_date}: {data?.date} {content[lang].advert_year} </p>
+                                    <p>{content[lang].advert_materials}: {lang == "uz" ? data?.material_id.name_uz : lang == "ru" ? data?.material_id.name_ru : data?.material_id.name_en} </p>
+                                    <p>{content[lang].advert_repairs}: {lang == "uz" ? data?.repair_id.name_uz : lang == "ru" ? data?.repair_id.name_ru : data?.repair_id.name_en} </p>
+                                </Box>
+                            }
                         </Box>
                     </div>
                 </Container>

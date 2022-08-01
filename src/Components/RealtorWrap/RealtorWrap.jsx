@@ -158,7 +158,6 @@ function RealtorWrap() {
                                   );
                               })
                             : items.map((reltor) => {
-                                console.log(reltor);
                                   return (
                                       <ul key={reltor.id}>
                                           <NavLink

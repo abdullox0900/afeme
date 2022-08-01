@@ -57,7 +57,7 @@ function ImageFile({ photo, setPhoto }) {
                         setPhoto(arr)
                     }
                 })
-                .catch(error => console.log('error', error));
+                .catch(error => console.log(error));
         }
         setImage(files)
         setImg(false)
@@ -89,8 +89,9 @@ function ImageFile({ photo, setPhoto }) {
                         setPhoto(arr)
                     }
                 })
-                .catch(error => console.log('error', error));
+                .catch(error => console.log(error));
         }
+        setShow(true)
     }
     function Delete(e) {
         let src = e;
@@ -123,7 +124,7 @@ function ImageFile({ photo, setPhoto }) {
                         }
                     })
                 })
-                .catch(error => console.log('error', error));
+                .catch(error => console.log(error));
         }
     }
 

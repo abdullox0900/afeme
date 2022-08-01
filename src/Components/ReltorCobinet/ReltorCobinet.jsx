@@ -47,7 +47,6 @@ function ReltorCobinet() {
                     setReltorUserData(data);
                     setUserPosts(data.posts);
                     setLoading(true);
-                    console.log(userPosts);
                 } else {
                     setReltorUserData(null);
                 }
@@ -77,12 +76,9 @@ function ReltorCobinet() {
         emptyIcon: <StarIcon width="40px" height="40px" />,
     };
 
-    console.log(comment);
-
     function showMap() {
         if (userPosts) {
             if (userPosts.length > 0) {
-                console.log(userPosts);
                 return (
                     <>
                         <h2 className="title">Agent E'lonlari</h2>

@@ -21,7 +21,6 @@ function ChatSend({ chatUser, getMessages, getChats }) {
         let formData = new FormData();
         formData.append("to", chatUser.id); 
         formData.append("message", msgValue.current.value.trim());
-        console.log(chatUser.id, msgValue.current.value.trim());
         messageChange("");
 
         await fetch(`${url}message`, {
@@ -87,7 +86,6 @@ function ChatSend({ chatUser, getMessages, getChats }) {
             }
             setPreviewImages(objectUrl);
             openModal();
-            console.log(objectUrl);
         }
     }
 

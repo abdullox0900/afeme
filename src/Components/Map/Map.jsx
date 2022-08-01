@@ -13,13 +13,14 @@ import content from '../../Localization/Content';
 // Import Components
 import style from './Map.module.scss';
 
-const DefaultZomm = 1;
+const DefaultZomm = 5;
 
 let url = process.env.REACT_APP_URL;
 
 function Map({ street, setStreet, city_id, setCity, region_id, setRegionID, house, setHouse }) {
 
 	const [zoom, setZoom] = useState(DefaultZomm)
+	const [defaultLocation, setDefaultLocation] = useState({ lat: 40, lng: 65 });
 	const [regions, setRegions] = useState([])
 	const [cities, setCities] = useState([])
 	const { lang, setLang } = useContext(Context);
@@ -109,6 +110,7 @@ function Map({ street, setStreet, city_id, setCity, region_id, setRegionID, hous
 				<input className={style.input} type="text" placeholder={content[lang].adverd_house_num} onChange={(e) => setHouse(e.target.value)} />
 			</div>
 			<MapPicker
+				defaultLocation={defaultLocation}
 				zoom={zoom}
 				mapTypeId='roadmap'
 				style={{ weight: '660px', height: '400px' }}
