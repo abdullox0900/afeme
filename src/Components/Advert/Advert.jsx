@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { NavLink as Link, useSearchParams, useParams } from "react-router-dom";
+import { NavLink as Link, useParams } from "react-router-dom";
 import { Box, IconButton, Tooltip, Zoom } from "@mui/material";
 
 // Import => Components
