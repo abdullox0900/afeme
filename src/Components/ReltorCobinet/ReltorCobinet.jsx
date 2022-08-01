@@ -77,8 +77,6 @@ function ReltorCobinet() {
         emptyIcon: <StarIcon width="40px" height="40px" />,
     };
 
-    console.log(comment);
-
     function showMap() {
         if (userPosts) {
             if (userPosts.length > 0) {
