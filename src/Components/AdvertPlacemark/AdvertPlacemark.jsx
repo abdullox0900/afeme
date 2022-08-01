@@ -70,7 +70,7 @@ function AdvertPlacemark({ data }) {
             >
                 {data.hasOwnProperty("latitude")
                     ? showPlacemarks(data)
-                    : data.length > 0
+                    : data.hasOwnProperty(0)
                     ? data.map((advert) => showPlacemarks(advert))
                     : ""}
             </Clusterer>

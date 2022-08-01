@@ -71,6 +71,7 @@ function AdvertGallery({ data, isLoading }) {
         ));
     }
     function showVideo(thumb = false) {
+        console.log(data.documents);
         return (
             <>
                 {data.video.length > 0 ? (
@@ -84,10 +85,10 @@ function AdvertGallery({ data, isLoading }) {
                 ) : (
                     ""
                 )}
-                {data.documents ? (
+                {data.documents.hasOwnProperty(0) ? (
                     <SplideSlide>
                         <img
-                            src={data.documents}
+                            src={data.documents[0].url}
                             className="splide__img"
                             alt=""
                             onError={(e) => (e.target.src = arr[randNumber])}

@@ -68,6 +68,7 @@ function AdvertMap({ advert = null, zoom = 11, coordinate = null }) {
                 coordinate = [data[0].latitude, data[0].longitude];
             }
         }
+        console.log(coordinate);
         return (
             <YMaps
                 query={{

@@ -13,9 +13,11 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
     useEffect(() => {
         AOS.init({
             offset: 150,
-            duration: 750,
+            duration: 500,
             debounceDelay: 50,
             throttleDelay: 90,
+            mirror: true,
+            once: false
         });
     }, []);
     let messagesBlog = document.querySelector(".styles_scrollable-div__prSCv");
@@ -49,9 +51,10 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
             "Dekabr",
         ];
         let month = months[a.getMonth()];
-        let hour = a.getHours();
-        let min = a.getMinutes();
-        let time = a.getMonth() + "-" + month + " " + hour + ":" + min;
+        let day = a.getDay();
+        let hour = a.getHours() >= 10 ? a.getHours() : '0' + a.getHours();
+        let min = a.getMinutes() >= 10 ? a.getMinutes() : '0' + a.getMinutes();
+        let time = day + "-" + month + " " + hour + ":" + min;
         return time;
     }
 
@@ -82,16 +85,17 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
                                 i++;
                                 let messageText = message.message.trim();
                                 let date = timeConverter(message.created);
+                                let animate = messages.length - 10 > i ? '' : 'fade-up';
 
                                 if (message.to == chatUser.id) {
                                     let className = `message ${
                                         message.to == chatUser.id &&
                                         messages[i]?.to == chatUser.id
-                                            ? "messageGroup outgoing"
-                                            : "outgoing"
-                                    }`;
+                                            ? "messageGroup"
+                                            : ""
+                                    } outgoing`;
                                     return (
-                                        <div className={className} key={v4()}>
+                                        <div className={className} key={v4()} data-aos={animate} data-aos-anchor=".styles_scrollable-div__prSCv">
                                             <div className="message__content">
                                                 <p className="message__text">
                                                     {messageText}
@@ -105,12 +109,12 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
                                 } else {
                                     let className = `message ${
                                         message.to != chatUser.id &&
-                                        messages[i]?.to != chatUser.id
-                                            ? "messageGroup incoming"
-                                            : "incoming"
-                                    }`;
+                                        messages[i]?.to != chatUser.id && messages[i]?.to
+                                            ? "messageGroup"
+                                            : ""
+                                    } incoming`;
                                     return (
-                                        <div className={className} key={v4()}>
+                                        <div className={className} key={v4()} data-aos={animate} data-aos-anchor=".styles_scrollable-div__prSCv">
                                             <img
                                                 src={
                                                     chatUser.image

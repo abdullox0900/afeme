@@ -289,8 +289,6 @@ function Header() {
                                         newImgArr.length > 0 ? newImgArr : logo
                                     }
                                     alt="logo"
-                                    width={60}
-                                    height={60}
                                 />
                             </Link>
 

@@ -33,7 +33,6 @@ function Advert() {
     const [dataError, setDataError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const { lang, setLang } = useContext(LangContext);
-    const userID = localStorage.getItem("user_id");
 
     const {
         price,
@@ -68,7 +67,7 @@ function Advert() {
     const shareData = {
         title: "Afeme",
         text: "Uy sotiladi",
-        url: "http://localhost:3000/advert/118",
+        url: window.location.href,
     };
 
     let adOwner = data.user;
