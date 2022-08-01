@@ -23,6 +23,8 @@ import { TextField } from '@mui/material'
 import MapPicker from "react-google-map-picker";
 import { v4 } from "uuid";
 import axios from "axios"
+import Compressor from 'compressorjs';
+
 
 // Map Variables
 
@@ -255,21 +257,26 @@ function UserPostEdit() {
     function addImage(e) {
         let files = [...e];
         for (let i = 0; i < files.length; i++) {
-            newImage.append('key', 'Service For C Group')
-            newImage.append('file', files[i])
-            fetch(`${url}service`, newPicture)
-                .then(response => response.text())
-                .then(function (response) {
-                    let res = JSON.parse(response);
-                    Object.entries(res).forEach(([name, value]) => {
-                        if (typeof value === 'string') {
-                            let array = [...photo]
-                            array = [...array, value]
-                            setPhoto(array);
-                        }
-                    })
-                })
-                .catch(error => console.log('error', error));
+            new Compressor(files[i], {
+                quality: 0.2,
+                success(result) {
+                    newImage.append('key', 'Service For C Group')
+                    newImage.append('file', result)
+                    fetch(`${url}service`, newPicture)
+                        .then(response => response.text())
+                        .then(function (response) {
+                            let res = JSON.parse(response);
+                            Object.entries(res).forEach(([name, value]) => {
+                                if (typeof value === 'string') {
+                                    let array = [...photo]
+                                    array = [...array, value]
+                                    setPhoto(array);
+                                }
+                            })
+                        })
+                        .catch(error => console.log('error', error));
+                }
+            })
         }
     }
 
