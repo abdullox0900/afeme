@@ -98,10 +98,9 @@ function Chat() {
                 console.log("You are subscribed");
             })
             .listen("MessageSent", () => {
-                console.log("xabar keldi");
+                console.log("MESSAGE RECEIVE");
                 getMessages();
-                getChats();
-                showNotification();
+                getChats(true);
             });
 
         window.addEventListener("hashchange", getHashUrl);
@@ -154,7 +153,7 @@ function Chat() {
             });
     }
 
-    async function getChats() {
+    async function getChats(isNotification = false) {
         await fetch(`${url}message`, {
             method: "GET",
             headers: headers,
@@ -164,6 +163,9 @@ function Chat() {
                 let res = JSON.parse(response);
                 console.log(res);
                 setChats(res);
+                if (isNotification) {
+                    showNotification(res[0]);
+                }
             })
             .catch(() => {
                 setChats(null);
@@ -171,8 +173,13 @@ function Chat() {
             .finally(() => setIsLoading(false));
     }
 
-    function showNotification() {
-        const notification = new Notification('To do list', { body: chats[0].latest.message, icon: chats[0].user.image ? chats[0].user.image : defaultAvatar });
+    function showNotification(chat) {
+        let user = chat.user?.name + ' ' + chat.user?.lastname
+        let message = chat.latest.message.slice(0, 50);
+        let userAvatar = chat.user.image ? chat.user.image : defaultAvatar;
+
+        new Notification(user, { body: message, icon: userAvatar });
+        return 0;
     }
 
     if (token && token.trim() != "") {
