@@ -12,6 +12,9 @@ import {
     CardActions,
     Button,
     IconButton,
+    Tooltip,
+    Backdrop,
+    CircularProgress,
 } from "@mui/material";
 
 // Import => Components
@@ -22,9 +25,6 @@ import DeleteIcon from "../../Lib/Svg/delete";
 import EditIcon from "../../Lib/Svg/edit";
 
 import CardTools from "../../Utils/cardTools";
-import { CurrencyContext } from "../../Context/CurrencyContext";
-import { Context as LangContext } from "../../Context/LangContext";
-import { UserContext } from "../../Context/UserContext";
 import Notification from "../Notification/Notification";
 import "./Card.scss";
 import CardImg1 from "../../Assets/Img/hero-img.png";
@@ -32,11 +32,9 @@ import CardImg2 from "../../Assets/Img/advertImg.jpg";
 import timesIcon from "../../Assets/Img/Icon/times.svg";
 import { logRoles } from "@testing-library/react";
 
-function Cards({ data, editDelete = false, fullCard = false, isUserPost = false }) {
-    const { lang, setLang } = useContext(LangContext);
-    const { currency, setCurrency } = useContext(CurrencyContext);
-    const { user, setUser } = useContext(UserContext);
+function Cards({ data, fullCard = false, isUserPost = false }) {
     const delModal = useRef();
+    const [tooltipOpen, setTooltipOpen] = useState(false);
 
     const [isClickDelete, setIsClickDelete] = useState(false);
     const [isAdvertDelete, setIsAdvertDelete] = useState(false);
@@ -45,7 +43,7 @@ function Cards({ data, editDelete = false, fullCard = false, isUserPost = false 
     const token = localStorage.getItem("Token");
     var myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${token}`);
-    
+
     let requestOptions = {
         method: "DELETE",
         headers: myHeaders,
@@ -96,9 +94,10 @@ function Cards({ data, editDelete = false, fullCard = false, isUserPost = false 
                     variant="solid"
                     color="primary"
                     className="cardControls cardEdit"
-                    sx={{ mr: 1.5 }}>
+                    sx={{ mr: 1.5 }}
+                >
                     <EditIcon />
-                </IconButton >
+                </IconButton>
             </Link>
             <IconButton
                 variant="outlined"
@@ -123,80 +122,155 @@ function Cards({ data, editDelete = false, fullCard = false, isUserPost = false 
 
     function deleteModal() {
         return (
-            <>
-                {isAdvertDelete ? (
-                    <Notification
-                        message={"E'lon muvafaqqiyatli o'chirildi"}
-                        type={"success"}
-                    />
-                ) : (
-                    ""
-                )}
-                <div className="modal deleteModal" ref={delModal}>
-                    <div className="deleteModal__content">
-                        <img src={timesIcon} alt="" />
-                        <h3 className="deleteModal__title">
-                            Ishonchingiz komilmi?
-                        </h3>
-                        <p className="deleteModal__text">
-                            Ushbu e'lon va uning barcha ma'lumotlari butunlay
-                            o'chiriladi. Bu jarayonni ortga qaytarib bo'lmaydi.
-                        </p>
-                        <div className="deleteModal__btns">
-                            <Button
-                                className="deleteModal__button deleteModal__cancel"
-                                onClick={() =>
-                                    delModal.current.classList.remove(
-                                        "modal--open"
-                                    )
-                                }
-                                sx={{ mr: 2 }}
-                            >
-                                Bekor qilish
-                            </Button>
-                            <Button
-                                className="deleteModal__button deleteModal__submit"
-                                color="error"
-                                onClick={(e) => Delete(data.id, e.target)}
-                            >
-                                O'chirish
-                            </Button>
-                        </div>
-                        <IconButton
-                            aria-label="close"
-                            className="modal__close-btn"
+            <div className="modal deleteModal" ref={delModal}>
+                <div className="deleteModal__content">
+                    <img src={timesIcon} alt="" />
+                    <h3 className="deleteModal__title">
+                        Ishonchingiz komilmi?
+                    </h3>
+                    <p className="deleteModal__text">
+                        Ushbu e'lon va uning barcha ma'lumotlari butunlay
+                        o'chiriladi. Bu jarayonni ortga qaytarib bo'lmaydi.
+                    </p>
+                    <div className="deleteModal__btns">
+                        <Button
+                            className="deleteModal__button deleteModal__cancel"
                             onClick={() =>
                                 delModal.current.classList.remove("modal--open")
                             }
-                        ></IconButton>
+                            sx={{ mr: 2 }}
+                        >
+                            Bekor qilish
+                        </Button>
+                        <Button
+                            className="deleteModal__button deleteModal__submit"
+                            color="error"
+                            onClick={(e) => Delete(data.id, e.target)}
+                        >
+                            O'chirish
+                        </Button>
                     </div>
+                    <IconButton
+                        aria-label="close"
+                        className="modal__close-btn"
+                        onClick={() =>
+                            delModal.current.classList.remove("modal--open")
+                        }
+                    ></IconButton>
                 </div>
-            </>
+            </div>
         );
     }
 
-    if (data.check == 'true' || isUserPost) {
+    function markAsSold(e) {
+        e.target.disabled = true;
+        fetch(url + "sold/" + data.id, { method: "GET", headers: myHeaders })
+            .then((res) => res.text())
+            .then((res) => {
+                if (JSON.parse(res) == 1) {
+                    setIsAdvertDelete(true);
+                }
+            })
+            .finally(() => (e.target.disabled = false));
+    }
+
+    function userItems() {
+        if (isUserPost) {
+            return (
+                <>
+                    <div className="card__sold">
+                        <Tooltip
+                            arrow
+                            title={
+                                !data.solt
+                                    ? "Sotilgan deb belgilangan e'lon faqat sizga ko'rinadi"
+                                    : "E'lon barcha uchun ochiq bo'ladi"
+                            }
+                            color="primary"
+                            open={tooltipOpen}
+                            sx={{ backgroundColor: "#fff" }}
+                        >
+                            <Button
+                                color="primary"
+                                variant="contained"
+                                size="small"
+                                className="markAsSold"
+                                onMouseEnter={() => setTooltipOpen(true)}
+                                onMouseLeave={() => setTooltipOpen(false)}
+                                onClick={(e) => markAsSold(e)}
+                            >
+                                {!data.solt
+                                    ? "Sotilgan deb belgilash"
+                                    : "Bekor qilish"}
+                            </Button>
+                        </Tooltip>
+                    </div>
+                    {data.check == "true" ? (
+                        ""
+                    ) : data.check == null && isUserPost ? (
+                        <Tooltip
+                            title="E'lon operatorlar tomonidan ko'rib chiqilmoqda. Bu jarayonda e'lon faqat siz uchun ko'rinadi"
+                            placement="top"
+                        >
+                            <div className="card__verification">
+                                Ko'rib chiqilmoqda
+                            </div>
+                        </Tooltip>
+                    ) : (
+                        <Tooltip
+                            title="Iltimos e'lon ma'lumotlarini o'zgartirib ko'ring"
+                            placement="top"
+                        >
+                            <div className="card__verification">
+                                E'lon tasdiqlanmadi
+                            </div>
+                        </Tooltip>
+                    )}
+                </>
+            );
+        }
+    }
+
+    if ((data.check == "true" && !data.solt) || isUserPost) {
         if (!fullCard) {
             return (
                 <>
                     {isClickDelete ? deleteModal() : ""}
-                    <Card sx={{ maxWidth: 300 }} className="card" cardid={data.id}>
-                        <Link to={advertLink}>
-                            <CardMedia
-                                component="img"
-                                alt="Card img"
-                                className="card__img"
-                                image={
-                                    data.image?.length > 0
-                                        ? data.image[0]?.url
-                                        : CardImg
-                                }
-                                onError={(e) => (e.target.src = CardImg)}
-                            />
-                        </Link>
+                    {isAdvertDelete ? (
+                        <Notification
+                            message={"E'lon muvafaqqiyatli o'chirildi"}
+                            type={"success"}
+                        />
+                    ) : (
+                        ""
+                    )}
+                    <Card
+                        sx={{ maxWidth: 300 }}
+                        className="card"
+                        cardid={data.id}
+                    >
+                        <div className="card__media">
+                            <Link to={advertLink}>
+                                <CardMedia
+                                    component="img"
+                                    alt=""
+                                    className="card__img"
+                                    image={
+                                        data.image?.length > 0
+                                            ? data.image[0]?.url
+                                            : CardImg
+                                    }
+                                    onError={(e) => (e.target.src = CardImg)}
+                                />
+                            </Link>
+                            {userItems()}
+                        </div>
                         <Box className="card__content">
                             <CardContent className="card__header">
-                                <Link to={advertTypeLink} className="house__type">
+                                <Link
+                                    to={advertTypeLink}
+                                    className="house__type"
+                                >
                                     <img
                                         src={advertTypeImg}
                                         alt=""
@@ -210,7 +284,9 @@ function Cards({ data, editDelete = false, fullCard = false, isUserPost = false 
                                     variant="body2"
                                     className="house__prices"
                                 >
-                                    <span className="house__price">{price}</span>
+                                    <span className="house__price">
+                                        {price}
+                                    </span>
                                 </Typography>
                             </CardContent>
                             <CardContent className="card__main">
@@ -226,7 +302,7 @@ function Cards({ data, editDelete = false, fullCard = false, isUserPost = false 
                                     </span>
                                 </Typography>
                                 <div className="card__actions">
-                                    {editDelete ? (
+                                    {isUserPost ? (
                                         cardControls
                                     ) : (
                                         <LoveBtn advertID={data.id} />
@@ -261,10 +337,15 @@ function Cards({ data, editDelete = false, fullCard = false, isUserPost = false 
                                     alt=""
                                     className="house__type__icon"
                                 />
-                                <p className="house__type__name">{advertType}</p>
+                                <p className="house__type__name">
+                                    {advertType}
+                                </p>
                             </Link>
 
-                            <Typography variant="body2" className="house__prices">
+                            <Typography
+                                variant="body2"
+                                className="house__prices"
+                            >
                                 <span className="house__price">{price}</span>
                             </Typography>
                         </CardContent>
