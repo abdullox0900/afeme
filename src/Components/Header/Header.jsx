@@ -27,7 +27,6 @@ import {
 import {
     Settings,
     Logout,
-    Newspaper,
     PostAdd,
     Chat as ChatIcon,
 } from "@mui/icons-material/";
@@ -216,17 +215,6 @@ function Header() {
                             <PostAdd />
                         </ListItemIcon>
                         Mening e'lonlarim
-                    </Link>
-                </MenuItem>
-                <MenuItem>
-                    <Link
-                        to={"/usernews"}
-                        className="profile__menu__link"
-                    >
-                        <ListItemIcon>
-                            <Newspaper />
-                        </ListItemIcon>
-                        Yangiliklar
                     </Link>
                 </MenuItem>
                 <MenuItem>

@@ -17,7 +17,6 @@ import ScrollTop from './Utils/ScrollTop';
 import UsProfil from './Pages/UserProfil/UsProfil';
 import UserAdsPage from "./Pages/UserAdsPage/UserAdsPage";
 import UserFavoritesPage from './Pages/UserFavoritesPage/UserFavoritesPage';
-import UserNewsPage from './Pages/UserNewsPage/UserNewsPage';
 import Help from './Pages/Help/Help';
 import SearchMap from './Pages/SearchMap/SearchMap';
 import UserPostEditPage from './Pages/UserPostEditPage/UserPostEditPage';
@@ -79,7 +78,6 @@ function App() {
                     <Route path='/userprofil' element={<UsProfil />} />
                     <Route path='/userads' element={<UserAdsPage />} />
                     <Route path='/userfavorites' element={<UserFavoritesPage />} />
-                    <Route path='/usernews' element={<UserNewsPage />} />
                     <Route path='/userpostedit/:postID' element={<UserPostEditPage/>} />
                     <Route path='/chat' element={<Chat />} />
                     <Route path='/help' element={<Help />} />

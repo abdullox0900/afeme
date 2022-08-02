@@ -148,15 +148,6 @@ function UserProfilList() {
                         </li>
 
                         <li className="user-prof__item">
-                            <NavLink to={"/usernews"} className="user-prof__link">
-                                <ion-icon name="newspaper-outline"></ion-icon>
-                                <p className="user-prof__text">
-                                    {content[lang].user_profil_news}
-                                </p>
-                            </NavLink>
-                        </li>
-
-                        <li className="user-prof__item">
                             <NavLink to={"/"} className="user-prof__link" onClick={(e) => LogOut(e)}>
                                 <ion-icon name="log-in-outline"></ion-icon>
                                 <p className="user-prof__text">
