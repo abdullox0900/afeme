@@ -41,6 +41,7 @@ function Modal({ elModal }) {
             .then(response => response.text())
             .then(function (response) {
                 let a = JSON.parse(response);
+                console.log(a);
                 if (a.status === true) {
                     localStorage.setItem('Token', a.data);
                     window.location.reload();

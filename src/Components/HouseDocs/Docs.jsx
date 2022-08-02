@@ -4,7 +4,7 @@ import { Context } from '../../Context/LangContext';
 import content from '../../Localization/Content';
 
 import Trash from '@mui/icons-material/ClearRounded';
-
+import Compressor from 'compressorjs'
 // Import => Components
 import style from './Docs.module.scss';
 import "../Form/Form.scss";
@@ -30,16 +30,21 @@ function Docs({ document, setDocs }) {
   let url = process.env.REACT_APP_URL;
 
   function dropImageHandler(e) {
-    formdata.append('key', 'Service For C Group')
-    formdata.append("file", e);
-    fetch(`${url}service`, requestOptions)
-      .then(response => response.text())
-      .then(function (response) {
-        setshow(true)
-        let res = JSON.parse(response)
-        setDocs(res.data)
-      })
-      .catch(error => console.log( error));
+    new Compressor(e, {
+      quality: 0.2,
+      success(result) {
+        formdata.append('key', 'Service For C Group')
+        formdata.append("file", result);
+        fetch(`${url}service`, requestOptions)
+          .then(response => response.text())
+          .then(function (response) {
+            setshow(true)
+            let res = JSON.parse(response)
+            setDocs(res.data)
+          })
+          .catch(error => console.log(error));
+      }
+    })
   }
 
   return (

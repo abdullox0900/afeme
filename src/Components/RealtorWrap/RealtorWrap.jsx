@@ -49,8 +49,8 @@ function RealtorWrap() {
     useEffect(() => {
         if (sort === "name") {
             reltorData.sort(function (a, b) {
-                const nameA = a.name.toUpperCase(); // ignore upper and lowercase
-                const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+                const nameA = a.name.toUpperCase();
+                const nameB = b.name.toUpperCase();
                 if (nameA < nameB) {
                     return -1;
                 }
@@ -62,8 +62,8 @@ function RealtorWrap() {
             setItems(reltorData);
         } else if (sort === "number") {
             reltorData.sort(function (a, b) {
-                const nameA = a.reting; // ignore upper and lowercase
-                const nameB = b.reting; // ignore upper and lowercase
+                const nameA = a.reting;
+                const nameB = b.reting;
                 if (nameA < nameB) {
                     return -1;
                 }
@@ -207,7 +207,7 @@ function RealtorWrap() {
                                                                     ),
                                                                 }} />
                                                         </div>
-                                                        <p className="region">{reltor?.region_id?.name_en} vil.</p>
+                                                        <p className="region">{lang == "uz" ? reltor?.region_id?.name_uz : lang !== "ru" ? reltor?.region_id?.name_en : reltor?.region_id?.name_ru}</p>
                                                     </div>
                                                 </div>
                                             </div>
