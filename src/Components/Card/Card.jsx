@@ -122,43 +122,55 @@ function Cards({ data, fullCard = false, isUserPost = false }) {
 
     function deleteModal() {
         return (
-            <div className="modal deleteModal" ref={delModal}>
-                <div className="deleteModal__content">
-                    <img src={timesIcon} alt="" />
-                    <h3 className="deleteModal__title">
-                        Ishonchingiz komilmi?
-                    </h3>
-                    <p className="deleteModal__text">
-                        Ushbu e'lon va uning barcha ma'lumotlari butunlay
-                        o'chiriladi. Bu jarayonni ortga qaytarib bo'lmaydi.
-                    </p>
-                    <div className="deleteModal__btns">
-                        <Button
-                            className="deleteModal__button deleteModal__cancel"
+            <>
+                {isAdvertDelete ? (
+                    <Notification
+                        message={"E'lon muvafaqqiyatli o'chirildi"}
+                        type={"success"}
+                    />
+                ) : (
+                    ""
+                )}
+                <div className="modal deleteModal" ref={delModal}>
+                    <div className="deleteModal__content">
+                        <img src={timesIcon} alt="" />
+                        <h3 className="deleteModal__title">
+                            Ishonchingiz komilmi?
+                        </h3>
+                        <p className="deleteModal__text">
+                            Ushbu e'lon va uning barcha ma'lumotlari butunlay
+                            o'chiriladi. Bu jarayonni ortga qaytarib bo'lmaydi.
+                        </p>
+                        <div className="deleteModal__btns">
+                            <Button
+                                className="deleteModal__button deleteModal__cancel"
+                                onClick={() =>
+                                    delModal.current.classList.remove(
+                                        "modal--open"
+                                    )
+                                }
+                                sx={{ mr: 2 }}
+                            >
+                                Bekor qilish
+                            </Button>
+                            <Button
+                                className="deleteModal__button deleteModal__submit"
+                                color="error"
+                                onClick={(e) => Delete(data.id, e.target)}
+                            >
+                                O'chirish
+                            </Button>
+                        </div>
+                        <IconButton
+                            aria-label="close"
+                            className="modal__close-btn"
                             onClick={() =>
                                 delModal.current.classList.remove("modal--open")
                             }
-                            sx={{ mr: 2 }}
-                        >
-                            Bekor qilish
-                        </Button>
-                        <Button
-                            className="deleteModal__button deleteModal__submit"
-                            color="error"
-                            onClick={(e) => Delete(data.id, e.target)}
-                        >
-                            O'chirish
-                        </Button>
+                        ></IconButton>
                     </div>
-                    <IconButton
-                        aria-label="close"
-                        className="modal__close-btn"
-                        onClick={() =>
-                            delModal.current.classList.remove("modal--open")
-                        }
-                    ></IconButton>
                 </div>
-            </div>
+            </>
         );
     }
 
@@ -168,7 +180,6 @@ function Cards({ data, fullCard = false, isUserPost = false }) {
             .then((res) => res.text())
             .then((res) => {
                 if (JSON.parse(res) == 1) {
-                    setIsAdvertDelete(true);
                 }
             })
             .finally(() => (e.target.disabled = false));
@@ -207,7 +218,7 @@ function Cards({ data, fullCard = false, isUserPost = false }) {
                     </div>
                     {data.check == "true" ? (
                         ""
-                    ) : (data.check == 'null' || !data.check) && isUserPost ? (
+                    ) : (data.check == "null" || !data.check) && isUserPost ? (
                         <Tooltip
                             title="E'lon operatorlar tomonidan ko'rib chiqilmoqda. Bu jarayonda e'lon faqat siz uchun ko'rinadi"
                             placement="top"
@@ -231,19 +242,12 @@ function Cards({ data, fullCard = false, isUserPost = false }) {
         }
     }
 
-    if ((data.check == "true" && !data.solt) || isUserPost) {
+    console.log(data);
+    if ((data.check == "true" && data.solt != 'true') || isUserPost) {
         if (!fullCard) {
             return (
                 <>
                     {isClickDelete ? deleteModal() : ""}
-                    {isAdvertDelete ? (
-                        <Notification
-                            message={"E'lon muvafaqqiyatli o'chirildi"}
-                            type={"success"}
-                        />
-                    ) : (
-                        ""
-                    )}
                     <Card
                         sx={{ maxWidth: 300 }}
                         className="card"

@@ -57,6 +57,7 @@ function Chat() {
     const chatMenu = createRef();
 
     useEffect(() => {
+        setMessagesData(null);
         if (chatID) {
             function getUser() {
                 fetch(`${url}user/${chatID}`, {
@@ -71,12 +72,10 @@ function Chat() {
                             setChatFound(true);
                         } else {
                             setChatFound(false);
-                            setMessagesData(null);
                         }
                     })
                     .catch(() => {
                         setChatFound(false);
-                        setMessagesData(null);
                     });
             }
             getUser();
@@ -116,12 +115,17 @@ function Chat() {
             }
         }
 
-        fetch(url + "popular/", {
+        fetch(url + "popular/5", {
             method: "GET",
+            redirect: 'follow'
         })
             .then((response) => response.text())
             .then((response) => {
                 let data = JSON.parse(response);
+                if (data.hasOwnProperty('data')) {
+                    setAdverts(data.data);
+                }
+                console.log(data);
             })
             .catch((error) => console.log(error));
 
@@ -177,6 +181,7 @@ function Chat() {
         return 0;
     }
 
+    console.log(adverts);
     if (token && token.trim() != "") {
         if (user.hasOwnProperty("data")) {
             return (
@@ -269,24 +274,16 @@ function Chat() {
 
                     {windowWidth > 1280 ? (
                         <section className="infoPanel">
-                            {/* <Box className="infoPanel__header">
                             <h5 className="infoPanel__title">
-                                Elmerdan boshqa e'lonlar
+                                {content[lang].doyou}
                                 <ArrowDown className="arrowDown" />
+                                <span className="chats__indicator">{adverts?.length}</span>
                             </h5>
-                        </Box> */}
-                            <Box className="infoPanel__main">
-                                <h5 className="infoPanel__title">
-                                    {content[lang].doyou}
-                                    <ArrowDown className="arrowDown" />
-                                    <span className="chats__indicator">4</span>
-                                </h5>
-                                <div className="infoPanel__cards">
-                                    {adverts.map((advert) => (
-                                        <Cards data={advert} />
-                                    ))}
-                                </div>
-                            </Box>
+                            <div className="infoPanel__cards">
+                                {adverts.map((advert) => (
+                                    <Cards data={advert} />
+                                ))}
+                            </div>
                             <Box></Box>
                         </section>
                     ) : (

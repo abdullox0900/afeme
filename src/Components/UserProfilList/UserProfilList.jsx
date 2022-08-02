@@ -88,7 +88,7 @@ function UserProfilList() {
                         <img
                             className="user-prof__img"
                             src={
-                                user.data.image
+                                user.data.image &&  user.data.image != 'null'
                                     ? user.data.image
                                     : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU"
                             }
@@ -143,15 +143,6 @@ function UserProfilList() {
                                 <ion-icon name="heart-outline"></ion-icon>
                                 <p className="user-prof__text">
                                     {content[lang].user_profil_favorintes}
-                                </p>
-                            </NavLink>
-                        </li>
-
-                        <li className="user-prof__item">
-                            <NavLink to={"/usernews"} className="user-prof__link">
-                                <ion-icon name="newspaper-outline"></ion-icon>
-                                <p className="user-prof__text">
-                                    {content[lang].user_profil_news}
                                 </p>
                             </NavLink>
                         </li>

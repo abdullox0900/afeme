@@ -151,10 +151,10 @@ function Main() {
                                                                 variant="h6"
                                                                 className="realtors__name"
                                                             >
-                                                                {rel.name}
+                                                                {rel.name} {rel.lastname}
                                                             </Typography>
                                                             <p className="realtors__offer">
-                                                                2 ta taklif
+                                                                {rel.posts.length} ta taklif
                                                             </p>
                                                         </div>
                                                     </Box>
@@ -162,6 +162,9 @@ function Main() {
                                             )
                                         })
                                     }
+                                </NavLink>
+                                <NavLink to={'/catalogreltor'}>
+                                    <p className="more">Barchasini korish</p>
                                 </NavLink>
                             </Box>
 

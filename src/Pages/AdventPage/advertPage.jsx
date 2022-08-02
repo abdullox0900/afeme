@@ -106,10 +106,15 @@ function AdvertPage() {
     fetch(`${url}post`, requestOptions)
       .then(response => response.text())
       .then(function (response) {
-        handleSuc();
+        let res = JSON.parse(response);
+        if (res.status === true) {
+          handleSuc();
+        } else {
+          handleErr();
+        }
       })
       .catch(function (err) {
-        handleErr();
+        console.log(err);
       })
   }
 

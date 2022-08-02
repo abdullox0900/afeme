@@ -1,7 +1,6 @@
 // Import => React and Hooks
 import React, { useState, useEffect, useContext } from "react";
 import {
-    useNavigate,
     useSearchParams,
     NavLink as Link,
     useLocation,
@@ -9,6 +8,7 @@ import {
 import axios from "axios";
 
 // Import => Components
+import { Context } from "../../Context/LangContext";
 import CardSkeleton from "../../Components/CardSkeleton/CardSkeleton";
 import { Pagination, Grid } from "@mui/material";
 import Container from "../../Components/Container/Container";
@@ -31,6 +31,7 @@ function Adverts() {
 
     const [searchParams, setSearchParams] = useSearchParams();
     const { currency, setCurrency } = useContext(CurrencyContext);
+    const { lang } = useContext(Context);
     const location = useLocation();
 
     const term = searchParams.get("term");
@@ -41,7 +42,6 @@ function Adverts() {
     const from = searchParams.get("from");
     const to = searchParams.get("to");
 
-    const [formData, setFormData] = useState();
     const [data, setData] = useState([]);
     const [adverts, setAdverts] = useState([]);
     const [dataError, setDataError] = useState(false);
@@ -57,14 +57,15 @@ function Adverts() {
     searchTerms.append("room", room ? room : "");
     searchTerms.append("from", from ? from : "");
     searchTerms.append("to", to ? to : "");
-    if (from && to) {
-        if (from !== '' && to !== '') {
-            searchTerms.append("price_type", currency === 'sum' ? 'uzs': currency);
-        }
+
+    if (from != '' && to != '') {
+        searchTerms.append("price_type", currency === 'sum' ? 'uzs': currency);
+    }
+    if (term && term != '') {
+        searchTerms.append("lang", lang);
     }
     
     useEffect(() => {
-        setFormData(searchTerms);
         setIsLoading(true);
 
         fetch(`${url}filter?page=${currentPage}`, {
@@ -83,7 +84,7 @@ function Adverts() {
                     setAdverts([]);
                 }
             })
-            .catch((error) => {
+            .catch(() => {
                 setDataError(true);
                 setAdverts([]);
             })

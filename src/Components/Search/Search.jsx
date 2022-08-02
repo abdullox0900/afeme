@@ -107,10 +107,11 @@ function Search({ map = false }) {
             formData.append("room", room);
             formData.append("from", priceFrom);
             formData.append("to", priceTo);
-            if (priceFrom && priceTo) {
-                if (priceFrom != '' && priceTo != '') {
-                    formData.append("price_type", currency == 'sum' ? 'som': currency);
-                }
+            if (priceFrom != '' && priceTo != '') {
+                searchTerms.append("price_type", currency === 'sum' ? 'uzs': currency);
+            }
+            if (term && term != '') {
+                searchTerms.append("lang", lang);
             }
             setSearchTerms(formData);
         }
@@ -229,6 +230,8 @@ function Search({ map = false }) {
                                 <MenuItem value={"5+"}>5+</MenuItem>
                             </Select>
                         </FormControl>
+                        <label class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root" data-shrink="false" id="filter__select-label">Home type</label>
+                        <label class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary Mui-focused css-1sumxir-MuiFormLabel-root-MuiInputLabel-root" data-shrink="true" id="filter__select-label">Home type</label>
                         <FormControl
                             className="filter__items"
                             sx={{ mr: 1, ml: 1 }}

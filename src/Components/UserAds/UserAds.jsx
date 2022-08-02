@@ -47,8 +47,10 @@ function UserAds() {
         if (isLoading) {
             return <CardSkeleton amount={4} controls={true} />;
         } else if (user.hasOwnProperty("data")) {
+
             let userPosts = user.data.posts;
             if (userPosts?.length > 0) {
+                
                 return userPosts.map((advert) => {
                     switch (type) {
                         case "all":

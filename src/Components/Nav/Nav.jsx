@@ -53,12 +53,6 @@ function Nav({ elHeader }) {
         }
     }, [])
 
-    // const hanClick = () => {
-    //     if (Token === null) {
-    //         modal.classList.add("modal--open");
-    //     }
-    // }
-
     return (
         <Container>
             <nav className="nav">

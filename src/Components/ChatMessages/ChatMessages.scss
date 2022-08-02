@@ -20,6 +20,9 @@
             &:nth-child(1){
                 margin-top: 20px;
             }
+            &:last-child{
+                margin-bottom: 10px;
+            }
             &__content{
                 display: flex;
                 flex-direction: column;
