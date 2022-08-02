@@ -25,7 +25,9 @@
                 justify-content: center;
                 align-items: center;
                 .realtor-card__avatar {
-                    border-radius: 100%;
+                    border-radius: 50%;
+                    height: 150px;
+                    object-fit: cover;
                 }
             }
             .realtor-card__wrap {
@@ -113,6 +115,7 @@
                     margin: 0;
                     .realtor-card__avatar {
                         width: 100px;
+                        height: 100px;
                     }
                 }
                 &__wrap {
@@ -144,9 +147,6 @@
                 .avatar {
                     width: 100px;
                     margin: 0;
-                    .realtor-card__avatar {
-                        width: 100px;
-                    }
                 }
                 &__wrap {
                     margin-left: 20px;

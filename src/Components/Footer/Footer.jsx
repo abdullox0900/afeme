@@ -82,9 +82,6 @@ function Footer() {
                                     <NavLink to={"/catalogreltor"} className="footer__link">{content[lang].rel}</NavLink>
                                 </li>
                                 <li className="footer__item">
-                                    <NavLink to={"/Tezkunda"} className="footer__link">{content[lang].we}</NavLink>
-                                </li>
-                                <li className="footer__item">
                                     <NavLink to={"/help"} className="footer__link">{content[lang].help}</NavLink>
                                 </li>
                                 <li className="footer__item">

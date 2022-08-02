@@ -86,15 +86,11 @@ function Form() {
 
     //Recieve Regions Request
     useEffect(() => {
-        const regions = async () => {
-            try {
-                const res = await axios.get(`${url}regions`);
-                if (res) {
-                    let data = res.data.data
-                    setRegions(data)
-                }
-            } catch (error) {
-                console.log(error)
+        const regions = () => {
+            const res = axios.get(`${url}regions`);
+            if (res) {
+                let data = res.data.data
+                setRegions(data)
             }
         }
         regions();

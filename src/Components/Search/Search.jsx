@@ -108,10 +108,10 @@ function Search({ map = false }) {
             formData.append("from", priceFrom);
             formData.append("to", priceTo);
             if (priceFrom != '' && priceTo != '') {
-                searchTerms.append("price_type", currency === 'sum' ? 'uzs': currency);
+                formData.append("price_type", currency === 'sum' ? 'uzs': currency);
             }
             if (term && term != '') {
-                searchTerms.append("lang", lang);
+                formData.append("lang", lang);
             }
             setSearchTerms(formData);
         }

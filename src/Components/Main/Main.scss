@@ -121,8 +121,12 @@
         &__name{
             font-weight: 500;
             font-size: 18px;
-            line-height: 21px;
+            line-height: 30px;
             padding-bottom: 5px;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            display: -webkit-box;
         }
         &__offer{
             font-weight: 500;

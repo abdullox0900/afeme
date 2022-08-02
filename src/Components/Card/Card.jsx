@@ -242,7 +242,6 @@ function Cards({ data, fullCard = false, isUserPost = false }) {
         }
     }
 
-    console.log(data);
     if ((data.check == "true" && data.solt != 'true') || isUserPost) {
         if (!fullCard) {
             return (

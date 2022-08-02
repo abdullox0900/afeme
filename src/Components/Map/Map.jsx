@@ -31,17 +31,11 @@ function Map({ street, setStreet, city_id, setCity, region_id, setRegionID, hous
 	}
 
 	useEffect(() => {
-		const regions1 = async () => {
-			try {
-				const res = await axios.get(`${url}regions`);
-				if (res) {
-					let data = res.data.data
-					setRegions(data)
-				} else {
-					alert('xato')
-				}
-			} catch (error) {
-				console.log(error);
+		const regions1 = () => {
+			const res = axios.get(`${url}regions`);
+			if (res) {
+				let data = res.data.data
+				setRegions(data)
 			}
 		}
 		regions1();

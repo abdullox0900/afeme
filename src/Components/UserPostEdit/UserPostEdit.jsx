@@ -190,7 +190,7 @@ function UserPostEdit() {
         }).then(function (response) {
             return response.text();
         }).then(function (data) {
-            window.location.reload()
+            window.location.href = "/userads"
         })
     }
 

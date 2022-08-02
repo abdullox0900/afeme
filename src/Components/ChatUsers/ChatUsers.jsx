@@ -20,7 +20,7 @@ function ChatUsers({ chats, chatID, isLoading, defaultAvatar, chatMenu, isOpen }
     const history = useNavigate();
 
     const Back = () => {
-        history(-1)
+        history(-1);
     }
 
     function showChats(amount) {
