@@ -64,6 +64,7 @@ function Adverts() {
     if (term && term != '') {
         searchTerms.append("lang", lang);
     }
+    console.log(term);
     
     useEffect(() => {
         setIsLoading(true);

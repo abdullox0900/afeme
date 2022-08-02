@@ -214,7 +214,7 @@ function Advert() {
                                 </Box>
                             </Box>
 
-                            <AdvertGallery data={data} isLoading={isLoading} />
+                            {data.hasOwnProperty('image') ? <AdvertGallery data={data} isLoading={isLoading} /> : ''}
 
                             <Box className="advert__description">
                                 <h5 className="descr__title">
