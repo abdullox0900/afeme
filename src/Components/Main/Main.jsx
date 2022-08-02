@@ -79,7 +79,6 @@ function Main() {
         .then(res => {
             const persons = res.data.data;
             setReltData(persons)
-            console.log(persons);
         })
     }, [])
 

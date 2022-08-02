@@ -93,8 +93,6 @@ function Form() {
                     let data = res.data.data
                     setRegions(data)
                 }
-            } catch (error) {
-                console.log(error)
             }
         }
         regions();

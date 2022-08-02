@@ -40,8 +40,6 @@ function Map({ street, setStreet, city_id, setCity, region_id, setRegionID, hous
 				} else {
 					alert('xato')
 				}
-			} catch (error) {
-				console.log(error);
 			}
 		}
 		regions1();

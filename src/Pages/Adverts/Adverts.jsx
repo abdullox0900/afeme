@@ -44,7 +44,6 @@ function Adverts() {
 
     const [data, setData] = useState([]);
     const [adverts, setAdverts] = useState([]);
-    const [dataError, setDataError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
@@ -58,13 +57,14 @@ function Adverts() {
     searchTerms.append("from", from ? from : "");
     searchTerms.append("to", to ? to : "");
 
-    if (from != '' && to != '') {
-        searchTerms.append("price_type", currency === 'sum' ? 'uzs': currency);
+    if (from && to) {
+        if (from != '' && to != '') {
+            searchTerms.append("price_type", currency === 'sum' ? 'som': currency);
+        }
     }
     if (term && term != '') {
         searchTerms.append("lang", lang);
     }
-    console.log(term);
     
     useEffect(() => {
         setIsLoading(true);
@@ -81,12 +81,10 @@ function Adverts() {
                     setAdverts(newData.data);
                     setTotalPages(newData.meta.last_page);
                 } else {
-                    setDataError(true);
                     setAdverts([]);
                 }
             })
             .catch(() => {
-                setDataError(true);
                 setAdverts([]);
             })
             .finally(() => {
@@ -118,7 +116,7 @@ function Adverts() {
             }
         };
 
-        if (adverts.length > 0 && !dataError) {
+        if (adverts.length > 0) {
             return (
                 <Grid sx={{ my: 3 }}>
                     <Pagination
