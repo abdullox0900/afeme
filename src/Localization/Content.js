@@ -166,7 +166,7 @@ const content = {
         detailedView: "Batafsil ko'rish",
 
         //Personal
-        editBtn: 'Tahrirlash',
+        saveBtn: 'Ozgarishlarni Saqlash',
         userProfilName: 'Ism',
         userProfilLastName: 'Familiya',
         userProfilPhone: 'Telefon Raqami',
@@ -272,6 +272,7 @@ const content = {
         advert_year:'yil',
         advert_materials:'Materiallar',
         advert_repairs:'Tamir holati',
+        chat_back:'Orqaga',
     },
     en: {
         chat: "Chat",
@@ -427,7 +428,7 @@ const content = {
         detailedView: "See more",
 
         //Personal
-        editBtn: 'Edit',
+        saveBtn: 'Save Changes',
         userProfilName: 'Name',
         userProfilLastName: 'LastName',
         userProfilPhone: 'Phone Number',
@@ -533,6 +534,8 @@ const content = {
         advert_year:'year',
         advert_materials:'Materails',
         advert_repairs:'Repair condition',
+        chat_back:'Back',
+
     },
     ru: {
         chat: "Чат",
@@ -688,7 +691,7 @@ const content = {
         detailedView: "Узнать больше",
 
         //Personal
-        editBtn: 'Изменить',
+        saveBtn: 'Сохранить изменения',
         userProfilName: 'Имя',
         userProfilLastName: 'Фамилия',
         userProfilPhone: 'Номер телефона',
@@ -795,6 +798,7 @@ const content = {
         advert_year:'год',
         advert_materials:'Материалы',
         advert_repairs:'Состояние ремонта',
+        chat_back:'Назад',
     },
 }
 export default content;

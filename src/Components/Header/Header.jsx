@@ -139,17 +139,20 @@ function Header() {
                         {user.data?.image ? (
                             <img
                                 className="user-profil__avatar"
-                                src={user.data.image}
+                                src={user?.data.image}
                                 alt=""
                                 onError={(e) =>
                                     (e.target.src = defaultAvatar)
                                 }
                             />
-                        ) : (
+                        )
+                         :
+                          (
                             <Avatar sx={{ width: 32, height: 32 }}>
                                 {user?.data?.name.slice(0, 1)}
                             </Avatar>
-                        )}
+                        )
+                        }
                     </IconButton>
                 </Tooltip>
             </Box>

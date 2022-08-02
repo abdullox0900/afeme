@@ -76,7 +76,7 @@ function UserFavorites() {
                 <div className="user-profil-wrap">
                     <UserProfilList />
                     <div className="user__cards">
-                        {showPosts(4)}
+                        {showPosts(9)}
                     </div>
                 </div>
             </Container>

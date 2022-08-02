@@ -11,6 +11,7 @@ import { Context } from "../../Context/LangContext";
 import content from "../../Localization/Content";
 
 // import Edit from ''
+import Compressor from "compressorjs";
 
 
 // Import => Style Component
@@ -32,6 +33,7 @@ function UserProfil() {
     const [uniq, setUniq] = useState('')
     const [pic, setPic] = useState('')
     const [regions, setRegions] = useState([]);
+    const [show, setShow] = useState(false)
 
     useEffect(() => {
         if (user.hasOwnProperty('data')) {
@@ -49,15 +51,20 @@ function UserProfil() {
     let picture = new FormData();
 
     const setPicture = (e) => {
-        picture.append('file', e[0])
-        picture.append('key', 'Service For C Group')
-        axios.post(`${url}service`, picture)
-            .then(function (response) {
-                setPic(response.data.data);
-            })
-            .catch(function (error) {
-                console.error(error);
-            })
+        new Compressor(e[0], {
+            quality: 0.2,
+            success(result) {
+                picture.append('file', result)
+                picture.append('key', 'Service For C Group')
+                axios.post(`${url}service`, picture)
+                    .then(function (response) {
+                        setPic(response.data.data);
+                    })
+                    .catch(function (error) {
+                        console.error(error);
+                    })
+            }
+        })
     }
 
     let token = localStorage.getItem('Token')
@@ -86,6 +93,10 @@ function UserProfil() {
         })
     }
 
+    function Show() {
+        setShow(true);
+    }
+
 
     useEffect(() => {
         const regions = async () => {
@@ -112,12 +123,12 @@ function UserProfil() {
                             <img className="profile" src={pic ? pic : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU"} alt="profile" />
                             <div className="edit">
                                 <label htmlFor="img" className="editBtn"></label>
-                                <input className="ppn" type="file" id="img" onChange={e => setPicture(e.target.files)} />
+                                <input className="ppn" accept="image/*" type="file" id="img" onChange={e => { setPicture(e.target.files); Show() }} />
                             </div>
                         </div>
                         <div className="title">
                             <p>ID//{uniq}</p>
-                            <button type="submit" onClick={(e) => Put(e)}>{content[lang].editBtn}</button>
+                            <button style={{ display: show ? 'block' : 'none' }} type="submit" onClick={(e) => Put(e)}>{content[lang].saveBtn}</button>
                         </div>
 
                         <div className="inpG">
@@ -128,7 +139,7 @@ function UserProfil() {
                                 id="outlined-basic"
                                 variant="outlined"
                                 value={name}
-                                onChange={(e) => setName(e.target.value)}
+                                onChange={(e) => { setName(e.target.value); Show() }}
                             />
                             <TextField
                                 className="us-input"
@@ -136,7 +147,7 @@ function UserProfil() {
                                 id="outlined-basic"
                                 variant="outlined"
                                 value={lastname}
-                                onChange={(e) => setLastName(e.target.value)}
+                                onChange={(e) => { setLastName(e.target.value); Show() }}
                             />
                             <TextField
                                 className="us-input"
@@ -144,7 +155,7 @@ function UserProfil() {
                                 id="outlined-basic"
                                 variant="outlined" x
                                 value={phone}
-                                onChange={(e) => setPhone(e.target.value)}
+                                onChange={(e) => { setPhone(e.target.value); Show() }}
                             />
                             <TextField
                                 className="us-input"
@@ -152,7 +163,7 @@ function UserProfil() {
                                 id="outlined-basic"
                                 variant="outlined"
                                 value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                onChange={(e) => { setEmail(e.target.value); Show() }}
                             />
                             <FormControl className="form__controler-input2">
                                 <InputLabel id="viloyat">{content[lang].form_select_vil}</InputLabel>
@@ -163,7 +174,7 @@ function UserProfil() {
                                     id="viloyat" n
                                     label={content[lang].form_select_vil}
                                     value={region}
-                                    onChange={(e) => setRegion(e.target.value)}
+                                    onChange={(e) => { setRegion(e.target.value); Show() }}
                                 >
                                     {regions.map((region) => (
                                         <MenuItem
@@ -183,7 +194,7 @@ function UserProfil() {
                                     id="demo-simple-select"
                                     value={type}
                                     label={content[lang].form_select_jis}
-                                    onChange={(e) => setType(e.target.value)}
+                                    onChange={(e) => { setType(e.target.value); Show() }}
                                 >
                                     <MenuItem value={'personal'}>{content[lang].form_select_type_sh}</MenuItem>
                                     <MenuItem value={'bussines'}>{content[lang].form_select_type_b}</MenuItem>

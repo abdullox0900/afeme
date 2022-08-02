@@ -1,65 +1,80 @@
-.chat{
-    .chatsPanel{
+@import "../../Assets/scss/colors.scss";
+.chat {
+    .chatsPanel {
+        position: relative;
         grid-column: span 2;
         border-right: 1px solid rgba(0, 0, 0, 0.08);
-        &__logo{
+        .back {
+            position: absolute;
+            display: block;
+            right: 10px;
+            padding: 6px 12px;
+            border: 2px solid $darkBlue;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            background-color: $transparent;
+            color: $darkBlue;
+        }
+        &__logo {
             display: flex;
             align-items: center;
         }
-        &__header{
+        &__header {
             display: flex;
             align-items: center;
             height: 60px;
             min-height: 60px;
             padding: 0 12px;
-            &__title{
+            &__title {
                 font-weight: 600;
                 font-size: 20px;
                 line-height: 150%;
                 margin: 0;
                 margin-left: 12px;
-                color: #333;             
+                color: #333;
             }
-            .arrowDown{
+            .arrowDown {
                 margin: 0 5px 0 10px;
             }
-            .chats__indicator{
+            .chats__indicator {
                 padding: 2px 8px;
-                background: #EDF2F7;
+                background: #edf2f7;
                 border-radius: 24px;
             }
             border-bottom: 1px solid rgba(0, 0, 0, 0.08);
         }
-        &__main{
+        &__main {
             height: 100%;
             overflow-y: auto;
             margin-top: 15px;
         }
-        &__chats{
+        &__chats {
             overflow-y: auto;
             border-radius: 10px;
         }
-        .chatProfile{
+        .chatProfile {
             display: flex;
             align-items: center;
             padding: 12px;
             border-radius: 10px;
-            transition: .3s;
-            &:hover, &.active{
+            transition: 0.3s;
+            &:hover,
+            &.active {
                 background-color: #8fdafd4d;
             }
-            &__img{
+            &__img {
                 width: 50px;
                 height: 50px;
                 border-radius: 50px;
             }
-            &__content{
+            &__content {
                 width: 100%;
                 display: flex;
                 justify-content: space-between;
                 padding-left: 15px;
             }
-            &__name{
+            &__name {
                 -webkit-line-clamp: 1;
                 -webkit-box-orient: vertical;
                 overflow: hidden;
@@ -71,10 +86,10 @@
                 margin: 0;
                 margin-right: 8px;
             }
-            &__text{
-                word-wrap: break-word;     
+            &__text {
+                word-wrap: break-word;
                 white-space: -moz-pre-wrap;
-                white-space: pre-wrap;     
+                white-space: pre-wrap;
                 font-weight: 600;
                 font-size: 13px;
                 line-height: 150%;
@@ -85,14 +100,14 @@
                 display: -webkit-box;
                 margin: 0;
             }
-            &__read{
+            &__read {
                 position: relative;
                 font-size: 14px;
                 font-weight: 500;
                 color: #444;
                 padding-top: 5px;
-                &::before{
-                    content: '';
+                &::before {
+                    content: "";
                     position: absolute;
                     width: 10px;
                     height: 10px;
@@ -101,15 +116,15 @@
                     background-color: rgb(0, 211, 0);
                     border-radius: 50%;
                     opacity: 0;
-                    transition: all .3s;
+                    transition: all 0.3s;
                 }
-                &.active::before{
+                &.active::before {
                     opacity: 1;
                 }
             }
             @media (max-width: 900px) {
                 padding: 12px 10px;
-                &__img{
+                &__img {
                     width: 40px;
                     height: 40px;
                 }
@@ -122,23 +137,24 @@
             top: 0;
             left: -110%;
             z-index: 999;
-            transition: all .3s;
+            transition: all 0.3s;
             background-color: #fff;
-            box-shadow: 0 0 8px rgba(0,0,0,0.75);
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.75);
 
-            &.active{
+            &.active {
                 left: 0;
             }
-            .chatProfile{
+            .chatProfile {
                 margin: 10px 0;
-                &__img{
+                &__img {
                     width: 50px;
                     height: 50px;
                 }
-                &__name{
+                &__name {
                     font-size: 17px;
                 }
-                &__text, &__read{
+                &__text,
+                &__read {
                     font-size: 14px;
                 }
             }
@@ -146,19 +162,19 @@
         @media (max-width: 400px) {
             padding: 0 10px;
 
-            .chatProfile{
+            .chatProfile {
                 margin: 5px 0;
-                &__img{
+                &__img {
                     width: 40px;
                     height: 40px;
                 }
-                &__name{
+                &__name {
                     font-size: 16px;
                 }
-                &__text{
+                &__text {
                     font-size: 12px;
                 }
-                &__read{
+                &__read {
                     font-size: 13px;
                 }
             }

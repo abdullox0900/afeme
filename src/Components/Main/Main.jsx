@@ -125,7 +125,6 @@ function Main() {
                             </div>
                         </div>
                         <div className="panel">
-                            {/* <div style={{marginTop:'40px'}} id="advertMap"><AdvertMap coordinate={[40.788059, 72.308069]} zoom={9}/></div> */}
 
                             <Box className="realtors">
                                 <Typography
@@ -151,10 +150,10 @@ function Main() {
                                                                 variant="h6"
                                                                 className="realtors__name"
                                                             >
-                                                                {rel.name}
+                                                                {rel.name} {rel.lastname}
                                                             </Typography>
                                                             <p className="realtors__offer">
-                                                                2 ta taklif
+                                                                {rel.posts.length} ta taklif
                                                             </p>
                                                         </div>
                                                     </Box>
@@ -162,6 +161,9 @@ function Main() {
                                             )
                                         })
                                     }
+                                </NavLink>
+                                <NavLink to={'/catalogreltor'}>
+                                    <p className="more">Barchasini korish</p>
                                 </NavLink>
                             </Box>
 

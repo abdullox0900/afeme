@@ -14,6 +14,7 @@
                 border-radius: 50%;
                 width: 100px;
                 height: 100px;
+                margin-bottom: 10px;
             }
             .edit {
                 cursor: pointer;
@@ -23,7 +24,7 @@
                 border-radius: 50%;
                 position: absolute;
                 right: 5px;
-                bottom: 5px;
+                bottom: 15px;
                 background-color: $lightBlue;
                 padding: 2px;
                 width: 30px;
@@ -59,7 +60,6 @@
             color: $white;
             border-radius: 8px;
             border: 1px solid $darkBlue;
-            margin-bottom: 30px;
             transition: all 0.3s;
         }
         button:hover,
@@ -71,6 +71,7 @@
             display: flex;
             flex-direction: column;
             grid-gap: 30px;
+            margin-top: 30px;
             #outlined-basic {
                 width: 350px;
             }
