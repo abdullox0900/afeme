@@ -21,7 +21,6 @@ function ChatSend({ chatUser, getMessages, getChats }) {
         let formData = new FormData();
         formData.append("to", chatUser.id); 
         formData.append("message", msgValue.current.value.trim());
-        console.log(chatUser.id, msgValue.current.value.trim());
         messageChange("");
 
         await fetch(`${url}message`, {
@@ -39,7 +38,6 @@ function ChatSend({ chatUser, getMessages, getChats }) {
 
     function messageChange(msg) {
         let sendBtn = document.querySelector("#msgSend");
-        console.log(msg);
 
         if (msg.trim() != "") {
             sendBtn.classList.add("active");
@@ -57,17 +55,17 @@ function ChatSend({ chatUser, getMessages, getChats }) {
         formData.append('key', 'Service For C Group')
         formData.append("file", fileInput.current.files[0]);
 
-        fetch(`${url}service`, {
-            method: 'POST',
-            body: formData,
-            // redirect: 'follow'
-        })
-            .then((response) => response.text())
-            .then(function (response) {
-                let res = JSON.parse(response);
-                console.log(res);
-            })
-            .catch((error) => console.log("error", error));
+        // fetch(`${url}service`, {
+        //     method: 'POST',
+        //     body: formData,
+        //     // redirect: 'follow'
+        // })
+        //     .then((response) => response.text())
+        //     .then(function (response) {
+        //         let res = JSON.parse(response);
+        //         console.log(res);
+        //     })
+        //     .catch((error) => console.log("error", error));
     }
 
     function openModal() {
@@ -88,7 +86,6 @@ function ChatSend({ chatUser, getMessages, getChats }) {
             }
             setPreviewImages(objectUrl);
             openModal();
-            console.log(objectUrl);
         }
     }
 

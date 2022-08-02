@@ -1,5 +1,5 @@
 // Import => React and Hooks
-import React, { useEffect, useState, useContext, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import useResize from "../../Utils/elementDimension";
 
@@ -7,14 +7,10 @@ import useResize from "../../Utils/elementDimension";
 import {
     YMaps,
     Map,
-    Placemark,
     ZoomControl,
     TypeSelector,
-    ListBox,
-    ListBoxItem,
     GeolocationControl,
     FullscreenControl,
-    ObjectManager,
 } from "react-yandex-maps";
 
 // Import Components
@@ -22,35 +18,39 @@ import AdvertPlacemark from "../AdvertPlacemark/AdvertPlacemark";
 import Spinner from "../Spinner/Spinner";
 import "./AdvertMap.scss";
 
-function AdvertMap({ currentAdvert, zoom = 10 }) {
-    const [data, setData] = useState([]);
-    const [dataError, setDataError] = useState(false);
+function AdvertMap({ advert = null, zoom = 11, coordinate = null }) {
+    const [data, setData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     let url = process.env.REACT_APP_URL;
 
-
     useEffect(() => {
         setIsLoading(true);
-        const result = axios
-            .get(`${url}post`)
-            .then((response) => {
-                let newData = response?.data.data;
-                if (newData && newData?.length > 0) {
-                    setData(response?.data.data);
-                } else {
-                    setDataError(true);
-                }
-            })
-            .catch((error) => {
-                setDataError(true);
-            })
-            .finally(() => {
+        if (!advert) {
+            axios
+                .post(`${url}filter`)
+                .then((response) => {
+                    let newData = response?.data.data;
+                    if (newData) {
+                        setData(newData);
+                    } else {
+                        setData(null);
+                    }
+                })
+                .catch(() => {
+                    setData(null);
+                })
+                .finally(() => {
+                    setIsLoading(false);
+                });
+        } else {
+            if (advert.hasOwnProperty("latitude") || advert.hasOwnProperty(0)) {
+                setData(advert);
                 setIsLoading(false);
-            });
+            } else {
+                setData(null);
+            }
+        }
     }, []);
-
-    const coordinate = [currentAdvert.latitude, currentAdvert.longitude];
-    let objects = [];
 
     if (isLoading) {
         return (
@@ -58,17 +58,15 @@ function AdvertMap({ currentAdvert, zoom = 10 }) {
                 <Spinner />
             </div>
         );
-    } else if (data?.length > 0) {
-        data.map(() => {
-            objects.push({
-                type: "Feature",
-                id: 3,
-                geometry: {
-                    type: "Point",
-                    coordinates: [24.34, 65.24],
-                },
-            });
-        });
+    } else if (data) {
+        if (!coordinate) {
+            if (data.hasOwnProperty("latitude")) {
+                coordinate = [data.latitude, data.longitude];
+            } else if (data.hasOwnProperty(0)) {
+                coordinate = [data[0].latitude, data[0].longitude];
+            }
+        }
+        console.log(coordinate);
         return (
             <YMaps
                 query={{
@@ -80,6 +78,7 @@ function AdvertMap({ currentAdvert, zoom = 10 }) {
                         center: coordinate,
                         zoom: zoom,
                         // behaviors: ["disable('scrollZoom')"],
+
                     }}
                     width="100%"
                     height="100%"
@@ -88,35 +87,7 @@ function AdvertMap({ currentAdvert, zoom = 10 }) {
                     <ZoomControl />
                     <GeolocationControl />
                     <FullscreenControl />
-                    {data?.map((advert) => (
-                        <AdvertPlacemark advert={advert} />
-                    ))}
-                    <ObjectManager
-                        options={{
-                            clusterize: true,
-                            gridSize: 32,
-                        }}
-                        objects={{
-                            openBalloonOnClick: true,
-                            preset: "islands#greenDotIcon",
-                        }}
-                        clusters={{
-                            preset: "islands#redClusterIcons",
-                        }}
-                        filter={(object) => object.id % 2 === 0}
-                        defaultFeatures={{
-                            type: "Feature",
-                            id: 3,
-                            geometry: {
-                                type: "Point",
-                                coordinates: [24.34, 65.24],
-                            },
-                        }}
-                        modules={[
-                            "objectManager.addon.objectsBalloon",
-                            "objectManager.addon.objectsHint",
-                        ]}
-                    />
+                    <AdvertPlacemark data={data} />
                 </Map>
             </YMaps>
         );

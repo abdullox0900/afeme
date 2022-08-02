@@ -1,7 +1,5 @@
-// NAVBAR
-
 .nav {
-    margin: 20px 0px;
+    margin: 15px 0px;
 
     &__list {
         display: flex;
@@ -71,11 +69,10 @@
     right: -100%;
     width: 50%;
     height: 100vh;
-    overflow: auto;
+    overflow-y: auto;
     padding: 0 40px 20px 40px;
-    transition: 0.5s;
+    transition: 0.3s;
     background-color: #fff;
-    box-shadow: -3px 15px 10px 4px rgba(0, 0, 0, 0.1);
     z-index: 999;
 }
 
@@ -111,7 +108,11 @@
     top: 20px;
     right: 20px;
     border: none;
-    background-color: transparent;   
+    background-color: transparent;
+    cursor: pointer;  
+}
+.header__menu-btn{
+    cursor: pointer;
 }
 
 ion-icon {
@@ -161,8 +162,6 @@ ion-icon {
         bottom: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(3px);
         z-index: 100;
     }
 }

@@ -9,21 +9,21 @@ import noMessageIcon from "../../Assets/Img/noMessages.svg";
 import welcomeToChat from "../../Assets/Img/Icon/welcomeToChat.svg";
 
 function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
-
     let i = 0;
     useEffect(() => {
         AOS.init({
             offset: 150,
-            duration: 750,
+            duration: 500,
             debounceDelay: 50,
             throttleDelay: 90,
+            mirror: true,
+            once: false
         });
     }, []);
     let messagesBlog = document.querySelector(".styles_scrollable-div__prSCv");
     let scrollBottomBtn = document.querySelector(".scrollBottom");
 
     messagesBlog?.addEventListener("scroll", function () {
-        console.log();
         if (this.scrollHeight - this.clientHeight - this.scrollTop > 400) {
             scrollBottomBtn.classList.add("active");
         } else {
@@ -34,13 +34,27 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
         messagesBlog.scrollTop = messagesBlog.scrollHeight;
     });
 
-    function timeConverter(unix){
+    function timeConverter(unix) {
         let a = new Date(unix * 1000);
-        let months = ['Yanvar', 'Fevral', 'Mart', 'Aprel', "May", "Iyun", "Iyul", "Avgust", "Sentabr", "Oktabr", "Noyabr", "Dekabr"];
+        let months = [
+            "Yanvar",
+            "Fevral",
+            "Mart",
+            "Aprel",
+            "May",
+            "Iyun",
+            "Iyul",
+            "Avgust",
+            "Sentabr",
+            "Oktabr",
+            "Noyabr",
+            "Dekabr",
+        ];
         let month = months[a.getMonth()];
-        let hour = a.getHours();
-        let min = a.getMinutes();
-        let time = a.getMonth() + '-' + month + ' ' + hour + ':' + min;
+        let day = a.getDay();
+        let hour = a.getHours() >= 10 ? a.getHours() : '0' + a.getHours();
+        let min = a.getMinutes() >= 10 ? a.getMinutes() : '0' + a.getMinutes();
+        let time = day + "-" + month + " " + hour + ":" + min;
         return time;
     }
 
@@ -71,15 +85,17 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
                                 i++;
                                 let messageText = message.message.trim();
                                 let date = timeConverter(message.created);
-                                
+                                let animate = messages.length - 10 > i ? '' : 'fade-up';
+
                                 if (message.to == chatUser.id) {
                                     let className = `message ${
-                                        message.to == chatUser.id && messages[i]?.to == chatUser.id
-                                            ? "messageGroup outgoing"
-                                            : "outgoing"
-                                    }`;
+                                        message.to == chatUser.id &&
+                                        messages[i]?.to == chatUser.id
+                                            ? "messageGroup"
+                                            : ""
+                                    } outgoing`;
                                     return (
-                                        <div className={className} key={v4()}>
+                                        <div className={className} key={v4()} data-aos={animate} data-aos-anchor=".styles_scrollable-div__prSCv">
                                             <div className="message__content">
                                                 <p className="message__text">
                                                     {messageText}
@@ -92,15 +108,13 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
                                     );
                                 } else {
                                     let className = `message ${
-                                        message.to != chatUser.id && messages[i]?.to != chatUser.id
-                                            ? "messageGroup incoming"
-                                            : "incoming"
-                                    }`;
+                                        message.to != chatUser.id &&
+                                        messages[i]?.to != chatUser.id && messages[i]?.to
+                                            ? "messageGroup"
+                                            : ""
+                                    } incoming`;
                                     return (
-                                        <div
-                                            className={className}
-                                            key={v4()}
-                                        >
+                                        <div className={className} key={v4()} data-aos={animate} data-aos-anchor=".styles_scrollable-div__prSCv">
                                             <img
                                                 src={
                                                     chatUser.image
@@ -109,7 +123,10 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
                                                 }
                                                 alt=""
                                                 className="message__sender"
-                                                onError={(e) => e.target.src = defaultAvatar}
+                                                onError={(e) =>
+                                                    (e.target.src =
+                                                        defaultAvatar)
+                                                }
                                             />
                                             <div className="message__content">
                                                 <p className="message__text">

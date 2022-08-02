@@ -1,5 +1,11 @@
 .adverts{
     margin: 60px 0;
+    &__blog{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 30px;
+        place-items: center;
+    }
 }
 .rek {
     display: flex;

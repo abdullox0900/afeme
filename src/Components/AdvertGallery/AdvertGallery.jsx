@@ -2,12 +2,7 @@ import React, { useEffect, useState, useRef, useContext } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 
 // Import Images
-import HeroImg1 from "../../Assets/Img/home-hero-1.jpg";
-import HeroImg2 from "../../Assets/Img/home-hero-2.jpg";
-import HeroImg3 from "../../Assets/Img/home-hero-3.jpg";
-import HeroImg4 from "../../Assets/Img/home-hero-4.jpg";
-import HeroImg5 from "../../Assets/Img/home-hero-5.jpg";
-import HeroImg6 from "../../Assets/Img/home-hero-6.jpg";
+import defaultImage from "../../Assets/Img/no-photo.jpg"
 
 // Import useContext => Localization
 import { Context } from "../../Context/LangContext";
@@ -22,10 +17,6 @@ function AdvertGallery({ data, isLoading }) {
     const { lang, setLang } = useContext(Context);
     const mainRef = useRef();
     const thumbsRef = useRef();
-    const [hasImages, setHasImages] = useState(
-        Array.isArray(data.image) && data.image.length > 0
-    );
-    const [hasVideo, setHasVideo] = useState(Array.isArray(data.video));
     const imagesCount = data.image.length;
 
     useEffect(() => {
@@ -55,25 +46,25 @@ function AdvertGallery({ data, isLoading }) {
         focus: "center",
         isNavigation: true,
     };
-    let arr = [HeroImg1, HeroImg2, HeroImg3, HeroImg4, HeroImg5, HeroImg6];
-    let randNumber = Math.floor(Math.random() * 5);
 
     function generateSlides(images, main) {
-        return images.map((row) => (
-            <SplideSlide>
-                <img
-                    src={row.url}
-                    className={main ? "splide__img splide__main__img" : "splide__img"}
-                    alt=""
-                    onError={(e) => (e.target.src = arr[randNumber])}
-                />
-            </SplideSlide>
-        ));
+        if (images.hasOwnProperty(0)) {
+            return images.map((row) => (
+                <SplideSlide>
+                    <img
+                        src={row.url}
+                        className={main ? "splide__img splide__main__img" : "splide__img"}
+                        alt=""
+                        onError={(e) => (e.target.src = defaultImage)}
+                    />
+                </SplideSlide>
+            ));
+        }
     }
     function showVideo(thumb = false) {
         return (
             <>
-                {data.video.length > 0 ? (
+                {data.video.hasOwnProperty(0) ? (
                     <SplideSlide>
                         <video
                             src={data.video[0].url}
@@ -84,13 +75,13 @@ function AdvertGallery({ data, isLoading }) {
                 ) : (
                     ""
                 )}
-                {data.documents ? (
+                {data.documents.hasOwnProperty(0) ? (
                     <SplideSlide>
                         <img
-                            src={data.documents}
+                            src={data.documents[0].url}
                             className="splide__img"
                             alt=""
-                            onError={(e) => (e.target.src = arr[randNumber])}
+                            onError={(e) => (e.target.src = defaultImage)}
                         />
                     </SplideSlide>
                 ) : (
@@ -100,9 +91,7 @@ function AdvertGallery({ data, isLoading }) {
         );
     }
 
-    if (isLoading) {
-        return <h1>Loading...</h1>;
-    } else if (hasImages || hasVideo) {
+   if (data.image.hasOwnProperty(0)) {
         return (
             <section className="advertGallery">
                 <Splide

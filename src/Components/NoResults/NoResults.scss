@@ -5,6 +5,7 @@
     flex-wrap: wrap;
     margin: 20px;
     margin-top: 0;
+    grid-column: span 4;
     &__content{
         margin-left: 30px;
     }

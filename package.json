@@ -1,6 +1,6 @@
 {
     "name": "afeme",
-    "version": "0.4.0",
+    "version": "0.6 .0",
     "private": true,
     "dependencies": {
         "@emotion/react": "^11.9.0",
@@ -17,7 +17,7 @@
         "@testing-library/user-event": "^14.2.0",
         "aos": "^2.3.4",
         "axios": "^0.27.2",
-        "dotenv": "^16.0.1",
+        "compressorjs": "^1.1.1",
         "emailjs-com": "^3.2.0",
         "laravel-echo": "^1.12.1",
         "node-sass": "^7.0.1",
@@ -25,20 +25,14 @@
         "react": "^18.1.0",
         "react-content-loader": "^6.2.0",
         "react-dom": "^18.1.0",
-        "react-dropzone": "^14.2.1",
-        "react-geocode": "^0.2.3",
-        "react-google-autocomplete": "^2.7.0",
         "react-google-map-picker": "^1.2.3",
-        "react-google-maps": "^9.4.5",
         "react-hook-form": "^7.32.0",
-        "react-loading": "^2.0.3",
         "react-rating-stars-component": "^2.2.0",
         "react-router-dom": "^6.3.0",
         "react-scripts": "5.0.1",
         "react-scrollable-feed": "^1.3.1",
         "react-yandex-maps": "^4.6.0",
-        "uuid": "^8.3.2",
-        "web-vitals": "^2.1.4"
+        "uuid": "^8.3.2"
     },
     "scripts": {
         "predeploy": "npm run build",

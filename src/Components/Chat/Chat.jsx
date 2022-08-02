@@ -12,7 +12,6 @@ import ChatUsers from "../ChatUsers/ChatUsers";
 import ChatMessages from "../ChatMessages/ChatMessages";
 import ChatSend from "../ChatSend/ChatSend";
 import { UserContext } from "../../Context/UserContext";
-import Notification from "../Notification/Notification";
 import Page404 from "../../Pages/404/404";
 import Cards from "../Card/Card";
 import useWindowDimensions from "../../Utils/windowDimension";
@@ -32,7 +31,9 @@ let url = process.env.REACT_APP_URL;
 let CHATKEY = process.env.REACT_APP_CHAT_KEY;
 
 function Chat() {
+
     let token = localStorage.getItem("Token");
+    let userID = localStorage.getItem("user_id");
     let urlHash = window.location.hash.substring(1);
     let headers = new Headers();
     headers.append("Authorization", `Bearer ${token}`);
@@ -43,7 +44,7 @@ function Chat() {
     const [adverts, setAdverts] = useState([]);
     const [chats, setChats] = useState(null);
     const [chatID, setChatID] = useState(
-        urlHash.trim() != "" && !isNaN(urlHash) ? urlHash : null
+        urlHash.trim() != "" && !isNaN(urlHash) && urlHash != userID ? urlHash : null
     );
     const [chatUser, setChatUser] = useState();
     const [isLoading, setIsLoading] = useState(true);
@@ -56,6 +57,7 @@ function Chat() {
     const chatMenu = createRef();
 
     useEffect(() => {
+        setMessagesData(null);
         if (chatID) {
             function getUser() {
                 fetch(`${url}user/${chatID}`, {
@@ -64,19 +66,16 @@ function Chat() {
                     .then((response) => response.text())
                     .then((response) => {
                         let data = JSON.parse(response);
-                        console.log(data);
                         if (data.hasOwnProperty("data")) {
                             setChatUser(data.data);
                             getMessages();
                             setChatFound(true);
                         } else {
                             setChatFound(false);
-                            setMessagesData(null);
                         }
                     })
                     .catch(() => {
                         setChatFound(false);
-                        setMessagesData(null);
                     });
             }
             getUser();
@@ -92,21 +91,20 @@ function Chat() {
         });
 
         getChats();
-        echo.channel("chat" + 458)
+        echo.channel("chat" + userID)
             .subscribed(() => {
                 console.log("You are subscribed");
             })
-            .listen("MessageSent", (data) => {
+            .listen("MessageSent", () => {
+                console.log("MESSAGE RECEIVE");
                 getMessages();
-                getChats();
-                showNotification();
-                console.log("xabar keldi");
+                getChats(true);
             });
 
         window.addEventListener("hashchange", getHashUrl);
         function getHashUrl() {
             let hash = window.location.hash.substring(1);
-            if (hash.trim() != "" && !isNaN(hash)) {
+            if (hash.trim() != "" && !isNaN(hash) && hash != userID) {
                 setChatID(hash);
             } else {
                 setChatID(null);
@@ -117,16 +115,26 @@ function Chat() {
             }
         }
 
-        fetch(url + "popular/", {
+        fetch(url + "popular/5", {
             method: "GET",
-            mode: 'no-cors'
+            redirect: 'follow'
         })
             .then((response) => response.text())
             .then((response) => {
                 let data = JSON.parse(response);
+                if (data.hasOwnProperty('data')) {
+                    setAdverts(data.data);
+                }
                 console.log(data);
             })
             .catch((error) => console.log(error));
+
+        setTimeout(() => {
+            Notification.requestPermission().then((result) => {
+                console.log(result);
+            });
+        }, 3000);
+
     }, []);
 
     async function getMessages() {
@@ -137,7 +145,6 @@ function Chat() {
             .then((response) => response.text())
             .then((response) => {
                 let data = JSON.parse(response);
-                console.log(data);
                 if (data) {
                     setMessagesData(data);
                 } else {
@@ -146,7 +153,7 @@ function Chat() {
             });
     }
 
-    async function getChats() {
+    async function getChats(isNotification = false) {
         await fetch(`${url}message`, {
             method: "GET",
             headers: headers,
@@ -154,8 +161,10 @@ function Chat() {
             .then((response) => response.text())
             .then((response) => {
                 let res = JSON.parse(response);
-                console.log(res);
                 setChats(res);
+                if (isNotification) {
+                    showNotification(res[0]);
+                }
             })
             .catch(() => {
                 setChats(null);
@@ -163,27 +172,21 @@ function Chat() {
             .finally(() => setIsLoading(false));
     }
 
-    function showNotification() {
-        setNotificationOpen(true);
-        setTimeout(() => {
-            setNotificationOpen(false);
-        }, 5000);
+    function showNotification(chat) {
+        let user = chat.user?.name + ' ' + chat.user?.lastname
+        let message = chat.latest.message.slice(0, 50);
+        let userAvatar = chat.user.image ? chat.user.image : defaultAvatar;
+
+        new Notification(user, { body: message, icon: userAvatar });
+        return 0;
     }
 
-    console.log(!chatID, chatID);
+    console.log(adverts);
     if (token && token.trim() != "") {
         if (user.hasOwnProperty("data")) {
             return (
                 <Box className="chat">
-                    {notificationOpen ? (
-                        <Notification
-                            message={chats[0]?.latest?.message.slice(0, 50)}
-                            type={"success"}
-                        />
-                    ) : (
-                        ""
-                    )}
-
+                    
                     <ChatUsers
                         chats={chats}
                         chatID={chatID}
@@ -271,24 +274,16 @@ function Chat() {
 
                     {windowWidth > 1280 ? (
                         <section className="infoPanel">
-                            {/* <Box className="infoPanel__header">
                             <h5 className="infoPanel__title">
-                                Elmerdan boshqa e'lonlar
+                                {content[lang].doyou}
                                 <ArrowDown className="arrowDown" />
+                                <span className="chats__indicator">{adverts?.length}</span>
                             </h5>
-                        </Box> */}
-                            <Box className="infoPanel__main">
-                                <h5 className="infoPanel__title">
-                                    {content[lang].doyou}
-                                    <ArrowDown className="arrowDown" />
-                                    <span className="chats__indicator">4</span>
-                                </h5>
-                                <div className="infoPanel__cards">
-                                    {adverts.map((advert) => (
-                                        <Cards data={advert} />
-                                    ))}
-                                </div>
-                            </Box>
+                            <div className="infoPanel__cards">
+                                {adverts.map((advert) => (
+                                    <Cards data={advert} />
+                                ))}
+                            </div>
                             <Box></Box>
                         </section>
                     ) : (
@@ -299,12 +294,12 @@ function Chat() {
         } else {
             setTimeout(() => {
                 return <Page404 />;
-            }, 2000);
+            }, 1000);
         }
     } else {
         setTimeout(() => {
             return <Page404 />;
-        }, 2000);
+        }, 1000);
     }
 }
 export default Chat;

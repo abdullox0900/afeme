@@ -12,6 +12,9 @@ import {
     CardActions,
     Button,
     IconButton,
+    Tooltip,
+    Backdrop,
+    CircularProgress,
 } from "@mui/material";
 
 // Import => Components
@@ -22,9 +25,6 @@ import DeleteIcon from "../../Lib/Svg/delete";
 import EditIcon from "../../Lib/Svg/edit";
 
 import CardTools from "../../Utils/cardTools";
-import { CurrencyContext } from "../../Context/CurrencyContext";
-import { Context as LangContext } from "../../Context/LangContext";
-import { UserContext } from "../../Context/UserContext";
 import Notification from "../Notification/Notification";
 import "./Card.scss";
 import CardImg1 from "../../Assets/Img/hero-img.png";
@@ -32,41 +32,13 @@ import CardImg2 from "../../Assets/Img/advertImg.jpg";
 import timesIcon from "../../Assets/Img/Icon/times.svg";
 import { logRoles } from "@testing-library/react";
 
-function Cards({ data, editDelete = false, fullCard = false, isUserPost = false }) {
-    const { lang, setLang } = useContext(LangContext);
-    const { currency, setCurrency } = useContext(CurrencyContext);
-    const { user, setUser } = useContext(UserContext);
+function Cards({ data, fullCard = false, isUserPost = false }) {
     const delModal = useRef();
+    const [tooltipOpen, setTooltipOpen] = useState(false);
 
-    const [price, setPrice] = useState("");
-    const [advertTitle, setAdvertTitle] = useState("");
-    const [advertLink, setAdvertLink] = useState("");
-    const [advertType, setAdvertType] = useState("");
-    const [advertTypeImg, setAdvertTypeImg] = useState("");
-    const [advertTypeLink, setAdvertTypeLink] = useState("");
-    const [advertAddress, setAdvertAddress] = useState("");
-    const [advertCity, setAdvertCity] = useState("");
     const [isClickDelete, setIsClickDelete] = useState(false);
     const [isAdvertDelete, setIsAdvertDelete] = useState(false);
     const [CardImg, setCardImg] = useState();
-
-    CardTools(
-        data,
-        lang,
-        currency,
-        setPrice,
-        setAdvertTitle,
-        setAdvertLink,
-        setAdvertType,
-        setAdvertTypeImg,
-        setAdvertTypeLink,
-        setAdvertAddress,
-        setAdvertCity
-    );
-
-    useEffect(() => {
-        setCardImg(Math.floor(Math.random() * 2) == 0 ? CardImg1 : CardImg2);
-    }, []);
 
     const token = localStorage.getItem("Token");
     var myHeaders = new Headers();
@@ -77,8 +49,21 @@ function Cards({ data, editDelete = false, fullCard = false, isUserPost = false 
         headers: myHeaders,
         redirect: "follow",
     };
-
     let url = process.env.REACT_APP_URL;
+
+    const {
+        price,
+        advertTitle,
+        advertLink,
+        advertType,
+        advertTypeLink,
+        advertTypeImg,
+        advertAddress,
+    } = CardTools(data);
+
+    useEffect(() => {
+        setCardImg(Math.floor(Math.random() * 2) == 0 ? CardImg1 : CardImg2);
+    }, []);
 
     const Delete = (id, delButton) => {
         delButton.disabled = true;
@@ -109,9 +94,10 @@ function Cards({ data, editDelete = false, fullCard = false, isUserPost = false 
                     variant="solid"
                     color="primary"
                     className="cardControls cardEdit"
-                    sx={{ mr: 1.5 }}>
+                    sx={{ mr: 1.5 }}
+                >
                     <EditIcon />
-                </IconButton >
+                </IconButton>
             </Link>
             <IconButton
                 variant="outlined"
@@ -188,28 +174,106 @@ function Cards({ data, editDelete = false, fullCard = false, isUserPost = false 
         );
     }
 
-    if (data.check == 'true' || isUserPost) {
+    function markAsSold(e) {
+        e.target.disabled = true;
+        fetch(url + "sold/" + data.id, { method: "GET", headers: myHeaders })
+            .then((res) => res.text())
+            .then((res) => {
+                if (JSON.parse(res) == 1) {
+                }
+            })
+            .finally(() => (e.target.disabled = false));
+    }
+
+    function userItems() {
+        if (isUserPost) {
+            return (
+                <>
+                    <div className="card__sold">
+                        <Tooltip
+                            arrow
+                            title={
+                                !data.solt
+                                    ? "Sotilgan deb belgilangan e'lon faqat sizga ko'rinadi"
+                                    : "E'lon barcha uchun ochiq bo'ladi"
+                            }
+                            color="primary"
+                            open={tooltipOpen}
+                            sx={{ backgroundColor: "#fff" }}
+                        >
+                            <Button
+                                color="primary"
+                                variant="contained"
+                                size="small"
+                                className="markAsSold"
+                                onMouseEnter={() => setTooltipOpen(true)}
+                                onMouseLeave={() => setTooltipOpen(false)}
+                                onClick={(e) => markAsSold(e)}
+                            >
+                                {!data.solt
+                                    ? "Sotilgan deb belgilash"
+                                    : "Bekor qilish"}
+                            </Button>
+                        </Tooltip>
+                    </div>
+                    {data.check == "true" ? (
+                        ""
+                    ) : (data.check == "null" || !data.check) && isUserPost ? (
+                        <Tooltip
+                            title="E'lon operatorlar tomonidan ko'rib chiqilmoqda. Bu jarayonda e'lon faqat siz uchun ko'rinadi"
+                            placement="top"
+                        >
+                            <div className="card__verification">
+                                Ko'rib chiqilmoqda
+                            </div>
+                        </Tooltip>
+                    ) : (
+                        <Tooltip
+                            title="Iltimos e'lon ma'lumotlarini o'zgartirib ko'ring"
+                            placement="top"
+                        >
+                            <div className="card__verification">
+                                Rad etilgan
+                            </div>
+                        </Tooltip>
+                    )}
+                </>
+            );
+        }
+    }
+
+    if ((data.check == "true" && data.solt != 'true') || isUserPost) {
         if (!fullCard) {
             return (
                 <>
                     {isClickDelete ? deleteModal() : ""}
-                    <Card sx={{ maxWidth: 300 }} className="card" cardid={data.id}>
-                        <Link to={advertLink}>
-                            <CardMedia
-                                component="img"
-                                alt="Card img"
-                                className="card__img"
-                                image={
-                                    data.image?.length > 0
-                                        ? data.image[0]?.url
-                                        : CardImg
-                                }
-                                onError={(e) => (e.target.src = CardImg)}
-                            />
-                        </Link>
+                    <Card
+                        sx={{ maxWidth: 300 }}
+                        className="card"
+                        cardid={data.id}
+                    >
+                        <div className="card__media">
+                            <Link to={advertLink}>
+                                <CardMedia
+                                    component="img"
+                                    alt=""
+                                    className="card__img"
+                                    image={
+                                        data.image?.length > 0
+                                            ? data.image[0]?.url
+                                            : CardImg
+                                    }
+                                    onError={(e) => (e.target.src = CardImg)}
+                                />
+                            </Link>
+                            {userItems()}
+                        </div>
                         <Box className="card__content">
                             <CardContent className="card__header">
-                                <Link to={advertTypeLink} className="house__type">
+                                <Link
+                                    to={advertTypeLink}
+                                    className="house__type"
+                                >
                                     <img
                                         src={advertTypeImg}
                                         alt=""
@@ -223,7 +287,9 @@ function Cards({ data, editDelete = false, fullCard = false, isUserPost = false 
                                     variant="body2"
                                     className="house__prices"
                                 >
-                                    <span className="house__price">{price}</span>
+                                    <span className="house__price">
+                                        {price}
+                                    </span>
                                 </Typography>
                             </CardContent>
                             <CardContent className="card__main">
@@ -239,7 +305,7 @@ function Cards({ data, editDelete = false, fullCard = false, isUserPost = false 
                                     </span>
                                 </Typography>
                                 <div className="card__actions">
-                                    {editDelete ? (
+                                    {isUserPost ? (
                                         cardControls
                                     ) : (
                                         <LoveBtn advertID={data.id} />
@@ -274,10 +340,15 @@ function Cards({ data, editDelete = false, fullCard = false, isUserPost = false 
                                     alt=""
                                     className="house__type__icon"
                                 />
-                                <p className="house__type__name">{advertType}</p>
+                                <p className="house__type__name">
+                                    {advertType}
+                                </p>
                             </Link>
 
-                            <Typography variant="body2" className="house__prices">
+                            <Typography
+                                variant="body2"
+                                className="house__prices"
+                            >
                                 <span className="house__price">{price}</span>
                             </Typography>
                         </CardContent>

@@ -61,7 +61,7 @@ function Footer() {
                 <Container className="container">
                     <section className="footer__row">
                         <section className="footer__holder">
-                            <NavLink to={"/Afeme"}>
+                            <NavLink to={"/"}>
                                 <img src={Logo} className="footer__logo-img" alt="logo-img" />
                             </NavLink>
                             <p className="footer__subtitle">{content[lang].footer_text}</p>
@@ -82,13 +82,10 @@ function Footer() {
                                     <NavLink to={"/catalogreltor"} className="footer__link">{content[lang].rel}</NavLink>
                                 </li>
                                 <li className="footer__item">
-                                    <NavLink to={"/Tezkunda"} className="footer__link">{content[lang].we}</NavLink>
-                                </li>
-                                <li className="footer__item">
                                     <NavLink to={"/help"} className="footer__link">{content[lang].help}</NavLink>
                                 </li>
                                 <li className="footer__item">
-                                    <a href="https://ali98.uz/" className="footer__link">{content[lang].chat}</a>
+                                    <NavLink to={"/chat"} className="footer__link">{content[lang].chat}</NavLink>
                                 </li>
                             </ul>
                         </section>

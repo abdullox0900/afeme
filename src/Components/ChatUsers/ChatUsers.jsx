@@ -1,5 +1,5 @@
 import React, { Fragment, useContext, createRef, useRef } from "react";
-import { NavLink as Link } from "react-router-dom";
+import { NavLink as Link, useNavigate } from "react-router-dom";
 
 import { Box, IconButton } from "@mui/material";
 import { v4 } from "uuid";
@@ -17,6 +17,11 @@ function ChatUsers({ chats, chatID, isLoading, defaultAvatar, chatMenu, isOpen }
     const { lang, setLang } = useContext(Context);
     const userIndicator = createRef();
     const { windowWidth } = useWindowDimensions();
+    const history = useNavigate();
+
+    const Back = () => {
+        history(-1);
+    }
 
     function showChats(amount) {
         if (isLoading) {
@@ -104,9 +109,8 @@ function ChatUsers({ chats, chatID, isLoading, defaultAvatar, chatMenu, isOpen }
                                     </Box>
                                     <span
                                         ref={userIndicator}
-                                        className={`chatProfile__read${
-                                            chat.chat.reading ? "" : " active"
-                                        }`}
+                                        className={`chatProfile__read${chat.chat.reading ? "" : " active"
+                                            }`}
                                     >
                                         {lastMsgDate}
                                     </span>
@@ -147,6 +151,7 @@ function ChatUsers({ chats, chatID, isLoading, defaultAvatar, chatMenu, isOpen }
                 ) : (
                     ""
                 )}
+                <button className="back" onClick={Back}>{content[lang].chat_back}</button>
             </Box>
             <Box className="chatsPanel__main">
                 <Box className="chatsPanel__chats">{showChats(7)}</Box>

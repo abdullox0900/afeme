@@ -23,15 +23,18 @@ import { TextField } from '@mui/material'
 import MapPicker from "react-google-map-picker";
 import { v4 } from "uuid";
 import axios from "axios"
+import Compressor from 'compressorjs';
+
 
 // Map Variables
-const DefaultZomm = 4;
-const DefaultLocation = { lat: 41.29789837558708, lng: 69.23906484167179 };
 
 //Url Variable
-let url = process.env.REACT_APP_URL;
 
 function UserPostEdit() {
+    let url = process.env.REACT_APP_URL;
+    const DefaultZomm = 4;
+    const [longitude, setLongitude] = useState(0)
+    const [latitude, setLatitude] = useState(0)
     // Localization Context
     const { lang, setLang } = useContext(Context);
 
@@ -39,8 +42,7 @@ function UserPostEdit() {
 
     // Map 
     const [zoom, setZoom] = useState(DefaultZomm);
-    const [defaultLocation, setDefaultLocation] = useState(DefaultLocation);
-    const [location, setLocation] = useState(defaultLocation);
+    const [defaultLocation, setDefaultLocation] = useState({});
 
     // Recieve Data Post
     const [postData, setPostData] = useState([]);
@@ -52,8 +54,6 @@ function UserPostEdit() {
     const [repair_id, setUsRepair] = useState('')
     const [region_id, setRegionID] = useState('')
     const [city_id, setCity] = useState('')
-    const [longitude, setLongitude] = useState('')
-    const [latitude, setLatitude] = useState('')
     const [price_som, setPrice_som] = useState('')
     const [date, setDate] = useState('')
     const [room, setRoom] = useState('')
@@ -82,6 +82,7 @@ function UserPostEdit() {
     const [sale, setSale] = useState([]);
     const [repair, setRepair] = useState([]);
     const [materials, setMaterials] = useState([]);
+    const [tuman, settuman] = useState('buloqboshı')
 
     // Recieving Dates
     useEffect(() => {
@@ -113,8 +114,10 @@ function UserPostEdit() {
         axios.get(`${url}post/${postID}`)
             .then(function (response) {
                 setPostData(response.data);
+                setDefaultLocation({ lat: response.data.data.latitude * 1, lng: response.data.data.longitude * 1 })
             })
     }, [])
+
 
     // INitialize Dates
     useEffect(() => {
@@ -127,8 +130,6 @@ function UserPostEdit() {
             setCity(Number(postData.data.city_id.id))
             setStreet(postData.data.street)
             setHouse(postData.data.house)
-            setLongitude(Math.round(postData.data.longitude))
-            setLatitude(Math.round(postData.data.latitude))
             setKitchenArea(Number(postData.data.kitchen_area))
             setLivingArea(Number(postData.data.living_area))
             setTotalArea(Number(postData.data.total_area))
@@ -142,6 +143,7 @@ function UserPostEdit() {
             setUsDocs(postData.data.documents)
             sethDescr(postData.data.description)
             setPrice_som(Number(postData.data.price_som))
+            Selector(postData.data.region_id.id);
         }
     }, [postData])
     // Get Token
@@ -172,6 +174,7 @@ function UserPostEdit() {
     editPost.append('kitchen_area', kitchen_area)
     editPost.append('photo', photo);
     editPost.append('video', video);
+    editPost.append('check', '')
 
     // Send Variable
     let headersList = {
@@ -187,7 +190,7 @@ function UserPostEdit() {
         }).then(function (response) {
             return response.text();
         }).then(function (data) {
-            window.location.reload()
+            window.location.href = "/userads"
         })
     }
 
@@ -254,21 +257,26 @@ function UserPostEdit() {
     function addImage(e) {
         let files = [...e];
         for (let i = 0; i < files.length; i++) {
-            newImage.append('key', 'Service For C Group')
-            newImage.append('file', files[i])
-            fetch(`${url}service`, newPicture)
-                .then(response => response.text())
-                .then(function (response) {
-                    let res = JSON.parse(response);
-                    Object.entries(res).forEach(([name, value]) => {
-                        if (typeof value === 'string') {
-                            let array = [...photo]
-                            array = [...array, value]
-                            setPhoto(array);
-                        }
-                    })
-                })
-                .catch(error => console.log('error', error));
+            new Compressor(files[i], {
+                quality: 0.2,
+                success(result) {
+                    newImage.append('key', 'Service For C Group')
+                    newImage.append('file', result)
+                    fetch(`${url}service`, newPicture)
+                        .then(response => response.text())
+                        .then(function (response) {
+                            let res = JSON.parse(response);
+                            Object.entries(res).forEach(([name, value]) => {
+                                if (typeof value === 'string') {
+                                    let array = [...photo]
+                                    array = [...array, value]
+                                    setPhoto(array);
+                                }
+                            })
+                        })
+                        .catch(error => console.log('error', error));
+                }
+            })
         }
     }
 
@@ -336,6 +344,7 @@ function UserPostEdit() {
                     <div className="postEdit">
                         <h1>{content[lang].edit_postTitle}</h1>
                         <p>{postData.data?.id}{content[lang].edit_post}</p>
+
                         <div className="saleHouse">
                             <FormControl className="selectInp">
                                 <InputLabel id="Sotish turi">{content[lang].edit_saleType}</InputLabel>
@@ -432,10 +441,10 @@ function UserPostEdit() {
                                 </Select>
                             </FormControl>
                             <FormControl className="selectInp">
-                                <InputLabel id="shaxar">{content[lang].edit_City}</InputLabel>
+                                <InputLabel id="shaxar">Tuman</InputLabel>
                                 <Select
                                     id="shaxar"
-                                    label={content[lang].edit_City}
+                                    label={'Tuman'}
                                     value={city_id}
                                     onChange={(e) => setCity(e.target.value)}
                                 >
@@ -443,6 +452,7 @@ function UserPostEdit() {
                                         <MenuItem
                                             key={type.id}
                                             value={type.id}
+                                            selected={city_id == type.id ? 'selected' : null}
                                         >
                                             {lang == "uz" ? type.name_uz : lang !== "ru" ? type.name_en : type.name_ru}
                                         </MenuItem>

@@ -25,19 +25,26 @@ let url = process.env.REACT_APP_URL;
 function Search({ map = false }) {
 
     const [searchParams, setSearchParams] = useSearchParams();
+    const searchTerm = searchParams.get("term");
+    const searchSale = searchParams.get("sale");
+    const searchHtype = searchParams.get("htype");
+    const searchRoom = searchParams.get("room");
+    const searchFrom = searchParams.get("from");
+    const searchTo = searchParams.get("to");
+
     const navigate = useNavigate();
     const { lang, setLang } = useContext(Context);
     const { IP, setIP } = useContext(IPContext);
     const { currency, setCurrency } = useContext(CurrencyContext);
     const { searchTerms, setSearchTerms } = useContext(SearchContext);
-    const [term, setTerm] = useState("");
+    const [term, setTerm] = useState(searchTerm);
     const [sales, setSales] = useState([]);
     const [htypes, setHtypes] = useState([]);
-    const [sale, setSale] = useState("");
-    const [htype, setHtype] = useState("");
-    const [priceFrom, setPriceFrom] = useState("");
-    const [priceTo, setPriceTo] = useState("");
-    const [room, setRoom] = useState("");
+    const [sale, setSale] = useState(searchSale);
+    const [htype, setHtype] = useState(searchHtype);
+    const [priceFrom, setPriceFrom] = useState(searchFrom);
+    const [priceTo, setPriceTo] = useState(searchTo);
+    const [room, setRoom] = useState(searchRoom);
     const [fromMax, setFromMax] = useState("");
     const [toMin, setToMin] = useState(0);
 
@@ -90,7 +97,7 @@ function Search({ map = false }) {
                 }${room ? "&room=" + room : ""
                 }${priceFrom ? "&from=" + priceFrom : ""
                 }${priceTo ? "&to=" + priceTo : ""
-                }${term ? "term=" + term : ""}`
+                }${term ? "&term=" + term : ""}`
             );
         } else {
             let formData = new FormData();
@@ -100,10 +107,11 @@ function Search({ map = false }) {
             formData.append("room", room);
             formData.append("from", priceFrom);
             formData.append("to", priceTo);
-            if (priceFrom && priceTo) {
-                if (priceFrom != '' && priceTo != '') {
-                    formData.append("price_type", currency == 'sum' ? 'som': currency);
-                }
+            if (priceFrom != '' && priceTo != '') {
+                formData.append("price_type", currency === 'sum' ? 'uzs': currency);
+            }
+            if (term && term != '') {
+                formData.append("lang", lang);
             }
             setSearchTerms(formData);
         }
@@ -143,7 +151,7 @@ function Search({ map = false }) {
                                 {content[lang].saleType}
                             </InputLabel>
                             <Select
-                                labelId="filter__select-label"
+                                label={content[lang].saleType}
                                 MenuProps={{
                                     disableScrollLock: true,
                                 }}
@@ -173,7 +181,7 @@ function Search({ map = false }) {
                                 {content[lang].homeType}
                             </InputLabel>
                             <Select
-                                labelId="filter__select-label"
+                                label={content[lang].homeType}
                                 MenuProps={{
                                     disableScrollLock: true,
                                 }}
@@ -203,28 +211,27 @@ function Search({ map = false }) {
                                 {content[lang].adverd_room}
                             </InputLabel>
                             <Select
-                                labelId="filter__select-label"
+                                label={content[lang].adverd_room}
                                 id="filter__select"
                                 value={room}
                                 MenuProps={{
                                     disableScrollLock: true,
                                 }}
-                                label={content[lang].adverd_room}
                                 onChange={roomChange}
                                 sx={{
                                     borderRadius: "10px",
                                     height: "45px",
                                 }}
                             >
-                                <MenuItem disabled value={2}>
-                                    2
-                                </MenuItem>
+                                <MenuItem value={2}>2</MenuItem>
                                 <MenuItem value={3}>3</MenuItem>
                                 <MenuItem value={4}>4</MenuItem>
                                 <MenuItem value={5}>5</MenuItem>
                                 <MenuItem value={"5+"}>5+</MenuItem>
                             </Select>
                         </FormControl>
+                        <label class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root" data-shrink="false" id="filter__select-label">Home type</label>
+                        <label class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary Mui-focused css-1sumxir-MuiFormLabel-root-MuiInputLabel-root" data-shrink="true" id="filter__select-label">Home type</label>
                         <FormControl
                             className="filter__items"
                             sx={{ mr: 1, ml: 1 }}
@@ -297,7 +304,7 @@ function Search({ map = false }) {
                                     {content[lang].saleType}
                                 </InputLabel>
                                 <Select
-                                    labelId="filter__select-label"
+                                    label={content[lang].saleType}
                                     MenuProps={{
                                         disableScrollLock: true,
                                     }}
@@ -333,7 +340,7 @@ function Search({ map = false }) {
                                     {content[lang].homeType}
                                 </InputLabel>
                                 <Select
-                                    labelId="filter__select-label"
+                                    label={content[lang].homeType}
                                     MenuProps={{
                                         disableScrollLock: true,
                                     }}
@@ -366,7 +373,6 @@ function Search({ map = false }) {
                                     {content[lang].adverd_room}
                                 </InputLabel>
                                 <Select
-                                    labelId="filter__select-label"
                                     id="filter__select"
                                     value={room}
                                     MenuProps={{
@@ -379,9 +385,7 @@ function Search({ map = false }) {
                                         height: "45px",
                                     }}
                                 >
-                                    <MenuItem disabled value={2}>
-                                        2
-                                    </MenuItem>
+                                    <MenuItem value={2}>2</MenuItem>
                                     <MenuItem value={3}>3</MenuItem>
                                     <MenuItem value={4}>4</MenuItem>
                                     <MenuItem value={5}>5</MenuItem>
@@ -562,9 +566,7 @@ function Search({ map = false }) {
                                     height: "45px",
                                 }}
                             >
-                                <MenuItem disabled value={2}>
-                                    2
-                                </MenuItem>
+                                <MenuItem value={2}>2</MenuItem>
                                 <MenuItem value={3}>3</MenuItem>
                                 <MenuItem value={4}>4</MenuItem>
                                 <MenuItem value={5}>5</MenuItem>

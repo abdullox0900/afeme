@@ -96,7 +96,10 @@
     border-color: #69afff;
 }
 #filter__select-label {
-    top: -3px;
+    top: -4px;
+}
+#filter__select-label[data-shrink="true"]{
+    top: 0;
 }
 .input__search::placeholder {
     font-size: 16px;
@@ -146,7 +149,7 @@
         width: 100%;
     }
     .filter__input{
-        width: 100%;
+        width: 100% !important;
     }
     .search__reset-btn{
         display: block !important;

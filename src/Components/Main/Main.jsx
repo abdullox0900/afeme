@@ -10,6 +10,7 @@ import { Box, Typography, Container } from "@mui/material";
 import { Context as LangContext } from "../../Context/LangContext";
 import content from "../../Localization/Content";
 import { IPContext } from "../../Context/IPContext";
+import { UserContext } from "../../Context/UserContext";
 
 // Import => Components
 import CardSkeleton from "../CardSkeleton/CardSkeleton";
@@ -27,38 +28,37 @@ import "./Main.scss";
 function Main() {
     const { lang, setLang } = useContext(LangContext);
     const { IP, setIP } = useContext(IPContext);
+    const { user, setUser } = useContext(UserContext);
 
-    const [data, setData] = useState([]);
+    const [data, setData] = useState(null);
     const [adverts, setAdverts] = useState([]);
-    const [dataError, setDataError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [rekData, setRekData] = useState([]);
 
     let url = process.env.REACT_APP_URL;
 
-    // Reltor useState
     const [reltData, setReltData] = useState([]);
 
     useEffect(() => {
         setIsLoading(true);
-        const result = axios
-            .get(`${url}popular/32`)
+        axios
+            .get(`${url}popular/8`)
             .then((response) => {
                 let newData = response.data.data;
                 if (newData && newData.length > 0) {
                     setData(response.data);
                     setAdverts(response.data.data);
                 } else {
-                    setDataError(true);
+                    setData(null)
                 }
             })
-            .catch((error) => {
-                setDataError(true);
+            .catch(() => {
+                setData(null)
             })
             .finally(() => {
                 setIsLoading(false);
             });
-        const IPResult = axios
+        axios
             .get(`https://ipapi.co/json`)
             .then((response) => {
                 if (response.status == 200) {
@@ -74,31 +74,28 @@ function Main() {
                 const resdata = res?.data;
                 setRekData(resdata)
             })
+
+        axios.get(`${url}reltors`)
+        .then(res => {
+            const persons = res.data.data;
+            setReltData(persons)
+        })
     }, [])
 
 
-    function showCards(amount, popular = false) {
+    function showCards(amount) {
         if (isLoading) {
             return <CardSkeleton amount={amount} />;
 
-        } else if (data && !dataError) {
-            return adverts?.slice(popular ? 9 : 0, popular ? amount + 9 : 9).map((row) => {
+        } else if (data) {
+            return adverts?.slice(0, 8).map((row) => {
 
                 return <Cards data={row} />;
             });
-        } else if (!data || dataError) {
+        } else {
             return <ApiError />;
         }
     }
-
-    // Axios
-    useEffect(() => {
-        axios.get(`${url}reltors`)
-            .then(res => {
-                const persons = res.data.data;
-                setReltData(persons)
-            })
-    }, [])
 
     return (
         <main className="main">
@@ -107,23 +104,11 @@ function Main() {
                     <div className="sections">
                         <section className="section recommend">
                             <Typography variant="h3" className="section__title">
-                                {content[lang].recom_title}
-                            </Typography>
-                            <div className="cards">{showCards(4)}</div>
-                            <Box className="viewAll">
-                                <a href="/" className="viewAll__link">
-                                    {content[lang].see_desc}
-                                </a>
-                                <img src={RightArrow} alt="" />
-                            </Box>
-                        </section>
-                        <section className="section popular">
-                            <Typography variant="h3" className="section__title">
                                 {content[lang].populr_title}
                             </Typography>
-                            <div className="cards">{showCards(4, true)}</div>
+                            <div className="cards">{showCards(8)}</div>
                             <Box className="viewAll">
-                                <a href="/" className="viewAll__link">
+                                <a href="/adverts" className="viewAll__link">
                                     {content[lang].see_desc}
                                 </a>
                                 <img src={RightArrow} alt="" />
@@ -140,7 +125,7 @@ function Main() {
                             </div>
                         </div>
                         <div className="panel">
-                            <div style={{marginTop:'40px'}} id="advertMap"><AdvertMap currentAdvert={IP} zoom={8} /></div>
+                            <div style={{marginTop:'40px'}} id="advertMap"><AdvertMap coordinate={[40.788059, 72.308069]} zoom={9}/></div>
 
                             <Box className="realtors">
                                 <Typography
@@ -166,10 +151,10 @@ function Main() {
                                                                 variant="h6"
                                                                 className="realtors__name"
                                                             >
-                                                                {rel.name}
+                                                                {rel.name} {rel.lastname}
                                                             </Typography>
                                                             <p className="realtors__offer">
-                                                                2 ta taklif
+                                                                {rel.posts.length} ta taklif
                                                             </p>
                                                         </div>
                                                     </Box>
@@ -177,6 +162,9 @@ function Main() {
                                             )
                                         })
                                     }
+                                </NavLink>
+                                <NavLink to={'/catalogreltor'}>
+                                    <p className="more">Barchasini korish</p>
                                 </NavLink>
                             </Box>
 

@@ -1,5 +1,5 @@
 // Import => React and Hooks
-import React, { useEffect, useState,useContext } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 //Import MUI
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 //HTTP Request
@@ -13,13 +13,14 @@ import content from '../../Localization/Content';
 // Import Components
 import style from './Map.module.scss';
 
-const DefaultZomm = 1;
+const DefaultZomm = 5;
 
 let url = process.env.REACT_APP_URL;
 
-function Map({ street, setStreet, city_id, setCity, region_id, setRegionID }) {
+function Map({ street, setStreet, city_id, setCity, region_id, setRegionID, house, setHouse }) {
 
 	const [zoom, setZoom] = useState(DefaultZomm)
+	const [defaultLocation, setDefaultLocation] = useState({ lat: 40, lng: 65 });
 	const [regions, setRegions] = useState([])
 	const [cities, setCities] = useState([])
 	const { lang, setLang } = useContext(Context);
@@ -28,7 +29,7 @@ function Map({ street, setStreet, city_id, setCity, region_id, setRegionID }) {
 		localStorage.setItem('latitude', lat)
 		localStorage.setItem('longitude', lng)
 	}
-	
+
 	useEffect(() => {
 		const regions1 = async () => {
 			try {
@@ -39,9 +40,7 @@ function Map({ street, setStreet, city_id, setCity, region_id, setRegionID }) {
 				} else {
 					alert('xato')
 				}
-			} catch (error) {
-				console.log(error);
-			}
+			} catch(error) {}
 		}
 		regions1();
 	}, [])
@@ -77,11 +76,11 @@ function Map({ street, setStreet, city_id, setCity, region_id, setRegionID }) {
 								key={region.id}
 								value={region.id}
 							>
-								{lang == "uz"
-                                ? region.name_uz
-                                : lang == "ru"
-                                ? region.name_ru
-                                : region.name_en}
+								{lang === "uz"
+									? region.name_uz
+									: lang === "ru"
+										? region.name_ru
+										: region.name_en}
 							</MenuItem>
 						))}
 					</Select>
@@ -106,8 +105,10 @@ function Map({ street, setStreet, city_id, setCity, region_id, setRegionID }) {
 					</Select>
 				</FormControl>
 				<input className={style.input} type="text" placeholder={content[lang].adverd_office} onChange={(e) => setStreet(e.target.value)} />
-			</div> 
+				<input className={style.input} type="text" placeholder={content[lang].adverd_house_num} onChange={(e) => setHouse(e.target.value)} />
+			</div>
 			<MapPicker
+				defaultLocation={defaultLocation}
 				zoom={zoom}
 				mapTypeId='roadmap'
 				style={{ weight: '660px', height: '400px' }}

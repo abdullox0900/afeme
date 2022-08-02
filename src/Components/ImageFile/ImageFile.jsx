@@ -13,12 +13,14 @@ import { Delete } from '@mui/icons-material';
 import { Context } from '../../Context/LangContext';
 import content from '../../Localization/Content';
 
+import Compressor from 'compressorjs';
+
 let url = process.env.REACT_APP_URL;
 
 function ImageFile({ photo, setPhoto }) {
     const [image, setImage] = useState([]);
     const { lang, setLang } = useContext(Context);
-
+    const [show, setShow] = useState(false)
     const [img, setImg] = useState(false);
     function startImageHandler(e) {
         e.preventDefault();
@@ -37,28 +39,38 @@ function ImageFile({ photo, setPhoto }) {
         redirect: 'follow'
     };
 
+
     function dropImageHandler(e) {
         e.preventDefault();
         let files = [...e.dataTransfer.files]
         for (let i = 0; i < files.length; i++) {
-            formdata.append('key', 'Service For C Group')
-            formdata.append("file", files[i]);
-            fetch(`${url}service`, drop)
-                .then(response => response.text())
-                .then(function (response) {
-                    let res = JSON.parse(response);
-                    Object.entries(res).forEach(([name, value]) => {
-                        if (typeof value === 'string') {
-                            arr.push(value);
-                            setPhoto(arr)
-                        }
-                    })
-                })
-                .catch(error => console.log('error', error));
+            new Compressor(files[i], {
+                quality: 0.2,
+                success(result) {
+                    formdata.append('key', 'Service For C Group')
+                    formdata.append("file", result);
+                    fetch(`${url}service`, drop)
+                        .then(response => response.text())
+                        .then(function (response) {
+                            let res = JSON.parse(response);
+                            Object.entries(res).forEach(([name, value]) => {
+                                if (typeof value === 'string') {
+                                    arr.push(value);
+                                }
+                            })
+                            if (arr.length === files.length) {
+                                setPhoto(arr)
+                            }
+                        })
+                        .catch(error => console.log(error));
+                }
+            })
         }
         setImage(files)
         setImg(false)
+        setShow(true)
     }
+
 
     let Select = new FormData();
     let select = {
@@ -69,21 +81,29 @@ function ImageFile({ photo, setPhoto }) {
     function SelectI(e) {
         let files = [...e];
         for (let i = 0; i < files.length; i++) {
-            Select.append('key', 'Service For C Group')
-            Select.append('file', files[i])
-            fetch(`${url}service`, select)
-                .then(response => response.text())
-                .then(function (response) {
-                    let res = JSON.parse(response);
-                    Object.entries(res).forEach(([name, value]) => {
-                        if (typeof value === 'string') {
-                            arr.push(value);
-                            setPhoto(arr)
-                        }
-                    })
-                })
-                .catch(error => console.log('error', error));
+            new Compressor(files[i], {
+                quality: 0.2,
+                success(result) {
+                    Select.append('key', 'Service For C Group')
+                    Select.append('file', result)
+                    fetch(`${url}service`, select)
+                        .then(response => response.text())
+                        .then(function (response) {
+                            let res = JSON.parse(response);
+                            Object.entries(res).forEach(([name, value]) => {
+                                if (typeof value === 'string') {
+                                    arr.push(value);
+                                }
+                            })
+                            if (arr.length === files.length) {
+                                setPhoto(arr)
+                            }
+                        })
+                        .catch(error => console.log(error));
+                }
+            })
         }
+        setShow(true)
     }
     function Delete(e) {
         let src = e;
@@ -92,9 +112,44 @@ function ImageFile({ photo, setPhoto }) {
         setPhoto(photo);
     }
 
+    let newImage = new FormData();
+    let newPicture = {
+        method: 'POST',
+        body: newImage,
+        redirect: 'follow'
+    };
+
+    function addImage(e) {
+        let files = [...e];
+        for (let i = 0; i < files.length; i++) {
+            new Compressor(files[i], {
+                quality: 0.2,
+                success(result) {
+                    newImage.append('key', 'Service For C Group')
+                    newImage.append('file', result)
+                    fetch(`${url}service`, newPicture)
+                        .then(response => response.text())
+                        .then(function (response) {
+                            let res = JSON.parse(response);
+                            Object.entries(res).forEach(([name, value]) => {
+                                if (typeof value === 'string') {
+                                    let array = [...photo]
+                                    array = [...array, value]
+                                    setPhoto(array);
+                                }
+                            })
+                        })
+                        .catch(error => console.log(error));
+                }
+            })
+        }
+    }
+
     return (
         <div className={style.wrapper}>
             <p>{content[lang].adverd_office_img}</p>
+            <label htmlFor="addImgBtn" className={style.addImgBtn} style={{ display: show ? '' : 'none' }}>Add Image</label>
+            <input type='file' accept='image/*' className={style.addImgInp} id="addImgBtn" onChange={e => addImage(e.target.files)}></input>
             <div className={style.images}>
                 {photo.map((i) => (
                     <div className={style.img} key={v4()}>
@@ -103,7 +158,7 @@ function ImageFile({ photo, setPhoto }) {
                     </div>
                 ))}
             </div>
-            <div className={style.imgF}>
+            <div className={style.imgF} style={{ display: show ? 'none' : '' }}>
                 {img
                     ? <div
                         className={style.dragArea}
@@ -126,6 +181,7 @@ function ImageFile({ photo, setPhoto }) {
                                 <input
                                     type="file"
                                     id='buttonI'
+                                    accept='image/*'
                                     className={style.label}
                                     onChange={(e) => SelectI(e.target.files)}
                                     multiple

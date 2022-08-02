@@ -1,11 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
-import { NavLink as Link, useSearchParams, useParams } from "react-router-dom";
+import { NavLink as Link, useParams } from "react-router-dom";
 import { Box, IconButton, Tooltip, Zoom } from "@mui/material";
 
 // Import => Components
 import { Context as LangContext } from "../../Context/LangContext";
-import { CurrencyContext } from "../../Context/CurrencyContext";
 import content from "../../Localization/Content";
 import Container from "../Container/Container";
 import Spinner from "../Spinner/Spinner";
@@ -13,12 +12,10 @@ import AdvertGallery from "../AdvertGallery/AdvertGallery";
 import CardTools from "../../Utils/cardTools";
 import AdvertMap from "../AdvertMap/AdvertMap";
 import ApiError from "../ApiError/ApiError";
-import OfflineError from "../OfflineError/OfflineError";
 import LoveBtn from "../LoveBtn/LoveBtn";
+import UserContactButtons from "../UserContactButtons/UserContactButtons";
 
 // Import => Components Img
-import callIcon from "../../Assets/Img/call.svg";
-import messageIcon from "../../Assets/Img/message.svg";
 import ShareIcon from "../../Lib/Svg/share";
 import EyeIcon from "../../Lib/Svg/eye";
 import DownloadIcon from "../../Lib/Svg/download";
@@ -35,33 +32,17 @@ function Advert() {
     const [data, setData] = useState([]);
     const [dataError, setDataError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-
     const { lang, setLang } = useContext(LangContext);
-    const { currency, setCurrency } = useContext(CurrencyContext);
-    const [price, setPrice] = useState("");
-    const [advertTitle, setAdvertTitle] = useState("");
-    const [advertLink, setAdvertLink] = useState("");
-    const [advertType, setAdvertType] = useState("");
-    const [advertTypeImg, setAdvertTypeImg] = useState("");
-    const [advertTypeLink, setAdvertTypeLink] = useState("");
-    const [advertAddress, setAdvertAddress] = useState("");
-    const [advertCity, setAdvertCity] = useState("");
 
-    if (data) {
-        CardTools(
-            data,
-            lang,
-            currency,
-            setPrice,
-            setAdvertTitle,
-            setAdvertLink,
-            setAdvertType,
-            setAdvertTypeImg,
-            setAdvertTypeLink,
-            setAdvertAddress,
-            setAdvertCity
-        );
-    }
+    const {
+        price,
+        advertTitle,
+        advertLink,
+        advertType,
+        advertTypeLink,
+        advertTypeImg,
+        advertAddress,
+    } = CardTools(data);
 
     useEffect(() => {
         setIsLoading(true);
@@ -86,28 +67,16 @@ function Advert() {
     const shareData = {
         title: "Afeme",
         text: "Uy sotiladi",
-        url: "http://localhost:3000/advert/118",
+        url: window.location.href,
     };
 
     let adOwner = data.user;
     let ownerPage = `/reltorcob/${adOwner?.id}`;
-    let ownerChat = `/chat#${adOwner?.id}`;
-    const sendMsgButton = (
-        <Link to={ownerChat}>
-            <IconButton
-                variant="contained"
-                className="sellerProfile__btn sellerProfile__msg"
-            >
-                <img src={messageIcon} alt="" />
-                <p className="callBtn__text">{content[lang].sendMessageBtn}</p>
-            </IconButton>
-        </Link>
-    );
 
     function printAdvert() {
         // var content = document.querySelector(".advert");
         // document.createElement('link');
-        // // link.href = 
+        // // link.href =
         // var pri = document.querySelector("#advertPrint").contentWindow;
         // pri.document.open();
         // pri.document.write(content.innerHTML);
@@ -123,7 +92,6 @@ function Advert() {
             </div>
         );
     } else if (data.hasOwnProperty("id") && !dataError) {
-        
         return (
             <Box className="advert">
                 <Container>
@@ -155,7 +123,8 @@ function Advert() {
                                 </div>
                                 <Box className="advert__address__blog">
                                     <p className="advert__address">
-                                        {advertAddress}, {data?.street} {content[lang].street}
+                                        {advertAddress}, {data?.street}{" "}
+                                        {content[lang].street}
                                         <img
                                             src={arrowRight}
                                             alt=""
@@ -245,7 +214,7 @@ function Advert() {
                                 </Box>
                             </Box>
 
-                            <AdvertGallery data={data} isLoading={isLoading} />
+                            {data.hasOwnProperty('image') ? <AdvertGallery data={data} isLoading={isLoading} /> : ''}
 
                             <Box className="advert__description">
                                 <h5 className="descr__title">
@@ -254,11 +223,10 @@ function Advert() {
                                 <p className="descr__text">
                                     {data?.description}
                                 </p>
-                                {sendMsgButton}
                             </Box>
 
                             <div id="advertMap">
-                                <AdvertMap currentAdvert={data} />
+                                <AdvertMap advert={data} zoom={12} />
                             </div>
                         </Box>
 
@@ -278,33 +246,40 @@ function Advert() {
                                             />
                                         </Link>
                                         <Box className="sellerProfile__content">
-                                            <p className="sellerProfile__title">
+                                            <Link
+                                                to={ownerPage}
+                                                className="sellerProfile__title"
+                                            >
                                                 {adOwner.name}{" "}
                                                 {adOwner.last_name}
-                                            </p>
+                                            </Link>
                                             <span className="sellerProfile__type">
                                                 {adOwner.user_type}
                                             </span>
                                         </Box>
                                     </Box>
                                     <Box className="sellerProfile__actions">
-                                        <a href={`tel:${adOwner.phone}`}>
-                                            <IconButton
-                                                variant="contained"
-                                                className="sellerProfile__btn sellerProfile__call"
-                                            >
-                                                <img src={callIcon} alt="" />
-                                                <p className="callBtn__text">
-                                                    {content[lang].contactBtn}
-                                                </p>
-                                            </IconButton>
-                                        </a>
-                                        {sendMsgButton}
+                                        <UserContactButtons data={adOwner} />
                                     </Box>
                                 </Box>
                             ) : (
                                 ""
                             )}
+                            {
+                                <Box className="more">
+                                    <p>{content[lang].advert_id}//{data?.id}</p>
+                                    <p>{lang == "uz" ? data?.htype_id.name_uz : lang == "ru" ? data?.htype_id.name_ru : data?.htype_id.name_en} {content[lang].advert_areas}</p>
+                                    <div className="areas">
+                                        <p>{content[lang].advert_kitchen}: {data?.kitchen_area}</p>
+                                        <p>{content[lang].advert_living}: {data?.living_area}</p>
+                                        <p>{content[lang].advert_total}: {data?.total_area} {data?.total_area_type}</p>
+                                    </div>
+                                    <p>{lang == "uz" ? data?.htype_id.name_uz : lang == "ru" ? data?.htype_id.name_ru : data?.htype_id.name_en}: {data?.flat} {content[lang].advert_flat} {data?.floor} {content[lang].advert_floor}</p>
+                                    <p>{content[lang].advert_date}: {data?.date} {content[lang].advert_year} </p>
+                                    <p>{content[lang].advert_materials}: {lang == "uz" ? data?.material_id.name_uz : lang == "ru" ? data?.material_id.name_ru : data?.material_id.name_en} </p>
+                                    <p>{content[lang].advert_repairs}: {lang == "uz" ? data?.repair_id.name_uz : lang == "ru" ? data?.repair_id.name_ru : data?.repair_id.name_en} </p>
+                                </Box>
+                            }
                         </Box>
                     </div>
                 </Container>

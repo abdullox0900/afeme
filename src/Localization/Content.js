@@ -20,8 +20,8 @@ const content = {
         hero_search: "Qidirish",
 
         // Main
-        recom_title: "Tavsiya etilgan turar-joy majmualari",
-        populr_title: "Ommabop Uylar",
+        nearHomes: "Yaqin atrofdagi uylar",
+        populr_title: "Ommabob Uylar",
         new_title: "Yangi Binolar",
         see_desc: "Barchasini ko’rish",
         reltor_aside_title: "Reltorlar",
@@ -52,6 +52,7 @@ const content = {
         from_select_nam: "Ism",
         form_select_nam_req: "Ism kiriting",
         form_select_las: "Familiya",
+        form_select_las_req: "Familiya kiting",
         form_select_email: "Email",
         form_select_email_req: "Email manzili kiriting",
         form_select_email_err: "Email manzili noto‘g‘ri",
@@ -115,7 +116,9 @@ const content = {
         adverd_adres_office: "Ofis manzili",
         adverd_adres_city: "Shahar",
         adverd_office: "Manzil",
+        adverd_house_num: "Uy Raqami",
         adverd_about_the_office: "Ofis Haqida",
+        choose: 'Tanlang',
         adverd_about_1: "Qurilgan Yili:",
         adverd_about_2: "Honalar soni:",
         adverd_about_3: "Maydoni:",
@@ -150,8 +153,8 @@ const content = {
         partners_title: 'Bizning hamkorlar',
         partners_descr: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium ducimus in, voluptate deserunt magni fugit error atque modi iure maiores possimus nesciunt? Tempore odit ratione sunt, ut dignissimos, exercitationem a mollitia necessitatibus, aliquam asperiores neque! Quae id quod voluptate quos.',
 
-        priceFrom: "dan",
-        priceTo: "gacha",
+        priceFrom: "Narxidan",
+        priceTo: "Narxigacha",
 
         chat: "Chat",
 
@@ -164,7 +167,7 @@ const content = {
         detailedView: "Batafsil ko'rish",
 
         //Personal
-        editBtn: 'Tahrirlash',
+        saveBtn: 'Ozgarishlarni Saqlash',
         userProfilName: 'Ism',
         userProfilLastName: 'Familiya',
         userProfilPhone: 'Telefon Raqami',
@@ -213,7 +216,7 @@ const content = {
         // Search
         saleType: "Sotish turi",
         homeType: "Uy turi",
-        searchPlaceholder: "E'lon detallari orqali qidiring",
+        searchPlaceholder: "Manzil, shahar, viloyat, qishloq va h.k",
         clean: "Tozalash",
         viewOnMap: "Xaritadan ko'rish",
         filter: "Filter",
@@ -257,6 +260,20 @@ const content = {
         edit_Descr: 'Tavsif',
         edit_Price: 'Narhi',
         edit_Submit: 'Tasdiqlash',
+
+        // Advert Tools
+        advert_id:'Elon Raqami',
+        advert_areas:'maydoni',
+        advert_kitchen:'Oshxona',
+        advert_living:'Yashash',
+        advert_total:'Umumiy',
+        advert_flat:'qavatli',
+        advert_floor:'qavat',
+        advert_date:'Qurilgan yili',
+        advert_year:'yil',
+        advert_materials:'Materiallar',
+        advert_repairs:'Tamir holati',
+        chat_back:'Orqaga',
     },
     en: {
         chat: "Chat",
@@ -276,7 +293,7 @@ const content = {
         hero_title: "Find it. Tour it. Own it.",
         hero_search: "Search",
         // Main
-        recom_title: "Recommended residential complexes",
+        nearHomes: "Nearby houses",
         populr_title: "Popular Houses",
         new_title: "New Buildings",
         see_desc: "See more",
@@ -304,7 +321,8 @@ const content = {
         form_select_vil: "Province",
         from_select_nam: "Name",
         form_select_nam_req: "Enter name",
-        form_select_las: "Surname",
+        form_select_las: "Lastname",
+        form_select_las_req: "Enter lastname",
         form_select_email: "Email",
         form_select_email_req: "Enter your email address",
         form_select_email_err: "The email address is invalid",
@@ -363,9 +381,11 @@ const content = {
         adverd_adres_office: "Office address",
         adverd_adres_city: "City",
         adverd_office: "Address",
+        adverd_house_num: "House number",
         adverd_about_the_office: "About the office",
+        choose: 'Choose',
         adverd_about_1: "Built Year:",
-        adverd_about_2: "Number of rooms:",
+        adverd_about_2: "Rooms:",
         adverd_about_3: "Area:",
         adverd_about_33: "Kitchen",
         adverd_about_34: "Room",
@@ -410,7 +430,7 @@ const content = {
         detailedView: "See more",
 
         //Personal
-        editBtn: 'Edit',
+        saveBtn: 'Save Changes',
         userProfilName: 'Name',
         userProfilLastName: 'LastName',
         userProfilPhone: 'Phone Number',
@@ -503,6 +523,21 @@ const content = {
         edit_Descr: 'Description',
         edit_Price: 'Price',
         edit_Submit: 'Affirmation',
+
+        // Advert Tools
+        advert_id:'Post ID',
+        advert_areas:'square',
+        advert_kitchen:'Kitchen',
+        advert_living:'Residential',
+        advert_total:'Total',
+        advert_flat:'flat',
+        advert_floor:'floor',
+        advert_date:'Built year',
+        advert_year:'year',
+        advert_materials:'Materails',
+        advert_repairs:'Repair condition',
+        chat_back:'Back',
+
     },
     ru: {
         chat: "Чат",
@@ -522,7 +557,7 @@ const content = {
         hero_title: "Найди это. Совершите поездку. Владей этим.",
         hero_search: "Поиск",
         // Main
-        recom_title: "Рекомендуемые жилые комплексы",
+        nearHomes: "Ближайшие дома",
         populr_title: "Популярные дома",
         new_title: "Новые Здания",
         see_desc: "Увидеть их всех",
@@ -547,10 +582,11 @@ const content = {
 
         // Form Page
         form_select_jis: "Физический",
-        form_select_vil: "Провинция",
+        form_select_vil: "Oбласть",
         from_select_nam: "Имя",
         form_select_nam_req: "Введите имя",
         form_select_las: "Фамилия",
+        form_select_las_req: "Введите фамилию",
         form_select_email: "Элек. почта",
         form_select_email_req: "Введите ваш адрес элек. почты",
         form_select_email_err: "Адрес элек. почты недействителен",
@@ -609,10 +645,12 @@ const content = {
         adverd_adres_office: "Адрес офиса",
         adverd_adres_city: "Город",
         adverd_office: "Адрес",
+        adverd_house_num: "№ дома",
         adverd_about_the_office: "О офисе",
-        adverd_about_1: "Год постройки:",
+        choose: "Выбирать",
+        adverd_about_1: "Год:",
         adverd_about_2: "Количество комнат:",
-        adverd_about_3: "Область:",
+        adverd_about_3: "Площадь:",
         adverd_about_33: "Кухня",
         adverd_about_34: "Номер",
         adverd_about_35: "Общий",
@@ -620,7 +658,7 @@ const content = {
         adverd_about_37: "Сотих",
         adverd_about_38: "Из:",
         adverd_about_4: "Пол:",
-        adverd_about_5: "Статус ремонта:",
+        adverd_about_5: "Состояния:",
         adverd_about_6: "Материалы:",
         adverd_about_evro: "Yevro",
         adverd_about_normal: "O'rtacha",
@@ -656,7 +694,7 @@ const content = {
         detailedView: "Узнать больше",
 
         //Personal
-        editBtn: 'Изменить',
+        saveBtn: 'Сохранить изменения',
         userProfilName: 'Имя',
         userProfilLastName: 'Фамилия',
         userProfilPhone: 'Номер телефона',
@@ -726,7 +764,7 @@ const content = {
 
         //Post Edit
         edit_postTitle: 'Редактирование объявления',
-        edit_post:' chi Elon',
+        edit_post:'-е объявление',
         edit_saleType: 'Тип продажи',
         edit_houseType: 'Тип дома',
         edit_repairType: 'Состояние ремонта',
@@ -750,6 +788,20 @@ const content = {
         edit_Descr: 'Описание',
         edit_Price: 'Цена',
         edit_Submit: 'Подтвердить',
+
+        // Advert Tools
+        advert_id:'ID поста',
+        advert_areas:'площадь',
+        advert_kitchen:'кухня',
+        advert_living:'жилой',
+        advert_total:'oбщее',
+        advert_flat:'этажность',
+        advert_floor:'этаж',
+        advert_date:'Год постройки',
+        advert_year:'год',
+        advert_materials:'Материалы',
+        advert_repairs:'Состояние ремонта',
+        chat_back:'Назад',
     },
 }
 export default content;

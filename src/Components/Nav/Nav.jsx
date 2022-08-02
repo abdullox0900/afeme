@@ -53,12 +53,6 @@ function Nav({ elHeader }) {
         }
     }, [])
 
-    // const hanClick = () => {
-    //     if (Token === null) {
-    //         modal.classList.add("modal--open");
-    //     }
-    // }
-
     return (
         <Container>
             <nav className="nav">
@@ -170,13 +164,6 @@ function Nav({ elHeader }) {
                             <ion-icon name="heart-outline"></ion-icon>
                             <Link to={'/userfavorites'} className="navbar-menu__link">
                                 {content[lang].sFeatures}
-                            </Link>
-                        </li>
-
-                        <li className="navbar-menu__item">
-                            <ion-icon name="help-buoy-outline"></ion-icon>
-                            <Link to={'/help'} className="navbar-menu__link">
-                                {content[lang].sHelp}
                             </Link>
                         </li>
 

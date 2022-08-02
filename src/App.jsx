@@ -17,10 +17,8 @@ import ScrollTop from './Utils/ScrollTop';
 import UsProfil from './Pages/UserProfil/UsProfil';
 import UserAdsPage from "./Pages/UserAdsPage/UserAdsPage";
 import UserFavoritesPage from './Pages/UserFavoritesPage/UserFavoritesPage';
-import UserNewsPage from './Pages/UserNewsPage/UserNewsPage';
 import Help from './Pages/Help/Help';
 import SearchMap from './Pages/SearchMap/SearchMap';
-import Test from './Pages/Test/Test';
 import UserPostEditPage from './Pages/UserPostEditPage/UserPostEditPage';
 import Email from './Components/Forgot/Email/Email';
 import NewPassword from './Components/Forgot/newPassword/NewPassword';
@@ -58,7 +56,7 @@ function App() {
             const loader = document.querySelectorAll('.loading');
             setTimeout(() => {
                 for (let i = 0; i < loader.length; i++) {
-                    loader[i].remove();
+                    loader[i]?.remove();
                 }
             }, 500);
         }
@@ -80,12 +78,10 @@ function App() {
                     <Route path='/userprofil' element={<UsProfil />} />
                     <Route path='/userads' element={<UserAdsPage />} />
                     <Route path='/userfavorites' element={<UserFavoritesPage />} />
-                    <Route path='/usernews' element={<UserNewsPage />} />
                     <Route path='/userpostedit/:postID' element={<UserPostEditPage/>} />
                     <Route path='/chat' element={<Chat />} />
                     <Route path='/help' element={<Help />} />
                     <Route path='/map' element={<SearchMap />} />
-                    <Route path='/test' element={<Test />} />
                     <Route path='/forgot' element={<Email />} />
                     <Route path='/newPassword' element={<NewPassword />} />
                     <Route path="*" element={<Page404 />} />

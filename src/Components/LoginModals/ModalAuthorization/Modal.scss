@@ -28,6 +28,7 @@
     &__authorization, .deleteModal__content, .imagePreview__content {
         position: relative;
         min-width: 400px;
+        padding: 20px 10px;
         height: auto;
         background: #ffffff;
         border-radius: 20px;
@@ -38,12 +39,18 @@
             width: 100%;
         }
     }
+    &__authorization{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
     .deleteModal__content, .imagePreview__content{
         height: max-content;
         padding: 15px;
         display: flex;
         flex-direction: column;
         align-items: center;
+        max-width: 400px;
     }
     .deleteModal__text{
         margin: 0;
@@ -52,9 +59,7 @@
         color: #777;
     }
     &__img-auth {
-        margin-top: 45px;
-        margin-left: 150px;
-        margin-bottom: 30px;
+        margin: 20px auto;
     }
     &__close-btn {
         padding: 20px !important;

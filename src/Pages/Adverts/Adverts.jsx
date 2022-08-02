@@ -1,7 +1,6 @@
 // Import => React and Hooks
 import React, { useState, useEffect, useContext } from "react";
 import {
-    useNavigate,
     useSearchParams,
     NavLink as Link,
     useLocation,
@@ -9,6 +8,7 @@ import {
 import axios from "axios";
 
 // Import => Components
+import { Context } from "../../Context/LangContext";
 import CardSkeleton from "../../Components/CardSkeleton/CardSkeleton";
 import { Pagination, Grid } from "@mui/material";
 import Container from "../../Components/Container/Container";
@@ -28,22 +28,22 @@ import "./Adverts.scss";
 let url = process.env.REACT_APP_URL;
 
 function Adverts() {
-    const navigate = useNavigate();
+
     const [searchParams, setSearchParams] = useSearchParams();
     const { currency, setCurrency } = useContext(CurrencyContext);
+    const { lang } = useContext(Context);
     const location = useLocation();
 
     const term = searchParams.get("term");
     const sale = searchParams.get("sale");
     const htype = searchParams.get("htype");
+    const region = searchParams.get("region");
     const room = searchParams.get("room");
     const from = searchParams.get("from");
     const to = searchParams.get("to");
 
-    const [formData, setFormData] = useState();
     const [data, setData] = useState([]);
     const [adverts, setAdverts] = useState([]);
-    const [dataError, setDataError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
@@ -52,17 +52,21 @@ function Adverts() {
     searchTerms.append("keyword", term ? term : "");
     searchTerms.append("sale_id", sale ? sale : "");
     searchTerms.append("htype", htype ? htype : "");
+    searchTerms.append("region_id", region ? region : "");
     searchTerms.append("room", room ? room : "");
     searchTerms.append("from", from ? from : "");
     searchTerms.append("to", to ? to : "");
+
     if (from && to) {
         if (from != '' && to != '') {
-            searchTerms.append("price_type", currency == 'sum' ? 'som': currency);
+            searchTerms.append("price_type", currency === 'sum' ? 'som': currency);
         }
+    }
+    if (term && term != '') {
+        searchTerms.append("lang", lang);
     }
     
     useEffect(() => {
-        setFormData(searchTerms);
         setIsLoading(true);
 
         fetch(`${url}filter?page=${currentPage}`, {
@@ -77,11 +81,11 @@ function Adverts() {
                     setAdverts(newData.data);
                     setTotalPages(newData.meta.last_page);
                 } else {
-                    setDataError(true);
+                    setAdverts([]);
                 }
             })
-            .catch((error) => {
-                setDataError(true);
+            .catch(() => {
+                setAdverts([]);
             })
             .finally(() => {
                 setIsLoading(false);
@@ -90,11 +94,11 @@ function Adverts() {
 
     function showCards(amount) {
         if (isLoading) {
-            return <CardSkeleton amount={amount} fullCard={true} />;
+            return <CardSkeleton amount={amount}/>;
         } else if (adverts) {
             if (adverts.length > 0) {
                 return adverts.map((row) => (
-                    <Cards data={row} fullCard={true} />
+                    <Cards data={row} />
                 ));
             } else {
                 return <NoResults />
@@ -106,13 +110,13 @@ function Adverts() {
 
     function pagination() {
         const changePage = (e, value) => {
-            if (currentPage != value) {
+            if (currentPage !== value) {
                 setCurrentPage(value);
                 setIsLoading(true);
             }
         };
 
-        if (adverts.length > 0 && !dataError) {
+        if (adverts.length > 0) {
             return (
                 <Grid sx={{ my: 3 }}>
                     <Pagination
@@ -134,7 +138,9 @@ function Adverts() {
             <Hero />
             <div className="adverts">
                 <Container>
-                    {showCards(6)}
+                    <div className="adverts__blog">
+                        {showCards(6)}
+                    </div>
                     {pagination()}
                     {windowWidth > 800 ? <AfemePhone /> : ""}
                 </Container>
