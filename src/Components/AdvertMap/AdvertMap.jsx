@@ -11,8 +11,6 @@ import {
     TypeSelector,
     GeolocationControl,
     FullscreenControl,
-    Placemark,
-    Clusterer,
 } from "react-yandex-maps";
 
 // Import Components

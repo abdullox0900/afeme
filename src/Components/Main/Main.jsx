@@ -108,7 +108,7 @@ function Main() {
                             </Typography>
                             <div className="cards">{showCards(8)}</div>
                             <Box className="viewAll">
-                                <a href="/" className="viewAll__link">
+                                <a href="/adverts" className="viewAll__link">
                                     {content[lang].see_desc}
                                 </a>
                                 <img src={RightArrow} alt="" />
@@ -125,7 +125,7 @@ function Main() {
                             </div>
                         </div>
                         <div className="panel">
-                            {/* <div style={{marginTop:'40px'}} id="advertMap"><AdvertMap coordinate={[40.788059, 72.308069]} zoom={9}/></div> */}
+                            <div style={{marginTop:'40px'}} id="advertMap"><AdvertMap coordinate={[40.788059, 72.308069]} zoom={9}/></div>
 
                             <Box className="realtors">
                                 <Typography

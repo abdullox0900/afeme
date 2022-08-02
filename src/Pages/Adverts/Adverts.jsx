@@ -94,11 +94,11 @@ function Adverts() {
 
     function showCards(amount) {
         if (isLoading) {
-            return <CardSkeleton amount={amount} fullCard={true} />;
+            return <CardSkeleton amount={amount}/>;
         } else if (adverts) {
             if (adverts.length > 0) {
                 return adverts.map((row) => (
-                    <Cards data={row} fullCard={true} />
+                    <Cards data={row} />
                 ));
             } else {
                 return <NoResults />
@@ -138,7 +138,9 @@ function Adverts() {
             <Hero />
             <div className="adverts">
                 <Container>
-                    {showCards(6)}
+                    <div className="adverts__blog">
+                        {showCards(6)}
+                    </div>
                     {pagination()}
                     {windowWidth > 800 ? <AfemePhone /> : ""}
                 </Container>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 
 // Import Yandex map
 import { Placemark, Clusterer } from "react-yandex-maps";
@@ -15,50 +15,51 @@ function AdvertPlacemark({ data }) {
     let i = 0;
     
     function showPlacemarks(advert) {
-        const {
-            price,
-            advertTitle,
-            advertLink,
-            advertType,
-            advertTypeImg,
-            advertTypeLink,
-            advertAddress,
-        } = CardTools(data.hasOwnProperty('latitude') ? data : data[i]);
 
-        i += 1;
-        return (
-            <Placemark
-                key={i}
-                index={advert.id}
-                geometry={[advert.latitude, advert.longitude]}
-                options={{
-                    openBalloonOnClick: true,
-                    iconLayout: "default#image",
-                    iconImageHref: PlacemarkIcon,
-                    iconImageSize: [26, 36],
-                }}
-                properties={{
-                    balloonContentBody: `<div class="mapBaloon">
-                                    <div class="mapBaloon__header">
-                                        <a href="${advertLink}" target="blank" mapBaloon__img__link>
-                                            <img src=${advert?.image[0]?.url} class="mapBaloon__img" alt=""/>
-                                        </a>
-                                    </div>
-                                    <div class="mapBaloon__main">
-                                        <h3 class="mapBaloon__title">${advertTitle}</h3>
-                                        <div class="mapBaloon__main__actions">
-                                            <p class="mapBaloon__price">${price}</p>
+        if (advert.hasOwnProperty('latitude') && advert.hasOwnProperty('longitude')) {
+            const {
+                price,
+                advertTitle,
+                advertLink,
+                advertType,
+                advertAddress,
+            } = CardTools(advert);
+    
+            i += 1;
+            return (
+                <Placemark
+                    key={i}
+                    index={advert.id}
+                    geometry={[advert?.latitude, advert?.longitude]}
+                    options={{
+                        openBalloonOnClick: true,
+                        iconLayout: "default#image",
+                        iconImageHref: PlacemarkIcon,
+                        iconImageSize: [26, 36],
+                    }}
+                    properties={{
+                        balloonContentBody: `<div class="mapBaloon">
+                                        <div class="mapBaloon__header">
+                                            <a href="${advertLink}" target="blank" mapBaloon__img__link>
+                                                <img src=${advert?.image[0]?.url} class="mapBaloon__img" alt=""/>
+                                            </a>
                                         </div>
-                                    </div>
-                                    <div class="mapBaloon__footer">
-                                        <span class="mapBaloon__address">${advertAddress}, ${advert?.street}</span>
-                                        <a href="${advertLink}" class="mapBaloon__link">${content[lang].detailedView}</a>
-                                    </div>
-                                </div>`,
-                    hintContent: `<div class="mapBaloon__type">${advertType}</div>`,
-                }}
-            />
-        );
+                                        <div class="mapBaloon__main">
+                                            <h3 class="mapBaloon__title">${advertTitle}</h3>
+                                            <div class="mapBaloon__main__actions">
+                                                <p class="mapBaloon__price">${price}</p>
+                                            </div>
+                                        </div>
+                                        <div class="mapBaloon__footer">
+                                            <span class="mapBaloon__address">${advertAddress}, ${advert?.street}</span>
+                                            <a href="${advertLink}" class="mapBaloon__link">${content[lang].detailedView}</a>
+                                        </div>
+                                    </div>`,
+                        hintContent: `<div class="mapBaloon__type">${advertType}</div>`,
+                    }}
+                />
+            );
+        }
     }
 
     if (data) {

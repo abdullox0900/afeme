@@ -207,7 +207,7 @@ function Cards({ data, fullCard = false, isUserPost = false }) {
                     </div>
                     {data.check == "true" ? (
                         ""
-                    ) : data.check == null && isUserPost ? (
+                    ) : (data.check == 'null' || !data.check) && isUserPost ? (
                         <Tooltip
                             title="E'lon operatorlar tomonidan ko'rib chiqilmoqda. Bu jarayonda e'lon faqat siz uchun ko'rinadi"
                             placement="top"
@@ -222,7 +222,7 @@ function Cards({ data, fullCard = false, isUserPost = false }) {
                             placement="top"
                         >
                             <div className="card__verification">
-                                E'lon tasdiqlanmadi
+                                Rad etilgan
                             </div>
                         </Tooltip>
                     )}

@@ -150,7 +150,7 @@ function Search({ map = false }) {
                                 {content[lang].saleType}
                             </InputLabel>
                             <Select
-                                labelId="filter__select-label"
+                                label={content[lang].saleType}
                                 MenuProps={{
                                     disableScrollLock: true,
                                 }}
@@ -180,7 +180,7 @@ function Search({ map = false }) {
                                 {content[lang].homeType}
                             </InputLabel>
                             <Select
-                                labelId="filter__select-label"
+                                label={content[lang].homeType}
                                 MenuProps={{
                                     disableScrollLock: true,
                                 }}
@@ -210,13 +210,12 @@ function Search({ map = false }) {
                                 {content[lang].adverd_room}
                             </InputLabel>
                             <Select
-                                labelId="filter__select-label"
+                                label={content[lang].adverd_room}
                                 id="filter__select"
                                 value={room}
                                 MenuProps={{
                                     disableScrollLock: true,
                                 }}
-                                label={content[lang].adverd_room}
                                 onChange={roomChange}
                                 sx={{
                                     borderRadius: "10px",
@@ -302,7 +301,7 @@ function Search({ map = false }) {
                                     {content[lang].saleType}
                                 </InputLabel>
                                 <Select
-                                    labelId="filter__select-label"
+                                    label={content[lang].saleType}
                                     MenuProps={{
                                         disableScrollLock: true,
                                     }}
@@ -338,7 +337,7 @@ function Search({ map = false }) {
                                     {content[lang].homeType}
                                 </InputLabel>
                                 <Select
-                                    labelId="filter__select-label"
+                                    label={content[lang].homeType}
                                     MenuProps={{
                                         disableScrollLock: true,
                                     }}
@@ -371,7 +370,6 @@ function Search({ map = false }) {
                                     {content[lang].adverd_room}
                                 </InputLabel>
                                 <Select
-                                    labelId="filter__select-label"
                                     id="filter__select"
                                     value={room}
                                     MenuProps={{
