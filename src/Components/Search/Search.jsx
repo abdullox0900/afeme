@@ -46,7 +46,6 @@ function Search({ map = false }) {
     const [room, setRoom] = useState(searchRoom);
     const [fromMax, setFromMax] = useState("");
     const [toMin, setToMin] = useState(0);
-    console.log(room);
 
     const [modalOpen, setModalOpen] = React.useState(false);
     const handleModalOpen = () => setModalOpen(true);
@@ -104,8 +103,10 @@ function Search({ map = false }) {
             formData.append("room", room);
             formData.append("from", priceFrom);
             formData.append("to", priceTo);
-            if (priceFrom != '' && priceTo != '') {
-                formData.append("price_type", currency === 'sum' ? 'uzs': currency);
+            if (priceFrom || priceTo) {
+                if (priceFrom != '' || priceTo != '') {
+                    formData.append("price_type", currency === 'sum' ? 'som': currency);
+                }
             }
             if (term && term != '') {
                 formData.append("lang", lang);
@@ -224,7 +225,7 @@ function Search({ map = false }) {
                                 <MenuItem value={3}>3</MenuItem>
                                 <MenuItem value={4}>4</MenuItem>
                                 <MenuItem value={5}>5</MenuItem>
-                                <MenuItem value={"5+"}>5+</MenuItem>
+                                <MenuItem value={"5*"}>5+</MenuItem>
                             </Select>
                         </FormControl>
                         <label class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root" data-shrink="false" id="filter__select-label">Home type</label>
@@ -491,7 +492,7 @@ function Search({ map = false }) {
                                 {content[lang].saleType}
                             </InputLabel>
                             <Select
-                                labelId="filter__select-label"
+                                label={content[lang].saleType}
                                 MenuProps={{
                                     disableScrollLock: true,
                                 }}
@@ -520,7 +521,7 @@ function Search({ map = false }) {
                                 {content[lang].homeType}
                             </InputLabel>
                             <Select
-                                labelId="filter__select-label"
+                                label={content[lang].homeType}
                                 MenuProps={{
                                     disableScrollLock: true,
                                 }}
@@ -549,13 +550,12 @@ function Search({ map = false }) {
                                 {content[lang].adverd_room}
                             </InputLabel>
                             <Select
-                                labelId="filter__select-label"
+                                label={content[lang].adverd_room}
                                 id="filter__select"
                                 value={room}
                                 MenuProps={{
                                     disableScrollLock: true,
                                 }}
-                                label={content[lang].adverd_room}
                                 onChange={roomChange}
                                 sx={{
                                     borderRadius: "10px",
@@ -566,7 +566,7 @@ function Search({ map = false }) {
                                 <MenuItem value={3}>3</MenuItem>
                                 <MenuItem value={4}>4</MenuItem>
                                 <MenuItem value={5}>5</MenuItem>
-                                <MenuItem value={"5+"}>5+</MenuItem>
+                                <MenuItem value={"5*"}>5+</MenuItem>
                             </Select>
                         </FormControl>
                         <FormControl
