@@ -6,7 +6,7 @@ import { useContext, useEffect, useState } from 'react';
 // Import => Components
 import "../Footer/Footer.scss";
 import { Container } from "@mui/material";
-import Logo from "../../Assets/Img/logo.svg";
+import Logo from "../../Assets/Img/Icon/logo.png";
 import GoogleImg from "../../Assets/Img/google.svg";
 import Instagram from "../../Lib/Svg/Instagram";
 import Telegram from "../../Lib/Svg/Telegram";

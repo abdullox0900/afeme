@@ -142,7 +142,7 @@ function ChatUsers({ chats, chatID, isLoading, defaultAvatar, chatMenu, isOpen }
                 <Link to="/" className="chatsPanel__logo">
                     <LogoImg width={45} height={45} />
                     <h4 className="chatsPanel__header__title">
-                        {content[lang].ChatNews}
+                        {content[lang].chat}
                     </h4>
                 </Link>
                 <ArrowDown className="arrowDown" />

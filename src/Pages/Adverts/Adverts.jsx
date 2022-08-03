@@ -57,8 +57,8 @@ function Adverts() {
     searchTerms.append("from", from ? from : "");
     searchTerms.append("to", to ? to : "");
 
-    if (from && to) {
-        if (from != '' && to != '') {
+    if (from || to) {
+        if (from != '' || to != '') {
             searchTerms.append("price_type", currency === 'sum' ? 'som': currency);
         }
     }

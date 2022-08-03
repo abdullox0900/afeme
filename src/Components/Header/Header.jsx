@@ -35,7 +35,7 @@ import {
 import flagUz from "../../Assets/Img/Icon/uz.svg";
 import flagRu from "../../Assets/Img/Icon/ru.svg";
 import flagEn from "../../Assets/Img/Icon/en.svg";
-import logo from "../../Assets/Img/logo.svg";
+import logo from "../../Assets/Img/Icon/logo.png";
 import loveIcon from "../../Assets/Img/love.svg";
 import locationIcon from "../../Assets/Img/location.svg";
 
@@ -56,7 +56,6 @@ function Header() {
     const elModal = React.useRef();
     const elHeader = React.useRef();
 
-    const navigate = useNavigate();
     const { IP, setIP } = useContext(IPContext);
     // Logo State
     const [logoImg, setLogoImg] = useState([]);

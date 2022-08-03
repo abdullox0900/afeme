@@ -33,9 +33,8 @@ function Search({ map = false }) {
     const searchTo = searchParams.get("to");
 
     const navigate = useNavigate();
-    const { lang, setLang } = useContext(Context);
-    const { IP, setIP } = useContext(IPContext);
-    const { currency, setCurrency } = useContext(CurrencyContext);
+    const { lang } = useContext(Context);
+    const { currency } = useContext(CurrencyContext);
     const { searchTerms, setSearchTerms } = useContext(SearchContext);
     const [term, setTerm] = useState(searchTerm);
     const [sales, setSales] = useState([]);
@@ -47,10 +46,8 @@ function Search({ map = false }) {
     const [room, setRoom] = useState(searchRoom);
     const [fromMax, setFromMax] = useState("");
     const [toMin, setToMin] = useState(0);
+    console.log(room);
 
-    const regionID = searchParams.get("region");
-    const fromInput = document.querySelector("#frominput");
-    const toInput = document.querySelector("#toInput");
     const [modalOpen, setModalOpen] = React.useState(false);
     const handleModalOpen = () => setModalOpen(true);
     const handleModalClose = () => setModalOpen(false);
@@ -389,7 +386,7 @@ function Search({ map = false }) {
                                     <MenuItem value={3}>3</MenuItem>
                                     <MenuItem value={4}>4</MenuItem>
                                     <MenuItem value={5}>5</MenuItem>
-                                    <MenuItem value={"5+"}>5+</MenuItem>
+                                    <MenuItem value={"5*"}>5+</MenuItem>
                                 </Select>
                             </FormControl>
                             <FormControl
@@ -404,7 +401,6 @@ function Search({ map = false }) {
                                     MenuProps={{
                                         disableScrollLock: true,
                                     }}
-                                    max={fromMax}
                                     onChange={fromMaxChange}
                                     value={priceFrom}
                                     placeholder={content[lang].priceFrom}
@@ -585,7 +581,6 @@ function Search({ map = false }) {
                                 MenuProps={{
                                     disableScrollLock: true,
                                 }}
-                                max={fromMax}
                                 onChange={fromMaxChange}
                                 value={priceFrom}
                                 placeholder={content[lang].priceFrom}
