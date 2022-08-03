@@ -7,6 +7,7 @@ import { v4 } from "uuid";
 import ContentLoader from "react-content-loader";
 import content from "../../Localization/Content";
 import { Context } from "../../Context/LangContext";
+import TimeConverter from "../../Utils/timeConverter";
 import useWindowDimensions from "../../Utils/windowDimension";
 import noChatsIcon from "../../Assets/Img/Icon/noChats.svg";
 import ArrowDown from "../../Lib/Svg/arrowDown";
@@ -69,10 +70,7 @@ function ChatUsers({ chats, chatID, isLoading, defaultAvatar, chatMenu, isOpen }
         } else {
             if (chats) {
                 return chats.map((chat) => {
-                    let a = new Date(chat.latest.created * 1000);
-                    let hour = a.getHours();
-                    let min = a.getMinutes();
-                    let lastMsgDate = hour + ":" + min;
+                    let lastMsgDate = TimeConverter(chat.latest.created, true);
                     return (
                         <a
                             href={`#${chat.user.id}`}

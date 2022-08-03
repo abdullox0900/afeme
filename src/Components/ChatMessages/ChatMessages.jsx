@@ -3,6 +3,7 @@ import React, { useEffect, createRef, useRef } from "react";
 import { v4 } from "uuid";
 import ReactScrollableFeed from "react-scrollable-feed";
 import AOS from "aos";
+import TimeConverter from "../../Utils/timeConverter";
 import ArrowDown from "../../Lib/Svg/arrowDown";
 import "./ChatMessages.scss";
 import noMessageIcon from "../../Assets/Img/noMessages.svg";
@@ -34,30 +35,6 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
         messagesBlog.scrollTop = messagesBlog.scrollHeight;
     });
 
-    function timeConverter(unix) {
-        let a = new Date(unix * 1000);
-        let months = [
-            "Yanvar",
-            "Fevral",
-            "Mart",
-            "Aprel",
-            "May",
-            "Iyun",
-            "Iyul",
-            "Avgust",
-            "Sentabr",
-            "Oktabr",
-            "Noyabr",
-            "Dekabr",
-        ];
-        let month = months[a.getMonth()];
-        let day = a.getDay();
-        let hour = a.getHours() >= 10 ? a.getHours() : '0' + a.getHours();
-        let min = a.getMinutes() >= 10 ? a.getMinutes() : '0' + a.getMinutes();
-        let time = day + "-" + month + " " + hour + ":" + min;
-        return time;
-    }
-
     if (!chatID) {
         return (
             <div className="welcomeAfemeChat">
@@ -84,7 +61,7 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
                             {messages.map((message) => {
                                 i++;
                                 let messageText = message.message.trim();
-                                let date = timeConverter(message.created);
+                                let date = TimeConverter(message.created);
                                 let animate = messages.length - 10 > i ? '' : 'fade-up';
 
                                 if (message.to == chatUser.id) {
@@ -95,7 +72,7 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
                                             : ""
                                     } outgoing`;
                                     return (
-                                        <div className={className} key={v4()} data-aos={animate} data-aos-anchor=".styles_scrollable-div__prSCv">
+                                        <div className={className} key={v4()} data-aos={animate} data-aos-anchor=".styles_scrollable-div__prSCv" to={message.to}>
                                             <div className="message__content">
                                                 <p className="message__text">
                                                     {messageText}
@@ -114,7 +91,7 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
                                             : ""
                                     } incoming`;
                                     return (
-                                        <div className={className} key={v4()} data-aos={animate} data-aos-anchor=".styles_scrollable-div__prSCv">
+                                        <div className={className} key={v4()} data-aos={animate} data-aos-anchor=".styles_scrollable-div__prSCv" to={message.to}>
                                             <img
                                                 src={
                                                     chatUser.image

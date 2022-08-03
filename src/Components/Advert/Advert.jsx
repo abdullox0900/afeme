@@ -139,53 +139,6 @@ function Advert() {
                                     <div className="advert__buttons">
                                         <LoveBtn advertID={data.id} />
                                         <Tooltip
-                                            title="E'lonni Ulashish"
-                                            TransitionComponent={Zoom}
-                                            arrow
-                                        >
-                                            <IconButton
-                                                variant="contained"
-                                                color="primary"
-                                                className="advert__btn advert__shareBtn"
-                                                onClick={() =>
-                                                    navigator.share(shareData)
-                                                }
-                                                sx={{ mx: 1 }}
-                                            >
-                                                <ShareIcon />
-                                            </IconButton>
-                                        </Tooltip>
-                                        <Tooltip
-                                            title="Yuklab olish (PDF)"
-                                            TransitionComponent={Zoom}
-                                            arrow
-                                            onClick={() => printAdvert()}
-                                        >
-                                            <IconButton
-                                                variant="contained"
-                                                color="primary"
-                                                className="advert__btn advert__dwnBtn"
-                                                sx={{ mr: 1 }}
-                                            >
-                                                <DownloadIcon />
-                                            </IconButton>
-                                        </Tooltip>
-                                        <Tooltip
-                                            title="Printerga chiqarish"
-                                            TransitionComponent={Zoom}
-                                            arrow
-                                        >
-                                            <IconButton
-                                                variant="contained"
-                                                color="primary"
-                                                className="advert__btn advert__printBtn"
-                                                sx={{ mr: 1 }}
-                                                onClick={() => printAdvert()}
-                                            >
-                                                <PrintIcon />
-                                            </IconButton>
-                                        </Tooltip>
-                                        <Tooltip
                                             title="Xabar berish"
                                             TransitionComponent={Zoom}
                                             arrow
@@ -195,7 +148,7 @@ function Advert() {
                                                     variant="contained"
                                                     color="primary"
                                                     className="advert__btn advert__reportBtn"
-                                                    sx={{ mr: 1 }}
+                                                    sx={{ ml: 1 }}
                                                 >
                                                     <ExclamationIcon />
                                                 </IconButton>
@@ -238,108 +191,101 @@ function Advert() {
                         </Box>
 
                         <Box className="advert__panel">
-                            <div className="advert__panel__items">
-                                {adOwner ? (
-                                    <Box className="sellerProfile">
-                                        <Box className="sellerProfile__header">
-                                            <Link to={ownerPage}>
-                                                <img
-                                                    src={
-                                                        adOwner.image
-                                                            ? adOwner.image
-                                                            : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU"
-                                                    }
-                                                    alt=""
-                                                    className="sellerProfile__img"
-                                                />
-                                            </Link>
-                                            <Box className="sellerProfile__content">
-                                                <Link
-                                                    to={ownerPage}
-                                                    className="sellerProfile__title"
-                                                >
-                                                    {adOwner.name}{" "}
-                                                    {adOwner.last_name}
-                                                </Link>
-                                                <span className="sellerProfile__type">
-                                                    {adOwner.user_type}
-                                                </span>
-                                            </Box>
-                                        </Box>
-                                        <Box className="sellerProfile__actions">
-                                            <UserContactButtons
-                                                data={adOwner}
+                            {adOwner ? (
+                                <Box className="sellerProfile">
+                                    <Box className="sellerProfile__header">
+                                        <Link to={ownerPage}>
+                                            <img
+                                                src={
+                                                    adOwner.image
+                                                        ? adOwner.image
+                                                        : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU"
+                                                }
+                                                alt=""
+                                                className="sellerProfile__img"
                                             />
+                                        </Link>
+                                        <Box className="sellerProfile__content">
+                                            <Link
+                                                to={ownerPage}
+                                                className="sellerProfile__title"
+                                            >
+                                                {adOwner.name}{" "}
+                                                {adOwner.last_name}
+                                            </Link>
+                                            <span className="sellerProfile__type">
+                                                {adOwner.user_type}
+                                            </span>
                                         </Box>
                                     </Box>
-                                ) : (
-                                    ""
-                                )}
-                                {
-                                    <Box className="more">
-                                        <p>
-                                            {content[lang].advert_id}//
-                                            {data?.id}
-                                        </p>
-                                        <p>
-                                            {lang == "uz"
-                                                ? data?.htype_id.name_uz
-                                                : lang == "ru"
-                                                ? data?.htype_id.name_ru
-                                                : data?.htype_id.name_en}{" "}
-                                            {content[lang].advert_areas}
-                                        </p>
-                                        <div className="areas">
-                                            <p>
-                                                {content[lang].advert_kitchen}:{" "}
-                                                {data?.kitchen_area}
-                                            </p>
-                                            <p>
-                                                {content[lang].advert_living}:{" "}
-                                                {data?.living_area}
-                                            </p>
-                                            <p>
-                                                {content[lang].advert_total}:{" "}
-                                                {data?.total_area}{" "}
-                                                {data?.total_area_type}
-                                            </p>
-                                        </div>
-                                        <p>
-                                            {lang == "uz"
-                                                ? data?.htype_id.name_uz
-                                                : lang == "ru"
-                                                ? data?.htype_id.name_ru
-                                                : data?.htype_id.name_en}
-                                            : {data?.flat}{" "}
-                                            {content[lang].advert_flat}{" "}
-                                            {data?.floor}{" "}
-                                            {content[lang].advert_floor}
-                                        </p>
-                                        <p>
-                                            {content[lang].advert_date}:{" "}
-                                            {data?.date}{" "}
-                                            {content[lang].advert_year}{" "}
-                                        </p>
-                                        <p>
-                                            {content[lang].advert_materials}:{" "}
-                                            {lang == "uz"
-                                                ? data?.material_id.name_uz
-                                                : lang == "ru"
-                                                ? data?.material_id.name_ru
-                                                : data?.material_id
-                                                      .name_en}{" "}
-                                        </p>
-                                        <p>
-                                            {content[lang].advert_repairs}:{" "}
-                                            {lang == "uz"
-                                                ? data?.repair_id.name_uz
-                                                : lang == "ru"
-                                                ? data?.repair_id.name_ru
-                                                : data?.repair_id.name_en}{" "}
-                                        </p>
+                                    <Box className="sellerProfile__actions">
+                                        <UserContactButtons data={adOwner} />
                                     </Box>
-                                }
-                            </div>
+                                </Box>
+                            ) : (
+                                ""
+                            )}
+                            {
+                                <Box className="more">
+                                    <p>
+                                        {content[lang].advert_id}//{data?.id}
+                                    </p>
+                                    <p>
+                                        {lang == "uz"
+                                            ? data?.htype_id.name_uz
+                                            : lang == "ru"
+                                            ? data?.htype_id.name_ru
+                                            : data?.htype_id.name_en}{" "}
+                                        {content[lang].advert_areas}
+                                    </p>
+                                    <div className="areas">
+                                        <p>
+                                            {content[lang].advert_kitchen}:{" "}
+                                            {data?.kitchen_area}
+                                        </p>
+                                        <p>
+                                            {content[lang].advert_living}:{" "}
+                                            {data?.living_area}
+                                        </p>
+                                        <p>
+                                            {content[lang].advert_total}:{" "}
+                                            {data?.total_area}{" "}
+                                            {data?.total_area_type}
+                                        </p>
+                                    </div>
+                                    <p>
+                                        {lang == "uz"
+                                            ? data?.htype_id.name_uz
+                                            : lang == "ru"
+                                            ? data?.htype_id.name_ru
+                                            : data?.htype_id.name_en}
+                                        : {data?.flat}{" "}
+                                        {content[lang].advert_flat}{" "}
+                                        {data?.floor}{" "}
+                                        {content[lang].advert_floor}
+                                    </p>
+                                    <p>
+                                        {content[lang].advert_date}:{" "}
+                                        {data?.date} {content[lang].advert_year}{" "}
+                                    </p>
+                                    <p>
+                                        {content[lang].advert_materials}:{" "}
+                                        {lang == "uz"
+                                            ? data?.material_id.name_uz
+                                            : lang == "ru"
+                                            ? data?.material_id.name_ru
+                                            : data?.material_id.name_en}{" "}
+                                    </p>
+                                    <p>
+                                        {content[lang].advert_repairs}:{" "}
+                                        {lang == "uz"
+                                            ? data?.repair_id.name_uz
+                                            : lang == "ru"
+                                            ? data?.repair_id.name_ru
+                                            : data?.repair_id.name_en}{" "}
+                                    </p>
+                                </Box>
+                            }
                         </Box>
                     </div>
                 </Container>

@@ -1,6 +1,8 @@
 import React, { createRef, useRef, useState } from "react";
 
 import { IconButton, Button } from "@mui/material";
+import TimeConverter from "../../Utils/timeConverter";
+import Spinner from "../Spinner/Spinner";
 import PaperClip from "../../Assets/Img/Icon/paperclip.svg";
 import PaperPlane from "../../Assets/Img/Icon/paper-plane.svg";
 import "./ChatSend.scss";
@@ -8,11 +10,13 @@ import "./ChatSend.scss";
 let url = process.env.REACT_APP_URL;
 
 function ChatSend({ chatUser, getMessages, getChats }) {
+
     const [previewImages, setPreviewImages] = useState();
     let msgValue = createRef();
     let previewModal = createRef();
     let fileInput = createRef();
-    let token = localStorage.getItem("Token");
+    const token = localStorage.getItem("Token");
+    const userID = localStorage.getItem("user_id");
     let headers = new Headers();
     headers.append("Authorization", `Bearer ${token}`);
 
@@ -21,6 +25,30 @@ function ChatSend({ chatUser, getMessages, getChats }) {
         let formData = new FormData();
         formData.append("to", chatUser.id); 
         formData.append("message", msgValue.current.value.trim());
+
+        let messages = document.querySelector('.styles_scrollable-div__prSCv');
+        let lastMessage = Array.from(document.querySelectorAll('.message')).pop();
+
+        let newMessage = document.createElement('div');
+        let newMessageContent = document.createElement('div');
+        let newMessageText = document.createElement('p');
+        let newMessageTime = document.createElement('p');
+
+        newMessage.className = 'message outgoing move';
+        newMessageContent.className = 'message__content sending';
+        newMessageText.className = 'message__text';
+        newMessageTime.className = 'message__date';
+
+        newMessageText.innerHTML = msgValue.current.value;
+        newMessageTime.innerHTML = TimeConverter(Math.floor(Date.now() / 1000));
+
+        newMessageContent.appendChild(newMessageText);
+        newMessageContent.appendChild(newMessageTime);
+        newMessage.appendChild(newMessageContent);
+        messages.appendChild(newMessage);
+
+        lastMessage.classList.add(lastMessage.classList.contains('outgoing') ? 'messageGroup' : '');
+        messages.scrollTop = messages.scrollHeight;
         messageChange("");
 
         await fetch(`${url}message`, {
@@ -31,8 +59,7 @@ function ChatSend({ chatUser, getMessages, getChats }) {
             .then((response) => response.text())
             .then((response) => {
                 console.log(JSON.parse(response));
-                getMessages();
-                getChats();
+                newMessageContent.classList.remove('sending');
             });
     }
 
