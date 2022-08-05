@@ -4,6 +4,7 @@ import { v4 } from "uuid";
 import ReactScrollableFeed from "react-scrollable-feed";
 import AOS from "aos";
 import TimeConverter from "../../Utils/timeConverter";
+import Spinner from "../Spinner/Spinner"
 import ArrowDown from "../../Lib/Svg/arrowDown";
 import "./ChatMessages.scss";
 import noMessageIcon from "../../Assets/Img/noMessages.svg";
@@ -53,7 +54,13 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
             </div>
         );
     } else {
-        if (messages && chatUser) {
+        if (messages == 'loading') {
+            return (
+                <div className="messages__loader">
+                    <Spinner />
+                </div>
+            )
+        } else if (messages && chatUser) {
             return (
                 <div className="messages">
                     <div className="bubbles">
@@ -62,7 +69,7 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
                                 i++;
                                 let messageText = message.message.trim();
                                 let date = TimeConverter(message.created);
-                                let animate = messages.length - 10 > i ? '' : 'fade-up';
+                                let animate = messages.length > 10 ? '' : messages.length - 10 > i ? '' : 'fade-up';
 
                                 if (message.to == chatUser.id) {
                                     let className = `message ${
@@ -72,7 +79,7 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
                                             : ""
                                     } outgoing`;
                                     return (
-                                        <div className={className} key={v4()} data-aos={animate} data-aos-anchor=".styles_scrollable-div__prSCv" to={message.to}>
+                                        <div className={className} key={v4()} data-aos={animate} to={message.to}>
                                             <div className="message__content">
                                                 <p className="message__text">
                                                     {messageText}
@@ -91,7 +98,7 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
                                             : ""
                                     } incoming`;
                                     return (
-                                        <div className={className} key={v4()} data-aos={animate} data-aos-anchor=".styles_scrollable-div__prSCv" to={message.to}>
+                                        <div className={className} key={v4()} data-aos={animate} to={message.to}>
                                             <img
                                                 src={
                                                     chatUser.image

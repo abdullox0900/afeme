@@ -1,4 +1,7 @@
 .chat {
+    ::-webkit-scrollbar{
+        width: 5px;
+    }
     .messages {
         height: 100%;
         max-height: 100%;
@@ -110,6 +113,12 @@
                     margin-left: 55px;
                 }
             }
+        }
+        &__loader{
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         @media (max-width: 400px) {

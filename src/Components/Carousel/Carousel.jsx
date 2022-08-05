@@ -15,11 +15,11 @@ function Carousel() {
     }, []);
     return (
         <section id="brands">
-            <div class="marquee">
-                <div class="marquee--inner">
+            <div className="marquee">
+                <div className="marquee--inner">
                     {portDataImg.map(value =>
                         <span key={value.name}>
-                            <div class="orb">
+                            <div className="orb">
                                 <a href={value.url}>
                                     <img src={value.icon} />
                                 </a>

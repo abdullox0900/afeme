@@ -80,7 +80,7 @@ function Cards({ data, fullCard = false, isUserPost = false }) {
                     if (res.status) {
                         document
                             .querySelector("[cardid=" + `"${data.id}"]`)
-                            .remove();
+                            ?.remove();
                         setIsAdvertDelete(true);
                     }
                 }
@@ -242,7 +242,7 @@ function Cards({ data, fullCard = false, isUserPost = false }) {
         }
     }
 
-    if ((data.check == "true" && data.solt != 'true') || isUserPost) {
+    if ((data.check == "true" && data.solt != "true") || isUserPost) {
         if (!fullCard) {
             return (
                 <>

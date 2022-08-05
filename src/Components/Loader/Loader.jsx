@@ -23,6 +23,14 @@ function Loader() {
                 }
             }
         }
+        setTimeout(() => {
+            const loader = document.querySelectorAll('.loading');
+            if (loader.length > 0) {
+                for (let i = 0; i < loader.length; i++) {
+                    loader[i]?.remove();
+                }
+            }
+        }, 15000);
     }, []);
     
     return (
