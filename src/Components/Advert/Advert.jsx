@@ -64,26 +64,8 @@ function Advert() {
             });
     }, []);
 
-    const shareData = {
-        title: "Afeme",
-        text: "Uy sotiladi",
-        url: window.location.href,
-    };
-
     let adOwner = data.user;
     let ownerPage = `/reltorcob/${adOwner?.id}`;
-
-    function printAdvert() {
-        // var content = document.querySelector(".advert");
-        // document.createElement('link');
-        // // link.href =
-        // var pri = document.querySelector("#advertPrint").contentWindow;
-        // pri.document.open();
-        // pri.document.write(content.innerHTML);
-        // pri.document.close();
-        // pri.focus();
-        window.print();
-    }
 
     if (isLoading) {
         return (

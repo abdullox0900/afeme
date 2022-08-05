@@ -48,7 +48,7 @@ function ChatSend({ chatUser, messages, getMessages, getChats }) {
                     getChats();
                 }
                 if (JSON.parse(response)) {
-                    document.querySelector('.message.move .message__content.sending')?.classList.remove('sending');
+                    // document.querySelector('.message.move .message__content.sending')?.classList.remove('sending');
                 }
             });
     }
@@ -63,7 +63,7 @@ function ChatSend({ chatUser, messages, getMessages, getChats }) {
         let newMessageTime = document.createElement('p');
 
         newMessage.className = 'message outgoing move';
-        newMessageContent.className = 'message__content sending';
+        newMessageContent.className = 'message__content';
         newMessageText.className = 'message__text';
         newMessageTime.className = 'message__date';
 
@@ -76,7 +76,6 @@ function ChatSend({ chatUser, messages, getMessages, getChats }) {
         messages.appendChild(newMessage);
 
         lastMessage.classList.add(lastMessage.classList.contains('outgoing') ? 'messageGroup' : '');
-        messages.scrollTop = messages.scrollHeight;
 
         if (messages.childElementCount > 0) {
             const chatProfileList = document.querySelector('.chatsPanel__chats');
@@ -84,6 +83,7 @@ function ChatSend({ chatUser, messages, getMessages, getChats }) {
             chatProfile.querySelector('.chatProfile__text').innerHTML = message.slice(0, 20);
             chatProfileList.prepend(chatProfile);
         }
+        messages.scrollTop = messages.scrollHeight;
     }
 
     function messageChange(msg) {

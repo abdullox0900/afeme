@@ -98,6 +98,7 @@ function Chat() {
                 console.log("MESSAGE RECEIVE");
                 getMessages();
                 getChats(true);
+                document.querySelectorAll('.message.move')?.map((msg) => msg.remove());
             });
 
         window.addEventListener("hashchange", getHashUrl);
@@ -155,7 +156,7 @@ function Chat() {
                 } else {
                     setMessagesData(null);
                 }
-                console.log(messages);
+                console.log(data);
             })
             .catch((err) => console.log(err))
     }
@@ -185,7 +186,7 @@ function Chat() {
         let userAvatar = chat.user.image ? chat.user.image : defaultAvatar;
 
         new Notification(user, { body: message, icon: userAvatar });
-        return 0;
+        return 0
     }
 
     if (user.hasOwnProperty("data")) {
