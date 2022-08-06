@@ -98,7 +98,6 @@ function Chat() {
                 console.log("MESSAGE RECEIVE");
                 getMessages();
                 getChats(true);
-                document.querySelectorAll('.message.move')?.map((msg) => msg.remove());
             });
 
         window.addEventListener("hashchange", getHashUrl);
@@ -135,6 +134,7 @@ function Chat() {
             Notification.requestPermission().then((result) => {
                 console.log(result);
             });
+            document.querySelector('#__replain_widget_iframe')?.remove();
         }, 3000);
 
     }, []);
@@ -158,7 +158,7 @@ function Chat() {
                 }
                 console.log(data);
             })
-            .catch((err) => console.log(err))
+            .catch(() => setMessagesData(null))
     }
 
     async function getChats(isNotification = false) {

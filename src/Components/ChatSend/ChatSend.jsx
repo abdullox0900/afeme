@@ -43,14 +43,18 @@ function ChatSend({ chatUser, messages, getMessages, getChats }) {
         })
             .then((response) => response.text())
             .then((response) => {
+                let sendingMessage = document.querySelector('.message.move .message__content.sending');
                 if (!messages) {
                     getMessages();
                     getChats();
                 }
                 if (JSON.parse(response)) {
-                    // document.querySelector('.message.move .message__content.sending')?.classList.remove('sending');
+                    sendingMessage?.classList.remove('sending');
+                } else {
+                    sendingMessage?.classList.add('error');
                 }
-            });
+            })
+            .catch(() => document.querySelector('.message.move .message__content.sending')?.classList.add('error'));
     }
 
     function createMessage(message) {
@@ -63,7 +67,7 @@ function ChatSend({ chatUser, messages, getMessages, getChats }) {
         let newMessageTime = document.createElement('p');
 
         newMessage.className = 'message outgoing move';
-        newMessageContent.className = 'message__content';
+        newMessageContent.className = 'message__content sending';
         newMessageText.className = 'message__text';
         newMessageTime.className = 'message__date';
 
@@ -75,7 +79,9 @@ function ChatSend({ chatUser, messages, getMessages, getChats }) {
         newMessage.appendChild(newMessageContent);
         messages.appendChild(newMessage);
 
-        lastMessage.classList.add(lastMessage.classList.contains('outgoing') ? 'messageGroup' : '');
+        if (lastMessage.classList.contains('outgoing')) {
+            lastMessage.classList.add('messageGroup');
+        }
 
         if (messages.childElementCount > 0) {
             const chatProfileList = document.querySelector('.chatsPanel__chats');
@@ -128,7 +134,6 @@ function ChatSend({ chatUser, messages, getMessages, getChats }) {
 
     function previewImage() {
         const objectUrl = [];
-        let regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_ ]+$/;
 
         if (fileInput.current.files.length > 0) {
             for (let i = 0; i < fileInput.current.files.length; i++) {

@@ -103,7 +103,7 @@ function Footer() {
                                                     <a href="mailto: afemegroup@gmail.com" className="footer__link footer__link-email">{res.email}</a>
                                                 </li>
                                                 <li className="footer__item">
-                                                    <a href="https://yandex.uz/maps/org/244577402097/?ll=72.356849%2C40.746957&z=15" className="footer__link footer__link-address" target={"_blank"} style={address}>{res.location}</a>
+                                                    <a href="https://g.page/digitalcityuz?share" className="footer__link footer__link-address" target={"_blank"} style={address}>{res.location}</a>
                                                 </li>
                                             </ul>
                                         )

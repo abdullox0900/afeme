@@ -1,19 +1,26 @@
 .chat {
-    ::-webkit-scrollbar{
+    ::-webkit-scrollbar {
         width: 5px;
     }
     .messages {
         height: 100%;
         max-height: 100%;
         overflow-y: hidden;
-        margin-bottom: 5px;
-        position: relative;
+            position: relative;
         .bubbles {
             height: 100%;
+            display: flex;
+            align-items: flex-end;
         }
         .styles_scrollable-div__prSCv {
             padding-right: 15px;
             scroll-behavior: smooth;
+            max-height: 87vh;
+            height: max-content;
+            width: 100%;
+            @media (max-width: 576px) {
+                max-height: 85vh;
+            }
         }
         .message {
             width: 100%;
@@ -30,8 +37,7 @@
             &.move {
                 // animation: slideUp 0.2s cubic-bezier(0.4, 0, 0.2, 1);
                 &:last-child {
-                    animation: slideUpAndRight 0.2s
-                        cubic-bezier(0.4, 0, 0.2, 1);
+                    animation: slideUpAndRight 0.2s cubic-bezier(0.4, 0, 0.2, 1);
                 }
             }
             &__content {
@@ -47,8 +53,17 @@
                     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
                 }
                 &.sending{
-                    animation: messageSending 0.8s ease infinite;
-                    animation-delay: 0.2s;
+                    background-image: linear-gradient(
+                        270deg,
+                        rgba(100, 181, 239, 0) 48.44%,
+                        #97d9ff 75.52%,
+                        rgba(100, 181, 239, 0) 100%
+                    );
+                    // background-repeat: no-repeat;
+                    animation: bg-move linear 5s infinite;
+                }
+                &.error{
+                    background-color: #ff3d64 !important;
                 }
             }
             &__sender {
@@ -115,7 +130,7 @@
                 }
             }
         }
-        &__loader{
+        &__loader {
             height: 100%;
             display: flex;
             justify-content: center;
@@ -173,13 +188,12 @@
             transform: none;
         }
     }
-    @keyframes messageSending {
+    @keyframes bg-move {
         0% {
-            opacity: .5;
-        } 50% {
-            opacity: 1;
-        } 100% {
-            opacity: 0.5;
+            background-position: -500px 0;
+        }
+        100% {
+            background-position: 1000px 0;
         }
     }
 }

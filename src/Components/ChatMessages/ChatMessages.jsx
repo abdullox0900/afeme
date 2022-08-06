@@ -22,8 +22,9 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
             once: false
         });
     }, []);
-    let messagesBlog = document.querySelector(".styles_scrollable-div__prSCv");
-    let scrollBottomBtn = document.querySelector(".scrollBottom");
+    const messagesBlog = document.querySelector(".styles_scrollable-div__prSCv");
+    const bubbles = document.querySelector(".bubbles");
+    const scrollBottomBtn = document.querySelector(".scrollBottom");
 
     messagesBlog?.addEventListener("scroll", function () {
         if (this.scrollHeight - this.clientHeight - this.scrollTop > 400) {
@@ -61,6 +62,13 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
                 </div>
             )
         } else if (messages && chatUser) {
+            let sendingMessages = document.querySelectorAll('.message.move');
+            if (sendingMessages) {
+                for (let i = 0; i < sendingMessages.length; i++) {
+                    sendingMessages[i]?.remove();
+                }
+            }
+            
             return (
                 <div className="messages">
                     <div className="bubbles">
@@ -72,10 +80,10 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
                                 let animate = messages.length > 10 ? '' : messages.length - 10 > i ? '' : 'fade-up';
 
                                 if (message.to == chatUser.id) {
-                                    let className = `message ${
+                                    let className = `message${
                                         message.to == chatUser.id &&
                                         messages[i]?.to == chatUser.id
-                                            ? "messageGroup"
+                                            ? " messageGroup"
                                             : ""
                                     } outgoing`;
                                     return (
@@ -91,10 +99,10 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
                                         </div>
                                     );
                                 } else {
-                                    let className = `message ${
+                                    let className = `message${
                                         message.to != chatUser.id &&
                                         messages[i]?.to != chatUser.id && messages[i]?.to
-                                            ? "messageGroup"
+                                            ? " messageGroup"
                                             : ""
                                     } incoming`;
                                     return (
