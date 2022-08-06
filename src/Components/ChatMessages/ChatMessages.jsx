@@ -4,7 +4,7 @@ import { v4 } from "uuid";
 import ReactScrollableFeed from "react-scrollable-feed";
 import AOS from "aos";
 import TimeConverter from "../../Utils/timeConverter";
-import Spinner from "../Spinner/Spinner"
+import Spinner from "../Spinner/Spinner";
 import ArrowDown from "../../Lib/Svg/arrowDown";
 import "./ChatMessages.scss";
 import noMessageIcon from "../../Assets/Img/noMessages.svg";
@@ -14,15 +14,18 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
     let i = 0;
     useEffect(() => {
         AOS.init({
-            offset: 150,
+            offset: 0,
             duration: 500,
             debounceDelay: 50,
             throttleDelay: 90,
             mirror: true,
-            once: false
+            once: false,
+            anchorPlacement: 'top-bottom',
         });
     }, []);
-    const messagesBlog = document.querySelector(".styles_scrollable-div__prSCv");
+    const messagesBlog = document.querySelector(
+        ".styles_scrollable-div__prSCv"
+    );
     const bubbles = document.querySelector(".bubbles");
     const scrollBottomBtn = document.querySelector(".scrollBottom");
 
@@ -55,20 +58,20 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
             </div>
         );
     } else {
-        if (messages == 'loading') {
+        if (messages == "loading") {
             return (
                 <div className="messages__loader">
                     <Spinner />
                 </div>
-            )
+            );
         } else if (messages && chatUser) {
-            let sendingMessages = document.querySelectorAll('.message.move');
+            let sendingMessages = document.querySelectorAll(".message.move");
             if (sendingMessages) {
                 for (let i = 0; i < sendingMessages.length; i++) {
                     sendingMessages[i]?.remove();
                 }
             }
-            
+
             return (
                 <div className="messages">
                     <div className="bubbles">
@@ -77,7 +80,12 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
                                 i++;
                                 let messageText = message.message.trim();
                                 let date = TimeConverter(message.created);
-                                let animate = messages.length > 10 ? '' : messages.length - 10 > i ? '' : 'fade-up';
+                                let animate =
+                                    messages.length > 10
+                                        ? ""
+                                        : messages.length - 10 > i
+                                        ? ""
+                                        : "fade-up";
 
                                 if (message.to == chatUser.id) {
                                     let className = `message${
@@ -87,7 +95,11 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
                                             : ""
                                     } outgoing`;
                                     return (
-                                        <div className={className} key={v4()} data-aos={animate} to={message.to}>
+                                        <div
+                                            className={className}
+                                            key={v4()}
+                                            data-aos={animate}
+                                        >
                                             <div className="message__content">
                                                 <p className="message__text">
                                                     {messageText}
@@ -101,12 +113,18 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
                                 } else {
                                     let className = `message${
                                         message.to != chatUser.id &&
-                                        messages[i]?.to != chatUser.id && messages[i]?.to
+                                        messages[i]?.to != chatUser.id &&
+                                        messages[i]?.to
                                             ? " messageGroup"
                                             : ""
                                     } incoming`;
                                     return (
-                                        <div className={className} key={v4()} data-aos={animate} to={message.to}>
+                                        <div
+                                            className={className}
+                                            key={v4()}
+                                            data-aos={animate}
+                                            to={message.to}
+                                        >
                                             <img
                                                 src={
                                                     chatUser.image

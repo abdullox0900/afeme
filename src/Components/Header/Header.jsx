@@ -96,22 +96,7 @@ function Header() {
 
     let url = process.env.REACT_APP_URL;
 
-    // Api Axios Logos
-    useEffect(() => {
-        axios.get(`${url}logos`).then((res) => {
-            const newImgData = res?.data;
-
-            setLogoImg(newImgData);
-        });
-    }, []);
-
-    const token = localStorage.getItem("Token");
-
     const newImgArr = [];
-
-    logoImg.map((i) => {
-        return newImgArr.push(i.image);
-    });
 
     const profile = (
         <>
@@ -134,6 +119,7 @@ function Header() {
                         aria-expanded={
                             userMenuOpen ? "true" : undefined
                         }
+                        className="profile__menu"
                     >
                         {user.data?.image ? (
                             <img
@@ -275,9 +261,7 @@ function Header() {
                             <Link to={"/Afeme"} className="header__logo-link">
                                 <img
                                     className="header__logo-img"
-                                    src={
-                                        newImgArr.length > 0 ? newImgArr : logo
-                                    }
+                                    src={logo}
                                     alt="logo"
                                 />
                             </Link>
@@ -421,7 +405,7 @@ function Header() {
                                     </IconButton>
                                 </Tooltip>
                             </div>
-                            <Box className="header__buttons" sx={{ ml: 3 }}>
+                            <Box className="header__buttons">
                                 {/* If User have Account show profile else Show Login */}
                                 {window.location.pathname != "/advertPage" ? (
                                     <AdvertBtn />
