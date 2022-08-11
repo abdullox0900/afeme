@@ -40,7 +40,7 @@ function Chat() {
 
     const { user, setUser } = useContext(UserContext);
     const { lang, setLang } = useContext(Context);
-    const [messages, setMessagesData] = useState([]);
+    const [messages, setMessagesData] = useState('loading');
     const [adverts, setAdverts] = useState([]);
     const [chats, setChats] = useState(null);
     const [chatID, setChatID] = useState(
@@ -49,15 +49,13 @@ function Chat() {
     const [chatUser, setChatUser] = useState();
     const [isLoading, setIsLoading] = useState(true);
     const [chatFound, setChatFound] = useState(true);
-    const [dataError, setDataError] = useState(false);
-    const [notificationOpen, setNotificationOpen] = useState(false);
     const defaultAvatar =
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI7M4Z0v1HP2Z9tZmfQaZFCuspezuoxter_A&usqp=CAU";
     const { windowWidth } = useWindowDimensions();
     const chatMenu = createRef();
 
     useEffect(() => {
-        setMessagesData(null);
+        setMessagesData('loading');
         if (chatID) {
             function getUser() {
                 fetch(`${url}user/${chatID}`, {
@@ -80,6 +78,7 @@ function Chat() {
             }
             getUser();
         }
+        document.querySelector('#messageInput')?.focus();
     }, [chatID]);
 
     useEffect(() => {
@@ -115,24 +114,27 @@ function Chat() {
             }
         }
 
-        fetch(url + "popular/5", {
-            method: "GET",
-            redirect: 'follow'
-        })
-            .then((response) => response.text())
-            .then((response) => {
-                let data = JSON.parse(response);
-                if (data.hasOwnProperty('data')) {
-                    setAdverts(data.data);
-                }
-                console.log(data);
+        if (windowWidth > 1280) {
+            fetch(url + "popular/5", {
+                method: "GET",
+                redirect: 'follow'
             })
-            .catch((error) => console.log(error));
+                .then((response) => response.text())
+                .then((response) => {
+                    let data = JSON.parse(response);
+                    if (data.hasOwnProperty('data')) {
+                        setAdverts(data.data);
+                    }
+                    console.log(data);
+                })
+                .catch((error) => console.log(error));
+        }
 
         setTimeout(() => {
             Notification.requestPermission().then((result) => {
                 console.log(result);
             });
+            document.querySelector('#__replain_widget_iframe')?.remove();
         }, 3000);
 
     }, []);
@@ -146,11 +148,17 @@ function Chat() {
             .then((response) => {
                 let data = JSON.parse(response);
                 if (data) {
-                    setMessagesData(data);
+                    if (data.length > 0) {
+                        setMessagesData(data);
+                    } else {
+                        setMessagesData(null);
+                    }
                 } else {
                     setMessagesData(null);
                 }
-            });
+                console.log(data);
+            })
+            .catch(() => setMessagesData(null))
     }
 
     async function getChats(isNotification = false) {
@@ -178,128 +186,123 @@ function Chat() {
         let userAvatar = chat.user.image ? chat.user.image : defaultAvatar;
 
         new Notification(user, { body: message, icon: userAvatar });
-        return 0;
+        return 0
     }
 
-    console.log(adverts);
-    if (token && token.trim() != "") {
-        if (user.hasOwnProperty("data")) {
-            return (
-                <Box className="chat">
-                    
-                    <ChatUsers
-                        chats={chats}
-                        chatID={chatID}
-                        isLoading={isLoading}
-                        defaultAvatar={defaultAvatar}
-                        chatMenu={chatMenu}
-                        isOpen={windowWidth < 768 && !chatID ? true : false}
-                    />
+    if (user.hasOwnProperty("data")) {
+        return (
+            <Box className="chat">
+                
+                <ChatUsers
+                    chats={chats}
+                    chatID={chatID}
+                    isLoading={isLoading}
+                    defaultAvatar={defaultAvatar}
+                    chatMenu={chatMenu}
+                    isOpen={windowWidth < 768 && !chatID ? true : false}
+                />
 
-                    <section className="messagesPanel">
-                        {chatUser && chatFound ? (
-                            <Box className="messagesPanel__header">
-                                {windowWidth > 768 ? (
-                                    ""
-                                ) : (
-                                    <IconButton
-                                        className="chatMenuBtn"
-                                        variant="text"
-                                        color="primary"
-                                        onClick={() =>
-                                            chatMenu.current.classList.add(
-                                                "active"
-                                            )
-                                        }
-                                    >
-                                        <Link to={"/chat#"}>
-                                            <ArrowLeft />
-                                        </Link>
-                                    </IconButton>
-                                )}
-                                <Box className="chatProfile">
-                                    <Link to={"/reltorcob/" + chatUser.id}>
-                                        <img
-                                            src={
-                                                chatUser.image
-                                                    ? chatUser.image
-                                                    : defaultAvatar
-                                            }
-                                            alt=""
-                                            className="chatProfile__img"
-                                            onError={(e) =>
-                                                (e.target.src = defaultAvatar)
-                                            }
-                                        />
+                <section className="messagesPanel">
+                    {chatUser && chatFound ? (
+                        <Box className="messagesPanel__header">
+                            {windowWidth > 768 ? (
+                                ""
+                            ) : (
+                                <IconButton
+                                    className="chatMenuBtn"
+                                    variant="text"
+                                    color="primary"
+                                    onClick={() =>
+                                        chatMenu.current.classList.add(
+                                            "active"
+                                        )
+                                    }
+                                >
+                                    <Link to={"/chat#"}>
+                                        <ArrowLeft />
                                     </Link>
-                                    <Box className="chatProfile__content">
-                                        <Link
-                                            to={"/reltorcob/" + chatUser.id}
-                                            className="chatProfile__name"
-                                        >
-                                            {chatUser.name} {chatUser.lastname}
-                                        </Link>
-                                        <span className="chatProfile__text">
-                                            {chatUser?.user_type}
-                                        </span>
-                                    </Box>
+                                </IconButton>
+                            )}
+                            <Box className="chatProfile">
+                                <Link to={"/reltorcob/" + chatUser.id}>
+                                    <img
+                                        src={
+                                            chatUser.image
+                                                ? chatUser.image
+                                                : defaultAvatar
+                                        }
+                                        alt=""
+                                        className="chatProfile__img"
+                                        onError={(e) =>
+                                            (e.target.src = defaultAvatar)
+                                        }
+                                    />
+                                </Link>
+                                <Box className="chatProfile__content">
+                                    <Link
+                                        to={"/reltorcob/" + chatUser.id}
+                                        className="chatProfile__name"
+                                    >
+                                        {chatUser.name} {chatUser.lastname}
+                                    </Link>
+                                    <span className="chatProfile__text">
+                                        {chatUser?.user_type}
+                                    </span>
                                 </Box>
-                                <div className="header__more">
-                                    <IconButton className="header__more__btn">
-                                        <img src={Dots} alt="" />
-                                    </IconButton>
-                                </div>
                             </Box>
-                        ) : (
-                            ""
-                        )}
-
-                        <ChatMessages
-                            messages={messages}
-                            chatUser={chatUser}
-                            chatID={chatID}
-                            defaultAvatar={defaultAvatar}
-                        />
-
-                        {chatUser && chatFound ? (
-                            <ChatSend
-                                chatUser={chatUser}
-                                getMessages={getMessages}
-                                getChats={getChats}
-                            />
-                        ) : (
-                            ""
-                        )}
-                    </section>
-
-                    {windowWidth > 1280 ? (
-                        <section className="infoPanel">
-                            <h5 className="infoPanel__title">
-                                {content[lang].doyou}
-                                <ArrowDown className="arrowDown" />
-                                <span className="chats__indicator">{adverts?.length}</span>
-                            </h5>
-                            <div className="infoPanel__cards">
-                                {adverts.map((advert) => (
-                                    <Cards data={advert} />
-                                ))}
+                            <div className="header__more">
+                                <IconButton className="header__more__btn">
+                                    <img src={Dots} alt="" />
+                                </IconButton>
                             </div>
-                            <Box></Box>
-                        </section>
+                        </Box>
                     ) : (
                         ""
                     )}
-                </Box>
-            );
-        } else {
-            setTimeout(() => {
-                return <Page404 />;
-            }, 1000);
-        }
+
+                    <ChatMessages
+                        messages={messages}
+                        chatUser={chatUser}
+                        chatID={chatID}
+                        defaultAvatar={defaultAvatar}
+                    />
+
+                    {chatUser && chatFound ? (
+                        <ChatSend
+                            chatUser={chatUser}
+                            messages={messages}
+                            getMessages={getMessages}
+                            getChats={getChats}
+                        />
+                    ) : (
+                        ""
+                    )}
+                </section>
+
+                {windowWidth > 1280 ? (
+                    <section className="infoPanel">
+                        <h5 className="infoPanel__title">
+                            {content[lang].doyou}
+                            <ArrowDown className="arrowDown" />
+                            <span className="chats__indicator">{adverts?.length}</span>
+                        </h5>
+                        <div className="infoPanel__cards">
+                            {adverts.map((advert) => (
+                                <Cards data={advert} key={advert?.id}/>
+                            ))}
+                        </div>
+                        <Box></Box>
+                    </section>
+                ) : (
+                    ""
+                )}
+            </Box>
+        );
     } else {
         setTimeout(() => {
             return <Page404 />;
         }, 1000);
     }
+    
 }
 export default Chat;

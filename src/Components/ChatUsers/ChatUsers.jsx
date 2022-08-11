@@ -1,12 +1,11 @@
-import React, { Fragment, useContext, createRef, useRef } from "react";
+import React, { Fragment, useContext, createRef } from "react";
 import { NavLink as Link, useNavigate } from "react-router-dom";
-
-import { Box, IconButton } from "@mui/material";
 import { v4 } from "uuid";
 
 import ContentLoader from "react-content-loader";
 import content from "../../Localization/Content";
 import { Context } from "../../Context/LangContext";
+import TimeConverter from "../../Utils/timeConverter";
 import useWindowDimensions from "../../Utils/windowDimension";
 import noChatsIcon from "../../Assets/Img/Icon/noChats.svg";
 import ArrowDown from "../../Lib/Svg/arrowDown";
@@ -69,13 +68,11 @@ function ChatUsers({ chats, chatID, isLoading, defaultAvatar, chatMenu, isOpen }
         } else {
             if (chats) {
                 return chats.map((chat) => {
-                    let a = new Date(chat.latest.created * 1000);
-                    let hour = a.getHours();
-                    let min = a.getMinutes();
-                    let lastMsgDate = hour + ":" + min;
+                    let lastMsgDate = TimeConverter(chat.latest?.created, true);
                     return (
                         <a
                             href={`#${chat.user.id}`}
+                            id={chat.user.id}
                             key={v4()}
                             onClick={() => {
                                 userIndicator.current.classList.remove(
@@ -84,7 +81,7 @@ function ChatUsers({ chats, chatID, isLoading, defaultAvatar, chatMenu, isOpen }
                                 chatMenu.current.classList.remove("active");
                             }}
                         >
-                            <div className={chatID != chat.chat.id ? "chatProfile" : "chatProfile active"}>
+                            <div className={chatID != chat.user.id ? "chatProfile" : "chatProfile active"}>
                                 <img
                                     src={
                                         chat.user.image
@@ -98,7 +95,7 @@ function ChatUsers({ chats, chatID, isLoading, defaultAvatar, chatMenu, isOpen }
                                     }
                                 />
                                 <div className="chatProfile__content">
-                                    <Box className="chatProfile__content__item">
+                                    <div className="chatProfile__content__item">
                                         <h3 className="chatProfile__name">
                                             {chat.user?.name}{" "}
                                             {chat.user?.lastname}
@@ -106,7 +103,7 @@ function ChatUsers({ chats, chatID, isLoading, defaultAvatar, chatMenu, isOpen }
                                         <p className="chatProfile__text">
                                             {chat?.latest?.message.slice(0, 20)}
                                         </p>
-                                    </Box>
+                                    </div>
                                     <span
                                         ref={userIndicator}
                                         className={`chatProfile__read${chat.chat.reading ? "" : " active"
@@ -138,11 +135,11 @@ function ChatUsers({ chats, chatID, isLoading, defaultAvatar, chatMenu, isOpen }
 
     return (
         <section className={isOpen ? "chatsPanel active" : "chatsPanel"} ref={chatMenu}>
-            <Box className="chatsPanel__header">
+            <div className="chatsPanel__header">
                 <Link to="/" className="chatsPanel__logo">
                     <LogoImg width={45} height={45} />
                     <h4 className="chatsPanel__header__title">
-                        {content[lang].ChatNews}
+                        {content[lang].chat}
                     </h4>
                 </Link>
                 <ArrowDown className="arrowDown" />
@@ -152,11 +149,11 @@ function ChatUsers({ chats, chatID, isLoading, defaultAvatar, chatMenu, isOpen }
                     ""
                 )}
                 <button className="back" onClick={Back}>{content[lang].chat_back}</button>
-            </Box>
-            <Box className="chatsPanel__main">
-                <Box className="chatsPanel__chats">{showChats(7)}</Box>
-            </Box>
-            <Box></Box>
+            </div>
+            <div className="chatsPanel__main">
+                <div className="chatsPanel__chats">{showChats(7)}</div>
+            </div>
+            <div></div>
         </section>
     );
 }

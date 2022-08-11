@@ -15,25 +15,6 @@ function Notification({ message, type}) {
         }
         setOpen(false);
     };
-
-    useEffect(() => {
-        
-        let notification = document.querySelectorAll('.notification');
-        if (notification) {
-            if (notification.length == 2) {
-                setHorizontal('right');
-            } else if (notification.length == 3) {
-                setVertical('top');
-            } else if (notification.length == 4) {
-                setVertical('top');
-                setHorizontal('right');
-            }
-        } 
-    }, [])
-
-    // useEffect(() => {
-    //     setOpen(true);
-    // }, [message, type])
     
     return (
         <Snackbar

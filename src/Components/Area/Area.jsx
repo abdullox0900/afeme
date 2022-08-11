@@ -27,7 +27,7 @@ function Area({ total_area, setTotalArea, living_area, setLivingArea, kitchen_ar
                     <input
                         onChange={(e) => setLivingArea(e.target.value)}
                         type={'number'}
-                        placeholder={content[lang].adverd_about_34}
+                        placeholder={content[lang].advert_living}
                         className={style.input}
                         defaultValue={living_area}>
                     </input>
@@ -53,5 +53,4 @@ function Area({ total_area, setTotalArea, living_area, setLivingArea, kitchen_ar
         </div>
     )
 }
-
 export default Area

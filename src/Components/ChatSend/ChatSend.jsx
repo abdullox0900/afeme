@@ -1,39 +1,95 @@
 import React, { createRef, useRef, useState } from "react";
 
 import { IconButton, Button } from "@mui/material";
+import TimeConverter from "../../Utils/timeConverter";
 import PaperClip from "../../Assets/Img/Icon/paperclip.svg";
 import PaperPlane from "../../Assets/Img/Icon/paper-plane.svg";
 import "./ChatSend.scss";
 
 let url = process.env.REACT_APP_URL;
 
-function ChatSend({ chatUser, getMessages, getChats }) {
+function ChatSend({ chatUser, messages, getMessages, getChats }) {
+
     const [previewImages, setPreviewImages] = useState();
     let msgValue = createRef();
     let previewModal = createRef();
     let fileInput = createRef();
-    let token = localStorage.getItem("Token");
+    const token = localStorage.getItem("Token");
+    const userID = localStorage.getItem("user_id");
     let headers = new Headers();
     headers.append("Authorization", `Bearer ${token}`);
 
-    async function sendMessage(e) {
+    function sendMessage(e) {
         e.preventDefault();
         let formData = new FormData();
-        formData.append("to", chatUser.id); 
-        formData.append("message", msgValue.current.value.trim());
-        messageChange("");
+        let message = msgValue.current.value.trim();
 
-        await fetch(`${url}message`, {
+        formData.append("to", chatUser.id); 
+        formData.append("message", message);
+
+        messageChange("");
+        console.log(messages);
+        if (messages) {
+            createMessage(message);
+        } else {
+            getMessages();
+            getChats();
+        }
+
+        fetch(`${url}message`, {
             method: "POST",
             body: formData,
             headers: headers,
         })
             .then((response) => response.text())
             .then((response) => {
-                console.log(JSON.parse(response));
-                getMessages();
-                getChats();
-            });
+                let sendingMessage = document.querySelector('.message.move .message__content.sending');
+                if (!messages) {
+                    getMessages();
+                    getChats();
+                }
+                if (JSON.parse(response)) {
+                    sendingMessage?.classList.remove('sending');
+                } else {
+                    sendingMessage?.classList.add('error');
+                }
+            })
+            .catch(() => document.querySelector('.message.move .message__content.sending')?.classList.add('error'));
+    }
+
+    function createMessage(message) {
+        const messages = document.querySelector('.styles_scrollable-div__prSCv');
+        const lastMessage = Array.from(document.querySelectorAll('.message')).pop();
+
+        let newMessage = document.createElement('div');
+        let newMessageContent = document.createElement('div');
+        let newMessageText = document.createElement('p');
+        let newMessageTime = document.createElement('p');
+
+        newMessage.className = 'message outgoing move';
+        newMessageContent.className = 'message__content sending';
+        newMessageText.className = 'message__text';
+        newMessageTime.className = 'message__date';
+
+        newMessageText.innerHTML = message;
+        newMessageTime.innerHTML = TimeConverter(Math.floor(Date.now() / 1000));
+
+        newMessageContent.appendChild(newMessageText);
+        newMessageContent.appendChild(newMessageTime);
+        newMessage.appendChild(newMessageContent);
+        messages.appendChild(newMessage);
+
+        if (lastMessage.classList.contains('outgoing')) {
+            lastMessage.classList.add('messageGroup');
+        }
+
+        if (messages.childElementCount > 0) {
+            const chatProfileList = document.querySelector('.chatsPanel__chats');
+            const chatProfile = document.querySelector(".chatProfile.active").parentNode;
+            chatProfile.querySelector('.chatProfile__text').innerHTML = message.slice(0, 20);
+            chatProfileList.prepend(chatProfile);
+        }
+        messages.scrollTop = messages.scrollHeight;
     }
 
     function messageChange(msg) {
@@ -78,7 +134,6 @@ function ChatSend({ chatUser, getMessages, getChats }) {
 
     function previewImage() {
         const objectUrl = [];
-        let regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_ ]+$/;
 
         if (fileInput.current.files.length > 0) {
             for (let i = 0; i < fileInput.current.files.length; i++) {

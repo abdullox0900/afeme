@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import Loader from "./Components/Loader/Loader";
 import App from "./App";
+import { GlobalDebug } from "./Utils/removeConsole";
 import { Provider as LangProvider } from "./Context/LangContext";
 import { Provider as UserProvider } from "./Context/UserContext";
 import { Provider as UpdateUserProvider } from "./Context/UpdateUserContext";
@@ -11,6 +12,9 @@ import { Provider as IPProvider } from "./Context/IPContext";
 import { Provider as SearchContext } from "./Context/SearchContext";
 import Modal from "./Components/LoginModals/ModalAuthorization/Modal"
 
+if (process.env.NODE_ENV === 'production') {
+    GlobalDebug(false);
+}
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 window.addEventListener('load', function(){

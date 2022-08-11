@@ -6,7 +6,7 @@ import { useContext, useEffect, useState } from 'react';
 // Import => Components
 import "../Footer/Footer.scss";
 import { Container } from "@mui/material";
-import Logo from "../../Assets/Img/logo.svg";
+import Logo from "../../Assets/Img/Icon/logo.png";
 import GoogleImg from "../../Assets/Img/google.svg";
 import Instagram from "../../Lib/Svg/Instagram";
 import Telegram from "../../Lib/Svg/Telegram";
@@ -103,7 +103,7 @@ function Footer() {
                                                     <a href="mailto: afemegroup@gmail.com" className="footer__link footer__link-email">{res.email}</a>
                                                 </li>
                                                 <li className="footer__item">
-                                                    <a href="https://yandex.uz/maps/org/244577402097/?ll=72.356849%2C40.746957&z=15" className="footer__link footer__link-address" target={"_blank"} style={address}>{res.location}</a>
+                                                    <a href="https://g.page/digitalcityuz?share" className="footer__link footer__link-address" target={"_blank"} style={address}>{res.location}</a>
                                                 </li>
                                             </ul>
                                         )

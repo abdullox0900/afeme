@@ -149,7 +149,7 @@
 
 @media only screen and (max-width: 985px) {
     .header {
-        &__icons-nav, .add__advert {
+        .add__advert {
             display: none;
         }
         &__menu-btn {
@@ -162,10 +162,34 @@
     }
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 576px) {
     .header {
         .header__location {
             display: none;
+        }
+        .user-profil__avatar{
+            width: 33px;
+            height: 33px;
+        }
+    }
+}
+@media only screen and (max-width: 425px) {
+    .header {
+        .header__likes__link{
+            display: none;
+        }
+        .currency__changer, .lang__changer {
+            padding: 0;
+        }
+        .currency__changer {
+            margin: 0 10px;
+        }
+        &__logo-img{
+            width: 100px;
+            height: 33px;
+        }
+        .profile__menu{
+            margin-left: 10px;
         }
     }
 }

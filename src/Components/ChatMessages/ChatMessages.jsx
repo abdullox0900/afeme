@@ -3,6 +3,8 @@ import React, { useEffect, createRef, useRef } from "react";
 import { v4 } from "uuid";
 import ReactScrollableFeed from "react-scrollable-feed";
 import AOS from "aos";
+import TimeConverter from "../../Utils/timeConverter";
+import Spinner from "../Spinner/Spinner";
 import ArrowDown from "../../Lib/Svg/arrowDown";
 import "./ChatMessages.scss";
 import noMessageIcon from "../../Assets/Img/noMessages.svg";
@@ -12,16 +14,20 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
     let i = 0;
     useEffect(() => {
         AOS.init({
-            offset: 150,
+            offset: 0,
             duration: 500,
             debounceDelay: 50,
             throttleDelay: 90,
             mirror: true,
-            once: false
+            once: false,
+            anchorPlacement: 'top-bottom',
         });
     }, []);
-    let messagesBlog = document.querySelector(".styles_scrollable-div__prSCv");
-    let scrollBottomBtn = document.querySelector(".scrollBottom");
+    const messagesBlog = document.querySelector(
+        ".styles_scrollable-div__prSCv"
+    );
+    const bubbles = document.querySelector(".bubbles");
+    const scrollBottomBtn = document.querySelector(".scrollBottom");
 
     messagesBlog?.addEventListener("scroll", function () {
         if (this.scrollHeight - this.clientHeight - this.scrollTop > 400) {
@@ -33,30 +39,6 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
     scrollBottomBtn?.addEventListener("click", function () {
         messagesBlog.scrollTop = messagesBlog.scrollHeight;
     });
-
-    function timeConverter(unix) {
-        let a = new Date(unix * 1000);
-        let months = [
-            "Yanvar",
-            "Fevral",
-            "Mart",
-            "Aprel",
-            "May",
-            "Iyun",
-            "Iyul",
-            "Avgust",
-            "Sentabr",
-            "Oktabr",
-            "Noyabr",
-            "Dekabr",
-        ];
-        let month = months[a.getMonth()];
-        let day = a.getDay();
-        let hour = a.getHours() >= 10 ? a.getHours() : '0' + a.getHours();
-        let min = a.getMinutes() >= 10 ? a.getMinutes() : '0' + a.getMinutes();
-        let time = day + "-" + month + " " + hour + ":" + min;
-        return time;
-    }
 
     if (!chatID) {
         return (
@@ -76,7 +58,20 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
             </div>
         );
     } else {
-        if (messages && chatUser) {
+        if (messages == "loading") {
+            return (
+                <div className="messages__loader">
+                    <Spinner />
+                </div>
+            );
+        } else if (messages && chatUser) {
+            let sendingMessages = document.querySelectorAll(".message.move");
+            if (sendingMessages) {
+                for (let i = 0; i < sendingMessages.length; i++) {
+                    sendingMessages[i]?.remove();
+                }
+            }
+
             return (
                 <div className="messages">
                     <div className="bubbles">
@@ -84,18 +79,27 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
                             {messages.map((message) => {
                                 i++;
                                 let messageText = message.message.trim();
-                                let date = timeConverter(message.created);
-                                let animate = messages.length - 10 > i ? '' : 'fade-up';
+                                let date = TimeConverter(message.created);
+                                let animate =
+                                    messages.length > 10
+                                        ? ""
+                                        : messages.length - 10 > i
+                                        ? ""
+                                        : "fade-up";
 
                                 if (message.to == chatUser.id) {
-                                    let className = `message ${
+                                    let className = `message${
                                         message.to == chatUser.id &&
                                         messages[i]?.to == chatUser.id
-                                            ? "messageGroup"
+                                            ? " messageGroup"
                                             : ""
                                     } outgoing`;
                                     return (
-                                        <div className={className} key={v4()} data-aos={animate} data-aos-anchor=".styles_scrollable-div__prSCv">
+                                        <div
+                                            className={className}
+                                            key={v4()}
+                                            data-aos={animate}
+                                        >
                                             <div className="message__content">
                                                 <p className="message__text">
                                                     {messageText}
@@ -107,14 +111,20 @@ function ChatMessages({ messages, chatUser, chatID, defaultAvatar }) {
                                         </div>
                                     );
                                 } else {
-                                    let className = `message ${
+                                    let className = `message${
                                         message.to != chatUser.id &&
-                                        messages[i]?.to != chatUser.id && messages[i]?.to
-                                            ? "messageGroup"
+                                        messages[i]?.to != chatUser.id &&
+                                        messages[i]?.to
+                                            ? " messageGroup"
                                             : ""
                                     } incoming`;
                                     return (
-                                        <div className={className} key={v4()} data-aos={animate} data-aos-anchor=".styles_scrollable-div__prSCv">
+                                        <div
+                                            className={className}
+                                            key={v4()}
+                                            data-aos={animate}
+                                            to={message.to}
+                                        >
                                             <img
                                                 src={
                                                     chatUser.image

@@ -1,10 +1,6 @@
 // Import => React and Hooks
 import React, { useState, useEffect, useContext } from "react";
-import {
-    useSearchParams,
-    NavLink as Link,
-    useLocation,
-} from "react-router-dom";
+import { useSearchParams, NavLink as Link } from "react-router-dom";
 import axios from "axios";
 
 // Import => Components
@@ -32,7 +28,6 @@ function Adverts() {
     const [searchParams, setSearchParams] = useSearchParams();
     const { currency, setCurrency } = useContext(CurrencyContext);
     const { lang } = useContext(Context);
-    const location = useLocation();
 
     const term = searchParams.get("term");
     const sale = searchParams.get("sale");
@@ -57,8 +52,8 @@ function Adverts() {
     searchTerms.append("from", from ? from : "");
     searchTerms.append("to", to ? to : "");
 
-    if (from && to) {
-        if (from != '' && to != '') {
+    if (from || to) {
+        if (from != '' || to != '') {
             searchTerms.append("price_type", currency === 'sum' ? 'som': currency);
         }
     }

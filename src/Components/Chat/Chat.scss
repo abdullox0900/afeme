@@ -40,6 +40,7 @@
                 width: 44px;
                 height: 44px;
                 border-radius: 8px;
+                object-fit: cover;
             }
             &__content{
                 padding-left: 15px;
@@ -82,6 +83,7 @@
                 &__img{
                     width: 40px;
                     height: 40px;
+                    object-fit: cover;
                 }
                 &__name{
                     font-size: 17px;
@@ -130,6 +132,7 @@
         &__cards{
             width: max-content;
             height: 100%;
+            width: 100%;
             overflow-y: auto;
             border-radius: 10px;
             margin-bottom: 20px;
@@ -167,26 +170,29 @@
 @media (max-width: 1280px) {
     .chat{
         padding: 0;
-    }
-    .chatsPanel{
-        grid-column: span 3 !important;
-    }
-    .messagesPanel{
-        grid-column: span 5 !important;
+        .chatsPanel{
+            grid-column: span 3;
+        }
+        .messagesPanel{
+            grid-column: span 5;
+        }
+        .infoPanel{
+            display: none;
+        }
     }
 }
 @media (max-width: 768px) {
     .chat{
         grid-template-columns: 1fr;
-    }
-    .chatsPanel{
-        grid-column: span 1 !important;
-    }
-    .chat section{
-        border: none !important;
-    }
-    .messagesPanel{
-        padding: 0 0 15px 10px !important;
+        .chatsPanel{
+            grid-column: span 1;
+        }
+        .chat section{
+            border: none;
+        }
+        .messagesPanel{
+            padding: 0 0 15px 10px;
+        }
     }
 }
 @media (max-width: 425px) {
@@ -199,5 +205,9 @@
     }
     .messagesPanel{
         padding: 0 0 10px 10px !important;
+    }
+    .chatsPanel__logo svg{
+        width: 40px;
+        height: 40px;
     }
 }

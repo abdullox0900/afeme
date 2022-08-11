@@ -573,7 +573,8 @@ function UserPostEdit() {
                                 />
                             </div>
                             {photo.map((type) => (
-                                <div className='img' key={v4()} style={{ background: `url(${type})no-repeat center center/cover` }} >
+                                <div className='img' key={v4()} >
+                                    <img src={type} alt="" style={{width: '100%', height: '100%'}}/>
                                     <Trash onClick={(e) => Delete(type)} className='icon' />
                                 </div>
                             ))}
